@@ -94,7 +94,15 @@ proxy-groups:
   - yiun
   - iam7
   - myvm
-  - fox
+  - fox   
+  - irancell
+  - mci 
+  - posyao 
+  - yugogo
+  - klausvpn
+  - adlionvm 
+  - jingfu 
+  - wifi  
   - sim
   url: 'http://www.google.com/'
   interval: 300
@@ -124,8 +132,16 @@ proxy-groups:
   - yiun
   - iam7
   - myvm
-  - fox
-  - sim 
+  - fox   
+  - irancell
+  - mci 
+  - posyao 
+  - yugogo
+  - klausvpn
+  - adlionvm 
+  - jingfu 
+  - wifi  
+  - sim
 - name: 🌍 media
   type: select
   proxies:
@@ -133,10 +149,6 @@ proxy-groups:
   - auto
   - 🎯 dir
   use:
-  - yiun
-  - iam7
-  - myvm
-  - fox
   - au
   - cn
   - jp
@@ -151,17 +163,25 @@ proxy-groups:
   - nl
   - others
   - all
-  - sim 
+  - yiun
+  - iam7
+  - myvm
+  - fox   
+  - irancell
+  - mci 
+  - posyao 
+  - yugogo
+  - klausvpn
+  - adlionvm 
+  - jingfu 
+  - wifi  
+  - sim
 - name: 📲 tel
   type: select
   proxies:
   - proxy
   - 🎯 dir
   use:
-  - yiun
-  - iam7
-  - myvm
-  - fox 
   - au
   - cn
   - jp
@@ -176,17 +196,25 @@ proxy-groups:
   - nl
   - others
   - all 
-  - sim 
+  - yiun
+  - iam7
+  - myvm
+  - fox   
+  - irancell
+  - mci 
+  - posyao 
+  - yugogo
+  - klausvpn
+  - adlionvm 
+  - jingfu 
+  - wifi  
+  - sim
 - name: Ⓜ️ micro
   type: select
   proxies:
   - 🎯 dir
   - proxy
   use:
-  - yiun
-  - iam7
-  - myvm
-  - fox
   - au
   - cn
   - jp
@@ -201,17 +229,25 @@ proxy-groups:
   - nl
   - others
   - all
-  - sim  
+  - yiun
+  - iam7
+  - myvm
+  - fox   
+  - irancell
+  - mci 
+  - posyao 
+  - yugogo
+  - klausvpn
+  - adlionvm 
+  - jingfu 
+  - wifi  
+  - sim 
 - name: 🍎 apple
   type: select
   proxies:
   - proxy
   - 🎯 dir
   use:
-  - yiun
-  - iam7
-  - myvm
-  - fox  
   - au
   - cn
   - jp
@@ -226,7 +262,19 @@ proxy-groups:
   - nl
   - others
   - all 
-  - sim 
+  - yiun
+  - iam7
+  - myvm
+  - fox   
+  - irancell
+  - mci 
+  - posyao 
+  - yugogo
+  - klausvpn
+  - adlionvm 
+  - jingfu 
+  - wifi  
+  - sim
 - name: 🎯 dir
   type: select
   proxies:
@@ -267,12 +315,96 @@ proxy-groups:
   - yiun
   - iam7
   - myvm
-  - fox
-  - sim    
+  - fox   
+  - irancell
+  - mci 
+  - posyao 
+  - yugogo
+  - klausvpn
+  - adlionvm 
+  - jingfu 
+  - wifi  
+  - sim
+- name: iran ⛰
+  type: select
+  proxies:
+  - proxy
+  use:
+  - irancell
+- name: hamrah 🏔
+  type: select
+  proxies:
+  - proxy
+  use:
+  - mci 
 proxy-providers:
+  irancell:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/node/main/proxy_providers/VPN4"
+    path: Haisto/irancell.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+  mci:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN1.yaml"
+    path: Haisto/mci.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+  posyao:
+    type: http
+    url: "https://klausvpn.posyao.com/clash/proxies"
+    path: Haisto/posyao.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+  yugogo:
+    type: http
+    url: "https://proxy.yugogo.xyz/clash/proxies"
+    path: Haisto/yugogo.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+  klausvpn:
+    type: http
+    url: "https://klausvpn.posyao.com/clash/proxies"
+    path: Haisto/klausvpn.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+  adlionvm:
+    type: http
+    url: "http://0.0.0.0:33100/clash/proxies"
+    path: Haisto/adlionvm.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+  jingfu:
+    type: http
+    url: "https://free.jingfu.cf/clash/proxies"
+    path: Haisto/jingfu.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+  wifi:
+    type: http
+    url: "https://proxypool.laowang.me/clash/proxies"
+    path: Haisto/wifi.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
   sim:
     type: http
-    url: "https://proxy.yiun.xyz/clash/proxies"
+    url: "https://proxypool.laowang.me/clash/proxies"
     path: Haisto/sim.yaml
     health-check:
       enable: true
