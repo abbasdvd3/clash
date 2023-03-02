@@ -558,6 +558,19 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
+rule-providers:
+  porn:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/porn.yaml"
+    path: "./rule_provider/porn.yaml"
+    interval: 86400 
+  telegram+Whatsapp:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/telegram%2BWhatsapp.yaml"
+    path: "./rule_provider/telegram+Whatsapp.yaml"
+    interval: 86400      
 tunnels:
   - tcp/udp,127.0.0.1:6553,114.114.114.114:53,auto
   - tcp,127.0.0.1:6666,rds.mysql.com:3306,auto
@@ -568,6 +581,8 @@ tunnels:
     target: target.com
     proxy: auto
 rules:
+  - RULE-SET,porn,proxy,tcp
+  - RULE-SET,telegram+Whatsapp,proxy,tcp  
   - DOMAIN-SUFFIX,acl4.ssr,🎯 dir
   - DOMAIN-SUFFIX,ip6-localhost,🎯 dir
   - DOMAIN-SUFFIX,ip6-loopback,🎯 dir
