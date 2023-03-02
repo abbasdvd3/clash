@@ -557,7 +557,20 @@ proxy-providers:
     health-check:
       enable: true
       interval: 600
-      url: http://www.gstatic.com/generate_204
+      url: http://edge.microsoft.com/captiveportal/generate_204
+rule-providers:
+  porn:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/porn.yaml"
+    path: "./rule_provider/porn.yaml"
+    interval: 86400 
+  telegram+Whatsapp:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/telegram%2BWhatsapp.yaml"
+    path: "./rule_provider/telegram+Whatsapp.yaml"
+    interval: 86400
 tunnels:
   - tcp/udp,127.0.0.1:6553,114.114.114.114:53,auto
   - tcp,127.0.0.1:6666,rds.mysql.com:3306,auto
@@ -3936,5 +3949,7 @@ rules:
   - IP-CIDR,101.198.128.0/18,🎯 dir,no-resolve
   - IP-CIDR,101.198.192.0/19,🎯 dir,no-resolve
   - IP-CIDR,101.199.196.0/22,🎯 dir,no-resolve
+  - RULE-SET,porn,proxy,tcp
+  - RULE-SET,telegram+Whatsapp,proxy,tcp 
   - GEOIP,CN,🎯 dir
   - MATCH,🐟 
