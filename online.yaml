@@ -1,10 +1,13 @@
-mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
+mode: rule
+unified-delay: true
 log-level: debug
 allow-lan: true
 auto-redir: true
 ipv6: false
 external-controller: 127.0.0.1:9090
-tcp-concurrent: true
+tcp-concurrent: false
 geodata-mode: false
 enable-process: true
 interface-name: null
@@ -12,7 +15,7 @@ profile:
   store-selected: false
   store-fake-ip: true
 sniffer:
-  enable: true
+  enable: false
   sniffing:
     - tls
     - http
@@ -28,7 +31,7 @@ sniffer:
     - 443
     - 8000-9000
 tun:
-  enable: true
+  enable: false
   stack: system
   dns-hijack:
     - 198.18.0.2:53
@@ -38,40 +41,29 @@ tun:
 dns:
   enable: true
   ipv6: false
-  use-host: true
-  enhanced-mode: fake-ip
-  listen: 0.0.0.0:7874
-  proxy-server-nameserver:
-    - tls://1.0.0.1:853
-  nameserver:
-    - 114.114.114.114
-    - 8.8.8.8
-    - tls://223.5.5.5:853
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query#h3=true
-    - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true
-    - dhcp://en0
-    - quic://dns.adguard.com:784
-  fallback:
-    - https://doh.dns.sb/dns-query
-    - tcp://208.67.222.222:443
-    - quic://a.passcloud.xyz:784
-    - tls://8.8.4.4:853#DNSg
-  fallback-filter:
-    geoip: false
-    geoip-code: CN
-    geosite:
-      - gfw
-    ipcidr:
-      - 240.0.0.0/4
-    domain:
-      - +.google.com
-      - +.facebook.com
-      - +.youtube.com
+  prefer-h3: true
   default-nameserver:
-    - 114.114.114.114
-    - 8.8.8.8
-  fake-ip-range: 198.18.0.1/16  
+    # cloudflare
+    - '1.1.1.1#BFM'
+    # google
+    - '8.8.8.8'
+  listen: 0.0.0.0:1053
+  use-hosts: true
+  # redir-host / fake-ip
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter:
+    - '+.lan'
+  nameserver:
+    # cloudflare
+    - '1.1.1.1'
+    - 'tls://1.0.0.1:853#BFM'
+    # google
+    - '8.8.8.8#BFM'
+    - 'tls://8.8.4.4:853'
+  # proxy-server-nameserver:
+    # - '1.1.1.1'
+  nameserver-policy: { "geosite:youtube": [1.1.1.1, 8.8.8.8] }
 proxies:
 
 proxy-groups:
@@ -144,14 +136,12 @@ proxy-groups:
   - sim
   url: 'http://edge.microsoft.com/captiveportal/generate_204'
   interval: 300
-  tolerance: 150       
   lazy: true
   disable-udp: true  
 - name: auto
   type: url-test
   url: 'http://edge.microsoft.com/captiveportal/generate_204'
   interval: 300
-  tolerance: 50
   use:
   - au
   - cn
