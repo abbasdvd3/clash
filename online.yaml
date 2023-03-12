@@ -1,12 +1,12 @@
 redir-port: 9797
 tproxy-port: 9898
-mode: rule
+mode: global
 allow-lan: true
 unified-delay: false
 bind-address: '*'
 # info / warning / error / debug / silent
 log-level: warning
-ipv6: true
+ipv6: false
 geodata-mode: false
 geodata-loader: memconservative
 external-controller: 0.0.0.0:9090 
@@ -94,7 +94,7 @@ tun:
 dns:
   enable: true
   ipv6: false
-  prefer-h3: false
+  prefer-h3: true
   default-nameserver:
     - '1.1.1.1'
     - '8.8.8.8'
@@ -119,27 +119,6 @@ dns:
     # - https://doh.pub/dns-query # DNS over HTTPS
     # - https://dns.alidns.com/dns-query#h3=true
     # - https://mozilla.cloudflare-dns.com/dns-query#clash&h3=true
-  proxy-server-nameserver:
-    - '1.1.1.1'
-  # nameserver-policy:
-    # '+.googlesyndication.com': 1.1.1.1
-    # 'geosite:category-ads-all': 127.0.0.1
-  # fallback:
-    # - 'https://8.8.8.8/dns-query'
-    # - 'tcp://8.8.4.4'
-    # - 'quic://dns.adguard.com:784' # DNS over QUIC
-  # fallback-filter:
-    # geoip: false
-    # geoip-code: 'ID'
-    # geosite:
-      # # - gfw
-    # ipcidr:
-      # # - 240.0.0.0/4
-    # domain:
-      # - '+.google.com'
-      # - '+.facebook.com'
-      # - '+.youtube.com'
-      # - '+.github.com'
 
 hosts:
   'ota.googlezip.net': 127.0.0.1
