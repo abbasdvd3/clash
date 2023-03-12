@@ -1,54 +1,102 @@
-port: 7890
-socks-port: 7891
-redir-port: 7892
-mixed-port: 7893
+redir-port: 9797
 tproxy-port: 9898
 mode: rule
-unified-delay: false
-log-level: debug
 allow-lan: true
-auto-redir: true
-ipv6: false
-external-controller: 127.0.0.1:9090
-tcp-concurrent: false
+unified-delay: false
+bind-address: '*'
+# info / warning / error / debug / silent
+log-level: warning
+ipv6: true
 geodata-mode: false
-enable-process: true
-interface-name: null
+geodata-loader: memconservative
+external-controller: 0.0.0.0:9090 
+external-controller-tls: 0.0.0.0:9091 # RESTful API HTTPS
+# secret: "123456"
+external-ui: ./dashboard/dist
+tcp-concurrent: false
+inbound-tfo: false
+interface-name: ""
+# routing-mark: 233
+geox-url:
+  mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
+  geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
+  geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
+#  - always, Diaktifkan untuk memaksa semua proses agar cocok
+#  - strict, Secara default, ini dinilai dari √clash apakah diaktifkan atau tidak
+#  - off, tidak cocok dengan prosesnya, disarankan untuk menggunakan mode ini di router
+find-process-mode: off # always, strict, off
+
+#  global-client-fingerprint:全局TLS指纹,优先低于proxy内的 client-fingerprint
+#  accepts "chrome","firefox","safari","ios","random","none" options.
+#  Utls is currently support TLS transport in TCP/grpc/WS/HTTP for VLESS/Vmess and trojan.
+# global-client-fingerprint: chrome
+
 profile:
-  store-selected: false
-  store-fake-ip: true
+  store-selected: true
+  store-fake-ip: false
+
+experimental:
+  sniff-tls-sni: false
+  udp-fallback-match: false
+  fingerprint: ""
+
 sniffer:
-  enable: false
+  enable: true
+  force-dns-mapping: false
+  parse-pure-ip: false
+  # Whether to use sniffing results as actual access, default false
+  override-destination: false
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+  force-domain:
+    - '+.v2ex.com'
+  skip-domain:
+    - '+.google.com'
   sniffing:
     - tls
     - http
-  skip-domain:
-    - Mijia Cloud
-    - dlg.io.mi.com
-    - +.apple.com
-  force-domain:
-    - google.com
-    - instagram.com
-    - telegram.com
   port-whitelist:
-    - 443
-    - 8000-9000
+    - "80"
+    - "443"
+
 tun:
   enable: false
-  stack: system
+  # biarkan default utun
+  device: utun
+  mtu: 9000
+  # gvisor / lwip / system
+  stack: gvisor
   dns-hijack:
-    - 198.18.0.2:53
-  auto-redir: true
-  auto-route: true
-  auto-detect-interface: true
+    - any:53
+  auto-route: false
+  auto-detect-interface: false
+  inet4-address: 172.19.0.1/30
+  inet6-address: [fdfe:dcba:9876::1/126]
+  strict_route: false
+  inet4_route_address:
+    - 0.0.0.0/1
+    - 128.0.0.0/1
+  inet6_route_address:
+    - "::/1"
+    - "8000::/1"
+  # include_android_user:
+  # - 0
+  # - 10
+  # include_package:
+  # - com.android.chrome
+  # exclude_package:
+  # - com.android.captiveportallogin
+
 dns:
   enable: true
   ipv6: false
-  prefer-h3: true
+  prefer-h3: false
   default-nameserver:
-    # cloudflare
-    - '1.1.1.1#BFM'
-    # google
+    - '1.1.1.1'
     - '8.8.8.8'
   listen: 0.0.0.0:1053
   use-hosts: true
@@ -57,16 +105,48 @@ dns:
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
     - '+.lan'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
   nameserver:
-    # cloudflare
     - '1.1.1.1'
-    - 'tls://1.0.0.1:853#BFM'
-    # google
-    - '8.8.8.8#BFM'
+    - 'tls://1.0.0.1:853'
+    - '8.8.8.8'
     - 'tls://8.8.4.4:853'
-  # proxy-server-nameserver:
-    # - '1.1.1.1'
-  nameserver-policy: { "geosite:youtube": [1.1.1.1, 8.8.8.8] }
+    # - '127.0.0.1'
+    # - 'tls://1.1.1.1:853' # DNS over TLS
+    # - 'tls://1dot1dot1dot1.cloudflare-dns.com:853'
+    # - dhcp://rmnet_data+ # dns from dhcp
+    # - https://doh.pub/dns-query # DNS over HTTPS
+    # - https://dns.alidns.com/dns-query#h3=true
+    # - https://mozilla.cloudflare-dns.com/dns-query#clash&h3=true
+  proxy-server-nameserver:
+    - '1.1.1.1'
+  # nameserver-policy:
+    # '+.googlesyndication.com': 1.1.1.1
+    # 'geosite:category-ads-all': 127.0.0.1
+  # fallback:
+    # - 'https://8.8.8.8/dns-query'
+    # - 'tcp://8.8.4.4'
+    # - 'quic://dns.adguard.com:784' # DNS over QUIC
+  # fallback-filter:
+    # geoip: false
+    # geoip-code: 'ID'
+    # geosite:
+      # # - gfw
+    # ipcidr:
+      # # - 240.0.0.0/4
+    # domain:
+      # - '+.google.com'
+      # - '+.facebook.com'
+      # - '+.youtube.com'
+      # - '+.github.com'
+
+hosts:
+  'ota.googlezip.net': 127.0.0.1
+  'ota-cache1.googlezip.net': 127.0.0.1
+  'ota-cache2.googlezip.net': 127.0.0.1
 proxies:
 
 proxy-groups:
