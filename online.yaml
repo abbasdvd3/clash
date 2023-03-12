@@ -41,10 +41,25 @@ experimental:
   fingerprint: ""
 
 sniffer:
-  enable: true
+  enable: false
   sniffing:
     - tls
     - http
+  skip-domain:
+    - Mijia Cloud
+    - dlg.io.mi.com/
+    - +.apple.com/
+  force-domain:
+    - +.google.com/
+    - +.instagram.com/
+    - +.telegram.com/
+    - +.facebook.com/
+    - +.youtube.com/
+  port-whitelist:
+    - 443
+    - 8000-9000
+  force-dns-mapping: true
+  parse-pure-ip: true
 
 tun:
   enable: false
@@ -107,7 +122,6 @@ proxy-groups:
   - proxy
   - 🎯 dir
   - auto
-  
 - name: proxy
   type: select
   proxies:
