@@ -7,7 +7,7 @@ bind-address: '*'
 # info / warning / error / debug / silent
 log-level: warning
 ipv6: false
-geodata-mode: false
+geodata-mode: true
 geodata-loader: memconservative
 external-controller: 0.0.0.0:9090 
 external-controller-tls: 0.0.0.0:9091 # RESTful API HTTPS
@@ -41,27 +41,10 @@ experimental:
   fingerprint: ""
 
 sniffer:
-  enable: true
-  force-dns-mapping: false
-  parse-pure-ip: false
-  # Whether to use sniffing results as actual access, default false
-  override-destination: false
-  sniff:
-    TLS:
-      ports: [443, 8443]
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-  force-domain:
-    - '+.v2ex.com'
-  skip-domain:
-    - '+.google.com'
-  sniffing:
-    - tls
-    - http
-  port-whitelist:
-    - "80"
-    - "443"
+  enable: true
+  sniffing:
+    - tls
+    - http
 
 tun:
   enable: false
@@ -96,29 +79,20 @@ dns:
   ipv6: false
   prefer-h3: true
   default-nameserver:
-    - '1.1.1.1'
-    - '8.8.8.8'
+    - 1.1.1.1
   listen: 0.0.0.0:1053
   use-hosts: true
   # redir-host / fake-ip
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
-    - '+.lan'
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*'
+    - +.lan
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - +.stun.*.*.*.*.*
   nameserver:
-    - '1.1.1.1'
-    - '8.8.8.8'
-    # - '127.0.0.1'
-    # - 'tls://1.1.1.1:853' # DNS over TLS
-    # - 'tls://1dot1dot1dot1.cloudflare-dns.com:853'
-    # - dhcp://rmnet_data+ # dns from dhcp
-    # - https://doh.pub/dns-query # DNS over HTTPS
-    # - https://dns.alidns.com/dns-query#h3=true
-    # - https://mozilla.cloudflare-dns.com/dns-query#clash&h3=true
+    - 1.1.1.1
 
 hosts:
   'ota.googlezip.net': 127.0.0.1
@@ -133,22 +107,7 @@ proxy-groups:
   - proxy
   - 🎯 dir
   - auto
-  use:
-  - others
-  - all
-  - yiun
-  - iam7
-  - myvm
-  - fox   
-  - irancell
-  - mci 
-  - posyao 
-  - yugogo
-  - klausvpn
-  - adlionvm 
-  - jingfu 
-  - wifi  
-  - sim
+  
 - name: proxy
   type: select
   proxies:
@@ -547,7 +506,22 @@ tunnels:
     target: target.com
     proxy: auto
 rules:
-  - RULE-SET,porn,proxy,tcp
-  - RULE-SET,telegram+Whatsapp,proxy,tcp  
-
+  - RULE-SET,porn,proxy
+  - RULE-SET,telegram+Whatsapp,proxy
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,122.122.0.0/8,DIRECT,no-resolve
+  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
+  - DST-PORT,123/136/137-139,DIRECT       
+  - SRC-PORT,123/136/137-139,DIRECT
+  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
+  - IP-CIDR6,::1/128,REJECT,no-resolve
+  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
+  - DOMAIN-SUFFIX,github.com,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,github.io,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,githubapp.com,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,githubassets.com,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,githubusercontent.com,DIRECT,no-resolve
+  - DOMAIN-KEYWORD,github,DIRECT,no-resolve
+  - DOMAIN-KEYWORD,appteka.store,DIRECT
+  - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT,no-resolve
   - MATCH,🐟 
