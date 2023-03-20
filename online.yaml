@@ -6,7 +6,7 @@ unified-delay: true
 bind-address: '*'
 # info / warning / error / debug / silent
 log-level: warning
-ipv6: false
+ipv6: true
 geodata-mode: true
 geodata-loader: memconservative
 external-controller: 0.0.0.0:9090 
@@ -16,49 +16,6 @@ sniffer:
   sniffing:
     - tls
     - http
-  skip-domain:
-    - Mijia Cloud
-    - dlg.io.mi.com/
-    - +.apple.com/
-  force-domain:
-    - +.google.com/
-    - +.instagram.com/
-    - +.telegram.com/
-    - +.facebook.com/
-    - +.youtube.com/
-  port-whitelist:
-    - 443
-    - 8000-9000
-  force-dns-mapping: true
-  parse-pure-ip: true
-
-tun:
-  enable: false
-  # biarkan default utun
-  device: utun
-  mtu: 9000
-  # gvisor / lwip / system
-  stack: gvisor
-  dns-hijack:
-    - any:53
-  auto-route: false
-  auto-detect-interface: false
-  inet4-address: 172.19.0.1/30
-  inet6-address: [fdfe:dcba:9876::1/126]
-  strict_route: false
-  inet4_route_address:
-    - 0.0.0.0/1
-    - 128.0.0.0/1
-  inet6_route_address:
-    - "::/1"
-    - "8000::/1"
-  # include_android_user:
-  # - 0
-  # - 10
-  # include_package:
-  # - com.android.chrome
-  # exclude_package:
-  # - com.android.captiveportallogin
 
 dns:
   enable: true
