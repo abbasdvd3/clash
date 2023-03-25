@@ -60,52 +60,16 @@ tun:
 dns:
   enable: true
   ipv6: false
-  prefer-h3: false
-  default-nameserver:
-    - '1.1.1.1'
-  listen: 0.0.0.0:1053
-  use-hosts: true
-  # redir-host / fake-ip
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '+.lan'
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*'
+  enhanced-mode: redir-host
+  listen: 0.0.0.0:7874
   nameserver:
-    - '1.1.1.1'
-    #    - 'tls://1.0.0.1:853'
-    #     - '8.8.8.8'
-    #   - 'tls://8.8.4.4:853'
-    # - '127.0.0.1'
-    # - 'tls://1dot1dot1dot1.cloudflare-dns.com:853'
-    # - dhcp://rmnet_data+ # dns from dhcp
-    # - https://doh.pub/dns-query # DNS over HTTPS
-    # - https://dns.alidns.com/dns-query#h3=true
-    # - https://mozilla.cloudflare-dns.com/dns-query#clash&h3=true
-   #   proxy-server-nameserver:
-   #    - '1.1.1.1'
-  # nameserver-policy:
-    # '+.googlesyndication.com': 1.1.1.1
-    # 'geosite:category-ads-all': 127.0.0.1
-  # fallback:
-    # - 'https://8.8.8.8/dns-query'
-    # - 'tcp://8.8.4.4'
-    # - 'quic://dns.adguard.com:784' # DNS over QUIC
-  # fallback-filter:
-    # geoip: false
-    # geoip-code: 'ID'
-    # geosite:
-      # # - gfw
-    # ipcidr:
-      # # - 240.0.0.0/4
-    # domain:
-      # - '+.google.com'
-      # - '+.facebook.com'
-      # - '+.youtube.com'
-      # - '+.github.com'
+    - 8.8.8.8
+    - 1.0.0.1
+    - https://dns.google/dns-query
+  default-nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+    - 112.215.203.254
 
 proxies:
 proxy-providers:
