@@ -1,5 +1,5 @@
-# port: 9494
-# socks-port: 9595
+port: 9494
+socks-port: 9595
 # mixed-port: 9696
 redir-port: 9797
 tproxy-port: 9898
@@ -65,11 +65,9 @@ dns:
   nameserver:
     - 8.8.8.8
     - 1.0.0.1
-    - https://dns.google/dns-query
   default-nameserver:
     - 8.8.8.8
     - 1.1.1.1
-    - 112.215.203.254
 
 proxies:
 proxy-providers:
@@ -516,7 +514,8 @@ proxy-groups:
 - name: LOADBALANCE
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 400
+  tolerance: 150
   health-check:
   enable: true
   disable-udp: false
@@ -589,6 +588,7 @@ proxy-groups:
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 500
+  tolerance: 150
   health-check:
   enable: true
   disable-udp: false
