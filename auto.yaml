@@ -10,7 +10,7 @@ bind-address: '*'
 # info / warning / error / debug / silent
 log-level: warning
 ipv6: false
-geodata-mode: true
+geodata-mode: false
 geodata-loader: memconservative
 external-controller: 0.0.0.0:9090 
 external-controller-tls: 0.0.0.0:9091 # RESTful API HTTPS
@@ -28,17 +28,6 @@ geox-url:
 #  - strict, Secara default, ini dinilai dari √clash apakah diaktifkan atau tidak
 #  - off, tidak cocok dengan prosesnya, disarankan untuk menggunakan mode ini di router
 find-process-mode: off # always, strict, off
-
-dns:
-  enable: true
-  ipv6: false
-  enhanced-mode: redir-host
-  listen: 0.0.0.0:7874
-  nameserver:
-    - 8.8.8.8
-  default-nameserver:
-    - 8.8.8.8
-
 proxies:
 proxy-providers:
   VPN1:
@@ -485,8 +474,8 @@ proxy-groups:
 - name: LOADBALANCE
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 400
-  tolerance: 
+  interval: 300
+  tolerance: 100
   health-check:
   enable: true
   disable-udp: false
@@ -546,6 +535,7 @@ proxy-groups:
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 400
+  tolerance: 100
   health-check:
   enable: true
   disable-udp: false
@@ -558,8 +548,8 @@ proxy-groups:
 - name: best1
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 500
-  tolerance: 150
+  interval: 300
+  tolerance: 100
   health-check:
   enable: true
   disable-udp: false
@@ -575,6 +565,7 @@ proxy-groups:
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 500
+  tolerance: 100
   health-check:
   enable: true
   disable-udp: false
@@ -588,7 +579,7 @@ proxy-groups:
 - name: best3
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 400
+  interval: 300
   tolerance: 100
   health-check:
   enable: true
@@ -745,4 +736,4 @@ rules:
   - DOMAIN-KEYWORD,github,DIRECT,no-resolve,tcp
   - DOMAIN-KEYWORD,appteka.store,DIRECT
   - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT,no-resolve,tcp
-  - MATCH,proxy
+  - MATCH,global
