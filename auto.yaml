@@ -484,10 +484,11 @@ proxy-groups:
   - best4
   - DIRECT
 - name: LOADBALANCE
-  type: url-test
+  type: load-balance
   url: http://www.gstatic.com/generate_204
+  strategy: consistent-hashing
   interval: 400
-  tolerance: 150
+ # tolerance: 
   health-check:
   enable: true
   disable-udp: false
