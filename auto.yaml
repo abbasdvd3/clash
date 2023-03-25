@@ -5,7 +5,7 @@ redir-port: 9797
 tproxy-port: 9898
 mode: rule
 allow-lan: false
-unified-delay: false
+unified-delay: true
 bind-address: '*'
 # info / warning / error / debug / silent
 log-level: warning
@@ -474,8 +474,7 @@ proxy-groups:
 - name: LOADBALANCE
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 100
+  interval: 180
   health-check:
   enable: true
   disable-udp: false
