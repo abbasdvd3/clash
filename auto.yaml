@@ -80,7 +80,6 @@ dns:
     #     - '8.8.8.8'
     #   - 'tls://8.8.4.4:853'
     # - '127.0.0.1'
-    - 'tls://1.1.1.1:853' # DNS over TLS
     # - 'tls://1dot1dot1dot1.cloudflare-dns.com:853'
     # - dhcp://rmnet_data+ # dns from dhcp
     # - https://doh.pub/dns-query # DNS over HTTPS
@@ -108,10 +107,6 @@ dns:
       # - '+.youtube.com'
       # - '+.github.com'
 
-hosts:
-  'ota.googlezip.net': 127.0.0.1
-  'ota-cache1.googlezip.net': 127.0.0.1
-  'ota-cache2.googlezip.net': 127.0.0.1
 proxies:
 proxy-providers:
   VPN1:
@@ -553,10 +548,11 @@ proxy-groups:
   - best2
   - best3
   - best4
+  - DIRECT
 - name: LOADBALANCE
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 500
+  interval: 600
   health-check:
   enable: true
   disable-udp: false
@@ -628,7 +624,7 @@ proxy-groups:
 - name: best1
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 400
+  interval: 500
   health-check:
   enable: true
   disable-udp: false
@@ -643,8 +639,7 @@ proxy-groups:
 - name: best2
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 400
-  tolerance: 100
+  interval: 500
   health-check:
   enable: true
   disable-udp: false
