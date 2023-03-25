@@ -1,8 +1,8 @@
 port: 9494
 socks-port: 9595
 # mixed-port: 9696
-#redir-port: 9797
-#tproxy-port: 9898
+redir-port: 9797
+tproxy-port: 9898
 mode: rule
 allow-lan: false
 unified-delay: false
@@ -473,7 +473,6 @@ proxy-groups:
   - DIRECT
 - name: LOADBALANCE
   type: url-test
-  url: http://www.gstatic.com/generate_204
   interval: 100
   health-check:
   enable: true
@@ -629,8 +628,7 @@ proxy-groups:
   type: select
   health-check:
   enable: true
-  url: http://www.gstatic.com/generate_204
-  interval: 400
+  interval: 300
   disable-udp: false
   proxies:
   - LOADBALANCE
