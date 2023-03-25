@@ -475,6 +475,7 @@ proxy-groups:
   disable-udp: false
   proxies:
   - LOADBALANCE 
+  - global
   - best
   - best1
   - best2
@@ -484,8 +485,7 @@ proxy-groups:
 - name: LOADBALANCE
   type: load-balance
   url: http://www.gstatic.com/generate_204
-  strategy: consistent-hashing
-  interval: 600
+  interval: 300
   tolerance: 
   health-check:
   enable: true
@@ -642,6 +642,13 @@ proxy-groups:
   url: http://www.gstatic.com/generate_204
   interval: 400
   disable-udp: false
+  proxies:
+  - LOADBALANCE 
+  - best
+  - best1
+  - best2
+  - best3
+  - best4
   use:
   - VPN1
   - VPN2
