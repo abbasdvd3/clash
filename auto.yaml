@@ -1,21 +1,28 @@
-port: 9494
-socks-port: 9595
-# mixed-port: 9696
-tproxy-port: 7893
+port: 7890
+socks-port: 7891
+redir-port: 7892
+#mixed-port: 7893
+tproxy-port: 7895
 mode: rule
 allow-lan: true
 log-level: silent
 external-controller: 0.0.0.0:9090
-unified-delay: true
+unified-delay: false
 ipv6: false
+
 dns:
   enable: true
   ipv6: false
-  listen: 0.0.0.0:1053
-  enhanced-mode: redir-host
   use-host: true
+  enhanced-mode: fake-ip
+  listen: 0.0.0.0:7874
   nameserver:
+    - 8.8.8.8
+  fallback:
     - 1.1.1.1
+  default-nameserver:
+    - 8.8.8.8
+  fake-ip-range: 198.18.0.1/16
 proxies:
 proxy-providers:
   VPN1:
