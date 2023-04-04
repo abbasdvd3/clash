@@ -16,23 +16,11 @@ external-controller: 0.0.0.0:9090
 external-controller-tls: 0.0.0.0:9091 # RESTful API HTTPS
 # secret: "123456"
 external-ui: ./dashboard/dist
-tcp-concurrent: false
-inbound-tfo: false
-interface-name: ""
-# routing-mark: 233
-geox-url:
-  mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
-  geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
-  geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
-#  - always, Diaktifkan untuk memaksa semua proses agar cocok
-#  - strict, Secara default, ini dinilai dari √clash apakah diaktifkan atau tidak
-#  - off, tidak cocok dengan prosesnya, disarankan untuk menggunakan mode ini di router
-find-process-mode: off # always, strict, off
 proxies:
 proxy-providers:
   VPN1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN1.yaml"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/3apr.txt"
     path: proxy_provider/VPN1.yaml
     health-check:
       enable: true
