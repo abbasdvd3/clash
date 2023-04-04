@@ -10,12 +10,7 @@ bind-address: '*'
 # info / warning / error / debug / silent
 log-level: warning
 ipv6: false
-geodata-mode: false
-geodata-loader: memconservative
-external-controller: 0.0.0.0:9090 
-external-controller-tls: 0.0.0.0:9091 # RESTful API HTTPS
-# secret: "123456"
-external-ui: ./dashboard/dist
+
 proxies:
 proxy-providers:
   VPN1:
@@ -468,9 +463,6 @@ proxy-groups:
   disable-udp: false
   use:
   - VPN1
-  - VPN2
-  - VPN3
-  - VPN4
   - VPN5
   - VPN6
   - VPN7
@@ -528,9 +520,6 @@ proxy-groups:
   disable-udp: false
   use:
   - VPN1
-  - VPN2
-  - VPN3
-  - VPN4
   - VPN5
 - name: best1
   type: url-test
@@ -623,9 +612,6 @@ proxy-groups:
   - LOADBALANCE
   use:
   - VPN1
-  - VPN2
-  - VPN3
-  - VPN4
   - VPN5
   - VPN6
   - VPN7
