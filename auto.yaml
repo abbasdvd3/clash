@@ -1,16 +1,21 @@
 port: 9494
 socks-port: 9595
 # mixed-port: 9696
-redir-port: 9797
-tproxy-port: 9898
-mode: global
-allow-lan: false
-unified-delay: false
-bind-address: '*'
-# info / warning / error / debug / silent
-log-level: warning
+tproxy-port: 7893
+mode: rule
+allow-lan: true
+log-level: silent
+external-controller: 0.0.0.0:9090
+unified-delay: true
 ipv6: false
-
+dns:
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:1053
+  enhanced-mode: redir-host
+  use-host: true
+  nameserver:
+    - 1.1.1.1
 proxies:
 proxy-providers:
   VPN1:
