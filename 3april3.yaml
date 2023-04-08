@@ -19870,7 +19870,22 @@ proxy-groups:
       - abbasdvd.april.3_1283
       - abbasdvd.april.3_1284
       - abbasdvd.april.3_1285
+rule-providers:
+  porn:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/porn.yaml"
+    path: "./rule_provider/porn.yaml"
+    interval: 86400 
+  telegram+Whatsapp:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/telegram%2BWhatsapp.yaml"
+    path: "./rule_provider/telegram+Whatsapp.yaml"
+    interval: 86400      
 rules:
+  - RULE-SET,porn,FASTSSH-SSHKIT-HOWDY
+  - RULE-SET,telegram+Whatsapp,FASTSSH-SSHKIT-HOWDY
   - IP-CIDR,127.0.0.1/32,REJECT,no-resolve,udp
   - IP-CIDR6,::1/128,REJECT,no-resolve,udp
   # network(tcp/udp) condition for all rules 
