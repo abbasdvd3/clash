@@ -571,7 +571,22 @@ proxy-groups:
   - others1
   - v2ray
   - trojan
+rule-providers:
+  porn:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/porn.yaml"
+    path: "./rule_provider/porn.yaml"
+    interval: 86400 
+  telegram+Whatsapp:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/telegram%2BWhatsapp.yaml"
+    path: "./rule_provider/telegram+Whatsapp.yaml"
+    interval: 86400      
 rules:
+  - RULE-SET,porn,LOADBALANCE
+  - RULE-SET,telegram+Whatsapp,LOADBALANCE
   - IP-CIDR,127.0.0.1/32,REJECT,no-resolve,udp
   - IP-CIDR6,::1/128,REJECT,no-resolve,udp
   # network(tcp/udp) condition for all rules 
