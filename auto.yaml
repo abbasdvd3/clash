@@ -464,10 +464,7 @@ proxy-groups:
 - name: LOADBALANCE
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 500
-  health-check:
-  enable: true
-  disable-udp: false
+  interval: 300
   use:
   - VPN1
   - VPN5
@@ -561,6 +558,11 @@ proxy-groups:
   disable-udp: false
   proxies:
   - LOADBALANCE
+  - best
+  - best1
+  - best2
+  - best3
+  - best4
   use:
   - VPN1
   - VPN5
