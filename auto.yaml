@@ -1,5 +1,4 @@
-mixed-port: 7890
-redir-port: 7892
+
 tproxy-port: 7895
 mode: rule
 allow-lan: true
@@ -552,10 +551,6 @@ proxy-groups:
   - trojan
 - name: glob
   type: select
-  health-check:
-  enable: true
-  interval: 300
-  disable-udp: false
   proxies:
   - LOADBALANCE
   - best
@@ -578,7 +573,7 @@ rule-providers:
     interval: 86400      
 rules:
   - RULE-SET,porn,LOADBALANCE
-  - RULE-SET,telegram+Whatsapp,LOADBALANCE
+  - RULE-SET,telegram+Whatsapp,glob
   - IP-CIDR,127.0.0.1/32,REJECT,no-resolve,udp
   - IP-CIDR6,::1/128,REJECT,no-resolve,udp
   # network(tcp/udp) condition for all rules 
@@ -622,4 +617,4 @@ rules:
   - DOMAIN-KEYWORD,github,DIRECT,no-resolve,tcp
   - DOMAIN-KEYWORD,appteka.store,DIRECT
   - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT,no-resolve,tcp
-  - MATCH,proxy
+  - MATCH,glob
