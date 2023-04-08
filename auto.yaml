@@ -2,20 +2,10 @@
 tproxy-port: 7895
 mode: rule
 allow-lan: true
-ipv6: true
+ipv6: false
 unified-delay: false
 log-level: info
 external-controller: 0.0.0.0:9090
-dns:
-  enabled: true
-  nameserver:
-    - 119.29.29.29
-    - 223.5.5.5
-  fallback:
-    - 8.8.8.8
-    - 8.8.4.4
-    - tls://1.0.0.1:853
-    - tls://dns.google:853
 
 proxies:
 proxy-providers:
@@ -463,7 +453,8 @@ proxy-groups:
 - name: LOADBALANCE
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 300
+  interval: 500
+  tolerance: 150
   use:
   - VPN1
   - VPN5
