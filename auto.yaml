@@ -453,7 +453,7 @@ proxy-groups:
 - name: LOADBALANCE
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 1200
+  interval: 700
   health-check:
   enable: true
   disable-udp: false
@@ -482,7 +482,7 @@ proxy-groups:
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
-  tolerance: 50
+  tolerance: 100
   health-check:
   enable: true
   disable-udp: false
@@ -493,7 +493,7 @@ proxy-groups:
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
-  tolerance: 50
+  tolerance: 100
   health-check:
   enable: true
   disable-udp: false
@@ -509,7 +509,7 @@ proxy-groups:
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
-  tolerance: 50
+  tolerance: 100
   health-check:
   enable: true
   disable-udp: false
@@ -524,7 +524,7 @@ proxy-groups:
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
-  tolerance: 50
+  tolerance: 100
   health-check:
   enable: true
   disable-udp: false
@@ -535,7 +535,7 @@ proxy-groups:
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
-  tolerance: 50
+  tolerance: 100
   health-check:
   enable: true
   disable-udp: false
@@ -630,4 +630,4 @@ rules:
   - DOMAIN-KEYWORD,github,DIRECT,no-resolve,tcp
   - DOMAIN-KEYWORD,appteka.store,DIRECT
   - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT,no-resolve,tcp
-  - MATCH,glob
+  - MATCH,LOADBALANCE
