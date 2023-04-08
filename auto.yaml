@@ -436,20 +436,6 @@ proxy-providers:
       interval: 1200
       url: http://www.gstatic.com/generate_204
 proxy-groups:
-- name: proxy
-  type: select
-  health-check:
-  enable: true
-  disable-udp: false
-  proxies:
-  - LOADBALANCE 
-  - glob
-  - best
-  - best1
-  - best2
-  - best3
-  - best4
-  - DIRECT
 - name: LOADBALANCE
   type: url-test
   url: http://www.gstatic.com/generate_204
