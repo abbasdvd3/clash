@@ -3,7 +3,7 @@ tproxy-port: 7895
 mode: rule
 allow-lan: true
 ipv6: false
-unified-delay: false
+unified-delay: true
 log-level: info
 external-controller: 0.0.0.0:9090
 
@@ -439,8 +439,8 @@ proxy-groups:
 - name: LOADBALANCE
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 500
-  tolerance: 150
+  interval: 300
+  tolerance: 50
   use:
   - VPN1
   - VPN5
