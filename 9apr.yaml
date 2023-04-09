@@ -1,4 +1,4 @@
-mixed-port: 7890
+tproxy-port: 7893
 allow-lan: true
 log-level: info
 external-controller: 0.0.0.0:9090
@@ -7,11 +7,6 @@ dns:
   nameserver:
     - 119.29.29.29
     - 223.5.5.5
-  fallback:
-    - 8.8.8.8
-    - 8.8.4.4
-    - tls://1.0.0.1:853
-    - tls://dns.google:853
 
 proxies:
   - {"name":"1_34\r","type":"trojan","server":"108.137.18.26","port":8443,"udp":true,"password":"cf4295378e209e70d12c5bdd017144dfd1c772d3","skip-cert-verify":true,"network":"tcp"}
@@ -3404,7 +3399,6 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50
     proxies:
       - "1_34\r"
       - "1_409\r"
