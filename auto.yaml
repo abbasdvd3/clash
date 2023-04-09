@@ -166,7 +166,7 @@ proxy-groups:
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
-  tolerance: 100
+  tolerance: 50
   use:
   - VPN1
   - VPN5
@@ -230,25 +230,24 @@ proxy-groups:
   type: select
   proxies:
   - LOADBALANCE
-  - best
-  - best1
-  - best2
-rule-providers:
-  porn:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/porn.yaml"
-    path: "./rule_provider/porn.yaml"
-    interval: 86400 
-  telegram+Whatsapp:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/telegram%2BWhatsapp.yaml"
-    path: "./rule_provider/telegram+Whatsapp.yaml"
-    interval: 86400      
+  use:
+  - VPN1
+  - VPN5
+  - VPN6
+  - VPN7
+  - VPN9
+  - VPN8
+  - VPN10
+  - VPN11
+  - VPN12
+  - VPN13
+  - VPN14
+  - VPN15
+  - VPN16
+  - VPN17
+  - VPN18
+  - VPN19    
 rules:
-  - RULE-SET,porn,LOADBALANCE
-  - RULE-SET,telegram+Whatsapp,glob
   - IP-CIDR,127.0.0.1/32,REJECT,no-resolve,udp
   - IP-CIDR6,::1/128,REJECT,no-resolve,udp
   # network(tcp/udp) condition for all rules 
