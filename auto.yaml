@@ -3,12 +3,12 @@ redir-port: 9797
 tproxy-port: 9898
 mode: rule
 allow-lan: true
-unified-delay: true
+unified-delay: false
 bind-address: '*'
 # info / warning / error / debug / silent
 log-level: silent
 ipv6: true
-geodata-mode: true
+geodata-mode: false
 geodata-loader: memconservative
 external-controller: 0.0.0.0:9090 
 # external-controller-tls: 0.0.0.0:9091 # RESTful API HTTPS device
@@ -35,9 +35,9 @@ profile:
 
 sniffer:
   enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
-  override-destination: true
+  force-dns-mapping: false
+  parse-pure-ip: false
+  override-destination: false
   sniff:
   TLS:
        ports:[443, 8443]
@@ -106,227 +106,51 @@ proxy-providers:
   VPN1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/3april3.yaml"
+    interval: 36000
     path: proxy_provider/VPN1.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN2:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN2.yaml"
-    path: proxy_provider/VPN2.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN3:
-    type: http
-    url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
-    path: proxy_provider/VPN3.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN4:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN4.yaml"
-    path: proxy_provider/VPN4.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
+      interval: 600
+      
   VPN5:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN5.yaml"
+    url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
+    interval: 36000
     path: proxy_provider/VPN5.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN6:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN6.yaml"
-    path: proxy_provider/VPN6.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN7:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN7.yaml"
-    path: proxy_provider/VPN7.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN8:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN8.yaml"
-    path: proxy_provider/VPN8.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN9:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN9.yaml"
-    path: proxy_provider/VPN9.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN10:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN10.yaml"
-    path: proxy_provider/VPN10.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN11:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN11.yaml"
-    path: proxy_provider/VPN11.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN12:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN12.yaml"
-    path: proxy_provider/VPN12.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN13:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN13.yaml"
-    path: proxy_provider/VPN13.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN14:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN14.yaml"
-    path: proxy_provider/VPN14.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN15:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN15.yaml"
-    path: proxy_provider/VPN15.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN16:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN16.yaml"
-    path: proxy_provider/VPN16.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN17:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN17.yaml"
-    path: proxy_provider/VPN17.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN18:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN18.yaml"
-    path: proxy_provider/VPN18.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
-  VPN19:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN19.yaml"
-    path: proxy_provider/VPN19.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 1200
+      interval: 600
+      
 proxy-groups:
 - name: 🌀LOADBALANCE🌀
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
-  tolerance: 100
+  tolerance: 
   use:
   - VPN1
   - VPN5
-  - VPN6
-  - VPN7
-  - VPN9
-  - VPN8
-  - VPN10
-  - VPN11
-  - VPN12
-  - VPN13
-  - VPN14
-  - VPN15
-  - VPN16
-  - VPN17
-  - VPN18
-  - VPN19
 - name: 📶URLTEST📶
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
-  tolerance: 100
+  tolerance: 50
   health-check:
   enable: true
   disable-udp: false
   use:
   - VPN1
   - VPN5
-- name: 📶URLTEST1📶
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 100
-  health-check:
-  enable: true
-  disable-udp: false
-  use:
-  - VPN19
-  - VPN18
-  - VPN17
-  - VPN16
-  - VPN15
-  - VPN14
-  - VPN13
-- name: 📶URLTEST2📶
-  type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 100
-  health-check:
-  enable: true
-  disable-udp: false
-  use:
-  - VPN6
-  - VPN8
-  - VPN9
-  - VPN10
-  - VPN11
-  - VPN12
 - name: ✈️FINAL✈️
   type: select
   proxies:
   - 🌀LOADBALANCE🌀
   - 📶URLTEST📶
-  - 📶URLTEST1📶
-  - 📶URLTEST2📶 
+    use:
+  - VPN1
+  - VPN5
 rules:
   - IP-CIDR,127.0.0.1/32,REJECT,no-resolve,udp
   - IP-CIDR6,::1/128,REJECT,no-resolve,udp
