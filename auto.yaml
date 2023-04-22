@@ -1,11 +1,105 @@
-
-tproxy-port: 7895
+mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
 mode: rule
 allow-lan: true
-ipv6: false
-unified-delay: false
-log-level: info
-external-controller: 0.0.0.0:9090
+unified-delay: true
+bind-address: '*'
+# info / warning / error / debug / silent
+log-level: silent
+ipv6: true
+geodata-mode: true
+geodata-loader: memconservative
+external-controller: 0.0.0.0:9090 
+# external-controller-tls: 0.0.0.0:9091 # RESTful API HTTPS device
+# secret: "123456"
+external-ui: ./dashboard/dist
+# tcp-concurrent: false
+# inbound-tfo: false
+# global-client-fingerprint: chrome
+# interface-name: "rmnet_data+"
+# routing-mark: 233
+geox-url:
+  mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
+  geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
+  geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
+find-process-mode: always
+
+profile:
+  store-selected: false
+  store-fake-ip: true
+
+# experimental:
+  # sniff-tls-sni: false
+  # udp-fallback-match: false
+
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+  TLS:
+       ports:[443, 8443]
+  HTTP:
+       ports: [80, 8080-8880]
+       override-destination: true
+  force-domain:
+     - +.google.com
+  skip-domain:
+     - 
+  sniffing:
+     - tls
+     - http
+  port-whitelist:
+     - "80"
+     - "443"
+tun:
+  enable: true
+  # # biarkan default utun
+  device: utun
+  mtu: 9000
+  # # gvisor / lwip / system
+  stack: system
+  dns-hijack:
+    - any:53
+  auto-route: true
+  auto-detect-interface: true
+  # # end
+  # inet4-address: 172.19.0.1/30
+  # inet6-address: [fdfe:dcba:9876::1/126]
+  # strict_route: false
+  # # include_android_user:
+  # # - 0
+  # # - 10
+  # # include_package:
+  # # - com.android.chrome
+  # # exclude_package:
+  # # - com.android.captiveportallogin
+
+dns:
+  enable: true
+  ipv6: true
+  prefer-h3: true
+  default-nameserver:
+    - '114.114.114.114'
+    - '8.8.8.8'
+  listen: 0.0.0.0:53
+  use-hosts: true
+  # redir-host / fake-ip
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter:
+    - '+.lan'
+  nameserver:
+    - '114.114.114.114'
+    - '8.8.8.8'
+  fallback:
+    - 'quic://a.passcloud.xyz:784'     #【Meta专属】Dns over quic
+    - 'tls://8.8.4.4:853#DNSg' 
+   # - 'https://8.8.8.8/dns-query'
+    - 'tcp://8.8.4.4'
+   # - 'quic://dns.adguard.com:784'
 
 proxies:
 proxy-providers:
@@ -27,7 +121,7 @@ proxy-providers:
       interval: 1200
   VPN3:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN3.yaml"
+    url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
     path: proxy_provider/VPN3.yaml
     health-check:
       enable: true
@@ -162,11 +256,11 @@ proxy-providers:
       url: http://cp.cloudflare.com/generate_204
       interval: 1200
 proxy-groups:
-- name: LOADBALANCE
+- name: 🌀LOADBALANCE🌀
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
-  tolerance: 50
+  tolerance: 100
   use:
   - VPN1
   - VPN5
@@ -184,7 +278,7 @@ proxy-groups:
   - VPN17
   - VPN18
   - VPN19
-- name: best
+- name: 📶URLTEST📶
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
@@ -195,7 +289,7 @@ proxy-groups:
   use:
   - VPN1
   - VPN5
-- name: best1
+- name: 📶URLTEST1📶
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
@@ -211,7 +305,7 @@ proxy-groups:
   - VPN15
   - VPN14
   - VPN13
-- name: best2
+- name: 📶URRTEST2📶
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
@@ -226,27 +320,13 @@ proxy-groups:
   - VPN10
   - VPN11
   - VPN12
-- name: glob
+- name: ✈️FINAL✈️
   type: select
   proxies:
-  - LOADBALANCE
-  use:
-  - VPN1
-  - VPN5
-  - VPN6
-  - VPN7
-  - VPN9
-  - VPN8
-  - VPN10
-  - VPN11
-  - VPN12
-  - VPN13
-  - VPN14
-  - VPN15
-  - VPN16
-  - VPN17
-  - VPN18
-  - VPN19    
+  - 🌀LOADBALANCE🌀
+  - 📶URRTEST📶
+  - 📶URRTEST1📶
+  - 📶URRTEST2📶 
 rules:
   - IP-CIDR,127.0.0.1/32,REJECT,no-resolve,udp
   - IP-CIDR6,::1/128,REJECT,no-resolve,udp
@@ -291,4 +371,4 @@ rules:
   - DOMAIN-KEYWORD,github,DIRECT,no-resolve,tcp
   - DOMAIN-KEYWORD,appteka.store,DIRECT
   - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT,no-resolve,tcp
-  - MATCH,glob
+  - MATCH,✈️FINAL✈️
