@@ -1,0 +1,195 @@
+tproxy-port: 9898
+mode: rule
+allow-lan: true
+unified-delay: false
+log-level: silent
+ipv6: true
+external-controller: 0.0.0.0:9090
+external-ui: dashboard/dist
+
+proxies:
+proxy-groups:
+  - name: 🚀 select
+    type: select
+    proxies:
+      - ♻️ url-test
+      - DIRECT
+    use:
+      - VPN1
+      - VPN2
+      - VPN3
+      - VPN4
+  - name: ♻️ url-test
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    # tolerance: 150
+    use:
+      - VPN1
+      - VPN2
+      - VPN3
+      - VPN4 
+  - name: 🌍 google
+    type: select
+    proxies:
+      - 🚀 select
+      - ♻️ url-test
+      - DIRECT
+  - name: 📲 apps
+    type: select
+    proxies:
+      - 🚀 select
+      - ♻️ url-test  
+  - name: Ⓜ️ micro
+    type: select
+    proxies:
+      - 🚀 select
+      - DIRECT  
+  - name: 🍎 apple
+    type: select
+    proxies:
+      - DIRECT
+  - name: 🎯 DIRECT
+    type: select
+    proxies:
+      - DIRECT
+  - name: 🛑 block
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🍃 app
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🐟 finall
+    type: select
+    proxies:
+      - 🚀 select
+      - 🎯 DIRECT
+      - ♻️ url-test
+    use:
+      - VPN1
+      - VPN2
+      - VPN3
+      - VPN4
+proxy-providers:
+  VPN1:
+    type: file 
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/ABBASDVD10/SSS/1.txtl
+    interval: 3600
+    path: "./ABBASDVD10/1.TXT"
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com/generate_204
+
+  VPN2:
+    type: file
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/ABBASDVD10/SSS/2.txt
+    interval: 3600
+    path: "./ABBASDVD10/2.TXT"
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com/generate_204
+
+  VPN3:
+    type: file
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/ABBASDVD10/SSS/3.txt
+    interval: 3600
+    path: "./ABBASDVD10/3.TXT"
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com/generate_204
+
+  VPN4:
+    type: file
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/ABBASDVD10/SSS/4.txt
+    interval: 3600    
+    path: "./ABBASDVD10/4.TXT"
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com/generate_204
+
+  VPN5:
+    type: file
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/ABBASDVD10/trojan/trojan1.txt
+    interval: 3600    
+    path: "./proxy_provider/VPN5.yaml"
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com/generate_204
+
+  VPN6:
+    type: file
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/ABBASDVD10/trojan/trojan2.txt
+    interval: 3600    
+    path: "./proxy_provider/VPN6.yaml"
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com/generate_204
+
+  VPN7:
+    type: file
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/ABBASDVD10/vmess/vmess1.txt
+    interval: 3600    
+    path: "./proxy_provider1/VPN7.yaml"
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com/generate_204
+
+  VPN8:
+    type: file
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/ABBASDVD10/vmess/vmess2.txt
+    interval: 3600    
+    path: "./proxy_provider/VPN8.yaml"
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com/generate_204
+
+  VPN9:
+    type: file
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/ABBASDVD10/vmess/vmess3.txt
+    interval: 600    
+    path: "./proxy_provider/VPN9.yaml"
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com/generate_204
+
+  VPN10:
+    type: file
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/ABBASDVD10/vmess/vmess4.txt
+    interval: 3600    
+    path: "./proxy_provider/VPN10.yaml"
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com/generate_204
+
+  VPN11:
+    type: file
+    path: "./proxy_provider/VPN11.yaml"
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com/generate_204
+
+  VPN12:
+    type: file
+    path: "./proxy_provider/VPN12.yaml"
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com/generate_204
+   
+rules:
+  - MATCH,🐟 finall
