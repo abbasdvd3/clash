@@ -1,12 +1,56 @@
-redir-port: 7892
-tproxy-port: 9898
+mixed-port: 7890
+tproxy-port: 7893
 mode: rule
 allow-lan: true
-unified-delay: false
 log-level: silent
-ipv6: true
 external-controller: 0.0.0.0:9090
-external-ui: dashboard/dist
+unified-delay: false
+geodata-mode: true
+ipv6: false
+sniffer:
+  enable: true
+  sniffing:
+    - tls
+    - http
+  skip-domain:
+    - 'Mijia Cloud'
+    - 'dlg.io.mi.com'
+    - '+.apple.com'
+    - '*.baidu.com'
+  force-domain:
+    # - '+'
+    - 'google.com'
+dns:
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  use-hosts: false
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "+.stun.*.*"
+    - "+.stun.*.*.*"
+    - "+.stun.*.*.*.*"
+    - "+.stun.*.*.*.*.*"
+    - lens.l.google.com
+    - '*.mcdn.bilivideo.cn'
+    - 'connect.rom.miui.com'
+    - 'localhost.ptlogin2.qq.com'
+    - '+.msftnsci.com'
+    - '+.msftconnecttest.com'
+  default-nameserver:
+    - '114.114.114.114#REJECT'
+  proxy-server-nameserver:
+    - '119.29.29.29#DIRECT'
+    - '223.5.5.5#DIRECT'
+  nameserver:
+    - 'tcp://1.0.0.1'        
+    - 'tcp://8.8.4.4'       
+  fallback:
+    - '223.5.5.5'       
+    - '119.29.29.29'
 
 proxies:
 proxy-groups:
