@@ -55,7 +55,7 @@ sniffer:
      - "80"
      - "443"
 tun:
-  enable: true
+  enable: false
   # # biarkan default utun
   device: utun
   mtu: 9000
@@ -106,22 +106,22 @@ proxy-providers:
   VPN1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/3april3.yaml"
-    interval: 36000
+    interval: 3600
     path: proxy_provider/VPN1.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 600
+      interval: 300
       
   VPN5:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
-    interval: 36000
+    interval: 3600
     path: proxy_provider/VPN5.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 600
+      interval: 300
       
 proxy-groups:
 - name: 🌀LOADBALANCE🌀
