@@ -6,128 +6,37 @@ allow-lan: true
 unified-delay: false
 bind-address: '*'
 # info / warning / error / debug / silent
-log-level: silent
+log-level: debug
 ipv6: true
-geodata-mode: false
-geodata-loader: memconservative
 external-controller: 0.0.0.0:9090 
-# external-controller-tls: 0.0.0.0:9091 # RESTful API HTTPS device
-# secret: "123456"
-external-ui: ./dashboard/dist
-# tcp-concurrent: false
-# inbound-tfo: false
-# global-client-fingerprint: chrome
-# interface-name: "rmnet_data+"
-# routing-mark: 233
-geox-url:
-  mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
-  geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
-  geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
-find-process-mode: always
-
-profile:
-  store-selected: false
-  store-fake-ip: true
-
-# experimental:
-  # sniff-tls-sni: false
-  # udp-fallback-match: false
-
-sniffer:
-  enable: true
-  force-dns-mapping: false
-  parse-pure-ip: false
-  override-destination: false
-  sniff:
-  TLS:
-       ports:[443, 8443]
-  HTTP:
-       ports: [80, 8080-8880]
-       override-destination: true
-  force-domain:
-     - +.google.com
-  skip-domain:
-     - 
-  sniffing:
-     - tls
-     - http
-  port-whitelist:
-     - "80"
-     - "443"
-tun:
-  enable: false
-  # # biarkan default utun
-  device: utun
-  mtu: 9000
-  # # gvisor / lwip / system
-  stack: system
-  dns-hijack:
-    - any:53
-  auto-route: true
-  auto-detect-interface: true
-  # # end
-  # inet4-address: 172.19.0.1/30
-  # inet6-address: [fdfe:dcba:9876::1/126]
-  # strict_route: false
-  # # include_android_user:
-  # # - 0
-  # # - 10
-  # # include_package:
-  # # - com.android.chrome
-  # # exclude_package:
-  # # - com.android.captiveportallogin
-
-dns:
-  enable: true
-  ipv6: true
-  prefer-h3: true
-  default-nameserver:
-    - '114.114.114.114'
-    - '8.8.8.8'
-  listen: 0.0.0.0:53
-  use-hosts: true
-  # redir-host / fake-ip
-  enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.1/8
-  fake-ip-filter:
-    - '+.lan'
-  nameserver:
-    - '114.114.114.114'
-    - '8.8.8.8'
-  fallback:
-    - 'quic://a.passcloud.xyz:784'     #【Meta专属】Dns over quic
-    - 'tls://8.8.4.4:853#DNSg' 
-   # - 'https://8.8.8.8/dns-query'
-    - 'tcp://8.8.4.4'
-   # - 'quic://dns.adguard.com:784'
 
 proxies:
 proxy-providers:
   VPN1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/3april3.yaml"
-    interval: 3600
+    interval: 36000
     path: proxy_provider/VPN1.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 600
       
   VPN5:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
-    interval: 3600
+    interval: 36000
     path: proxy_provider/VPN5.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 600
       
 proxy-groups:
 - name: 🌀LOADBALANCE🌀
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 300
+  interval: 1200
   tolerance: 
   use:
   - VPN1
@@ -136,7 +45,7 @@ proxy-groups:
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
-  tolerance: 50
+  tolerance: 
   health-check:
   enable: true
   disable-udp: false
