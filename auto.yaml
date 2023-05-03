@@ -1,4 +1,6 @@
 mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
 mode: rule
 allow-lan: true
 unified-delay: false
@@ -13,28 +15,28 @@ proxy-providers:
   VPN1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/3april3.yaml"
-    interval: 36000
+    interval: 86400
     path: proxy_provider/VPN1.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 6000
+      interval: 600
       
   VPN5:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
-    interval: 36000
+    interval: 86400
     path: proxy_provider/VPN5.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 6000
+      interval: 600
       
 proxy-groups:
 - name: 🌀LOADBALANCE🌀
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 4600
+  interval: 300
   tolerance: 
   use:
   - VPN1
@@ -42,8 +44,8 @@ proxy-groups:
 - name: 📶URLTEST📶
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 3600
-  tolerance: 200
+  interval: 300
+  tolerance: 
   use:
   - VPN1
 
