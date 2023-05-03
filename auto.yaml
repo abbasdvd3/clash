@@ -18,7 +18,7 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 600
+      interval: 6000
       
   VPN5:
     type: http
@@ -28,25 +28,22 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 600
+      interval: 6000
       
 proxy-groups:
 - name: 🌀LOADBALANCE🌀
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 1200
-  tolerance: 
+  interval: 4600
+  tolerance: 2
   use:
   - VPN1
   - VPN5
 - name: 📶URLTEST📶
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 
-  health-check:
-  enable: true
-  disable-udp: false
+  interval: 3600
+  tolerance: 200
   use:
   - VPN1
   - VPN5
