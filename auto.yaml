@@ -36,7 +36,7 @@ proxy-groups:
 - name: 🌀LOADBALANCE🌀
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 300
+  interval: 86400
   tolerance: 
   use:
   - VPN1
@@ -44,13 +44,18 @@ proxy-groups:
 - name: 📶URLTEST📶
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 300
+  interval: 1200
   tolerance: 
   use:
   - VPN1
 
 - name: ✈️FINAL✈️
-  type: select
+  type: url-test
+  url: http://www.gstatic.com/generate_204
+
+  interval: 
+
+  tolerance: 5
   proxies:
   - 🌀LOADBALANCE🌀
   - 📶URLTEST📶
