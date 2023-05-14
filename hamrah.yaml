@@ -24,14 +24,8 @@ geox-url:
   mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
   geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
   geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
-#  - always, Diaktifkan untuk memaksa semua proses agar cocok
-#  - strict, Secara default, ini dinilai dari √clash apakah diaktifkan atau tidak
-#  - off, tidak cocok dengan prosesnya, disarankan untuk menggunakan mode ini di router
 find-process-mode: always # always, strict, off
-#  global-client-fingerprint:全局TLS指纹,优先低于proxy内的 client-fingerprint
-#  accepts "chrome","firefox","safari","ios","random","none" options.
-#  Utls is currently support TLS transport in TCP/grpc/WS/HTTP for VLESS/Vmess and trojan.
-# global-client-fingerprint: chrome
+global-client-fingerprint: chrome
 profile:
   store-selected: true
   store-fake-ip: true
@@ -63,15 +57,14 @@ sniffer:
     - "443"
 tun:
   enable: true
-  # biarkan default utun
   device: utun
   mtu: 9000
   # gvisor / lwip / system
-  stack: system
+  stack: gvisor
   dns-hijack:
     - any:53
-  auto-route: false
-  auto-detect-interface: false
+  auto-route: true
+  auto-detect-interface: true
   inet4-address: 172.19.0.1/30
   inet6-address: [fdfe:dcba:9876::1/126]
   strict_route: false
@@ -81,13 +74,14 @@ tun:
   inet6_route_address:
     - "::/1"
     - "8000::/1"
-   include_android_user:
-   - 0
-   - 10
-   include_package:
-   - com.android.chrome
-   exclude_package:
-   - com.android.captiveportallogin
+  # include_android_user:
+  # - 0
+  # - 10
+  # include_package:
+  # - com.android.chrome
+  # exclude_package:
+  # - com.android.captiveportallogin
+
 dns:
   enable: true
   ipv6: false
