@@ -24,8 +24,14 @@ geox-url:
   mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
   geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
   geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
+#  - always, Diaktifkan untuk memaksa semua proses agar cocok
+#  - strict, Secara default, ini dinilai dari √clash apakah diaktifkan atau tidak
+#  - off, tidak cocok dengan prosesnya, disarankan untuk menggunakan mode ini di router
 find-process-mode: always # always, strict, off
-global-client-fingerprint: chrome
+#  global-client-fingerprint:全局TLS指纹,优先低于proxy内的 client-fingerprint
+#  accepts "chrome","firefox","safari","ios","random","none" options.
+#  Utls is currently support TLS transport in TCP/grpc/WS/HTTP for VLESS/Vmess and trojan.
+# global-client-fingerprint: chrome
 profile:
   store-selected: true
   store-fake-ip: true
@@ -55,20 +61,15 @@ sniffer:
   port-whitelist:
     - "80"
     - "443"
-# tun:
-  # enable: true
-  # # biarkan default utun
-  # device: utun
-  # mtu: 9000
-  # # gvisor / lwip / system
-  # stack: system
-  # dns-hijack:
-    # - any:53
-  # # bagi yg awam, kalau TUN on wajib true, only armv8/64
-  # auto-route: true
-  # auto-detect-interface: true
-  # # end
-
+tun:
+  enable: true
+  device: utun
+  mtu: 9000
+  stack: system
+  dns-hijack:
+    - any:53
+  auto-route: false
+  auto-detect-interface: false
 
 dns:
   enable: true
@@ -79,7 +80,6 @@ dns:
     - '8.8.8.8'
   listen: 0.0.0.0:1053
   use-hosts: true
-  # redir-host / fake-ip
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
@@ -102,7 +102,7 @@ dns:
     - 'https://mozilla.cloudflare-dns.com/dns-query#clash&h3=true'
   proxy-server-nameserver:
     - '1.1.1.1'
-   nameserver-policy:
+  nameserver-policy:
      '+.googlesyndication.com': 1.1.1.1
      'geosite:category-ads-all': 127.0.0.1
   fallback:
@@ -137,16 +137,16 @@ proxy-providers:
       interval: 400
   VPN2:
     type: http
-    url: "https://raw.fastgit.org/freefq/free/master/v2"
-    path: provide/domestic.txt
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/provide/domestic2.yml"
+    path: provide/domestic2.yml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 400
 proxy-groups:
-  - name: hamrah
-    type: select
-    proxies:
+- name: hamrah
+  type: select
+  proxies:
   - LOADBALANCE
   use:
   - VPN1
