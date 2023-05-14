@@ -55,16 +55,19 @@ sniffer:
   port-whitelist:
     - "80"
     - "443"
-tun:
-  enable: true
-  device: utun
-  mtu: 9000
-  # gvisor / lwip / system
-  stack: gvisor
-  dns-hijack:
-    - any:53
-  auto-route: true
-  auto-detect-interface: true
+# tun:
+  # enable: true
+  # # biarkan default utun
+  # device: utun
+  # mtu: 9000
+  # # gvisor / lwip / system
+  # stack: system
+  # dns-hijack:
+    # - any:53
+  # # bagi yg awam, kalau TUN on wajib true, only armv8/64
+  # auto-route: true
+  # auto-detect-interface: true
+  # # end
 
 
 dns:
