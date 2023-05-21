@@ -1,14 +1,16 @@
+port: 9494
+socks-port: 9595
+mixed-port: 9696
 redir-port: 9797
 tproxy-port: 9898
 mode: global
-allow-lan: false
+allow-lan: true
 unified-delay: true
 bind-address: '*'
 # info / warning / error / debug / silent
 log-level: warning
-ipv6: false
-geodata-mode: false
-geodata-loader: memconservative
+ipv6: true
+geodata-mode: true
 external-controller: 0.0.0.0:9090 
 external-controller-tls: 0.0.0.0:9091 # RESTful API HTTPS
 # secret: "123456"
@@ -21,10 +23,21 @@ geox-url:
   mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
   geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
   geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
-find-process-mode: always
+#  - always, Diaktifkan untuk memaksa semua proses agar cocok
+#  - strict, Secara default, ini dinilai dari √clash apakah diaktifkan atau tidak
+#  - off, tidak cocok dengan prosesnya, disarankan untuk menggunakan mode ini di router
+find-process-mode: always # always, strict, off
+#  global-client-fingerprint:全局TLS指纹,优先低于proxy内的 client-fingerprint
+#  accepts "chrome","firefox","safari","ios","random","none" options.
+#  Utls is currently support TLS transport in TCP/grpc/WS/HTTP for VLESS/Vmess and trojan.
 # global-client-fingerprint: chrome
 profile:
+  store-selected: true
   store-fake-ip: true
+experimental:
+  sniff-tls-sni: false
+  udp-fallback-match: false
+  fingerprint: ""
 sniffer:
   enable: true
   force-dns-mapping: false
@@ -59,7 +72,7 @@ tun:
 
 dns:
   enable: true
-  ipv6: false
+  ipv6: true
   prefer-h3: true
   default-nameserver:
     - '1.1.1.1'
@@ -78,6 +91,14 @@ dns:
     - '1.1.1.1'
     - 'tls://1.0.0.1:853'
     - '8.8.8.8'
+    - 'tls://8.8.4.4:853'
+    - '127.0.0.1'
+    - 'tls://1.1.1.1:853' # DNS over TLS
+    - 'tls://1dot1dot1dot1.cloudflare-dns.com:853'
+    - 'dhcp://rmnet_data+' # dns from dhcp
+    - 'https://doh.pub/dns-query' # DNS over HTTPS
+    - 'https://dns.alidns.com/dns-query#h3=true'
+    - 'https://mozilla.cloudflare-dns.com/dns-query#clash&h3=true'
 
 hosts:
   'ota.googlezip.net': 127.0.0.1
