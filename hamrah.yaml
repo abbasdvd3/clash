@@ -1,15 +1,12 @@
-port: 9494
-socks-port: 9595
-mixed-port: 9696
 redir-port: 9797
 tproxy-port: 9898
 mode: global
-allow-lan: true
+allow-lan: false
 unified-delay: true
 bind-address: '*'
 # info / warning / error / debug / silent
 log-level: warning
-ipv6: true
+ipv6: false
 geodata-mode: false
 geodata-loader: memconservative
 external-controller: 0.0.0.0:9090 
@@ -24,21 +21,10 @@ geox-url:
   mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
   geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
   geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
-#  - always, Diaktifkan untuk memaksa semua proses agar cocok
-#  - strict, Secara default, ini dinilai dari √clash apakah diaktifkan atau tidak
-#  - off, tidak cocok dengan prosesnya, disarankan untuk menggunakan mode ini di router
-find-process-mode: always # always, strict, off
-#  global-client-fingerprint:全局TLS指纹,优先低于proxy内的 client-fingerprint
-#  accepts "chrome","firefox","safari","ios","random","none" options.
-#  Utls is currently support TLS transport in TCP/grpc/WS/HTTP for VLESS/Vmess and trojan.
+find-process-mode: always
 # global-client-fingerprint: chrome
 profile:
-  store-selected: true
   store-fake-ip: true
-experimental:
-  sniff-tls-sni: false
-  udp-fallback-match: false
-  fingerprint: ""
 sniffer:
   enable: true
   force-dns-mapping: false
@@ -92,14 +78,6 @@ dns:
     - '1.1.1.1'
     - 'tls://1.0.0.1:853'
     - '8.8.8.8'
-    - 'tls://8.8.4.4:853'
-    - '127.0.0.1'
-    - 'tls://1.1.1.1:853' # DNS over TLS
-    - 'tls://1dot1dot1dot1.cloudflare-dns.com:853'
-    - 'dhcp://rmnet_data+' # dns from dhcp
-    - 'https://doh.pub/dns-query' # DNS over HTTPS
-    - 'https://dns.alidns.com/dns-query#h3=true'
-    - 'https://mozilla.cloudflare-dns.com/dns-query#clash&h3=true'
 
 hosts:
   'ota.googlezip.net': 127.0.0.1
@@ -149,20 +127,16 @@ proxy-groups:
   - VPN2
   - VPN3
 rules:
-  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve,udp
-  - IP-CIDR6,::1/128,REJECT,no-resolve,udp
   # network(tcp/udp) condition for all rules 
   - DOMAIN-SUFFIX,ad.com,REJECT,udp
-  - SRC-IP-CIDR,192.168.1.201/32,DIRECT,tcp
-  - DOMAIN-SUFFIX,bilibili.com,DIRECT,tcp
-  - DOMAIN-SUFFIX,bilibili.com,REJECT,udp
-  - DOMAIN-SUFFIX,github.com,DIRECT,no-resolve,tcp
-  - DOMAIN-SUFFIX,github.io,DIRECT,no-resolve,tcp
-  - DOMAIN-SUFFIX,githubapp.com,DIRECT,no-resolve,tcp
-  - DOMAIN-SUFFIX,githubassets.com,DIRECT,no-resolve,tcp
-  - DOMAIN-SUFFIX,githubusercontent.com,DIRECT,no-resolve,tcp
-  - DOMAIN-KEYWORD,github,DIRECT,no-resolve,tcp
+  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
+  - DOMAIN-SUFFIX,github.com,DIRECT
+  - DOMAIN-SUFFIX,github.io,DIRECT
+  - DOMAIN-SUFFIX,githubapp.com,DIRECT
+  - DOMAIN-SUFFIX,githubassets.com,DIRECT
+  - DOMAIN-SUFFIX,githubusercontent.com,DIRECT
+  - DOMAIN-KEYWORD,github,DIRECT
   - DOMAIN-KEYWORD,appteka.store,DIRECT
-  - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT,no-resolve,tcp
+  - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT
   - IN-TYPE,inner,hamrah
   - MATCH,hamrah
