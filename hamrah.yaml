@@ -69,30 +69,6 @@ tun:
     - any:53
   auto-route: true
   auto-detect-interface: true
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 hosts:
   'ota.googlezip.net': 127.0.0.1
   'ota-cache1.googlezip.net': 127.0.0.1
@@ -109,7 +85,7 @@ proxy-providers:
       interval: 400
   VPN2:
     type: http
-    url: "https://wefound.cc/freenode/2023/05/20230525.yaml"
+    url: "https://wefound.cc/freenode/2023/05/20230528.yaml"
     path: provide/domestic2.yml
     health-check:
       enable: true
@@ -125,15 +101,11 @@ proxy-providers:
       interval: 400
 proxy-groups:
 - name: relay
-
   type: relay
-
   use:
   - VPN1
   - VPN2
   - VPN3
-
-
 - name: hamrah
   type: select
   proxies:
