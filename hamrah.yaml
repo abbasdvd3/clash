@@ -12,7 +12,6 @@ log-level: warning
 ipv6: false
 geodata-mode: true
 external-controller: 0.0.0.0:9090 
-external-controller-tls: 0.0.0.0:9091 # RESTful API HTTPS
 # secret: "123456"
 external-ui: ./dashboard/dist
 tcp-concurrent: true
@@ -23,21 +22,17 @@ geox-url:
   mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
   geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
   geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
-#  - always, Diaktifkan untuk memaksa semua proses agar cocok
-#  - strict, Secara default, ini dinilai dari √clash apakah diaktifkan atau tidak
-#  - off, tidak cocok dengan prosesnya, disarankan untuk menggunakan mode ini di router
+
 find-process-mode: always # always, strict, off
-#  global-client-fingerprint:全局TLS指纹,优先低于proxy内的 client-fingerprint
-#  accepts "chrome","firefox","safari","ios","random","none" options.
-#  Utls is currently support TLS transport in TCP/grpc/WS/HTTP for VLESS/Vmess and trojan.
-# global-client-fingerprint: chrome
-profile:
-  store-selected: true
-  store-fake-ip: true
+
 experimental:
-  sniff-tls-sni: false
-  udp-fallback-match: false
-  fingerprint: ""
+  ignore-resolve-fail: true
+  sniff-tls-sni: true
+  udp-fallback-match: true
+profile:
+  store-fake-ip: true
+  store-selected: true
+  tracing: true
 sniffer:
   enable: true
   force-dns-mapping: false
@@ -67,6 +62,7 @@ tun:
   stack: system
   dns-hijack:
     - any:53
+  auto-redir: true
   auto-route: true
   auto-detect-interface: true
 hosts:
@@ -99,6 +95,14 @@ proxy-providers:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 400
+  VPN4:
+    type: http
+    url: "https://wefound.cc/freenode/2023/05/20230531.yaml"
+    path: provide/domestic4.yml
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 400
 proxy-groups:
 - name: relay
   type: relay
@@ -106,6 +110,7 @@ proxy-groups:
   - VPN1
   - VPN2
   - VPN3
+  - VPN4
 - name: hamrah
   type: select
   proxies:
@@ -114,6 +119,7 @@ proxy-groups:
   - VPN1
   - VPN2
   - VPN3
+  - VPN4
 - name: LOADBALANCE
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -122,6 +128,7 @@ proxy-groups:
   - VPN1
   - VPN2
   - VPN3
+  - VPN4
 rules:
   # network(tcp/udp) condition for all rules 
   - DOMAIN-SUFFIX,ad.com,REJECT,udp
