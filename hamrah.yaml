@@ -102,6 +102,14 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
+  VPN5:
+    type: http
+    url: "https://v2rayshare.com/wp-content/uploads/2023/06/20230603.yaml"
+    path: provide/domestic5.yml
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 400
       interval: 400
 proxy-groups:
 - name: relay
@@ -111,6 +119,7 @@ proxy-groups:
   - VPN2
   - VPN3
   - VPN4
+  - VPN5
 - name: hamrah
   type: select
   proxies:
@@ -120,6 +129,7 @@ proxy-groups:
   - VPN2
   - VPN3
   - VPN4
+  - VPN5
 - name: LOADBALANCE
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -129,6 +139,7 @@ proxy-groups:
   - VPN2
   - VPN3
   - VPN4
+  - VPN5
 rules:
   # network(tcp/udp) condition for all rules 
   - DOMAIN-SUFFIX,ad.com,REJECT,udp
