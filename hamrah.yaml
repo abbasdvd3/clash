@@ -7,7 +7,6 @@ mode: global
 allow-lan: true
 unified-delay: true
 bind-address: '*'
-# info / warning / error / debug / silent
 log-level: warning
 ipv6: false
 geodata-mode: true
@@ -18,13 +17,7 @@ tcp-concurrent: true
 inbound-tfo: false
 interface-name: ""
 # routing-mark: 233
-geox-url:
-  mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
-  geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
-  geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
-
-find-process-mode: always # always, strict, off
-
+find-process-mode: always 
 experimental:
   ignore-resolve-fail: true
   sniff-tls-sni: true
@@ -36,7 +29,6 @@ sniffer:
   enable: true
   force-dns-mapping: false
   parse-pure-ip: false
-  # Whether to use sniffing results as actual access, default false
   override-destination: false
   sniff:
     TLS:
@@ -77,7 +69,7 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 400
+      interval: 300
   VPN2:
     type: http
     url: "https://nodefree.org/dy/2023/06/20230603.yaml"
@@ -85,7 +77,7 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 400
+      interval: 300
   VPN3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/provide/domestic3.yaml"
@@ -93,7 +85,7 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 400
+      interval: 300
   VPN4:
     type: http
     url: "https://wefound.cc/freenode/2023/06/20230603.yaml"
@@ -101,7 +93,7 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 400
+      interval: 300
   VPN5:
     type: http
     url: "https://v2rayshare.com/wp-content/uploads/2023/06/20230603.yaml"
@@ -109,7 +101,8 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 400
+      interval: 300
+      
 proxy-groups:
 - name: relay
   type: relay
