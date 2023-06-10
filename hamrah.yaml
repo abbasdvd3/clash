@@ -1,7 +1,7 @@
 # port: 9494
 # socks-port: 9595
 # mixed-port: 9696
-# redir-port: 9797
+redir-port: 9797
 tproxy-port: 9898
 mode: global
 allow-lan: true
@@ -72,7 +72,7 @@ proxy-providers:
       interval: 300
   VPN2:
     type: http
-    url: "https://freenode.me/wp-content/uploads/2023/06/098.yaml"
+    url: "https://wefound.cc/freenode/2023/06/20230610.yaml"
     path: provide/domestic2.yml
     health-check:
       enable: true
@@ -88,7 +88,7 @@ proxy-providers:
       interval: 300
   VPN4:
     type: http
-    url: "https://nodefree.org/dy/2023/06/20230608.yaml"
+    url: "https://nodefree.org/dy/2023/06/20230610.yaml"
     path: provide/domestic4.yml
     health-check:
       enable: true
@@ -118,6 +118,7 @@ proxy-groups:
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
+  tolerance: 50
   use:
   - VPN1
   - VPN2
@@ -136,5 +137,5 @@ rules:
   - DOMAIN-KEYWORD,github,DIRECT
   - DOMAIN-KEYWORD,appteka.store,DIRECT
   - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT
-  - IN-TYPE,inner,hamrah
+  # - IN-TYPE,inner,hamrah
   - MATCH,hamrah
