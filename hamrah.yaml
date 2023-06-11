@@ -1,83 +1,20 @@
-# port: 9494
-# socks-port: 9595
-# mixed-port: 9696
+port: 9494
+socks-port: 9595
+mixed-port: 9696
 redir-port: 9797
 tproxy-port: 9898
 mode: global
 allow-lan: true
 unified-delay: true
-bind-address: '*'
 log-level: warning
 ipv6: false
-geodata-mode: true
 external-controller: 0.0.0.0:9090 
-# secret: "123456"
-external-ui: ./dashboard/dist
-tcp-concurrent: true
-inbound-tfo: false
-interface-name: ""
-# routing-mark: 233
-find-process-mode: always 
-experimental:
-  ignore-resolve-fail: true
-  sniff-tls-sni: true
-  udp-fallback-match: true
-profile:
-  store-fake-ip: true
-  tracing: true
-sniffer:
-  enable: true
-  force-dns-mapping: false
-  parse-pure-ip: false
-  override-destination: false
-  sniff:
-    TLS:
-      ports: [443, 8443]
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-  force-domain:
-    - '+.v2ex.com'
-  skip-domain:
-    - '+.google.com'
-  sniffing:
-    - tls
-    - http
-  port-whitelist:
-    - "80"
-    - "443"
-tun:
-  enable: true
-  device: utun
-  mtu: 9000
-  stack: system
-  dns-hijack:
-    - any:53
-  auto-redir: true
-  auto-route: true
-  auto-detect-interface: true
-dns:
-  enable: true
-  ipv6: false
-  enhanced-mode: redir-host
-  listen: 0.0.0.0:7874
-  nameserver:
-    - 8.8.8.8
-    - 1.0.0.1
-    - https://dns.google/dns-query
-  default-nameserver:
-    - 8.8.8.8
-    - 1.1.1.1
-    - 112.215.203.254
-hosts:
-  'ota.googlezip.net': 127.0.0.1
-  'ota-cache1.googlezip.net': 127.0.0.1
-  'ota-cache2.googlezip.net': 127.0.0.1
+
 proxies:
 proxy-providers:
   VPN1:
     type: http
-    url: "https://clashnode.com/wp-content/uploads/2023/06/20230610.yaml"
+    url: "https://clashnode.com/wp-content/uploads/2023/06/20230611.yaml"
     path: provide/domestic.yml
     health-check:
       enable: true
@@ -85,7 +22,7 @@ proxy-providers:
       interval: 300
   VPN2:
     type: http
-    url: "https://freenode.me/wp-content/uploads/2023/06/108.yaml"
+    url: "https://freenode.me/wp-content/uploads/2023/06/118.yaml"
     path: provide/domestic2.yml
     health-check:
       enable: true
@@ -93,7 +30,7 @@ proxy-providers:
       interval: 300
   VPN3:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/provide/domestic3.yaml"
+    url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_META_IRAN-Direct.yml"
     path: provide/domestic3.yaml
     health-check:
       enable: true
@@ -109,7 +46,7 @@ proxy-providers:
       interval: 300
   VPN5:
     type: http
-    url: "https://v2rayshare.com/wp-content/uploads/2023/06/20230610.yaml"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Ios.yaml"
     path: provide/domestic5.yml
     health-check:
       enable: true
