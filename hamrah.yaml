@@ -2,7 +2,7 @@
 mixed-port: 7890
 mode: rule
 allow-lan: true
-unified-delay: false
+unified-delay: true
 bind-address: '*'
 log-level: silent
 ipv6: false
@@ -16,15 +16,15 @@ global-client-fingerprint: chrome
 # interface-name: ""
 # routing-mark: 233
 geox-url:
-  mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
-  geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
-  geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
+  mmdb: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Country.mmdb"
+  geoip: "https://raw.githubusercontent.com/abbasdvd3/clash/main/GeoIP.dat"
+  geosite: "https://raw.githubusercontent.com/abbasdvd3/clash/main/GeoSite.dat"
 
 find-process-mode: strict
 
 profile:
   store-selected: true
-  store-fake-ip: false
+  store-fake-ip: true
 
 sniffer:
   enable: true
@@ -73,8 +73,8 @@ dns:
     # google
     - '8.8.8.8#PROXY'
     - 'tls://8.8.4.4:853#PROXY'
-  proxy-server-nameserver:
-    - '1.1.1.1'
+  #proxy-server-nameserver:
+    # - '1.1.1.1'
   # nameserver-policy: { "geosite:youtube": [1.1.1.1, 8.8.8.8] }
   # fallback:
     # - 'https://8.8.8.8/dns-query'
@@ -111,7 +111,7 @@ proxy-providers:
       interval: 300
   VPN2:
     type: http
-    url: "https://freenode.me/wp-content/uploads/2023/06/118.yaml"
+    url: "https://wefound.cc/freenode/2023/06/20230613.yaml"
     path: provide/VPN2.yml
     health-check:
       enable: true
@@ -119,7 +119,7 @@ proxy-providers:
       interval: 300
   VPN3:
     type: http
-    url: "https://v2rayshare.com/wp-content/uploads/2023/06/20230612.yaml"
+    url: "https://v2rayshare.com/wp-content/uploads/2023/06/20230613.yaml"
     path: provide/VPN3.yaml
     health-check:
       enable: true
@@ -127,7 +127,7 @@ proxy-providers:
       interval: 300
   VPN4:
     type: http
-    url: "https://nodefree.org/dy/2023/06/20230612.yaml"
+    url: "https://nodefree.org/dy/2023/06/20230613.yaml"
     path: provide/VPN4.yml
     health-check:
       enable: true
@@ -155,13 +155,13 @@ proxy-groups:
     proxies:
       - "URL-TEST"
       - "FALLBACK"
-    use:
-      - "VPN6"
-      - "VPN1"
-      - "VPN2"
-      - "VPN3"
-      - "VPN4"
-      - "VPN5"
+   # use:
+     # - "VPN6"
+     # - "VPN1"
+     # - "VPN2"
+     # - "VPN3"
+     # - "VPN4"
+     # - "VPN5"
   - name: "FALLBACK"
     type: fallback
     use:
@@ -181,10 +181,48 @@ proxy-groups:
       - "VPN3"
       - "VPN4"
       - "VPN5"
+rule-providers:
+  iran_other:
+    type: http
+    behavior: domain
+    url: "https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_other.yaml"
+    path: ./ruleset/iran_other.yaml
+    interval: 432000
+  iran_ads:
+    type: http
+    behavior: domain
+    url: "https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_ads.yaml"
+    path: ./ruleset/iran_ads.yaml
+    interval: 432000
 rules:
-  # network(tcp/udp) condition for all rules 
-  - DOMAIN-SUFFIX,ad.com,REJECT,udp
-  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
+  ## block ads
+  - DOMAIN-SUFFIX,googlesyndication.com,PROXY
+  - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
+  - GEOSITE,category-ads-all,REJECT
+#  - RULE-SET,block,REJECT
+  # - SCRIPT,quic,REJECT
+  # - SCRIPT,youshit,REJECT
+  ## direct FCM
+  - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),DIRECT
+  - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),DIRECT
+  - DOMAIN-SUFFIX,atom.io,DIRECT
+  - DOMAIN-SUFFIX,dependabot.com,DIRECT
+  - DOMAIN-SUFFIX,ghcr.io,DIRECT
+  - DOMAIN-SUFFIX,git.io,DIRECT
+  - DOMAIN-SUFFIX,github.blog,DIRECT
+  - DOMAIN-SUFFIX,github.community,DIRECT
+  - DOMAIN-SUFFIX,github.dev,DIRECT
+  - DOMAIN-SUFFIX,githubapp.com,DIRECT
+  - DOMAIN-SUFFIX,githubassets.com,DIRECT
+  - DOMAIN-SUFFIX,githubhackathon.com,DIRECT
+  - DOMAIN-SUFFIX,githubpreview.dev,DIRECT
+  - DOMAIN-SUFFIX,githubstatus.com,DIRECT
+  - DOMAIN-SUFFIX,githubuniverse.com,DIRECT
+  - DOMAIN-SUFFIX,githubusercontent.com,DIRECT
+  - DOMAIN-SUFFIX,myoctocat.com,DIRECT
+  - DOMAIN-SUFFIX,opensource.guide,DIRECT
+  - DOMAIN-SUFFIX,repo.new,DIRECT
+  - DOMAIN-SUFFIX,thegithubshop.com,DIRECT
   - DOMAIN-SUFFIX,github.com,DIRECT
   - DOMAIN-SUFFIX,github.io,DIRECT
   - DOMAIN-SUFFIX,githubapp.com,DIRECT
@@ -193,39 +231,32 @@ rules:
   - DOMAIN-KEYWORD,github,DIRECT
   - DOMAIN-KEYWORD,appteka.store,DIRECT
   - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT
-  ## block ads
-  # - DOMAIN-SUFFIX,googlesyndication.com,PROXY
-  # - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
-  # - GEOSITE,category-ads-all,REJECT
-  # - RULE-SET,block,REJECT
-  # - SCRIPT,quic,REJECT
-  # - SCRIPT,youshit,REJECT
-
-  ## direct FCM
-  # - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),DIRECT
-  # - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),DIRECT
- 
   ## block udp/quic YouTube
-  # - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
-  # - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
-
+  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
+  - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
   # fix dnsleak
   - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
   - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
   - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
   - IP-CIDR6,::1/128,REJECT,no-resolve
-  
   ## rules telegram
-  # - GEOIP,telegram,PROXY
-  # - GEOSITE,telegram,PROXY
+  - GEOIP,telegram,PROXY
+  - GEOSITE,telegram,PROXY
+  - PROCESS-NAME,com.facebook.katana,PROXY
+  - PROCESS-NAME,com.google.android.gms.persistent,PROXY
+  - DOMAIN-SUFFIX,android.apis.google.com,PROXY
+  - DOMAIN-SUFFIX,play.googleapis.com,PROXY
 
+  
+  
   ## direct ntp
   # - AND,((NETWORK,UDP),(DST-PORT,123)),DIRECT
   # - DST-PORT,123/136/137-139,DIRECT,udp
-
   ## rules inner, recommended untuk non kuota reguler
-  # - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
-  # - IN-TYPE,inner,PROXY
-
-  ## final
+  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
+  - IN-TYPE,inner,PROXY
+  - RULE-SET,iran_ads,REJECT
+  - DOMAIN-SUFFIX,ir,DIRECT
+  - RULE-SET,iran_other,DIRECT
+  - GEOIP,IR,DIRECT
   - MATCH,PROXY
