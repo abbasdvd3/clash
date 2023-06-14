@@ -2,17 +2,17 @@
 mixed-port: 7890
 mode: rule
 allow-lan: true
-unified-delay: false
+unified-delay: true
 bind-address: '*'
 log-level: silent
 ipv6: false
-geodata-mode: true
+geodata-mode: false
 geodata-loader: memconservative
 external-controller: 127.0.0.1:9090 
 # secret: "123456"
 external-ui: /dashboard/yacd
 tcp-concurrent: false
-global-client-fingerprint: chrome
+# global-client-fingerprint: chrome
 # interface-name: ""
 # routing-mark: 233
 geox-url:
@@ -103,7 +103,7 @@ proxies:
 proxy-providers:
   VPN1:
     type: http
-    url: "https://clashnode.com/wp-content/uploads/2023/06/20230612.yaml"
+    url: "https://clashnode.com/wp-content/uploads/2023/06/20230614.yaml"
     path: provide/VPN1.yml
     health-check:
       enable: true
@@ -111,7 +111,7 @@ proxy-providers:
       interval: 300
   VPN2:
     type: http
-    url: "https://wefound.cc/freenode/2023/06/20230613.yaml"
+    url: "https://wefound.cc/freenode/2023/06/20230614.yaml"
     path: provide/VPN2.yml
     health-check:
       enable: true
@@ -119,7 +119,7 @@ proxy-providers:
       interval: 300
   VPN3:
     type: http
-    url: "https://v2rayshare.com/wp-content/uploads/2023/06/20230613.yaml"
+    url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
     path: provide/VPN3.yaml
     health-check:
       enable: true
@@ -127,7 +127,7 @@ proxy-providers:
       interval: 300
   VPN4:
     type: http
-    url: "https://nodefree.org/dy/2023/06/20230613.yaml"
+    url: "https://nodefree.org/dy/2023/06/20230614.yaml"
     path: provide/VPN4.yml
     health-check:
       enable: true
@@ -143,25 +143,32 @@ proxy-providers:
       interval: 300
   VPN6:
     type: http
-    url: "https://wefound.cc/freenode/2023/06/20230612.yaml"
+    url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.fastgit.org%2Ffreefq%2Ffree%2Fmaster%2Fv2&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     path: provide/VPN6.yml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300      
+      interval: 300   
+  VPN7:
+    type: http
+    url: "https://sub.pmsub.me/clash.yaml"
+    path: provide/VPN7.yml
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300     
 proxy-groups:
   - name: "PROXY"
     type: select
     proxies:
-      - "URL-TEST"
-      - "FALLBACK"
-   # use:
-     # - "VPN6"
-     # - "VPN1"
-     # - "VPN2"
-     # - "VPN3"
-     # - "VPN4"
-     # - "VPN5"
+    use:
+      - "VPN6"
+      - "VPN1"
+      - "VPN2"
+      - "VPN3"
+      - "VPN4"
+      - "VPN5"
+      - "VPN7"
   - name: "FALLBACK"
     type: fallback
     use:
@@ -171,7 +178,7 @@ proxy-groups:
       - "VPN3"
       - "VPN4"
       - "VPN5"
-
+      - "VPN7"
   - name: "URL-TEST"
     type: url-test
     use:
@@ -181,6 +188,7 @@ proxy-groups:
       - "VPN3"
       - "VPN4"
       - "VPN5"
+      - "VPN7"
 rule-providers:
   iran_other:
     type: http
