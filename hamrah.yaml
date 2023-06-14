@@ -158,9 +158,22 @@ proxy-providers:
       url: http://cp.cloudflare.com/generate_204
       interval: 300     
 proxy-groups:
+  - name: "PRO"
+    type: relay
+    proxies:
+    use:
+      - "VPN6"
+      - "VPN1"
+      - "VPN2"
+      - "VPN3"
+      - "VPN4"
+      - "VPN5"
+      - "VPN7"
   - name: "PROXY"
     type: select
     proxies:
+      - "FALLBACK"
+      - "URL-TEST"
     use:
       - "VPN6"
       - "VPN1"
