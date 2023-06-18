@@ -58,52 +58,26 @@ tun:
 
 dns:
   enable: true
-  ipv6: false
-  prefer-h3: true
-  default-nameserver:
-    # cloudflare
-    - '1.1.1.1#PROXY'
-  listen: 0.0.0.0:1053
   use-hosts: true
-  enhanced-mode: redir-host
-  fake-ip-range: 28.0.0.1/8
-  # fake-ip-filter:
-    # - '+.lan'
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  listen: 127.0.0.1:6868
+  default-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+    - 1.0.0.1
   nameserver:
-    # google
-    - '8.8.8.8#PROXY'
-    - 'tls://8.8.4.4:853#PROXY'
-  #proxy-server-nameserver:
-    # - '1.1.1.1'
-  # nameserver-policy: { "geosite:youtube": [1.1.1.1, 8.8.8.8] }
-  # fallback:
-    # - 'https://8.8.8.8/dns-query'
-    # - 'tcp://8.8.4.4'
-    # - 'quic://dns.adguard.com:784'
-  # fallback-filter:
-    # geoip: false
-    # geoip-code: 'ID'
-    # geosite:
-      # # - gfw
-    # ipcidr:
-      # # - 240.0.0.0/4
-    # domain:
-      # - '+.google.com'
-      # - '+.facebook.com'
-      # - '+.youtube.com'
-      # - '+.github.com'
-
-# hosts:
-  # # block update system android
-  # 'ota.googlezip.net': 127.0.0.1
-  # 'ota-cache1.googlezip.net': 127.0.0.1
-  # 'ota-cache2.googlezip.net': 127.0.0.1
+    - https://cloudflare-dns.com/dns#PROXY
+    - https://1.1.1.1/dns-query#PROXY
+    - https://8.8.8.8/dns-query#PROXY
+    - https://1.0.0.1/dns-query#PROXY
 
 proxies:
 proxy-providers:
   VPN1:
     type: http
-    url: "https://v2rayshare.com/wp-content/uploads/2023/06/20230617.yaml"
+    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/easy.yaml"
     path: provide/VPN1.yml
     health-check:
       enable: true
@@ -280,5 +254,9 @@ rules:
   - RULE-SET,iran_ads,REJECT
   - DOMAIN-SUFFIX,ir,DIRECT
   - RULE-SET,iran_other,DIRECT
+  - IP-CIDR,10.10.0.0/16,PROXY
   - GEOIP,IR,DIRECT
+  - GEOIP,CN,DIRECT
+  - DOMAIN-SUFFIX,.ir,DIRECT
+  - DOMAIN-SUFFIX,.cn,DIRECT
   - MATCH,PROXY
