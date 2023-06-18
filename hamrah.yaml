@@ -2,7 +2,7 @@
 mixed-port: 7890
 mode: rule
 allow-lan: true
-unified-delay: true
+unified-delay: false
 bind-address: '*'
 log-level: silent
 ipv6: false
@@ -27,7 +27,7 @@ profile:
   store-fake-ip: true
 
 sniffer:
-  enable: true
+  enable: false
   override-destination: false
   sniff: # TLS 默认如果不配置 ports 默认嗅探 443
     TLS:
@@ -249,7 +249,7 @@ rules:
   # - AND,((NETWORK,UDP),(DST-PORT,123)),DIRECT
   # - DST-PORT,123/136/137-139,DIRECT,udp
   ## rules inner, recommended untuk non kuota reguler
-  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
+  # - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,PROXY
   - RULE-SET,iran_ads,REJECT
   - DOMAIN-SUFFIX,ir,DIRECT
