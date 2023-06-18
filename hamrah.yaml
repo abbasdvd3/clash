@@ -111,7 +111,7 @@ proxy-providers:
       interval: 300
   VPN2:
     type: http
-    url: "https://wefound.cc/freenode/2023/06/20230617.yaml"
+    url: "https://wefound.cc/freenode/2023/06/20230618.yaml"
     path: provide/VPN2.yml
     health-check:
       enable: true
@@ -127,7 +127,7 @@ proxy-providers:
       interval: 300
   VPN4:
     type: http
-    url: "https://nodefree.org/dy/2023/06/20230617.yaml"
+    url: "https://nodefree.org/dy/2023/06/20230618.yaml"
     path: provide/VPN4.yml
     health-check:
       enable: true
@@ -252,6 +252,7 @@ rules:
   - DOMAIN-KEYWORD,github,DIRECT
   - DOMAIN-KEYWORD,appteka.store,DIRECT
   - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT
+  - DOMAIN-KEYWORD,drive.google.com,DIRECT
   ## block udp/quic YouTube
   - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
   - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
