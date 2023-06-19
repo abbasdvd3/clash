@@ -1,0 +1,247 @@
+redir-port: 9797
+tproxy-port: 9898
+mode: rule
+allow-lan: true
+unified-delay: true
+bind-address: '*'
+log-level: silent
+ipv6: false
+geodata-mode: true
+geodata-loader: memconservative
+external-controller: 127.0.0.1:9090 
+# secret: "123456"
+external-ui: /data/adb/box/clash/dashboard
+tcp-concurrent: false
+global-client-fingerprint: chrome
+# interface-name: ""
+# routing-mark: 233
+geox-url:
+  mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
+  geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
+  geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
+
+find-process-mode: strict # always, strict, off
+
+profile:
+  store-selected: true
+  store-fake-ip: false
+
+sniffer:
+  enable: false
+  override-destination: false
+  sniff: # TLS 默认如果不配置 ports 默认嗅探 443
+    TLS:
+      ports: [443, 8443]
+    HTTP: # 需要嗅探的端口, 默认嗅探 80
+      ports: [80, 8080-8880]
+      override-destination: true # 可覆盖 sniffer.override-destination
+
+tun:
+  enable: false
+  device: utun
+  mtu: 9000
+  stack: system # gvisor / lwip / system
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  auto-route: true
+  auto-detect-interface: true
+  inet4-address: 172.19.0.1/30
+  inet6-address: [fdfe:dcba:9876::1/126]
+  # include_android_user:
+    # - 0
+    # - 10
+  # include_package:
+  # - com.android.chrome
+  # exclude_package:
+    # - com.whatsapp
+
+dns:
+  enable: true
+  ipv6: false
+  prefer-h3: true
+  default-nameserver:
+    # cloudflare
+    - '1.1.1.1#PROXY'
+  listen: 0.0.0.0:1053
+  use-hosts: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  # fake-ip-filter:
+    # - '+.lan'
+  nameserver:
+    # google
+    - '8.8.8.8#PROXY'
+    - 'tls://8.8.4.4:853#PROXY'
+  proxy-server-nameserver:
+    - '1.1.1.1'
+  # nameserver-policy: { "geosite:youtube": [1.1.1.1, 8.8.8.8] }
+  # fallback:
+    # - 'https://8.8.8.8/dns-query'
+    # - 'tcp://8.8.4.4'
+    # - 'quic://dns.adguard.com:784'
+  # fallback-filter:
+    # geoip: false
+    # geoip-code: 'ID'
+    # geosite:
+      # # - gfw
+    # ipcidr:
+      # # - 240.0.0.0/4
+    # domain:
+      # - '+.google.com'
+      # - '+.facebook.com'
+      # - '+.youtube.com'
+      # - '+.github.com'
+
+# hosts:
+  # # block update system android
+  # 'ota.googlezip.net': 127.0.0.1
+  # 'ota-cache1.googlezip.net': 127.0.0.1
+  # 'ota-cache2.googlezip.net': 127.0.0.1
+
+proxies:
+proxy-groups:
+
+  - name: "PROXY"
+    type: select
+    proxies:
+      - "FALLBACK"
+      - "URL-TEST"
+
+  - name: "FALLBACK"
+    type: fallback
+    use:
+      - "VPN1"
+      - "VPN2"
+      - "VPN3"
+      - "VPN4"
+      - "VPN5"
+	  - "VPN6"
+      - "VPN7"
+  - name: "URL-TEST"
+    type: url-test
+    use:
+      - "VPN1"
+      - "VPN2"
+      - "VPN3"
+      - "VPN4"
+      - "VPN5"
+	  - "VPN6"
+      - "VPN7"
+
+proxy-providers:
+
+  VPN1:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/easy.yaml"
+	interval: 3600
+    path: provide/VPN1.yaml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 1200
+  VPN2:
+    type: http
+    url: "https://wefound.cc/freenode/2023/06/20230618.yaml"
+	interval: 3600
+    path: provide/VPN2.yaml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 1200
+  VPN3:
+    type: http
+    url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
+	interval: 3600
+    path: provide/VPN3.yaml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 1200
+  VPN4:
+    type: http
+    url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
+	interval: 3600
+    path: provide/VPN4.yaml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 1200
+  VPN5:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Ios.yaml"
+	interval: 3600
+    path: provide/VPN5.yaml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 1200
+  VPN6:
+    type: http
+    url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.fastgit.org%2Ffreefq%2Ffree%2Fmaster%2Fv2&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
+	interval: 3600
+    path: provide/VPN6.yaml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 1200   
+  VPN7:
+    type: http
+    url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_META_IRAN-Direct.yml"
+	interval: 3600
+    path: provide/VPN7.yaml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 1200
+# rule-providers:
+  # block:
+    # type: http
+    # behavior: domain
+    # url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    # path: ./ruleset/block.yaml
+    # interval: 86400
+
+# clash.premium
+# script:
+  # shortcuts:
+    # quic: network == 'udp' and dst_port == 443
+    # youshit: network == 'udp' and ('youtube' in host or 'googlevideo' in host)
+
+rules:
+  ## block ads
+  # - DOMAIN-SUFFIX,googlesyndication.com,PROXY
+  # - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
+  # - GEOSITE,category-ads-all,REJECT
+  # - RULE-SET,block,REJECT
+  # - SCRIPT,quic,REJECT
+  # - SCRIPT,youshit,REJECT
+
+  ## direct FCM
+  # - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),DIRECT
+  # - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),DIRECT
+ 
+  ## block udp/quic YouTube
+  # - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
+  # - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
+
+  # fix dnsleak
+  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
+  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
+  - IP-CIDR6,::1/128,REJECT,no-resolve
+  
+  ## rules telegram
+  # - GEOIP,telegram,PROXY
+  # - GEOSITE,telegram,PROXY
+
+  ## direct ntp
+  # - AND,((NETWORK,UDP),(DST-PORT,123)),DIRECT
+  # - DST-PORT,123/136/137-139,DIRECT,udp
+
+  ## rules inner, recommended untuk non kuota reguler
+  # - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
+  # - IN-TYPE,inner,PROXY
+
+  ## final
+  - MATCH,PROXY
