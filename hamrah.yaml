@@ -5,12 +5,12 @@ allow-lan: true
 unified-delay: false
 bind-address: '*'
 log-level: silent
+auto-redir: true
+enable-process: true
 ipv6: false
-geodata-mode: false
-geodata-loader: memconservative
-external-controller: 127.0.0.1:9090 
+external-controller: 0.0.0.0:9090 
 # secret: "123456"
-external-ui: /dashboard/yacd
+external-ui: https://yacd.metacubex.one/#/
 # tcp-concurrent: true
 # global-client-fingerprint: chrome
 # interface-name: ""
@@ -20,14 +20,10 @@ geox-url:
   geoip: "https://raw.githubusercontent.com/abbasdvd3/clash/main/GeoIP.dat"
   geosite: "https://raw.githubusercontent.com/abbasdvd3/clash/main/GeoSite.dat"
 
-find-process-mode: strict
-
-profile:
-  store-selected: true
-  store-fake-ip: true
+find-process-mode: always
 
 sniffer:
-  enable: false
+  enable: true
   override-destination: false
   sniff: # TLS 默认如果不配置 ports 默认嗅探 443
     TLS:
@@ -55,7 +51,16 @@ tun:
   # - com.android.chrome
   # exclude_package:
     # - com.whatsapp
-
+dns:
+  enabled: true
+  nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
+  fallback:
+    - 8.8.8.8
+    - 8.8.4.4
+    - tls://1.0.0.1:853
+    - tls://dns.google:853
 proxies:
 proxy-providers:
   VPN1:
@@ -84,7 +89,7 @@ proxy-providers:
       interval: 300
   VPN4:
     type: http
-    url: "https://nodefree.org/dy/2023/06/20230618.yaml"
+    url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
     path: provide/VPN4.yaml
     health-check:
       enable: true
@@ -210,9 +215,10 @@ rules:
   - DOMAIN-KEYWORD,appteka.store,DIRECT
   - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT
   - DOMAIN-KEYWORD,drive.google.com,DIRECT
+  - DOMAIN-KEYWORD,mail.google.com,DIRECT
   ## block udp/quic YouTube
-  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
-  - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
+  #- AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
+  #- AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
   # fix dnsleak
   - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
   - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
@@ -233,7 +239,7 @@ rules:
   # - DST-PORT,123/136/137-139,DIRECT,udp
   ## rules inner, recommended untuk non kuota reguler
   # - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
-  - IN-TYPE,inner,PROXY
+  #- IN-TYPE,inner,PROXY
   - RULE-SET,iran_ads,REJECT
   - DOMAIN-SUFFIX,ir,DIRECT
   - RULE-SET,iran_other,DIRECT
