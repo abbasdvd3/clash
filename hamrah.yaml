@@ -5,28 +5,18 @@ allow-lan: true
 unified-delay: true
 bind-address: '*'
 log-level: silent
-auto-redir: true
 enable-process: true
 ipv6: false
 external-controller: 0.0.0.0:9090 
 # secret: "123456"
 external-ui: https://yacd.metacubex.one/#/
 find-process-mode: always
-sniffer:
-  enable: true
-  override-destination: true
-  sniff: 
-    TLS:
-      ports: [443, 8443]
-    HTTP: 
-      ports: [80, 8080-8880]
-      override-destination: true
 
 proxies:
 proxy-providers:
   VPN1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/easy.yaml"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/3april3.yaml"
     path: provide/VPN1.yaml
     health-check:
       enable: true
@@ -118,11 +108,6 @@ proxy-groups:
     type: select
     proxies:
       - "DIRECT"
-  - name: "🚨REJECT🚨"
-    type: select
-    proxies:
-      - "REJECT"  
-      - "🧲URL-TEST🧲"
 rule-providers:
   iran_other:
     type: http
