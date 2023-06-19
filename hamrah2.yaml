@@ -1,3 +1,5 @@
+port: 7890
+socks-port: 7891
 redir-port: 9797
 tproxy-port: 9898
 mode: rule
@@ -8,33 +10,20 @@ log-level: silent
 ipv6: false
 geodata-mode: true
 geodata-loader: memconservative
-external-controller: 127.0.0.1:9090 
+external-controller: 0.0.0.0:9090 
 # secret: "123456"
 external-ui: https://yacd.metacubex.one/#/
 tcp-concurrent: false
-global-client-fingerprint: chrome
-# interface-name: ""
-# routing-mark: 233
-geox-url:
-  mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
-  geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
-  geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
-
-find-process-mode: strict # always, strict, off
-
-profile:
-  store-selected: true
-  store-fake-ip: false
 
 sniffer:
-  enable: false
-  override-destination: false
-  sniff: # TLS 默认如果不配置 ports 默认嗅探 443
+  enable: true
+  override-destination: true
+  sniff: 
     TLS:
       ports: [443, 8443]
-    HTTP: # 需要嗅探的端口, 默认嗅探 80
+    HTTP: 
       ports: [80, 8080-8880]
-      override-destination: true # 可覆盖 sniffer.override-destination
+      override-destination: true
 
 dns:
   enable: true
