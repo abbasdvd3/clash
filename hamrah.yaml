@@ -52,15 +52,57 @@ tun:
   # exclude_package:
     # - com.whatsapp
 dns:
-  enabled: true
-  nameserver:
-    - 119.29.29.29
-    - 223.5.5.5
-  fallback:
+  enable: true 
+  prefer-h3: true 
+  listen: 0.0.0.0:53 
+  ipv6: false 
+  default-nameserver:
+    - 114.114.114.114
     - 8.8.8.8
-    - 8.8.4.4
-    - tls://1.0.0.1:853
-    - tls://dns.google:853
+    - tls://1.12.12.12:853
+    - tls://223.5.5.5:853
+  enhanced-mode: fake-ip # or redir-host
+  fake-ip-range: 198.18.0.1/16 
+  # use-hosts: true 
+  fake-ip-filter:
+    - '*.lan'
+  nameserver:
+    - 114.114.114.114 
+    - 8.8.8.8 
+    - tls://223.5.5.5:853 
+    - https://doh.pub/dns-query 
+    - https://dns.alidns.com/dns-query#h3=true #
+    - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true # 
+    - dhcp://en0 # 
+    - quic://dns.adguard.com:784 # DNS over QUIC
+    # - '8.8.8.8#en0' # 
+  # fallback:
+  #   - tcp://1.1.1.1
+  #   - 'tcp://1.1.1.1#ProxyGroupName' # 
+  # proxy-server-nameserver:
+  # - https://dns.google/dns-query
+  # - tls://one.one.one.one
+  # fallback-filter:
+  #   geoip: true 
+  #   geoip-code: IR 
+  #   geosite:
+  #     - gfw
+  #   ipcidr:
+  #     - 240.0.0.0/4
+  #   domain:
+  #     - '+.google.com'
+  #     - '+.facebook.com'
+  #     - '+.youtube.com'
+  nameserver-policy:
+    #   'www.baidu.com': '114.114.114.114'
+    #   '+.internal.crop.com': '10.0.0.1'
+    "geosite:ir,private,apple":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+    "geosite:category-ads-all": rcode://success
+    ## global，dns 为 rule-providers 中的名为 global 和 dns 规则订阅，
+    ## 且 behavior 必须为 domain/classical，当为 classical 时仅会生效域名类规则
+    # "rule-set:global,dns": 8.8.8.8    
 proxies:
 proxy-providers:
   VPN1:
@@ -223,7 +265,7 @@ rules:
   - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
   - IP-CIDR6,::1/128,REJECT,no-resolve
   ## rules telegram
-  - GEOIP,telegram,🦜PROXY🦜
+ #  - GEOIP,telegram,🦜PROXY🦜
   - GEOSITE,telegram,🦜PROXY🦜
   - PROCESS-NAME,com.facebook.katana,🦜PROXY🦜
   - PROCESS-NAME,com.google.android.gms.persistent,🦜PROXY🦜
