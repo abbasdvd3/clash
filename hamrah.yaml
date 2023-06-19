@@ -11,17 +11,7 @@ ipv6: false
 external-controller: 0.0.0.0:9090 
 # secret: "123456"
 external-ui: https://yacd.metacubex.one/#/
-# tcp-concurrent: true
-# global-client-fingerprint: chrome
-# interface-name: ""
-# routing-mark: 233
-geox-url:
-  mmdb: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Country.mmdb"
-  geoip: "https://raw.githubusercontent.com/abbasdvd3/clash/main/GeoIP.dat"
-  geosite: "https://raw.githubusercontent.com/abbasdvd3/clash/main/GeoSite.dat"
-
 find-process-mode: always
-
 sniffer:
   enable: true
   override-destination: true
@@ -32,25 +22,6 @@ sniffer:
       ports: [80, 8080-8880]
       override-destination: true
 
-tun:
-  enable: true
-  device: utun
-  mtu: 9000
-  stack: system # gvisor / lwip / system
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  auto-route: true
-  auto-detect-interface: true
-  inet4-address: 172.19.0.1/30
-  inet6-address: [fdfe:dcba:9876::1/126]
-  # include_android_user:
-    # - 0
-    # - 10
-  # include_package:
-  # - com.android.chrome
-  # exclude_package:
-    # - com.whatsapp
 dns:
   enable: true 
   prefer-h3: true 
@@ -61,11 +32,11 @@ dns:
     - 8.8.8.8
     - tls://1.12.12.12:853
     - tls://223.5.5.5:853
-  enhanced-mode: fake-ip # or redir-host
-  fake-ip-range: 198.18.0.1/16 
+  enhanced-mode: or redir-host  #fake-ip # or redir-host
+  # fake-ip-range: 198.18.0.1/16 
   # use-hosts: true 
-  fake-ip-filter:
-    - '*.lan'
+  #fake-ip-filter:
+    #- '*.lan'
   nameserver:
     - 114.114.114.114 
     - 8.8.8.8 
@@ -82,27 +53,7 @@ dns:
   # proxy-server-nameserver:
   # - https://dns.google/dns-query
   # - tls://one.one.one.one
-  # fallback-filter:
-  #   geoip: true 
-  #   geoip-code: IR 
-  #   geosite:
-  #     - gfw
-  #   ipcidr:
-  #     - 240.0.0.0/4
-  #   domain:
-  #     - '+.google.com'
-  #     - '+.facebook.com'
-  #     - '+.youtube.com'
-  nameserver-policy:
-    #   'www.baidu.com': '114.114.114.114'
-    #   '+.internal.crop.com': '10.0.0.1'
-    "geosite:ir,private,apple":
-      - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
-    "geosite:category-ads-all": rcode://success
-    ## global，dns 为 rule-providers 中的名为 global 和 dns 规则订阅，
-    ## 且 behavior 必须为 domain/classical，当为 classical 时仅会生效域名类规则
-    # "rule-set:global,dns": 8.8.8.8    
+   
 proxies:
 proxy-providers:
   VPN1:
