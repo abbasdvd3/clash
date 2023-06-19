@@ -2,7 +2,7 @@
 tproxy-port: 7893
 mode: rule
 allow-lan: true
-unified-delay: false
+unified-delay: true
 bind-address: '*'
 log-level: silent
 auto-redir: true
@@ -22,38 +22,6 @@ sniffer:
       ports: [80, 8080-8880]
       override-destination: true
 
-dns:
-  enable: true 
-  prefer-h3: true 
-  listen: 0.0.0.0:53 
-  ipv6: false 
-  default-nameserver:
-    - 114.114.114.114
-    - 8.8.8.8
-    - tls://1.12.12.12:853
-    - tls://223.5.5.5:853
-  enhanced-mode: redir-host  #fake-ip # or redir-host
-  # fake-ip-range: 198.18.0.1/16 
-  # use-hosts: true 
-  #fake-ip-filter:
-    #- '*.lan'
-  nameserver:
-    - 114.114.114.114 
-    - 8.8.8.8 
-    - tls://223.5.5.5:853 
-    - https://doh.pub/dns-query 
-    - https://dns.alidns.com/dns-query#h3=true #
-    - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true # 
-    - dhcp://en0 # 
-    - quic://dns.adguard.com:784 # DNS over QUIC
-    # - '8.8.8.8#en0' # 
-  # fallback:
-  #   - tcp://1.1.1.1
-  #   - 'tcp://1.1.1.1#ProxyGroupName' # 
-  # proxy-server-nameserver:
-  # - https://dns.google/dns-query
-  # - tls://one.one.one.one
-   
 proxies:
 proxy-providers:
   VPN1:
