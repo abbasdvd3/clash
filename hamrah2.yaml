@@ -36,26 +36,6 @@ sniffer:
       ports: [80, 8080-8880]
       override-destination: true # 可覆盖 sniffer.override-destination
 
-tun:
-  enable: false
-  device: utun
-  mtu: 9000
-  stack: system # gvisor / lwip / system
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  auto-route: true
-  auto-detect-interface: true
-  inet4-address: 172.19.0.1/30
-  inet6-address: [fdfe:dcba:9876::1/126]
-  # include_android_user:
-    # - 0
-    # - 10
-  # include_package:
-  # - com.android.chrome
-  # exclude_package:
-    # - com.whatsapp
-
 dns:
   enable: true
   ipv6: false
