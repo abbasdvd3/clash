@@ -120,22 +120,11 @@ proxy-providers:
       url: http://cp.cloudflare.com/generate_204
       interval: 300     
 proxy-groups:
-  - name: "PRO"
-    type: relay
-    proxies:
-    use:
-      - "VPN6"
-      - "VPN1"
-      - "VPN2"
-      - "VPN3"
-      - "VPN4"
-      - "VPN5"
-      - "VPN7"
-  - name: "PROXY"
+  - name: "🦜PROXY🦜"
     type: select
     proxies:
-      - "FALLBACK"
-      - "URL-TEST"
+      - "🐌FALLBACK🐌"
+      - "🪰URL-TEST🪰"
     use:
       - "VPN6"
       - "VPN1"
@@ -144,7 +133,7 @@ proxy-groups:
       - "VPN4"
       - "VPN5"
       - "VPN7"
-  - name: "FALLBACK"
+  - name: "🐌FALLBACK🐌"
     type: fallback
     use:
       - "VPN6"
@@ -154,7 +143,7 @@ proxy-groups:
       - "VPN4"
       - "VPN5"
       - "VPN7"
-  - name: "URL-TEST"
+  - name: "🪰URL-TEST🪰"
     type: url-test
     use:
       - "VPN6"
@@ -164,6 +153,15 @@ proxy-groups:
       - "VPN4"
       - "VPN5"
       - "VPN7"
+  - name: "🔫"
+    type: select
+    proxies:
+      - "DIRECT"
+  - name: "🚨REJECT🚨"
+    type: select
+    proxies:
+      - "REJECT"  
+      - "🪰URL-TEST🪰"
 rule-providers:
   iran_other:
     type: http
@@ -179,7 +177,7 @@ rule-providers:
     interval: 432000
 rules:
   ## block ads
-  - DOMAIN-SUFFIX,googlesyndication.com,PROXY
+
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
   - GEOSITE,category-ads-all,REJECT
 #  - RULE-SET,block,REJECT
@@ -225,12 +223,12 @@ rules:
   - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
   - IP-CIDR6,::1/128,REJECT,no-resolve
   ## rules telegram
-  - GEOIP,telegram,PROXY
-  - GEOSITE,telegram,PROXY
-  - PROCESS-NAME,com.facebook.katana,PROXY
-  - PROCESS-NAME,com.google.android.gms.persistent,PROXY
-  - DOMAIN-SUFFIX,android.apis.google.com,PROXY
-  - DOMAIN-SUFFIX,play.googleapis.com,PROXY
+  - GEOIP,telegram,🦜PROXY🦜
+  - GEOSITE,telegram,🦜PROXY🦜
+  - PROCESS-NAME,com.facebook.katana,🦜PROXY🦜
+  - PROCESS-NAME,com.google.android.gms.persistent,🦜PROXY🦜
+  - DOMAIN-SUFFIX,android.apis.google.com,🦜PROXY🦜
+  - DOMAIN-SUFFIX,play.googleapis.com,🦜PROXY🦜
 
   
   
@@ -245,7 +243,5 @@ rules:
   - RULE-SET,iran_other,DIRECT
   - IP-CIDR,10.10.0.0/16,PROXY
   - GEOIP,IR,DIRECT
-  - GEOIP,CN,DIRECT
   - DOMAIN-SUFFIX,.ir,DIRECT
-  - DOMAIN-SUFFIX,.cn,DIRECT
-  - MATCH,PROXY
+  - MATCH,🦜PROXY🦜
