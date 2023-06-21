@@ -9,86 +9,9 @@ enable-process: true
 ipv6: false
 external-controller: 0.0.0.0:9090 
 # secret: "123456"
-external-ui: https://yacd.metacubex.one/#/
+external-ui: https://yacd.metacubex.one/#/proxies
 find-process-mode: always
-dns:
-  enable: true
-  device: Meta
-  ipv6: true
-  default-nameserver:
-    - 1.1.1.1
-    - 9.9.9.9
-  listen: 0.0.0.0:1053
-  use-hosts: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter: ['networktest.twilio.com', '+.twilio.com', 'connect.rom.miui.com', 'localhost.ptlogin2.qq.com', '+.msftnsci.com', '+.msftconnecttest.com', '+.gstatic.com', '+.stun.*.*', '+.stun.*.*.*', '+.stun.*.*.*.*', '+.time.*', '+.time.*.*', '+.time.*.*.*', '+.ntp.*', '+.ntp.*.*', '+.ntp.*.*.*']
-  nameserver:
-    - https://149.112.112.112/dns-query
-    - quic://dns.adguard.com
-    - tls://dns.adguard.com
-  proxy-server-nameserver:
-    - 104.18.38.174
-  fallback:
-    - 1.1.1.1
-    - 8.8.8.8
-  fallback-filter:
-    geoip: false
-    geoip-code: "ID"
-    geosite: []
-    ipcidr:
-      - 0.0.0.0/8
-      - 10.0.0.0/8
-      - 100.64.0.0/10
-      - 127.0.0.0/8
-      - 169.254.0.0/16
-      - 172.16.0.0/12
-      - 192.0.0.0/24
-      - 192.0.2.0/24
-      - 192.88.99.0/24
-      - 192.168.0.0/16
-      - 198.18.0.0/15
-      - 198.51.100.0/24
-      - 203.0.113.0/24
-      - 224.0.0.0/4
-      - 240.0.0.0/4
-      - 255.255.255.255/32
-    domain:
-      - "+.google.com"
-      - "+.facebook.com"
-      - "+.youtube.com"
-      - "+.githubusercontent.com"
-      - "+.googlevideo.com"
-      - "+.msftconnecttest.com"
-      - "+.msftncsi.com"
-      - "msftconnecttest.com"
-      - "msftncsi.com"
-auto-redir:
-  enable: false
-  auto-route: false
-tun:
-  enable: true
-  stack: system
-  dns-hijack:
-    - any:53
-  auto-route: false
-  auto-detect-interface: false
-sniffer:
-  enable: true
-  sniffing:
-    - tls
-    - http
-  force-domain:
-    - '+'
-  skip-domain:
-    - '+.google.com'
-  port-whitelist:
-    - 443
-    - 80
-iptables: {enable: false, inbound-interface: "", bypass: []}
-hosts:
-  '+.clash.meta': 127.0.0.1
-  'cacerts.digicert.com': 141.193.213.20
+
 
 
 proxies:
@@ -96,6 +19,7 @@ proxy-providers:
   VPN1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/3april3.yaml"
+    interval: 3600
     path: provide/VPN1.yaml
     health-check:
       enable: true
@@ -104,6 +28,7 @@ proxy-providers:
   VPN2:
     type: http
     url: "https://wefound.cc/freenode/2023/06/20230618.yaml"
+    interval: 3600
     path: provide/VPN2.yaml
     health-check:
       enable: true
@@ -112,6 +37,7 @@ proxy-providers:
   VPN3:
     type: http
     url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
+    interval: 3600
     path: provide/VPN3.yaml
     health-check:
       enable: true
@@ -120,6 +46,7 @@ proxy-providers:
   VPN4:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
+    interval: 3600
     path: provide/VPN4.yaml
     health-check:
       enable: true
@@ -128,6 +55,7 @@ proxy-providers:
   VPN5:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Ios.yaml"
+    interval: 3600
     path: provide/VPN5.yaml
     health-check:
       enable: true
@@ -136,6 +64,7 @@ proxy-providers:
   VPN6:
     type: http
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.fastgit.org%2Ffreefq%2Ffree%2Fmaster%2Fv2&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
+    interval: 3600
     path: provide/VPN6.yaml
     health-check:
       enable: true
@@ -143,7 +72,8 @@ proxy-providers:
       interval: 300   
   VPN7:
     type: http
-    url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_META_IRAN-Direct.yml"
+    url: ""
+    interval: 3600
     path: provide/VPN7.yaml
     health-check:
       enable: true
@@ -201,10 +131,6 @@ rule-providers:
     path: ./ruleset/iran_ads.yaml
     interval: 432000
 rules:
-  ## block ads
-
-  - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
-  - GEOSITE,category-ads-all,REJECT
 #  - RULE-SET,block,REJECT
   # - SCRIPT,quic,REJECT
   # - SCRIPT,youshit,REJECT
@@ -254,7 +180,32 @@ rules:
   - PROCESS-NAME,com.google.android.gms.persistent,🦜PROXY🦜
   - DOMAIN-SUFFIX,android.apis.google.com,🦜PROXY🦜
   - DOMAIN-SUFFIX,play.googleapis.com,🦜PROXY🦜
-
+  - DOMAIN-SUFFIX,t.me,🦜PROXY🦜 #tele gram
+  - DOMAIN-SUFFIX,tdesktop.com,🦜PROXY🦜 #tele gram
+  - DOMAIN-SUFFIX,telegra.ph,🦜PROXY🦜 #tele gram
+  - DOMAIN-SUFFIX,telegram.me,🦜PROXY🦜 #tele gram
+  - DOMAIN-SUFFIX,telegram.org,🦜PROXY🦜 #tele gram
+  - IP-CIDR,91.108.4.0/22,🦜PROXY🦜,no-resolve #tele gram
+  - IP-CIDR,91.108.8.0/22,🦜PROXY🦜,no-resolve #tele gram
+  - IP-CIDR,91.108.12.0/22,🦜PROXY🦜,no-resolve #tele gram
+  - IP-CIDR,91.108.16.0/22,🦜PROXY🦜,no-resolve #tele gram
+  - IP-CIDR,91.108.56.0/22,🦜PROXY🦜,no-resolve #tele gram
+  - IP-CIDR,149.154.160.0/20,🦜PROXY🦜,no-resolve #tele gram
+  - DOMAIN-KEYWORD,instagram,🦜PROXY🦜
+  - DOMAIN-KEYWORD,whatsapp,🦜PROXY🦜
+  - DOMAIN-KEYWORD,facebook,🦜PROXY🦜
+  - DOMAIN-SUFFIX,cdninstagram.com,🦜PROXY🦜
+  - DOMAIN-SUFFIX,instagram.com,🦜PROXY🦜
+  - DOMAIN-SUFFIX,instanthq.com,🦜PROXY🦜
+  - DOMAIN-SUFFIX,instanthq.com,🦜PROXY🦜
+  - DOMAIN-SUFFIX,whatsapp.com,🦜PROXY🦜
+  - DOMAIN-SUFFIX,whatsapp.net,🦜PROXY🦜
+  - DST-PORT,5222,🦜PROXY🦜 #whatspp
+  - DST-PORT,5223,🦜PROXY🦜 #whatspp
+  - DST-PORT,5228,🦜PROXY🦜 #whatspp
+  - DST-PORT,5242,🦜PROXY🦜 #whatspp
+  - DST-PORT,3478,🦜PROXY🦜 #whatspp
+  - DST-PORT,1400,🦜PROXY🦜 #tele gram
   
   
   ## direct ntp
