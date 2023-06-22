@@ -115,6 +115,11 @@ proxy-groups:
     type: select
     proxies:
       - "DIRECT"
+  - name: "🚫"
+    type: select
+    proxies:
+      - "REJECT"
+      - "🦜PROXY🦜"
 rule-providers:
   iran_other:
     type: http
@@ -551,11 +556,11 @@ rules:
   - RULE-SET,icloud,DIRECT
   - RULE-SET,apple,DIRECT
   - RULE-SET,google,DIRECT
-  - RULE-SET,proxy,PROXY
+  - RULE-SET,proxy,🦜PROXY🦜
   - RULE-SET,direct,DIRECT
   - RULE-SET,lancidr,DIRECT
   - RULE-SET,cncidr,DIRECT
-  - RULE-SET,telegramcidr,PROXY
+  - RULE-SET,telegramcidr,🦜PROXY🦜
   - GEOIP,LAN,DIRECT
   ## direct ntp
   # - AND,((NETWORK,UDP),(DST-PORT,123)),DIRECT
