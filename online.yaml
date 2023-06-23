@@ -22,21 +22,18 @@ proxy-groups:
   - auto
   - DIRECT
   use:
-  - others
-  - all 
-  - yiun
-  - iam7
-  - myvm
-  - fox   
-  - irancell
-  - mci 
-  - posyao 
+  - posyao
   - yugogo
   - klausvpn
-  - adlionvm 
-  - jingfu 
-  - wifi  
+  - adlionvm
+  - jingfu
+  - wifi
+  - all
   - sim
+  - yiun
+  - fox
+  - iam7
+  - myvm
   url: 'http://cp.cloudflare.com/generate_204'
   interval: 400
   lazy: true
@@ -46,21 +43,18 @@ proxy-groups:
   url: 'http://cp.cloudflare.com/generate_204'
   interval: 400
   use:
-  - others
-  - all 
-  - yiun
-  - iam7
-  - myvm
-  - fox   
-  - irancell
-  - mci 
-  - posyao 
+  - posyao
   - yugogo
   - klausvpn
-  - adlionvm 
-  - jingfu 
-  - wifi  
+  - adlionvm
+  - jingfu
+  - wifi
+  - all
   - sim
+  - yiun
+  - fox
+  - iam7
+  - myvm
 - name: 🌍 media
   type: select
   proxies:
@@ -68,84 +62,72 @@ proxy-groups:
   - auto
   - 🎯 dir
   use:
-  - others
-  - all
-  - yiun
-  - iam7
-  - myvm
-  - fox   
-  - irancell
-  - mci 
-  - posyao 
+  - posyao
   - yugogo
   - klausvpn
-  - adlionvm 
-  - jingfu 
-  - wifi  
+  - adlionvm
+  - jingfu
+  - wifi
+  - all
   - sim
+  - yiun
+  - fox
+  - iam7
+  - myvm
 - name: 📲 tel
   type: select
   proxies:
   - proxy
   - 🎯 dir
   use:
-  - others
-  - all 
-  - yiun
-  - iam7
-  - myvm
-  - fox   
-  - irancell
-  - mci 
-  - posyao 
+  - posyao
   - yugogo
   - klausvpn
-  - adlionvm 
-  - jingfu 
-  - wifi  
+  - adlionvm
+  - jingfu
+  - wifi
+  - all
   - sim
+  - yiun
+  - fox
+  - iam7
+  - myvm
 - name: Ⓜ️ micro
   type: select
   proxies:
   - 🎯 dir
   - proxy
   use:
-  - others
-  - all
-  - yiun
-  - iam7
-  - myvm
-  - fox   
-  - irancell
-  - mci 
-  - posyao 
+  - posyao
   - yugogo
   - klausvpn
-  - adlionvm 
-  - jingfu 
-  - wifi  
-  - sim 
+  - adlionvm
+  - jingfu
+  - wifi
+  - all
+  - sim
+  - yiun
+  - fox
+  - iam7
+  - myvm 
 - name: 🍎 apple
   type: select
   proxies:
   - proxy
   - 🎯 dir
   use:
-  - others
-  - all 
-  - yiun
-  - iam7
-  - myvm
-  - fox   
-  - irancell
-  - mci 
-  - posyao 
+  - posyao
   - yugogo
   - klausvpn
-  - adlionvm 
-  - jingfu 
-  - wifi  
+  - adlionvm
+  - jingfu
+  - wifi
+  - all
   - sim
+  - yiun
+  - fox
+  - iam7
+  - myvm
 - name: 🎯 dir
   type: select
   proxies:
@@ -166,18 +148,14 @@ proxy-groups:
   type: select
   proxies:
   - proxy
-  use:
-  - irancell
 - name: hamrah 🏔
   type: select
   proxies:
   - proxy
-  use:
-  - mci 
 proxy-providers:
   irancell:
     type: file
-    url: "https://raw.githubusercontent.com/abbasdvd3/node/main/proxy_providers/VPN4"
+    url: ""
     path: Haisto/irancell.yaml
     health-check:
       enable: true
@@ -185,7 +163,7 @@ proxy-providers:
       url: 'http://edge.microsoft.com/captiveportal/generate_204'
   mci:
     type: file
-    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd/main/proxy_provider/VPN1.yaml"
+    url: ""
     path: Haisto/mci.yaml
     health-check:
       enable: true
@@ -279,110 +257,6 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://edge.microsoft.com/captiveportal/generate_204
-  au:
-    type: http
-    url: "http://proxies.haisto.cn/clash/proxies?c=AU"
-    path: Haisto/provider-au.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://edge.microsoft.com/captiveportal/generate_204
-  cn:
-    type: http
-    url: "http://proxies.haisto.cn/clash/proxies?c=CN,HK,TW"
-    path: Haisto/provider-cn.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://edge.microsoft.com/captiveportal/generate_204
-  us:
-    type: http
-    url: "http://proxies.haisto.cn/clash/proxies?c=US"
-    path: Haisto/provider-us.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://edge.microsoft.com/captiveportal/generate_204
-  ca:
-    type: http
-    url: "http://proxies.haisto.cn/clash/proxies?c=CA"
-    path: Haisto/provider-ca.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://edge.microsoft.com/captiveportal/generate_204
-  jp:
-    type: http
-    url: "http://proxies.haisto.cn/clash/proxies?c=JP"
-    path: Haisto/provider-jp.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://edge.microsoft.com/captiveportal/generate_204
-  sg:
-    type: http
-    url: "http://proxies.haisto.cn/clash/proxies?c=SG"
-    path: Haisto/provider-sg.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://edge.microsoft.com/captiveportal/generate_204
-  ru:
-    type: http
-    url: "http://proxies.haisto.cn/clash/proxies?c=RU"
-    path: Haisto/provider-ru.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://edge.microsoft.com/captiveportal/generate_204
-  ch:
-    type: http
-    url: "http://proxies.haisto.cn/clash/proxies?c=CH"
-    path: Haisto/provider-ch.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://edge.microsoft.com/captiveportal/generate_204
-  de:
-    type: http
-    url: "http://proxies.haisto.cn/clash/proxies?c=DE"
-    path: Haisto/provider-de.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://edge.microsoft.com/captiveportal/generate_204
-  fr:
-    type: http
-    url: "http://proxies.haisto.cn/clash/proxies?c=FR"
-    path: Haisto/provider-fr.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://edge.microsoft.com/captiveportal/generate_204
-  gb:
-    type: http
-    url: "http://proxies.haisto.cn/clash/proxies?c=GB"
-    path: Haisto/provider-gb.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://edge.microsoft.com/captiveportal/generate_204
-  nl:
-    type: http
-    url: "http://proxies.haisto.cn/clash/proxies?c=NL"
-    path: Haisto/provider-nl.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://cp.cloudflare.com/generate_204
-  others:
-    type: http
-    url: "http://proxies.haisto.cn/clash/proxies?nc=CN,HK,TW,US,CA,JP,SG,AU,CH,DE,GB,NL,FR,RU"
-    path: Haisto/provider-others.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://cp.cloudflare.com/generate_204
   all:
     type: http
     url: "http://proxies.haisto.cn/clash/proxies"
