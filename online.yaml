@@ -6,9 +6,7 @@ unified-delay: true
 bind-address: '*'
 # info / warning / error / debug / silent
 log-level: warning
-ipv6: true
-geodata-mode: true
-geodata-loader: memconservative
+ipv6: false
 external-controller: 0.0.0.0:9090 
 
 sniffer:
@@ -16,27 +14,6 @@ sniffer:
   sniffing:
     - tls
     - http
-
-dns:
-  enable: true
-  ipv6: false
-  prefer-h3: true
-  default-nameserver:
-    - 1.1.1.1
-  listen: 0.0.0.0:1053
-  use-hosts: true
-  # redir-host / fake-ip
-  enhanced-mode: redir-host
-  fake-ip-filter:
-    - +.lan
-    - +.stun.*.*
-    - +.stun.*.*.*
-    - +.stun.*.*.*.*
-    - +.stun.*.*.*.*.*
-  nameserver:
-    - 1.1.1.1
-    - tls://1.0.0.1:853
-
 hosts:
   'ota.googlezip.net': 127.0.0.1
   'ota-cache1.googlezip.net': 127.0.0.1
@@ -72,13 +49,13 @@ proxy-groups:
   - wifi  
   - sim
   url: 'http://cp.cloudflare.com/generate_204'
-  interval: 900
+  interval: 400
   lazy: true
   disable-udp: true  
 - name: auto
   type: url-test
   url: 'http://cp.cloudflare.com/generate_204'
-  interval: 800
+  interval: 400
   use:
   - others
   - all 
