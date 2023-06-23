@@ -3,8 +3,6 @@ tproxy-port: 9898
 mode: rule
 allow-lan: true
 unified-delay: true
-bind-address: '*'
-# info / warning / error / debug / silent
 log-level: warning
 ipv6: false
 external-controller: 0.0.0.0:9090 
@@ -290,20 +288,16 @@ tunnels:
 rules:
   - RULE-SET,porn,proxy
   - RULE-SET,telegram+Whatsapp,proxy
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - IP-CIDR,122.122.0.0/8,DIRECT,no-resolve
-  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
-  - DST-PORT,123/136/137-139,DIRECT       
-  - SRC-PORT,123/136/137-139,DIRECT
-  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
-  - IP-CIDR6,::1/128,REJECT,no-resolve
-  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
-  - DOMAIN-SUFFIX,github.com,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,github.io,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,githubapp.com,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,githubassets.com,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,githubusercontent.com,DIRECT,no-resolve
-  - DOMAIN-KEYWORD,github,DIRECT,no-resolve
-  - DOMAIN-KEYWORD,appteka.store,DIRECT
-  - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
+  - IP-CIDR6,::1/128,REJECT,no-resolve
+  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
+  - DOMAIN-SUFFIX,github.com,DIRECT
+  - DOMAIN-SUFFIX,github.io,DIRECT
+  - DOMAIN-SUFFIX,githubapp.com,DIRECT
+  - DOMAIN-SUFFIX,githubassets.com,DIRECT
+  - DOMAIN-SUFFIX,githubusercontent.com,DIRECT
+  - DOMAIN-KEYWORD,github,DIRECT
+  - DOMAIN-KEYWORD,appteka.store,DIRECT
+  - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT
   - MATCH,🐟 
+
