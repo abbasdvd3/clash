@@ -1,4 +1,22 @@
-
+tproxy-port: 9898
+redir-port: 9797
+# mixd-prot: 7890
+mode: rule
+allow-lan: true
+unified-delay: true
+bind-address: '*'
+log-level: error
+ipv6: false
+external-controller: 0.0.0.0:9090
+external-ui: dashboard/dist
+tcp-concurrent: true
+tun:
+  enable: true
+  stack: system
+  dns-hijack:
+    - any:53
+  auto-route: true
+  auto-detect-interface: true
 
 proxies:
 proxy-providers:
