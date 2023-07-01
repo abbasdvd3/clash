@@ -1,6 +1,6 @@
 tproxy-port: 9898
 redir-port: 9797
-# mixd-prot: 7890
+mixd-prot: 7890
 mode: rule
 allow-lan: true
 unified-delay: true
@@ -9,20 +9,53 @@ log-level: error
 ipv6: false
 external-controller: 0.0.0.0:9090
 external-ui: dashboard/dist
+udp: true
 tcp-concurrent: true
+sniffer:
+  enable: true
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
 tun:
   enable: true
-  stack: system
+  stack: gvisor
   dns-hijack:
-    - any:53
+    - 'any:53'
   auto-route: true
   auto-detect-interface: true
+
+dns:
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:1053
+  use-hosts: true
+  enhanced-mode: redir-host
+  # fake-ip-range: 198.18.0.1/16
+  #fake-ip-filter: ["*", "+.lan"]
+  default-nameserver:
+    - tls://223.5.5.5#🦜PROXY🦜
+    - 114.114.114.114
+    - 223.5.5.5
+    - 1.12.12.12
+  nameserver:
+    - https://edns.apad.pro:3306/dns-query
+    - https://114.114.114.114/dns-query
+    - https://223.5.5.5/dns-query
+    - https://1.12.12.12/dns-query
+  proxy-server-nameserver:
+    - https://dns.google/dns-query
+    - https://dns.cloudflare.com/dns-query
+    - https://doh.opendns.com/dns-query
+    - https://doh.dns.sb/dns-query
 
 proxies:
 proxy-providers:
   VPN1:
     type: http
-    url: "https://sub.pmsub.me/clash.yaml"
+    url: "https://v2rayshare.com/wp-content/uploads/2023/07/20230701.yaml"
     interval: 3600
     path: provide/VPN1.yaml
     health-check:
@@ -67,7 +100,7 @@ proxy-providers:
       interval: 500
   VPN6:
     type: http
-    url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.fastgit.org%2Ffreefq%2Ffree%2Fmaster%2Fv2&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
+    url: "https://wefound.cc/freenode/2023/07/20230701.yaml"
     interval: 3600
     path: provide/VPN6.yaml
     health-check:
@@ -76,7 +109,7 @@ proxy-providers:
       interval: 500
   VPN7:
     type: http
-    url: ""
+    url: "https://nodefree.org/dy/2023/07/20230701.yaml"
     interval: 3600
     path: provide/VPN7.yaml
     health-check:
