@@ -15,7 +15,7 @@ udp: true
 dns:
   enable: true
   ipv6: false
-  listen: 0.0.0.0:1053
+  listen: 0.0.0.0:53
   use-hosts: true
   enhanced-mode: fake-ip # redir-host
   fake-ip-range: 198.18.0.1/16
@@ -105,6 +105,11 @@ proxy-providers:
       url: http://cp.cloudflare.com/generate_204
       interval: 300     
 proxy-groups:
+  - name: "🤔"
+    type: select
+    proxies:
+      - "🧲URL-TEST🧲"
+      - "🐌FALLBACK🐌"
   - name: "🦜PROXY🦜"
     type: select
     proxies:
@@ -155,10 +160,9 @@ proxy-groups:
       - "DIRECT"
       - "🦜PROXY🦜"
   - name: "✈️Telegram"
-    type: select
+    type: url-test
     proxies:
       - "🧲URL-TEST🧲"
-      - "🦜PROXY🦜"
     use:
       - "VPN6"
       - "VPN1"
@@ -168,10 +172,9 @@ proxy-groups:
       - "VPN5"
       - "VPN7"
   - name: "🎬Youtube"
-    type: select
+    type: url-test
     proxies:
       - "🧲URL-TEST🧲"
-      - "🦜PROXY🦜"
     use:
       - "VPN6"
       - "VPN1"
