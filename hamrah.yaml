@@ -1,8 +1,3 @@
-# tproxy-port: 9898
-# mixd-prot: 7890
-port: 7890
-socks-port: 7891
-redir-port: 7892
 mode: rule
 allow-lan: false
 log-level: debug
@@ -11,27 +6,12 @@ external-controller: 0.0.0.0:9090
 external-ui: dashboard/dist
 udp: true
 unified-delay: true
-dns:
- enable: true
- ipv6: false
- listen: 127.0.0.1:5450
- enhanced-mode: redir-host
- default-nameserver:
-    - 119.29.29.29
-    - 119.28.28.28
-    - 1.0.0.1
-    - 208.67.222.222
-    - 1.2.4.8
- nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://1.1.1.1/dns-query
-    - tls://dns.adguard.com:853
 proxies:
 proxy-providers:
   VPN1:
     type: http
-    url: "https://oneclash.cc/wp-content/uploads/2023/07/20230709.yaml"
-    interval: 3600
+    url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_META_IRAN-Direct.yml"
+    interval: 600
     path: provide/VPN1.yaml
     health-check:
       enable: true
@@ -40,7 +20,7 @@ proxy-providers:
   VPN2:
     type: http
     url: "https://clashnode.com/wp-content/uploads/2023/07/20230709.yaml"
-    interval: 3600
+    interval: 600
     path: provide/VPN2.yaml
     health-check:
       enable: true
@@ -48,8 +28,8 @@ proxy-providers:
       interval: 500
   VPN3:
     type: http
-    url: "https://wenode.cc/wp-content/uploads/2023/07/20230709.yaml"
-    interval: 3600
+    url: "https://oneclash.cc/wp-content/uploads/2023/07/20230719.yaml"
+    interval: 600
     path: provide/VPN3.yaml
     health-check:
       enable: true
@@ -57,8 +37,8 @@ proxy-providers:
       interval: 500
   VPN4:
     type: http
-    url: "https://wefound.cc/freenode/2023/07/20230708.yaml"
-    interval: 3600
+    url: "https://wenode.cc/wp-content/uploads/2023/07/20230719.yaml"
+    interval: 600
     path: provide/VPN4.yaml
     health-check:
       enable: true
@@ -66,8 +46,8 @@ proxy-providers:
       interval: 500
   VPN5:
     type: http
-    url: "https://freenode.me/wp-content/uploads/2023/07/0998.yaml"
-    interval: 3600
+    url: "https://wefound.cc/freenode/2023/07/20230719.yaml"
+    interval: 600
     path: provide/VPN5.yaml
     health-check:
       enable: true
@@ -76,7 +56,7 @@ proxy-providers:
   VPN6:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/4444.txt"
-    interval: 3600
+    interval: 600
     path: provide/VPN6.yaml
     health-check:
       enable: true
@@ -85,7 +65,7 @@ proxy-providers:
   VPN7:
     type: http
     url: "https://free.iam7.tk/clash/proxies"
-    interval: 3600
+    interval: 600
     path: provide/VPN7.yaml
     health-check:
       enable: true
@@ -889,27 +869,6 @@ rules:
   - DOMAIN-SUFFIX,343480.com,DIRECT
   - DOMAIN-SUFFIX,baduziyuan.com,DIRECT
   - DOMAIN-SUFFIX,com-hs-hkdy.com,DIRECT
-  - DOMAIN-SUFFIX,czybjz.com,DIRECT
-  - DOMAIN-SUFFIX,dandanzan.com,DIRECT
-  - DOMAIN-SUFFIX,fjhps.com,DIRECT
-  - DOMAIN-SUFFIX,kuyunbo.club,DIRECT
-  - DOMAIN-SUFFIX,21cn.com,DIRECT
-  - DOMAIN-SUFFIX,hitv.com,DIRECT
-  - DOMAIN-SUFFIX,mgtv.com,DIRECT
-  - DOMAIN-SUFFIX,iqiyi.com,DIRECT
-  - DOMAIN-SUFFIX,iqiyipic.com,DIRECT
-  - DOMAIN-SUFFIX,71.am.com,DIRECT
-  - DOMAIN-SUFFIX,jd.com,DIRECT
-  - DOMAIN-SUFFIX,jd.hk,DIRECT
-  - DOMAIN-SUFFIX,jdpay.com,DIRECT
-  - DOMAIN-SUFFIX,360buyimg.com,DIRECT
-  - DOMAIN-SUFFIX,iciba.com,DIRECT
-  - DOMAIN-SUFFIX,ksosoft.com,DIRECT
-  - DOMAIN-SUFFIX,meitu.com,DIRECT
-  - DOMAIN-SUFFIX,meitudata.com,DIRECT
-  - DOMAIN-SUFFIX,meitustat.com,DIRECT
-  - DOMAIN-SUFFIX,meipai.com,DIRECT
-  - DOMAIN-SUFFIX,duokan.com,DIRECT
   - DOMAIN-SUFFIX,mi-img.com,DIRECT
   - DOMAIN-SUFFIX,miui.com,DIRECT
   - DOMAIN-SUFFIX,miwifi.com,DIRECT
