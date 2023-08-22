@@ -20,7 +20,15 @@ proxy-providers:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 600
-      
+  VPN4:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/provide/41.yaml"
+    interval: 36000
+    path: proxy_provider/VPN4.yaml
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 600
 proxy-groups:
 - name: 🌀LOADBALANCE🌀
   type: url-test
@@ -30,6 +38,7 @@ proxy-groups:
   use:
   - VPN1
   - VPN5
+  - VPN4
 - name: ✈️FINAL✈️
   type: select
   proxies:
@@ -37,6 +46,7 @@ proxy-groups:
   use:
   - VPN1
   - VPN5
+  - VPN4
 rules:
   - IP-CIDR,127.0.0.1/32,REJECT,no-resolve,udp
   - IP-CIDR6,::1/128,REJECT,no-resolve,udp
