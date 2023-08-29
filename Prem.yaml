@@ -4,37 +4,34 @@ proxy-providers:
   VPN1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/3april3.yaml"
-    interval: 36000
+    interval: 3600
     path: proxy_provider/VPN1.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 600
+      interval: 3600
       
   VPN5:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
-    interval: 36000
+    interval: 3600
     path: proxy_provider/VPN5.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 600
+      interval: 3600
   VPN4:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/provide/41.yaml"
-    interval: 36000
+    interval: 3600
     path: proxy_provider/VPN4.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 600
+      interval: 3600
 proxy-groups:
 - name: 🌀LOADBALANCE🌀
   type: url-test
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 
   use:
   - VPN1
   - VPN5
@@ -48,8 +45,8 @@ proxy-groups:
   - VPN5
   - VPN4
 rules:
-  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve,udp
-  - IP-CIDR6,::1/128,REJECT,no-resolve,udp
+  - IP-CIDR,127.0.0.1/32,REJECT
+  - IP-CIDR6,::1/128,REJECT,no-resolve
   # network(tcp/udp) condition for all rules 
   - DOMAIN-SUFFIX,ad.com,REJECT,udp
   - DOMAIN,apple.comscoreresearch.com,DIRECT
@@ -80,15 +77,13 @@ rules:
   - IP-CIDR,192.35.50.0/24,DIRECT,no-resolve
   - IP-CIDR,198.183.17.0/24,DIRECT,no-resolve
   - IP-CIDR,205.180.175.0/24,DIRECT,no-resolve
-  - SRC-IP-CIDR,192.168.1.201/32,DIRECT,tcp
-  - DOMAIN-SUFFIX,bilibili.com,DIRECT,tcp
-  - DOMAIN-SUFFIX,bilibili.com,REJECT,udp
-  - DOMAIN-SUFFIX,github.com,DIRECT,no-resolve,tcp
-  - DOMAIN-SUFFIX,github.io,DIRECT,no-resolve,tcp
-  - DOMAIN-SUFFIX,githubapp.com,DIRECT,no-resolve,tcp
-  - DOMAIN-SUFFIX,githubassets.com,DIRECT,no-resolve,tcp
-  - DOMAIN-SUFFIX,githubusercontent.com,DIRECT,no-resolve,tcp
-  - DOMAIN-KEYWORD,github,DIRECT,no-resolve,tcp
+  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
+  - DOMAIN-SUFFIX,github.com,DIRECT
+  - DOMAIN-SUFFIX,github.io,DIRECT
+  - DOMAIN-SUFFIX,githubapp.com,DIRECT
+  - DOMAIN-SUFFIX,githubassets.com,DIRECT
+  - DOMAIN-SUFFIX,githubusercontent.com,DIRECT
+  - DOMAIN-KEYWORD,github,DIRECT
   - DOMAIN-KEYWORD,appteka.store,DIRECT
-  - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT,no-resolve,tcp
+  - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT
   - MATCH,✈️FINAL✈️
