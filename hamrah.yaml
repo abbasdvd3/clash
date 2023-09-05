@@ -1,3 +1,8 @@
+port: 7890
+socks-port: 7891
+# mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
 mode: rule
 allow-lan: true
 log-level: debug
@@ -5,6 +10,26 @@ ipv6: false
 external-controller: 0.0.0.0:9090
 external-ui: https://metacubexd.pages.dev/#/overview
 unified-delay: true
+dns:
+  enable: true
+  ipv6: false
+  default-nameserver:
+    - 114.114.114.114
+    - 8.8.8.8
+    # cloudflare
+    - 1.1.1.1
+    - tls://223.5.5.5:853
+    - https://223.5.5.5/dns-query
+  listen: 0.0.0.0:1053
+  use-hosts: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    # - localhost.ptlogin2.qq.com
+  nameserver:
+    - 8.8.8.8
+    - 1.0.0.1
 proxies:
 proxy-groups:
   - name: "PROXY"
@@ -12,7 +37,6 @@ proxy-groups:
     proxies:
       - url-test
     use:
-      - provide1
       - provide2
       - provide3
       - provide4
@@ -22,7 +46,6 @@ proxy-groups:
   - name: "url-test"
     type: url-test
     use:
-      - provide1
       - provide2
       - provide3
       - provide4
@@ -34,7 +57,6 @@ proxy-groups:
     proxies:
       - url-test
     use: 
-      - provide1
       - provide2
       - provide3
       - provide4
@@ -45,7 +67,6 @@ proxy-groups:
     proxies:
       - url-test 
     use: 
-      - provide1
       - provide2
       - provide3
       - provide4
@@ -57,7 +78,6 @@ proxy-groups:
     proxies:
       - url-test 
     use: 
-      - provide1
       - provide2
       - provide3
       - provide4
@@ -68,7 +88,6 @@ proxy-groups:
     proxies:
       - url-test
     use: 
-      - provide1
       - provide2
       - provide3
       - provide4
@@ -79,7 +98,6 @@ proxy-groups:
     proxies:
       - url-test
     use: 
-      - provide1
       - provide2
       - provide3
       - provide4
@@ -90,7 +108,6 @@ proxy-groups:
     proxies:
       - url-test  
     use: 
-      - provide1
       - provide2
       - provide3
       - provide4
@@ -101,7 +118,6 @@ proxy-groups:
     proxies:
       - url-test
     use: 
-      - provide1
       - provide2
       - provide3
       - provide4
@@ -112,14 +128,6 @@ proxy-groups:
     proxies:
       - DIRECT            
 proxy-providers:
-  provide1:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/provide/41.yaml"
-    path: ./assets/1.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
 
   provide2:
     type: http
