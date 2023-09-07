@@ -3,12 +3,14 @@ socks-port: 7891
 allow-lan: false
 mode: rule
 log-level: info
+ipv6: false
+tcp-concurrent: true
 external-controller: 127.0.0.1:9090
 unified-delay: true
 dns:
   enable: true
   ipv6: false
-  enhanced-mode: fake-ip
+  enhanced-mode: redir-host
   nameserver:
   - 114.114.114.114
   - 223.5.5.5
@@ -37,79 +39,7 @@ proxy-groups:
       - provide3
       - provide4
       - provide5    
-        
-
-  - name: "Microsoft"
-    type: select
-    proxies:
-      - url-test
-    use: 
-      - provide2
-      - provide3
-      - provide4
-      - provide5 
-      
-  - name: "Google"
-    type: select
-    proxies:
-      - url-test 
-    use: 
-      - provide2
-      - provide3
-      - provide4
-      - provide5
-      
-
-  - name: "YouTube"
-    type: select
-    proxies:
-      - url-test 
-    use: 
-      - provide2
-      - provide3
-      - provide4
-      - provide5
-      
-  - name: "Steam"
-    type: select
-    proxies:
-      - url-test
-    use: 
-      - provide2
-      - provide3
-      - provide4
-      - provide5
-      
-  - name: "Telegram"
-    type: select
-    proxies:
-      - url-test
-    use: 
-      - provide2
-      - provide3
-      - provide4
-      - provide5
-      
-  - name: "Twitter"
-    type: select
-    proxies:
-      - url-test  
-    use: 
-      - provide2
-      - provide3
-      - provide4
-      - provide5
-      
-  - name: "Facebook"
-    type: select
-    proxies:
-      - url-test
-    use: 
-      - provide2
-      - provide3
-      - provide4
-      - provide5
-
+            
   - name: "IP"
     type: select
     proxies:
@@ -151,65 +81,11 @@ proxy-providers:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 300
-rule-providers:
-  iran_other:
-    type: http
-    behavior: domain
-    url: "https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_other.yaml"
-    path: ./ruleset/iran_other.yaml
-    interval: 432000
-  iran_ads:
-    type: http
-    behavior: domain
-    url: "https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_ads.yaml"
-    path: ./ruleset/iran_ads.yaml
-    interval: 432000
-
-  reject:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
-    path: ./ruleset/reject.yaml
-    interval: 86400
-
-  google:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
-    path: ./ruleset/google.yaml
-    interval: 86400
-
-  proxy:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
-    path: ./ruleset/proxy.yaml
-    interval: 86400
-
-  gfw:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
-    path: ./ruleset/gfw.yaml
-    interval: 86400
-
-  telegramcidr:
-    type: http
-    behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
-    path: ./ruleset/telegramcidr.yaml
-    interval: 86400
-
 rules:
   - GEOIP,IR,DIRECT
   - GEOIP,CN,DIRECT
   - RULE-SET,iran_ads,REJECT
   - DOMAIN-SUFFIX,ir,DIRECT
-  - RULE-SET,iran_other,DIRECT
-  - RULE-SET,reject,REJECT
-  - RULE-SET,google,PROXY
-  - RULE-SET,gfw,PROXY
-  - RULE-SET,proxy,PROXY
   # - SCRIPT,quic,REJECT
   # - SCRIPT,youshit,REJECT
   ## direct FCM
@@ -249,8 +125,6 @@ rules:
   - IP-CIDR6,::1/128,REJECT,no-resolve
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
-  - RULE-SET,telegramcidr,PROXY
-  # Local Area Network
   - DOMAIN-SUFFIX,aaplimg.com,DIRECT
   - DOMAIN-SUFFIX,apple.co,DIRECT
   - DOMAIN-SUFFIX,apple.com,DIRECT
@@ -258,19 +132,4 @@ rules:
   - DOMAIN-SUFFIX,appstore.com,DIRECT
   - DOMAIN-SUFFIX,cdn-apple.com,DIRECT
   - DOMAIN-SUFFIX,crashlytics.com,DIRECT
-  - DOMAIN-SUFFIX,icloud.com,DIRECT
-  - DOMAIN-SUFFIX,icloud-content.com,DIRECT
-  - DOMAIN-SUFFIX,me.com,DIRECT
-  - DOMAIN-SUFFIX,mzstatic.com,DIRECT
-  - DOMAIN,www-cdn.icloud.com.akadns.net,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  - IP-CIDR,10.0.0.0/8,DIRECT
-  - IP-CIDR,172.16.0.0/12,DIRECT
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - IP-CIDR,100.64.0.0/10,DIRECT
-  - IP-CIDR,224.0.0.0/4,DIRECT
-  - GEOIP,telegram,PROXY
-  - GEOIP,CN,DIRECT
-  - DOMAIN-SUFFIX,.ir,DIRECT
-  - DOMAIN-SUFFIX,.cn,DIRECT
   - MATCH,PROXY      
