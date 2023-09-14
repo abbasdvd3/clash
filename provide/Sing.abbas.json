@@ -1,0 +1,2857 @@
+{
+  "log": {},
+  "dns": {
+    "servers": [
+      {
+        "tag": "remote",
+        "address": "https://1.1.1.1/dns-query",
+        "detour": "select"
+      },
+      {
+        "tag": "local",
+        "address": "https://223.5.5.5/dns-query",
+        "detour": "direct"
+      }
+    ],
+    "rules": [
+      {
+        "clash_mode": "global",
+        "server": "remote"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "local"
+      },
+      {
+        "outbound": "any",
+        "server": "local"
+      },
+      {
+        "geosite": "cn",
+        "server": "local"
+      }
+    ],
+    "strategy": "ipv4_only"
+  },
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "listen_port": 6450,
+      "override_address": "8.8.8.8",
+      "override_port": 53,
+      "tag": "dns-in",
+      "type": "direct"
+    },
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "domain_strategy": "",
+      "interface_name": "tun0",
+      "inet4_address": "172.19.0.1/30",
+      "mtu": 9000,
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "system",
+      "endpoint_independent_nat": true,
+      "sniff": true,
+      "sniff_override_destination": false
+    },
+    {
+      "domain_strategy": "",
+      "listen": "0.0.0.0",
+      "listen_port": 2080,
+      "sniff": true,
+      "sniff_override_destination": false,
+      "tag": "mixed-in",
+      "type": "mixed"
+    },
+    {
+      "type": "redirect",
+      "tag": "redirect-in",
+      "listen": "::",
+      "listen_port": 9797,
+      "sniff": true,
+      "sniff_override_destination": false
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "select",
+      "outbounds": [
+        "urltest",
+        "@Socka5_1",
+        "@Socka5_2",
+        "@Socka5_3",
+        "@Socka5_4",
+        "@Socka5_5",
+        "@Socka5_6",
+        "@Socka5_7",
+        "@Socka5_8",
+        "@Socka5_9",
+        "@Socka5_10",
+        "@Socka5_11",
+        "@Socka5_12",
+        "@Socka5_13",
+        "@Socka5_14",
+        "@Socka5_15",
+        "@Socka5_16",
+        "@Socka5_17",
+        "@Socka5_18",
+        "@Socka5_19",
+        "@Socka5_20",
+        "@Socka5_21",
+        "@Socka5_22",
+        "@Socka5_23",
+        "@Socka5_24",
+        "@Socka5_25",
+        "@Socka5_26",
+        "@Socka5_27",
+        "@Socka5_28",
+        "@Socka5_29",
+        "@Socka5_30",
+        "@Socka5_31",
+        "@Socka5_32",
+        "@Socka5_33",
+        "@Socka5_34",
+        "@Socka5_35",
+        "@Socka5_36",
+        "@Socka5_37",
+        "@Socka5_38",
+        "@Socka5_39",
+        "@Socka5_40",
+        "@Socka5_41",
+        "@Socka5_42",
+        "@Socka5_43",
+        "@Socka5_44",
+        "@Socka5_45",
+        "@Socka5_46",
+        "@Socka5_47",
+        "@Socka5_48",
+        "@Socka5_49",
+        "@Socka5_50",
+        "@Socka5_51",
+        "@Socka5_52",
+        "@Socka5_53",
+        "@Socka5_54",
+        "@Socka5_55",
+        "@Socka5_56",
+        "@Socka5_57",
+        "@Socka5_58",
+        "@Socka5_59",
+        "@Socka5_60",
+        "@Socka5_61",
+        "@Socka5_62",
+        "@Socka5_63",
+        "@Socka5_64",
+        "@Socka5_65",
+        "@Socka5_66",
+        "@Socka5_67",
+        "@Socka5_68",
+        "@Socka5_69",
+        "@Socka5_70",
+        "@Socka5_71",
+        "@Socka5_72",
+        "@Socka5_73",
+        "@Socka5_74",
+        "@Socka5_75",
+        "@Socka5_76",
+        "@Socka5_77",
+        "@Socka5_78",
+        "@Socka5_79",
+        "@Socka5_80",
+        "@Socka5_81",
+        "@Socka5_82",
+        "@Socka5_83",
+        "@Socka5_84",
+        "@Socka5_85",
+        "@Socka5_86",
+        "@Socka5_87",
+        "@Socka5_88",
+        "@Socka5_89",
+        "@Socka5_90",
+        "@Socka5_91",
+        "@Socka5_92",
+        "@Socka5_93",
+        "@Socka5_94",
+        "@Socka5_95",
+        "@Socka5_96",
+        "@Socka5_97",
+        "@Socka5_98",
+        "@Socka5_99",
+        "@Socka5_100",
+        "@Socka5_101",
+        "@Socka5_102",
+        "@Socka5_103",
+        "@Socka5_104",
+        "@Socka5_105",
+        "@Socka5_106",
+        "@Socka5_107",
+        "@Socka5_108",
+        "@Socka5_109",
+        "@Socka5_110",
+        "@Socka5_111",
+        "@Socka5_112",
+        "@Socka5_113",
+        "@Socka5_114",
+        "@Socka5_115",
+        "@Socka5_116",
+        "@Socka5_117",
+        "@Socka5_118",
+        "@Socka5_119",
+        "@Socka5_120",
+        "@Socka5_121",
+        "@Socka5_122",
+        "@Socka5_123",
+        "@Socka5_124",
+        "@Socka5_125",
+        "@Socka5_126",
+        "@Socka5_127",
+        "@Socka5_128",
+        "@Socka5_129",
+        "@Socka5_130",
+        "@Socka5_131",
+        "@Socka5_132",
+        "@Socka5_133",
+        "@Socka5_134",
+        "@Socka5_135",
+        "@Socka5_136",
+        "@Socka5_137",
+        "@Socka5_138",
+        "@Socka5_139",
+        "@Socka5_140",
+        "@Socka5_141",
+        "@Socka5_142",
+        "@Socka5_143",
+        "@Socka5_144",
+        "@Socka5_145",
+        "@Socka5_146",
+        "@Socka5_147",
+        "@Socka5_148",
+        "@Socka5_149",
+        "@Socka5_150",
+        "@Socka5_151",
+        "@Socka5_152",
+        "@Socka5_153",
+        "@Socka5_154",
+        "@Socka5_155",
+        "@Socka5_156",
+        "@Socka5_157",
+        "@Socka5_158",
+        "@Socka5_159",
+        "@Socka5_160",
+        "@Socka5_161",
+        "@Socka5_162",
+        "@Socka5_163"
+      ],
+      "default": "urltest"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_1",
+      "server": "ru-05.feitudy.xyz",
+      "server_port": 20105,
+      "method": "chacha20-ietf-poly1305",
+      "password": "c3ebc942-7f99-4d7c-9626-98a143b3832c",
+      "network": "tcp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_2",
+      "server": "fhc.shabijichang.com",
+      "server_port": 80,
+      "uuid": "ef591064-640a-48e0-a511-623d5c0e67e9",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "fhc.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_3",
+      "server": "hdlb2.shabijichang.com",
+      "server_port": 80,
+      "uuid": "53701585-591f-48a3-9515-8831ed0524ac",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "hdlb2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_4",
+      "server": "172.64.101.98",
+      "server_port": 80,
+      "uuid": "272b3891-e103-45e0-8b09-f4d770bf5ba4",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_5",
+      "server": "xn2.shabijichang.com",
+      "server_port": 80,
+      "uuid": "f1865e50-2510-46d1-bcb2-e00b4b656305",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_6",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "d6262b69-4a53-41f8-84e9-e3ddcdbf0190",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_7",
+      "server": "jp-01.feitudy.xyz",
+      "server_port": 20201,
+      "method": "chacha20-ietf-poly1305",
+      "password": "c3ebc942-7f99-4d7c-9626-98a143b3832c",
+      "network": "tcp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_8",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "70a93fcb-f8c0-4916-96b5-8c54f3394708",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_9",
+      "server": "172.67.139.111",
+      "server_port": 443,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_10",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "beaa0ee8-1ff6-4ee5-982d-258f0d830018",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_11",
+      "server": "3254.outline-vpn.cloud",
+      "server_port": 443,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_12",
+      "server": "nl-01.feitudy.xyz",
+      "server_port": 20111,
+      "method": "chacha20-ietf-poly1305",
+      "password": "c3ebc942-7f99-4d7c-9626-98a143b3832c",
+      "network": "tcp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_13",
+      "server": "23.227.38.81",
+      "server_port": 443,
+      "uuid": "6deddb7f-e557-42db-bfa0-cf40b36b27e2",
+      "security": "auto",
+      "tls": {
+        "enabled": true,
+        "server_name": "23.227.38.81",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/dongtaiwang.com",
+        "headers": {
+          "host": "d.freeh1.xyz"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_14",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "70a93fcb-f8c0-4916-96b5-8c54f3394708",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "hdlb2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_15",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "asb3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_16",
+      "server": "xn2.shabijichang.com",
+      "server_port": 80,
+      "uuid": "f1865e50-2510-46d1-bcb2-e00b4b656305",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_17",
+      "server": "542.outline-vpn.cloud",
+      "server_port": 443,
+      "uuid": "884f9b2c-f0c5-44dd-a68e-3e39ce93bb39",
+      "tls": {
+        "enabled": true,
+        "server_name": "cf-wkrs-pages-vless-aoy.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_18",
+      "server": "172.67.146.22",
+      "server_port": 80,
+      "uuid": "392053a2-c18f-4914-890c-fd326ee27b4f",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "hdlb2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_19",
+      "server": "172.64.195.218",
+      "server_port": 80,
+      "uuid": "392053a2-c18f-4914-890c-fd326ee27b4f",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "hdlb2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_20",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "553128fc-df6d-4ff0-b608-67e4c625abcc",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "ml4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_21",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mrb3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_22",
+      "server": "xn4.shabijichang.com",
+      "server_port": 80,
+      "uuid": "f1865e50-2510-46d1-bcb2-e00b4b656305",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_23",
+      "server": "172.67.217.82",
+      "server_port": 443,
+      "uuid": "3480ec71-92aa-4e2a-ae74-efc2e12f0fbf",
+      "tls": {
+        "enabled": true,
+        "server_name": "interlopers.realbarcafootball.com"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/nimws"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_24",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mrb2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_25",
+      "server": "172.64.195.218",
+      "server_port": 80,
+      "uuid": "392053a2-c18f-4914-890c-fd326ee27b4f",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_26",
+      "server": "bia2.outline-vpn.cloud",
+      "server_port": 2087,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_27",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_28",
+      "server": "172.67.139.111",
+      "server_port": 2096,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_29",
+      "server": "172.67.53.250",
+      "server_port": 80,
+      "uuid": "272b3891-e103-45e0-8b09-f4d770bf5ba4",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_30",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "ml4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_31",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "553128fc-df6d-4ff0-b608-67e4c625abcc",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_32",
+      "server": "fell.gougouvpn.xyz",
+      "server_port": 45800,
+      "method": "chacha20-ietf-poly1305",
+      "password": "f73092f3-6a42-46a3-8953-c629620b8ef8",
+      "network": "tcp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_33",
+      "server": "edtunnel-b6t.pages.dev",
+      "server_port": 443,
+      "uuid": "c688395a-b36b-4071-974b-bc91ac2ad2c4",
+      "tls": {
+        "enabled": true,
+        "server_name": "edtunnel-b6t.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_34",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "d6262b69-4a53-41f8-84e9-e3ddcdbf0190",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_35",
+      "server": "jp-02.feitudy.xyz",
+      "server_port": 20202,
+      "method": "chacha20-ietf-poly1305",
+      "password": "c3ebc942-7f99-4d7c-9626-98a143b3832c",
+      "network": "tcp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_36",
+      "server": "zfc.windowsupdate1.com",
+      "server_port": 443,
+      "uuid": "682da156-2475-43f4-8036-aa8d08918f76",
+      "security": "auto",
+      "tls": {
+        "enabled": true,
+        "server_name": "zfc.windowsupdate1.com",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/yfjc/us2?ed=2048",
+        "headers": {
+          "host": "us2.yfjc.sbs"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_37",
+      "server": "665.outline-vpn.cloud",
+      "server_port": 443,
+      "uuid": "884f9b2c-f0c5-44dd-a68e-3e39ce93bb39",
+      "tls": {
+        "enabled": true,
+        "server_name": "cf-wkrs-pages-vless-aoy.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_38",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "ml3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_39",
+      "server": "45.199.138.152",
+      "server_port": 55446,
+      "uuid": "418048af-a293-4b99-9b0c-98ca4690dd24",
+      "security": "auto",
+      "alter_id": 64
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_40",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "f1865e50-2510-46d1-bcb2-e00b4b656305",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_41",
+      "server": "tr-02.feitudy.xyz",
+      "server_port": 20112,
+      "method": "chacha20-ietf-poly1305",
+      "password": "c3ebc942-7f99-4d7c-9626-98a143b3832c",
+      "network": "tcp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_42",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_43",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "ml2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_44",
+      "server": "indulin.blackeye-galaxy.online",
+      "server_port": 443,
+      "uuid": "0b453faf-c7a3-41db-af80-d4e0c42caa99",
+      "tls": {
+        "enabled": true,
+        "server_name": "indulin.blackeye-galaxy.online"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/nimws"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_45",
+      "server": "986join.outline-vpn.cloud",
+      "server_port": 443,
+      "uuid": "c688395a-b36b-4071-974b-bc91ac2ad2c4",
+      "tls": {
+        "enabled": true,
+        "server_name": "edtunnel-b6t.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_46",
+      "server": "xn4.shabijichang.com",
+      "server_port": 80,
+      "uuid": "53701585-591f-48a3-9515-8831ed0524ac",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_47",
+      "server": "3254.outline-vpn.cloud",
+      "server_port": 8443,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_48",
+      "server": "172.67.133.117",
+      "server_port": 80,
+      "uuid": "392053a2-c18f-4914-890c-fd326ee27b4f",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_49",
+      "server": "renew.feitudy.xyz",
+      "server_port": 60010,
+      "method": "chacha20-ietf-poly1305",
+      "password": "c3ebc942-7f99-4d7c-9626-98a143b3832c",
+      "network": "tcp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_50",
+      "server": "hdlb2.shabijichang.com",
+      "server_port": 80,
+      "uuid": "53701585-591f-48a3-9515-8831ed0524ac",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "hdlb2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_51",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "9c6acc4f-e152-4d1d-b0c3-3a5e1e32a69b",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_52",
+      "server": "mm.shabijichang.com",
+      "server_port": 80,
+      "uuid": "f1865e50-2510-46d1-bcb2-e00b4b656305",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_53",
+      "server": "172.67.184.53",
+      "server_port": 8443,
+      "uuid": "aa0c4744-9568-4bee-a08b-73668a9b2a42",
+      "security": "auto",
+      "tls": {
+        "enabled": true,
+        "server_name": "172.67.184.53",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/cloudconebbb",
+        "headers": {
+          "host": "cloudconebbb.gorgorchicken.one"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_54",
+      "server": "188.114.97.3",
+      "server_port": 443,
+      "uuid": "884f9b2c-f0c5-44dd-a68e-3e39ce93bb39",
+      "tls": {
+        "enabled": true,
+        "server_name": "cf-wkrs-pages-vless-aoy.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_55",
+      "server": "ru-01.feitudy.xyz",
+      "server_port": 20101,
+      "method": "chacha20-ietf-poly1305",
+      "password": "c3ebc942-7f99-4d7c-9626-98a143b3832c",
+      "network": "tcp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_56",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_57",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "70a93fcb-f8c0-4916-96b5-8c54f3394708",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_58",
+      "server": "172.64.195.218",
+      "server_port": 80,
+      "uuid": "d6262b69-4a53-41f8-84e9-e3ddcdbf0190",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "hdlb2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_59",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_60",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "9c6acc4f-e152-4d1d-b0c3-3a5e1e32a69b",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_61",
+      "server": "172.67.139.111",
+      "server_port": 8443,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_62",
+      "server": "172.67.139.111",
+      "server_port": 2053,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_63",
+      "server": "3254.outline-vpn.cloud",
+      "server_port": 2087,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_64",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "f1865e50-2510-46d1-bcb2-e00b4b656305",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_65",
+      "server": "172.66.44.172",
+      "server_port": 443,
+      "uuid": "884f9b2c-f0c5-44dd-a68e-3e39ce93bb39",
+      "tls": {
+        "enabled": true,
+        "server_name": "cf-wkrs-pages-vless-aoy.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_66",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "81fc114e-44d7-44c7-9912-942453b03154",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_67",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "81fc114e-44d7-44c7-9912-942453b03154",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_68",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_69",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "70a93fcb-f8c0-4916-96b5-8c54f3394708",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_70",
+      "server": "172.67.156.243",
+      "server_port": 443,
+      "uuid": "a78a170d-4f18-45ef-b723-c77d7c235931",
+      "tls": {
+        "enabled": true,
+        "server_name": "creviced.andromedagalaxy.website"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/nimws"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_71",
+      "server": "172.66.47.84",
+      "server_port": 443,
+      "uuid": "884f9b2c-f0c5-44dd-a68e-3e39ce93bb39",
+      "tls": {
+        "enabled": true,
+        "server_name": "cf-wkrs-pages-vless-aoy.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_72",
+      "server": "188.114.96.3",
+      "server_port": 443,
+      "uuid": "884f9b2c-f0c5-44dd-a68e-3e39ce93bb39",
+      "tls": {
+        "enabled": true,
+        "server_name": "cf-wkrs-pages-vless-aoy.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_73",
+      "server": "ru-04.feitudy.xyz",
+      "server_port": 20104,
+      "method": "chacha20-ietf-poly1305",
+      "password": "c3ebc942-7f99-4d7c-9626-98a143b3832c",
+      "network": "tcp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_74",
+      "server": "zfc.windowsupdate1.com",
+      "server_port": 443,
+      "uuid": "682da156-2475-43f4-8036-aa8d08918f76",
+      "security": "auto",
+      "tls": {
+        "enabled": true,
+        "server_name": "zfc.windowsupdate1.com",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/yfjc/us1?ed=2048",
+        "headers": {
+          "host": "us1.yfjc.sbs"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_75",
+      "server": "154.85.1.243",
+      "server_port": 41181,
+      "uuid": "1d474f0b-e78d-4af9-bc4a-a467467bc7a7",
+      "security": "auto",
+      "alter_id": 64
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_76",
+      "server": "zfc.windowsupdate1.com",
+      "server_port": 443,
+      "uuid": "682da156-2475-43f4-8036-aa8d08918f76",
+      "security": "auto",
+      "tls": {
+        "enabled": true,
+        "server_name": "zfc.windowsupdate1.com",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/yfjc/us4?ed=2048",
+        "headers": {
+          "host": "us4.yfjc.sbs"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_77",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "sbl6.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_78",
+      "server": "172.67.187.111",
+      "server_port": 443,
+      "uuid": "5f84c37f-f153-4abc-b634-859dc6bf90de",
+      "tls": {
+        "enabled": true,
+        "server_name": "volatilizable.4kphotos.website"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/nimws"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_79",
+      "server": "3254.outline-vpn.cloud",
+      "server_port": 2083,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_80",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "d6262b69-4a53-41f8-84e9-e3ddcdbf0190",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_81",
+      "server": "hdlb2.shabijichang.com",
+      "server_port": 80,
+      "uuid": "f1865e50-2510-46d1-bcb2-e00b4b656305",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "hdlb2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_82",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "dc42deba-1458-450e-938d-4d5ff4ab0f92",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_83",
+      "server": "172.67.194.57",
+      "server_port": 443,
+      "uuid": "e28bb3f8-e64a-4419-9496-33c46220354b",
+      "tls": {
+        "enabled": true,
+        "server_name": "sdgf.bdfstt.sbs"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_84",
+      "server": "172.66.44.82",
+      "server_port": 443,
+      "uuid": "c688395a-b36b-4071-974b-bc91ac2ad2c4",
+      "tls": {
+        "enabled": true,
+        "server_name": "edtunnel-b6t.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_85",
+      "server": "zygapophyses.butterfly-galaxy.com",
+      "server_port": 443,
+      "uuid": "f895c8af-f536-4bed-a3b1-ba78a8d643ce",
+      "tls": {
+        "enabled": true,
+        "server_name": "zygapophyses.butterfly-galaxy.com"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/nimws"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_86",
+      "server": "in06.my1188.org",
+      "server_port": 64014,
+      "uuid": "c78d7d2c-d93e-3cfd-98e0-e3d43cc1096d",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "us01.wechat-cdn-us01.one"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "@Socka5_87",
+      "server": "42.7.24.142",
+      "server_port": 38200,
+      "password": "682da156-2475-43f4-8036-aa8d08918f76",
+      "tls": {
+        "enabled": true,
+        "server_name": "nl1.liangxinjichang.top",
+        "insecure": true
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_88",
+      "server": "v117.runba.gq",
+      "server_port": 80,
+      "uuid": "892ebb75-7055-3007-8d16-356e65c6a49a",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/v117DEcxDXxxOvD",
+        "headers": {
+          "host": "v117.runba.gq"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_89",
+      "server": "172.66.44.172",
+      "server_port": 2087,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_90",
+      "server": "188.114.97.0",
+      "server_port": 443,
+      "uuid": "884f9b2c-f0c5-44dd-a68e-3e39ce93bb39",
+      "tls": {
+        "enabled": true,
+        "server_name": "cf-wkrs-pages-vless-aoy.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_91",
+      "server": "172.67.146.22",
+      "server_port": 80,
+      "uuid": "545e2bdb-ac6d-428f-82c7-7966be8d9ebc",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_92",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "hdlb2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_93",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "asb2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_94",
+      "server": "3254.outline-vpn.cloud",
+      "server_port": 2053,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_95",
+      "server": "172.66.47.174",
+      "server_port": 443,
+      "uuid": "c688395a-b36b-4071-974b-bc91ac2ad2c4",
+      "tls": {
+        "enabled": true,
+        "server_name": "edtunnel-b6t.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_96",
+      "server": "in06.my1188.org",
+      "server_port": 64051,
+      "uuid": "c78d7d2c-d93e-3cfd-98e0-e3d43cc1096d",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "in01.mycdn888.xyz"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_97",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "70a93fcb-f8c0-4916-96b5-8c54f3394708",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "asb3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_98",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "se2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_99",
+      "server": "12join.outline-vpn.cloud",
+      "server_port": 2096,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_100",
+      "server": "ru-06.feitudy.xyz",
+      "server_port": 20106,
+      "method": "chacha20-ietf-poly1305",
+      "password": "c3ebc942-7f99-4d7c-9626-98a143b3832c",
+      "network": "tcp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_101",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "sdyg.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_102",
+      "server": "20.205.4.27",
+      "server_port": 8443,
+      "method": "aes-256-gcm",
+      "password": "6EQ2ezT3Ui",
+      "network": "tcp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_103",
+      "server": "172.67.139.111",
+      "server_port": 2087,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_104",
+      "server": "sg2.wyhkaa0.cf",
+      "server_port": 80,
+      "uuid": "fc426675-5daa-46c0-d998-61f9f5323e3f",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/TG:@hkaa0",
+        "headers": {
+          "host": "sg2.wyhkaa0.cf"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_105",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xjp2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_106",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "553128fc-df6d-4ff0-b608-67e4c625abcc",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_107",
+      "server": "45.199.138.184",
+      "server_port": 37831,
+      "uuid": "078eb24d-8d1d-4fbd-b914-ee58a897a35e",
+      "security": "auto",
+      "alter_id": 64
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_108",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "db3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_109",
+      "server": "45.199.138.190",
+      "server_port": 34987,
+      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
+      "security": "auto",
+      "alter_id": 64
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_110",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "553128fc-df6d-4ff0-b608-67e4c625abcc",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_111",
+      "server": "172.67.139.111",
+      "server_port": 2083,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_112",
+      "server": "tr-01.feitudy.xyz",
+      "server_port": 20111,
+      "method": "chacha20-ietf-poly1305",
+      "password": "c3ebc942-7f99-4d7c-9626-98a143b3832c",
+      "network": "tcp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_113",
+      "server": "mm.shabijichang.com",
+      "server_port": 80,
+      "uuid": "53701585-591f-48a3-9515-8831ed0524ac",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_114",
+      "server": "zfc.windowsupdate1.com",
+      "server_port": 443,
+      "uuid": "682da156-2475-43f4-8036-aa8d08918f76",
+      "security": "auto",
+      "tls": {
+        "enabled": true,
+        "server_name": "zfc.windowsupdate1.com",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/yfjc/us3?ed=2048",
+        "headers": {
+          "host": "us3.yfjc.sbs"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_115",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "jd4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_116",
+      "server": "12join.outline-vpn.cloud",
+      "server_port": 2087,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_117",
+      "server": "xn4.shabijichang.com",
+      "server_port": 80,
+      "uuid": "53701585-591f-48a3-9515-8831ed0524ac",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_118",
+      "server": "xn2.shabijichang.com",
+      "server_port": 80,
+      "uuid": "53701585-591f-48a3-9515-8831ed0524ac",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_119",
+      "server": "156.225.67.95",
+      "server_port": 53381,
+      "uuid": "5a4d69ad-20a9-4941-b223-87bbd09f5f52",
+      "security": "auto",
+      "alter_id": 64
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_120",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "jd5.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_121",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "553128fc-df6d-4ff0-b608-67e4c625abcc",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mrb2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_122",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "d6262b69-4a53-41f8-84e9-e3ddcdbf0190",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "hdlb2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_123",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "jd2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_124",
+      "server": "156.225.67.153",
+      "server_port": 443,
+      "uuid": "a7fa8f14-4fb6-4280-9005-d6bbe99c5da9",
+      "security": "auto",
+      "alter_id": 64,
+      "tls": {
+        "enabled": true,
+        "server_name": "156.225.67.153",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/path/1694166526848",
+        "headers": {
+          "host": "www.84550179.xyz"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_125",
+      "server": "172.64.153.211",
+      "server_port": 443,
+      "uuid": "884f9b2c-f0c5-44dd-a68e-3e39ce93bb39",
+      "tls": {
+        "enabled": true,
+        "server_name": "cf-wkrs-pages-vless-aoy.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_126",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "sbl3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_127",
+      "server": "7456.outline-vpn.cloud",
+      "server_port": 443,
+      "uuid": "f895c8af-f536-4bed-a3b1-ba78a8d643ce",
+      "tls": {
+        "enabled": true,
+        "server_name": "zygapophyses.butterfly-galaxy.com"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/nimws"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_128",
+      "server": "ru-02.feitudy.xyz",
+      "server_port": 20102,
+      "method": "chacha20-ietf-poly1305",
+      "password": "c3ebc942-7f99-4d7c-9626-98a143b3832c",
+      "network": "tcp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_129",
+      "server": "172.66.44.172",
+      "server_port": 2096,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_130",
+      "server": "bia2.outline-vpn.cloud",
+      "server_port": 2096,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_131",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "jd3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_132",
+      "server": "172.64.101.98",
+      "server_port": 80,
+      "uuid": "545e2bdb-ac6d-428f-82c7-7966be8d9ebc",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_133",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "9c6acc4f-e152-4d1d-b0c3-3a5e1e32a69b",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "asb3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_134",
+      "server": "ru-03.feitudy.xyz",
+      "server_port": 20103,
+      "method": "chacha20-ietf-poly1305",
+      "password": "c3ebc942-7f99-4d7c-9626-98a143b3832c",
+      "network": "tcp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_135",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn5.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_136",
+      "server": "23.227.38.82",
+      "server_port": 443,
+      "uuid": "6deddb7f-e557-42db-bfa0-cf40b36b27e2",
+      "security": "auto",
+      "tls": {
+        "enabled": true,
+        "server_name": "23.227.38.82",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/dongtaiwang.com",
+        "headers": {
+          "host": "d.freeh1.xyz"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_137",
+      "server": "zfc.windowsupdate1.com",
+      "server_port": 443,
+      "uuid": "682da156-2475-43f4-8036-aa8d08918f76",
+      "security": "auto",
+      "tls": {
+        "enabled": true,
+        "server_name": "zfc.windowsupdate1.com",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/yfjc/nl2?ed=2048",
+        "headers": {
+          "host": "nl2.yfjc.sbs"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_138",
+      "server": "mm4.shabijichang.com",
+      "server_port": 80,
+      "uuid": "53701585-591f-48a3-9515-8831ed0524ac",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_139",
+      "server": "3254.outline-vpn.cloud",
+      "server_port": 2096,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "baipiao1.curly-train.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_140",
+      "server": "xn2.shabijichang.com",
+      "server_port": 80,
+      "uuid": "53701585-591f-48a3-9515-8831ed0524ac",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/"
+      }
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_141",
+      "server": "45.144.179.6",
+      "server_port": 20111,
+      "method": "chacha20-ietf-poly1305",
+      "password": "d861d23d-4fd9-482f-902f-dbe568020cfc",
+      "network": "tcp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_142",
+      "server": "cf-wkrs-pages-vless-aoy.pages.dev",
+      "server_port": 443,
+      "uuid": "884f9b2c-f0c5-44dd-a68e-3e39ce93bb39",
+      "tls": {
+        "enabled": true,
+        "server_name": "cf-wkrs-pages-vless-aoy.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_143",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "f1865e50-2510-46d1-bcb2-e00b4b656305",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "se2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_144",
+      "server": "12join.outline-vpn.cloud",
+      "server_port": 443,
+      "uuid": "884f9b2c-f0c5-44dd-a68e-3e39ce93bb39",
+      "tls": {
+        "enabled": true,
+        "server_name": "cf-wkrs-pages-vless-aoy.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_145",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "d6262b69-4a53-41f8-84e9-e3ddcdbf0190",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "asb3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_146",
+      "server": "45.199.138.162",
+      "server_port": 48912,
+      "uuid": "65ea6727-4461-47a7-a5c4-fef2c67f2f79",
+      "security": "auto",
+      "alter_id": 64
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@Socka5_147",
+      "server": "nl-02.feitudy.xyz",
+      "server_port": 20112,
+      "method": "chacha20-ietf-poly1305",
+      "password": "c3ebc942-7f99-4d7c-9626-98a143b3832c",
+      "network": "tcp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_148",
+      "server": "in06.my1188.org",
+      "server_port": 64092,
+      "uuid": "c78d7d2c-d93e-3cfd-98e0-e3d43cc1096d",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "de01-cdn.airport-v2.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_149",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "81fc114e-44d7-44c7-9912-942453b03154",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "se2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_150",
+      "server": "asb3.shabijichang.com",
+      "server_port": 80,
+      "uuid": "4d10e7d8-31ad-4bff-8885-bc87ac942db3",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "asb3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_151",
+      "server": "156.245.8.247",
+      "server_port": 40921,
+      "uuid": "964bf499-9ec0-4378-92b6-87d8d861b2d0",
+      "security": "auto",
+      "alter_id": 64
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_152",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "beaa0ee8-1ff6-4ee5-982d-258f0d830018",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "hdlb2.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_153",
+      "server": "188.114.99.0",
+      "server_port": 8443,
+      "uuid": "aa0c4744-9568-4bee-a08b-73668a9b2a42",
+      "security": "auto",
+      "tls": {
+        "enabled": true,
+        "server_name": "188.114.99.0",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/cloudconebbb",
+        "headers": {
+          "host": "cloudconebbb.gorgorchicken.one"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_154",
+      "server": "855.outline-vpn.cloud",
+      "server_port": 443,
+      "uuid": "884f9b2c-f0c5-44dd-a68e-3e39ce93bb39",
+      "tls": {
+        "enabled": true,
+        "server_name": "cf-wkrs-pages-vless-aoy.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_155",
+      "server": "fd.shabijichang.com",
+      "server_port": 80,
+      "uuid": "8d59c92c-0653-4bf8-b832-37dc852b41de",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "sbl5.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_156",
+      "server": "172.67.133.117",
+      "server_port": 80,
+      "uuid": "dc42deba-1458-450e-938d-4d5ff4ab0f92",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "mm4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_157",
+      "server": "172.67.53.250",
+      "server_port": 80,
+      "uuid": "392053a2-c18f-4914-890c-fd326ee27b4f",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "asb3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "@Socka5_158",
+      "server": "13.42.201.51",
+      "server_port": 22222,
+      "password": "telegram-id-privatevpns",
+      "tls": {
+        "enabled": true,
+        "server_name": "trj.rollingnext.co.uk",
+        "insecure": true
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_159",
+      "server": "zfc.windowsupdate1.com",
+      "server_port": 443,
+      "uuid": "682da156-2475-43f4-8036-aa8d08918f76",
+      "security": "auto",
+      "tls": {
+        "enabled": true,
+        "server_name": "zfc.windowsupdate1.com",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/yfjc/nl3?ed=2048",
+        "headers": {
+          "host": "nl3.yfjc.sbs"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_160",
+      "server": "asb3.shabijichang.com",
+      "server_port": 80,
+      "uuid": "53701585-591f-48a3-9515-8831ed0524ac",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "asb3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_161",
+      "server": "172.67.1.123",
+      "server_port": 80,
+      "uuid": "392053a2-c18f-4914-890c-fd326ee27b4f",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "xn4.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "@Socka5_162",
+      "server": "5165.outline-vpn.cloud",
+      "server_port": 443,
+      "uuid": "c688395a-b36b-4071-974b-bc91ac2ad2c4",
+      "tls": {
+        "enabled": true,
+        "server_name": "edtunnel-b6t.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "@Socka5_163",
+      "server": "asb3.shabijichang.com",
+      "server_port": 80,
+      "uuid": "f1865e50-2510-46d1-bcb2-e00b4b656305",
+      "security": "auto",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "host": "asb3.shabijichang.com"
+        }
+      }
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "urltest",
+      "tag": "urltest",
+      "outbounds": [
+        "@Socka5_1",
+        "@Socka5_2",
+        "@Socka5_3",
+        "@Socka5_4",
+        "@Socka5_5",
+        "@Socka5_6",
+        "@Socka5_7",
+        "@Socka5_8",
+        "@Socka5_9",
+        "@Socka5_10",
+        "@Socka5_11",
+        "@Socka5_12",
+        "@Socka5_13",
+        "@Socka5_14",
+        "@Socka5_15",
+        "@Socka5_16",
+        "@Socka5_17",
+        "@Socka5_18",
+        "@Socka5_19",
+        "@Socka5_20",
+        "@Socka5_21",
+        "@Socka5_22",
+        "@Socka5_23",
+        "@Socka5_24",
+        "@Socka5_25",
+        "@Socka5_26",
+        "@Socka5_27",
+        "@Socka5_28",
+        "@Socka5_29",
+        "@Socka5_30",
+        "@Socka5_31",
+        "@Socka5_32",
+        "@Socka5_33",
+        "@Socka5_34",
+        "@Socka5_35",
+        "@Socka5_36",
+        "@Socka5_37",
+        "@Socka5_38",
+        "@Socka5_39",
+        "@Socka5_40",
+        "@Socka5_41",
+        "@Socka5_42",
+        "@Socka5_43",
+        "@Socka5_44",
+        "@Socka5_45",
+        "@Socka5_46",
+        "@Socka5_47",
+        "@Socka5_48",
+        "@Socka5_49",
+        "@Socka5_50",
+        "@Socka5_51",
+        "@Socka5_52",
+        "@Socka5_53",
+        "@Socka5_54",
+        "@Socka5_55",
+        "@Socka5_56",
+        "@Socka5_57",
+        "@Socka5_58",
+        "@Socka5_59",
+        "@Socka5_60",
+        "@Socka5_61",
+        "@Socka5_62",
+        "@Socka5_63",
+        "@Socka5_64",
+        "@Socka5_65",
+        "@Socka5_66",
+        "@Socka5_67",
+        "@Socka5_68",
+        "@Socka5_69",
+        "@Socka5_70",
+        "@Socka5_71",
+        "@Socka5_72",
+        "@Socka5_73",
+        "@Socka5_74",
+        "@Socka5_75",
+        "@Socka5_76",
+        "@Socka5_77",
+        "@Socka5_78",
+        "@Socka5_79",
+        "@Socka5_80",
+        "@Socka5_81",
+        "@Socka5_82",
+        "@Socka5_83",
+        "@Socka5_84",
+        "@Socka5_85",
+        "@Socka5_86",
+        "@Socka5_87",
+        "@Socka5_88",
+        "@Socka5_89",
+        "@Socka5_90",
+        "@Socka5_91",
+        "@Socka5_92",
+        "@Socka5_93",
+        "@Socka5_94",
+        "@Socka5_95",
+        "@Socka5_96",
+        "@Socka5_97",
+        "@Socka5_98",
+        "@Socka5_99",
+        "@Socka5_100",
+        "@Socka5_101",
+        "@Socka5_102",
+        "@Socka5_103",
+        "@Socka5_104",
+        "@Socka5_105",
+        "@Socka5_106",
+        "@Socka5_107",
+        "@Socka5_108",
+        "@Socka5_109",
+        "@Socka5_110",
+        "@Socka5_111",
+        "@Socka5_112",
+        "@Socka5_113",
+        "@Socka5_114",
+        "@Socka5_115",
+        "@Socka5_116",
+        "@Socka5_117",
+        "@Socka5_118",
+        "@Socka5_119",
+        "@Socka5_120",
+        "@Socka5_121",
+        "@Socka5_122",
+        "@Socka5_123",
+        "@Socka5_124",
+        "@Socka5_125",
+        "@Socka5_126",
+        "@Socka5_127",
+        "@Socka5_128",
+        "@Socka5_129",
+        "@Socka5_130",
+        "@Socka5_131",
+        "@Socka5_132",
+        "@Socka5_133",
+        "@Socka5_134",
+        "@Socka5_135",
+        "@Socka5_136",
+        "@Socka5_137",
+        "@Socka5_138",
+        "@Socka5_139",
+        "@Socka5_140",
+        "@Socka5_141",
+        "@Socka5_142",
+        "@Socka5_143",
+        "@Socka5_144",
+        "@Socka5_145",
+        "@Socka5_146",
+        "@Socka5_147",
+        "@Socka5_148",
+        "@Socka5_149",
+        "@Socka5_150",
+        "@Socka5_151",
+        "@Socka5_152",
+        "@Socka5_153",
+        "@Socka5_154",
+        "@Socka5_155",
+        "@Socka5_156",
+        "@Socka5_157",
+        "@Socka5_158",
+        "@Socka5_159",
+        "@Socka5_160",
+        "@Socka5_161",
+        "@Socka5_162",
+        "@Socka5_163"
+      ]
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "geosite": "category-ads-all",
+        "outbound": "block"
+      },
+      {
+        "protocol": "dns",
+        "outbound": "dns-out"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "select"
+      },
+      {
+        "geoip": [
+          "cn",
+          "private"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "geosite": "geolocation-!cn",
+        "outbound": "select"
+      },
+      {
+        "geosite": "cn",
+        "outbound": "direct"
+      }
+    ],
+    "auto_detect_interface": true
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "dashboard",
+      "store_selected": true
+    }
+  }
+}
