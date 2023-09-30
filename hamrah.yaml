@@ -1,24 +1,105 @@
-port: 7890
-socks-port: 7891
-allow-lan: false
-mode: rule
-log-level: info
-ipv6: false
+mixed-port: 7890
+allow-lan: true
 tcp-concurrent: true
-external-controller: 127.0.0.1:9090
+enable-process: true
+find-process-mode: always
 unified-delay: true
+mode: rule
+log-level: error
+ipv6: true
+external-controller: 127.0.0.1:9090
+experimental:
+  ignore-resolve-fail: true
+  sniff-tls-sni: true
+  tracing: true
+hosts:
+  "localhost": 127.0.0.1
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+tun:
+  enable: true
+  prefer-h3: true
+  listen: 0.0.0.0:53
+  stack: gvisor
+  dns-hijack:
+     - "any:53"
+     - "tcp://any:53"
+  auto-redir: true
+  auto-route: true
+  auto-detect-interface: true
 dns:
   enable: true
   ipv6: true
-  enhanced-mode: redir-host
+  default-nameserver:
+    - '114.114.114.114'
+    - '1.1.1.1'
+    - '8.8.8.8'
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - 'stun.*.*'
+    - 'stun.*.*.*'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
+    - '*.lan'
+    - '+.msftncsi.com'
+    - msftconnecttest.com
+    - 'time?.*.com'
+    - 'time.*.com'
+    - 'time.*.gov'
+    - 'time.*.apple.com'
+    - time-ios.apple.com
+    - 'time1.*.com'
+    - 'time2.*.com'
+    - 'time3.*.com'
+    - 'time4.*.com'
+    - 'time5.*.com'
+    - 'time6.*.com'
+    - 'time7.*.com'
+    - 'ntp?.*.com'
+    - 'ntp.*.com'
+    - 'ntp1.*.com'
+    - 'ntp2.*.com'
+    - 'ntp3.*.com'
+    - 'ntp4.*.com'
+    - 'ntp5.*.com'
+    - 'ntp6.*.com'
+    - 'ntp7.*.com'
+    - '+.pool.ntp.org'
+    - '+.ipv6.microsoft.com'
+    - speedtest.cros.wr.pvp.net
+    - network-test.debian.org
+    - detectportal.firefox.com
+    - cable.auth.com
+    - miwifi.com
+    - routerlogin.com
+    - routerlogin.net
+    - tendawifi.com
+    - tendawifi.net
+    - tplinklogin.net
+    - tplinkwifi.net
+    - '*.xiami.com'
+    - tplinkrepeater.net
+    - router.asus.com
+    - '*.*.*.srv.nintendo.net'
+    - '*.*.stun.playstation.net'
+    - '*.openwrt.pool.ntp.org'
+    - resolver1.opendns.com
+    - 'GC._msDCS.*.*'
+    - 'DC._msDCS.*.*'
+    - 'PDC._msDCS.*.*'
+  use-hosts: true
   nameserver:
-  - 114.114.114.114
-  - 223.5.5.5
-  - 8.8.8.8
-  - 9.9.9.9
-  - 1.1.1.1
-  - https://dns.google/dns-query
-  - tls://dns.google:853
+    - '8.8.4.4'
+    - '1.0.0.1'
+    - "https://1.0.0.1/dns-query"
+    - "https://8.8.4.4/dns-query"
+  nameserver-policy:
+    'RULE-SET:ir,ircidr,geoip:ir,+.ir,+.bonyan.co': ["217.218.155.155", "217.218.127.127", "https://dns.403.online/dns-query", "https://dns.shecan.ir/dns-query"]
 proxies:
 proxy-groups:
   - name: "PROXY"
