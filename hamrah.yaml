@@ -30,7 +30,9 @@ proxy-groups:
       - provide3
       - provide1
       - provide4
-      - provide5 
+      - provide5
+      - provide6
+      - provide7
 
       
   - name: "url-test"
@@ -40,7 +42,9 @@ proxy-groups:
       - provide1
       - provide3
       - provide4
-      - provide5    
+      - provide5
+      - provide6
+      - provide7
             
   - name: "IP"
     type: select
@@ -50,14 +54,17 @@ proxy-providers:
   provide1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Xp.yaml"
+    interval: 3600
     path: ./assets/1.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 300
+      
   provide2:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/provide/2.yaml"
+    url: "https://yebekhe.link/api/toClash/?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyebekhe%2FTelegramV2rayCollector%2Fmain%2Fsub%2Fbase64%2Fmix&type=meta&process=full.yaml"
+    interval: 3600
     path: ./assets/2.yaml
     health-check:
       enable: true
@@ -67,6 +74,7 @@ proxy-providers:
   provide3:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.yml"
+    interval: 3600
     path: ./assets/3.yaml
     health-check:
       enable: true
@@ -76,6 +84,7 @@ proxy-providers:
   provide4:
     type: http
     url: "https://config.v2cross.com/clashprofile/config/"
+    interval: 3600
     path: ./assets/4.yaml
     health-check:
       enable: true
@@ -90,54 +99,72 @@ proxy-providers:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 300
+provide6:
+    type: http
+    url: "https://sub.xeton.dev/sub?target=clash&url=https://raw.githubusercontent.com/ssrsub/ssr/master/ss-sub&insert=false&config=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online.ini"
+    interval: 3600
+    path: ./assets/6.yaml
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
+provide7:
+    type: http
+    url: "https://sub.xeton.dev/sub?target=clash&url=https://bulinkbulink.com/freefq/free/master/v2&insert=false&config=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online.ini"
+    interval: 3600
+    path: ./assets/7.yaml
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
 rules:
-  - GEOIP,IR,DIRECT
-  - GEOIP,CN,DIRECT
-  - DOMAIN-SUFFIX,ir,DIRECT
+  - GEOIP,IR,IP
+  - GEOIP,CN,IP
+  - DOMAIN-SUFFIX,ir,IP
   # - SCRIPT,quic,REJECT
   # - SCRIPT,youshit,REJECT
   ## direct FCM
   # - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),DIRECT
   # - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),DIRECT
-  - DOMAIN-SUFFIX,atom.io,DIRECT
-  - DOMAIN-SUFFIX,dependabot.com,DIRECT
-  - DOMAIN-SUFFIX,ghcr.io,DIRECT
-  - DOMAIN-SUFFIX,git.io,DIRECT
-  - DOMAIN-SUFFIX,github.blog,DIRECT
-  - DOMAIN-SUFFIX,github.community,DIRECT
-  - DOMAIN-SUFFIX,github.dev,DIRECT
-  - DOMAIN-SUFFIX,githubapp.com,DIRECT
-  - DOMAIN-SUFFIX,githubassets.com,DIRECT
-  - DOMAIN-SUFFIX,githubhackathon.com,DIRECT
-  - DOMAIN-SUFFIX,githubpreview.dev,DIRECT
-  - DOMAIN-SUFFIX,githubstatus.com,DIRECT
-  - DOMAIN-SUFFIX,githubuniverse.com,DIRECT
-  - DOMAIN-SUFFIX,githubusercontent.com,DIRECT
-  - DOMAIN-SUFFIX,myoctocat.com,DIRECT
-  - DOMAIN-SUFFIX,opensource.guide,DIRECT
-  - DOMAIN-SUFFIX,repo.new,DIRECT
-  - DOMAIN-SUFFIX,thegithubshop.com,DIRECT
-  - DOMAIN-SUFFIX,github.com,DIRECT
-  - DOMAIN-SUFFIX,github.io,DIRECT
-  - DOMAIN-SUFFIX,githubapp.com,DIRECT
-  - DOMAIN-SUFFIX,githubassets.com,DIRECT
-  - DOMAIN-SUFFIX,githubusercontent.com,DIRECT
-  - DOMAIN-KEYWORD,github,DIRECT
-  - DOMAIN-KEYWORD,appteka.store,DIRECT
-  - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT
-  - DOMAIN-KEYWORD,drive.google.com,DIRECT
-  - DOMAIN-KEYWORD,mail.google.com,DIRECT
+  - DOMAIN-SUFFIX,atom.io,IP
+  - DOMAIN-SUFFIX,dependabot.com,IP
+  - DOMAIN-SUFFIX,ghcr.io,IP
+  - DOMAIN-SUFFIX,git.io,IP
+  - DOMAIN-SUFFIX,github.blog,IP
+  - DOMAIN-SUFFIX,github.community,IP
+  - DOMAIN-SUFFIX,github.dev,IP
+  - DOMAIN-SUFFIX,githubapp.com,IP
+  - DOMAIN-SUFFIX,githubassets.com,IP
+  - DOMAIN-SUFFIX,githubhackathon.com,IP
+  - DOMAIN-SUFFIX,githubpreview.dev,IP
+  - DOMAIN-SUFFIX,githubstatus.com,IP
+  - DOMAIN-SUFFIX,githubuniverse.com,IP
+  - DOMAIN-SUFFIX,githubusercontent.com,IP
+  - DOMAIN-SUFFIX,myoctocat.com,IP
+  - DOMAIN-SUFFIX,opensource.guide,IP
+  - DOMAIN-SUFFIX,repo.new,IP
+  - DOMAIN-SUFFIX,thegithubshop.com,IP
+  - DOMAIN-SUFFIX,github.com,IP
+  - DOMAIN-SUFFIX,github.io,IP
+  - DOMAIN-SUFFIX,githubapp.com,IP
+  - DOMAIN-SUFFIX,githubassets.com,IP
+  - DOMAIN-SUFFIX,githubusercontent.com,IP
+  - DOMAIN-KEYWORD,github,IP
+  - DOMAIN-KEYWORD,appteka.store,IP
+  - DOMAIN-SUFFIX,collector.githubapp.com,IP
+  - DOMAIN-KEYWORD,drive.google.com,IP
+  - DOMAIN-KEYWORD,mail.google.com,IP
   - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
   - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
   - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
   - IP-CIDR6,::1/128,REJECT,no-resolve
-  - DOMAIN,clash.razord.top,DIRECT
-  - DOMAIN,yacd.haishan.me,DIRECT
-  - DOMAIN-SUFFIX,aaplimg.com,DIRECT
-  - DOMAIN-SUFFIX,apple.co,DIRECT
-  - DOMAIN-SUFFIX,apple.com,DIRECT
-  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
-  - DOMAIN-SUFFIX,appstore.com,DIRECT
-  - DOMAIN-SUFFIX,cdn-apple.com,DIRECT
-  - DOMAIN-SUFFIX,crashlytics.com,DIRECT
+  - DOMAIN,clash.razord.top,IP
+  - DOMAIN,yacd.haishan.me,IP
+  - DOMAIN-SUFFIX,aaplimg.com,IP
+  - DOMAIN-SUFFIX,apple.co,IP
+  - DOMAIN-SUFFIX,apple.com,IP
+  - DOMAIN-SUFFIX,apple-cloudkit.com,IP
+  - DOMAIN-SUFFIX,appstore.com,IP
+  - DOMAIN-SUFFIX,cdn-apple.com,IP
+  - DOMAIN-SUFFIX,crashlytics.com,IP
   - MATCH,PROXY      
