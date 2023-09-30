@@ -105,7 +105,8 @@ proxy-groups:
   - name: "PROXY"
     type: select
     proxies:
-      - url-test
+      - "🍌"
+      - "🍆"
     use:
       - provide2
       - provide3
@@ -116,8 +117,11 @@ proxy-groups:
       - provide7
 
       
-  - name: "url-test"
+  - name: "🍌"
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 60
+    tolerance: 50
     use:
       - provide2
       - provide1
@@ -126,11 +130,30 @@ proxy-groups:
       - provide5
       - provide6
       - provide7
-            
-  - name: "IP"
+      
+  - name: "🍆"
+    type: fallback
+    url: http://www.gstatic.com/generate_204
+    interval: 60
+    use:
+      - provide2
+      - provide1
+      - provide3
+      - provide4
+      - provide5
+      - provide6
+      - provide7
+    
+  - name: "🏠IR🏠"
     type: select
     proxies:
-      - DIRECT            
+      - DIRECT
+      
+  - name: "🆎lock"
+    type: select
+    proxies:
+      - REJECT
+      
 proxy-providers:
   provide1:
     type: http
@@ -200,54 +223,81 @@ proxy-providers:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 300
+rule-providers:
+  ir: {type: http, format: text, behavior: domain, path: ./ruleset/ir.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ir.txt, interval: 86400}
+  ads: {type: http, format: text, behavior: domain, path: ./ruleset/ads.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ads.txt, interval: 86400}
+  ircidr: {type: http, format: text, behavior: ipcidr, path: ./ruleset/ircidr.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ircidr.txt, interval: 86400}
+  private: {type: http, format: text, behavior: ipcidr, path: ./ruleset/private.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/private.txt, interval: 86400}
+  apps: {type: http, format: text, behavior: domain, path: ./ruleset/apps.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/apps.txt, interval: 86400}
+  malware: {type: http, format: text, behavior: domain, path: ./ruleset/malware.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/malware.txt, interval: 86400}
+  phishing: {type: http, format: text, behavior: domain, path: ./ruleset/phishing.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/phishing.txt, interval: 86400}
+  cryptominers: {type: http, format: text, behavior: domain, path: ./ruleset/cryptominers.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/cryptominers.txt, interval: 86400}
 rules:
-  - GEOIP,IR,IP
-  - GEOIP,CN,IP
-  - DOMAIN-SUFFIX,ir,IP
+  - DOMAIN-SUFFIX,local,🏠IR🏠
+  - DOMAIN-SUFFIX,ip6-localhost,🏠IR🏠
+  - DOMAIN-SUFFIX,ip6-loopback,🏠IR🏠
+  - DOMAIN-SUFFIX,lan,🏠IR🏠
+  - DOMAIN-SUFFIX,localhost,🏠IR🏠
+  - DOMAIN-SUFFIX,ir,🏠IR🏠
+  - DOMAIN,clash.razord.top,🏠IR🏠
+  - DOMAIN,yacd.haishan.me,🏠IR🏠
+  - DOMAIN,yacd.metacubex.one,🏠IR🏠
+  - DOMAIN,clash.metacubex.one,🏠IR🏠
+  - RULE-SET,ads,🆎lock
+  - RULE-SET,malware,🆎lock
+  - RULE-SET,phishing,🆎lock
+  - RULE-SET,cryptominers,🆎lock
+  - RULE-SET,private,🏠IR🏠
+  - RULE-SET,apps,🏠IR🏠
+  - RULE-SET,ir,🏠IR🏠
+  - RULE-SET,ircidr,🏠IR🏠
+  - GEOIP,IR,🏠IR🏠
+  - GEOIP,CN,🏠IR🏠
+  - DOMAIN-SUFFIX,ir,🏠IR🏠
   # - SCRIPT,quic,REJECT
   # - SCRIPT,youshit,REJECT
   ## direct FCM
   # - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),DIRECT
   # - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),DIRECT
-  - DOMAIN-SUFFIX,atom.io,IP
-  - DOMAIN-SUFFIX,dependabot.com,IP
-  - DOMAIN-SUFFIX,ghcr.io,IP
-  - DOMAIN-SUFFIX,git.io,IP
-  - DOMAIN-SUFFIX,github.blog,IP
-  - DOMAIN-SUFFIX,github.community,IP
-  - DOMAIN-SUFFIX,github.dev,IP
-  - DOMAIN-SUFFIX,githubapp.com,IP
-  - DOMAIN-SUFFIX,githubassets.com,IP
-  - DOMAIN-SUFFIX,githubhackathon.com,IP
-  - DOMAIN-SUFFIX,githubpreview.dev,IP
-  - DOMAIN-SUFFIX,githubstatus.com,IP
-  - DOMAIN-SUFFIX,githubuniverse.com,IP
-  - DOMAIN-SUFFIX,githubusercontent.com,IP
-  - DOMAIN-SUFFIX,myoctocat.com,IP
-  - DOMAIN-SUFFIX,opensource.guide,IP
-  - DOMAIN-SUFFIX,repo.new,IP
-  - DOMAIN-SUFFIX,thegithubshop.com,IP
-  - DOMAIN-SUFFIX,github.com,IP
-  - DOMAIN-SUFFIX,github.io,IP
-  - DOMAIN-SUFFIX,githubapp.com,IP
-  - DOMAIN-SUFFIX,githubassets.com,IP
-  - DOMAIN-SUFFIX,githubusercontent.com,IP
-  - DOMAIN-KEYWORD,github,IP
-  - DOMAIN-KEYWORD,appteka.store,IP
-  - DOMAIN-SUFFIX,collector.githubapp.com,IP
-  - DOMAIN-KEYWORD,drive.google.com,IP
-  - DOMAIN-KEYWORD,mail.google.com,IP
-  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
-  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
-  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
-  - IP-CIDR6,::1/128,REJECT,no-resolve
-  - DOMAIN,clash.razord.top,IP
-  - DOMAIN,yacd.haishan.me,IP
-  - DOMAIN-SUFFIX,aaplimg.com,IP
-  - DOMAIN-SUFFIX,apple.co,IP
-  - DOMAIN-SUFFIX,apple.com,IP
-  - DOMAIN-SUFFIX,apple-cloudkit.com,IP
-  - DOMAIN-SUFFIX,appstore.com,IP
-  - DOMAIN-SUFFIX,cdn-apple.com,IP
-  - DOMAIN-SUFFIX,crashlytics.com,IP
-  - MATCH,PROXY      
+  - DOMAIN-SUFFIX,atom.io,🏠IR🏠
+  - DOMAIN-SUFFIX,dependabot.com,🏠IR🏠
+  - DOMAIN-SUFFIX,ghcr.io,🏠IR🏠
+  - DOMAIN-SUFFIX,git.io,🏠IR🏠
+  - DOMAIN-SUFFIX,github.blog,🏠IR🏠
+  - DOMAIN-SUFFIX,github.community,🏠IR🏠
+  - DOMAIN-SUFFIX,github.dev,🏠IR🏠
+  - DOMAIN-SUFFIX,githubapp.com,🏠IR🏠
+  - DOMAIN-SUFFIX,githubassets.com,🏠IR🏠
+  - DOMAIN-SUFFIX,githubhackathon.com,🏠IR🏠
+  - DOMAIN-SUFFIX,githubpreview.dev,🏠IR🏠
+  - DOMAIN-SUFFIX,githubstatus.com,🏠IR🏠
+  - DOMAIN-SUFFIX,githubuniverse.com,🏠IR🏠
+  - DOMAIN-SUFFIX,githubusercontent.com,🏠IR🏠
+  - DOMAIN-SUFFIX,myoctocat.com,🏠IR🏠
+  - DOMAIN-SUFFIX,opensource.guide,🏠IR🏠
+  - DOMAIN-SUFFIX,repo.new,🏠IR🏠
+  - DOMAIN-SUFFIX,thegithubshop.com,🏠IR🏠
+  - DOMAIN-SUFFIX,github.com,🏠IR🏠
+  - DOMAIN-SUFFIX,github.io,🏠IR🏠
+  - DOMAIN-SUFFIX,githubapp.com,🏠IR🏠
+  - DOMAIN-SUFFIX,githubassets.com,🏠IR🏠
+  - DOMAIN-SUFFIX,githubusercontent.com,🏠IR🏠
+  - DOMAIN-KEYWORD,github,🏠IR🏠
+  - DOMAIN-KEYWORD,appteka.store,🏠IR🏠
+  - DOMAIN-SUFFIX,collector.githubapp.com,🏠IR🏠
+  - DOMAIN-KEYWORD,drive.google.com,🏠IR🏠
+  - DOMAIN-KEYWORD,mail.google.com,🏠IR🏠
+  - IP-CIDR,127.0.0.1/32,🆎lock,no-resolve
+  - IP-CIDR,198.18.0.1/16,🆎lock,no-resolve
+  - IP-CIDR,28.0.0.1/8,🆎lock,no-resolve
+  - IP-CIDR6,::1/128,🆎lock,no-resolve
+  - DOMAIN,clash.razord.top,🏠IR🏠
+  - DOMAIN,yacd.haishan.me,🏠IR🏠
+  - DOMAIN-SUFFIX,aaplimg.com,🏠IR🏠
+  - DOMAIN-SUFFIX,apple.co,🏠IR🏠
+  - DOMAIN-SUFFIX,apple.com,🏠IR🏠
+  - DOMAIN-SUFFIX,apple-cloudkit.com,🏠IR🏠
+  - DOMAIN-SUFFIX,appstore.com,🏠IR🏠
+  - DOMAIN-SUFFIX,cdn-apple.com,🏠IR🏠
+  - DOMAIN-SUFFIX,crashlytics.com,🏠IR🏠
+  - MATCH,PROXY
