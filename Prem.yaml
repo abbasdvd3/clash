@@ -1,4 +1,4 @@
-mixed-port: 7890
+# mixed-port: 7890
 allow-lan: true
 tcp-concurrent: true
 enable-process: true
@@ -35,7 +35,7 @@ sniffer:
   port-whitelist:
     - "80"
     - "443"
-
+force-cert-verify: true
 tun:
   enable: true
   prefer-h3: true
@@ -47,79 +47,31 @@ tun:
   auto-redir: true
   auto-route: true
   auto-detect-interface: true
-
+hosts:
+  'localhost': '127.0.0.1'
 dns:
   enable: true
-  ipv6: true
+  ipv6: false
+  remote-dns-resolve: true
   default-nameserver:
-    - '1.1.1.1'
-    - '8.8.8.8'
-    - '223.5.5.5'
-    - '114.114.114.114'   
+    - 1.1.1.1
+    - 8.8.8.8
+    - 223.5.5.5
+    - 114.114.114.114 
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.0/16
   fake-ip-filter:
     - 'stun.*.*'
-    - 'stun.*.*.*'
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*'
-    - '*.lan'
-    - '+.msftncsi.com'
-    - msftconnecttest.com
-    - 'time?.*.com'
-    - 'time.*.com'
-    - 'time.*.gov'
-    - 'time.*.apple.com'
-    - time-ios.apple.com
-    - 'time1.*.com'
-    - 'time2.*.com'
-    - 'time3.*.com'
-    - 'time4.*.com'
-    - 'time5.*.com'
-    - 'time6.*.com'
-    - 'time7.*.com'
-    - 'ntp?.*.com'
-    - 'ntp.*.com'
-    - 'ntp1.*.com'
-    - 'ntp2.*.com'
-    - 'ntp3.*.com'
-    - 'ntp4.*.com'
-    - 'ntp5.*.com'
-    - 'ntp6.*.com'
-    - 'ntp7.*.com'
-    - '+.pool.ntp.org'
-    - '+.ipv6.microsoft.com'
-    - speedtest.cros.wr.pvp.net
-    - network-test.debian.org
-    - detectportal.firefox.com
-    - cable.auth.com
-    - miwifi.com
-    - routerlogin.com
-    - routerlogin.net
-    - tendawifi.com
-    - tendawifi.net
-    - tplinklogin.net
-    - tplinkwifi.net
-    - '*.xiami.com'
-    - tplinkrepeater.net
-    - router.asus.com
-    - '*.*.*.srv.nintendo.net'
-    - '*.*.stun.playstation.net'
-    - '*.openwrt.pool.ntp.org'
-    - resolver1.opendns.com
-    - 'GC._msDCS.*.*'
-    - 'DC._msDCS.*.*'
-    - 'PDC._msDCS.*.*'
   use-hosts: true
+  proxy-server-nameserver:
+    - https://1.12.12.12/dns-query
+    - https://223.5.5.5/dns-query
   nameserver:
-    - '8.8.4.4'
-    - '1.0.0.1'
-    - "https://1.0.0.1/dns-query"
-    - "https://8.8.4.4/dns-query"
-    - "https://doh.pub/dns-query"
-    - "https://dns.alidns.com/dns-query"
+    - https://120.53.53.53/dns-query
+    - tls://223.6.6.6:853
+  remote-nameserver:
+    - https://8.8.8.8/dns-query
+    - tls://1.1.1.1:853
   nameserver-policy:
     'RULE-SET:ir,ircidr,geoip:ir,+.ir,+.bonyan.co': ["217.218.155.155", "217.218.127.127", "https://dns.403.online/dns-query", "https://dns.shecan.ir/dns-query"]
 
@@ -163,6 +115,16 @@ proxy-providers:
       url: http://cp.cloudflare.com/generate_204
       interval: 300
 proxy-groups:
+- name: ✈️FINAL✈️
+  type: select
+  proxies:
+  - 🌀LOADBALANCE🌀
+  - Geo
+  use:
+  - 'VPN1'
+  - 'VPN5'
+  - 'VPN4'
+  - 'VPN2'
 - name: 🌀LOADBALANCE🌀
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -173,10 +135,12 @@ proxy-groups:
   - 'VPN5'
   - 'VPN4'
   - 'VPN2'
-- name: ✈️FINAL✈️
-  type: select
-  proxies:
-  - 🌀LOADBALANCE🌀
+
+- name: Geo
+  type: fallback
+  interval: 600
+  tolerance: 100
+  url: http://www.gstatic.com/generate_204
   use:
   - 'VPN1'
   - 'VPN5'
