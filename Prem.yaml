@@ -1,4 +1,4 @@
-# mixed-port: 7890 
+mixed-port: 7890 
 allow-lan: true
 tcp-concurrent: true
 enable-process: true
@@ -73,7 +73,7 @@ proxy-providers:
   VPN1:
     type: http
     url: "https://sub.xeton.dev/sub?target=clash&url=https://raw.githubusercontent.com/ssrsub/ssr/master/ss-sub&insert=false&config=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online.ini"
-    interval: 3600
+    interval: 300
     path: proxy_provider/VPN1.yaml
     health-check:
       enable: true
@@ -83,7 +83,7 @@ proxy-providers:
   VPN5:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
-    interval: 3600
+    interval: 300
     path: proxy_provider/VPN5.yaml
     health-check:
       enable: true
@@ -92,7 +92,7 @@ proxy-providers:
   VPN4:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Xp.yaml"
-    interval: 3600
+    interval: 300
     path: proxy_provider/VPN4.yaml
     health-check:
       enable: true
@@ -101,7 +101,7 @@ proxy-providers:
   VPN2:
     type: http
     url: "https://sub.xeton.dev/sub?target=clash&url=https://bulinkbulink.com/freefq/free/master/v2&insert=false&config=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online.ini"
-    interval: 3600
+    interval: 300
     path: proxy_provider/VPN2.yaml
     health-check:
       enable: true
@@ -121,8 +121,8 @@ proxy-groups:
 - name: 🌀LOADBALANCE🌀
   type: url-test
   url: http://www.gstatic.com/generate_204
-  interval: 350
-  tolerance: 100
+  interval: 35
+  # tolerance: 10
   use:
   - 'VPN1'
   - 'VPN5'
@@ -131,8 +131,8 @@ proxy-groups:
 
 - name: Geo
   type: fallback
-  interval: 500
-  tolerance: 100
+  interval: 300
+  # tolerance: 100
   url: http://www.gstatic.com/generate_204
   use:
   - 'VPN1'
