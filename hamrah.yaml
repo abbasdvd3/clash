@@ -31,67 +31,15 @@ tun:
   auto-detect-interface: true
 dns:
   enable: true
-  ipv6: true
+  ipv6: false
   default-nameserver:
     - '114.114.114.114'
-    - '1.1.1.1'
+    - '9.9.9.9'
     - '8.8.8.8'
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-    - 'stun.*.*'
-    - 'stun.*.*.*'
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*'
     - '*.lan'
-    - '+.msftncsi.com'
-    - msftconnecttest.com
-    - 'time?.*.com'
-    - 'time.*.com'
-    - 'time.*.gov'
-    - 'time.*.apple.com'
-    - time-ios.apple.com
-    - 'time1.*.com'
-    - 'time2.*.com'
-    - 'time3.*.com'
-    - 'time4.*.com'
-    - 'time5.*.com'
-    - 'time6.*.com'
-    - 'time7.*.com'
-    - 'ntp?.*.com'
-    - 'ntp.*.com'
-    - 'ntp1.*.com'
-    - 'ntp2.*.com'
-    - 'ntp3.*.com'
-    - 'ntp4.*.com'
-    - 'ntp5.*.com'
-    - 'ntp6.*.com'
-    - 'ntp7.*.com'
-    - '+.pool.ntp.org'
-    - '+.ipv6.microsoft.com'
-    - speedtest.cros.wr.pvp.net
-    - network-test.debian.org
-    - detectportal.firefox.com
-    - cable.auth.com
-    - miwifi.com
-    - routerlogin.com
-    - routerlogin.net
-    - tendawifi.com
-    - tendawifi.net
-    - tplinklogin.net
-    - tplinkwifi.net
-    - '*.xiami.com'
-    - tplinkrepeater.net
-    - router.asus.com
-    - '*.*.*.srv.nintendo.net'
-    - '*.*.stun.playstation.net'
-    - '*.openwrt.pool.ntp.org'
-    - resolver1.opendns.com
-    - 'GC._msDCS.*.*'
-    - 'DC._msDCS.*.*'
-    - 'PDC._msDCS.*.*'
   use-hosts: true
   nameserver:
     - '8.8.4.4'
@@ -108,41 +56,26 @@ proxy-groups:
       - "🍌"
       - "🍆"
     use:
-      - provide2
-      - provide3
       - provide1
-      - provide4
-      - provide5
-      - provide6
-      - provide7
+      - provide2
 
       
   - name: "🍌"
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 60
-    tolerance: 50
+    interval: 300
+    # tolerance: 50
     use:
-      - provide2
       - provide1
-      - provide3
-      - provide4
-      - provide5
-      - provide6
-      - provide7
+      - provide2
       
   - name: "🍆"
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 60
+    interval: 500
     use:
-      - provide2
       - provide1
-      - provide3
-      - provide4
-      - provide5
-      - provide6
-      - provide7
+      - provide2
     
   - name: "🏠IR🏠"
     type: select
@@ -157,7 +90,7 @@ proxy-groups:
 proxy-providers:
   provide1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Xp.yaml"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/meta.yaml"
     interval: 3600
     path: ./assets/1.yaml
     health-check:
@@ -165,64 +98,17 @@ proxy-providers:
       url: http://cp.cloudflare.com/generate_204
       interval: 300
       
+  
   provide2:
     type: http
-    url: "https://yebekhe.link/api/toClash/?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyebekhe%2FTelegramV2rayCollector%2Fmain%2Fsub%2Fbase64%2Fmix&type=meta&process=full.yaml"
+    url: "https://config.v2cross.com/clashprofile/config/"
     interval: 3600
     path: ./assets/2.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 300
-      
-  provide3:
-    type: http
-    url: "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.yml"
-    interval: 3600
-    path: ./assets/3.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
-   
-  provide4:
-    type: http
-    url: "https://config.v2cross.com/clashprofile/config/"
-    interval: 3600
-    path: ./assets/4.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
-            
-  provide5:
-    type: http
-    url: "https://raw.githubusercontent.com/tbbatbb/Proxy/master/dist/clash.config.yaml"
-    path: ./assets/5.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
-      
-  provide6:
-    type: http
-    url: "https://sub.xeton.dev/sub?target=clash&url=https://raw.githubusercontent.com/ssrsub/ssr/master/ss-sub&insert=false&config=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online.ini"
-    interval: 3600
-    path: ./assets/6.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
-      
-  provide7:
-    type: http
-    url: "https://sub.xeton.dev/sub?target=clash&url=https://bulinkbulink.com/freefq/free/master/v2&insert=false&config=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online.ini"
-    interval: 3600
-    path: ./assets/7.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
+
 rule-providers:
   ir: {type: http, format: text, behavior: domain, path: ./ruleset/ir.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ir.txt, interval: 86400}
   ads: {type: http, format: text, behavior: domain, path: ./ruleset/ads.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ads.txt, interval: 86400}
