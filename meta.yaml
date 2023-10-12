@@ -1,3 +1,90 @@
+####################################
+# 创建者：v2rayse.com
+# 客户端：Clash.Meta
+# 创建时间：12-10-2023 13:32:01
+# 使用模版：V2RaySE 默认模版
+# 节点数量：3039
+####################################
+# !!当前配置文件请使用基于 Clash.Meta 内核程序
+mixed-port: 7890
+allow-lan: true
+log-level: info
+external-controller: 0.0.0.0:9090
+dns:
+  enabled: true
+  listen: 0.0.0.0:1053
+  ipv6: true
+  default-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+    - '*.linksys.com'
+    - '*.linksyssmartwifi.com'
+    - swscan.apple.com
+    - mesu.apple.com
+    - '*.msftconnecttest.com'
+    - '*.msftncsi.com'
+    - time.*.com
+    - time.*.gov
+    - time.*.edu.cn
+    - time.*.apple.com
+    - time1.*.com
+    - time2.*.com
+    - time3.*.com
+    - time4.*.com
+    - time5.*.com
+    - time6.*.com
+    - time7.*.com
+    - ntp.*.com
+    - ntp.*.com
+    - ntp1.*.com
+    - ntp2.*.com
+    - ntp3.*.com
+    - ntp4.*.com
+    - ntp5.*.com
+    - ntp6.*.com
+    - ntp7.*.com
+    - '*.time.edu.cn'
+    - '*.ntp.org.cn'
+    - +.pool.ntp.org
+    - time1.cloud.tencent.com
+    - +.music.163.com
+    - '*.126.net'
+    - musicapi.taihe.com
+    - music.taihe.com
+    - songsearch.kugou.com
+    - trackercdn.kugou.com
+    - '*.kuwo.cn'
+    - api-jooxtt.sanook.com
+    - api.joox.com
+    - joox.com
+    - +.y.qq.com
+    - +.music.tc.qq.com
+    - aqqmusic.tc.qq.com
+    - +.stream.qqmusic.qq.com
+    - '*.xiami.com'
+    - +.music.migu.cn
+    - +.srv.nintendo.net
+    - +.stun.playstation.net
+    - xbox.*.microsoft.com
+    - +.xboxlive.com
+    - localhost.ptlogin2.qq.com
+    - proxy.golang.org
+    - stun.*.*
+    - stun.*.*.*
+    - '*.mcdn.bilivideo.cn'
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback-filter:
+    geoip: false
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+
 proxies:
   - {"name":"nika-shakarami_1","type":"vmess","server":"104.225.236.198","port":80,"cipher":"auto","uuid":"17525034-b1c5-46ce-c258-7b9aa966ddb9","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/"}}
   - {"name":"nika-shakarami_2","type":"ss","server":"184.170.241.194","port":443,"password":"shadowsocks","cipher":"aes-128-cfb"}
@@ -281,15 +368,15 @@ proxies:
   - {"name":"nika-shakarami_280","type":"vless","server":"Mci0.Tel-Parsashonam.Website","port":2087,"uuid":"Parsashonam-31","tls":true,"servername":"De1.Parsashonam.Tech","network":"grpc"}
   - {"name":"nika-shakarami_281","type":"vless","server":"Mtn1.Tel-Parsashonam.Website","port":2083,"uuid":"Parsashonam-31","tls":true,"servername":"De1.Parsashonam.Tech","network":"grpc"}
   - {"name":"nika-shakarami_282","type":"vless","server":"5.75.128.21","port":444,"udp":true,"uuid":"---Telegram-Parsashonam---","tls":true,"network":"grpc","reality-opts":{"public-key":"qNOScR6IvTMxZwSBsmi4dOYceGTLJtf5PFSkWnvXRzc"},"client-fingerprint":"chrome"}
-  - {"name":"nika-shakarami_283","type":"trojan","server":"3.77.82.160","port":22222,"udp":true,"password":"telegram-id-privatevpns","sni":"trj.rollingnext.co.uk","skip-cert-verify":false,"network":"tcp"}
-  - {"name":"nika-shakarami_284","type":"trojan","server":"13.38.226.255","port":22222,"udp":true,"password":"telegram-id-privatevpns","sni":"trj.rollingnext.co.uk","skip-cert-verify":false,"network":"tcp"}
-  - {"name":"nika-shakarami_285","type":"trojan","server":"3.9.110.107","port":22222,"udp":true,"password":"telegram-id-privatevpns","sni":"trj.rollingnext.co.uk","skip-cert-verify":false,"network":"tcp"}
-  - {"name":"nika-shakarami_286","type":"trojan","server":"18.132.75.218","port":22222,"udp":true,"password":"telegram-id-directvpn","sni":"trj.rollingnext.co.uk","skip-cert-verify":false,"network":"tcp"}
-  - {"name":"nika-shakarami_287","type":"trojan","server":"108.128.144.47","port":22222,"udp":true,"password":"telegram-id-directvpn","sni":"trj.rollingnext.co.uk","skip-cert-verify":false,"network":"tcp"}
-  - {"name":"nika-shakarami_288","type":"trojan","server":"52.212.254.72","port":22222,"udp":true,"password":"telegram-id-directvpn","sni":"trj.rollingnext.co.uk","skip-cert-verify":false,"network":"tcp"}
-  - {"name":"nika-shakarami_289","type":"trojan","server":"5.199.143.230","port":443,"udp":true,"password":"517ccb0754","sni":"de1.connecton.surf","skip-cert-verify":false,"network":"tcp"}
-  - {"name":"nika-shakarami_290","type":"trojan","server":"54.170.227.251","port":22222,"udp":true,"password":"telegram-id-privatevpns","sni":"trj.rollingnext.co.uk","skip-cert-verify":false,"network":"tcp"}
-  - {"name":"nika-shakarami_291","type":"trojan","server":"13.40.231.124","port":22222,"udp":true,"password":"telegram-id-directvpn","sni":"trj.rollingnext.co.uk","skip-cert-verify":false,"network":"tcp"}
+  - {"name":"nika-shakarami_283","type":"trojan","server":"3.77.82.160","port":22222,"udp":true,"password":"telegram-id-privatevpns","sni":"trj.rollingnext.co.uk","skip-cert-verify":true,"network":"tcp"}
+  - {"name":"nika-shakarami_284","type":"trojan","server":"13.38.226.255","port":22222,"udp":true,"password":"telegram-id-privatevpns","sni":"trj.rollingnext.co.uk","skip-cert-verify":true,"network":"tcp"}
+  - {"name":"nika-shakarami_285","type":"trojan","server":"3.9.110.107","port":22222,"udp":true,"password":"telegram-id-privatevpns","sni":"trj.rollingnext.co.uk","skip-cert-verify":true,"network":"tcp"}
+  - {"name":"nika-shakarami_286","type":"trojan","server":"18.132.75.218","port":22222,"udp":true,"password":"telegram-id-directvpn","sni":"trj.rollingnext.co.uk","skip-cert-verify":true,"network":"tcp"}
+  - {"name":"nika-shakarami_287","type":"trojan","server":"108.128.144.47","port":22222,"udp":true,"password":"telegram-id-directvpn","sni":"trj.rollingnext.co.uk","skip-cert-verify":true,"network":"tcp"}
+  - {"name":"nika-shakarami_288","type":"trojan","server":"52.212.254.72","port":22222,"udp":true,"password":"telegram-id-directvpn","sni":"trj.rollingnext.co.uk","skip-cert-verify":true,"network":"tcp"}
+  - {"name":"nika-shakarami_289","type":"trojan","server":"5.199.143.230","port":443,"udp":true,"password":"517ccb0754","sni":"de1.connecton.surf","skip-cert-verify":true,"network":"tcp"}
+  - {"name":"nika-shakarami_290","type":"trojan","server":"54.170.227.251","port":22222,"udp":true,"password":"telegram-id-privatevpns","sni":"trj.rollingnext.co.uk","skip-cert-verify":true,"network":"tcp"}
+  - {"name":"nika-shakarami_291","type":"trojan","server":"13.40.231.124","port":22222,"udp":true,"password":"telegram-id-directvpn","sni":"trj.rollingnext.co.uk","skip-cert-verify":true,"network":"tcp"}
   - {"name":"nika-shakarami_292","type":"ss","server":"154.93.51.150","port":443,"password":"vwaLNKA2RW2cOJKNAHiaw2","cipher":"chacha20-ietf-poly1305"}
   - {"name":"nika-shakarami_293","type":"ss","server":"54.252.213.127","port":443,"password":"JosjzSvfhlg5ahepnwLgkQ","cipher":"chacha20-ietf-poly1305"}
   - {"name":"nika-shakarami_294","type":"ss","server":"3.0.197.191","port":443,"password":"4jpEy3WpYN3oQNDwBhWUp4","cipher":"chacha20-ietf-poly1305"}
@@ -599,16 +686,6 @@ proxies:
   - {"name":"nika-shakarami_598","type":"vmess","server":"172.64.199.158","port":80,"cipher":"auto","uuid":"2e495227-58e3-4bea-a273-7a17bd8a804b","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/","headers":{"host":"wnd.shabijichang.com"}}}
   - {"name":"nika-shakarami_599","type":"vless","server":"165.232.93.2","port":8443,"udp":true,"uuid":"a7f6cc57-5fea-4dc9-ac3e-88915b7db275","tls":true,"servername":"cms.accuweather.com","network":"grpc","reality-opts":{"public-key":"ni4LEb3Tb5E36wtFO401ih4p4QB48vwpCOirCohrmCQ","short-id":"2f24d042"},"client-fingerprint":"chrome"}
   - {"name":"nika-shakarami_600","type":"vless","server":"46.105.218.0","port":16741,"udp":true,"uuid":"d2176467-4879-4beb-94e9-f1fa8177d8e2","tls":true,"servername":"ea.com","network":"grpc","reality-opts":{"public-key":"kp0my80cNyM8TPeU-LbUaU3DSlAnYkbJ9jeWI2WougM","short-id":"6ae860e1"},"client-fingerprint":"chrome"}
-  - {"name":"nika-shakarami_601","type":"vless","server":"5.75.214.191","port":18420,"udp":true,"uuid":"62be9926-6400-44d0-8d2b-13f4e1e586e0","tls":true,"servername":"www.speedtest.net","network":"grpc","reality-opts":{"public-key":"NbeYuqm0c6M9l5lVTlBYE_UotmpPZJZhcpEemG8bzFg","short-id":"af53e81a"},"client-fingerprint":"firefox"}
-  - {"name":"nika-shakarami_602","type":"vless","server":"168.119.158.63","port":443,"udp":true,"uuid":"ab45d76e-7223-44dd-8139-656e3313c2cc","tls":true,"servername":"www.speedtest.net","network":"grpc","reality-opts":{"public-key":"KuZOpuz0L4H-VNikILS8NP9oA6Ra9uTGEZLHH0FODFM","short-id":"83cdb009"},"client-fingerprint":"firefox"}
-  - {"name":"nika-shakarami_603","type":"vless","server":"135.181.35.207","port":443,"udp":true,"uuid":"7080c05d-a32d-45cd-8ef4-de8a310dbb3e","tls":true,"servername":"www.yahoo.com","flow":"xtls-rprx-vision","network":"tcp","reality-opts":{"public-key":"GAUjNf1wQnDm5ziCGqRmb3yVfU9bg_UPwZ2_QU4JWRU","short-id":"6bb85179e30d4fc2"},"client-fingerprint":"chrome"}
-  - {"name":"nika-shakarami_604","type":"vless","server":"89.191.226.19","port":20740,"udp":true,"uuid":"e45d4af5-9cd3-47b0-ac11-faccfdc0ef2a","tls":true,"servername":"mega.io","network":"grpc","reality-opts":{"public-key":"InRE8aRpc-PvnXrBQcUspC6JGr9Du0IB14NhcJKPNh8","short-id":"75a493a4"},"client-fingerprint":"chrome"}
-  - {"name":"nika-shakarami_605","type":"vless","server":"157.230.30.89","port":8443,"udp":true,"uuid":"a7b44b83-5ceb-4af1-8292-c0a0e3d5751d","tls":true,"servername":"cms.accuweather.com","network":"grpc","reality-opts":{"public-key":"wYKhXs2FaVGj8k0s2Lf_bkfilRbXIfEhsyZcmGwuJHA","short-id":"da77dd9d"},"client-fingerprint":"chrome"}
-  - {"name":"nika-shakarami_606","type":"vless","server":"78.46.82.219","port":443,"udp":true,"uuid":"445e839f-e50c-470d-8dc1-8cb48d11b288","tls":true,"servername":"www.tesla.com","flow":"xtls-rprx-vision","network":"tcp","reality-opts":{"public-key":"L-X994TGGsNQGcbRvC9vQ7opw0i0Hik8mZbKwquVXTw","short-id":"9929a85935ad9be7"},"client-fingerprint":"chrome"}
-  - {"name":"nika-shakarami_607","type":"vless","server":"89.19.212.135","port":50203,"udp":true,"uuid":"f1d539bb-21f1-402a-a19d-3a2358bd5f71","tls":true,"servername":"www.speedtest.net","network":"tcp","reality-opts":{"public-key":"qDV6qkJIYmHjfDdxCzSnMS2ggis2UZNYZj3AdlMnu0c","short-id":"04270cca"},"client-fingerprint":"chrome"}
-  - {"name":"nika-shakarami_608","type":"vless","server":"[","port":null,"udp":true,"uuid":"732fd7ef-a7b9-4c6c-9e03-4dc3a8a40ce7","tls":true,"servername":"canva.com","network":"tcp","reality-opts":{"public-key":"gzvFCEZcMTrbz2NNVuTs7txbgBObNa3rTZmb3OE_uWA","short-id":"6c804bb1"},"client-fingerprint":"chrome"}
-  - {"name":"nika-shakarami_609","type":"vless","server":"5.75.251.8","port":20957,"udp":true,"uuid":"fbbace7d-9ef7-4be0-ab85-61c8fdfce9ad","tls":true,"servername":"coudflare.com","network":"http","reality-opts":{"public-key":"3lhY4nf_OKxN_EZsUjR_xHVgi21PxUeV6ZislT9kxDg","short-id":"274d5ef2"},"client-fingerprint":"firefox"}
-  - {"name":"nika-shakarami_610","type":"vless","server":"217.160.36.169","port":443,"udp":true,"uuid":"ff4dcc66-920c-4868-b98e-cb58c2928bae","tls":true,"servername":"yahoo.com","flow":"xtls-rprx-vision","network":"tcp","reality-opts":{"public-key":"SltmCDZOy3yBaMjip6pvnZEaPXQ_Z6ANp_Nt_BXvXQk","short-id":"256c9334"},"client-fingerprint":"firefox"}
   - {"name":"nika-shakarami_611","type":"vless","server":"104.16.23.29","port":443,"uuid":"884f9b2c-f0c5-44dd-a68e-3e39ce93bb39","tls":true,"servername":"cf-wkrs-pages-vless-aoy.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048"}}
   - {"name":"nika-shakarami_612","type":"vless","server":"172.66.47.84","port":443,"uuid":"884f9b2c-f0c5-44dd-a68e-3e39ce93bb39","tls":true,"servername":"cf-wkrs-pages-vless-aoy.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048"}}
   - {"name":"nika-shakarami_613","type":"vless","server":"104.24.185.137","port":443,"uuid":"884f9b2c-f0c5-44dd-a68e-3e39ce93bb39","tls":true,"servername":"cf-wkrs-pages-vless-aoy.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048"}}
