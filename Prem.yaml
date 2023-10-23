@@ -39,17 +39,18 @@ proxy-providers:
       url: http://cp.cloudflare.com/generate_204
       interval: 300
 proxy-groups:
-- name: ✈️FINAL✈️
+- name: '✈️FINAL✈️'
   type: select
   proxies:
-  - 🌀LOADBALANCE🌀
-  - Geo
+  - '🌀LOADBALANCE🌀'
+  - 'Geo'
+  - 'DIRECT'
   use:
   - 'VPN1'
   - 'VPN5'
   - 'VPN4'
   - 'VPN2'
-- name: 🌀LOADBALANCE🌀
+- name: '🌀LOADBALANCE🌀'
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 3
@@ -60,10 +61,10 @@ proxy-groups:
   - 'VPN4'
   - 'VPN2'
 
-- name: Geo
+- name: 'Geo'
   type: fallback
   interval: 300
-  tolerance: 100
+  # tolerance: 100
   url: http://www.gstatic.com/generate_204
   use:
   - 'VPN1'
