@@ -55,6 +55,7 @@ proxy-groups:
     proxies:
       - "🍌"
       - "🍆"
+      - "DIRECT"
     use:
       - provide1
       - provide2
@@ -72,7 +73,7 @@ proxy-groups:
   - name: "🍆"
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 500
+    interval: 80
     use:
       - provide1
       - provide2
@@ -86,6 +87,7 @@ proxy-groups:
     type: select
     proxies:
       - REJECT
+      - DIRECT
       
 proxy-providers:
   provide1:
@@ -173,10 +175,10 @@ rules:
   - DOMAIN-SUFFIX,collector.githubapp.com,🏠IR🏠
   - DOMAIN-KEYWORD,drive.google.com,🏠IR🏠
   - DOMAIN-KEYWORD,mail.google.com,🏠IR🏠
-  - IP-CIDR,127.0.0.1/32,🆎lock,no-resolve
-  - IP-CIDR,198.18.0.1/16,🆎lock,no-resolve
-  - IP-CIDR,28.0.0.1/8,🆎lock,no-resolve
-  - IP-CIDR6,::1/128,🆎lock,no-resolve
+  - IP-CIDR,127.0.0.1/32,DIRECT,no-resolve
+  - IP-CIDR,198.18.0.1/16,DIRECT,no-resolve
+  - IP-CIDR,28.0.0.1/8,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
   - DOMAIN,clash.razord.top,🏠IR🏠
   - DOMAIN,yacd.haishan.me,🏠IR🏠
   - DOMAIN-SUFFIX,aaplimg.com,🏠IR🏠
