@@ -53,41 +53,82 @@ proxy-groups:
   - name: "PROXY"
     type: select
     proxies:
-      - "🍌"
-      - "🍆"
+      - "url-test"
+      - "url-test-all"
       - "DIRECT"
     use:
-      - provide1
-      - provide2
+      - "provide1"
+      - "provide2"
+      - "provide3"
+      - "provide4"
 
       
-  - name: "🍌"
+  - name: "url-test"
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    # interval: 300
+    tolerance: 20
+    proxies:
+      - "url-test1"
+      - "url-test2"
+      - "url-test3"
+      - "url-test4"
+      
+      
+  - name: "url-test1"
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
-    # tolerance: 50
+    tolerance: 50
     use:
-      - provide1
-      - provide2
+      - "provide1"
+
       
-  - name: "🍆"
-    type: fallback
+  - name: "url-test2"
+    type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 80
+    interval: 300
+    tolerance: 50
     use:
-      - provide1
-      - provide2
-    
+      - "provide2"
+
+  - name: "url-test3"
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    use:
+      - "provide3"
+      
+  - name: "url-test4"
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    use:
+      - "provide4"
+
+  - name: "url-test-all"
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    use:
+      - "provide1"
+      - "provide2"
+      - "provide3"
+      - "provide4"
+      
   - name: "🏠IR🏠"
     type: select
     proxies:
-      - DIRECT
+      - "DIRECT"
       
   - name: "🆎lock"
     type: select
     proxies:
-      - REJECT
-      - DIRECT
+      - "REJECT"
+      - "DIRECT"
       
 proxy-providers:
   provide1:
@@ -110,7 +151,27 @@ proxy-providers:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 300
-
+      
+  provide3:
+    type: http
+    url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_META_IRAN-Direct.yml"
+    interval: 3600
+    path: proxy_provider/provide3.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com/generate_204
+      
+  provide4:
+    type: http
+    url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
+    interval: 3600
+    path: proxy_provider/provide4.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://cp.cloudflare.com/generate_204
+      
 rule-providers:
   ir: {type: http, format: text, behavior: domain, path: ./ruleset/ir.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ir.txt, interval: 86400}
   ads: {type: http, format: text, behavior: domain, path: ./ruleset/ads.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ads.txt, interval: 86400}
