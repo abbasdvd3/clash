@@ -12,7 +12,7 @@ proxy-providers:
       interval: 300
   VPN2:
     type: http
-    url: "http://proxies.haisto.cn/clash/proxies"
+    url: "https://proxypool.link/clash/proxies"
     interval: 600
     path: provide/VPN2.yaml
     health-check:
@@ -84,7 +84,7 @@ proxy-providers:
       interval: 300
   VPN10:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/3april3.yaml"
+    url: "https://yebekhe.link/api/toClash/?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyebekhe%2FTelegramV2rayCollector%2Fmain%2Fsub%2Fbase64%2Fmix&type=clash&process=full"
     interval: 3600
     path: provider/VPN10.yaml
     health-check:
@@ -115,9 +115,15 @@ proxy-groups:
       - "VPN5"
       - "VPN7"
       - "VPN8"
-      - "VPN9"
       - "VPN10"
       - "VPN11"
+  - name: 🚗
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+    use:
+      - "VPN9"      
   - name: 🔰
     type: select
     proxies:
@@ -131,7 +137,6 @@ proxy-groups:
       - "VPN5"
       - "VPN7"
       - "VPN8"
-      - "VPN9"
       - "VPN10"
       - "VPN11"
 rules:
