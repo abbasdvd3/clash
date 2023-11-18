@@ -83,16 +83,18 @@ proxy-groups:
   - 'VPN4'
   - 'VPN5'
 rules:
-  - GEOIP,IR,DIRECT
-  - GEOIP,CN,DIRECT
-  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
-  - IP-CIDR6,::1/128,REJECT,no-resolve
-  - DOMAIN-SUFFIX,github.com,DIRECT
-  - DOMAIN-SUFFIX,github.io,DIRECT
-  - DOMAIN-SUFFIX,githubapp.com,DIRECT
-  - DOMAIN-SUFFIX,githubassets.com,DIRECT
-  - DOMAIN-SUFFIX,githubusercontent.com,DIRECT
-  - DOMAIN-KEYWORD,github,DIRECT
-  - DOMAIN-KEYWORD,appteka.store,DIRECT
-  - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT
+  - IP-CIDR,127.0.0.1/32,DIRECT,no-resolve
+  - IP-CIDR,198.18.0.1/16,DIRECT,no-resolve
+  - IP-CIDR,28.0.0.1/8,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,local,DIRECT
+  - DOMAIN-SUFFIX,ip6-localhost,DIRECT
+  - DOMAIN-SUFFIX,ip6-loopback,DIRECT
+  - DOMAIN-SUFFIX,lan,DIRECT
+  - DOMAIN-SUFFIX,localhost,DIRECT
+  - DOMAIN-SUFFIX,ir,DIRECT
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - DOMAIN,yacd.metacubex.one,DIRECT
+  - DOMAIN,clash.metacubex.one,DIRECT
   - MATCH,✈️FINAL✈️
