@@ -38,6 +38,15 @@ proxy-providers:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 300
+  VPN5:
+    type: http
+    url: "https://yebekhe.link/api/toClash/?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyebekhe%2FTelegramV2rayCollector%2Fmain%2Fsub%2Fbase64%2Fmix&type=clash&process=full"
+    interval: 300
+    path: proxy_provider/VPN5.yaml
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300      
 proxy-groups:
 - name: '✈️FINAL✈️'
   type: select
@@ -50,6 +59,7 @@ proxy-groups:
   - 'VPN2'
   - 'VPN3'
   - 'VPN4'
+  - 'VPN5'
 - name: '🌀LOADBALANCE🌀'
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -60,7 +70,7 @@ proxy-groups:
   - 'VPN2'
   - 'VPN3'
   - 'VPN4'
-
+  - 'VPN5'
 - name: 'GeoX'
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -71,6 +81,7 @@ proxy-groups:
   - 'VPN2'
   - 'VPN3'
   - 'VPN4'
+  - 'VPN5'
 rules:
   - GEOIP,IR,DIRECT
   - GEOIP,CN,DIRECT
