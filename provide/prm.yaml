@@ -4,75 +4,75 @@ proxy-providers:
   VPN1:
     type: http
     url: "https://raw.githubusercontent.com/LonUp/NodeList/main/Clash/Node/Latest.yaml"
-    interval: 600
+    interval: 3600
     path: provide/VPN1.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 100
   VPN2:
     type: http
     url: "https://proxypool.link/clash/proxies"
-    interval: 600
+    interval: 3600
     path: provide/VPN2.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 100
   VPN3:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
-    interval: 600
+    interval: 3600
     path: provide/VPN3.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 100
   VPN4:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/provide/y.yaml"
-    interval: 600
+    interval: 3600
     path: provide/VPN4.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 100
   VPN5:
     type: http
     url: "https://free.jingfu.cf/clash/proxies"
-    interval: 600
+    interval: 3600
     path: provide/VPN5.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 100
   VPN6:
     type: http
     url: "https://proxy.yugogo.xyz/clash/proxies"
-    interval: 600
+    interval: 3600
     path: provide/VPN6.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 100
   VPN7:
     type: http
     url: "https://free.iam7.tk/clash/proxies"
-    interval: 600
+    interval: 3600
     path: provide/VPN7.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 100
   VPN8:
     type: http
     url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
-    interval: 600
+    interval: 3600
     path: provider/VPN8.yaml
     health-check:
       enable: true
       url: https://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 100
   VPN9:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/provide/y.yaml"
@@ -81,7 +81,7 @@ proxy-providers:
     health-check:
       enable: true
       url: https://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 100
   VPN10:
     type: http
     url: "https://yebekhe.link/api/toClash/?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyebekhe%2FTelegramV2rayCollector%2Fmain%2Fsub%2Fbase64%2Fmix&type=clash&process=full"
@@ -90,7 +90,7 @@ proxy-providers:
     health-check:
       enable: true
       url: https://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 100
   VPN11:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/iran.yaml"
@@ -99,12 +99,17 @@ proxy-providers:
     health-check:
       enable: true
       url: https://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 100
 proxy-groups:
+  - name: 🔰
+    type: select
+    proxies:
+      - 🚗
+      - 🚗1
   - name: 🚗
     type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
+  #  url: http://www.gstatic.com/generate_204
+  #  interval: 300
     proxies:
     use:
       - "VPN6"
@@ -119,8 +124,8 @@ proxy-groups:
       - "VPN11"
   - name: 🚗1
     type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
+   # url: http://www.gstatic.com/generate_204
+ #   interval: 300
     proxies:
     use:
       - "VPN9"      
