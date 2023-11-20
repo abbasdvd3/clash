@@ -75,7 +75,7 @@ proxy-providers:
       interval: 100
   VPN9:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/provide/y.yaml"
+    url: "https://raw.githubusercontent.com/chfchf0306/clash/main/clash"
     interval: 3600
     path: provider/VPN9.yaml
     health-check:
@@ -108,6 +108,7 @@ proxy-groups:
       - 🚗1
   - name: 🚗
     type: url-test
+    disable-udp: false
   #  url: http://www.gstatic.com/generate_204
   #  interval: 300
     proxies:
@@ -123,12 +124,23 @@ proxy-groups:
       - "VPN10"
       - "VPN11"
   - name: 🚗1
-    type: url-test
+    type: fallback
+    disable-udp: false
    # url: http://www.gstatic.com/generate_204
  #   interval: 300
     proxies:
     use:
-      - "VPN9"      
+      - "VPN6"
+      - "VPN1"
+      - "VPN2"
+      - "VPN3"
+      - "VPN4"
+      - "VPN5"
+      - "VPN7"
+      - "VPN8"
+      - "VPN9"
+      - "VPN10"
+      - "VPN11"      
   - name: 🔰
     type: select
     proxies:
@@ -143,6 +155,7 @@ proxy-groups:
       - "VPN5"
       - "VPN7"
       - "VPN8"
+      - "VPN9"
       - "VPN10"
       - "VPN11"
 rules:
