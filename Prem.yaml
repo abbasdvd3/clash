@@ -96,7 +96,7 @@ proxy-providers:
   VPN1:
     type: http
     url: "https://sub.xeton.dev/sub?target=clash&url=https://raw.githubusercontent.com/ssrsub/ssr/master/ss-sub&insert=false&config=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online.ini"
-    interval: 300
+    interval: 3300
     path: proxy_provider/VPN1.yaml
     health-check:
       enable: true
@@ -106,7 +106,7 @@ proxy-providers:
   VPN2:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
-    interval: 300
+    interval: 3300
     path: proxy_provider/VPN2.yaml
     health-check:
       enable: true
@@ -115,7 +115,7 @@ proxy-providers:
   VPN3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Xp.yaml"
-    interval: 300
+    interval: 3300
     path: proxy_provider/VPN3.yaml
     health-check:
       enable: true
@@ -124,7 +124,7 @@ proxy-providers:
   VPN4:
     type: http
     url: "https://proxy.yugogo.xyz/clash/proxies"
-    interval: 300
+    interval: 3300
     path: proxy_provider/VPN4.yaml
     health-check:
       enable: true
@@ -133,7 +133,7 @@ proxy-providers:
   VPN5:
     type: http
     url: "https://proxypool.link/clash/proxies"
-    interval: 300
+    interval: 3300
     path: proxy_provider/VPN5.yaml
     health-check:
       enable: true
@@ -143,6 +143,7 @@ proxy-groups:
   - name: proxy
     type: select
     proxies:
+      - AUTO
       - hamrahaval
       - DIRECT
       - iran
@@ -459,6 +460,105 @@ proxy-groups:
       - VPN3
       - VPN4
       - VPN5
+  - name: AUTO
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+      - irancell_1
+      - irancell_2
+      - irancell_3
+      - irancell_4
+      - irancell_5
+      - irancell_6
+      - irancell_7
+      - irancell_8
+      - irancell_9
+      - irancell_10
+      - irancell_11
+      - irancell_12
+      - irancell_13
+      - irancell_14
+      - irancell_15
+      - irancell_16
+      - irancell_17
+      - irancell_18
+      - irancell_19
+      - irancell_20
+      - irancell_21
+      - irancell_22
+      - irancell_23
+      - irancell_24
+      - irancell_25
+      - irancell_26
+      - irancell_27
+      - irancell_28
+      - irancell_29
+      - irancell_30
+      - irancell_31
+      - irancell_32
+      - irancell_33
+      - irancell_34
+      - irancell_35
+      - irancell_36
+      - irancell_37
+      - irancell_38
+      - irancell_39
+      - irancell_40
+      - irancell_41
+      - irancell_42
+      - irancell_43
+      - irancell_44
+      - irancell_45
+      - irancell_46
+      - irancell_47
+      - irancell_48
+      - irancell_49
+      - irancell_50
+      - irancell_51
+      - irancell_52
+      - irancell_53
+      - irancell_54
+      - irancell_55
+      - irancell_56
+      - irancell_57
+      - irancell_58
+      - irancell_59
+      - irancell_60
+      - irancell_61
+      - irancell_62
+      - irancell_63
+      - irancell_64
+      - irancell_65
+      - irancell_66
+      - irancell_67
+      - irancell_68
+      - irancell_69
+      - irancell_70
+      - irancell_71
+      - irancell_72
+      - irancell_73
+      - irancell_74
+      - irancell_75
+      - irancell_76
+      - irancell_77
+      - irancell_78
+      - irancell_79
+      - irancell_80
+      - irancell_81
+      - irancell_82
+      - irancell_83
+      - irancell_84
+      - irancell_85
+      - irancell_86
+      - irancell_87
+      - irancell_88
+    use:
+      - VPN1
+      - VPN2
+      - VPN3
+      - VPN4
+      - VPN5      
 rules:
   - IP-CIDR,127.0.0.1/32,DIRECT,no-resolve
   - IP-CIDR,198.18.0.1/16,DIRECT,no-resolve
