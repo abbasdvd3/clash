@@ -1,8 +1,4 @@
-# mixed-port: 7890
-allow-lan: true
-ipv6: false
-log-level: info
-external-controller: 0.0.0.0:9090
+
 proxies:
   - {"name":"ir_1","type":"trojan","server":"18.132.92.245","port":22222,"udp":true,"password":"telegram-id-privatevpns","sni":"trj.rollingnext.co.uk","skip-cert-verify":true,"network":"tcp"}
   - {"name":"ir_2","type":"ss","server":"5.35.34.107","port":55990,"password":"tOwOyvlXiY5ATJAUOpXNPN","cipher":"chacha20-ietf-poly1305"}
@@ -124,7 +120,8 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 100
+      
   VPN3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Xp.yaml"
@@ -133,7 +130,8 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 100
+      
   VPN4:
     type: http
     url: "https://proxy.yugogo.xyz/clash/proxies"
@@ -142,7 +140,8 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300
+      interval: 100
+      
   VPN5:
     type: http
     url: "https://proxypool.link/clash/proxies"
@@ -151,7 +150,8 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300     
+      interval: 100     
+      
 proxy-groups:
   - name: proxy
     type: select
@@ -278,9 +278,9 @@ proxy-groups:
       - VPN5
   - name: hamrahaval
     type: url-test
-    url: https://www.gstatic.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
     interval: 300
-    tolerance: 50
+    #tolerance: 50
     proxies:
     use:
       - VPN1
@@ -289,9 +289,9 @@ proxy-groups:
       - VPN5
   - name: iran
     type: url-test
-    url: https://www.gstatic.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
     interval: 300
-    tolerance: 50
+   # tolerance: 50
     proxies:
       - ir_1
       - ir_2
@@ -541,9 +541,9 @@ proxy-groups:
       - VPN5
   - name: AUTO
     type: url-test
-    url: https://www.gstatic.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
     interval: 300
-    tolerance: 70
+    #tolerance: 70
     proxies:
       - irancell_1
       - irancell_2
@@ -662,18 +662,11 @@ proxy-groups:
       - VPN4
       - VPN5      
 rules:
-  - IP-CIDR,127.0.0.1/32,DIRECT,no-resolve
-  - IP-CIDR,198.18.0.1/16,DIRECT,no-resolve
-  - IP-CIDR,28.0.0.1/8,DIRECT,no-resolve
-  - IP-CIDR6,::1/128,DIRECT,no-resolve
 #  - DOMAIN-SUFFIX,local,DIRECTIR
 #  - DOMAIN-SUFFIX,ip6-localhost,DIRECTIR
 #  - DOMAIN-SUFFIX,ip6-loopback,DIRECTIR
 #  - DOMAIN-SUFFIX,lan,DIRECTIR
 #  - DOMAIN-SUFFIX,localhost,DIRECTIR
 #  - DOMAIN-SUFFIX,ir,DIRECTIR
-  - DOMAIN,clash.razord.top,DIRECTIR
-  - DOMAIN,yacd.haishan.me,DIRECTIR
-  - DOMAIN,yacd.metacubex.one,DIRECTIR
-  - DOMAIN,clash.metacubex.one,DIRECTIR
+
   - MATCH,FINALL
