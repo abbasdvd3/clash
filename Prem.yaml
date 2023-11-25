@@ -121,7 +121,6 @@ proxy-providers:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 100
-      
   VPN3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Xp.yaml"
@@ -131,7 +130,6 @@ proxy-providers:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 100
-      
   VPN4:
     type: http
     url: "https://proxy.yugogo.xyz/clash/proxies"
@@ -141,25 +139,22 @@ proxy-providers:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 100
-      
   VPN5:
     type: http
     url: "https://proxypool.link/clash/proxies"
-    interval: 300
+    interval: 3300
     path: proxy_provider/VPN5.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 100     
-      
 proxy-groups:
   - name: proxy
     type: select
     proxies:
-      - AUTO
-      - hamrahaval
+      - fallback
+      - url-test
       - DIRECT
-      - iran
       - ir_1
       - ir_2
       - ir_3
@@ -276,22 +271,11 @@ proxy-groups:
       - VPN3
       - VPN4
       - VPN5
-  - name: hamrahaval
+  - name: url-test
     type: url-test
-    url: http://cp.cloudflare.com
-    interval: 300
-    #tolerance: 50
-    proxies:
-    use:
-      - VPN1
-#      - VPN3
-      - VPN4
-      - VPN5
-  - name: iran
-    type: url-test
-    url: http://cp.cloudflare.com
-    interval: 300
-   # tolerance: 50
+    url: https://www.gstatic.com/generate_204
+   # interval: 50
+    tolerance: 150
     proxies:
       - ir_1
       - ir_2
@@ -315,7 +299,7 @@ proxy-groups:
       - ir_20
       - ir_21
       - ir_22
-      - ir_23    
+      - ir_23      
       - irancell_1
       - irancell_2
       - irancell_3
@@ -405,7 +389,11 @@ proxy-groups:
       - irancell_87
       - irancell_88
     use:
-      - VPN3 
+      - VPN1
+      - VPN3
+      - VPN4
+      - VPN5
+
   - name: DIRECTIR
     type: select
     proxies:
@@ -419,9 +407,9 @@ proxy-groups:
   - name: FINALL
     type: select
     proxies:
-      - AUTO
-      - hamrahaval
-      - iran
+      - fallback
+      - url-test
+      - DIRECTIR
       - irancell_1
       - irancell_2
       - irancell_3
@@ -538,10 +526,10 @@ proxy-groups:
       - VPN3
       - VPN4
       - VPN5
-  - name: AUTO
-    type: url-test
-    url: http://cp.cloudflare.com
-    # interval: 300
+  - name: fallback
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 50
     tolerance: 70
     proxies:
       - irancell_1
@@ -661,11 +649,5 @@ proxy-groups:
       - VPN4
       - VPN5      
 rules:
-#  - DOMAIN-SUFFIX,local,DIRECTIR
-#  - DOMAIN-SUFFIX,ip6-localhost,DIRECTIR
-#  - DOMAIN-SUFFIX,ip6-loopback,DIRECTIR
-#  - DOMAIN-SUFFIX,lan,DIRECTIR
-#  - DOMAIN-SUFFIX,localhost,DIRECTIR
-#  - DOMAIN-SUFFIX,ir,DIRECTIR
 
   - MATCH,FINALL
