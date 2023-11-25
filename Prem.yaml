@@ -115,7 +115,7 @@ proxy-providers:
   VPN1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/meta.yaml"
-    interval: 3300
+    interval: 300
     path: proxy_provider/VPN1.yaml
     health-check:
       enable: true
@@ -125,7 +125,7 @@ proxy-providers:
   VPN3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Xp.yaml"
-    interval: 3300
+    interval: 300
     path: proxy_provider/VPN3.yaml
     health-check:
       enable: true
@@ -135,7 +135,7 @@ proxy-providers:
   VPN4:
     type: http
     url: "https://proxy.yugogo.xyz/clash/proxies"
-    interval: 3300
+    interval: 300
     path: proxy_provider/VPN4.yaml
     health-check:
       enable: true
@@ -145,7 +145,7 @@ proxy-providers:
   VPN5:
     type: http
     url: "https://proxypool.link/clash/proxies"
-    interval: 3300
+    interval: 300
     path: proxy_provider/VPN5.yaml
     health-check:
       enable: true
@@ -278,7 +278,7 @@ proxy-groups:
       - VPN5
   - name: hamrahaval
     type: url-test
-    url: http://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com
     interval: 300
     #tolerance: 50
     proxies:
@@ -289,7 +289,7 @@ proxy-groups:
       - VPN5
   - name: iran
     type: url-test
-    url: http://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com
     interval: 300
    # tolerance: 50
     proxies:
@@ -420,7 +420,6 @@ proxy-groups:
     type: select
     proxies:
       - AUTO
-      - DIRECTIR
       - hamrahaval
       - iran
       - irancell_1
@@ -541,9 +540,9 @@ proxy-groups:
       - VPN5
   - name: AUTO
     type: url-test
-    url: http://cp.cloudflare.com/generate_204
-    interval: 300
-    #tolerance: 70
+    url: http://cp.cloudflare.com
+    # interval: 300
+    tolerance: 70
     proxies:
       - irancell_1
       - irancell_2
