@@ -278,18 +278,18 @@ proxy-groups:
       - VPN5
   - name: hamrahaval
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 300
     # tolerance: 50
     proxies:
     use:
       - VPN1
-      - VPN3
+#      - VPN3
       - VPN4
       - VPN5
   - name: iran
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 300
     # tolerance: 50
     proxies:
@@ -404,13 +404,13 @@ proxy-groups:
       - irancell_86
       - irancell_87
       - irancell_88
+    use:
+      - VPN3 
   - name: DIRECTIR
     type: select
     proxies:
       - DIRECT
-      - proxy
-      - hamrahaval
-      - iran
+
   - name: REJECTIR
     type: select
     proxies:
@@ -419,7 +419,7 @@ proxy-groups:
   - name: FINALL
     type: select
     proxies:
-      - proxy
+      - AUTO
       - DIRECTIR
       - hamrahaval
       - iran
@@ -541,7 +541,7 @@ proxy-groups:
       - VPN5
   - name: AUTO
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 100
     proxies:
