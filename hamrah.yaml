@@ -1,7 +1,6 @@
-http-port: 7890
+http-port: 7878
 socks-port: 7891
 redir-port: 7892
-tproxy-port: 7893
 allow-lan: true
 tcp-concurrent: true
 enable-process: true
@@ -14,10 +13,7 @@ log-level: error
 ipv6: true
 external-controller: 0.0.0.0:9090
 external-ui: yacd
-geox-url:
-  geoip: "https://gcore.jsdelivr.net/gh/Loyalsoldier/geoip@release/geoip.dat"
-  geosite: "https://gcore.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
-  mmdb: "https://gcore.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
+
 experimental:
   ignore-resolve-fail: true
   sniff-tls-sni: true
@@ -26,51 +22,10 @@ profile:
   store-selected: true
   store-fake-ip: true
 
-sniffer:
-  enable: false
-  sniff:
-    http: { ports: [1-442, 444-8442, 8444-65535], override-destination: true }
-    tls: { ports: [1-79, 81-8079, 8081-65535], override-destination: true }
-  force-domain:
-      - "+.v2ex.com"
-      - www.google.com
-      - google.com
-  skip-domain:
-      - Mijia Cloud
-      - dlg.io.mi.com
-  sniffing:
-    - tls
-    - http
-  port-whitelist:
-    - "80"
-    - "443"
-    
 force-cert-verify: true
 
-tun:
-  enable: true
-  prefer-h3: true
-  listen: 0.0.0.0:53
-  stack: mixed
-  dns-hijack:
-     - "any:53"
-     - "tcp://any:53"
-  auto-redir: true
-  auto-route: true
-  auto-detect-interface: true
-  
 hosts:
   'localhost': '127.0.0.1'
-
-
-dns:
-  enable: true
-  listen: 0.0.0.0:1053
-  ipv6: true
-  default-nameserver:
-   - 127.0.0.1:1053
-  nameserver:
-   - 127.0.0.1:1053
    
 proxies:
 proxy-groups:
@@ -159,7 +114,7 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/meta.yaml"
     interval: 3600
-    path: ./assets/1.yaml
+    path: ./assets/meta.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
@@ -170,7 +125,7 @@ proxy-providers:
     type: http
     url: "https://config.v2cross.com/clashprofile/config/"
     interval: 3600
-    path: ./assets/2.yaml
+    path: ./assets/meta2.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
@@ -180,20 +135,20 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_META_IRAN-Direct.yml"
     interval: 3600
-    path: proxy_provider/provide3.yaml
+    path: proxy_provider/meta3.yaml
     health-check:
       enable: true
-      interval: 600
+      interval: 300
       url: http://cp.cloudflare.com/generate_204
       
   provide4:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
     interval: 3600
-    path: proxy_provider/provide4.yaml
+    path: proxy_provider/meta4.yaml
     health-check:
       enable: true
-      interval: 600
+      interval: 300
       url: http://cp.cloudflare.com/generate_204
       
 rule-providers:
