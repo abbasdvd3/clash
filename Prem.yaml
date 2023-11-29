@@ -15,6 +15,8 @@ proxy-groups:
 
   - name: "FALLBACK"
     type: fallback
+    url: http://cp.cloudflare.com/
+    interval: 300
     use:
       - "VPN1"
       - "VPN2"
@@ -23,6 +25,8 @@ proxy-groups:
 
   - name: "URL-TEST"
     type: url-test
+    url: http://cp.cloudflare.com/
+    interval: 300
     use:
       - "VPN1"
       - "VPN2"
@@ -32,21 +36,21 @@ proxy-providers:
   VPN1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/meta.yaml"
-    interval: 300
+    interval: 3600
     path: proxy_provider/V1.yaml
     health-check:
       enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 100
+      url: http://cp.cloudflare.com/
+      interval: 300
   VPN2:
     type: http
     url: "https://proxypool.link/clash/proxies"
-    interval: 300
+    interval: 3600
     path: proxy_provider/V2.yaml
     health-check:
       enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 100
+      url: http://cp.cloudflare.com/
+      interval: 300
    
 
 rules:
@@ -73,7 +77,8 @@ rules:
   # - IP-CIDR6,::1/128,REJECT,no-resolve
   
   ## rules telegram
-  # - GEOIP,telegram,PROXY
+  - GEOIP,telegram,PROXY
+  - GEOIP,github,DIRECT
   # - GEOSITE,telegram,PROXY
 
   ## direct ntp
