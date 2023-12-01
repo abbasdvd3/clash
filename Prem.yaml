@@ -3142,79 +3142,7 @@ proxy-groups:
       - "VPN1"
       - "VPN2"
       - "VPN3"
-rule-providers:
-  ChinaDomain:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/ChinaDomain.list
-  Inside:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/cutethotw/ClashRule/main/Rule/Inside.list
-    format: text
-    interval: 3600
-    path: ./cutethotw/ClashRule/Inside.list
-  UnBan:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/UnBan.list
-  GoogleCN:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/GoogleCN.list
-  ChinaCompanyIp:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/ChinaCompanyIp.list
 
-  Outside:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/cutethotw/ClashRule/main/Rule/Outside.list
-    format: text
-    interval: 3600
-    path: ./cutethotw/ClashRule/Outside.list
-  ProxyGFWlist:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/ProxyGFWlist.list
-  ChatGPT:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/cutethotw/ClashRule/main/Rule/ChatGPT.list
-    format: text
-    interval: 3600
-    path: ./cutethotw/ClashRule/ChatGPT.list
-  BanEasyPrivacy:
-    type: http
-    behavior: classical
-    url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
-    format: text
-    interval: 3600
-    path: ./https://BanEasyPrivacy.list
-
-  GoogleFCM:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/GoogleFCM.list
     
 proxy-providers:
   VPN1:
@@ -3247,19 +3175,7 @@ proxy-providers:
       interval: 300    
     
 rules:
-  - RULE-SET,ChinaDomain,🎯 国内流量
-  - RULE-SET,Inside,🎯 国内流量
-  - RULE-SET,UnBan,🎯 国内流量
-  - RULE-SET,GoogleCN,🎯 国内流量
-  - RULE-SET,ChinaCompanyIp,🎯 国内流量
-#  - RULE-SET,Download,🎯 国内流量
-  - RULE-SET,Outside,🚀 国外流量
-  - RULE-SET,ProxyGFWlist,🚀 国外流量
-  - RULE-SET,ChatGPT,🧚 ChatGPT
-  - RULE-SET,BanEasyPrivacy,🛡️ 隐私防护
-
-  - RULE-SET,GoogleFCM,📢 谷歌FCM
-  - GEOIP,CN,🎯 国内流量
+  - GEOIP,ir,🎯 国内流量
 # 长风网站，自动注入
   - DOMAIN-SUFFIX,v2rayse.com,🚀 国外流量
   - DOMAIN-SUFFIX,cff.pw,🚀 国外流量
