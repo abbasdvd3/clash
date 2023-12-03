@@ -15,6 +15,8 @@ proxy-groups:
 
   - name: "FALLBACK"
     type: fallback
+    url: http://cp.cloudflare.com/
+    interval: 300
     use:
       - "VPN1"
       - "VPN2"
@@ -22,6 +24,8 @@ proxy-groups:
 
   - name: "URL-TEST"
     type: url-test
+    url: http://cp.cloudflare.com/
+    interval: 300
     use:
       - "VPN1"
       - "VPN2"
