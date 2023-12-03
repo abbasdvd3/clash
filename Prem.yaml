@@ -8,7 +8,7 @@ proxy-groups:
     use:
       - "VPN1"
       - "VPN2"
-      - "VPN3"
+  #    - "VPN3"
     proxies:
       - "FALLBACK"
       - "URL-TEST"
@@ -18,14 +18,14 @@ proxy-groups:
     use:
       - "VPN1"
       - "VPN2"
-      - "VPN3"
+  #    - "VPN3"
 
   - name: "URL-TEST"
     type: url-test
     use:
       - "VPN1"
       - "VPN2"
-      - "VPN3"
+ #     - "VPN3"
 
 proxy-providers:
   VPN1:
@@ -39,7 +39,7 @@ proxy-providers:
       interval: 300
   VPN2:
     type: http
-    url: "https://oss.v2rayse.com/proxies/data/2023-12-03/2n3x7JO.yaml"
+    url: "https://oss.v2rayse.com/proxies/data/2023-12-03/6IUAIDM.yaml"
     interval: 3600
     path: proxy_provider/V2.yaml
     health-check:
@@ -47,15 +47,6 @@ proxy-providers:
       url: http://cp.cloudflare.com/
       interval: 300
    
-  VPN3:
-    type: http
-    url: "https://oss.v2rayse.com/proxies/data/2023-12-03/3Y2wZZj.yaml"
-    interval: 3600
-    path: proxy_provider/V3.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/
-      interval: 300    
 
    
 rule-providers:
