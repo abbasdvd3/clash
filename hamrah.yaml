@@ -1,4 +1,14 @@
 
+
+skip-auth-prefixes:
+  - 127.0.0.1/8
+  - ::1/128
+
+keep-alive-interval: 30
+unified-delay: true
+find-process-mode: strict
+tcp-concurrent: true  
+global-ua: clash.meta
 proxies:
   - {"name":"1_1","type":"ss","server":"149.202.82.172","port":5004,"password":"g5MeD6Ft3CWlJId","cipher":"aes-256-gcm"}
   - {"name":"1_2","type":"vmess","server":"104.21.27.139","port":443,"cipher":"auto","uuid":"03fcc618-b93d-6796-6aed-8a38c975d581","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"linkvws","headers":{"host":"edeen.makeup"}}}
