@@ -63,10 +63,6 @@ rule-providers:
   phishing: {type: http, format: text, behavior: domain, path: ./ruleset/phishing.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/phishing.txt, interval: 86400}
   cryptominers: {type: http, format: text, behavior: domain, path: ./ruleset/cryptominers.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/cryptominers.txt, interval: 86400}
 rules:
-  - DOMAIN-SUFFIX,local,DIRECT
-  - DOMAIN-SUFFIX,ip6-localhost,DIRECT
-  - DOMAIN-SUFFIX,ip6-loopback,DIRECT
-  - DOMAIN-SUFFIX,lan,DIRECT
   - DOMAIN-SUFFIX,localhost,DIRECT
   - DOMAIN-SUFFIX,ir,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
@@ -83,7 +79,6 @@ rules:
   - RULE-SET,ircidr,DIRECT
   - GEOIP,IR,DIRECT
   - GEOIP,CN,DIRECT
-  - DOMAIN-SUFFIX,ir,DIRECT
   # - SCRIPT,quic,REJECT
   # - SCRIPT,youshit,REJECT
   ## direct FCM
@@ -117,10 +112,7 @@ rules:
   - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT
   - DOMAIN-KEYWORD,drive.google.com,DIRECT
   - DOMAIN-KEYWORD,mail.google.com,DIRECT
-  - IP-CIDR,127.0.0.1/32,DIRECT,no-resolve
-  - IP-CIDR,198.18.0.1/16,DIRECT,no-resolve
-  - IP-CIDR,28.0.0.1/8,DIRECT,no-resolve
-  - IP-CIDR6,::1/128,DIRECT,no-resolve
+
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
   - DOMAIN-SUFFIX,aaplimg.com,DIRECT
@@ -151,10 +143,10 @@ rules:
   # - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
 
   # # fix dnsleak
-  # - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
-  # - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
-  # - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
-  # - IP-CIDR6,::1/128,REJECT,no-resolve
+  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
+  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
+  - IP-CIDR6,::1/128,REJECT,no-resolve
   
   ## rules telegram
   # - GEOIP,telegram,PROXY
