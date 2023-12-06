@@ -7,7 +7,7 @@ proxy-groups:
     type: select
     use:
       - "VPN1"
-      - "VPN2"
+ #     - "VPN2"
   #    - "VPN3"
     proxies:
       - "FALLBACK"
@@ -19,7 +19,7 @@ proxy-groups:
     interval: 300
     use:
       - "VPN1"
-      - "VPN2"
+#      - "VPN2"
   #    - "VPN3"
 
   - name: "URL-TEST"
@@ -28,28 +28,28 @@ proxy-groups:
     interval: 300
     use:
       - "VPN1"
-      - "VPN2"
+ #     - "VPN2"
  #     - "VPN3"
 
 proxy-providers:
   VPN1:
     type: http
-    url: "https://oss.v2rayse.com/proxies/data/2023-12-04/N4gqtR1.yaml"
+    url: "https://oss.v2rayse.com/proxies/data/2023-12-06/cNhf3HR.yaml"
     interval: 3600
     path: proxy_provider/V1.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/
       interval: 300
-  VPN2:
-    type: http
-    url: "https://oss.v2rayse.com/proxies/data/2023-12-03/6IUAIDM.yaml"
-    interval: 3600
-    path: proxy_provider/V2.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/
-      interval: 300
+#  VPN2:
+#    type: http
+ #   url: "https://oss.v2rayse.com/proxies/data/2023-12-03/6IUAIDM.yaml"
+ #   interval: 3600
+ #   path: proxy_provider/V2.yaml
+#    health-check:
+#      enable: true
+   #   url: http://cp.cloudflare.com/
+   #   interval: 300
    
 
    
@@ -73,10 +73,10 @@ rules:
   - RULE-SET,malware,REJECT
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
-  - RULE-SET,private,DIRECT
-  - RULE-SET,apps,DIRECT
+#  - RULE-SET,private,DIRECT
+ # - RULE-SET,apps,DIRECT
   - RULE-SET,ir,DIRECT
-  - RULE-SET,ircidr,DIRECT
+#  - RULE-SET,ircidr,DIRECT
   - GEOIP,IR,DIRECT
   - GEOIP,CN,DIRECT
   # - SCRIPT,quic,REJECT
