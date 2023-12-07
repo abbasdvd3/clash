@@ -1,42 +1,33 @@
 
 proxies:
-- cipher: aes-256-gcm
-  udp: true
-  server: 45.33.114.15
-  plugin-opts: {mode: websocket}
-  password: PhKHXkPhXbSc0Pzd
-  plugin: v2ray-plugin
-  port: 18001
-  name: Optimal
-  type: ss
 proxy-groups:
 - name: 择优连接
   type: url-test
-  proxies: &id001 [Optimal]
+  proxies: &id001 
   use: [provide, provide1]
   url: http://www.gstatic.com/generate_204
   fillType: auto
-  interval: 200
+  interval: 350
 - name: 稳定上网
   type: fallback
   proxies: *id001
   use: [provide, provide1]
   url: http://www.gstatic.com/generate_204
   fillType: auto
-  interval: 200
+  interval: 450
 - name: 负载均衡
   type: load-balance
   proxies: *id001
   use: [provide, provide1]
   url: http://www.gstatic.com/generate_204
   fillType: auto
-  interval: 200
+  interval: 400
 - name: 直连
   type: url-test
   proxies: [DIRECT]
   url: http://www.gstatic.com/generate_204
   fillType: manual
-  interval: 200
+  interval: 400
 - name: auto
   type: url-test
   proxies: *id001
@@ -50,23 +41,23 @@ proxy-groups:
   use: [provide, provide1]
   url: http://www.gstatic.com/generate_204
   fillType: auto
-  interval: 200
+  interval: 350
 - name: load-balance
   type: load-balance
   proxies: *id001
   use: [provide, provide1]
   url: http://www.gstatic.com/generate_204
   fillType: auto
-  interval: 180
+  interval: 500
 - name: 代理模式
   type: select
   fillType: auto
-  proxies: [择优连接, 稳定上网, 负载均衡, 直连, auto, fallback-auto, load-balance, DIRECT, Optimal]
+  proxies: [择优连接, 稳定上网, 负载均衡, 直连, auto, fallback-auto, load-balance, DIRECT]
   use: [provide, provide1]
 proxy-providers: 
   "provide":
     type: http
-    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/1xp.yaml
+    url: https://oss.v2rayse.com/proxies/data/2023-12-07/WhGVrCt.yaml
     path: ./provide/subscription.yaml
     health-check:
       enable: true
