@@ -1,58 +1,35 @@
 
 proxies:
 proxy-groups:
-- name: 择优连接
+- name: ☠️
+  type: select
+  fillType: auto
+  proxies: [url-test, fallback, DIRECT]
+  use: [provide, provide1]
+- name: url-test
   type: url-test
   proxies: &id001 
   use: [provide, provide1]
   url: http://www.gstatic.com/generate_204
   fillType: auto
-  interval: 350
-- name: 稳定上网
+  interval: 300
+- name: fallback
   type: fallback
   proxies: *id001
   use: [provide, provide1]
   url: http://www.gstatic.com/generate_204
   fillType: auto
-  interval: 450
-- name: 负载均衡
-  type: load-balance
-  proxies: *id001
-  use: [provide, provide1]
-  url: http://www.gstatic.com/generate_204
-  fillType: auto
-  interval: 400
-- name: 直连
+  interval: 300
+- name: DIRECt-auto
   type: url-test
   proxies: [DIRECT]
   url: http://www.gstatic.com/generate_204
   fillType: manual
-  interval: 400
-- name: auto
-  type: url-test
-  proxies: *id001
-  use: [provide, provide1]
-  url: http://www.gstatic.com/generate_204
-  fillType: auto
-  interval: 500
-- name: fallback-auto
-  type: fallback
-  proxies: *id001
-  use: [provide, provide1]
-  url: http://www.gstatic.com/generate_204
-  fillType: auto
-  interval: 350
-- name: load-balance
-  type: load-balance
-  proxies: *id001
-  use: [provide, provide1]
-  url: http://www.gstatic.com/generate_204
-  fillType: auto
-  interval: 500
-- name: 代理模式
+  interval: 5
+- name: finall
   type: select
   fillType: auto
-  proxies: [择优连接, 稳定上网, 负载均衡, 直连, auto, fallback-auto, load-balance, DIRECT]
+  proxies: [☠️, url-test, fallback, DIRECT]
   use: [provide, provide1]
 proxy-providers: 
   "provide":
@@ -75,4 +52,4 @@ proxy-providers:
 rule-providers: 
 rules: 
 
-  - MATCH,代理模式
+  - MATCH,finall
