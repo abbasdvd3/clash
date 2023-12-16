@@ -66,7 +66,7 @@ proxy-groups:
       - 'DIRECT'
     use:
       - 'VPN1'
-      - 'VPN2'
+  #    - 'VPN2'
  #     - 'VPN3'      
   - name: 🛩️
     type: url-test
@@ -74,7 +74,7 @@ proxy-groups:
     interval: 300
     proxies:
     use:
-      - 'VPN2'
+      - 'VPN1'
 #      - 'VPN3'     
   - name: 🚁
     type: fallback
@@ -89,7 +89,7 @@ proxy-groups:
     interval: 300
     proxies:
     use:
-      - 'VPN2'
+      - 'VPN1'
  #     - 'VPN3'      
   - name: ♻️
     type: url-test
@@ -98,7 +98,7 @@ proxy-groups:
     proxies:
     use:
       - 'VPN1'
-      - 'VPN2'
+  #    - 'VPN2'
   #    - 'VPN3'
   - name: 🔯
     type: fallback
@@ -108,7 +108,7 @@ proxy-groups:
     proxies:
     use:
       - 'VPN1'
-      - 'VPN2'
+  #    - 'VPN2'
   #    - 'VPN3'
 
   - name: 🐟
@@ -122,27 +122,19 @@ proxy-groups:
       - '🚠'
     use:
       - 'VPN1'
-      - 'VPN2'
+   #   - 'VPN2'
    #   - 'VPN3'    
 proxy-providers:
   VPN1:
     type: http
-    url: "https://oss.v2rayse.com/proxies/data/2023-12-04/Z0wjW7j.yaml"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/meta.yaml"
     interval: 3600
     path: proxy_provider/V1.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/
       interval: 300
-  VPN2:
-    type: http
-    url: "https://oss.v2rayse.com/proxies/data/2023-12-03/mJzdY4l.yaml"
-    interval: 3600
-    path: proxy_provider/V2.yaml
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/
-      interval: 300
+
    
   
 
