@@ -703,6 +703,7 @@ proxy-groups:
     type: select
     use: 
       - VPN1
+      - VPN2
     proxies:
       - ♻️
       - 🔯
@@ -1345,6 +1346,7 @@ proxy-groups:
    # tolerance: 50
     use: 
       - VPN1
+      - VPN2
     proxies:
       - Iran_1
       - Iran_2
@@ -1983,6 +1985,7 @@ proxy-groups:
     interval: 380
     use: 
       - VPN1
+      - VPN2
     proxies:
       - Iran_1
       - Iran_2
@@ -2631,12 +2634,22 @@ proxy-providers:
   VPN1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/meta.yaml"
-    interval: 300
+    interval: 3400
     path: proxy_provider/VPN1.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 300
+
+  VPN2:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/T.yaml"
+    interval: 3400
+    path: proxy_provider/VPN2.yaml
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300      
 rule-providers:
   ir:
     type: http
