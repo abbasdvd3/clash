@@ -1,63 +1,18 @@
-
-
-# mixed-port: 7890
-# mitm-port: 7891
-# socks-port: 7891
-# redir-port: 7878
-# tproxy-port: 9898
-# routing-mark: 666
-# interface-name: Ethernet 3
-
-# ebpf:
-#  redirect-to-tun:
-#    - eth0 # gateway interface name, 网关对应的网卡接口名称
-#    - wlan0
-#experimental:
-#  udp-fallback-policy: 'proxy' # a proxy that supports UDP
-#   sniff-tls-sni: true
 allow-lan: true
-# bind-address: "*"
+bind-address: "*"
 ipv6: false
 log-level: info
-# skip-auth-prefixes: false
 find-process-mode: strict
 enable-process: true
-# tcp-concurrent: true
-# global-client-fingerprint: chrome
 unified-delay: true
-# geodata-mode: true # GEO数据模式
-# geodata-loader: memconservative # standard # memconservative
-# inbound-tfo: false
-# listeners: 
+keep-alive-interval: 30
+tcp-concurrent: true  
+external-controller: 0.0.0.0:9090
 geox-url:
   geoip: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat"
   geosite: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat"
   mmdb: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/geoip.metadb"
-# sniffer: 
-# external-ui: 
-# iptables: 
-# auto-redir: true
-# tunnels
-# payload: 
-# force-cert-verify: true
-#auto-redir: 
-#  - enable: false
- # - auto-route: false
-#profile:
-#  store-selected: true
-#  store-fake-ip: true
-#  tracing: false
-# script: 
-#tun:
-#  enable: true
-#  stack: system # system or gvisor
-#  device: tun://utun
-#  dns-hijack:
-#    - any:53
-#    - tcp://any:53
- # auto-route: false # auto set global route, conflict with redirect-to-tun
-#  auto-detect-interface: true # conflict with interface-name
-# strict-route: false
+
 dns:
   enable: true
   use-hosts: true
@@ -99,7 +54,6 @@ dns:
 #  fake-ip-filter:
 #    - '*.lan'
 #    - '+.example.com'
-
 #  nameserver-policy:
 #    "geosite:.ir,private": 
 #      - https://223.5.5.5/dns-query
@@ -111,26 +65,7 @@ dns:
 #    - https://223.5.5.5/dns-query
  #   - https://120.53.53.53/dns-query      
       
-#mitm:
-#  hosts:
-#    - '+.google.cn'
-#  rules:
-#    - ^https?://(.*)google\.cn(.*) url 307 https://$1google.com$2
-# hosts:
-#  'localhost': '127.0.0.1' 
-#  .googleapis.cn: 142.250.196.131
-#  .google.cn: 142.250.196.131  
-# '*.clash.dev': 127.0.0.1
- #'.dev': 127.0.0.1
- #'alpha.clash.dev': '::1'   
-# ebpf: 
-# tun
-keep-alive-interval: 30
-tcp-concurrent: true  
-global-ua: clash.meta
-external-controller: 0.0.0.0:9090
-#experimental:
-#  ignore-resolve-fail: true
+
 proxies:
   - {"name":"Iran_1","type":"trojan","server":"tw01.trojanyyds.xyz","port":443,"udp":true,"password":"93ec7261-1c92-4149-848a-26b6fb9fc4ce","sni":"tw01.trojanyyds.xyz","skip-cert-verify":true,"network":"tcp"}
   - {"name":"Iran_2","type":"ss","server":"series-a2-me.samanehha.co","port":443,"password":"Bog0ELmMM9DSxDdQ","cipher":"chacha20-ietf-poly1305"}
