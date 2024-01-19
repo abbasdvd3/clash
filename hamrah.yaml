@@ -1,10 +1,135 @@
 keep-alive-interval: 30
-unified-delay: true
-find-process-mode: strict
 tcp-concurrent: true  
 global-ua: clash.meta
 
+# mixed-port: 7890
+# mitm-port: 7891
+# socks-port: 7891
+# redir-port: 7878
+# tproxy-port: 9898
+# routing-mark: 666
+# interface-name: Ethernet 3
 
+# ebpf:
+#  redirect-to-tun:
+#    - eth0 # gateway interface name, 网关对应的网卡接口名称
+#    - wlan0
+#experimental:
+#  udp-fallback-policy: 'proxy' # a proxy that supports UDP
+#   sniff-tls-sni: true
+allow-lan: true
+# bind-address: "*"
+ipv6: false
+log-level: info
+# skip-auth-prefixes: false
+find-process-mode: strict
+enable-process: true
+# tcp-concurrent: true
+# global-client-fingerprint: chrome
+unified-delay: true
+# geodata-mode: true # GEO数据模式
+# geodata-loader: memconservative # standard # memconservative
+# inbound-tfo: false
+# listeners: 
+geox-url:
+  geoip: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat"
+  geosite: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat"
+  mmdb: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/geoip.metadb"
+# sniffer: 
+# external-ui: 
+# iptables: 
+# auto-redir: true
+# tunnels
+# payload: 
+# force-cert-verify: true
+#auto-redir: 
+#  - enable: false
+ # - auto-route: false
+#profile:
+#  store-selected: true
+#  store-fake-ip: true
+#  tracing: false
+# script: 
+#tun:
+#  enable: true
+#  stack: system # system or gvisor
+#  device: tun://utun
+#  dns-hijack:
+#    - any:53
+#    - tcp://any:53
+ # auto-route: false # auto set global route, conflict with redirect-to-tun
+#  auto-detect-interface: true # conflict with interface-name
+# strict-route: false
+dns:
+  enable: true
+  use-hosts: true
+  ipv6: false
+  remote-dns-resolve: false# default value is true
+  enhanced-mode: fake-ip # redir-host # fake-ip
+  fake-ip-range: 28.0.0.0/16
+  listen: 0.0.0.0:1053
+#  nameserver-policy:
+#    '+.example.com': 192.168.1.254
+  default-nameserver:
+ #    - 114.114.114.114
+ #   - 119.29.29.29
+ #   - 119.28.28.28
+    - 8.8.8.8
+ #   - tls://1.12.12.12:853
+ #   - tls://223.5.5.5:853
+#  proxy-server-nameserver:
+ #   - https://1.12.12.12/dns-query
+#    - https://223.5.5.5/dns-query
+  nameserver:
+#    - https://120.53.53.53/dns-query
+#    - tls://223.6.6.6:853
+   - 8.8.8.8
+#    - tls://223.5.5.5:853
+#    - tls://223.6.6.6:853
+#    - tls://120.53.53.53
+#    - tls://1.12.12.12
+#    - 114.114.114.114#PROXY 
+#    - tls://223.5.5.5:853
+#    - dhcp://en0
+#    - quic://dns.adguard.com:784#PROXY
+#    - tls://dot.pub:853
+ # remote-nameserver:
+   # - https://8.8.8.8/dns-query
+   # - tls://8.8.8.8:853
+ # fallback:
+   # - tcp://8.8.8.8:53#DNS-Proxy # if set `remote-dns-resolve` to false, then enable it.
+#  fake-ip-filter:
+#    - '*.lan'
+#    - '+.example.com'
+
+#  nameserver-policy:
+#    "geosite:.ir,private": 
+#      - https://223.5.5.5/dns-query
+#      - https://120.53.53.53/dns-query
+#    "geosite:ir":
+#      - https://8.8.4.4/dns-query#机场
+#      - https://1.0.0.1/dns-query#机场
+ # proxy-server-nameserver:
+#    - https://223.5.5.5/dns-query
+ #   - https://120.53.53.53/dns-query      
+      
+#mitm:
+#  hosts:
+#    - '+.google.cn'
+#  rules:
+#    - ^https?://(.*)google\.cn(.*) url 307 https://$1google.com$2
+# hosts:
+#  'localhost': '127.0.0.1' 
+#  .googleapis.cn: 142.250.196.131
+#  .google.cn: 142.250.196.131  
+# '*.clash.dev': 127.0.0.1
+ #'.dev': 127.0.0.1
+ #'alpha.clash.dev': '::1'   
+# ebpf: 
+# tun
+external-controller: 0.0.0.0:9090
+#experimental:
+#  ignore-resolve-fail: true
 proxies:
   - {"name":"Iran_1","type":"trojan","server":"tw01.trojanyyds.xyz","port":443,"udp":true,"password":"93ec7261-1c92-4149-848a-26b6fb9fc4ce","sni":"tw01.trojanyyds.xyz","skip-cert-verify":true,"network":"tcp"}
   - {"name":"Iran_2","type":"ss","server":"series-a2-me.samanehha.co","port":443,"password":"Bog0ELmMM9DSxDdQ","cipher":"chacha20-ietf-poly1305"}
@@ -638,11 +763,13 @@ proxies:
   - {"name":"Iran_635","type":"vmess","server":"singapore.com","port":2052,"cipher":"auto","uuid":"bf3d038a-93a2-4e24-886c-6bc64e3c3a90","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/","headers":{"host":"mg_cdn.yunjisuan.cf"}}}
   - {"name":"Iran_636","type":"vmess","server":"172.67.229.33","port":2086,"cipher":"auto","uuid":"58fe1542-5290-40ad-815a-77707a81afe5","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/IOebhLMhl1CTbFHbL95myfRX2","headers":{"host":"ca6.tehme100.fun"}}}
 proxy-groups:
-  - name: 🚀 节点选择
+  - name: 🚀
     type: select
+    use: 
+      - VPN1
     proxies:
-      - ♻️ 自动选择
-      - 🔯 故障转移
+      - ♻️
+      - 🔯
       - DIRECT
       - Iran_1
       - Iran_2
@@ -1275,11 +1402,13 @@ proxy-groups:
       - Iran_634
       - Iran_635
       - Iran_636
-  - name: ♻️ 自动选择
+  - name: ♻️
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50
+   # tolerance: 50
+    use: 
+      - VPN1
     proxies:
       - Iran_1
       - Iran_2
@@ -1912,10 +2041,12 @@ proxy-groups:
       - Iran_634
       - Iran_635
       - Iran_636
-  - name: 🔯 故障转移
+  - name: 🔯
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 180
+    interval: 380
+    use: 
+      - VPN1
     proxies:
       - Iran_1
       - Iran_2
@@ -2548,658 +2679,114 @@ proxy-groups:
       - Iran_634
       - Iran_635
       - Iran_636
-  - name: 🎯 全球直连
+  - name: 🎯
     type: select
     proxies:
       - DIRECT
-      - 🚀 节点选择
-      - ♻️ 自动选择
-  - name: 🛑 全球拦截
+      - 🚀
+      - ♻️
+  - name: 🛑
     type: select
     proxies:
       - REJECT
       - DIRECT
-  - name: 🐟 漏网之鱼
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🎯 全球直连
-      - ♻️ 自动选择
-      - 🔯 故障转移
-      - Iran_1
-      - Iran_2
-      - Iran_3
-      - Iran_4
-      - Iran_5
-      - Iran_6
-      - Iran_7
-      - Iran_8
-      - Iran_9
-      - Iran_10
-      - Iran_11
-      - Iran_12
-      - Iran_13
-      - Iran_14
-      - Iran_15
-      - Iran_16
-      - Iran_17
-      - Iran_18
-      - Iran_19
-      - Iran_20
-      - Iran_21
-      - Iran_22
-      - Iran_23
-      - Iran_24
-      - Iran_25
-      - Iran_26
-      - Iran_27
-      - Iran_28
-      - Iran_29
-      - Iran_30
-      - Iran_31
-      - Iran_32
-      - Iran_33
-      - Iran_34
-      - Iran_35
-      - Iran_41
-      - Iran_42
-      - Iran_43
-      - Iran_44
-      - Iran_45
-      - Iran_46
-      - Iran_47
-      - Iran_48
-      - Iran_49
-      - Iran_50
-      - Iran_51
-      - Iran_52
-      - Iran_53
-      - Iran_54
-      - Iran_55
-      - Iran_56
-      - Iran_57
-      - Iran_58
-      - Iran_59
-      - Iran_60
-      - Iran_61
-      - Iran_62
-      - Iran_63
-      - Iran_64
-      - Iran_65
-      - Iran_66
-      - Iran_67
-      - Iran_68
-      - Iran_69
-      - Iran_70
-      - Iran_71
-      - Iran_72
-      - Iran_73
-      - Iran_74
-      - Iran_75
-      - Iran_76
-      - Iran_77
-      - Iran_78
-      - Iran_79
-      - Iran_80
-      - Iran_81
-      - Iran_82
-      - Iran_83
-      - Iran_84
-      - Iran_85
-      - Iran_86
-      - Iran_87
-      - Iran_88
-      - Iran_89
-      - Iran_90
-      - Iran_91
-      - Iran_92
-      - Iran_93
-      - Iran_94
-      - Iran_95
-      - Iran_96
-      - Iran_97
-      - Iran_98
-      - Iran_99
-      - Iran_100
-      - Iran_101
-      - Iran_102
-      - Iran_103
-      - Iran_104
-      - Iran_105
-      - Iran_106
-      - Iran_107
-      - Iran_108
-      - Iran_109
-      - Iran_110
-      - Iran_111
-      - Iran_112
-      - Iran_113
-      - Iran_114
-      - Iran_115
-      - Iran_116
-      - Iran_117
-      - Iran_118
-      - Iran_119
-      - Iran_120
-      - Iran_121
-      - Iran_122
-      - Iran_123
-      - Iran_124
-      - Iran_125
-      - Iran_126
-      - Iran_127
-      - Iran_128
-      - Iran_129
-      - Iran_130
-      - Iran_131
-      - Iran_132
-      - Iran_133
-      - Iran_134
-      - Iran_135
-      - Iran_136
-      - Iran_137
-      - Iran_138
-      - Iran_139
-      - Iran_140
-      - Iran_141
-      - Iran_142
-      - Iran_143
-      - Iran_144
-      - Iran_145
-      - Iran_146
-      - Iran_147
-      - Iran_148
-      - Iran_149
-      - Iran_150
-      - Iran_151
-      - Iran_152
-      - Iran_153
-      - Iran_154
-      - Iran_155
-      - Iran_156
-      - Iran_157
-      - Iran_158
-      - Iran_159
-      - Iran_160
-      - Iran_161
-      - Iran_162
-      - Iran_163
-      - Iran_164
-      - Iran_165
-      - Iran_166
-      - Iran_167
-      - Iran_168
-      - Iran_169
-      - Iran_170
-      - Iran_171
-      - Iran_172
-      - Iran_173
-      - Iran_174
-      - Iran_175
-      - Iran_176
-      - Iran_177
-      - Iran_178
-      - Iran_179
-      - Iran_180
-      - Iran_181
-      - Iran_182
-      - Iran_183
-      - Iran_184
-      - Iran_185
-      - Iran_186
-      - Iran_187
-      - Iran_188
-      - Iran_189
-      - Iran_190
-      - Iran_191
-      - Iran_192
-      - Iran_193
-      - Iran_194
-      - Iran_195
-      - Iran_196
-      - Iran_197
-      - Iran_198
-      - Iran_199
-      - Iran_200
-      - Iran_201
-      - Iran_202
-      - Iran_203
-      - Iran_204
-      - Iran_205
-      - Iran_206
-      - Iran_207
-      - Iran_208
-      - Iran_209
-      - Iran_210
-      - Iran_211
-      - Iran_212
-      - Iran_213
-      - Iran_214
-      - Iran_215
-      - Iran_216
-      - Iran_217
-      - Iran_218
-      - Iran_219
-      - Iran_220
-      - Iran_221
-      - Iran_222
-      - Iran_223
-      - Iran_224
-      - Iran_225
-      - Iran_226
-      - Iran_227
-      - Iran_228
-      - Iran_229
-      - Iran_230
-      - Iran_231
-      - Iran_232
-      - Iran_233
-      - Iran_234
-      - Iran_235
-      - Iran_236
-      - Iran_237
-      - Iran_238
-      - Iran_239
-      - Iran_240
-      - Iran_241
-      - Iran_242
-      - Iran_243
-      - Iran_244
-      - Iran_245
-      - Iran_246
-      - Iran_247
-      - Iran_248
-      - Iran_249
-      - Iran_250
-      - Iran_251
-      - Iran_252
-      - Iran_253
-      - Iran_254
-      - Iran_255
-      - Iran_256
-      - Iran_257
-      - Iran_258
-      - Iran_259
-      - Iran_260
-      - Iran_261
-      - Iran_262
-      - Iran_263
-      - Iran_264
-      - Iran_265
-      - Iran_266
-      - Iran_267
-      - Iran_268
-      - Iran_269
-      - Iran_270
-      - Iran_271
-      - Iran_272
-      - Iran_273
-      - Iran_274
-      - Iran_275
-      - Iran_276
-      - Iran_277
-      - Iran_278
-      - Iran_279
-      - Iran_280
-      - Iran_281
-      - Iran_282
-      - Iran_283
-      - Iran_284
-      - Iran_285
-      - Iran_286
-      - Iran_287
-      - Iran_288
-      - Iran_289
-      - Iran_290
-      - Iran_291
-      - Iran_292
-      - Iran_293
-      - Iran_294
-      - Iran_295
-      - Iran_296
-      - Iran_297
-      - Iran_298
-      - Iran_299
-      - Iran_300
-      - Iran_301
-      - Iran_302
-      - Iran_303
-      - Iran_304
-      - Iran_305
-      - Iran_306
-      - Iran_307
-      - Iran_308
-      - Iran_309
-      - Iran_310
-      - Iran_311
-      - Iran_312
-      - Iran_313
-      - Iran_314
-      - Iran_315
-      - Iran_316
-      - Iran_317
-      - Iran_318
-      - Iran_319
-      - Iran_320
-      - Iran_321
-      - Iran_322
-      - Iran_323
-      - Iran_324
-      - Iran_325
-      - Iran_326
-      - Iran_327
-      - Iran_328
-      - Iran_329
-      - Iran_330
-      - Iran_331
-      - Iran_332
-      - Iran_333
-      - Iran_334
-      - Iran_335
-      - Iran_336
-      - Iran_337
-      - Iran_338
-      - Iran_339
-      - Iran_340
-      - Iran_341
-      - Iran_342
-      - Iran_343
-      - Iran_344
-      - Iran_345
-      - Iran_346
-      - Iran_347
-      - Iran_348
-      - Iran_349
-      - Iran_350
-      - Iran_351
-      - Iran_352
-      - Iran_353
-      - Iran_354
-      - Iran_355
-      - Iran_356
-      - Iran_357
-      - Iran_358
-      - Iran_359
-      - Iran_360
-      - Iran_361
-      - Iran_362
-      - Iran_363
-      - Iran_364
-      - Iran_365
-      - Iran_366
-      - Iran_367
-      - Iran_368
-      - Iran_369
-      - Iran_370
-      - Iran_371
-      - Iran_372
-      - Iran_373
-      - Iran_374
-      - Iran_375
-      - Iran_376
-      - Iran_377
-      - Iran_378
-      - Iran_379
-      - Iran_380
-      - Iran_381
-      - Iran_382
-      - Iran_383
-      - Iran_384
-      - Iran_385
-      - Iran_386
-      - Iran_387
-      - Iran_388
-      - Iran_389
-      - Iran_390
-      - Iran_391
-      - Iran_392
-      - Iran_393
-      - Iran_394
-      - Iran_395
-      - Iran_396
-      - Iran_397
-      - Iran_398
-      - Iran_399
-      - Iran_400
-      - Iran_401
-      - Iran_402
-      - Iran_403
-      - Iran_404
-      - Iran_405
-      - Iran_406
-      - Iran_407
-      - Iran_408
-      - Iran_409
-      - Iran_410
-      - Iran_411
-      - Iran_412
-      - Iran_413
-      - Iran_414
-      - Iran_415
-      - Iran_416
-      - Iran_417
-      - Iran_418
-      - Iran_419
-      - Iran_420
-      - Iran_421
-      - Iran_422
-      - Iran_423
-      - Iran_424
-      - Iran_425
-      - Iran_426
-      - Iran_427
-      - Iran_428
-      - Iran_429
-      - Iran_430
-      - Iran_431
-      - Iran_432
-      - Iran_433
-      - Iran_434
-      - Iran_435
-      - Iran_436
-      - Iran_437
-      - Iran_438
-      - Iran_439
-      - Iran_440
-      - Iran_441
-      - Iran_442
-      - Iran_443
-      - Iran_444
-      - Iran_445
-      - Iran_446
-      - Iran_447
-      - Iran_448
-      - Iran_449
-      - Iran_450
-      - Iran_451
-      - Iran_452
-      - Iran_453
-      - Iran_454
-      - Iran_455
-      - Iran_456
-      - Iran_457
-      - Iran_458
-      - Iran_459
-      - Iran_460
-      - Iran_461
-      - Iran_462
-      - Iran_463
-      - Iran_464
-      - Iran_465
-      - Iran_466
-      - Iran_467
-      - Iran_468
-      - Iran_469
-      - Iran_470
-      - Iran_471
-      - Iran_472
-      - Iran_473
-      - Iran_474
-      - Iran_475
-      - Iran_476
-      - Iran_477
-      - Iran_478
-      - Iran_479
-      - Iran_480
-      - Iran_481
-      - Iran_482
-      - Iran_483
-      - Iran_484
-      - Iran_485
-      - Iran_486
-      - Iran_487
-      - Iran_488
-      - Iran_489
-      - Iran_490
-      - Iran_491
-      - Iran_492
-      - Iran_493
-      - Iran_494
-      - Iran_495
-      - Iran_496
-      - Iran_497
-      - Iran_498
-      - Iran_499
-      - Iran_500
-      - Iran_501
-      - Iran_502
-      - Iran_503
-      - Iran_504
-      - Iran_505
-      - Iran_506
-      - Iran_507
-      - Iran_508
-      - Iran_509
-      - Iran_510
-      - Iran_511
-      - Iran_512
-      - Iran_513
-      - Iran_514
-      - Iran_515
-      - Iran_516
-      - Iran_517
-      - Iran_518
-      - Iran_519
-      - Iran_520
-      - Iran_521
-      - Iran_522
-      - Iran_523
-      - Iran_524
-      - Iran_525
-      - Iran_526
-      - Iran_527
-      - Iran_528
-      - Iran_529
-      - Iran_530
-      - Iran_531
-      - Iran_532
-      - Iran_533
-      - Iran_534
-      - Iran_535
-      - Iran_536
-      - Iran_537
-      - Iran_538
-      - Iran_539
-      - Iran_540
-      - Iran_541
-      - Iran_542
-      - Iran_543
-      - Iran_544
-      - Iran_545
-      - Iran_546
-      - Iran_547
-      - Iran_548
-      - Iran_549
-      - Iran_550
-      - Iran_551
-      - Iran_552
-      - Iran_553
-      - Iran_554
-      - Iran_555
-      - Iran_556
-      - Iran_557
-      - Iran_558
-      - Iran_559
-      - Iran_560
-      - Iran_561
-      - Iran_562
-      - Iran_563
-      - Iran_564
-      - Iran_565
-      - Iran_566
-      - Iran_567
-      - Iran_568
-      - Iran_569
-      - Iran_570
-      - Iran_571
-      - Iran_572
-      - Iran_573
-      - Iran_574
-      - Iran_575
-      - Iran_576
-      - Iran_577
-      - Iran_578
-      - Iran_579
-      - Iran_580
-      - Iran_581
-      - Iran_582
-      - Iran_583
-      - Iran_584
-      - Iran_585
-      - Iran_586
-      - Iran_587
-      - Iran_588
-      - Iran_589
-      - Iran_590
-      - Iran_591
-      - Iran_592
-      - Iran_593
-      - Iran_594
-      - Iran_595
-      - Iran_596
-      - Iran_597
-      - Iran_598
-      - Iran_599
-      - Iran_600
-      - Iran_601
-      - Iran_602
-      - Iran_603
-      - Iran_604
-      - Iran_605
-      - Iran_606
-      - Iran_607
-      - Iran_608
-      - Iran_609
-      - Iran_610
-      - Iran_611
-      - Iran_612
-      - Iran_613
-      - Iran_614
-      - Iran_615
-      - Iran_616
-      - Iran_617
-      - Iran_618
-      - Iran_619
-      - Iran_620
-      - Iran_621
-      - Iran_622
-      - Iran_623
-      - Iran_624
-      - Iran_625
-      - Iran_626
-      - Iran_627
-      - Iran_628
-      - Iran_629
-      - Iran_630
-      - Iran_631
-      - Iran_632
-      - Iran_633
-      - Iran_634
-      - Iran_635
-      - Iran_636
-
+      
+proxy-providers:
+  VPN1:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/meta.yaml"
+    interval: 300
+    path: proxy_provider/VPN1.yaml
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
 rule-providers:
-  
+  ir:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ir.yaml"
+    path: ./ruleset/ir.yaml
+    interval: 86400
+  ads:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ads.yaml"
+    path: ./ruleset/ads.yaml
+    interval: 86400
+  malware:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/malware.yaml"
+    path: ./ruleset/malware.yaml
+    interval: 86400
+  phishing:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/phishing.yaml"
+    path: ./ruleset/phishing.yaml
+    interval: 86400
+  cryptominers:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/cryptominers.yaml"
+    path: ./ruleset/cryptominers.yaml
+    interval: 86400
+  apps:
+    type: http
+    format: yaml
+    behavior: classical
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/apps.yaml"
+    path: ./ruleset/apps.yaml
+    interval: 86400
+  ircidr:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ircidr.yaml"
+    path: ./ruleset/ircidr.yaml
+    interval: 86400
+  private:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/private.yaml"
+    path: ./ruleset/private.yaml
+    interval: 86400
+  arvancloud:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/arvancloud.yaml"
+    path: ./ruleset/arvancloud.yaml
+    interval: 86400
+  derakcloud:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/derakcloud.yaml"
+    path: ./ruleset/derakcloud.yaml
+    interval: 86400
+  iranserver:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/iranserver.yaml"
+    path: ./ruleset/iranserver.yaml
+    interval: 86400
+  parspack:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/parspack.yaml"
+    path: ./ruleset/parspack.yaml
+    interval: 86400
+
   BanAD:
     type: http
     behavior: classical
@@ -3264,20 +2851,33 @@ rule-providers:
     interval: 3600
     path: ./ACL4SSR/ACL4SSR/ChinaCompanyIp.list
 rules:
-#  - RULE-SET,LocalAreaNetwork,🎯 全球直连
-  - RULE-SET,BanAD,🛑 全球拦截
-  - RULE-SET,BanProgramAD,🛑 全球拦截
-  - RULE-SET,GoogleCN,🚀 节点选择
-  - RULE-SET,SteamCN,🎯 全球直连
-# 长风网站，自动注入
-  - DOMAIN-SUFFIX,v2rayse.com,🚀 节点选择
-  - DOMAIN-SUFFIX,cff.pw,🚀 节点选择
-  - DOMAIN-SUFFIX,vpnse.org,🚀 节点选择
-  - DOMAIN-SUFFIX,cfmem.com,🚀 节点选择
-  - RULE-SET,Telegram,🚀 节点选择
-  - RULE-SET,ProxyMedia,🚀 节点选择
-  - RULE-SET,ProxyLite,🚀 节点选择
-  - RULE-SET,ChinaDomain,🎯 全球直连
-  - RULE-SET,ChinaCompanyIp,🎯 全球直连
-  - GEOIP,CN,🎯 全球直连
-  - MATCH,🐟 漏网之鱼
+rules :
+  - RULE-SET,private,🎯,no-resolve
+  - RULE-SET,apps,🎯
+  - RULE-SET,ads,🛑
+  - RULE-SET,malware,🛑
+  - RULE-SET,phishing,🛑
+  - RULE-SET,cryptominers,🛑
+  - RULE-SET,ir,🎯
+  - RULE-SET,ircidr,🎯
+  - RULE-SET,arvancloud,🎯
+  - RULE-SET,derakcloud,🎯
+  - RULE-SET,iranserver,🎯
+  - RULE-SET,parspack,🎯
+  - RULE-SET,LocalAreaNetwork,🎯
+  - RULE-SET,BanAD,🛑
+  - RULE-SET,BanProgramAD,🛑
+  - RULE-SET,GoogleCN,🚀 
+  - RULE-SET,SteamCN,🎯
+  - DOMAIN-SUFFIX,v2rayse.com,🎯
+  - DOMAIN-SUFFIX,cff.pw,🚀
+  - DOMAIN-SUFFIX,vpnse.org,🚀
+  - DOMAIN-SUFFIX,cfmem.com,🚀
+  - RULE-SET,Telegram,🚀
+  - RULE-SET,ProxyMedia,🚀
+  - RULE-SET,ProxyLite,🚀
+  - RULE-SET,ChinaDomain,🎯
+  - RULE-SET,ChinaCompanyIp,🎯
+  - GEOIP,CN,🎯
+  - GEOIP,ir,🎯  
+  - MATCH,🚀
