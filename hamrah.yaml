@@ -5,14 +5,33 @@ log-level: info
 find-process-mode: strict
 enable-process: true
 unified-delay: false
-# keep-alive-interval: 30
-# tcp-concurrent: true  
+keep-alive-interval: 30
+tcp-concurrent: false
+geodata-mode: true
+geodata-loader: memconservative
 external-controller: 0.0.0.0:9090
 geox-url:
   geoip: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat"
   geosite: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat"
   mmdb: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/geoip.metadb"
-
+dns:
+  enabled: true
+  listen: 0.0.0.0:1053
+  ipv6: true
+  default-nameserver:
+    - udp://8.8.8.8:853
+    - tcp://1.1.1.1:853
+    - tcp://8.8.8.8:853
+    - tls://1.1.1.1:853
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*.lan'
+  nameserver:
+    - tls://223.5.5.5:853
+    - tls://223.6.6.6:853
+    - tls://120.53.53.853
+    - tls://1.12.12.12.853
 # dns:
 #  enable: true
 #  use-hosts: true
