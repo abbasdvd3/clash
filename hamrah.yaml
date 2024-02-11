@@ -2,7 +2,7 @@ allow-lan: true
 bind-address: "*"
 ipv6: true
 log-level: info
-find-process-mode: strict
+find-process-mode: always
 enable-process: true
 unified-delay: false
 keep-alive-interval: 30
@@ -13,11 +13,15 @@ external-controller: 127.0.0.1:9090
 external-ui: ui
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 global-client-fingerprint: chrome
-
+geo-auto-update: true
+geo-update-interval: 24
+global-ua: clash.meta
 profile:
   store-selected: true
   store-fake-ip: true
-
+experimental:
+  quic-go-disable-gso: false
+  quic-go-disable-ecn: false
 sniffer:
   enable: true
   sniff:
