@@ -5302,11 +5302,13 @@ proxy-groups:
       - hamrah_964
       - hamrah_965
       - hamrah_966
+    use:
+      - provide
   - name: ♻️
     type: url-test
     url: https://www.google.com/generate_204
     interval: 300
-    tolerance: 100
+  #  tolerance: 100
     proxies:
       - D_1
       - D_2
@@ -7890,6 +7892,8 @@ proxy-groups:
       - hamrah_964
       - hamrah_965
       - hamrah_966
+    use:
+      - provide
   - name: 🔯
     type: fallback
     url: https://www.google.com/generate_204
@@ -10477,6 +10481,8 @@ proxy-groups:
       - hamrah_964
       - hamrah_965
       - hamrah_966
+    use:
+      - provide
   - name: 🎯
     type: select
     proxies:
@@ -13080,6 +13086,8 @@ proxy-groups:
       - hamrah_964
       - hamrah_965
       - hamrah_966
+    use:
+      - provide
 rule-providers:
   ir:
     type: http
@@ -13229,6 +13237,16 @@ rule-providers:
     format: text
     interval: 3600
     path: ./ACL4SSR/ACL4SSR/ChinaCompanyIp.list
+proxy-providers:
+  "provide":
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/40vlls.yaml"
+    interval: 3600
+    path: ./provide/v.yaml
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 3600
 rules :
   - RULE-SET,private,🎯,no-resolve
   - RULE-SET,apps,🎯
