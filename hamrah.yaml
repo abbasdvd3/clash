@@ -4,11 +4,11 @@ ipv6: false
 log-level: info
 find-process-mode: always
 enable-process: true
-unified-delay: false
-keep-alive-interval: 30
+unified-delay: true
+keep-alive-interval: 0
 tcp-concurrent: false
-geodata-mode: false
-geodata-loader: memconservative
+geodata-mode: true
+
 external-controller: 127.0.0.1:9090
 external-ui: ui
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
@@ -23,7 +23,7 @@ experimental:
   quic-go-disable-gso: false
   quic-go-disable-ecn: false
 sniffer:
-  enable: true
+  enable: false
   sniff:
     HTTP:
       ports: [80, 8080-8880]
@@ -51,7 +51,7 @@ dns:
   listen: 0.0.0.0:1053
   ipv6: false
   use-hosts: true
-  remote-dns-resolve: true
+  remote-dns-resolve: false
   default-nameserver:
     - udp://8.8.8.8:853
     - https://120.53.53.53/dns-query
@@ -1434,7 +1434,7 @@ proxy-groups:
   - name: ♻️
     type: url-test
     url: https://www.google.com/generate_204
-    interval: 300
+    interval: 200
     tolerance: 0
     proxies:
       - Tomaj_1
@@ -2750,6 +2750,14 @@ proxy-groups:
     proxies:
       - PASS
       - DIRECT
+  - name: 🦁
+    type: select
+    proxies:
+      - 🚀
+      - ♻️
+      - 🔯
+      - DIRECT
+      - 🛑
       - Tomaj_1
       - Tomaj_2
       - Tomaj_3
@@ -3620,21 +3628,21 @@ rules :
   - RULE-SET,parspack,🎯
   - RULE-SET,BanAD,🛑
   - RULE-SET,BanProgramAD,🛑
-  - RULE-SET,GoogleCN,🚀
-  - RULE-SET,SteamCN,🎯
-  - DOMAIN-SUFFIX,v2rayse.com,🚀
-  - DOMAIN-SUFFIX,github.com,🚀
+  - RULE-SET,GoogleCN,🦁
+  - RULE-SET,SteamCN,🦁
+  - DOMAIN-SUFFIX,v2rayse.com,🎯
+  - DOMAIN-SUFFIX,github.com,🎯
   - DOMAIN-SUFFIX,raw.githubusercontent.com,🚀
-  - DOMAIN-SUFFIX,cff.pw,🚀
-  - DOMAIN-SUFFIX,vpnse.org,🚀
-  - DOMAIN-SUFFIX,cfmem.com,🚀
-  - RULE-SET,Telegram,🚀
-  - RULE-SET,ProxyMedia,🚀
-  - RULE-SET,ProxyLite,🚀
+  - DOMAIN-SUFFIX,cff.pw,🦁
+  - DOMAIN-SUFFIX,vpnse.org,🦁
+  - DOMAIN-SUFFIX,cfmem.com,🦁
+  - RULE-SET,Telegram,🦁
+  - RULE-SET,ProxyMedia,🦁
+  - RULE-SET,ProxyLite,🦁
   - RULE-SET,ChinaDomain,🎯
   - RULE-SET,ChinaCompanyIp,🎯
   - GEOIP,CN,🎯
-  - GEOIP,google,🚀
-  - GEOIP,telegram,🚀
+  - GEOIP,google,🦁
+  - GEOIP,telegram,🦁
   - GEOIP,ir,🎯  
-  - MATCH,🚀
+  - MATCH,🦁
