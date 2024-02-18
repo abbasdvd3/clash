@@ -1516,7 +1516,8 @@ proxy-groups:
       - PE_754
       - PE_755
     use:
-      - provide      
+      - provide
+      - provide1
   - name: ♻️
     type: url-test
     url: https://www.google.com/generate_204
@@ -2277,7 +2278,8 @@ proxy-groups:
       - PE_754
       - PE_755
     use:
-      - provide      
+      - provide
+      - provide1
   - name: 🔯
     type: fallback
     url: https://www.google.com/generate_204
@@ -3038,9 +3040,11 @@ proxy-groups:
       - PE_755
     use:
       - provide
+      - provide1
   - name: 🔫
     type: select
     proxies:
+      - 🚀
       - ♻️
       - 🔯
       - DIRECT
@@ -3798,7 +3802,8 @@ proxy-groups:
       - PE_754
       - PE_755
     use:
-      - provide          
+      - provide
+      - provide1
 proxy-providers:
   "provide":
     type: http
@@ -3809,6 +3814,15 @@ proxy-providers:
       enable: true
       url: https://www.google.com/generate_204
       interval: 100
+  "provide1":
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/S.yaml"
+    interval: 3600
+    path: ./provide/1v.yaml
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 100      
 rules:
 
   - MATCH,🔫
