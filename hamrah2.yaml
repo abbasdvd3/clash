@@ -995,8 +995,6 @@ proxy-groups:
       - 🚀
       - ♻️
       - 🔯
-      - DIRECT
-      - 🛑
   - name: 🚀
     type: select
     proxies:
@@ -2000,8 +1998,8 @@ proxy-groups:
   - name: ♻️
     type: url-test
     url: https://www.google.com/generate_204
-    interval: 200
-    tolerance: 0
+    interval: 500
+    tolerance: 150
     proxies:
       - DFS_1
       - DFS_2
@@ -3000,7 +2998,7 @@ proxy-groups:
   - name: 🔯
     type: fallback
     url: https://www.google.com/generate_204
-    interval: 120
+    interval: 600
     proxies:
       - DFS_1
       - DFS_2
@@ -5172,7 +5170,7 @@ proxy-providers:
       interval: 3600
   provide2:
     type: http
-    url: https://v.spwvpn.com/api/v1/client/subscribe?token=1890c9efad9e237471de7007088d7f89
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vl4.yaml"
     interval: 3400
     path: proxy_provider/provide2.yaml
     health-check:
@@ -5181,7 +5179,7 @@ proxy-providers:
       interval: 300
   provide3:
     type: http
-    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/S.yaml
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/S.yaml"
     interval: 3600
     path: proxy_provider/provide3.yaml
     health-check:
@@ -5191,7 +5189,7 @@ proxy-providers:
 
   provide4:
     type: http
-    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/full.yaml
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/full.yaml"
     interval: 3600
     path: proxy_provider/full.yaml
     health-check:
