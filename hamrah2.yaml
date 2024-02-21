@@ -1,15 +1,195 @@
-port: 7890
-socks-port: 7891
+
 redir-port: 7892
 allow-lan: false
 # mode: global
-
 bind-address: "*"
 ipv6: false
 log-level: info
 find-process-mode: always
 enable-process: true
 unified-delay: true
+experimental:
+  ignore-resolve-fail: true
+  sniff-tls-sni: true
+  udp-fallback-match: true
+profile:
+  store-fake-ip: true
+  store-selected: true
+  tracing: true
+dns:
+  enable: true
+  ipv6: false
+  listen: '127.0.0.1:53'
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 1.1.1.1
+  enhanced-mode: redir-host  # fake-ip
+  fake-ip-range: 22.0.0.0/8
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - time.*.com
+    - time.*.gov
+    - time.*.edu.cn
+    - time.*.apple.com
+    - time-ios.apple.com
+    - time1.*.com
+    - time2.*.com
+    - time3.*.com
+    - time4.*.com
+    - time5.*.com
+    - time6.*.com
+    - time7.*.com
+    - ntp.*.com
+    - ntp1.*.com
+    - ntp2.*.com
+    - ntp3.*.com
+    - ntp4.*.com
+    - ntp5.*.com
+    - ntp6.*.com
+    - ntp7.*.com
+    - "*.time.edu.cn"
+    - "*.ntp.org.cn"
+    - +.pool.ntp.org
+    - time1.cloud.tencent.com
+    - music.163.com
+    - "*.music.163.com"
+    - "*.126.net"
+    - musicapi.taihe.com
+    - music.taihe.com
+    - songsearch.kugou.com
+    - trackercdn.kugou.com
+    - "*.kuwo.cn"
+    - api-jooxtt.sanook.com
+    - api.joox.com
+    - joox.com
+    - y.qq.com
+    - "*.y.qq.com"
+    - streamoc.music.tc.qq.com
+    - mobileoc.music.tc.qq.com
+    - isure.stream.qqmusic.qq.com
+    - dl.stream.qqmusic.qq.com
+    - aqqmusic.tc.qq.com
+    - amobile.music.tc.qq.com
+    - "*.xiami.com"
+    - "*.music.migu.cn"
+    - music.migu.cn
+    - +.msftconnecttest.com
+    - +.msftncsi.com
+    - localhost.ptlogin2.qq.com
+    - localhost.sec.qq.com
+    - +.qq.com
+    - +.tencent.com
+    - +.srv.nintendo.net
+    - "*.n.n.srv.nintendo.net"
+    - +.stun.playstation.net
+    - xbox.*.*.microsoft.com
+    - "*.*.xboxlive.com"
+    - xbox.*.microsoft.com
+    - xnotify.xboxlive.com
+    - +.battlenet.com.cn
+    - +.wotgame.cn
+    - +.wggames.cn
+    - +.wowsgame.cn
+    - +.wargaming.net
+    - proxy.golang.org
+    - stun.*.*
+    - stun.*.*.*
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - +.stun.*.*.*.*.*
+    - heartbeat.belkin.com
+    - "*.linksys.com"
+    - "*.linksyssmartwifi.com"
+    - "*.router.asus.com"
+    - mesu.apple.com
+    - swscan.apple.com
+    - swquery.apple.com
+    - swdownload.apple.com
+    - swcdn.apple.com
+    - swdist.apple.com
+    - lens.l.google.com
+    - stun.l.google.com
+    - na.b.g-tun.com
+    - +.nflxvideo.net
+    - "*.square-enix.com"
+    - "*.finalfantasyxiv.com"
+    - "*.ffxiv.com"
+    - "*.ff14.sdo.com"
+    - ff.dorado.sdo.com
+    - "*.mcdn.bilivideo.cn"
+    - +.media.dssott.com
+    - shark007.net
+    - Mijia Cloud
+    - +.cmbchina.com
+    - +.cmbimg.com
+    - local.adguard.org
+    - +.sandai.net
+    - +.n0808.com
+    - +.dns.google
+    - +.dns.cloudflare.com
+    - +.jd.com
+    - +.weibo.com
+    - +.cowtransfer.com
+    - +.battle.net
+  nameserver:
+    - https://223.5.5.5/dns-query
+    - https://doh.pub/dns-query
+    - https://223.6.6.6/dns-query
+    - 223.5.5.5
+    - 119.29.29.29
+    - dhcp://system
+    - https://dns.alidns.com/dns-query
+    - https://dns.cfiec.net/dns-query
+    - https://doh.pub/dns-query
+    - https://dns.ipv6dns.com/dns-query
+    - https://rubyfish.cn/dns-query
+    - https://all.dns.mullvad.net/dns-query
+    - https://unfiltered.adguard-dns.com/dns-query
+  fallback:
+    - tls://dns.google:853
+    - tls://cloudflare-dns.com
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+    - https://doh.dns.sb/dns-query
+    - https://dns.twnic.tw/dns-query
+    - https://doh.opendns.com/dns-query
+    - https://all.dns.mullvad.net/dns-query
+    - https://dns.quad9.net/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+      - 100.64.0.0/10
+      - 127.0.0.0/8
+      - 240.0.0.0/4
+      - 255.255.255.255/32
+    domain:
+      - +.google.com
+      - +.facebook.com
+      - +.youtube.com
+      - +.crisp.chat
+      - +.githubusercontent.com
+      - +.googlevideo.com
+      - +.msftconnecttest.com
+      - +.msftncsi.com
+      - msftconnecttest.com
+      - msftncsi.com
+    nameserver-policy:
+      "*.msftconnecttest.com": https://223.5.5.5/dns-query
+      "*.msftncsi.com": https://223.5.5.5/dns-query
 proxies:
   - {"name":"Tomaj_1","type":"vless","server":"zula.ir","port":443,"uuid":"416339cf-dadd-4831-987b-80f8434d2ebe","tls":true,"servername":"ty1.livingspringonline.com","network":"grpc","client-fingerprint":"chrome"}
   - {"name":"Tomaj_2","type":"vmess","server":"mci--join.outline-vpn.cloud","port":80,"cipher":"auto","uuid":"7022982f-da4c-48c9-c660-b2315abdcf7e","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"a.prapt5.ir"}}}
