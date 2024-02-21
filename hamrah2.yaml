@@ -1005,6 +1005,7 @@ proxy-groups:
     type: select
     proxies:
       - 🚀
+      - 🚀🚀
       - ♻️
       - 🔯
   - name: 🚀
@@ -2007,6 +2008,7 @@ proxy-groups:
       - provide2
       - provide3
       - provide4
+      - provide5
   - name: ♻️
     type: url-test
     url: https://www.google.com/generate_204
@@ -3007,6 +3009,7 @@ proxy-groups:
       - provide2
       - provide3
       - provide4
+      - provide5
   - name: 🔯
     type: fallback
     url: https://www.google.com/generate_204
@@ -4006,6 +4009,7 @@ proxy-groups:
       - provide2
       - provide3
       - provide4
+      - provide5
   - name: 🎯
     type: select
     proxies:
@@ -4014,6 +4018,13 @@ proxy-groups:
       - ♻️
       - 🔯
       - 🛑
+  - name: 🚀🚀
+    type: url-test
+    url: https://www.google.com/generate_204
+    interval: 300
+    tolerance: 70
+    use:
+      - provide5      
   - name: 🛑
     type: select
     proxies:
@@ -5021,6 +5032,7 @@ proxy-groups:
       - provide2
       - provide3
       - provide4
+      - provide5
 proxy-providers:
   "provide1":
     type: http
@@ -5058,7 +5070,17 @@ proxy-providers:
     health-check:
       enable: true
       url: https://www.google.com/generate_204
-      interval: 300      
+      interval: 300
+      
+   provide5:
+    type: http
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/iran
+    interval: 3400
+    path: proxy_provider/provide5.yaml
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 300     
 rules :
 
   - GEOIP,CN,🎯
