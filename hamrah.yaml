@@ -1,6 +1,6 @@
-port: 7890
-socks-port: 7891
-redir-port: 7892
+# port: 7891
+# socks-port: 7890
+# redir-port: 7892
 allow-lan: false
 # mode: global
 
@@ -10,11 +10,11 @@ log-level: info
 find-process-mode: always
 enable-process: true
 unified-delay: true
-keep-alive-interval: 0
+keep-alive-interval: 5
 tcp-concurrent: false
 geodata-mode: true
 
-external-controller: 127.0.0.1:9090
+external-controller: 0.0.0.0:9090
 external-ui: ui
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 global-client-fingerprint: chrome
@@ -28,7 +28,7 @@ experimental:
   quic-go-disable-gso: false
   quic-go-disable-ecn: false
 sniffer:
-  enable: false
+  enable: true
   sniff:
     HTTP:
       ports: [80, 8080-8880]
@@ -58,6 +58,8 @@ dns:
   use-hosts: true
   remote-dns-resolve: false
   default-nameserver:
+    - https://223.5.5.5/dns-query
+    - https://8.8.8.8/dns-query
     - udp://8.8.8.8:853
     - https://120.53.53.53/dns-query
     - tcp://1.1.1.1:853
@@ -81,9 +83,9 @@ dns:
     "geosite:ir":
       - https://8.8.4.4/dns-query#🎯
       - https://1.0.0.1/dns-query#🎯
- # proxy-server-nameserver:
-#    - https://223.5.5.5/dns-query
- #   - https://120.53.53.53/dns-query     
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query
+    - https://120.53.53.53/dns-query     
 # dns:
 #  enable: true
 #  use-hosts: true
