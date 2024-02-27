@@ -5299,6 +5299,14 @@ rule-providers:
     format: text
     interval: 3600
     path: ./ACL4SSR/ACL4SSR/ChinaCompanyIp.list
+
+  IpinfoSpeedtest:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/IpinfoSpeedtest.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/IpinfoSpeedtest
 proxy-providers:
   "provide1":
     type: http
@@ -5340,6 +5348,7 @@ proxy-providers:
 rules :
   - RULE-SET,private,🎯,no-resolve
   - RULE-SET,apps,🎯
+  - RULE-SET,IpinfoSpeedtest,🎯
   - RULE-SET,ads,🛑
   - RULE-SET,malware,🛑
   - RULE-SET,phishing,🛑
