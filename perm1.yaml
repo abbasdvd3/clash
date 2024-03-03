@@ -1,54 +1,314 @@
+keep-alive-interval: 30
+unified-delay: true
+find-process-mode: strict
+tcp-concurrent: true  
+global-ua: clash.meta
+allow-lan: true
+bind-address: "*"
+mode: rule
+log-level: info
+external-controller: 0.0.0.0:19090
+secret: ""
+experimental:
+  ignore-resolve-fail: true
+  sniff-tls-sni: true
+  udp-fallback-match: true
+profile:
+  store-fake-ip: true
+  store-selected: true
+  tracing: true
+ipv6: true
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: true
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 1.1.1.1
+  enhanced-mode: fake-ip
+  fake-ip-range: 22.0.0.0/8
+  fake-ip-filter:
+    - "*.example"
+    - "*.home.arpa"
+    - "*.invalid"
+    - "*.lan"
+    - "*.local"
+    - "*.localdomain"
+    - "*.localhost"
+    - "*.test"
+    - mesu.apple.com
+    - swscan.apple.com
+    - "*.router.asus.com"
+    - "*.linksys.com"
+    - "*.linksyssmartwifi.com"
+    - "*.ipv6.microsoft.com"
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - msftconnecttest.com
+    - msftncsi.com
+    - ntp.*.com
+    - ntp1.*.com
+    - ntp2.*.com
+    - ntp3.*.com
+    - ntp4.*.com
+    - ntp5.*.com
+    - ntp6.*.com
+    - ntp7.*.com
+    - time.*.apple.com
+    - time.*.com
+    - time.*.gov
+    - time1.*.com
+    - time2.*.com
+    - time3.*.com
+    - time4.*.com
+    - time5.*.com
+    - time6.*.com
+    - time7.*.com
+    - time.*.edu.cn
+    - "*.time.edu.cn"
+    - "*.ntp.org.cn"
+    - +.pool.ntp.org
+    - time1.cloud.tencent.com
+    - localhost.ptlogin2.qq.com
+    - localhost.sec.qq.com
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - dhcp://system
+    - https://dns.alidns.com/dns-query
+    - https://dns.cfiec.net/dns-query
+    - https://doh.pub/dns-query
+    - https://dns.ipv6dns.com/dns-query
+    - https://rubyfish.cn/dns-query
+    - https://all.dns.mullvad.net/dns-query
+    - https://unfiltered.adguard-dns.com/dns-query
+  fallback:
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+    - https://doh.dns.sb/dns-query
+    - https://dns.twnic.tw/dns-query
+    - https://doh.opendns.com/dns-query
+    - https://all.dns.mullvad.net/dns-query
+    - https://dns.quad9.net/dns-query
+  fallback-filter:
+    ipcidr:
+      - 0.0.0.0/32
+      - 100.64.0.0/10
+      - 127.0.0.0/8
+      - 240.0.0.0/4
+      - 255.255.255.255/32
+
 proxies:
+
 proxy-groups:
-- name: ☠️
-  type: select
-  fillType: auto
-  proxies: [url-test, fallback, DIRECT]
-  use: [provide, provide1]
-- name: url-test
-  type: url-test
-  proxies: &id001 
-  use: [provide, provide1]
-  url: http://www.gstatic.com/generate_204
-  fillType: auto
-  interval: 300
-- name: fallback
-  type: fallback
-  proxies: *id001
-  use: [provide, provide1]
-  url: http://www.gstatic.com/generate_204
-  fillType: auto
-  interval: 300
-- name: DIRECt-auto
-  type: url-test
-  proxies: [DIRECT]
-  url: http://www.gstatic.com/generate_204
-  fillType: manual
-  interval: 5
-- name: finall
-  type: select
-  fillType: auto
-  proxies: [☠️, url-test, fallback, DIRECT]
-  use: [provide, provide1]
-proxy-providers: 
-  "provide":
+  - name: 🚀
+    type: url-test
+    url: http://connect.rom.miui.com/generate_204
+    interval: 300
+    proxies:
+      - '🔯'
+      - '♻️'
+      - '♻️🔯'
+      - '♻️🔯♻️🔯'
+      - '🔯3'
+      - '♻️1'
+      - '♻️♻️♻️'
+  - name: ♻️
+    type: url-test
+    url: http://connect.rom.miui.com/generate_204
+    interval: 300
+    proxies:
+    use:
+      - 'VPN1'
+   #   - 'VPN2'
+  #    - 'VPN3'
+  - name: ♻️♻️
+    type: url-test
+    url: http://connect.rom.miui.com/generate_204
+    interval: 300
+    proxies:
+    use:
+      - 'VPN3'
+  - name: ♻️♻️♻️
+    type: url-test
+    url: http://connect.rom.miui.com/generate_204
+    interval: 300
+    proxies:
+    use:
+  #    - 'VPN1'
+      - 'VPN2'
+  #    - 'VPN3'
+  - name: ♻️🔯
+    type: url-test
+    url: http://connect.rom.miui.com/generate_204
+    interval: 300
+    proxies:
+    use:
+      - 'VPN1'
+      - 'VPN2'
+      - 'VPN3'
+  - name: ♻️🔯♻️🔯
+    type: fallback
+    url: http://connect.rom.miui.com/generate_204
+    interval: 300
+    proxies:
+    use:
+      - 'VPN1'
+      - 'VPN2'
+      - 'VPN3' 
+  - name: ♻️🔯
+    type: url-test
+    url: http://connect.rom.miui.com/generate_204
+    interval: 300
+    proxies:
+    use:
+      - 'VPN4'
+      - 'VPN5'
+      - 'VPN6'
+  - name: ♻️1
+    type: url-test
+    url: http://connect.rom.miui.com/generate_204
+    interval: 300
+    proxies:
+    use:
+      - 'VPN4'
+   #   - 'VPN2'
+  #    - 'VPN3'
+  - name: ♻️♻️2
+    type: url-test
+    url: http://connect.rom.miui.com/generate_204
+    interval: 300
+    proxies:
+    use:
+      - 'VPN5'
+  - name: 🔯3
+    type: url-test
+    url: http://connect.rom.miui.com/generate_204
+    interval: 300
+    proxies:
+    use:
+  #    - 'VPN1'
+      - 'VPN6'
+  #    - 'VPN3'      
+proxy-providers:
+  VPN1:
     type: http
-    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/perm1.yaml
-    path: ./provide/subscription.yaml
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml
+    interval: 3300
+    path: V1.yaml
     health-check:
       enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 360
+      url: http://connect.rom.miui.com/generate_204
+      interval: 300
 
-  "provide1":
+  VPN2:
     type: http
-    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/Xp.yaml
-    path: ./provide/subscription1.yaml
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml
+    interval: 3300
+    path: V2.yaml
     health-check:
       enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 360
-rule-providers: 
-rules: 
+      url: http://connect.rom.miui.com/generate_204
+      interval: 300
+  
+  VPN3:
+    type: http
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/3.yaml
+    interval: 3300
+    path: V3.yaml
+    health-check:
+      enable: true
+      url: http://connect.rom.miui.com/generate_204
+      interval: 300
 
-  - MATCH,finall
+  VPN4:
+    type: http
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/GeoIP/4.yaml
+    interval: 3300
+    path: V4.yaml
+    health-check:
+      enable: true
+      url: http://connect.rom.miui.com/generate_204
+      interval: 300    
+
+  VPN5:
+    type: http
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/GeoIP/5.yaml
+    interval: 3300
+    path: V5.yaml
+    health-check:
+      enable: true
+      url: http://connect.rom.miui.com/generate_204
+      interval: 300
+
+  VPN6:
+    type: http
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/GeoIP/6.yaml
+    interval: 3300
+    path: V6.yaml
+    health-check:
+      enable: true
+      url: http://connect.rom.miui.com/generate_204
+      interval: 300
+
+
+
+
+
+      
+rules:
+  # - SCRIPT,quic,REJECT
+  # - SCRIPT,youshit,REJECT
+  ## direct FCM
+  # - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),DIRECT
+  # - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),DIRECT
+  - DOMAIN-SUFFIX,atom.io,DIRECT
+  - DOMAIN-SUFFIX,dependabot.com,DIRECT
+  - DOMAIN-SUFFIX,ghcr.io,DIRECT
+  - DOMAIN-SUFFIX,git.io,DIRECT
+  - DOMAIN-SUFFIX,github.blog,DIRECT
+  - DOMAIN-SUFFIX,github.community,DIRECT
+  - DOMAIN-SUFFIX,github.dev,DIRECT
+  - DOMAIN-SUFFIX,githubapp.com,DIRECT
+  - DOMAIN-SUFFIX,githubassets.com,DIRECT
+  - DOMAIN-SUFFIX,githubhackathon.com,DIRECT
+  - DOMAIN-SUFFIX,githubpreview.dev,DIRECT
+  - DOMAIN-SUFFIX,githubstatus.com,DIRECT
+  - DOMAIN-SUFFIX,githubuniverse.com,DIRECT
+  - DOMAIN-SUFFIX,githubusercontent.com,DIRECT
+  - DOMAIN-SUFFIX,myoctocat.com,DIRECT
+  - DOMAIN-SUFFIX,opensource.guide,DIRECT
+  - DOMAIN-SUFFIX,repo.new,DIRECT
+  - DOMAIN-SUFFIX,thegithubshop.com,DIRECT
+  - DOMAIN-SUFFIX,github.com,DIRECT
+  - DOMAIN-SUFFIX,github.io,DIRECT
+  - DOMAIN-SUFFIX,githubapp.com,DIRECT
+  - DOMAIN-SUFFIX,githubassets.com,DIRECT
+  - DOMAIN-SUFFIX,githubusercontent.com,DIRECT
+  - DOMAIN-KEYWORD,github,DIRECT
+  - DOMAIN-KEYWORD,appteka.store,DIRECT
+  - DOMAIN-SUFFIX,collector.githubapp.com,DIRECT
+  - DOMAIN-KEYWORD,drive.google.com,DIRECT
+  - DOMAIN-KEYWORD,mail.google.com,DIRECT
+  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
+  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
+  - IP-CIDR6,::1/128,REJECT,no-resolve
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - DOMAIN-SUFFIX,aaplimg.com,DIRECT
+  - DOMAIN-SUFFIX,apple.co,DIRECT
+  - DOMAIN-SUFFIX,apple.com,DIRECT
+  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
+  - DOMAIN-SUFFIX,appstore.com,DIRECT
+  - DOMAIN-SUFFIX,cdn-apple.com,DIRECT
+  - DOMAIN-SUFFIX,crashlytics.com,DIRECT
+  - DOMAIN-SUFFIX,v2rayse.com,DIRECT
+  - DOMAIN-SUFFIX,freenode.me,DIRECT  
+  - DOMAIN-SUFFIX,raw.githubusercontent.com,DIRECT
+  - DOMAIN-SUFFIX,github.com,DIRECT   
+  - DOMAIN-SUFFIX,cff.pw,🚀
+  - DOMAIN-SUFFIX,vpnse.org,🚀
+  - DOMAIN-SUFFIX,cfmem.com,🚀  
+  - MATCH,🚀
