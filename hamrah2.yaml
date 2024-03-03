@@ -8,10 +8,6 @@ log-level: info
 find-process-mode: always
 enable-process: true
 unified-delay: false
-experimental:
-  ignore-resolve-fail: true
-  sniff-tls-sni: true
-  udp-fallback-match: true
 
 proxies:
 
@@ -45,7 +41,7 @@ proxy-groups:
     type: url-test
     url: https://www.google.com/generate_204
     interval: 300
-    tolerance: 80
+   # tolerance: 80
     proxies:
     use:
       - provide1
@@ -76,7 +72,7 @@ proxy-groups:
     type: url-test
     url: https://www.google.com/generate_204
     interval: 300
-    tolerance: 70
+   # tolerance: 70
     use:
       - provide5      
   - name: 🛑
@@ -89,6 +85,7 @@ proxy-groups:
     proxies:
       - 🦁🦁
       - 🚀
+      - 🚀🚀
       - ♻️
       - 🔯
     use:
@@ -148,10 +145,4 @@ proxy-providers:
       interval: 300
     
 rules :
-
-  - GEOIP,CN,🎯
-  - GEOIP,google,🦁
-  - GEOIP,telegram,🦁
-  - GEOIP,github,🦁
-  - GEOIP,ir,🎯  
   - MATCH,🦁
