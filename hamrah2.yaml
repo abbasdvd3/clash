@@ -1,13 +1,13 @@
 
 # redir-port: 7892
 allow-lan: false
-mode: global
+# mode: global
 bind-address: "*"
 ipv6: false
 log-level: info
 find-process-mode: always
 enable-process: true
-unified-delay: false
+unified-delay: true
 experimental:
   ignore-resolve-fail: true
   sniff-tls-sni: true
@@ -21,7 +21,7 @@ proxies:
 
 proxy-groups:
   - name: 🦁🦁
-    type: select
+    type: url-test # select
     proxies:
       - 🚀
       - 🚀🚀
@@ -87,8 +87,6 @@ proxy-groups:
       - 🚀
       - ♻️
       - 🔯
-      - DIRECT
-      - 🛑
     use:
       - provide1
       - provide2
@@ -150,5 +148,6 @@ rules :
   - GEOIP,CN,🎯
   - GEOIP,google,🦁
   - GEOIP,telegram,🦁
+  - GEOIP,github,🦁
   - GEOIP,ir,🎯  
   - MATCH,🦁
