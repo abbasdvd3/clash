@@ -384,8 +384,8 @@ proxy-groups:
   - name: 🥶🥶
     type: url-test
     url: https://www.google.com/generate_204
-    interval: 180
-    tolerance: 90
+    interval: 100
+    tolerance: 30
     proxies:
       - 🚀
       - ♻️
@@ -781,6 +781,11 @@ proxy-groups:
     use:
       - provide
       - provide1
+      - provide2
+      - provide3
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
   - name: ♻️
     type: url-test
     url: https://www.google.com/generate_204
@@ -1170,6 +1175,11 @@ proxy-groups:
     use:
       - provide
       - provide1
+      - provide2
+      - provide3
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
   - name: 🔯
     type: fallback
     url: https://www.google.com/generate_204
@@ -1558,6 +1568,11 @@ proxy-groups:
     use:
       - provide
       - provide1
+      - provide2
+      - provide3
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
   - name: 🥶
     type: url-test
     url: https://www.google.com/generate_204
@@ -1566,6 +1581,11 @@ proxy-groups:
     use:
       - provide
       - provide1
+      - provide2
+      - provide3
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
   - name: 🔫
     type: select
     proxies:
@@ -1958,10 +1978,15 @@ proxy-groups:
     use:
       - provide
       - provide1
+      - provide2
+      - provide3
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
 proxy-providers:
   "provide":
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/full.yaml"
+    url: "https://raw.githubusercontent.com/hkaa0/permalink/main/proxy/clash"
     interval: 3600
     path: ./provide/v.yaml
     health-check:
@@ -1976,7 +2001,63 @@ proxy-providers:
     health-check:
       enable: true
       url: https://www.google.com/generate_204
-      interval: 100      
+      interval: 100
+
+  "provide2":
+    type: http
+    url: "https://anaer.github.io/Sub/clash.yaml"
+    interval: 3600
+    path: ./provide/p2.yaml
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 100
+      
+  "provide3":
+    type: http
+    url: "https://fku-ppg.co.uk/"
+    interval: 3600
+    path: ./provide/p3.yaml
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 100
+      
+  Subscription-1:
+    type: http
+    url: "https://ifaner.dd94wan.com/link/oyl9od1udjpk85zf?clash=1" # replace this URL with your provider's subscription link
+    path: ./providers/Subscription-1.yaml
+    interval: 300
+#    prefix-name: "S-"
+#    url-proxy: true
+#    udp: true
+    health-check:
+      enable: true
+      interval: 300
+      url: http://www.gstatic.com/generate_204
+      # default value is true
+  Subscription-2:
+    type: http
+    url: "https://sulian.cc/api/v1/client/subscribe?token=df67df5b1b1300c0eb723dbb820caf3c&flag=clash"
+    path: ./providers/Subscription-2.yaml
+    interval: 300
+#    prefix-name: "S-"
+    health-check:
+      enable: true
+      interval: 300
+      url: http://www.gstatic.com/generate_204
+      # default value is true
+      
+  Subscription-3:
+    type: http
+    url: "https://lbxjc.online/api/v1/client/subscribe?token=aea1638fd0e8fa052165ea6add7a5520&flag=clash"
+    path: ./providers/Subscription-3.yaml
+    interval: 300
+#    prefix-name: "S-"
+    health-check:
+      enable: true
+      interval: 300
+      url: http://www.gstatic.com/generate_204
 rules:
 
   - MATCH,🔫
