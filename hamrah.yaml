@@ -1,6 +1,6 @@
-# port: 7891
-# socks-port: 7890
-# redir-port: 7892
+port: 7891
+socks-port: 7890
+redir-port: 7892
 allow-lan: false
 # mode: global
 
@@ -10,7 +10,7 @@ log-level: info
 find-process-mode: always
 enable-process: true
 unified-delay: true
-keep-alive-interval: 5
+keep-alive-interval: 15
 tcp-concurrent: false
 geodata-mode: true
 
@@ -28,7 +28,7 @@ experimental:
   quic-go-disable-gso: false
   quic-go-disable-ecn: false
 sniffer:
-  enable: true
+  enable: false
   sniff:
     HTTP:
       ports: [80, 8080-8880]
@@ -45,7 +45,7 @@ tun:
   dns-hijack:
     - 'any:53'
   auto-route: true
-  auto-detect-interface: true
+  auto-detect-interface: false
 
 geox-url:
   geoip: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat"
@@ -56,7 +56,7 @@ dns:
   listen: 0.0.0.0:1053
   ipv6: false
   use-hosts: true
-  remote-dns-resolve: false
+  remote-dns-resolve: true
   default-nameserver:
     - https://223.5.5.5/dns-query
     - https://8.8.8.8/dns-query
@@ -138,6 +138,10 @@ dns:
 #    - https://223.5.5.5/dns-query
  #   - https://120.53.53.53/dns-query   
 proxies:
+  - {"name":"tt1","type":"vmess","server":"www.visa.com.sg","port":443,"cipher":"auto","uuid":"d7ea6546-296f-4524-952f-16b4ced4857e","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"d7ea6546-296f-4524-952f-16b4ced4857e-vm","headers":{"host":"silk-hidden-king-al.trycloudflare.com"}}}
+  - {"name":"tt2","type":"vless","server":"2fc353f2.j1.10fb417b-6f7d-48de-b07e-3bd955dae048.ecbc8683.lxjc.app","port":443,"uuid":"8e4c5289-3eee-4d1d-934a-aca912df7392","tls":true,"servername":"16-163-218-240.nhost.00cdn.com","flow":"xtls-rprx-vision","network":"tcp","client-fingerprint":"chrome"}
+  - {"name":"tt3","type":"vless","server":"jp1.lxjc.app","port":443,"uuid":"8e4c5289-3eee-4d1d-934a-aca912df7392","tls":true,"servername":"16-163-218-240.nhost.00cdn.com","flow":"xtls-rprx-vision","network":"tcp","client-fingerprint":"ios"}
+  - {"name":"tt4","type":"vless","server":"sg1.lxjc.app","port":443,"uuid":"8e4c5289-3eee-4d1d-934a-aca912df7392","tls":true,"servername":"16-163-218-240.nhost.00cdn.com","flow":"xtls-rprx-vision","network":"tcp","client-fingerprint":"safari"}
   - {"name":"ng_1","type":"vmess","server":"172.67.158.126","port":443,"cipher":"auto","uuid":"03fcc618-b93d-6796-6aed-8a38c975d581","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/linkvws","headers":{"host":"nelly.homes"}}}
   - {"name":"ng_4","type":"vmess","server":"8.217.93.104","port":443,"cipher":"auto","uuid":"dcd70249-06fa-4fe7-aaed-cbba86ac125b","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/stream","headers":{"host":"sptufp5n3o19imic.iwebsocket.com"}}}
   - {"name":"ng_5","type":"vmess","server":"107.175.37.186","port":80,"cipher":"auto","uuid":"dccb5580-de8d-4aca-a9a5-f986da33faa6","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/"}}
@@ -1398,17 +1402,18 @@ proxy-groups:
   - name: 🦁🦁
     type: select
     proxies:
-      - 🚀
+  #    - 🚀
       - ♻️
-      - 🔯
-      - DIRECT
-      - 🛑
+#      - 🔯
   - name: 🚀
     type: select
     proxies:
       - ♻️
       - 🔯
-      - DIRECT
+      - tt1
+      - tt2
+      - tt3
+      - tt4
       - ng_1
       - ng_4
       - ng_5
@@ -2672,11 +2677,17 @@ proxy-groups:
       - provide4
   - name: ♻️
     type: url-test
-    url: https://www.google.com/generate_204
-    interval: 200
-    tolerance: 0
+    health-check:
+    enable: true
+    url: http://www.google.com/generate_204
+    interval: 300
+  #  tolerance: 0
     proxies:
       - HEX_1
+      - tt1
+      - tt2
+      - tt3
+      - tt4
       - ng_1
       - ng_4
       - ng_5
@@ -3939,10 +3950,16 @@ proxy-groups:
       - provide4
   - name: 🔯
     type: fallback
-    url: https://www.google.com/generate_204
-    interval: 120
+    health-check:
+    enable: true
+    url: http://www.google.com/generate_204
+    interval: 180
     proxies:
       - HEX_1
+      - tt1
+      - tt2
+      - tt3
+      - tt4
       - ng_1
       - ng_4
       - ng_5
@@ -5222,8 +5239,11 @@ proxy-groups:
       - 🚀
       - ♻️
       - 🔯
-      - DIRECT
-      - 🛑
+      - 🎯
+      - tt1
+      - tt2
+      - tt3
+      - tt4
       - ng_1
       - ng_4
       - ng_5
@@ -6640,22 +6660,22 @@ rule-providers:
     behavior: classical
     url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/IpinfoSpeedtest.list
     format: text
-    interval: 3600
+    interval: 300
     path: ./ACL4SSR/ACL4SSR/IpinfoSpeedtest
 proxy-providers:
   "provide1":
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/40vlls.yaml"
-    interval: 3600
+    interval: 300
     path: proxy_hamrah/v.yaml
     health-check:
       enable: true
       url: https://www.google.com/generate_204
-      interval: 3600
+      interval: 300
   provide2:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/TR.yaml"
-    interval: 3400
+    interval: 300
     path: proxy_hamrah/provide2.yaml
     health-check:
       enable: true
@@ -6664,7 +6684,7 @@ proxy-providers:
   provide3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/S.yaml"
-    interval: 3600
+    interval: 300
     path: proxy_hamrah/provide3.yaml
     health-check:
       enable: true
@@ -6674,43 +6694,43 @@ proxy-providers:
   provide4:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/full.yaml"
-    interval: 3600
+    interval: 300
     path: proxy_hamrah/full.yaml
     health-check:
       enable: true
       url: https://www.google.com/generate_204
-      interval: 300      
+      interval: 300
 rules :
-  - RULE-SET,private,🎯,no-resolve
+  - RULE-SET,private,DIRECT,no-resolve
   - RULE-SET,apps,🎯
-  - RULE-SET,IpinfoSpeedtest,🎯
+  - RULE-SET,IpinfoSpeedtest,DIRECT
   - RULE-SET,ads,🛑
   - RULE-SET,malware,🛑
   - RULE-SET,phishing,🛑
   - RULE-SET,cryptominers,🛑
-  - RULE-SET,ir,🎯
-  - RULE-SET,ircidr,🎯
-  - RULE-SET,arvancloud,🎯
-  - RULE-SET,derakcloud,🎯
-  - RULE-SET,iranserver,🎯
-  - RULE-SET,parspack,🎯
+  - RULE-SET,ir,DIRECT
+  - RULE-SET,ircidr,DIRECT
+  - RULE-SET,arvancloud,DIRECT
+  - RULE-SET,derakcloud,DIRECT
+  - RULE-SET,iranserver,DIRECT
+  - RULE-SET,parspack,DIRECT
   - RULE-SET,BanAD,🛑
   - RULE-SET,BanProgramAD,🛑
   - RULE-SET,GoogleCN,🦁
   - RULE-SET,SteamCN,🦁
-  - DOMAIN-SUFFIX,v2rayse.com,🎯
-  - DOMAIN-SUFFIX,github.com,🎯
-  - DOMAIN-SUFFIX,raw.githubusercontent.com,🚀
+  - DOMAIN-SUFFIX,v2rayse.com,🦁
+  - DOMAIN-SUFFIX,github.com,🦁
+  - DOMAIN-SUFFIX,raw.githubusercontent.com,🦁
   - DOMAIN-SUFFIX,cff.pw,🦁
   - DOMAIN-SUFFIX,vpnse.org,🦁
   - DOMAIN-SUFFIX,cfmem.com,🦁
   - RULE-SET,Telegram,🦁
   - RULE-SET,ProxyMedia,🦁
   - RULE-SET,ProxyLite,🦁
-  - RULE-SET,ChinaDomain,🎯
-  - RULE-SET,ChinaCompanyIp,🎯
-  - GEOIP,CN,🎯
+  - RULE-SET,ChinaDomain,DIRECT
+  - RULE-SET,ChinaCompanyIp,DIRECT
+  - GEOIP,CN,DIRECT
   - GEOIP,google,🦁
   - GEOIP,telegram,🦁
-  - GEOIP,ir,🎯  
+  - GEOIP,ir,DIRECT
   - MATCH,🦁
