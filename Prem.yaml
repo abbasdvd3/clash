@@ -3573,6 +3573,121 @@ proxy-providers:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-rules:
 
+rule-providers:
+  ir:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ir.yaml"
+    path: ./ACL4SSR/ACL4SSR/ir.yaml
+    interval: 86400
+  ads:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ads.yaml"
+    path: ./ACL4SSR/ACL4SSR/ads.yaml
+    interval: 86400
+  malware:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/malware.yaml"
+    path: ./ACL4SSR/ACL4SSR/malware.yaml
+    interval: 86400
+  phishing:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/phishing.yaml"
+    path: ./ACL4SSR/ACL4SSR/phishing.yaml
+    interval: 86400
+  cryptominers:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/cryptominers.yaml"
+    path: ./ACL4SSR/ACL4SSR/cryptominers.yaml
+    interval: 86400
+  apps:
+    type: http
+    format: yaml
+    behavior: classical
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/apps.yaml"
+    path: ./ACL4SSR/ACL4SSR/apps.yaml
+    interval: 86400
+  ircidr:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ircidr.yaml"
+    path: ./ACL4SSR/ACL4SSR/ircidr.yaml
+    interval: 86400
+  private:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/private.yaml"
+    path: ./ACL4SSR/ACL4SSR/private.yaml
+    interval: 86400
+  arvancloud:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/arvancloud.yaml"
+    path: ./ACL4SSR/ACL4SSR/arvancloud.yaml
+    interval: 86400
+  derakcloud:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/derakcloud.yaml"
+    path: ./ACL4SSR/ACL4SSR/derakcloud.yaml
+    interval: 86400
+  iranserver:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/iranserver.yaml"
+    path: ./ACL4SSR/ACL4SSR/iranserver.yaml
+    interval: 86400
+  parspack:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/parspack.yaml"
+    path: ./ACL4SSR/ACL4SSR/parspack.yaml
+    interval: 86400
+
+  BanAD:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanAD.list
+  IpinfoSpeedtest:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/IpinfoSpeedtest.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/IpinfoSpeedtest      
+rules:
+  - RULE-SET,private,DIRECT,no-resolve
+  - RULE-SET,apps,DIRECT
+  - RULE-SET,IpinfoSpeedtest,DIRECT
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,ir,DIRECT
+  - RULE-SET,ircidr,DIRECT
+  - RULE-SET,arvancloud,DIRECT
+  - RULE-SET,derakcloud,DIRECT
+  - RULE-SET,iranserver,DIRECT
+  - RULE-SET,parspack,DIRECT
+  - RULE-SET,BanAD,REJECT
+  - RULE-SET,BanProgramAD,REJECT
   - MATCH,🔫
