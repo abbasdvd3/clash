@@ -1978,7 +1978,7 @@ proxies:
   - {"name":"PERM_1_1977","type":"ss","server":"31.171.153.182","port":989,"password":"f8f7aCzcPKbsF8p3","cipher":"aes-256-cfb"}
 proxy-groups:
   - name: 🥶🥶
-    type: url-test
+    type: select
     url: https://www.google.com/generate_204
     interval: 100
     tolerance: 30
@@ -1986,7 +1986,7 @@ proxy-groups:
       - 🚀
       - ♻️
       - 🔯
-      - 🥶
+      - 🥶🥶🥶
   - name: 🚀
     type: select
     proxies:
@@ -3982,8 +3982,8 @@ proxy-groups:
   - name: ♻️
     type: url-test
     url: https://www.google.com/generate_204
-    interval: 180
-    tolerance: 70
+    interval: 480
+    tolerance: 170
     proxies:
       - PERM_1_1
       - PERM_1_2
@@ -5973,7 +5973,7 @@ proxy-groups:
   - name: 🔯
     type: fallback
     url: https://www.google.com/generate_204
-    interval: 120
+    interval: 220
     proxies:
       - PERM_1_1
       - PERM_1_2
@@ -7963,8 +7963,8 @@ proxy-groups:
   - name: 🥶
     type: url-test
     url: https://www.google.com/generate_204
-    interval: 300
-    tolerance: 0
+    interval: 480
+    tolerance: 170
     use:
       - provide
       - provide1
@@ -9967,6 +9967,15 @@ proxy-groups:
       - Subscription-1
       - Subscription-2
       - Subscription-3
+  - name: 🥶🥶🥶
+    type: url-test
+    url: https://www.google.com/generate_204
+    interval: 300
+    tolerance: 100
+    proxies:
+      - 🚀
+      - ♻️
+      - 🥶      
 proxy-providers:
   "provide":
     type: http
