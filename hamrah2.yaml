@@ -1,13 +1,13 @@
 
 # redir-port: 7892
-allow-lan: false
+#allow-lan: false
 # mode: global
-bind-address: "*"
-ipv6: false
+#bind-address: "*"
+#ipv6: false
 log-level: info
 find-process-mode: always
 enable-process: true
-unified-delay: false
+unified-delay: true
 
 proxies:
 
@@ -39,8 +39,8 @@ proxy-groups:
       - provide5
   - name: ♻️
     type: url-test
-    url: https://www.google.com/generate_204
-    interval: 300
+   # url: https://www.google.com/generate_204
+    #interval: 300
    # tolerance: 80
     proxies:
     use:
@@ -51,8 +51,8 @@ proxy-groups:
       - provide5
   - name: 🔯
     type: fallback
-    url: https://www.google.com/generate_204
-    interval: 180
+   # url: https://www.google.com/generate_204
+   # interval: 180
     proxies:
     use:
       - provide1
@@ -70,8 +70,8 @@ proxy-groups:
       - 🛑
   - name: 🚀🚀
     type: url-test
-    url: https://www.google.com/generate_204
-    interval: 300
+  #  url: https://www.google.com/generate_204
+    # interval: 300
    # tolerance: 70
     use:
       - provide5      
