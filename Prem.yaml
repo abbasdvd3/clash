@@ -1978,10 +1978,11 @@ proxies:
   - {"name":"PERM_1_1977","type":"ss","server":"31.171.153.182","port":989,"password":"f8f7aCzcPKbsF8p3","cipher":"aes-256-cfb"}
 proxy-groups:
   - name: 🥶🥶
-    type: select
+    type: url-test
     url: https://www.google.com/generate_204
-    interval: 500
-    tolerance: 150
+    interval: 350
+    tolerance: 75
+    udp: true
     proxies:
       - 🚀
       - ♻️
@@ -1991,6 +1992,7 @@ proxy-groups:
       - 🥶🚀🥶
   - name: 🚀
     type: select
+    udp: true
     proxies:
       - ♻️
       - 🔯
@@ -3986,6 +3988,7 @@ proxy-groups:
     url: https://www.google.com/generate_204
     interval: 300
     tolerance: 70
+    udp: true
     proxies:
       - PERM_1_1
       - PERM_1_2
@@ -5976,6 +5979,7 @@ proxy-groups:
     type: fallback
     url: https://www.google.com/generate_204
     interval: 300
+    udp: true
     proxies:
       - PERM_1_1
       - PERM_1_2
@@ -7967,6 +7971,7 @@ proxy-groups:
     url: https://www.google.com/generate_204
     interval: 300
     tolerance: 70
+    udp: true
     use:
       - provide
       - provide1
@@ -7977,6 +7982,7 @@ proxy-groups:
       - Subscription-3
   - name: 🔫
     type: select
+    udp: true
     proxies:
       - 🥶🥶
       - 🚀
@@ -9974,6 +9980,7 @@ proxy-groups:
     url: https://www.google.com/generate_204
     interval: 190
     tolerance: 60
+    udp: true
     proxies:
       - 🚀
       - ♻️
@@ -9985,50 +9992,51 @@ proxy-groups:
     tolerance: 100
     proxies:
     use:
-      - Subscription-2      
+      - Subscription-2
+      - Subscription-1
 proxy-providers:
   "provide":
     type: http
     url: "https://raw.githubusercontent.com/hkaa0/permalink/main/proxy/clash"
-    interval: 3600
+    interval: 300
     path: ./provide/v.yaml
     health-check:
       enable: true
       url: https://www.google.com/generate_204
-      interval: 100
+      interval: 300
   "provide1":
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/TR.yaml"
-    interval: 3600
+    interval: 300
     path: ./provide/1v.yaml
     health-check:
       enable: true
       url: https://www.google.com/generate_204
-      interval: 100
+      interval: 300
 
   "provide2":
     type: http
     url: "https://anaer.github.io/Sub/clash.yaml"
-    interval: 3600
+    interval: 300
     path: ./provide/p2.yaml
     health-check:
       enable: true
       url: https://www.google.com/generate_204
-      interval: 100
+      interval: 300
       
   "provide3":
     type: http
     url: "https://fku-ppg.co.uk/"
-    interval: 3600
+    interval: 300
     path: ./provide/p3.yaml
     health-check:
       enable: true
       url: https://www.google.com/generate_204
-      interval: 100
+      interval: 300
       
   Subscription-1:
     type: http
-    url: "https://ifaner.dd94wan.com/link/oyl9od1udjpk85zf?clash=1" # replace this URL with your provider's subscription link
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/irancell" # replace this URL with your provider's subscription link
     path: ./providers/Subscription-1.yaml
     interval: 300
 #    prefix-name: "S-"
