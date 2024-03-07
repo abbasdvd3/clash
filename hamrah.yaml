@@ -45,14 +45,14 @@ tun:
   dns-hijack:
     - 'any:53'
   auto-route: true
-  auto-detect-interface: false
+  auto-detect-interface: true
 
 geox-url:
   geoip: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat"
   geosite: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat"
   mmdb: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/geoip.metadb"
 dns:
-  enabled: false
+  enabled: true
   listen: 0.0.0.0:1053
   ipv6: false
   use-hosts: true
@@ -9667,6 +9667,74 @@ proxy-groups:
       - provide2
       - provide3
       - provide4
+  - name: 🔯1
+    type: url-test
+    health-check:
+    enable: true
+    url: http://www.google.com/generate_204
+    interval: 300
+    proxies:
+    use:
+      - provide1
+  - name: 🔯2
+    type: url-test
+    health-check:
+    enable: true
+    url: http://www.google.com/generate_204
+    interval: 300
+    proxies:
+    use:
+      - provide2
+  - name: 🔯3
+    type: url-test
+    health-check:
+    enable: true
+    url: http://www.google.com/generate_204
+    interval: 300
+    proxies:
+    use:
+      - provide3
+  - name: 🔯4
+    type: url-test
+    health-check:
+    enable: true
+    url: http://www.google.com/generate_204
+    interval: 300
+    proxies:
+    use:
+      - provide4 
+  - name: 🔯5
+    type: url-test
+    health-check:
+    enable: true
+    url: http://www.google.com/generate_204
+    interval: 300
+    proxies:
+    use:
+      - provide1
+      - provide2
+      - provide3
+      - provide4
+  - name: 🔯6
+    type: url-test
+    health-check:
+    enable: true
+    url: http://www.google.com/generate_204
+    interval: 300
+    proxies:
+      - 🔯1
+      - 🔯2
+      - 🔯3
+      - 🔯4
+  - name: 🔯7
+    type: url-test
+    health-check:
+    enable: true
+    url: http://www.google.com/generate_204
+    interval: 300
+    proxies:
+      - 🔯5
+      - 🔯6      
 rule-providers:
   ir:
     type: http
