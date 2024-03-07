@@ -1,6 +1,6 @@
 # port: 7891
 # socks-port: 7890
-redir-port: 7892
+# redir-port: 7892
 allow-lan: false
 # mode: global
 
@@ -12,7 +12,7 @@ enable-process: true
 unified-delay: true
 keep-alive-interval: 15
 tcp-concurrent: false
-geodata-mode: true
+geodata-mode: false
 
 external-controller: 0.0.0.0:9090
 external-ui: ui
@@ -52,11 +52,11 @@ geox-url:
   geosite: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat"
   mmdb: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/geoip.metadb"
 dns:
-  enabled: true
+  enabled: false
   listen: 0.0.0.0:1053
   ipv6: false
   use-hosts: true
-  remote-dns-resolve: true
+  remote-dns-resolve: false
   default-nameserver:
     - https://223.5.5.5/dns-query
     - https://8.8.8.8/dns-query
@@ -1489,6 +1489,17 @@ proxies:
   - {"name":"DFS_345","type":"vmess","server":"188.253.6.35","port":20009,"cipher":"auto","uuid":"7c99bf1d-71cf-46ce-b40a-3e13bf6ac41b","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/"}}
   - {"name":"DFS_346","type":"ss","server":"31.171.153.182","port":989,"password":"f8f7aCzcPKbsF8p3","cipher":"aes-256-cfb"}
 proxy-groups:
+  - name: 🦁🦁🦁🦁
+    type: url-test
+    health-check:
+    enable: true
+    url: http://www.google.com/generate_204
+    interval: 400
+    proxies:
+      - 🚀
+      - ♻️test
+      - ♻️
+      - 🔯
   - name: 🦁🦁
     type: select
     health-check:
@@ -4220,7 +4231,7 @@ proxy-groups:
     enable: true
     url: http://www.google.com/generate_204
     interval: 300
-  #  tolerance: 0
+    tolerance: 60
     proxies:
       - HEX_1
       - TOP_1
@@ -5566,7 +5577,7 @@ proxy-groups:
     enable: true
     url: http://www.google.com/generate_204
     interval: 300
-  #  tolerance: 0
+    tolerance: 70
     proxies:
       - TOP_1
       - TOP_2
@@ -8296,6 +8307,7 @@ proxy-groups:
   - name: 🦁
     type: select
     proxies:
+      - 🦁🦁🦁🦁
       - 🚀
       - ♻️
       - 🔯
