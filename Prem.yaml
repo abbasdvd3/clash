@@ -1980,9 +1980,9 @@ proxy-groups:
   - name: MAXX
     type: url-test
     url: https://www.google.com/generate_204
-    interval: 350
-    tolerance: 75
-    udp: true
+    interval: 200
+  #  tolerance: 75
+  #  udp: true
     proxies:
       - 🥶🥶
       - PALL
@@ -1991,9 +1991,9 @@ proxy-groups:
   - name: 🥶🥶
     type: url-test
     url: https://www.google.com/generate_204
-    interval: 350
-    tolerance: 75
-    udp: true
+    interval: 300
+  #  tolerance: 75
+#    udp: true
     proxies:
       - 🚀
       - P1
@@ -2008,7 +2008,7 @@ proxy-groups:
       - PG
   - name: 🚀
     type: select
-    udp: true
+  #  udp: true
     proxies:
       - ♻️
     #  - 🔯
@@ -4003,8 +4003,8 @@ proxy-groups:
     type: url-test
     url: https://www.google.com/generate_204
     interval: 300
-    tolerance: 70
-    udp: true
+#    tolerance: 70
+ #   udp: true
     proxies:
       - PERM_1_1
       - PERM_1_2
@@ -5995,7 +5995,7 @@ proxy-groups:
     type: fallback
     url: https://www.google.com/generate_204
     interval: 300
-    udp: true
+#    udp: true
     proxies:
       - PERM_1_1
       - PERM_1_2
@@ -7985,7 +7985,7 @@ proxy-groups:
 
   - name: 🔫
     type: select
-    udp: true
+ #   udp: true
     proxies:
       - 🥶🥶
       - 🚀
@@ -9983,7 +9983,7 @@ proxy-groups:
     url: https://www.google.com/generate_204
     interval: 500
     tolerance: 150
-    udp: true
+  #  udp: true
     proxies:
       - P1
       - P2
@@ -9996,7 +9996,7 @@ proxy-groups:
     type: url-test
     url: https://www.google.com/generate_204
     interval: 300
-    tolerance: 70
+ #   tolerance: 70
     proxies:
     use:
       - Subscription-1
@@ -10005,8 +10005,8 @@ proxy-groups:
     type: url-test
     url: https://www.google.com/generate_204
     interval: 300
-    tolerance: 70
-    udp: true
+ #   tolerance: 70
+#    udp: true
     use:
       - Subscription-2
 
@@ -10014,8 +10014,8 @@ proxy-groups:
     type: url-test
     url: https://www.google.com/generate_204
     interval: 300
-    tolerance: 70
-    udp: true
+ #   tolerance: 70
+ #   udp: true
     use:
       - Subscription-3
 
@@ -10023,8 +10023,8 @@ proxy-groups:
     type: url-test
     url: https://www.google.com/generate_204
     interval: 300
-    tolerance: 70
-    udp: true
+ #   tolerance: 70
+ #   udp: true
     use:
       - provide
 
@@ -10032,8 +10032,8 @@ proxy-groups:
     type: url-test
     url: https://www.google.com/generate_204
     interval: 300
-    tolerance: 70
-    udp: true
+  #  tolerance: 70
+ #   udp: true
     use:
       - provide1
 
@@ -10041,8 +10041,8 @@ proxy-groups:
     type: url-test
     url: https://www.google.com/generate_204
     interval: 300
-    tolerance: 70
-    udp: true
+  #  tolerance: 70
+ #   udp: true
     use:
       - provide2
 
@@ -10050,8 +10050,8 @@ proxy-groups:
     type: url-test
     url: https://www.google.com/generate_204
     interval: 300
-    tolerance: 70
-    udp: true
+  #  tolerance: 70
+  #  udp: true
     use:
       - provide3
 
@@ -10059,8 +10059,8 @@ proxy-groups:
     type: url-test
     url: https://www.google.com/generate_204
     interval: 300
-    tolerance: 100
-    udp: true
+   # tolerance: 100
+    #udp: true
     use:
       - provide
       - provide1
@@ -10114,52 +10114,34 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/irancell" # replace this URL with your provider's subscription link
     path: Prem/Subscription-1.yaml
     interval: 300
-#    prefix-name: "S-"
 #    url-proxy: true
 #    udp: true
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      # default value is true
+      
   Subscription-2:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.yml"
     path: Prem/Subscription-2.yaml
     interval: 300
-#    prefix-name: "S-"
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      # default value is true
       
   Subscription-3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/S.yaml"
     path: Prem/Subscription-3.yaml
     interval: 300
-#    prefix-name: "S-"
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
 
 rule-providers:
-  private:
-    type: http
-    format: yaml
-    behavior: ipcidr
-    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/private.yaml"
-    path: ./ACL4SSR/ACL4SSR/private.yaml
-    interval: 86400
-  BanAD:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/BanAD.list
   IpinfoSpeedtest:
     type: http
     behavior: classical
@@ -10168,16 +10150,6 @@ rule-providers:
     interval: 3600
     path: ./ACL4SSR/ACL4SSR/IpinfoSpeedtest      
 rules:
-  - RULE-SET,private,DIRECT,no-resolve
   - RULE-SET,IpinfoSpeedtest,DIRECT
-  - RULE-SET,BanAD,REJECT
-  - GEOIP,LAN,DIRECT
-  - GEOIP,CN,DIRECT
-  - GEOIP,google,🚀
- # - GEOIP,whatsapp,🚀
-  - GEOIP,FACEBOOK,🚀
-  - GEOIP,TELEGRAM,🚀
-#  - GEOIP,CLOUDFRONT,DIRECT,no-resolve
-#  - GEOIP,cloudflare,DIRECT,no-resolve
-  - GEOIP,twitter,🚀
+
   - MATCH,🔫
