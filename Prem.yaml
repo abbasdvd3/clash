@@ -568,11 +568,18 @@ proxy-groups:
     type: select
  #   udp: true
     proxies:
-      - ♻️
-      - 🔯    
+      - 🔯
+      - ♻️    
   - name: 🚀
     type: select
  #   udp: true
+    use:
+      - "VPN6"
+      - "VPN1"
+      - "VPN2"
+      - "VPN3"
+      - "VPN4"
+      - "VPN5"
     proxies:
       - ♻️
       - 🔯
@@ -1145,6 +1152,13 @@ proxy-groups:
     interval: 80
     tolerance: 5
  #   udp: true
+    use:
+      - "VPN6"
+      - "VPN1"
+      - "VPN2"
+      - "VPN3"
+      - "VPN4"
+      - "VPN5"
     proxies:
       - DFS_283
       - Tomaj_161
@@ -1713,6 +1727,13 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 60
  #   udp: true
+    use:
+      - "VPN6"
+      - "VPN1"
+      - "VPN2"
+      - "VPN3"
+      - "VPN4"
+      - "VPN5"
     proxies:
       - DFS_283
       - Tomaj_161
@@ -2278,6 +2299,13 @@ proxy-groups:
       - S_1063
   - name: 🐟
     type: select
+    use:
+      - "VPN6"
+      - "VPN1"
+      - "VPN2"
+      - "VPN3"
+      - "VPN4"
+      - "VPN5"
     proxies:
       - 🚀
       - ♻️
@@ -2844,11 +2872,64 @@ proxy-groups:
       - S_1055
       - S_1062
       - S_1063
-
+      
+proxy-providers:
+  VPN1:
+    type: http
+    url: "http://123.57.192.169:7777/clash/proxies"
+    interval: 300
+    path: proxy_provider/VPN1.yaml
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
+      
+  VPN2:
+    type: http
+    url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
+    interval: 300
+    path: proxy_provider/VPN2.yaml
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
+  VPN3:
+    type: http
+    url: "https://proxypool.link/clash/proxies"
+    interval: 300
+    path: proxy_provider/VPN3.yaml
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
+  VPN4:
+    type: http
+    url: "https://raw.githubusercontent.com/chfchf0306/clash/main/clash"
+    interval: 300
+    path: proxy_provider/VPN4.yaml
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
+  VPN5:
+    type: http
+    url: "http://146.56.97.77:12580/clash/proxies"
+    interval: 300
+    path: proxy_provider/VPN5.yaml
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300    
 rules:
 # 本地/局域网地址
 # 参考：https://en.wikipedia.org/wiki/Reserved_IP_addresses
 # ACL4SSR标志 如没有，代表不是用ACL4SSR规则
 # 本地/局域网地址
-# Router managed 路由器管理域名
+  - DOMAIN-SUFFIX,proxypool.link,DIRECT
+  - DOMAIN-SUFFIX,raw.githubusercontent.com,DIRECT
+  - DOMAIN-SUFFIX,aaplimg.com,DIRECT
+  - DOMAIN-SUFFIX,apple.co,DIRECT
+  - DOMAIN-SUFFIX,apple.com,DIRECT
+  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
+  - DOMAIN-SUFFIX,appstore.com,DIRECT
   - MATCH,🐟
