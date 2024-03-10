@@ -12,7 +12,7 @@ find-process-mode: always
 enable-process: true
 unified-delay: true
 keep-alive-interval: 15
-tcp-concurrent: true
+tcp-concurrent: false
 geodata-mode: false
 
 external-controller: 0.0.0.0:9090
@@ -653,9 +653,13 @@ proxies:
   - {"name":"S_1062","type":"ss","server":"37.235.55.21","port":989,"password":"f8f7aCzcPKbsF8p3","cipher":"aes-256-cfb"}
   - {"name":"S_1063","type":"ss","server":"37.235.55.42","port":989,"password":"f8f7aCzcPKbsF8p3","cipher":"aes-256-cfb"}
 proxy-groups:
+  - name: 🚀🚀
+    type: url-test
+    proxies:
+      - 🔯
+      - ♻
   - name: 🚀
     type: select
-    udp: true
     proxies:
       - 🔯
       - ♻
@@ -1226,9 +1230,8 @@ proxy-groups:
       - S_1063
   - name: ♻
     type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    udp: true
+ #   url: http://www.gstatic.com/generate_204
+ #   interval: 300
 #    tolerance: 50
     proxies:
       - DFS_283
@@ -1797,9 +1800,8 @@ proxy-groups:
       - S_1063
   - name: 🔯
     type: fallback
-    url: http://www.gstatic.com/generate_204
-    interval: 180
-    udp: true
+#    url: http://www.gstatic.com/generate_204
+#    interval: 180
     proxies:
       - DFS_283
       - Tomaj_161
@@ -2365,6 +2367,12 @@ proxy-groups:
       - S_1055
       - S_1062
       - S_1063
+  - name: 🎯
+    type: select
+    proxies:
+#      - DIRECT
+      - 🚀
+      - ♻
   - name: 🛑
     type: select
     proxies:
@@ -2372,9 +2380,9 @@ proxy-groups:
       - DIRECT
   - name: 🐟
     type: select
-    udp: true
     proxies:
       - 🚀
+      - 🎯
       - ♻
       - 🔯
       - DFS_283
