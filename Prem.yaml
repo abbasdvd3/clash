@@ -565,24 +565,40 @@ proxies:
   - {"name":"S_1063","type":"ss","server":"37.235.55.42","port":989,"password":"f8f7aCzcPKbsF8p3","cipher":"aes-256-cfb"}
 proxy-groups:
   - name: ♻️♻️
-    type: select
- #   udp: true
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 400
+    udp: true
     proxies:
-      - 🚀
-      - 🔯
-      - ♻️    
+      - "🚀"
+      - "🔯"
+      - "♻️"
+      - "🚀1"
+      - "🚀2"
+      - "🚀3"
+      - "🚀4"
+      - "🚀5"
+      - "🚀6"
+      - "🚀7" 
   - name: 🚀
     type: select
- #   udp: true
+    udp: true
     use:
       - "VPN1"
       - "VPN2"
       - "VPN3"
       - "VPN4"
       - "VPN5"
-    proxies:
-      - 🔯
-      - ♻️
+    proxies:   
+      - "♻️"
+      - "🔯"
+      - "🚀1"
+      - "🚀2"
+      - "🚀3"
+      - "🚀4"
+      - "🚀5"
+      - "🚀6"
+      - "🚀7"       
       - DIRECT
       - DFS_283
       - Tomaj_161
@@ -1151,7 +1167,7 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 80
     tolerance: 5
- #   udp: true
+    udp: true
     use:
 #      - "VPN6"
       - "VPN1"
@@ -1726,7 +1742,7 @@ proxy-groups:
     type: fallback
     url: https://www.gstatic.com/generate_204
     interval: 60
- #   udp: true
+    udp: true
     use:
    #   - "VPN6"
       - "VPN1"
@@ -2299,6 +2315,7 @@ proxy-groups:
       - S_1063
   - name: 🐟
     type: select
+    udp: true
     use:
  #     - "VPN6"
       - "VPN1"
@@ -2872,12 +2889,85 @@ proxy-groups:
       - S_1055
       - S_1062
       - S_1063
-      
+  - name: 🚀1
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 45
+    udp: true
+    use:
+      - "VPN1"  
+
+  - name: 🚀2
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 55
+    udp: true
+    use:
+      - "VPN2" 
+
+  - name: 🚀3
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 58
+    udp: true
+    use:
+      - "VPN3"  
+
+  - name: 🚀4
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 25
+    udp: true
+    use:
+      - "VPN4" 
+
+  - name: 🚀5
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 140
+    tolerance: 30
+    udp: true
+    use:
+      - "VPN5"  
+
+  - name: 🚀6
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 130
+    tolerance: 30
+    udp: true
+    proxies:
+      - "🚀1"
+      - "🚀2"
+      - "🚀3"
+      - "🚀4"
+      - "🚀5"
+
+  - name: 🚀7
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 380
+    tolerance: 50
+    udp: true
+    use:
+      - "VPN1" 
+      - "VPN2"
+      - "VPN3"
+      - "VPN4"
+      - "VPN5"
+
+
+
+                
 proxy-providers:
   VPN1:
     type: http
     url: "http://123.57.192.169:7777/clash/proxies"
-    interval: 300
+    interval: 3300
     path: proxy_provider/VPN1.yaml
     health-check:
       enable: true
@@ -2887,7 +2977,7 @@ proxy-providers:
   VPN2:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
-    interval: 300
+    interval: 3300
     path: proxy_provider/VPN2.yaml
     health-check:
       enable: true
@@ -2896,7 +2986,7 @@ proxy-providers:
   VPN3:
     type: http
     url: "https://proxypool.link/clash/proxies"
-    interval: 300
+    interval: 3300
     path: proxy_provider/VPN3.yaml
     health-check:
       enable: true
@@ -2905,7 +2995,7 @@ proxy-providers:
   VPN4:
     type: http
     url: "https://raw.githubusercontent.com/chfchf0306/clash/main/clash"
-    interval: 300
+    interval: 3300
     path: proxy_provider/VPN4.yaml
     health-check:
       enable: true
@@ -2914,12 +3004,12 @@ proxy-providers:
   VPN5:
     type: http
     url: "http://146.56.97.77:12580/clash/proxies"
-    interval: 300
+    interval: 3300
     path: proxy_provider/VPN5.yaml
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 300    
+      interval: 300
 rules:
 # 本地/局域网地址
 # 参考：https://en.wikipedia.org/wiki/Reserved_IP_addresses
@@ -2932,4 +3022,13 @@ rules:
   - DOMAIN-SUFFIX,apple.com,DIRECT
   - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
   - DOMAIN-SUFFIX,appstore.com,DIRECT
+  - GEOIP,LAN,DIRECT
+  - GEOIP,CN,DIRECT
+  - GEOIP,google,🚀
+ # - GEOIP,whatsapp,🚀
+  - GEOIP,FACEBOOK,🚀
+  - GEOIP,TELEGRAM,🚀
+#  - GEOIP,CLOUDFRONT,DIRECT,no-resolve
+#  - GEOIP,cloudflare,DIRECT,no-resolve
+  - GEOIP,twitter,🚀  
   - MATCH,🐟
