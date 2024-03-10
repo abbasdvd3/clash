@@ -48,45 +48,7 @@ tun:
   auto-route: true
   auto-detect-interface: true
 
-geox-url:
-  geoip: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat"
-  geosite: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat"
-  mmdb: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/geoip.metadb"
-dns:
-  enabled: true
-  listen: 0.0.0.0:1053
-  ipv6: false
-  use-hosts: true
-  remote-dns-resolve: false
-  default-nameserver:
-    - https://223.5.5.5/dns-query
-    - https://8.8.8.8/dns-query
-    - udp://8.8.8.8:853
-    - https://120.53.53.53/dns-query
-    - tcp://1.1.1.1:853
-    - tcp://8.8.8.8:853
-    - tls://1.1.1.1:853
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*.lan'
-  nameserver:
-    - tls://223.5.5.5:853
-    - https://120.53.53.53/dns-query
-    - tls://120.53.53.853
-  remote-nameserver:
-    - https://8.8.8.8/dns-query
-    - tcp://8.8.8.8   
-  nameserver-policy:
-    "geosite:.ir,private": 
-      - https://223.5.5.5/dns-query
-      - https://120.53.53.53/dns-query
-    "geosite:ir":
-      - https://8.8.4.4/dns-query#🎯
-      - https://1.0.0.1/dns-query#🎯
-  proxy-server-nameserver:
-    - https://223.5.5.5/dns-query
-    - https://120.53.53.53/dns-query
+
 proxies:
   - {"name":"DFS_283","type":"trojan","server":"uk-gy.115cloud.link","port":52560,"udp":true,"password":"17547927-ed10-318e-a6f9-97931e36a52a","sni":"uk-gy.115cloud.link","skip-cert-verify":true,"network":"tcp"}
   - {"name":"Tomaj_161","type":"trojan","server":"in01.trojanyyds.xyz","port":443,"udp":true,"password":"07f10d31-d247-440e-a921-23862e1148a9","skip-cert-verify":true,"network":"tcp"}
@@ -653,14 +615,6 @@ proxies:
   - {"name":"S_1062","type":"ss","server":"37.235.55.21","port":989,"password":"f8f7aCzcPKbsF8p3","cipher":"aes-256-cfb"}
   - {"name":"S_1063","type":"ss","server":"37.235.55.42","port":989,"password":"f8f7aCzcPKbsF8p3","cipher":"aes-256-cfb"}
 proxy-groups:
-  - name: 🚀🚀
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 60
-    tolerance: 1
-    proxies:
-      - 🔯
-      - ♻
   - name: 🚀
     type: select
     proxies:
