@@ -1787,6 +1787,8 @@ proxies:
 proxy-groups:
   - name: 🚀
     type: select
+    use:
+      - provide
     proxies:
       - ♻️
       - 🔯
@@ -3477,8 +3479,10 @@ proxy-groups:
   - name: ♻️
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    interval: 500
+    tolerance: 100
+    use:
+      - provide
     proxies:
       - 🇨🇳_R_1915
       - 🇺🇸_R_5281
@@ -5165,7 +5169,9 @@ proxy-groups:
   - name: 🔯
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 180
+    interval: 280
+    use:
+      - provide
     proxies:
       - 🇨🇳_R_1915
       - 🇺🇸_R_5281
@@ -6853,6 +6859,8 @@ proxy-groups:
     type: load-balance
     url: http://www.gstatic.com/generate_204
     interval: 180
+    use:
+      - provide
     proxies:
       - 🇨🇳_R_1915
       - 🇺🇸_R_5281
@@ -8549,6 +8557,8 @@ proxy-groups:
       - DIRECT
   - name: 🐟
     type: select
+    use:
+      - provide
     proxies:
       - 🚀
       - 🎯
@@ -10238,7 +10248,16 @@ proxy-groups:
       - 🇹🇷_R_6108
       - 🇰🇿_R_6208
 
-
+proxy-providers:
+  "provide":
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml"
+    interval: 3600
+    path: provide/subscription.yaml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
 rules:
 
 
