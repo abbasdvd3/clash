@@ -100,20 +100,7 @@ dns:
     - https://8.8.8.8/dns-query
     - tls://8.8.8.8:853
   fallback:
-    - tcp://8.8.8.8:53#DNS-Proxy # if set `remote-dns-resolve` to false, then enable it.
-  fake-ip-filter:
-    - '*.lan'
-    - '+.example.com'
-    geoip: true                      
-    geoip-code: ir                   
-    geosite:                         
-      - gfw
-    ipcidr:                          
-      - 240.0.0.0/4
-    domain:                          
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'  
+    - tcp://8.8.8.8:53#DNS-Proxy 
   nameserver-policy:
     '+.example.com': 192.168.1.1  
     "geosite:.ir,private": 
@@ -496,7 +483,7 @@ rules :
   - RULE-SET,BanEasyListChina,REJECT
   - RULE-SET,BanEasyPrivacy,REJECT
   - RULE-SET,YouTube,🦁🦁
-  - RULE-SET,ChinaMedia,🦁🦁
+#  - RULE-SET,ChinaMedia,🦁🦁
   - RULE-SET,ProxyMedia,🦁🦁
   - RULE-SET,adguard,REJECT
   - geoip,ir,DIRECT
