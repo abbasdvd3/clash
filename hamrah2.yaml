@@ -1,7 +1,7 @@
 
 port: 7890        
 socks-port: 7891
-# redir-port: 7892
+# redir-port: 9797
 allow-lan: true
 mode: rule
 bind-address: "*"
@@ -12,6 +12,9 @@ find-process-mode: always
 enable-process: true
 unified-delay: true
 external-controller: 0.0.0.0:9090
+external-ui: /data/adb/box/clash/dashboard
+geodata-mode: true
+# geodata-loader: memconservative
 geox-url:
   geoip: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat"
   geosite: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat"
@@ -25,7 +28,7 @@ profile:
   store-fake-ip: true
 
 sniffer:
-  enable: true
+  enable: false
   sniff:
     http: { ports: [1-442, 444-8442, 8444-65535], override-destination: true }
     tls: { ports: [1-79, 81-8079, 8081-65535], override-destination: true }
@@ -52,7 +55,7 @@ tun:
      - "any:53"
      - "tcp://any:53"
   auto-redir: true
-  auto-route: true
+  auto-route: false
   auto-detect-interface: true
 hosts:
   'localhost': '127.0.0.1'  
@@ -157,10 +160,10 @@ proxy-groups:
       - BFXX_17  
     use:
       - provide1
-      - provide2
+  #    - provide2
       - provide3
-      - provide4
-      - provide5
+   #   - provide4
+ #     - provide5
   - name: 🚀
     type: url-test
     url: http://www.gstatic.com/generate_204
@@ -189,10 +192,10 @@ proxy-groups:
       - BFXX_17      
     use:
       - provide1
-      - provide2
+  #    - provide2
       - provide3
-      - provide4
-      - provide5
+ #     - provide4
+#      - provide5
   - name: ♻️
     type: url-test
     url: https://www.google.com/generate_204
@@ -218,10 +221,10 @@ proxy-groups:
       - BFXX_17    
     use:
       - provide1
-      - provide2
+ #     - provide2
       - provide3
-      - provide4
-      - provide5
+  #    - provide4
+#      - provide5
   - name: 🔯
     type: fallback
     url: https://www.google.com/generate_204
@@ -246,10 +249,10 @@ proxy-groups:
       - BFXX_17    
     use:
       - provide1
-      - provide2
+   #   - provide2
       - provide3
-      - provide4
-      - provide5
+   #   - provide4
+  #    - provide5
   - name: 🎯
     type: select
     proxies:
@@ -282,7 +285,8 @@ proxy-groups:
       - BFXX_16
       - BFXX_17    
     use:
-      - provide5      
+      - provide1
+      - provide3
   - name: 🛑
     type: select
     proxies:
@@ -315,10 +319,10 @@ proxy-groups:
       - BFXX_17      
     use:
       - provide1
-      - provide2
+ #     - provide2
       - provide3
-      - provide4
-      - provide5
+  #    - provide4
+  #    - provide5
 proxy-providers:
   provide1:
     type: http
@@ -508,4 +512,4 @@ rules :
   - geosite,category-ads-all,REJECT
   - geosite,ir,DIRECT
   - geosite,ads,🎯
-  - MATCH,🦁
+  - MATCH,🦁🦁
