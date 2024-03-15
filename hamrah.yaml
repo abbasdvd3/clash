@@ -7,10 +7,10 @@ ipv6: false
 log-level: info
 find-process-mode: always
 enable-process: true
-unified-delay: true
+unified-delay: false
 keep-alive-interval: 15
 tcp-concurrent: true
-geodata-mode: true
+geodata-mode: false
 
 external-controller: 0.0.0.0:9090
 external-ui: ui
@@ -99,20 +99,6 @@ proxy-groups:
   - name: 🚀
     type: select
     proxies:
-      - 🚀🚀
-      - ♻️
-      - 🔯
-      - 🔮
-      - 🇭🇰
-      - 🇨🇳
-      - 🇸🇬
-      - 🇯🇵
-      - 🇺🇲
-      - 🇰🇷
-      - DIRECT
-  - name: 🚀🚀
-    type: select
-    proxies:
       - ♻️
       - 🔯
       - 🔮
@@ -162,7 +148,7 @@ proxy-groups:
       - 🇯🇵
       - 🇺🇲
       - 🇰🇷
-      - 🚀🚀
+      
       - DIRECT
   - name: 💬 OpenAi
     type: select
@@ -175,7 +161,7 @@ proxy-groups:
       - 🇯🇵
       - 🇺🇲
       - 🇰🇷
-      - 🚀🚀
+      
       - DIRECT
   - name: 📹
     type: select
@@ -188,7 +174,7 @@ proxy-groups:
       - 🇯🇵
       - 🇺🇲
       - 🇰🇷
-      - 🚀🚀
+      
       - DIRECT
   - name: 🎥
     type: select
@@ -202,14 +188,14 @@ proxy-groups:
       - 🇯🇵
       - 🇺🇲
       - 🇰🇷
-      - 🚀🚀
+   
       - DIRECT
   - name: 📺
     type: select
     proxies:
       - 🇨🇳
       - 🚀
-      - 🚀🚀
+   
       - DIRECT
   - name: 📺📺
     type: select
@@ -228,12 +214,11 @@ proxy-groups:
       - 🇯🇵
       - 🇺🇲
       - 🇰🇷
-      - 🚀🚀
+ 
       - DIRECT
   - name: 🌏🌏
     type: select
     proxies:
-      - DIRECT
       - 🇭🇰
       - 🇨🇳
       - 🇸🇬
@@ -242,7 +227,6 @@ proxy-groups:
   - name: 📢 FCM
     type: select
     proxies:
-      - DIRECT
       - 🚀
       - 🇺🇲
       - 🇭🇰
@@ -250,11 +234,10 @@ proxy-groups:
       - 🇸🇬
       - 🇯🇵
       - 🇰🇷
-      - 🚀🚀
+  
   - name: Ⓜ️ 微软Bing
     type: select
     proxies:
-      - DIRECT
       - 🚀
       - 🇺🇲
       - 🇭🇰
@@ -262,11 +245,10 @@ proxy-groups:
       - 🇸🇬
       - 🇯🇵
       - 🇰🇷
-      - 🚀🚀
+  
   - name: Ⓜ️
     type: select
     proxies:
-      - DIRECT
       - 🚀
       - 🇺🇲
       - 🇭🇰
@@ -274,11 +256,10 @@ proxy-groups:
       - 🇸🇬
       - 🇯🇵
       - 🇰🇷
-      - 🚀🚀
+ 
   - name: Ⓜ️Ⓜ️
     type: select
     proxies:
-      - DIRECT
       - 🚀
       - 🇺🇲
       - 🇭🇰
@@ -286,11 +267,10 @@ proxy-groups:
       - 🇸🇬
       - 🇯🇵
       - 🇰🇷
-      - 🚀🚀
+
   - name: 🍎
     type: select
     proxies:
-      - DIRECT
       - 🚀
       - 🇺🇲
       - 🇭🇰
@@ -298,11 +278,10 @@ proxy-groups:
       - 🇸🇬
       - 🇯🇵
       - 🇰🇷
-      - 🚀🚀
+ 
   - name: 🎮
     type: select
     proxies:
-      - DIRECT
       - 🚀
       - 🇺🇲
       - 🇭🇰
@@ -310,11 +289,9 @@ proxy-groups:
       - 🇸🇬
       - 🇯🇵
       - 🇰🇷
-      - 🚀🚀
   - name: 🎶
     type: select
     proxies:
-      - DIRECT
       - 🚀
       - ♻️
   - name: 🎯
@@ -340,7 +317,6 @@ proxy-groups:
       - 🇯🇵
       - 🇺🇲
       - 🇰🇷
-      - 🚀🚀
   - name: 🇭🇰
     type: url-test
     url: http://www.gstatic.com/generate_204
@@ -622,56 +598,56 @@ proxy-providers:
 
 rules :
   - RULE-SET,private,DIRECT,no-resolve
-  - RULE-SET,apps,DIRECT
+#  - RULE-SET,apps,DIRECT
   - RULE-SET,IpinfoSpeedtest,DIRECT
-  - RULE-SET,ads,🛑
-  - RULE-SET,malware,🛑
-  - RULE-SET,phishing,🛑
-  - RULE-SET,cryptominers,🛑
+#  - RULE-SET,ads,🛑
+#  - RULE-SET,malware,🛑
+#  - RULE-SET,phishing,🛑
+#  - RULE-SET,cryptominers,🛑
 #  - RULE-SET,ir,DIRECT
 #  - RULE-SET,ircidr,DIRECT
 #  - RULE-SET,arvancloud,DIRECT
 #  - RULE-SET,derakcloud,DIRECT
 #  - RULE-SET,iranserver,DIRECT
 ##  - RULE-SET,parspack,DIRECT
-  - RULE-SET,BanAD,🛑
-  - RULE-SET,BanProgramAD,🛑
-  - RULE-SET,GoogleCN,🚀🚀
-  - RULE-SET,SteamCN,🚀🚀
-  - DOMAIN-SUFFIX,v2rayse.com,🚀🚀
-  - DOMAIN-SUFFIX,github.com,🚀🚀
-  - DOMAIN-SUFFIX,raw.githubusercontent.com,🚀🚀
-  - DOMAIN-SUFFIX,cff.pw,🚀🚀
-  - DOMAIN-SUFFIX,vpnse.org,🚀🚀
-  - DOMAIN-SUFFIX,cfmem.com,🚀🚀
-  - RULE-SET,Telegram,🚀🚀
-  - RULE-SET,ProxyMedia,🚀🚀
-  - RULE-SET,ProxyLite,🚀🚀
-  - RULE-SET,ChinaDomain,DIRECT
-  - RULE-SET,ChinaCompanyIp,DIRECT
+#  - RULE-SET,BanAD,🛑
+#  - RULE-SET,BanProgramAD,🛑
+#  - RULE-SET,GoogleCN,🚀🚀
+#  - RULE-SET,SteamCN,🚀🚀
+  - DOMAIN-SUFFIX,v2rayse.com,🚀
+  - DOMAIN-SUFFIX,github.com,🚀
+  - DOMAIN-SUFFIX,raw.githubusercontent.com,🚀
+  - DOMAIN-SUFFIX,cff.pw,🚀
+  - DOMAIN-SUFFIX,vpnse.org,🚀
+  - DOMAIN-SUFFIX,cfmem.com,🚀
+#  - RULE-SET,Telegram,🚀🚀
+#  - RULE-SET,ProxyMedia,🚀🚀
+#  - RULE-SET,ProxyLite,🚀🚀
+#  - RULE-SET,ChinaDomain,DIRECT
+#  - RULE-SET,ChinaCompanyIp,DIRECT
   - GEOIP,CN,DIRECT
-  - GEOIP,google,🚀🚀
-  - GEOIP,telegram,🚀🚀
+  - GEOIP,google,🚀
+  - GEOIP,telegram,🚀
   - GEOIP,ir,DIRECT
-  - RULE-SET,LocalAreaNetwork,🎯
-  - RULE-SET,BanAD,🛑
-  - RULE-SET,BanProgramAD,🛑
-  - RULE-SET,BanEasyList,🛑
-  - RULE-SET,BanEasyListChina,🛑
-  - RULE-SET,BanEasyPrivacy,🛑
-  - RULE-SET,GoogleCN,🚀🚀
-  - RULE-SET,SteamCN,🎯
-  - RULE-SET,Microsoft,Ⓜ️
-  - RULE-SET,Apple,🍎
-  - RULE-SET,Telegram,🚀🚀
-  - RULE-SET,ProxyMedia,🌏
+#  - RULE-SET,LocalAreaNetwork,🎯
+#  - RULE-SET,BanAD,🛑
+#  - RULE-SET,BanProgramAD,🛑
+#  - RULE-SET,BanEasyList,🛑
+#  - RULE-SET,BanEasyListChina,🛑
+#  - RULE-SET,BanEasyPrivacy,🛑
+#  - RULE-SET,GoogleCN,🚀🚀
+#  - RULE-SET,SteamCN,🎯
+#  - RULE-SET,Microsoft,Ⓜ️
+#  - RULE-SET,Apple,🍎
+#  - RULE-SET,Telegram,🚀
+#  - RULE-SET,ProxyMedia,🌏
 # 长风网站，自动注入
-  - DOMAIN-SUFFIX,v2rayse.com,🚀🚀
-  - DOMAIN-SUFFIX,cff.pw,🚀🚀
-  - DOMAIN-SUFFIX,vpnse.org,🚀🚀
-  - DOMAIN-SUFFIX,cfmem.com,🚀🚀
-  - RULE-SET,ProxyGFWlist,🚀🚀
-  - RULE-SET,ChinaDomain,🎯
-  - RULE-SET,ChinaCompanyIp,🎯
+#  - DOMAIN-SUFFIX,v2rayse.com,🚀
+#  - DOMAIN-SUFFIX,cff.pw,🚀🚀
+#  - DOMAIN-SUFFIX,vpnse.org,🚀🚀
+#  - DOMAIN-SUFFIX,cfmem.com,🚀🚀
+#  - RULE-SET,ProxyGFWlist,🚀🚀
+#  - RULE-SET,ChinaDomain,🎯
+#  - RULE-SET,ChinaCompanyIp,🎯
   - GEOIP,CN,🎯
   - MATCH,🐟
