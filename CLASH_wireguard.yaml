@@ -1,0 +1,337 @@
+
+# port: 7890
+# socks-port: 7891
+allow-lan: true
+mode: Rule
+bind-address: "*"
+ipv6: false
+log-level: info
+find-process-mode: always
+enable-process: true
+unified-delay: true
+keep-alive-interval: 15
+tcp-concurrent: true
+geodata-mode: false
+
+external-controller: 0.0.0.0:9090
+external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+global-client-fingerprint: chrome
+geo-auto-update: true
+geo-update-interval: 24
+global-ua: clash.meta
+profile:
+  store-selected: true
+  store-fake-ip: true
+experimental:
+  quic-go-disable-gso: false
+  quic-go-disable-ecn: false
+sniffer:
+  enable: false
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack:
+    - 'any:53'
+  auto-route: true
+  auto-detect-interface: true
+dns:
+  enable: true
+  use-hosts: true
+  ipv6: false
+  remote-dns-resolve: false# default value is true
+  enhanced-mode: fake-ip # redir-host # fake-ip
+  fake-ip-range: 28.0.0.0/16
+  listen: 0.0.0.0:1053
+  default-nameserver:
+    - 114.114.114.114
+    - 119.29.29.29
+    - 119.28.28.28
+    - 8.8.8.8
+    - tls://1.12.12.12:853
+    - tls://223.5.5.5:853
+  proxy-server-nameserver:
+    - https://1.12.12.12/dns-query
+    - https://223.5.5.5/dns-query
+  nameserver:
+    - https://120.53.53.53/dns-query
+    - tls://223.6.6.6:853
+    - 8.8.8.8
+    - tls://223.5.5.5:853
+    - tls://223.6.6.6:853
+    - tls://120.53.53.53
+    - tls://1.12.12.12
+    - 114.114.114.114#PROXY 
+    - tls://223.5.5.5:853
+    - dhcp://en0
+    - quic://dns.adguard.com:784#PROXY
+    - tls://dot.pub:853
+  remote-nameserver:
+    - https://8.8.8.8/dns-query
+    - tls://8.8.8.8:853
+  fallback:
+    - tcp://8.8.8.8:53#DNS-Proxy # if set `remote-dns-resolve` to false, then enable it.
+  fake-ip-filter:
+    - '*.lan'
+    - '+.example.com'
+  nameserver-policy:
+    '+.example.com': 192.168.1.254  
+    "geosite:.ir,private": 
+      - https://223.5.5.5/dns-query
+      - https://120.53.53.53/dns-query
+    "geosite:ir":
+      - https://8.8.4.4/dns-query#机场
+      - https://1.0.0.1/dns-query#机场
+ # proxy-server-nameserver:
+#    - https://223.5.5.5/dns-query
+ #   - https://120.53.53.53/dns-query
+proxies:
+  - {"name":"AbbasDvd_🇺🇸_1","type":"wireguard","server":"162.159.195.101","port":880,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇺🇸_2","type":"wireguard","server":"162.159.192.106","port":3581,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_3","type":"wireguard","server":"188.114.99.209","port":946,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇺🇸_4","type":"wireguard","server":"162.159.195.73","port":5279,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_5","type":"wireguard","server":"188.114.98.99","port":3854,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_6","type":"wireguard","server":"188.114.98.88","port":8742,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇺🇸_7","type":"wireguard","server":"162.159.195.32","port":988,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_8","type":"wireguard","server":"188.114.97.106","port":946,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇺🇸_9","type":"wireguard","server":"162.159.192.241","port":1010,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_10","type":"wireguard","server":"188.114.96.118","port":500,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_11","type":"wireguard","server":"188.114.96.63","port":3138,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_12","type":"wireguard","server":"188.114.99.174","port":5956,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_13","type":"wireguard","server":"188.114.98.20","port":7103,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_14","type":"wireguard","server":"188.114.98.114","port":943,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_15","type":"wireguard","server":"188.114.99.210","port":988,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_16","type":"wireguard","server":"188.114.97.2","port":2506,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇺🇸_17","type":"wireguard","server":"162.159.195.197","port":1074,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_18","type":"wireguard","server":"188.114.99.80","port":3581,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_19","type":"wireguard","server":"188.114.99.100","port":987,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_20","type":"wireguard","server":"188.114.99.122","port":955,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇺🇸_21","type":"wireguard","server":"162.159.192.126","port":939,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇺🇸_22","type":"wireguard","server":"162.159.195.252","port":3581,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇺🇸_23","type":"wireguard","server":"162.159.192.9","port":3138,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_24","type":"wireguard","server":"188.114.98.39","port":934,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_25","type":"wireguard","server":"188.114.97.72","port":1014,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_26","type":"wireguard","server":"188.114.99.225","port":5279,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇺🇸_27","type":"wireguard","server":"162.159.192.246","port":4177,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_28","type":"wireguard","server":"188.114.99.0","port":7559,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇺🇸_29","type":"wireguard","server":"162.159.192.19","port":1180,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_30","type":"wireguard","server":"188.114.97.167","port":500,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇺🇸_31","type":"wireguard","server":"162.159.192.232","port":1387,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_32","type":"wireguard","server":"188.114.96.204","port":943,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_33","type":"wireguard","server":"188.114.97.59","port":945,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_34","type":"wireguard","server":"188.114.96.43","port":854,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_35","type":"wireguard","server":"188.114.99.106","port":854,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_36","type":"wireguard","server":"188.114.99.7","port":891,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_37","type":"wireguard","server":"188.114.99.97","port":1070,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇳🇱_38","type":"wireguard","server":"188.114.98.39","port":1014,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇺🇸_39","type":"wireguard","server":"162.159.195.215","port":8742,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+  - {"name":"AbbasDvd_🇺🇸_40","type":"wireguard","server":"162.159.192.123","port":854,"udp":false,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"],"remote-dns-resolve":false}
+proxy-groups:
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - 🔯 故障转移
+      - DIRECT
+      - AbbasDvd_🇺🇸_1
+      - AbbasDvd_🇺🇸_2
+      - AbbasDvd_🇳🇱_3
+      - AbbasDvd_🇺🇸_4
+      - AbbasDvd_🇳🇱_5
+      - AbbasDvd_🇳🇱_6
+      - AbbasDvd_🇺🇸_7
+      - AbbasDvd_🇳🇱_8
+      - AbbasDvd_🇺🇸_9
+      - AbbasDvd_🇳🇱_10
+      - AbbasDvd_🇳🇱_11
+      - AbbasDvd_🇳🇱_12
+      - AbbasDvd_🇳🇱_13
+      - AbbasDvd_🇳🇱_14
+      - AbbasDvd_🇳🇱_15
+      - AbbasDvd_🇳🇱_16
+      - AbbasDvd_🇺🇸_17
+      - AbbasDvd_🇳🇱_18
+      - AbbasDvd_🇳🇱_19
+      - AbbasDvd_🇳🇱_20
+      - AbbasDvd_🇺🇸_21
+      - AbbasDvd_🇺🇸_22
+      - AbbasDvd_🇺🇸_23
+      - AbbasDvd_🇳🇱_24
+      - AbbasDvd_🇳🇱_25
+      - AbbasDvd_🇳🇱_26
+      - AbbasDvd_🇺🇸_27
+      - AbbasDvd_🇳🇱_28
+      - AbbasDvd_🇺🇸_29
+      - AbbasDvd_🇳🇱_30
+      - AbbasDvd_🇺🇸_31
+      - AbbasDvd_🇳🇱_32
+      - AbbasDvd_🇳🇱_33
+      - AbbasDvd_🇳🇱_34
+      - AbbasDvd_🇳🇱_35
+      - AbbasDvd_🇳🇱_36
+      - AbbasDvd_🇳🇱_37
+      - AbbasDvd_🇳🇱_38
+      - AbbasDvd_🇺🇸_39
+      - AbbasDvd_🇺🇸_40
+  - name: ♻️ 自动选择
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+   # tolerance: 5
+    proxies:
+      - AbbasDvd_🇺🇸_1
+      - AbbasDvd_🇺🇸_2
+      - AbbasDvd_🇳🇱_3
+      - AbbasDvd_🇺🇸_4
+      - AbbasDvd_🇳🇱_5
+      - AbbasDvd_🇳🇱_6
+      - AbbasDvd_🇺🇸_7
+      - AbbasDvd_🇳🇱_8
+      - AbbasDvd_🇺🇸_9
+      - AbbasDvd_🇳🇱_10
+      - AbbasDvd_🇳🇱_11
+      - AbbasDvd_🇳🇱_12
+      - AbbasDvd_🇳🇱_13
+      - AbbasDvd_🇳🇱_14
+      - AbbasDvd_🇳🇱_15
+      - AbbasDvd_🇳🇱_16
+      - AbbasDvd_🇺🇸_17
+      - AbbasDvd_🇳🇱_18
+      - AbbasDvd_🇳🇱_19
+      - AbbasDvd_🇳🇱_20
+      - AbbasDvd_🇺🇸_21
+      - AbbasDvd_🇺🇸_22
+      - AbbasDvd_🇺🇸_23
+      - AbbasDvd_🇳🇱_24
+      - AbbasDvd_🇳🇱_25
+      - AbbasDvd_🇳🇱_26
+      - AbbasDvd_🇺🇸_27
+      - AbbasDvd_🇳🇱_28
+      - AbbasDvd_🇺🇸_29
+      - AbbasDvd_🇳🇱_30
+      - AbbasDvd_🇺🇸_31
+      - AbbasDvd_🇳🇱_32
+      - AbbasDvd_🇳🇱_33
+      - AbbasDvd_🇳🇱_34
+      - AbbasDvd_🇳🇱_35
+      - AbbasDvd_🇳🇱_36
+      - AbbasDvd_🇳🇱_37
+      - AbbasDvd_🇳🇱_38
+      - AbbasDvd_🇺🇸_39
+      - AbbasDvd_🇺🇸_40
+  - name: 🔯 故障转移
+    type: fallback
+    url: http://www.gstatic.com/generate_204
+    interval: 800
+    proxies:
+      - AbbasDvd_🇺🇸_1
+      - AbbasDvd_🇺🇸_2
+      - AbbasDvd_🇳🇱_3
+      - AbbasDvd_🇺🇸_4
+      - AbbasDvd_🇳🇱_5
+      - AbbasDvd_🇳🇱_6
+      - AbbasDvd_🇺🇸_7
+      - AbbasDvd_🇳🇱_8
+      - AbbasDvd_🇺🇸_9
+      - AbbasDvd_🇳🇱_10
+      - AbbasDvd_🇳🇱_11
+      - AbbasDvd_🇳🇱_12
+      - AbbasDvd_🇳🇱_13
+      - AbbasDvd_🇳🇱_14
+      - AbbasDvd_🇳🇱_15
+      - AbbasDvd_🇳🇱_16
+      - AbbasDvd_🇺🇸_17
+      - AbbasDvd_🇳🇱_18
+      - AbbasDvd_🇳🇱_19
+      - AbbasDvd_🇳🇱_20
+      - AbbasDvd_🇺🇸_21
+      - AbbasDvd_🇺🇸_22
+      - AbbasDvd_🇺🇸_23
+      - AbbasDvd_🇳🇱_24
+      - AbbasDvd_🇳🇱_25
+      - AbbasDvd_🇳🇱_26
+      - AbbasDvd_🇺🇸_27
+      - AbbasDvd_🇳🇱_28
+      - AbbasDvd_🇺🇸_29
+      - AbbasDvd_🇳🇱_30
+      - AbbasDvd_🇺🇸_31
+      - AbbasDvd_🇳🇱_32
+      - AbbasDvd_🇳🇱_33
+      - AbbasDvd_🇳🇱_34
+      - AbbasDvd_🇳🇱_35
+      - AbbasDvd_🇳🇱_36
+      - AbbasDvd_🇳🇱_37
+      - AbbasDvd_🇳🇱_38
+      - AbbasDvd_🇺🇸_39
+      - AbbasDvd_🇺🇸_40
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+      - ♻️ 自动选择
+  - name: 🛑 全球拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - ♻️ 自动选择
+      - 🔯 故障转移
+      - AbbasDvd_🇺🇸_1
+      - AbbasDvd_🇺🇸_2
+      - AbbasDvd_🇳🇱_3
+      - AbbasDvd_🇺🇸_4
+      - AbbasDvd_🇳🇱_5
+      - AbbasDvd_🇳🇱_6
+      - AbbasDvd_🇺🇸_7
+      - AbbasDvd_🇳🇱_8
+      - AbbasDvd_🇺🇸_9
+      - AbbasDvd_🇳🇱_10
+      - AbbasDvd_🇳🇱_11
+      - AbbasDvd_🇳🇱_12
+      - AbbasDvd_🇳🇱_13
+      - AbbasDvd_🇳🇱_14
+      - AbbasDvd_🇳🇱_15
+      - AbbasDvd_🇳🇱_16
+      - AbbasDvd_🇺🇸_17
+      - AbbasDvd_🇳🇱_18
+      - AbbasDvd_🇳🇱_19
+      - AbbasDvd_🇳🇱_20
+      - AbbasDvd_🇺🇸_21
+      - AbbasDvd_🇺🇸_22
+      - AbbasDvd_🇺🇸_23
+      - AbbasDvd_🇳🇱_24
+      - AbbasDvd_🇳🇱_25
+      - AbbasDvd_🇳🇱_26
+      - AbbasDvd_🇺🇸_27
+      - AbbasDvd_🇳🇱_28
+      - AbbasDvd_🇺🇸_29
+      - AbbasDvd_🇳🇱_30
+      - AbbasDvd_🇺🇸_31
+      - AbbasDvd_🇳🇱_32
+      - AbbasDvd_🇳🇱_33
+      - AbbasDvd_🇳🇱_34
+      - AbbasDvd_🇳🇱_35
+      - AbbasDvd_🇳🇱_36
+      - AbbasDvd_🇳🇱_37
+      - AbbasDvd_🇳🇱_38
+      - AbbasDvd_🇺🇸_39
+      - AbbasDvd_🇺🇸_40
+
+rules:
+  - MATCH,🐟 漏网之鱼
