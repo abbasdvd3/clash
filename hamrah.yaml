@@ -55,44 +55,46 @@ dns:
   fake-ip-range: 28.0.0.0/16
   listen: 0.0.0.0:1053
   default-nameserver:
-    - 114.114.114.114
-    - 119.29.29.29
-    - 119.28.28.28
+#    - 114.114.114.114
+  #  - 119.29.29.29
+ #   - 119.28.28.28
     - 8.8.8.8
-    - tls://1.12.12.12:853
-    - tls://223.5.5.5:853
-  proxy-server-nameserver:
-    - https://1.12.12.12/dns-query
-    - https://223.5.5.5/dns-query
+    - 1.1.1.1
+#    - tls://1.12.12.12:853
+#    - tls://223.5.5.5:853
+ # proxy-server-nameserver:
+#    - https://1.12.12.12/dns-query
+#    - https://223.5.5.5/dns-query
   nameserver:
-    - https://120.53.53.53/dns-query
-    - tls://223.6.6.6:853
+    - 1.1.1.1
+#    - https://120.53.53.53/dns-query
+#    - tls://223.6.6.6:853
     - 8.8.8.8
-    - tls://223.5.5.5:853
-    - tls://223.6.6.6:853
-    - tls://120.53.53.53
-    - tls://1.12.12.12
-    - 114.114.114.114#PROXY 
-    - tls://223.5.5.5:853
-    - dhcp://en0
-    - quic://dns.adguard.com:784#PROXY
-    - tls://dot.pub:853
+ #   - tls://223.5.5.5:853
+#    - tls://223.6.6.6:853
+#    - tls://120.53.53.53
+ #   - tls://1.12.12.12
+#    - 114.114.114.114#PROXY 
+ #   - tls://223.5.5.5:853
+ #   - dhcp://en0
+#    - quic://dns.adguard.com:784#PROXY
+ #   - tls://dot.pub:853
   remote-nameserver:
     - https://8.8.8.8/dns-query
-    - tls://8.8.8.8:853
-  fallback:
-    - tcp://8.8.8.8:53#DNS-Proxy # if set `remote-dns-resolve` to false, then enable it.
+#    - tls://8.8.8.8:853
+#  fallback:
+ #   - tcp://8.8.8.8:53#DNS-Proxy # if set `remote-dns-resolve` to false, then enable it.
   fake-ip-filter:
     - '*.lan'
     - '+.example.com'
-  nameserver-policy:
-    '+.example.com': 192.168.1.254  
-    "geosite:.ir,private": 
-      - https://223.5.5.5/dns-query
-      - https://120.53.53.53/dns-query
-    "geosite:ir":
-      - https://8.8.4.4/dns-query#机场
-      - https://1.0.0.1/dns-query#机场
+#  nameserver-policy:
+#    '+.example.com': 192.168.1.254  
+#    "geosite:.ir,private": 
+#      - https://223.5.5.5/dns-query
+#      - https://120.53.53.53/dns-query
+#    "geosite:ir":
+#      - https://8.8.4.4/dns-query#机场
+#      - https://1.0.0.1/dns-query#机场
  # proxy-server-nameserver:
 #    - https://223.5.5.5/dns-query
  #   - https://120.53.53.53/dns-query
