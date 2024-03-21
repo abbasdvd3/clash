@@ -6545,6 +6545,49 @@ proxy-groups:
       - 🇺🇸_HAMRAH_1282
 
 
+rule-providers:
+  AWAvenue Ads Rule:
+    type: http
+    behavior: domain
+    format: yaml
+    path: ./rule_providers/AWAvenue-Ads-Rule-Clash.yaml
+    # Adjust this path as needed
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/AWAvenue-Ads-Rule-Clash.yaml"
+    interval: 60480
 rules:
+  - RULE-SET,AWAvenue Ads Rule,REJECT
+  # The "REJECT" group here is just an example. Configure specific groups based on your needs.
+  ## block ads
+  - DOMAIN-SUFFIX,googlesyndication.com,🚀 节点选择
+  - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
+  - GEOSITE,category-ads-all,REJECT
+  # - RULE-SET,block,REJECT
+  # - SCRIPT,quic,REJECT
+  # - SCRIPT,youshit,REJECT
 
+  ## direct FCM
+  # - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),DIRECT
+  # - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),DIRECT
+ 
+  ## block udp/quic YouTube
+  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
+  - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
+
+  # # fix dnsleak
+  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
+  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
+  - IP-CIDR6,::1/128,REJECT,no-resolve
+  
+  ## rules telegram
+  - GEOIP,telegram,🚀 节点选择
+  # - GEOSITE,telegram,PROXY
+
+  ## direct ntp
+  # - AND,((NETWORK,UDP),(DST-PORT,123)),DIRECT
+  # - DST-PORT,123/136/137-139,DIRECT,udp
+
+  ## rules inner, recommended untuk non kuota reguler
+  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
+  - IN-TYPE,inner,🚀 节点选择
   - MATCH,🐟 漏网之鱼
