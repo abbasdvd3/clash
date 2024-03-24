@@ -28,7 +28,7 @@ profile:
   store-fake-ip: true
 
 sniffer:
-  enable: false
+  enable: true
   sniff:
     http: { ports: [1-442, 444-8442, 8444-65535], override-destination: true }
     tls: { ports: [1-79, 81-8079, 8081-65535], override-destination: true }
@@ -55,13 +55,13 @@ tun:
      - "any:53"
      - "tcp://any:53"
   auto-redir: true
-  auto-route: false
+  auto-route: true
   auto-detect-interface: true
 hosts:
   'localhost': '127.0.0.1'  
 dns:
   enable: true
-  use-hosts: false
+  use-hosts: true
   ipv6: false
   remote-dns-resolve: false # default value is true
   enhanced-mode: fake-ip # redir-host # fake-ip
@@ -167,7 +167,7 @@ proxy-groups:
   - name: 🚀
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 700
+    interval: 500
     tolerance: 77   # select
     proxies:
       - ♻️
@@ -199,8 +199,8 @@ proxy-groups:
   - name: ♻️
     type: url-test
     url: https://www.google.com/generate_204
-    interval: 1200
-    tolerance: 80
+    interval: 500
+    tolerance: 100
     proxies:
       - BFXX_1
       - BFXX_2
@@ -264,7 +264,7 @@ proxy-groups:
   - name: 🚀🚀
     type: url-test
     url: https://www.google.com/generate_204
-    interval: 900
+    interval: 200
     tolerance: 6
     proxies:
       - BFXX_1
@@ -499,9 +499,9 @@ rules :
   - geoip,google,🦁🦁
 #  - geoip,microsoft,🦁🦁
 #  - geoip,bing,🦁🦁
-  - geoip,github,🦁🦁,no-resolve
-  - geoip,facebook,🦁🦁
-  - geoip,twitter,🦁🦁
+#  - geoip,github,🦁🦁,no-resolve
+#  - geoip,facebook,🦁🦁
+#  - geoip,twitter,🦁🦁
   - geoip,telegram,🦁🦁
   - geoip,openai,🦁🦁
   - geoip,phishing,🛑
