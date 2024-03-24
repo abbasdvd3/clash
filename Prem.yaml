@@ -22,8 +22,8 @@ proxy-groups:
   - name: ♻️
     type: url-test
     url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    interval: 200
+#    tolerance: 50
     disable-udp: true
     use:
       - provider1
@@ -32,8 +32,8 @@ proxy-groups:
   - name: 🚧
     type: fallback
     url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    interval: 180
+ #   tolerance: 50
     disable-udp: true
     use:
       - provider1
@@ -48,8 +48,8 @@ proxy-groups:
   - name: ⚖️
     type: load-balance
     url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    interval: 180
+#    tolerance: 50
     disable-udp: true
     use:
       - provider1
@@ -214,6 +214,8 @@ proxy-groups:
       - DIRECT
       - 🕹
       - ♻️
+    use:
+      - provider1
   - name: 🔓
     type: fallback
     url: https://www.gstatic.com/generate_204
