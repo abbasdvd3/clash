@@ -1,11 +1,3 @@
-####################################
-# 创建者：v2rayse.com
-# 客户端：Clash.Meta
-# 创建时间：19-03-2024 02:16:26
-# 使用模版：V2RaySE 默认模版
-# 节点数量：10
-####################################
-# !!当前配置文件请使用基于 Clash.Meta 内核程序
 mixed-port: 7890
 allow-lan: true
 log-level: info
@@ -21,61 +13,6 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - '*.lan'
-    - '*.linksys.com'
-    - '*.linksyssmartwifi.com'
-    - swscan.apple.com
-    - mesu.apple.com
-    - '*.msftconnecttest.com'
-    - '*.msftncsi.com'
-    - time.*.com
-    - time.*.gov
-    - time.*.edu.cn
-    - time.*.apple.com
-    - time1.*.com
-    - time2.*.com
-    - time3.*.com
-    - time4.*.com
-    - time5.*.com
-    - time6.*.com
-    - time7.*.com
-    - ntp.*.com
-    - ntp.*.com
-    - ntp1.*.com
-    - ntp2.*.com
-    - ntp3.*.com
-    - ntp4.*.com
-    - ntp5.*.com
-    - ntp6.*.com
-    - ntp7.*.com
-    - '*.time.edu.cn'
-    - '*.ntp.org.cn'
-    - +.pool.ntp.org
-    - time1.cloud.tencent.com
-    - +.music.163.com
-    - '*.126.net'
-    - musicapi.taihe.com
-    - music.taihe.com
-    - songsearch.kugou.com
-    - trackercdn.kugou.com
-    - '*.kuwo.cn'
-    - api-jooxtt.sanook.com
-    - api.joox.com
-    - joox.com
-    - +.y.qq.com
-    - +.music.tc.qq.com
-    - aqqmusic.tc.qq.com
-    - +.stream.qqmusic.qq.com
-    - '*.xiami.com'
-    - +.music.migu.cn
-    - +.srv.nintendo.net
-    - +.stun.playstation.net
-    - xbox.*.microsoft.com
-    - +.xboxlive.com
-    - localhost.ptlogin2.qq.com
-    - proxy.golang.org
-    - stun.*.*
-    - stun.*.*.*
-    - '*.mcdn.bilivideo.cn'
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
@@ -97,10 +34,11 @@ proxies:
   - {"name":"defaultName_9","type":"wireguard","server":"188.114.99.237","port":934,"udp":true,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["9.9.9.9","149.112.112.112","26.20:fe::fe","26.20:fe::9"],"remote-dns-resolve":false}
   - {"name":"defaultName_10","type":"wireguard","server":"188.114.99.176","port":7559,"udp":true,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["9.9.9.9","149.112.112.112","26.20:fe::fe","26.20:fe::9"],"remote-dns-resolve":false}
 proxy-groups:
-  - name: 🚀 节点选择
+  - name: 🚀
     type: select
     proxies:
-      - ♻️ 自动选择
+      - ♻️
+      - 🌍
       - DIRECT
       - defaultName_1
       - defaultName_2
@@ -112,10 +50,10 @@ proxy-groups:
       - defaultName_8
       - defaultName_9
       - defaultName_10
-  - name: ♻️ 自动选择
+  - name: ♻️
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 300
+    interval: 150
     tolerance: 50
     proxies:
       - defaultName_1
@@ -128,12 +66,11 @@ proxy-groups:
       - defaultName_8
       - defaultName_9
       - defaultName_10
-  - name: 🌍 国外媒体
-    type: select
+  - name: 🌍
+    type: fallback
+    url: http://www.gstatic.com/generate_204
+    interval: 100
     proxies:
-      - 🚀 节点选择
-      - ♻️ 自动选择
-      - 🎯 全球直连
       - defaultName_1
       - defaultName_2
       - defaultName_3
@@ -144,73 +81,17 @@ proxy-groups:
       - defaultName_8
       - defaultName_9
       - defaultName_10
-  - name: 📲 电报信息
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🎯 全球直连
-      - defaultName_1
-      - defaultName_2
-      - defaultName_3
-      - defaultName_4
-      - defaultName_5
-      - defaultName_6
-      - defaultName_7
-      - defaultName_8
-      - defaultName_9
-      - defaultName_10
-  - name: Ⓜ️ 微软服务
-    type: select
-    proxies:
-      - 🎯 全球直连
-      - 🚀 节点选择
-      - defaultName_1
-      - defaultName_2
-      - defaultName_3
-      - defaultName_4
-      - defaultName_5
-      - defaultName_6
-      - defaultName_7
-      - defaultName_8
-      - defaultName_9
-      - defaultName_10
-  - name: 🍎 苹果服务
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🎯 全球直连
-      - defaultName_1
-      - defaultName_2
-      - defaultName_3
-      - defaultName_4
-      - defaultName_5
-      - defaultName_6
-      - defaultName_7
-      - defaultName_8
-      - defaultName_9
-      - defaultName_10
-  - name: 🎯 全球直连
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-      - ♻️ 自动选择
-  - name: 🛑 全球拦截
+  - name: 🛑
     type: select
     proxies:
       - REJECT
       - DIRECT
-  - name: 🍃 应用净化
+  - name: 🐟
     type: select
     proxies:
-      - REJECT
-      - DIRECT
-  - name: 🐟 漏网之鱼
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - 🎯 全球直连
-      - ♻️ 自动选择
+      - 🚀
+      - 🌍
+      - ♻️
       - defaultName_1
       - defaultName_2
       - defaultName_3
