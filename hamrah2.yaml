@@ -127,18 +127,8 @@ proxies:
   - {"name":"defaultName_9","type":"wireguard","server":"188.114.99.237","port":934,"udp":true,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["9.9.9.9","149.112.112.112","26.20:fe::fe","26.20:fe::9"],"remote-dns-resolve":false}
   - {"name":"defaultName_10","type":"wireguard","server":"188.114.99.176","port":7559,"udp":true,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["9.9.9.9","149.112.112.112","26.20:fe::fe","26.20:fe::9"],"remote-dns-resolve":false}
 proxy-groups:
-  - name: 🦁🦁
-    type: select
-    proxies:
-      - 🚀
-      - 🔯
-      - ♻️
-      - 🚀🚀
   - name: 🚀
     type: select
-    url: http://www.gstatic.com/generate_204
- #   interval: 
-   # tolerance: 77   # select
     proxies:
       - ♻️
       - 🔯
@@ -200,7 +190,6 @@ proxy-groups:
       - 🚀
       - ♻️
       - 🔯
-      - 🛑
   - name: 🚀🚀
     type: url-test
     url: https://www.google.com/generate_204
@@ -221,15 +210,9 @@ proxy-groups:
       - provide1
   #    - provide2
  #     - provide4
-  - name: 🛑
-    type: select
-    proxies:
-      - PASS
-      - DIRECT
   - name: 🦁
     type: select
     proxies:
- #     - 🦁🦁
       - 🚀
       - 🚀🚀
       - ♻️
@@ -408,15 +391,15 @@ rules :
   - RULE-SET,LocalAreaNetwork,DIRECT
   - RULE-SET,ProxyGFWlist,🚀
   - RULE-SET,UnBan,🚀
-  - RULE-SET,BanAD,🛑
+  - RULE-SET,BanAD,REJECT
   - RULE-SET,BanProgramAD,🚀
-  - RULE-SET,BanEasyList,🛑
-  - RULE-SET,BanEasyListChina,🛑
-  - RULE-SET,BanEasyPrivacy,🛑
+  - RULE-SET,BanEasyList,REJECT
+  - RULE-SET,BanEasyListChina,REJECT
+  - RULE-SET,BanEasyPrivacy,REJECT
   - RULE-SET,YouTube,🚀
 #  - RULE-SET,ChinaMedia,🦁🦁
   - RULE-SET,ProxyMedia,🚀
-  - RULE-SET,adguard,🛑
+  - RULE-SET,adguard,REJECT
   - geoip,ir,DIRECT
   - geoip,private,DIRECT,no-resolve
 #  - geoip,arvancloud,🎯
@@ -436,7 +419,7 @@ rules :
 #  - geosite,cryptominers,🛑
 #  - geosite,phishing,🛑
 #  - geosite,malware,🛑
-  - geosite,category-ads-all,🛑
+  - geosite,category-ads-all,REJECT
 #  - geosite,ir,🎯
 #  - geosite,ads,🎯
   - MATCH,🦁
