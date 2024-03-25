@@ -39,8 +39,6 @@ proxy-groups:
     type: select
     proxies:
       - ♻️
-      - 🌍
-      - DIRECT
       - defaultName_1
       - defaultName_2
       - defaultName_3
@@ -53,9 +51,9 @@ proxy-groups:
       - defaultName_10
   - name: ♻️
     type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 150
-    tolerance: 50
+#    url: http://www.gstatic.com/generate_204
+#    interval: 150
+#    tolerance: 50
     proxies:
       - defaultName_1
       - defaultName_2
@@ -67,43 +65,8 @@ proxy-groups:
       - defaultName_8
       - defaultName_9
       - defaultName_10
-  - name: 🌍
-    type: fallback
-    url: http://www.gstatic.com/generate_204
-    interval: 100
-    proxies:
-      - defaultName_1
-      - defaultName_2
-      - defaultName_3
-      - defaultName_4
-      - defaultName_5
-      - defaultName_6
-      - defaultName_7
-      - defaultName_8
-      - defaultName_9
-      - defaultName_10
-  - name: 🛑
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-  - name: 🐟
-    type: select
-    proxies:
-      - 🚀
-      - 🌍
-      - ♻️
-      - defaultName_1
-      - defaultName_2
-      - defaultName_3
-      - defaultName_4
-      - defaultName_5
-      - defaultName_6
-      - defaultName_7
-      - defaultName_8
-      - defaultName_9
-      - defaultName_10
+
 
 rules:
 
-  - MATCH,🐟
+  - MATCH,🚀
