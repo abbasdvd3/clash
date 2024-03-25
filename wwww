@@ -1,27 +1,4 @@
-# port: 7890        
-# socks-port: 7891
-allow-lan: true
-log-level: info
-external-controller: 0.0.0.0:9090
-dns:
-  enabled: true
-  listen: 0.0.0.0:1053
-  ipv6: false
-  default-nameserver:
-    - 223.5.5.5
-    - 114.114.114.114
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*.lan'
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-  fallback-filter:
-    geoip: false
-    ipcidr:
-      - 240.0.0.0/4
-      - 0.0.0.0/32
+
 
 proxies:
   - {"name":"defaultName_1","type":"wireguard","server":"188.114.99.99","port":3476,"udp":true,"ip":"172.16.0.2","private-key":"IOEw9PNsX/Uzyg+XhYaOpWOAX+vtfBQUmk7UH+nXa3E=","public-key":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=","dns":["9.9.9.9","149.112.112.112","26.20:fe::fe","26.20:fe::9"],"remote-dns-resolve":false}
