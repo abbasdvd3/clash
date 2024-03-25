@@ -14,6 +14,8 @@ proxies:
 proxy-groups:
   - name: 🚀
     type: select
+    use:
+      - provide1
     proxies:
       - ♻️
       - defaultName_1
@@ -26,11 +28,14 @@ proxy-groups:
       - defaultName_8
       - defaultName_9
       - defaultName_10
+
   - name: ♻️
     type: url-test
 #    url: http://www.gstatic.com/generate_204
 #    interval: 150
 #    tolerance: 50
+    use:
+      - provide1
     proxies:
       - defaultName_1
       - defaultName_2
@@ -43,7 +48,16 @@ proxy-groups:
       - defaultName_9
       - defaultName_10
 
-
+proxy-providers:
+  provide1:
+    type: http
+    url: https://shervinofpersia.serv00.net#MCI64    
+    interval: 3600
+    path: wireguard1.yaml
+    health-check:
+      enable: true
+      url: http://www.google.com/generate_204
+      interval: 300
 rules:
 
   - MATCH,🚀
