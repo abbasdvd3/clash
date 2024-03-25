@@ -47,7 +47,7 @@ sniffer:
     - "443"
 force-cert-verify: true
 tun:
-  enable: true
+  enable: false
   prefer-h3: true
   listen: 0.0.0.0:53
   stack: gvisor
@@ -69,49 +69,48 @@ dns:
   listen: 0.0.0.0:1053
   default-nameserver:
     - 114.114.114.114
-    - 119.29.29.29
-    - 119.28.28.28
+ #   - 119.29.29.29
+ #   - 119.28.28.28
     - 8.8.8.8
     - udp://8.8.8.8
     - tcp://8.8.8.8
-    - tls://1.12.12.12:853
-    - tls://223.5.5.5:853
-    - 221.131.165.165
-    - 36.156.184.156
-  proxy-server-nameserver:
-    - https://1.12.12.12/dns-query
-    - https://223.5.5.5/dns-query
+  #  - tls://1.12.12.12
+    - tls://223.5.5.5
+ #   - 221.131.165.165
+ #   - 36.156.184.156
+#  proxy-server-nameserver:
+#    - https://1.12.12.12/dns-query
+#    - https://223.5.5.5/dns-query
   nameserver:
     - https://120.53.53.53/dns-query
-    - https://dns-adguard.heinu.ga/dns-query
-    - https://dns-google.heinu.ga/dns-query
-    - tls://223.6.6.6:853
+ #   - https://dns-adguard.heinu.ga/dns-query
+  #  - https://dns-google.heinu.ga/dns-query
+#    - tls://223.6.6.6
     - 8.8.8.8
-    - tls://223.5.5.5:853
-    - tls://223.6.6.6:853
+#    - tls://223.5.5.5
     - tls://120.53.53.53
     - tls://1.12.12.12
-    - 114.114.114.114#🚀
-    - tls://223.5.5.5:853
-    - dhcp://en0
-    - quic://dns.adguard.com:784#🚀
-    - tls://dot.pub:853
-    - tls://pdns.itxe.net:853
-    - quic://pdns.itxe.net:853
-    - https://pdns.itxe.net/dns-query
+#    - 114.114.114.114#🚀
+#    - tls://223.5.5.5
+ #   - dhcp://en0
+#    - quic://dns.adguard.com:784#🚀
+#    - tls://dot.pub:853
+#    - tls://pdns.itxe.net:853
+#    - quic://pdns.itxe.net:853
+#    - https://pdns.itxe.net/dns-query
   remote-nameserver:
     - https://8.8.8.8/dns-query
-    - tls://8.8.8.8:853
-  fallback:
-    - tcp://8.8.8.8:53#🚀 
-  nameserver-policy:
-    '+.example.com': 192.168.1.1  
-    "geosite:.ir,private": 
-      - https://223.5.5.5/dns-query
-      - https://120.53.53.53/dns-query
-    "geosite:ir":
-      - https://8.8.4.4/dns-query
-      - https://1.0.0.1/dns-query
+#    - tls://8.8.8.8
+#  fallback:
+#    - tcp://8.8.8.8:53#🚀 
+#  nameserver-policy:
+#    '+.example.com': 192.168.1.1  
+#    "geosite:.ir,private": 
+#      - https://223.5.5.5/dns-query
+#      - https://120.53.53.53/dns-query
+#    "geosite:ir":
+#      - https://8.8.4.4/dns-query
+#      - https://1.0.0.1/dns-query
  # proxy-server-nameserver:
 #    - https://223.5.5.5/dns-query🦁🦁
  #   - https://120.53.53.53/dns-query   
