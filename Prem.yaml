@@ -12,17 +12,11 @@ proxy-groups:
       - ♻️
       - 🚧
       - ⚖️
-      - 🇭🇰
-      - 🇨🇳
-      - 🇸🇬
-      - 🇺🇲
-      - 🇯🇵
-      - 🇰🇷
 
   - name: ♻️
     type: url-test
-    url: https://cp.cloudflare.com/
-    interval: 200
+    url: https://www.gstatic.com/generate_204
+    interval: 300
 #    tolerance: 50
     disable-udp: false
     use:
@@ -31,7 +25,7 @@ proxy-groups:
 
   - name: 🚧
     type: fallback
-    url: https://cp.cloudflare.com/
+    url: https://www.gstatic.com/generate_204
     interval: 180
  #   tolerance: 50
     disable-udp: false
@@ -59,12 +53,6 @@ proxy-groups:
       - ♻️
       - 🚧
       - ⚖️
-      - 🇭🇰
-      - 🇨🇳
-      - 🇸🇬
-      - 🇺🇲
-      - 🇯🇵
-      - 🇰🇷
       - DIRECT
   - name: 📲
     type: select
@@ -76,12 +64,6 @@ proxy-groups:
       - ♻️
       - 🚧
       - ⚖️
-      - 🇭🇰
-      - 🇨🇳
-      - 🇸🇬
-      - 🇺🇲
-      - 🇯🇵
-      - 🇰🇷
   - name: 🎥
     type: select
     disable-udp: false
@@ -92,12 +74,6 @@ proxy-groups:
       - ♻️
       - 🚧
       - ⚖️
-      - 🇭🇰
-      - 🇨🇳
-      - 🇸🇬
-      - 🇺🇲
-      - 🇯🇵
-      - 🇰🇷
       - DIRECT
   - name: 🤖 AI
     type: select
@@ -106,13 +82,7 @@ proxy-groups:
       - provider1
     proxies:
       - 🕹
-      - 🔓
-      - 🇭🇰
-      - 🇨🇳
-      - 🇸🇬
-      - 🇺🇲
-      - 🇯🇵
-      - 🇰🇷
+      - 🚧
       - DIRECT
   - name: 📡 IP
     type: select
@@ -120,12 +90,6 @@ proxy-groups:
     proxies:
       - DIRECT
       - 🕹
-      - 🇭🇰
-      - 🇨🇳
-      - 🇸🇬
-      - 🇺🇲
-      - 🇯🇵
-      - 🇰🇷
   - name: 📢
     type: select
     disable-udp: false
@@ -137,12 +101,6 @@ proxy-groups:
       - ♻️
       - 🚧
       - ⚖️
-      - 🇭🇰
-      - 🇨🇳
-      - 🇸🇬
-      - 🇺🇲
-      - 🇯🇵
-      - 🇰🇷
   - name: Ⓜ️
     type: select
     disable-udp: false
@@ -154,12 +112,6 @@ proxy-groups:
       - ♻️
       - 🚧
       - ⚖️
-      - 🇭🇰
-      - 🇨🇳
-      - 🇸🇬
-      - 🇺🇲
-      - 🇯🇵
-      - 🇰🇷
   - name: 🍎
     type: select
     disable-udp: false
@@ -171,12 +123,6 @@ proxy-groups:
       - ♻️
       - 🚧
       - ⚖️
-      - 🇭🇰
-      - 🇨🇳
-      - 🇸🇬
-      - 🇺🇲
-      - 🇯🇵
-      - 🇰🇷
   - name: 📺
     type: select
     disable-udp: false
@@ -188,12 +134,6 @@ proxy-groups:
       - ♻️
       - 🚧
       - ⚖️
-      - 🇭🇰
-      - 🇨🇳
-      - 🇸🇬
-      - 🇺🇲
-      - 🇯🇵
-      - 🇰🇷
   - name: 🎮
     type: select
     disable-udp: false
@@ -205,12 +145,6 @@ proxy-groups:
       - ♻️
       - 🚧
       - ⚖️
-      - 🇭🇰
-      - 🇨🇳
-      - 🇸🇬
-      - 🇺🇲
-      - 🇯🇵
-      - 🇰🇷
   - name: 🎯
     type: select
     disable-udp: false
@@ -225,79 +159,10 @@ proxy-groups:
       - 🕹
       - ♻️
       - 🎯
-      - 🔓
       - 🚧
     use:
       - provider1
-  - name: 🔓
-    type: fallback
-    url: https://cp.cloudflare.com/
-    interval: 600
-    tolerance: 100
-    disable-udp: false
-    proxies:
-    use:
-      - provider1
-  - name: 🇭🇰
-    type: url-test
-    url: https://cp.cloudflare.com/
-    interval: 600
-    tolerance: 50
-    disable-udp: false
-    filter: '🇭🇰'
-    proxies:
-    use:
-      - provider1
-  - name: 🇨🇳
-    type: url-test
-    url: https://cp.cloudflare.com/
-    interval: 600
-    tolerance: 50
-    disable-udp: false
-    filter: '🇨🇳'
-    proxies:
-    use:
-      - provider1
-  - name: 🇸🇬
-    type: url-test
-    url: https://cp.cloudflare.com/
-    interval: 600
-    tolerance: 50
-    disable-udp: false
-    filter: '🇸🇬'
-    proxies:
-    use:
-      - provider1
-  - name: 🇺🇲
-    type: url-test
-    url: https://cp.cloudflare.com/
-    interval: 600
-    tolerance: 50
-    disable-udp: false
-    filter: '🇺🇲'
-    proxies: 
-    use:
-      - provider1
-  - name: 🇯🇵
-    type: url-test
-    url: https://cp.cloudflare.com/
-    interval: 600
-    tolerance: 50
-    disable-udp: false
-    filter: '🇯🇵'
-    proxies:
-    use:
-      - provider1
-  - name: 🇰🇷
-    type: url-test
-    url: https://cp.cloudflare.com/
-    interval: 600
-    tolerance: 50
-    disable-udp: false
-    filter: '🇰🇷'
-    proxies:
-    use:
-      - provider1
+
 
 proxy-providers:
   provider1:
@@ -309,7 +174,7 @@ proxy-providers:
       enable: true
       interval: 300
       # lazy: true
-      url: https://cp.cloudflare.com/
+      url: https://www.gstatic.com/generate_204
 
 
 rule-providers:
