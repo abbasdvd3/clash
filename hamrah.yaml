@@ -343,13 +343,13 @@ proxy-groups:
     proxies:
       - DIRECT
       - 🕹 select
-      - ♻️
+      - ♻️ url-test
   - name: 🎯
     type: select
     proxies:
       - DIRECT
       - 🕹 select
-      - ♻️
+      - ♻️ url-test
   - name: 🛑
     type: select
     proxies:
@@ -855,11 +855,11 @@ rules:
 #  - RULE-SET,ProxyGFWlist,✈️
 #  - RULE-SET,LocalAreaNetwork,🎯
 #  - RULE-SET,Google,📢  
-  - RULE-SET,AWA,REJECT
-  - DOMAIN-SUFFIX,googlesyndication.com,🐟
-  - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
-  - GEOSITE,category-ads-all,REJECT
-  - RULE-SET,block,REJECT
+  - RULE-SET,AWA,🛑
+  - DOMAIN-SUFFIX,googlesyndication.com,🕹 select
+  - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),🛑
+  - GEOSITE,category-ads-all,🛑
+  - RULE-SET,block,🛑
   # - SCRIPT,quic,REJECT
   # - SCRIPT,youshit,REJECT
 
@@ -868,14 +868,14 @@ rules:
   # - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),DIRECT
  
   ## block udp/quic YouTube
-  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
-  - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
+  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),🛑
+  - AND,((NETWORK,udp),(GEOSITE,youtube)),🛑
 
   # # fix dnsleak
-  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
-  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
-  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
-  - IP-CIDR6,::1/128,REJECT,no-resolve
+#  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
+#  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+#  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
+#  - IP-CIDR6,::1/128,REJECT,no-resolve
   
   ## rules telegram
   - GEOIP,telegram,🐟
@@ -886,7 +886,7 @@ rules:
   # - DST-PORT,123/136/137-139,DIRECT,udp
 
   ## rules inner, recommended untuk non kuota reguler
-  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
+  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑
   - IN-TYPE,inner,🐟
 
   - MATCH,🐟
