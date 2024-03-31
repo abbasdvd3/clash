@@ -1,90 +1,38 @@
 
-# port: 7890
-# socks-port: 7891
+port: 7890
+socks-port: 7891
 # mixed-port: 7890
-redir-port: 9797
-tproxy-port: 9898
-
-# rule 规则匹配
-# global 全局代理(需要在GLOBAL策略组选择代理/策略)
-# direct 全局直连
-# 此项拥有默认值，默认为规则模式
+# redir-port: 9797
+# tproxy-port: 9898
 mode: rule
 allow-lan: true
 # unified-delay: true
 bind-address: '*'
-
-# silent 静默，不输出
-# error 仅输出发生错误至无法使用的日志
-# warning 输出发生错误但不影响运行的日志，以及 error 级别内容
-# info 输出一般运行的内容，以及 error 和 warning 级别的日志
-# debug 尽可能的输出运行中所有的信息
-log-level: silent
+log-level: debug
 ipv6: false
-
-# 更改geoip使用文件,mmdb或者dat,true为dat
-# geodata-mode: true
-
-# 可选的加载模式如下
-# standard：标准加载器
-# memconservative：专为内存受限(小内存)设备优化的加载器(默认值)
-# geodata-loader: memconservative
+geodata-mode: true
+geodata-loader: memconservative
 
 external-controller: 0.0.0.0:9090 
 # secret: "123456"
 external-ui: /data/adb/box/clash/dashboard
 # tcp-concurrent: false
-
-# 目前仅用于 API 的 https
-# tls:
-  # certificate: string # 证书 PEM 格式，或者 证书的路径
-  # private-key: string # 证书对应的私钥 PEM 格式，或者私钥路径
-
-# 全局 TLS 指纹，优先低于 proxy 内的 client-fingerprint。
-# 目前支持开启 TLS 传输的 TCP/grpc/WS/HTTP , 支持协议有 VLESS,Vmess 和 trojan.
 # global-client-fingerprint: chrome
-# Note:
-# 可选："chrome", "firefox", "safari", "iOS", "android", "edge", "360"," qq", "random"
-# 若选择 "random", 则按 Cloudflare Radar 数据按概率生成一个现代浏览器指纹。
+geox-url:
+  geoip: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat"
+  geosite: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat"
+  mmdb: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/geoip.metadb"
 
-# geox-url:
-  # mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
-  # geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
-  # geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
 
-# 控制是否让 Clash 去匹配进程
-# always 开启，强制匹配所有进程
-# strict 默认，由 Clash 判断是否开启
-# off 不匹配进程，推荐在路由器上使用此模式
+# always 
+# strict 
+
 # find-process-mode: strict
 
 profile:
   store-selected: true
-  # 储存 API 对策略组的选择，以供下次启动时使用
   store-fake-ip: false
-  # 储存 fakeip 映射表，域名再次发生连接时，使用原有映射地址
-
-# sniffer:                           #【Meta专属】sniffer域名嗅探器
-  # enable: false                    # 嗅探器开关
-
-                                   # # 开启后对 redir-host 类型识别的流量进行强制嗅探
-                                   # # 包含 Tun、Redir 和 TProxy 或 DNS 为 redir-host
-  # # force-dns-mapping: false
-  # # parse-pure-ip: false           # 对所有未获取到域名的流量进行强制嗅探
-
-  # override-destination: false      # 是否使用嗅探结果作为实际访问,默认 true
-                                   # # 全局配置,优先级低于 sniffer.sniff 实际配置
-  # sniff: # TLS 默认如果不配置 ports 默认嗅探 443
-    # TLS:
-      # ports: [443, 8443]
-    # HTTP: # 需要嗅探的端口, 默认嗅探 80
-      # ports: [80, 8080-8880]
-      # override-destination: true # 可覆盖 sniffer.override-destination
-  # force-domain:
-    # - +.v2ex.com
-  # # 白名单,跳过嗅探结果
-  # skip-domain:
-    # - Mijia Cloud
+ 
 
 tun:
   enable: false
@@ -106,105 +54,53 @@ tun:
 
 dns:
   enable: true
-  # 可选值 true/false
-  # 是否解析 IPV6, 如为 false, 则回应 AAAA 的空解析
   ipv6: true
-
-  # 可选值 true/false
-  # 是否开启 DOH 的 http/3
   # prefer-h3: false
-
-  # 默认 dns, 用于解析 DNS 服务器 的域名
-  # 必须为 ip, 可为加密 dns
   default-nameserver:
-    # - 114.114.114.114
+    - 114.114.114.114
     - 8.8.8.8
-    # cloudflare
     - 1.1.1.1
-    # - tls://223.5.5.5:853
-    # - https://223.5.5.5/dns-query
-
-  # dns 服务监听
+    - tls://223.5.5.5:853
+    - https://223.5.5.5/dns-query
   listen: 0.0.0.0:1053
   use-hosts: true
-
   # 可选值 fake-ip / redir-host
-  # Clash 的 dns 处理模式
   enhanced-mode: fake-ip
-
-  # 格式为 ip/掩码
-  # fakeip 下的 IP 段设置，tun 网卡的默认 ip 也使用此值
   fake-ip-range: 198.18.0.1/16
-
-  # fakeip 过滤，以下地址不会下发 fakeip 映射用于连接
   fake-ip-filter:
     - '*.lan'
     # - localhost.ptlogin2.qq.com
-
-  # 默认的域名解析服务器，如不配置 fallback/proxy-server-nameserver , 则所有域名都由 nameserver 解析
   nameserver:
-    # google
     - 8.8.8.8
     - 1.0.0.1
   # proxy-server-nameserver:
     # - https://doh.pub/dns-query
-
-  # 指定域名查询的解析服务器，可使用 geosite, 优先于 nameserver/fallback 查询
-  # Note: 并发查询，无法保证顺序，以下仅作为书写演示，建议根据自己需求写
   # nameserver-policy:
     # 'www.baidu.com': '114.114.114.114'
     # '+.internal.crop.com': '10.0.0.1'
     # 'geosite:cn': https://doh.pub/dns-query
-
-  # 后备域名解析服务器，一般情况下使用境外 DNS, 保证结果可信
-  # 配置 fallback后默认启用 fallback-filter,geoip-code为 cn
   # fallback:
     # - tls://8.8.4.4
     # - tls://1.1.1.1
-
-  # 代理节点域名解析服务器，仅用于解析代理节点的域名
   # proxy-server-nameserver:
     # - https://doh.pub/dns-query
-
-  # fallback-filter
-  # 后备域名解析服务器筛选，满足条件的将使用 fallback结果或只使用 fallback解析
   # fallback-filter:
-
-    # geoip
-    # 可选值为 true/false
-    # 是否启用 fallback filter
     # geoip: true
-
-    # geoip-code
-    # 可选值为 国家缩写，默认值为 CN
-    # 除了 geoip-code 配置的国家 IP, 其他的 IP 结果会被视为污染
-    # geoip-code 配置的国家的结果会直接采用，否则将采用 fallback结果
     # geoip-code: ID
-
-    # geosite
-    # 可选值为对于的 geosite 内包含的集合
-    # geosite 列表的内容被视为已污染，匹配到 geosite 的域名，将只使用 fallback解析，不去使用 nameserver
     # geosite:
       # - gfw
-
-    # ipcidr
-    # 书写内容为 IP/掩码
-    # 这些网段的结果会被视为污染，nameserver解析出这些结果时将会采用 fallback的解析结果
     # ipcidr:
       # - 240.0.0.0/4
-
     # domain
-    # 这些域名被视为已污染，匹配到这些域名，会直接使用 fallback解析，不去使用 nameserver
     # domain:
       # - '+.google.com'
       # - '+.facebook.com'
       # - '+.youtube.com'
 
-# hosts:
-  # # block update system android
-  # 'ota.googlezip.net': 127.0.0.1
-  # 'ota-cache1.googlezip.net': 127.0.0.1
-  # 'ota-cache2.googlezip.net': 127.0.0.1
+hosts:
+   'ota.googlezip.net': 127.0.0.1
+   'ota-cache1.googlezip.net': 127.0.0.1
+   'ota-cache2.googlezip.net': 127.0.0.1
 proxies:
 proxy-groups:
   - name: 🕹 select
@@ -322,7 +218,7 @@ proxy-groups:
       - 🕹 select
       - ✈️
       - DIRECT
-  - name: 📺
+  - name: 📺2
     type: select
     proxies:
       - 🎯
@@ -652,13 +548,6 @@ rule-providers:
     interval: 3600
     path: ./mphin/ProxyTools/Google.list
 
-  Apple:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/Apple.list
-    format: text
-    interval: 3600
-    path: ./mphin/ProxyTools/Apple.list
   IpinfoSpeedtest:
     type: http
     behavior: classical
@@ -666,20 +555,6 @@ rule-providers:
     format: text
     interval: 3600
     path: ./mphin/ProxyTools/IpinfoSpeedtest.list
-  Telegram:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/Telegram.list
-    format: text
-    interval: 3600
-    path: ./mphin/ProxyTools/Telegram.list
-  ProxyGFWlist:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/ProxyGFWlist.list
-    format: text
-    interval: 3600
-    path: ./mphin/ProxyTools/ProxyGFWlist.list
 
   gfw:
     type: http
@@ -948,7 +823,7 @@ rules:
   - RULE-SET,Netflix,🎥
   - RULE-SET,Bahamut,📺
   - RULE-SET,BilibiliHMT,📺
-  - RULE-SET,Bilibili,📺
+  - RULE-SET,Bilibili,📺2
   - RULE-SET,ChinaMedia,🌏
   - RULE-SET,ProxyMedia,🌍
 # 长风网站，自动注入
