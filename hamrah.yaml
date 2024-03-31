@@ -33,7 +33,17 @@ profile:
   store-selected: true
   store-fake-ip: false
  
-
+sniffer:
+  enable: true
+  override-destination: true
+  sniff:
+    http: { ports: [80, 8080] }
+    tls: { ports: [443, 8443] }
+  skip-domain:
+    #Apple
+    - 'courier.push.apple.com'
+    #mi
+    - 'Mijia Cloud'
 tun:
   enable: false
   device: utun
@@ -71,31 +81,40 @@ dns:
     - '*.lan'
     # - localhost.ptlogin2.qq.com
   nameserver:
+    - 223.5.5.5
+    - 1.1.1.1
     - 8.8.8.8
-    - 1.0.0.1
+    - 114.114.114.114
+    - 119.29.29.29
   # proxy-server-nameserver:
     # - https://doh.pub/dns-query
   # nameserver-policy:
     # 'www.baidu.com': '114.114.114.114'
     # '+.internal.crop.com': '10.0.0.1'
     # 'geosite:cn': https://doh.pub/dns-query
-  # fallback:
-    # - tls://8.8.4.4
-    # - tls://1.1.1.1
-  # proxy-server-nameserver:
-    # - https://doh.pub/dns-query
-  # fallback-filter:
-    # geoip: true
-    # geoip-code: ID
-    # geosite:
-      # - gfw
-    # ipcidr:
-      # - 240.0.0.0/4
-    # domain
-    # domain:
-      # - '+.google.com'
-      # - '+.facebook.com'
-      # - '+.youtube.com'
+  fallback:   # 与 nameserver 内的服务器列表同时发起请求，当规则符合 GEOIP 在 CN 以外时，fallback 列表内的域名服务器生效。    
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+    - tcp://8.8.8.8:53
+    - tcp://8.8.4.4:53
+    - tcp://208.67.222.222:443
+    - tcp://208.67.220.220:443
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - '+.google.com'
+      - '+.googleapis.com'
+      - '+.youtube.com'
+      - '+.appspot.com'
+      - '+.telegram.com'
+      - '+.facebook.com'
+      - '+.twitter.com'
+      - '+.blogger.com'
+      - '+.gmail.com'
+      - '+.gvt1.com'
 
 hosts:
    'ota.googlezip.net': 127.0.0.1
