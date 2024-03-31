@@ -1,0 +1,2629 @@
+{
+  "log": {
+    "level": "warn",
+    "output": "box.log",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-remote",
+        "address": "udp://1.1.1.1",
+        "address_resolver": "dns-direct"
+      },
+      {
+        "tag": "dns-trick-direct",
+        "address": "https://sky.rethinkdns.com/",
+        "detour": "direct-fragment"
+      },
+      {
+        "tag": "dns-direct",
+        "address": "1.1.1.1",
+        "address_resolver": "dns-local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-local",
+        "address": "local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "domain": [
+          "jp03-alt-vm0.entry.srthdw.art",
+          "meroiy.icu",
+          "onea.flha.ru",
+          "megaan.homes",
+          "series-a2.samanehha.co",
+          "glweidf.cfd",
+          "kellie.makeup",
+          "tu.mahilu.site",
+          "s1c.v2.v001sss.xyz",
+          "mahilu.site",
+          "hms02opi.fxiaomi.sbs",
+          "us3e-mmnnfr9dop0.v2freevpn.com",
+          "obdii.cfd",
+          "mizban.arzonhost.ir",
+          "cdn.vds-server.ir",
+          "inna.cfd",
+          "kagoya.hkss.online",
+          "afrhms16v.bestxray.buzz",
+          "linde06.indiavideo.sbs",
+          "vip2323.cfd",
+          "nina.bond",
+          "cf.openxai.link",
+          "hms082.gwdef.sbs",
+          "jp01-alt-vm0.entry.srthdw.art",
+          "hms182.glweidf.sbs",
+          "admin.arzonhost.ir",
+          "muriel.makeup",
+          "ming2.kiwireich.com",
+          "series-a2-me.samanehha.co",
+          "fast_2ray_telchannelll2.fast2rayy.eu.org",
+          "series-a2-me.varzesh360.co",
+          "auth.speedtest.net",
+          "w3.org"
+        ],
+        "server": "dns-direct"
+      },
+      {
+        "domain_suffix": ".ir",
+        "geosite": "ir",
+        "server": "dns-direct"
+      },
+      {
+        "domain": "cp.cloudflare.com",
+        "server": "dns-remote",
+        "rewrite_ttl": 3000
+      }
+    ],
+    "final": "dns-remote",
+    "static_ips": {
+      "sky.rethinkdns.com": [
+        "188.114.97.3",
+        "188.114.96.3",
+        "104.18.202.232",
+        "104.18.203.232",
+        "172.64.173.4",
+        "172.64.172.4"
+      ]
+    },
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "mtu": 9000,
+      "inet4_address": "172.19.0.1/28",
+      "auto_route": true,
+      "strict_route": true,
+      "endpoint_independent_nat": true,
+      "stack": "mixed",
+      "sniff": true,
+      "sniff_override_destination": true
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2334,
+      "sniff": true,
+      "sniff_override_destination": true
+    },
+    {
+      "type": "direct",
+      "tag": "dns-in",
+      "listen": "127.0.0.1",
+      "listen_port": 6450,
+      "override_address": "1.1.1.1",
+      "override_port": 53
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "select",
+      "outbounds": [
+        "auto",
+        "clash_1378 § 0",
+        "clash_1410 § 1",
+        "clash_1406 § 2",
+        "clash_1411 § 3",
+        "w_65 § 4",
+        "clash_246 § 5",
+        "🇬🇧+United+Kingdom+11 § 6",
+        "🇬🇧+United+Kingdom+2 § 7",
+        "🇺🇲 United States 249 § 8",
+        "🇺🇲 United States 258 § 9",
+        "🇺🇲 United States 240 § 10",
+        "🇺🇲 United States 262 § 11",
+        "🇺🇲 United States 238 § 12",
+        "🇺🇲 United States 227 § 13",
+        "🇺🇲 United States 217 § 14",
+        "🇺🇲 United States 275 § 15",
+        "🇺🇲 United States 221 § 16",
+        "🇺🇲 United States 222 § 17",
+        "🇺🇲 United States 265 § 18",
+        "🇺🇲 United States 228 § 19",
+        "🇺🇲 United States 224 § 20",
+        "🇺🇲 United States 241 § 21",
+        "🇳🇱 The Netherlands 10 § 22",
+        "🇺🇲 United States 257 § 23",
+        "🇺🇲 United States 269 § 24",
+        "🇺🇲 United States 216 § 25",
+        "🇩🇪128.140.57.167 § 26",
+        "🇺🇸 美国 CloudFlare节点 § 27",
+        "v2cross.com § 28",
+        "v2cross.com § 29",
+        "v2cross.com § 30",
+        "v2cross.com § 31",
+        "v2cross.com § 32",
+        "v2cross.com § 33",
+        "v2cross.com § 34",
+        "v2cross.com § 35",
+        "v2cross.com § 36",
+        "v2cross.com § 37",
+        "v2cross.com § 38",
+        "v2cross.com § 39",
+        "v2cross.com § 40",
+        "v2cross.com § 41",
+        "v2cross.com § 42",
+        "v2cross.com § 43",
+        "v2cross.com § 44",
+        "v2cross.com § 45",
+        "v2cross.com § 46",
+        "v2cross.com § 47",
+        "v2cross.com § 48",
+        "v2cross.com § 49",
+        "v2cross.com § 50",
+        "v2cross.com § 51",
+        "v2cross.com § 52",
+        "v2cross.com § 53",
+        "v2cross.com § 54",
+        "v2cross.com § 55",
+        "v2cross.com § 56",
+        "v2cross.com § 57",
+        "v2cross.com § 58",
+        "v2cross.com § 59",
+        "v2cross.com § 60",
+        "v2cross.com § 61",
+        "v2cross.com § 62",
+        "v2cross.com § 63",
+        "v2cross.com § 64",
+        "v2cross.com § 65",
+        "v2cross.com § 66",
+        "v2cross.com § 67",
+        "v2cross.com § 68",
+        "v2cross.com § 69",
+        "v2cross.com § 70",
+        "v2cross.com § 71",
+        "v2cross.com § 72",
+        "v2cross.com § 73",
+        "v2cross.com § 74",
+        "v2cross.com § 75",
+        "v2cross.com § 76",
+        "v2cross.com § 77",
+        "v2cross.com § 78",
+        "v2cross.com § 79",
+        "v2cross.com § 80",
+        "v2cross.com § 81",
+        "v2cross.com § 82",
+        "v2cross.com § 83",
+        "v2cross.com § 84",
+        "v2cross.com § 85",
+        "v2cross.com § 86",
+        "v2cross.com § 87",
+        "v2cross.com § 88",
+        "v2cross.com § 89",
+        "v2cross.com § 90",
+        "v2cross.com § 91",
+        "v2cross.com § 92",
+        "v2cross.com § 93",
+        "v2cross.com § 94",
+        "v2cross.com § 95",
+        "v2cross.com § 96",
+        "v2cross.com § 97",
+        "v2cross.com § 98",
+        "v2cross.com § 99",
+        "v2cross.com § 100",
+        "v2cross.com § 101",
+        "v2cross.com § 102",
+        "v2cross.com § 103",
+        "v2cross.com § 104",
+        "v2cross.com § 105",
+        "v2cross.com § 106",
+        "v2cross.com § 107",
+        "v2cross.com § 108",
+        "v2cross.com § 109",
+        "o § 110"
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "clash_1378 § 0",
+        "clash_1410 § 1",
+        "clash_1406 § 2",
+        "clash_1411 § 3",
+        "w_65 § 4",
+        "clash_246 § 5",
+        "🇬🇧+United+Kingdom+11 § 6",
+        "🇬🇧+United+Kingdom+2 § 7",
+        "🇺🇲 United States 249 § 8",
+        "🇺🇲 United States 258 § 9",
+        "🇺🇲 United States 240 § 10",
+        "🇺🇲 United States 262 § 11",
+        "🇺🇲 United States 238 § 12",
+        "🇺🇲 United States 227 § 13",
+        "🇺🇲 United States 217 § 14",
+        "🇺🇲 United States 275 § 15",
+        "🇺🇲 United States 221 § 16",
+        "🇺🇲 United States 222 § 17",
+        "🇺🇲 United States 265 § 18",
+        "🇺🇲 United States 228 § 19",
+        "🇺🇲 United States 224 § 20",
+        "🇺🇲 United States 241 § 21",
+        "🇳🇱 The Netherlands 10 § 22",
+        "🇺🇲 United States 257 § 23",
+        "🇺🇲 United States 269 § 24",
+        "🇺🇲 United States 216 § 25",
+        "🇩🇪128.140.57.167 § 26",
+        "🇺🇸 美国 CloudFlare节点 § 27",
+        "v2cross.com § 28",
+        "v2cross.com § 29",
+        "v2cross.com § 30",
+        "v2cross.com § 31",
+        "v2cross.com § 32",
+        "v2cross.com § 33",
+        "v2cross.com § 34",
+        "v2cross.com § 35",
+        "v2cross.com § 36",
+        "v2cross.com § 37",
+        "v2cross.com § 38",
+        "v2cross.com § 39",
+        "v2cross.com § 40",
+        "v2cross.com § 41",
+        "v2cross.com § 42",
+        "v2cross.com § 43",
+        "v2cross.com § 44",
+        "v2cross.com § 45",
+        "v2cross.com § 46",
+        "v2cross.com § 47",
+        "v2cross.com § 48",
+        "v2cross.com § 49",
+        "v2cross.com § 50",
+        "v2cross.com § 51",
+        "v2cross.com § 52",
+        "v2cross.com § 53",
+        "v2cross.com § 54",
+        "v2cross.com § 55",
+        "v2cross.com § 56",
+        "v2cross.com § 57",
+        "v2cross.com § 58",
+        "v2cross.com § 59",
+        "v2cross.com § 60",
+        "v2cross.com § 61",
+        "v2cross.com § 62",
+        "v2cross.com § 63",
+        "v2cross.com § 64",
+        "v2cross.com § 65",
+        "v2cross.com § 66",
+        "v2cross.com § 67",
+        "v2cross.com § 68",
+        "v2cross.com § 69",
+        "v2cross.com § 70",
+        "v2cross.com § 71",
+        "v2cross.com § 72",
+        "v2cross.com § 73",
+        "v2cross.com § 74",
+        "v2cross.com § 75",
+        "v2cross.com § 76",
+        "v2cross.com § 77",
+        "v2cross.com § 78",
+        "v2cross.com § 79",
+        "v2cross.com § 80",
+        "v2cross.com § 81",
+        "v2cross.com § 82",
+        "v2cross.com § 83",
+        "v2cross.com § 84",
+        "v2cross.com § 85",
+        "v2cross.com § 86",
+        "v2cross.com § 87",
+        "v2cross.com § 88",
+        "v2cross.com § 89",
+        "v2cross.com § 90",
+        "v2cross.com § 91",
+        "v2cross.com § 92",
+        "v2cross.com § 93",
+        "v2cross.com § 94",
+        "v2cross.com § 95",
+        "v2cross.com § 96",
+        "v2cross.com § 97",
+        "v2cross.com § 98",
+        "v2cross.com § 99",
+        "v2cross.com § 100",
+        "v2cross.com § 101",
+        "v2cross.com § 102",
+        "v2cross.com § 103",
+        "v2cross.com § 104",
+        "v2cross.com § 105",
+        "v2cross.com § 106",
+        "v2cross.com § 107",
+        "v2cross.com § 108",
+        "v2cross.com § 109",
+        "o § 110"
+      ],
+      "url": "http://cp.cloudflare.com/",
+      "interval": "10m0s",
+      "idle_timeout": "1h40m0s"
+    },
+    {
+      "type": "vmess",
+      "tag": "clash_1378 § 0",
+      "server": "kagoya.hkss.online",
+      "server_port": 443,
+      "uuid": "4664e760-f5f3-3cc2-8bb3-04f85aa7febb",
+      "security": "auto",
+      "authenticated_length": true
+    },
+    {
+      "type": "vmess",
+      "tag": "clash_1410 § 1",
+      "server": "jp03-alt-vm0.entry.srthdw.art",
+      "server_port": 21585,
+      "uuid": "1bc52308-0bd9-30d0-90fd-cef337875d10",
+      "security": "auto",
+      "alter_id": 1,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "jp03-alt-vm0.entry.srthdw.art",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "clash_1406 § 2",
+      "server": "jp01-alt-vm0.entry.srthdw.art",
+      "server_port": 21585,
+      "uuid": "1bc52308-0bd9-30d0-90fd-cef337875d10",
+      "security": "auto",
+      "alter_id": 1,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "jp01-alt-vm0.entry.srthdw.art",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "clash_1411 § 3",
+      "server": "jp03-alt-vm0.entry.srthdw.art",
+      "server_port": 21583,
+      "uuid": "22acc467-7440-386a-927a-d84be554b37e",
+      "security": "auto",
+      "alter_id": 1,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "jp03-alt-vm0.entry.srthdw.art",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "w_65 § 4",
+      "server": "172.67.132.15",
+      "server_port": 443,
+      "uuid": "18e5f40f-bda6-4c15-9334-e87cda6047af",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "ming2.kiwireich.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ray",
+        "headers": {
+          "Host": "ming2.kiwireich.com"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "clash_246 § 5",
+      "server": "ming2.kiwireich.com",
+      "server_port": 443,
+      "uuid": "18e5f40f-bda6-4c15-9334-e87cda6047af",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "ming2.kiwireich.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ray",
+        "headers": {
+          "Host": "ming2.kiwireich.com"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇬🇧+United+Kingdom+11 § 6",
+      "server": "series-a2.samanehha.co",
+      "server_port": 443,
+      "method": "chacha20-ietf-poly1305",
+      "password": "mps3FwmDjLrWaOVg"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇬🇧+United+Kingdom+2 § 7",
+      "server": "series-a2-me.samanehha.co",
+      "server_port": 443,
+      "method": "chacha20-ietf-poly1305",
+      "password": "Bog0ELmMM9DSxDdQ"
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 249 § 8",
+      "server": "172.67.161.77",
+      "server_port": 443,
+      "uuid": "edbb1059-1633-4271-b66e-ed4fba47a1bf",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "linde06.indiavideo.sbs",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkws",
+        "headers": {
+          "Host": "linde06.indiavideo.sbs"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 258 § 9",
+      "server": "afrhms16v.bestxray.buzz",
+      "server_port": 443,
+      "uuid": "f584de15-2034-4170-a723-f48c2bae5e0f",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "afrhms16v.bestxray.buzz",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkws",
+        "headers": {
+          "Host": "afrhms16v.bestxray.buzz"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 240 § 10",
+      "server": "172.67.131.108",
+      "server_port": 443,
+      "uuid": "1052f24e-7b09-45eb-b0c5-d858eb124192",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "glweidf.cfd",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkws",
+        "headers": {
+          "Host": "glweidf.cfd"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 262 § 11",
+      "server": "linde06.indiavideo.sbs",
+      "server_port": 443,
+      "uuid": "edbb1059-1633-4271-b66e-ed4fba47a1bf",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "linde06.indiavideo.sbs",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkws",
+        "headers": {
+          "Host": "linde06.indiavideo.sbs"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 238 § 12",
+      "server": "104.21.15.36",
+      "server_port": 443,
+      "uuid": "edbb1059-1633-4271-b66e-ed4fba47a1bf",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "linde06.indiavideo.sbs",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkws",
+        "headers": {
+          "Host": "linde06.indiavideo.sbs"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 227 § 13",
+      "server": "obdii.cfd",
+      "server_port": 443,
+      "uuid": "05641cf5-58d2-4ba4-a9f1-b3cda0b1fb1d",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "obdii.cfd",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkws",
+        "headers": {
+          "Host": "obdii.cfd"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 217 § 14",
+      "server": "vip2323.cfd",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "vip2323.cfd",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "vip2323.cfd"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 275 § 15",
+      "server": "nina.bond",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "nina.bond",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "nina.bond"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 221 § 16",
+      "server": "hms182.glweidf.sbs",
+      "server_port": 443,
+      "uuid": "76221bfb-e92f-4e80-81c5-6fe48f50ac0b",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "glweidf.sbs",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkws",
+        "headers": {
+          "Host": "glweidf.sbs"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 222 § 17",
+      "server": "172.67.174.63",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "nina.bond",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "nina.bond"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 265 § 18",
+      "server": "104.21.30.254",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "nina.bond",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "nina.bond"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 228 § 19",
+      "server": "meroiy.icu",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "meroiy.icu",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "meroiy.icu"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 224 § 20",
+      "server": "104.21.4.6",
+      "server_port": 443,
+      "uuid": "1052f24e-7b09-45eb-b0c5-d858eb124192",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "glweidf.cfd",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkws",
+        "headers": {
+          "Host": "glweidf.cfd"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 241 § 21",
+      "server": "glweidf.cfd",
+      "server_port": 443,
+      "uuid": "1052f24e-7b09-45eb-b0c5-d858eb124192",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "glweidf.cfd",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkws",
+        "headers": {
+          "Host": "glweidf.cfd"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇳🇱 The Netherlands 10 § 22",
+      "server": "188.114.97.3",
+      "server_port": 443,
+      "uuid": "f584de15-2034-4170-a723-f48c2bae5e0f",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "afrhms16v.bestxray.buzz",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkws",
+        "headers": {
+          "Host": "afrhms16v.bestxray.buzz"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 257 § 23",
+      "server": "104.21.44.64",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "kellie.makeup",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "kellie.makeup"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 269 § 24",
+      "server": "172.67.196.112",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "kellie.makeup",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "kellie.makeup"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇲 United States 216 § 25",
+      "server": "cf.openxai.link",
+      "server_port": 8080,
+      "uuid": "c18beb85-c67b-46ed-b8cc-4cbfeae5f194",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "eu1.openxai.link"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇩🇪128.140.57.167 § 26",
+      "server": "128.140.57.167",
+      "server_port": 3389,
+      "uuid": "9c050a86-d612-48f1-ec32-e573df08a1b7",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "http",
+        "host": "internet.life.com.by",
+        "path": "/",
+        "method": "GET"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "🇺🇸 美国 CloudFlare节点 § 27",
+      "server": "cf.openxai.link",
+      "server_port": 8080,
+      "uuid": "477af724-de79-40dc-80ef-bf3bca0be3ce",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "eu3.openxai.link"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 28",
+      "server": "62.210.116.202",
+      "server_port": 80,
+      "uuid": "2a8a10fb-9ca3-367e-a234-cf09f841be4f",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/frfrfffvmn01N",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 29",
+      "server": "149.28.44.151",
+      "server_port": 37403,
+      "uuid": "c5b3caa5-2a98-45a8-9867-20b7c872221b",
+      "security": "auto",
+      "authenticated_length": true
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 30",
+      "server": "149.28.50.246",
+      "server_port": 10000,
+      "uuid": "a26b5d63-6b25-4a03-fb71-4156fd9d6c9b",
+      "security": "auto",
+      "authenticated_length": true
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 31",
+      "server": "149.28.35.248",
+      "server_port": 49726,
+      "uuid": "2f4a30ab-803a-40b0-d5ae-c691c3bdf138",
+      "security": "auto",
+      "authenticated_length": true
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 32",
+      "server": "216.155.135.199",
+      "server_port": 52429,
+      "uuid": "306e4a80-00c4-4101-a830-48fa13b160a7",
+      "security": "auto",
+      "authenticated_length": true
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 33",
+      "server": "5.161.192.172",
+      "server_port": 33764,
+      "uuid": "f96e9397-08be-4227-e26a-f3a55a3976de",
+      "security": "auto",
+      "authenticated_length": true
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 34",
+      "server": "144.202.59.26",
+      "server_port": 57061,
+      "uuid": "e90a1709-fd94-44d3-f809-8849837cc2d3",
+      "security": "auto",
+      "authenticated_length": true
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 35",
+      "server": "149.28.124.239",
+      "server_port": 34112,
+      "uuid": "83486d3b-2a38-480e-dc0f-fd2db85df3b3",
+      "security": "auto",
+      "authenticated_length": true
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "v2cross.com § 36",
+      "server": "Fast_2ray_telchannelll2.fast2rayy.eu.org",
+      "server_port": 443,
+      "method": "chacha20-ietf-poly1305",
+      "password": "Bog0ELmMM9DSxDdQ"
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 37",
+      "server": "149.28.89.226",
+      "server_port": 18519,
+      "uuid": "59494231-e96b-423a-c3d5-1ab28ff0e13d",
+      "security": "auto",
+      "authenticated_length": true
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 38",
+      "server": "149.28.65.114",
+      "server_port": 27054,
+      "uuid": "c30d1b67-af0d-4eb8-cf98-106b22c176eb",
+      "security": "auto",
+      "authenticated_length": true
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "v2cross.com § 39",
+      "server": "series-a2-me.varzesh360.co",
+      "server_port": 443,
+      "method": "chacha20-ietf-poly1305",
+      "password": "Bog0ELmMM9DSxDdQ"
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com § 40",
+      "server": "104.21.51.242",
+      "server_port": 2087,
+      "password": "241f01b9-8dfc-474f-8342-3fbd5c46417e",
+      "tls": {
+        "enabled": true,
+        "server_name": "grpcfr.arminhadadi.site",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 41",
+      "server": "172.67.173.199",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "jader.fun",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "jader.fun"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 42",
+      "server": "172.66.213.38",
+      "server_port": 443,
+      "uuid": "dfbbc8de-8a4f-407d-8069-6de38d83c4e1",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "hdfy4c1.iraniancpi.uk",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "WgCmp8p80KDzo64uHE",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 43",
+      "server": "172.67.223.242",
+      "server_port": 2086,
+      "uuid": "7d93e992-48cf-42d4-84f8-75768e815a4c",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "admin.arzonhost.ir"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 44",
+      "server": "50.114.56.73",
+      "server_port": 35699,
+      "uuid": "dc606111-1749-4103-a5c3-2c5999fb7c3f",
+      "security": "auto",
+      "authenticated_length": true
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 45",
+      "server": "104.21.75.244",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "janett.click",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "janett.click"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 46",
+      "server": "162.159.135.79",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "janett.click",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "janett.click"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 47",
+      "server": "172.67.68.246",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "vip2323.cfd",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "vip2323.cfd"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 48",
+      "server": "mizban.arzonhost.ir",
+      "server_port": 2086,
+      "uuid": "e690ff9e-1676-4be3-d136-dcae586cb1e7",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 49",
+      "server": "192.210.167.236",
+      "server_port": 1200,
+      "uuid": "207da2a6-3c7d-4b6c-cb46-dcfaf5814053",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/207da2a6",
+        "headers": {
+          "Host": "192.210.167.236"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 50",
+      "server": "104.21.4.14",
+      "server_port": 2086,
+      "uuid": "7d93e992-48cf-42d4-84f8-75768e815a4c",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "admin.arzonhost.ir"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 51",
+      "server": "104.21.82.39",
+      "server_port": 2052,
+      "uuid": "7a737f41-b792-4260-94ff-3d864da67b80",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "mahilu.site"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 52",
+      "server": "104.21.51.208",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "nina.bond",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "nina.bond"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 53",
+      "server": "172.67.152.170",
+      "server_port": 2052,
+      "uuid": "7a737f41-b792-4260-94ff-3d864da67b80",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "mahilu.site"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 54",
+      "server": "auth.speedtest.net",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "nelly.homes",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "nelly.homes"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 55",
+      "server": "104.26.9.202",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "vip2323.cfd",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "vip2323.cfd"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 56",
+      "server": "104.26.8.202",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "vip2323.cfd",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "vip2323.cfd"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 57",
+      "server": "cdn.vds-server.ir",
+      "server_port": 8880,
+      "uuid": "0d1bf26a-ce97-4707-a270-7f4d2ae37334",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "cdn.vds-server.ir"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 58",
+      "server": "kellie.makeup",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "kellie.makeup",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "kellie.makeup"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 59",
+      "server": "tu.mahilu.site",
+      "server_port": 2095,
+      "uuid": "7a737f41-b792-4260-94ff-3d864da67b80",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws"
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com § 60",
+      "server": "146.190.83.142",
+      "server_port": 39414,
+      "password": "sYZmonbPTS",
+      "tls": {
+        "enabled": true,
+        "server_name": "m.facebook.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com § 61",
+      "server": "146.190.83.142",
+      "server_port": 44826,
+      "password": "AI1pVmFmSK",
+      "tls": {
+        "enabled": true,
+        "server_name": "m.zoom.us",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 62",
+      "server": "mahilu.site",
+      "server_port": 2052,
+      "uuid": "7a737f41-b792-4260-94ff-3d864da67b80",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "mahilu.site"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com § 63",
+      "server": "146.190.83.142",
+      "server_port": 56226,
+      "password": "tqkhA8Ziem",
+      "tls": {
+        "enabled": true,
+        "server_name": "android.googleapis.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com § 64",
+      "server": "104.17.147.11",
+      "server_port": 443,
+      "password": "0ab6c98dae3b48e8b9c4a776b6c9c19a",
+      "tls": {
+        "enabled": true,
+        "server_name": "jobscareerfortoday.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 65",
+      "server": "admin.arzonhost.ir",
+      "server_port": 2086,
+      "uuid": "7d93e992-48cf-42d4-84f8-75768e815a4c",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "admin.arzonhost.ir"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 66",
+      "server": "104.16.217.241",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "nelly.homes",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "nelly.homes"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com § 67",
+      "server": "198.41.220.5",
+      "server_port": 443,
+      "password": "cb1f26aa437d4bfa9b841d28503ce8cc",
+      "tls": {
+        "enabled": true,
+        "server_name": "jobscareertoday.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 68",
+      "server": "198.41.202.5",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "kittiy.sbs",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "kittiy.sbs"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 69",
+      "server": "172.67.152.200",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "meroiy.icu",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "meroiy.icu"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 70",
+      "server": "172.67.152.214",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "meroiy.icu",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "meroiy.icu"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 71",
+      "server": "104.21.55.223",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "jader.fun",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "jader.fun"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com § 72",
+      "server": "104.16.192.138",
+      "server_port": 443,
+      "password": "���i��ק",
+      "tls": {
+        "enabled": true,
+        "server_name": "jobscareerforlawyers.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 73",
+      "server": "inna.cfd",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "inna.cfd",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "inna.cfd"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 74",
+      "server": "104.16.216.241",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "nelly.homes",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "nelly.homes"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 75",
+      "server": "172.67.136.244",
+      "server_port": 2087,
+      "uuid": "520a5f45-d354-42f4-a658-18dbc3754645",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "backend.app-browser.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/fws",
+        "headers": {
+          "Host": "backend.app-browser.org"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 76",
+      "server": "104.21.23.231",
+      "server_port": 2095,
+      "uuid": "7a737f41-b792-4260-94ff-3d864da67b80",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "onea.flha.ru"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 77",
+      "server": "152.42.180.59",
+      "server_port": 54511,
+      "uuid": "8672d4e3-8281-42b1-ba9a-d9a398f5ff3f",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "m.linkedin.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/free",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 78",
+      "server": "s1c.v2.v001sss.xyz",
+      "server_port": 2082,
+      "uuid": "112ac36f-3f53-4e26-8371-d25c028e1b9a",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "s1c.v2.v001sss.xyz"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 79",
+      "server": "183.237.20.158",
+      "server_port": 41242,
+      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
+      "security": "auto",
+      "alter_id": 64,
+      "authenticated_length": true
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com § 80",
+      "server": "198.41.220.12",
+      "server_port": 443,
+      "password": "242a3d8eee5e4ed1a6bfa4141d549a25",
+      "tls": {
+        "enabled": true,
+        "server_name": "jobscareerforlawyers.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 81",
+      "server": "muriel.makeup",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "muriel.makeup",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "muriel.makeup"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 82",
+      "server": "onea.flha.ru",
+      "server_port": 2095,
+      "uuid": "7a737f41-b792-4260-94ff-3d864da67b80",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com § 83",
+      "server": "172.67.192.61",
+      "server_port": 2087,
+      "password": "241f01b9-8dfc-474f-8342-3fbd5c46417e",
+      "tls": {
+        "enabled": true,
+        "server_name": "grpcfr.arminhadadi.site",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 84",
+      "server": "172.67.131.186",
+      "server_port": 2087,
+      "uuid": "13fc87d3-43c6-4cc1-9ab9-523d9707a113",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "api.cdn-tgju.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ows",
+        "headers": {
+          "Host": "api.cdn-tgju.org"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 85",
+      "server": "104.21.32.223",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "muriel.makeup",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "muriel.makeup"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com § 86",
+      "server": "95.179.128.114",
+      "server_port": 443,
+      "password": "a6292090-afe1-4640-97a7-4f1d1d877cf1",
+      "tls": {
+        "enabled": true,
+        "server_name": "hdfy8d1.cpi1.eu.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 87",
+      "server": "142.4.97.73",
+      "server_port": 38000,
+      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
+      "security": "auto",
+      "alter_id": 64,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "142.4.97.73",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/path/153428133302",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 88",
+      "server": "142.4.97.72",
+      "server_port": 38000,
+      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
+      "security": "auto",
+      "alter_id": 64,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "142.4.97.72",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/path/153428133302",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 89",
+      "server": "hms082.gwdef.sbs",
+      "server_port": 443,
+      "uuid": "bc864078-dcf3-4bf4-8dbf-ca9f200b56be",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "gwdef.sbs",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkws",
+        "headers": {
+          "Host": "gwdef.sbs"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 90",
+      "server": "172.67.179.151",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "kittiy.sbs",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "kittiy.sbs"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 91",
+      "server": "38.14.107.250",
+      "server_port": 38001,
+      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
+      "security": "auto",
+      "alter_id": 64,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "38.14.107.250",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/path/153428133302",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 92",
+      "server": "38.14.107.241",
+      "server_port": 38001,
+      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
+      "security": "auto",
+      "alter_id": 64,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "38.14.107.241",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/path/153428133302",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 93",
+      "server": "172.67.130.140",
+      "server_port": 2082,
+      "uuid": "112ac36f-3f53-4e26-8371-d25c028e1b9a",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "s1c.v2.v001sss.xyz"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 94",
+      "server": "38.14.107.252",
+      "server_port": 38001,
+      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
+      "security": "auto",
+      "alter_id": 64,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "38.14.107.252",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/path/153428133302",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 95",
+      "server": "hms02opi.fxiaomi.sbs",
+      "server_port": 443,
+      "uuid": "6c168fcc-2231-4f3b-8c1e-f6391692df4a",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "hms02.fxiaomi.sbs",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/link",
+        "headers": {
+          "Host": "hms02.fxiaomi.sbs"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 96",
+      "server": "ming2.kiwireich.com",
+      "server_port": 443,
+      "uuid": "18e5f40f-bda6-4c15-9334-e87cda6047af",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "ming2.kiwireich.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ray",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 97",
+      "server": "38.14.107.253",
+      "server_port": 38001,
+      "uuid": "418048af-a293-4b99-9b0c-98ca3580dd24",
+      "security": "auto",
+      "alter_id": 64,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "38.14.107.253",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/path/153428133302",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 98",
+      "server": "172.67.116.48",
+      "server_port": 80,
+      "uuid": "22a13aa2-4854-44cb-e090-ec71ab84b1ff",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "wap.hostmjj.com"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 99",
+      "server": "104.21.8.157",
+      "server_port": 2082,
+      "uuid": "112ac36f-3f53-4e26-8371-d25c028e1b9a",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "s1c.v2.v001sss.xyz"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com § 100",
+      "server": "146.190.83.142",
+      "server_port": 41899,
+      "password": "0SDimA6Syo",
+      "tls": {
+        "enabled": true,
+        "server_name": "m.youtube.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 101",
+      "server": "172.67.71.160",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "nelly.homes",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "nelly.homes"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com § 102",
+      "server": "104.16.159.5",
+      "server_port": 443,
+      "password": "984e400bf5d541b7b0815913fe0c432a",
+      "tls": {
+        "enabled": true,
+        "server_name": "bangladeshipatri.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 103",
+      "server": "172.67.168.34",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "marien.motorcycles",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "marien.motorcycles"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 104",
+      "server": "104.21.15.212",
+      "server_port": 443,
+      "uuid": "76221bfb-e92f-4e80-81c5-6fe48f50ac0b",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "glweidf.sbs",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkws",
+        "headers": {
+          "Host": "glweidf.sbs"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 105",
+      "server": "cf.openxai.link",
+      "server_port": 8080,
+      "uuid": "477af724-de79-40dc-80ef-bf3bca0be3ce",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "eu3.openxai.link"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 106",
+      "server": "megaan.homes",
+      "server_port": 443,
+      "uuid": "03fcc618-b93d-6796-6aed-8a38c975d581",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "megaan.homes",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/linkvws",
+        "headers": {
+          "Host": "megaan.homes"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 107",
+      "server": "w3.org",
+      "server_port": 443,
+      "uuid": "dfbbc8de-8a4f-407d-8069-6de38d83c4e1",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "hdfy4c2.freeairlaines.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "WgCmp8p80KDzo64uHE",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "v2cross.com § 108",
+      "server": "us3e-mmnnfr9dop0.v2freevpn.com",
+      "server_port": 80,
+      "uuid": "2a8a10fb-9ca3-367e-a234-cf09f841be4f",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/v118-fccxmxm35",
+        "headers": {
+          "Host": "us3e-mmnnfr9dop0.v2freevpn.com"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com § 109",
+      "server": "104.17.147.77",
+      "server_port": 443,
+      "password": "71409d3e488548e8bb076d229778f008",
+      "tls": {
+        "enabled": true,
+        "server_name": "bangladeshipatri.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "o § 110",
+      "server": "104.21.234.52",
+      "server_port": 80,
+      "uuid": "7022982f-da4c-48c9-c660-b2315abdcf7e",
+      "security": "auto",
+      "authenticated_length": true,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "a.prapt1.ir"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "direct",
+      "tag": "direct-fragment",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "1-500",
+        "sleep": "0-500"
+      }
+    },
+    {
+      "type": "direct",
+      "tag": "bypass"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "geoip": {
+      "path": "geo-assets/sagernet-sing-geoip-geoip.db"
+    },
+    "geosite": {
+      "path": "geo-assets/sagernet-sing-geosite-geosite.db"
+    },
+    "rules": [
+      {
+        "inbound": "dns-in",
+        "outbound": "dns-out"
+      },
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "clash_mode": "Direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "Global",
+        "outbound": "select"
+      },
+      {
+        "domain_suffix": ".ir",
+        "geosite": "ir",
+        "geoip": "ir",
+        "outbound": "bypass"
+      }
+    ],
+    "final": "select",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "clash.db"
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:6756",
+      "secret": "x8XxiBdOvYgJBHYm"
+    }
+  }
+}
