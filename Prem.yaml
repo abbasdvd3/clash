@@ -5,7 +5,7 @@ proxies:
 proxy-groups:
   - name: 🕹
     type: select
-    disable-udp: true
+    disable-udp: false
     use:
       - provider1
     proxies:
@@ -17,8 +17,8 @@ proxy-groups:
     type: url-test
     url: https://www.gstatic.com/generate_204
     interval: 300
-#    tolerance: 50
-    disable-udp: true
+    tolerance: 50
+    disable-udp: false
     use:
       - provider1
     proxies:
@@ -28,7 +28,7 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 180
  #   tolerance: 50
-    disable-udp: true
+    disable-udp: false
     use:
       - provider1
  
@@ -37,15 +37,15 @@ proxy-groups:
     type: load-balance
     url: https://www.gstatic.com/generate_204
     interval: 180
-#    tolerance: 50
-    disable-udp: true
+    tolerance: 50
+    disable-udp: false
     use:
       - provider1
     proxies:
 
   - name: ✈️
     type: select
-    disable-udp: true
+    disable-udp: false
     use:
       - provider1
     proxies:
@@ -56,7 +56,7 @@ proxy-groups:
       - DIRECT
   - name: 📲
     type: select
-    disable-udp: true
+    disable-udp: false
     use:
       - provider1
     proxies:
@@ -66,7 +66,7 @@ proxy-groups:
       - ⚖️
   - name: 🎥
     type: select
-    disable-udp: true
+    disable-udp: false
     use:
       - provider1
     proxies:
@@ -77,7 +77,7 @@ proxy-groups:
       - DIRECT
   - name: 🤖 AI
     type: select
-    disable-udp: true
+    disable-udp: false
     use:
       - provider1
     proxies:
@@ -86,13 +86,13 @@ proxy-groups:
       - DIRECT
   - name: 📡 IP
     type: select
-    disable-udp: true
+    disable-udp: false
     proxies:
       - DIRECT
       - 🕹
   - name: 📢
     type: select
-    disable-udp: true
+    disable-udp: false
     use:
       - provider1
     proxies:
@@ -103,29 +103,30 @@ proxy-groups:
       - ⚖️
   - name: Ⓜ️
     type: select
-    disable-udp: true
+    disable-udp: false
     use:
       - provider1
     proxies:
-      - 🕹
       - DIRECT
+      - 🕹
       - ♻️
       - 🚧
       - ⚖️
   - name: 🍎
     type: select
-    disable-udp: true
+    disable-udp: false
     use:
       - provider1
     proxies:
-      - 🕹
+      
       - DIRECT
+      - 🕹
       - ♻️
       - 🚧
       - ⚖️
   - name: 📺
     type: select
-    disable-udp: true
+    disable-udp: false
     use:
       - provider1
     proxies:
@@ -136,7 +137,7 @@ proxy-groups:
       - ⚖️
   - name: 🎮
     type: select
-    disable-udp: true
+    disable-udp: false
     use:
       - provider1
     proxies:
@@ -147,14 +148,14 @@ proxy-groups:
       - ⚖️
   - name: 🎯
     type: select
-    disable-udp: true
+    disable-udp: false
     proxies:
       - DIRECT
       - 🕹
       - ♻️
   - name: 🐟
     type: select
-    disable-udp: true
+    disable-udp: false
     proxies:
       - 🕹
       - ♻️
@@ -168,11 +169,11 @@ proxy-providers:
   provider1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml"    #【Meta专属】支持解析V2rayN等工具使用的普通订阅
-    interval: 0
+    interval: 900
     path: Prem/provider1.yaml
     health-check:
       enable: true
-      interval: 300
+      interval: 200
       # lazy: true
       url: https://www.gstatic.com/generate_204
 
@@ -273,8 +274,8 @@ rule-providers:
     path: ./ACL4SSR/ACL4SSR/BanEasyPrivacy.list
  
 rules:
-#  - RULE-SET,GoogleFCM,✈️
-#  - RULE-SET,GoogleCN,✈️
+  - RULE-SET,GoogleFCM,✈️
+  - RULE-SET,GoogleCN,✈️
 #  - RULE-SET,LocalAreaNetwork,DIRECT
   - RULE-SET,ProxyGFWlist,✈️
   - RULE-SET,UnBan,✈️
