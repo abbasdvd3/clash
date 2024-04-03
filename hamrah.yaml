@@ -151,6 +151,8 @@ proxy-groups:
   - name: 🕹 select
     type: select
     expected-status: 204
+    use:
+      - provider1
     proxies:
       - ♻️ url-test
       - 🚧 fallback
@@ -172,7 +174,7 @@ proxy-groups:
     type: url-test
     url: https://cp.cloudflare.com/generate_204
     interval: 300
-    tolerance: 150
+    #tolerance: 150
     expected-status: 204
     proxies:
     use:
