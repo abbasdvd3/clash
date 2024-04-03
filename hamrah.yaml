@@ -1,7 +1,7 @@
 
 # port: 7890
 # socks-port: 7891
-# mixed-port: 7890
+mixed-port: 10801
 # redir-port: 9797
 # tproxy-port: 9898
 mode: rule
@@ -12,10 +12,13 @@ log-level: debug
 ipv6: false
 geodata-mode: true
 geodata-loader: memconservative
-
+geo-auto-update: true
+geo-update-interval: 24 
 external-controller: 0.0.0.0:9090 
 # secret: "123456"
 external-ui: /data/adb/box/clash/dashboard
+external-ui-name: xd
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 tcp-concurrent: true
 global-client-fingerprint: chrome
 geox-url:
@@ -28,7 +31,9 @@ find-process-mode: strict
 profile:
   store-selected: false
   store-fake-ip: true
- 
+# interface-name: en0 
+#  TCP keep alive interval
+keep-alive-interval: 15 
 sniffer:
   enable: false
   override-destination: true
@@ -57,6 +62,7 @@ tun:
     # - com.whatsapp
 
 dns:
+  cache-algorithm: arc
   enable: true
   ipv6: false
   # prefer-h3: false
@@ -84,12 +90,17 @@ dns:
     - '8.8.8.8'
     - '114.114.114.114'
     - '119.29.29.29'
-  # proxy-server-nameserver:
-    # - https://doh.pub/dns-query
-  # nameserver-policy:
-    # 'www.baidu.com': '114.114.114.114'
-    # '+.internal.crop.com': '10.0.0.1'
-    # 'geosite:cn': https://doh.pub/dns-query
+  nameserver-policy:
+    #   'www.baidu.com': '114.114.114.114'
+    #   '+.internal.crop.com': '10.0.0.1'
+    "geosite:ir,private,apple":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+    "geosite:category-ads-all": rcode://success
+    "www.baidu.com,+.google.com": [223.5.5.5, https://dns.alidns.com/dns-query]
+    ## global，dns 为 rule-providers 中的名为 global 和 dns 规则订阅，
+    ## 且 behavior 必须为 domain/classical，当为 classical 时仅会生效域名类规则
+    # "rule-set:global,dns": 8.8.8.8
   fallback:
     - 'https://dns.google/dns-query'
     - 'https://1.1.1.1/dns-query'
@@ -139,6 +150,7 @@ proxies:
 proxy-groups:
   - name: 🕹 select
     type: select
+    expected-status: 204
     proxies:
       - ♻️ url-test
       - 🚧 fallback
@@ -158,18 +170,20 @@ proxy-groups:
     
   - name: ♻️ url-test
     type: url-test
-    url: https://www.gstatic.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
-    tolerance: 50
+    tolerance: 150
+    expected-status: 204
     proxies:
     use:
       - provider1
 #      - B
   - name: 🚧 fallback
     type: fallback
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    url: https://cp.cloudflare.com/generate_204
+    interval: 180
+ #   tolerance: 0
+    expected-status: 204
     proxies:
       - 🇭🇰 
       - 🇨🇳 
@@ -179,15 +193,18 @@ proxy-groups:
       - 🇰🇷 
   - name: ⚖️ load-balance
     type: load-balance
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    strategy: round-robin
+    url: https://cp.cloudflare.com/generate_204
+    interval: 180
+#    tolerance: 5
+    expected-status: 204
     proxies:
     use:
       - provider1
 
   - name: 📲
     type: select
+    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
@@ -203,6 +220,7 @@ proxy-groups:
       - DIRECT
   - name: 💬 OpenAi
     type: select
+    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
@@ -218,6 +236,7 @@ proxy-groups:
       - DIRECT
   - name: 📹
     type: select
+    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
@@ -233,6 +252,7 @@ proxy-groups:
       - DIRECT
   - name: 🎥
     type: select
+    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
@@ -248,18 +268,21 @@ proxy-groups:
       - DIRECT
   - name: 📺
     type: select
+    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
       - DIRECT
   - name: 📺2
     type: select
+    expected-status: 204
     proxies:
       - 🕹 select
       - 🇨🇳
       - 🇭🇰
   - name: 🌍
     type: select
+    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
@@ -284,6 +307,7 @@ proxy-groups:
       - 🇯🇵
   - name: 📢
     type: select
+    expected-status: 204
     proxies:
       
       - 🕹 select
@@ -300,6 +324,7 @@ proxy-groups:
       - 🇰🇷 
   - name: Ⓜ️1
     type: select
+    expected-status: 204
     proxies:
       - 🕹 select
       - DIRECT
@@ -315,6 +340,7 @@ proxy-groups:
       - 🇰🇷 
   - name: Ⓜ️2
     type: select
+    expected-status: 204
     proxies:
       - 🕹 select
       - DIRECT
@@ -330,6 +356,7 @@ proxy-groups:
       - 🇰🇷 
   - name: Ⓜ️3
     type: select
+    expected-status: 204
     proxies:
       - 🕹 select
       - DIRECT
@@ -345,6 +372,7 @@ proxy-groups:
       - 🇰🇷 
   - name: 🍎
     type: select
+    expected-status: 204
     proxies:
       - DIRECT
       - 🕹 select
@@ -360,6 +388,7 @@ proxy-groups:
       - 🇰🇷 
   - name: 🎮
     type: select
+    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
@@ -374,6 +403,7 @@ proxy-groups:
       - 🇰🇷 
   - name: 🎶
     type: select
+    expected-status: 204
     proxies:
       - 🕹 select
       - ♻️ url-test
@@ -395,6 +425,7 @@ proxy-groups:
       - DIRECT
   - name: 🐟
     type: select
+    expected-status: 204
     use:
       - provider1
     proxies:
@@ -413,49 +444,61 @@ proxy-groups:
       
   - name: 🇭🇰
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
-    tolerance: 50
+#    tolerance: 50
+    filter: '🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港'
+    expected-status: 204
     proxies: 
     use:
       - provider1
   - name: 🇯🇵
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
-    tolerance: 50
+#    tolerance: 50
+    filter: '🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日'
+    expected-status: 204
     proxies: 
     use:
       - provider1
   - name: 🇺🇲
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
-    tolerance: 150
+#    tolerance: 150
+    filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
+    expected-status: 204
     proxies:
     use:
       - provider1
   - name: 🇨🇳
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
-    tolerance: 50
+#    tolerance: 50
+    filter: "cn|TW"
+    expected-status: 204
     proxies: 
     use:
       - provider1
   - name: 🇸🇬
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
-    tolerance: 50
+#    tolerance: 50
+    filter: '🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]'
+    expected-status: 204
     proxies: 
     use:
       - provider1
   - name: 🇰🇷
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
-    tolerance: 50
+ #   tolerance: 50
+    filter: '🇰🇷|KO?R|Korea|首尔|韩|韓'
+    expected-status: 204
     proxies: 
     use:
       - provider1
@@ -464,13 +507,19 @@ proxy-providers:
   provider1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml"    #【Meta专属】支持解析V2rayN等工具使用的普通订阅
-    interval: 3600
+    interval: 600
     path: Prem/provider1.yaml
     health-check:
       enable: true
       interval: 300
-      # lazy: true
-      url: https://www.gstatic.com/generate_204
+      lazy: true
+      url: https://cp.cloudflare.com/generate_204
+    override: 
+      skip-cert-verify: true
+      udp: true
+      down: "50 Mbps"
+      up: "10 Mbps"  
+      dialer-proxy: proxy
 rule-providers:
   block:
     type: http
