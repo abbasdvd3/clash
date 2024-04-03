@@ -16,19 +16,15 @@ geodata-loader: memconservative
 external-controller: 0.0.0.0:9090 
 # secret: "123456"
 external-ui: /data/adb/box/clash/dashboard
-# tcp-concurrent: false
-# global-client-fingerprint: chrome
+tcp-concurrent: true
+global-client-fingerprint: chrome
 geox-url:
   geoip: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat"
   geosite: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat"
   mmdb: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/geoip.metadb"
-
-
 # always 
 # strict 
-
 find-process-mode: strict
-
 profile:
   store-selected: false
   store-fake-ip: true
@@ -40,9 +36,7 @@ sniffer:
     http: { ports: [80, 8080] }
     tls: { ports: [443, 8443] }
   skip-domain:
-    #Apple
     - 'courier.push.apple.com'
-    #mi
     - 'Mijia Cloud'
 tun:
   enable: true
@@ -67,11 +61,15 @@ dns:
   ipv6: true
   # prefer-h3: false
   default-nameserver:
-    - 114.114.114.114
-    - 8.8.8.8
-    - 1.1.1.1
-    - tls://223.5.5.5
-    - https://223.5.5.5/dns-query
+    - '114.114.114.114'
+    - '8.8.8.8'
+    - '1.1.1.1'
+    - 'tls://223.5.5.5'
+    - 'https://223.5.5.5/dns-query'
+    - '208.67.222.222'
+    - '217.218.155.155'
+    - 'tls://1.12.12.12:853'
+    - 'tls://223.5.5.5:853'
   listen: 0.0.0.0:1053
   use-hosts: true
   # 可选值 fake-ip / redir-host
@@ -81,29 +79,46 @@ dns:
     - '*.lan'
     # - localhost.ptlogin2.qq.com
   nameserver:
-    - 223.5.5.5
-    - 1.1.1.1
-    - 8.8.8.8
-    - 114.114.114.114
-    - 119.29.29.29
+    - '223.5.5.5'
+    - '1.1.1.1'
+    - '8.8.8.8'
+    - '114.114.114.114'
+    - '119.29.29.29'
   # proxy-server-nameserver:
     # - https://doh.pub/dns-query
   # nameserver-policy:
     # 'www.baidu.com': '114.114.114.114'
     # '+.internal.crop.com': '10.0.0.1'
     # 'geosite:cn': https://doh.pub/dns-query
-  fallback:   # 与 nameserver 内的服务器列表同时发起请求，当规则符合 GEOIP 在 CN 以外时，fallback 列表内的域名服务器生效。    
-    - https://dns.google/dns-query
-    - https://1.1.1.1/dns-query
-    - tcp://8.8.8.8
-    - tcp://8.8.4.4
-    - tcp://208.67.222.222
-    - tcp://208.67.220.220
+  fallback:
+    - 'https://dns.google/dns-query'
+    - 'https://1.1.1.1/dns-query'
+    - 'tcp://8.8.4.4'
+    - 'tcp://208.67.222.222'
+    - 'tcp://208.67.220.220'
   fallback-filter:
     geoip: true
     geoip-code: ir
     ipcidr:
-      - 240.0.0.0/4
+      - '0.0.0.0/8'
+      - '10.0.0.0/8'
+      - '100.64.0.0/10'
+      - '127.0.0.0/8'
+      - '169.254.0.0/16'
+      - '172.16.0.0/12'
+      - '192.0.0.0/24'
+      - '192.0.2.0/24'
+      - '192.88.99.0/24'
+      - '192.168.0.0/16'
+      - '198.18.0.0/15'
+      - '198.51.100.0/24'
+      - '203.0.113.0/24'
+      - '224.0.0.0/3'
+      - '240.0.0.0/4'
+      - '::1/128'
+      - '64:ff9b:1::/48'
+      - 'fc00::/7'
+      - 'fe80::/10'
     domain:
       - '+.google.com'
       - '+.googleapis.com'
@@ -234,14 +249,13 @@ proxy-groups:
   - name: 📺
     type: select
     proxies:
-      - 🇨🇳
       - 🕹 select
       - ✈️
       - DIRECT
   - name: 📺2
     type: select
     proxies:
-      - 🎯
+      - 🕹 select
       - 🇨🇳
       - 🇭🇰
   - name: 🌍
@@ -262,17 +276,18 @@ proxy-groups:
   - name: 🌏
     type: select
     proxies:
+      - 🕹 select
       - DIRECT
       - 🇭🇰
       - 🇨🇳
       - 🇸🇬
       - 🇯🇵
-      - 🕹 select
   - name: 📢
     type: select
     proxies:
-      - DIRECT
+      
       - 🕹 select
+      - DIRECT
       - ✈️
       - ♻️ url-test
       - 🚧 fallback
@@ -286,8 +301,8 @@ proxy-groups:
   - name: Ⓜ️1
     type: select
     proxies:
-      - DIRECT
       - 🕹 select
+      - DIRECT
       - ✈️
       - ♻️ url-test
       - 🚧 fallback
@@ -301,8 +316,8 @@ proxy-groups:
   - name: Ⓜ️2
     type: select
     proxies:
-      - DIRECT
       - 🕹 select
+      - DIRECT
       - ✈️
       - ♻️ url-test
       - 🚧 fallback
@@ -316,8 +331,8 @@ proxy-groups:
   - name: Ⓜ️3
     type: select
     proxies:
-      - DIRECT
       - 🕹 select
+      - DIRECT
       - ✈️
       - ♻️ url-test
       - 🚧 fallback
@@ -346,7 +361,6 @@ proxy-groups:
   - name: 🎮
     type: select
     proxies:
-      - DIRECT
       - 🕹 select
       - ✈️
       - ♻️ url-test
@@ -361,7 +375,6 @@ proxy-groups:
   - name: 🎶
     type: select
     proxies:
-      - DIRECT
       - 🕹 select
       - ♻️ url-test
   - name: 🎯
@@ -373,7 +386,7 @@ proxy-groups:
   - name: 🛑
     type: select
     proxies:
-      - REJECT
+      - PASS
       - DIRECT
   - name: 🍃
     type: select
@@ -807,6 +820,13 @@ rule-providers:
     format: text
     interval: 3600
     path: ./ACL4SSR/ACL4SSR/Download.list
+  GoogleCNProxyIP:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/GoogleCNProxyIP.list    
 rules:
   - RULE-SET,private,🎯,no-resolve
   - RULE-SET,apps,🎯
@@ -855,7 +875,7 @@ rules:
   - RULE-SET,ChinaDomain,🎯
   - RULE-SET,ChinaCompanyIp,🎯
   - RULE-SET,Download,🎯
-#  - RULE-SET,GoogleFCM,✈️
+  - RULE-SET,GoogleCNProxyIP,📢
 #  - RULE-SET,GoogleCN,✈️
 #  - RULE-SET,LocalAreaNetwork,DIRECT
 #  - RULE-SET,ProxyGFWlist,✈️
