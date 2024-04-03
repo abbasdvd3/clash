@@ -153,6 +153,12 @@ proxy-groups:
       - DIRECT
       - 🕹
       - ♻️
+  - name: 🛑
+    type: select
+    disable-udp: false
+    proxies:
+      - PASS
+      - DIRECT      
   - name: 🐟
     type: select
     disable-udp: false
@@ -186,14 +192,36 @@ rule-providers:
     format: text
     interval: 3600
     path: ./mphin/ProxyTools/LocalAreaNetwork.list
+
+  GoogleFCM:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/GoogleFCM.list
+  GoogleCNProxyIP:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/GoogleCNProxyIP.list
+  GoogleCN:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/GoogleCN.list
+
   Google:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/Google.list
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list
     format: text
     interval: 3600
-    path: ./mphin/ProxyTools/Google.list
-
+    path: ./ACL4SSR/ACL4SSR/Google.list
   Apple:
     type: http
     behavior: classical
@@ -274,17 +302,21 @@ rule-providers:
     path: ./ACL4SSR/ACL4SSR/BanEasyPrivacy.list
  
 rules:
-#  - RULE-SET,GoogleFCM,✈️
- # - RULE-SET,GoogleCN,✈️
-#  - RULE-SET,LocalAreaNetwork,DIRECT
+  - RULE-SET,GoogleFCM,📢
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,📢
+  - DOMAIN-SUFFIX,services.googleapis.cn,📢
+  - RULE-SET,GoogleCNProxyIP,📢
+  - RULE-SET,GoogleCN,📢
+#  - RULE-SET,YouTube,📹 油管视频
+  - RULE-SET,LocalAreaNetwork,🎯
   - RULE-SET,ProxyGFWlist,✈️
   - RULE-SET,UnBan,✈️
   - RULE-SET,gfw,✈️  
-  - RULE-SET,BanAD,REJECT
+  - RULE-SET,BanAD,🛑
   - RULE-SET,BanProgramAD,✈️
-  - RULE-SET,BanEasyList,REJECT
-  - RULE-SET,BanEasyListChina,REJECT
-  - RULE-SET,BanEasyPrivacy,REJECT
+  - RULE-SET,BanEasyList,🛑
+  - RULE-SET,BanEasyListChina,🛑
+  - RULE-SET,BanEasyPrivacy,🛑
 #  - RULE-SET,YouTube,📺
 #  - RULE-SET,ProxyMedia,📺
 #  - RULE-SET,adguard,REJECT
