@@ -5,7 +5,7 @@ proxies:
 proxy-groups:
   - name: 🕹
     type: select
-    disable-udp: false
+    disable-udp: true
     use:
       - provider1
     proxies:
@@ -15,37 +15,37 @@ proxy-groups:
 
   - name: ♻️
     type: url-test
-    url: https://www.gstatic.com/generate_204
-    interval: 200
-    tolerance: 100
-    disable-udp: false
+    url: http://www.google.com/generate_204
+    interval: 250
+#    tolerance: 100
+    disable-udp: true
     use:
       - provider1
     proxies:
 
   - name: 🚧
     type: fallback
-    url: https://www.gstatic.com/generate_204
+    url: http://www.google.com/generate_204
     interval: 180
-    tolerance: 100
-    disable-udp: false
+#    tolerance: 100
+    disable-udp: true
     use:
       - provider1
  
 
   - name: ⚖️
     type: load-balance
-    url: https://www.gstatic.com/generate_204
+    url: http://www.google.com/generate_204
     interval: 180
-    tolerance: 100
-    disable-udp: false
+#    tolerance: 100
+    disable-udp: true
     use:
       - provider1
     proxies:
 
   - name: ✈️
     type: select
-    disable-udp: false
+    disable-udp: true
     use:
       - provider1
     proxies:
@@ -56,7 +56,7 @@ proxy-groups:
       - DIRECT
   - name: 📲
     type: select
-    disable-udp: false
+    disable-udp: true
     use:
       - provider1
     proxies:
@@ -66,7 +66,7 @@ proxy-groups:
       - ⚖️
   - name: 🎥
     type: select
-    disable-udp: false
+    disable-udp: true
     use:
       - provider1
     proxies:
@@ -77,7 +77,7 @@ proxy-groups:
       - DIRECT
   - name: 🤖 AI
     type: select
-    disable-udp: false
+    disable-udp: true
     use:
       - provider1
     proxies:
@@ -86,13 +86,13 @@ proxy-groups:
       - DIRECT
   - name: 📡 IP
     type: select
-    disable-udp: false
+    disable-udp: true
     proxies:
       - DIRECT
       - 🕹
   - name: 📢
     type: select
-    disable-udp: false
+    disable-udp: true
     use:
       - provider1
     proxies:
@@ -103,7 +103,7 @@ proxy-groups:
       - ⚖️
   - name: Ⓜ️
     type: select
-    disable-udp: false
+    disable-udp: true
     use:
       - provider1
     proxies:
@@ -114,7 +114,7 @@ proxy-groups:
       - ⚖️
   - name: 🍎
     type: select
-    disable-udp: false
+    disable-udp: true
     use:
       - provider1
     proxies:
@@ -126,7 +126,7 @@ proxy-groups:
       - ⚖️
   - name: 📺
     type: select
-    disable-udp: false
+    disable-udp: true
     use:
       - provider1
     proxies:
@@ -137,7 +137,7 @@ proxy-groups:
       - ⚖️
   - name: 🎮
     type: select
-    disable-udp: false
+    disable-udp: true
     use:
       - provider1
     proxies:
@@ -148,20 +148,20 @@ proxy-groups:
       - ⚖️
   - name: 🎯
     type: select
-    disable-udp: false
+    disable-udp: true
     proxies:
       - DIRECT
       - 🕹
       - ♻️
   - name: 🛑
     type: select
-    disable-udp: false
+    disable-udp: true
     proxies:
       - REJECT
       - DIRECT      
   - name: 🐟
     type: select
-    disable-udp: false
+    disable-udp: true
     proxies:
       - 🕹
       - ♻️
@@ -302,18 +302,18 @@ rule-providers:
     path: ./ACL4SSR/ACL4SSR/BanEasyPrivacy.list
  
 rules:
-  - RULE-SET,GoogleFCM,📢
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,📢
-  - DOMAIN-SUFFIX,services.googleapis.cn,📢
-  - RULE-SET,GoogleCNProxyIP,📢
+  - RULE-SET,GoogleFCM,🕹
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🕹
+  - DOMAIN-SUFFIX,services.googleapis.cn,🕹
+  - RULE-SET,GoogleCNProxyIP,🕹
   - RULE-SET,GoogleCN,📢
 #  - RULE-SET,YouTube,📹 油管视频
   - RULE-SET,LocalAreaNetwork,🎯
-  - RULE-SET,ProxyGFWlist,✈️
-  - RULE-SET,UnBan,✈️
-  - RULE-SET,gfw,✈️  
+  - RULE-SET,ProxyGFWlist,🕹
+  - RULE-SET,UnBan,🕹
+  - RULE-SET,gfw,🕹
   - RULE-SET,BanAD,🛑
-  - RULE-SET,BanProgramAD,✈️
+  - RULE-SET,BanProgramAD,🕹
   - RULE-SET,BanEasyList,🛑
   - RULE-SET,BanEasyListChina,🛑
   - RULE-SET,BanEasyPrivacy,🛑
@@ -323,9 +323,9 @@ rules:
   - RULE-SET,Apple,🍎
   - RULE-SET,IpinfoSpeedtest,📡 IP
   - RULE-SET,Telegram,📲
-  - RULE-SET,ProxyGFWlist,✈️
+  - RULE-SET,ProxyGFWlist,🕹
 #  - RULE-SET,LocalAreaNetwork,🎯
-  - RULE-SET,Google,📢
+  - RULE-SET,Google,🕹
   - GEOIP,CN,🎯
   - GEOIP,ir,🎯
   - MATCH,🐟
