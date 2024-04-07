@@ -16,7 +16,7 @@ proxy-groups:
     type: url-test
     url: https://i.ytimg.com/generate_204
     interval: 250
-#    tolerance: 100
+    tolerance: 50
     use:
       - provider1
     proxies:
@@ -24,8 +24,8 @@ proxy-groups:
   - name: 🚧
     type: fallback
     url: https://i.ytimg.com/generate_204
-    interval: 180
-#    tolerance: 100
+    interval: 500
+    tolerance: 100
     use:
       - provider1
  
@@ -33,8 +33,8 @@ proxy-groups:
   - name: ⚖️
     type: load-balance
     url: https://i.ytimg.com/generate_204
-    interval: 180
-#    tolerance: 100
+    interval: 500
+    tolerance: 150
     use:
       - provider1
     proxies:
