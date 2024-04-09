@@ -1,4 +1,3 @@
-
 port: 7890
 # socks-port: 7891
 # mixed-port: 10801
@@ -229,7 +228,7 @@ dns:
     "+.samfw.com": "https://doh.pub/dns-query"    
     ## global，dns 为 rule-providers 中的名为 global 和 dns 规则订阅，
     ## 且 behavior 必须为 domain/classical，当为 classical 时仅会生效域名类规则
-    "rule-set:google,ir": 8.8.8.8
+    "rule-set:GoogleFCM,ir": 8.8.8.8
   fallback:
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
@@ -242,76 +241,75 @@ dns:
     geosite:                         
       - gfw
     ipcidr:
-      - '0.0.0.0/8'
-      - '10.0.0.0/8'
-      - '100.64.0.0/10'
-      - '127.0.0.0/8'
-      - '169.254.0.0/16'
-      - '172.16.0.0/12'
-      - '192.0.0.0/24'
-      - '192.0.2.0/24'
-      - '192.88.99.0/24'
-      - '192.168.0.0/16'
-      - '198.18.0.0/15'
-      - '198.51.100.0/24'
-      - '203.0.113.0/24'
-      - '224.0.0.0/3'
-      - '240.0.0.0/4'
-      - '255.255.255.255/32'
-      - '::1/128'
-      - '64:ff9b:1::/48'
-      - 'fc00::/7'
-      - 'fe80::/10'
-      - '39.102.194.95/32
-      - '182.43.124.6/32'
-      - '101.35.177.86/32'
-#Geoip-CN 污染解析
-      - '116.89.243.8/32'
-      - '119.28.87.227/32'
+       - 0.0.0.0/8
+       - 10.0.0.0/8
+       - 100.64.0.0/10
+       - 127.0.0.0/8
+       - 169.254.0.0/16
+       - 172.16.0.0/12
+       - 192.0.0.0/24
+       - 192.0.2.0/24
+       - 192.88.99.0/24
+       - 192.168.0.0/16
+       - 198.18.0.0/15
+       - 198.51.100.0/24
+       - 203.0.113.0/24
+       - 224.0.0.0/3
+       - 240.0.0.0/4
+       - 255.255.255.255/32
+#       - ::1/128
+#       - 64:ff9b:1::/48
+#       - fc00::/7
+#       - fe80::/10
+       - 39.102.194.95/32
+       - 182.43.124.6/32
+       - 101.35.177.86/32
+       - 116.89.243.8/32
+       - 119.28.87.227/32
     domain:
-      - '+.google.com'
-      - '+.googleapis.com'
-      - '+.youtube.com'
-      - '+.appspot.com'
-      - '+.telegram.com'
-      - '+.facebook.com'
-      - '+.twitter.com'
-      - '+.blogger.com'
-      - '+.gmail.com'
-      - '+.gvt1.com'
-      - '+.xincache.com'
-      - '+.gstatic.com'
-      - '+.ampproject.org'
-      - '+.appspot.com'
-      - '+.blogger.com'
-       - '+.google.com'
-      - '+.google.cn'
-      - '+.googleusercontent.com'
-      - '+.ggpht.com'
-      - '+.gmail.com'
-      - '+.gvt0.com'
-      - '+.gvt1.com'
-      - '+.gvt2.com'
-      - '+.gvt3.com'
-      - '+.youtu.be'
-      - '+.yt.be'
-      - '+.ytimg.com'
-      - '+.googlevideo.com'
-      - '+.youtube.com'
-      - '+.xn--ngstr-lra8j.com'
-      - '+.xn--flw351e.com'
-      - '+.xn--9kr7l.com'
-      - '+.xn--ggle-55da.com'
-      - '+.xn--gogl-0nd52e.com'
-      - '+.xn--gogl-1nd42e.com'
-      - '+.googleapis.com'
-      - '+.googleapis.cn'
-      - '+.gstatic.com'
-      - '+.gstatic.cn'
-      - '+.services.googleapis.cn'
-      - '+.services.googleapis.com'
-      - '+.connectivitycheck.gstatic.cn'
-      - '+.connectivitycheck.gstatic.com'
+       - +.googleapis.com
+       - +.youtube.com
+       - +.appspot.com
+       - +.telegram.com
+       - +.facebook.com
+       - +.twitter.com
+       - +.blogger.com
+       - +.gmail.com
+       - +.gvt1.com
+       - +.xincache.com
+       - +.gstatic.com
+       - +.ampproject.org
+       - +.appspot.com
+       - +.blogger.com
+       - +.google.com
+       - +.google.cn
+       - +.googleusercontent.com
+       - +.ggpht.com
+       - +.gmail.com
+       - +.gvt0.com
+       - +.gvt1.com
+       - +.gvt2.com
+       - +.gvt3.com
+       - +.youtu.be
+       - +.yt.be
+       - +.ytimg.com
+       - +.googlevideo.com
+       - +.youtube.com
+       - +.xn--ngstr-lra8j.com
+       - +.xn--flw351e.com
+       - +.xn--9kr7l.com
+       - +.xn--ggle-55da.com
+       - +.xn--gogl-0nd52e.com
+       - +.xn--gogl-1nd42e.com
+       - +.googleapis.com
+       - +.googleapis.cn
+       - +.gstatic.com
+       - +.gstatic.cn
+       - +.services.googleapis.cn
+       - +.services.googleapis.com
+       - +.connectivitycheck.gstatic.cn
+       - +.connectivitycheck.gstatic.com
+
 
 hosts:
    'ota.googlezip.net': 127.0.0.1
@@ -374,7 +372,14 @@ proxy-groups:
     proxies:
     use:
       - provider1
-
+      
+  - name: 📡 IP
+    type: select
+    expected-status: 204
+    proxies:
+      - DIRECT
+      - 🕹 select
+      
   - name: 📲
     type: select
     expected-status: 204
@@ -1048,7 +1053,91 @@ rule-providers:
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/GoogleCNProxyIP.list    
+    path: ./ACL4SSR/ACL4SSR/GoogleCNProxyIP.list
+  DNS:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/DNS/DNS.yaml
+    format: yaml
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/DNS.yaml
+  GitHub:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/GitHub/GitHub.yaml
+    format: yaml
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/GitHub.yaml
+  AdGuardSDNSFilter:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/AdGuardSDNSFilter/AdGuardSDNSFilter_Domain.txt
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/AdGuardSDNSFilter.txt
+  BlockHttpDNS:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/BlockHttpDNS/BlockHttpDNS.yaml
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BlockHttpDNS
+  AdGuardSDNSFilterDirect:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/AdGuardSDNSFilter/Direct/Direct.yaml
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/AdGuardS DNS Filter Direct.yaml
+  Samsung:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Samsung/Samsung.yaml
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/Samsung.yaml
+  ChinaDNS:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/ChinaDNS/ChinaDNS.yaml
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/ChinaDNS.yaml
+  cloudflare:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geosite/cloudflare.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/cloudflare.list
+  Domestic:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Domestic.list
+    format: yaml
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/Domestic.list
+  Adblock1:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Adblock/Adblock.list
+    format: yaml
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/Adblock1.list
+  DNS2:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Special/DNS.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/DNS2.list
+  SpeedTest:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/SpeedTest.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/SpeedTest.list    
 rules:
   - RULE-SET,private,🎯,no-resolve
   - RULE-SET,apps,🎯
@@ -1103,19 +1192,19 @@ rules:
 #  - RULE-SET,ProxyGFWlist,✈️
 #  - RULE-SET,UnBan,✈️
 #  - RULE-SET,gfw,✈️  
-#  - RULE-SET,BanAD,REJECT
-#  - RULE-SET,BanProgramAD,✈️
-#  - RULE-SET,BanEasyList,REJECT
-#  - RULE-SET,BanEasyListChina,REJECT
-#  - RULE-SET,BanEasyPrivacy,REJECT
-#  - RULE-SET,YouTube,📺
-#  - RULE-SET,ProxyMedia,📺
-#  - RULE-SET,adguard,REJECT
-#  - RULE-SET,Apple,🍎
-#  - RULE-SET,IpinfoSpeedtest,📡 IP
-#  - RULE-SET,Telegram,📲
+  - RULE-SET,Adblock1,🛑
+  - RULE-SET,DNS2,🎯
+  - RULE-SET,Domestic,🕹 select
+  - RULE-SET,cloudflare,🎯
+  - RULE-SET,ChinaDNS,🎯
+  - RULE-SET,AdGuardSDNSFilterDirect,🎯
+  - RULE-SET,BlockHttpDNS,🛑
+  - RULE-SET,AdGuardSDNSFilter,🛑
+  - RULE-SET,Samsung,🍎
+  - RULE-SET,SpeedTest,📡 IP
+  - RULE-SET,DNS,🎯
 #  - RULE-SET,ProxyGFWlist,✈️
-#  - RULE-SET,LocalAreaNetwork,🎯
+  - RULE-SET,GitHub,🕹 select
 #  - RULE-SET,Google,📢  
   - RULE-SET,AWA,🛑
   - DOMAIN-SUFFIX,googlesyndication.com,🕹 select
