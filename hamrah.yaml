@@ -649,6 +649,9 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+
+      
   - name: 🇯🇵
     type: url-test
     url: https://cp.cloudflare.com/generate_204
@@ -660,6 +663,8 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+      
   - name: 🇺🇲
     type: url-test
     url: https://cp.cloudflare.com/generate_204
@@ -671,6 +676,8 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+      
   - name: 🇨🇳
     type: url-test
     url: https://cp.cloudflare.com/generate_204
@@ -682,6 +689,8 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+      
   - name: 🇸🇬
     type: url-test
     url: https://cp.cloudflare.com/generate_204
@@ -693,6 +702,9 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+
+      
   - name: 🇰🇷
     type: url-test
     url: https://cp.cloudflare.com/generate_204
@@ -704,28 +716,39 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
 
 proxy-providers:
   provider1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/h.yaml"    
-    interval: 600
+    interval: 900
     path: Prem/provider1.yaml
     health-check:
       enable: true
       interval: 300
-      lazy: true
+  #    lazy: true
       url: https://cp.cloudflare.com/generate_204
   provider2:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/i.yaml"    
-    interval: 600
+    interval: 900
     path: Prem/provider2.yaml
     health-check:
       enable: true
       interval: 300
-      lazy: true
+     # lazy: true
       url: https://cp.cloudflare.com/generate_204
+  provider3:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml"    
+    interval: 900
+    path: Prem/provider3.yaml
+    health-check:
+      enable: true
+      interval: 300
+      # lazy: true
+      url: https://cp.cloudflare.com/generate_204      
 rule-providers:
   block:
     type: http
