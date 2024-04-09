@@ -329,7 +329,7 @@ proxy-groups:
     proxies:
     use:
       - provider1
-    
+      - provider2
   - name: ♻️ url-test
     type: url-test
     url: https://cp.cloudflare.com/generate_204
@@ -339,6 +339,7 @@ proxy-groups:
     proxies:
     use:
       - provider1
+      - provider2
 #      - B
   - name: 🚧 fallback
     type: fallback
@@ -347,12 +348,9 @@ proxy-groups:
  #   tolerance: 0
     expected-status: 204
     proxies:
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
+    use:
+      - provider1
+      - provider2
   - name: ⚖️ load-balance
     type: load-balance
     strategy: round-robin
@@ -363,7 +361,7 @@ proxy-groups:
     proxies:
     use:
       - provider1
-      
+      - provider2
   - name: 📡 IP
     type: select
     expected-status: 204
@@ -374,6 +372,9 @@ proxy-groups:
   - name: 📲
     type: select
     expected-status: 204
+    use:
+      - provider1
+      - provider2
     proxies:
       - 🕹 select
       - ✈️
@@ -390,6 +391,9 @@ proxy-groups:
   - name: 💬 OpenAi
     type: select
     expected-status: 204
+    use:
+      - provider1
+      - provider2
     proxies:
       - 🕹 select
       - ✈️
@@ -406,6 +410,10 @@ proxy-groups:
   - name: 📹
     type: select
     expected-status: 204
+    use:
+      - provider1
+      - provider2
+      
     proxies:
       - 🕹 select
       - ✈️
@@ -422,6 +430,9 @@ proxy-groups:
   - name: 🎥
     type: select
     expected-status: 204
+    use:
+      - provider1
+      - provider2
     proxies:
       - 🕹 select
       - ✈️
@@ -438,6 +449,9 @@ proxy-groups:
   - name: 📺
     type: select
     expected-status: 204
+    use:
+      - provider1
+      - provider2
     proxies:
       - 🕹 select
       - ✈️
@@ -445,6 +459,9 @@ proxy-groups:
   - name: 📺2
     type: select
     expected-status: 204
+    use:
+      - provider1
+      - provider2
     proxies:
       - 🕹 select
       - 🇨🇳
@@ -452,6 +469,9 @@ proxy-groups:
   - name: 🌍
     type: select
     expected-status: 204
+    use:
+      - provider1
+      - provider2
     proxies:
       - 🕹 select
       - ✈️
@@ -467,6 +487,9 @@ proxy-groups:
       - DIRECT
   - name: 🌏
     type: select
+    use:
+      - provider1
+      - provider2
     proxies:
       - 🕹 select
       - DIRECT
@@ -477,6 +500,9 @@ proxy-groups:
   - name: 📢
     type: select
     expected-status: 204
+    use:
+      - provider1
+      - provider2
     proxies:
       
       - 🕹 select
@@ -597,6 +623,7 @@ proxy-groups:
     expected-status: 204
     use:
       - provider1
+      - provider2
     proxies:
       - 🕹 select
       - ✈️
@@ -621,6 +648,7 @@ proxy-groups:
     proxies: 
     use:
       - provider1
+      - provider2
   - name: 🇯🇵
     type: url-test
     url: https://cp.cloudflare.com/generate_204
@@ -631,6 +659,7 @@ proxy-groups:
     proxies: 
     use:
       - provider1
+      - provider2
   - name: 🇺🇲
     type: url-test
     url: https://cp.cloudflare.com/generate_204
@@ -641,6 +670,7 @@ proxy-groups:
     proxies:
     use:
       - provider1
+      - provider2
   - name: 🇨🇳
     type: url-test
     url: https://cp.cloudflare.com/generate_204
@@ -651,6 +681,7 @@ proxy-groups:
     proxies: 
     use:
       - provider1
+      - provider2
   - name: 🇸🇬
     type: url-test
     url: https://cp.cloudflare.com/generate_204
@@ -661,6 +692,7 @@ proxy-groups:
     proxies: 
     use:
       - provider1
+      - provider2
   - name: 🇰🇷
     type: url-test
     url: https://cp.cloudflare.com/generate_204
@@ -671,11 +703,12 @@ proxy-groups:
     proxies: 
     use:
       - provider1
+      - provider2
 
 proxy-providers:
   provider1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml"    #【Meta专属】支持解析V2rayN等工具使用的普通订阅
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/h.yaml"    
     interval: 600
     path: Prem/provider1.yaml
     health-check:
@@ -683,12 +716,16 @@ proxy-providers:
       interval: 300
       lazy: true
       url: https://cp.cloudflare.com/generate_204
-  #  override: 
-    #  skip-cert-verify: true
- #     udp: true
-   #   down: "50 Mbps"
-    #  up: "10 Mbps"  
-    #  dialer-proxy: proxy
+  provider2:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/i.yaml"    
+    interval: 600
+    path: Prem/provider2.yaml
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: https://cp.cloudflare.com/generate_204
 rule-providers:
   block:
     type: http
