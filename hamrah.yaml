@@ -330,27 +330,30 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
   - name: ♻️ url-test
     type: url-test
     url: https://cp.cloudflare.com/generate_204
     interval: 300
     #tolerance: 150
-    expected-status: 204
     proxies:
     use:
       - provider1
       - provider2
+      - provider3
+      
 #      - B
   - name: 🚧 fallback
     type: fallback
     url: https://cp.cloudflare.com/generate_204
     interval: 180
  #   tolerance: 0
-    expected-status: 204
     proxies:
     use:
       - provider1
       - provider2
+      - provider3
+      
   - name: ⚖️ load-balance
     type: load-balance
     strategy: round-robin
@@ -362,6 +365,8 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+      
   - name: 📡 IP
     type: select
     expected-status: 204
@@ -372,9 +377,6 @@ proxy-groups:
   - name: 📲
     type: select
     expected-status: 204
-    use:
-      - provider1
-      - provider2
     proxies:
       - 🕹 select
       - ✈️
@@ -388,12 +390,14 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
       - DIRECT
+    use:
+      - provider1
+      - provider2
+      - provider3
+      
   - name: 💬 OpenAi
     type: select
     expected-status: 204
-    use:
-      - provider1
-      - provider2
     proxies:
       - 🕹 select
       - ✈️
@@ -407,13 +411,13 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
       - DIRECT
+     use:
+      - provider1
+      - provider2   
+      - provider3
+      
   - name: 📹
     type: select
-    expected-status: 204
-    use:
-      - provider1
-      - provider2
-      
     proxies:
       - 🕹 select
       - ✈️
@@ -427,12 +431,13 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
       - DIRECT
+    use:
+      - provider1
+      - provider2
+      - provider3
   - name: 🎥
     type: select
     expected-status: 204
-    use:
-      - provider1
-      - provider2
     proxies:
       - 🕹 select
       - ✈️
@@ -446,32 +451,33 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
       - DIRECT
+      
   - name: 📺
     type: select
     expected-status: 204
-    use:
-      - provider1
-      - provider2
     proxies:
       - 🕹 select
       - ✈️
       - DIRECT
-  - name: 📺2
-    type: select
-    expected-status: 204
     use:
       - provider1
       - provider2
+      - provider3
+  - name: 📺2
+    type: select
+    expected-status: 204
     proxies:
       - 🕹 select
       - 🇨🇳
       - 🇭🇰
-  - name: 🌍
-    type: select
-    expected-status: 204
     use:
       - provider1
       - provider2
+      - provider3
+      
+  - name: 🌍
+    type: select
+    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
@@ -485,11 +491,13 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
       - DIRECT
-  - name: 🌏
-    type: select
     use:
       - provider1
       - provider2
+      - provider3
+      
+  - name: 🌏
+    type: select
     proxies:
       - 🕹 select
       - DIRECT
@@ -497,14 +505,14 @@ proxy-groups:
       - 🇨🇳
       - 🇸🇬
       - 🇯🇵
-  - name: 📢
-    type: select
-    expected-status: 204
     use:
       - provider1
       - provider2
+      - provider3
+  - name: 📢
+    type: select
+    expected-status: 204
     proxies:
-      
       - 🕹 select
       - DIRECT
       - ✈️
@@ -517,6 +525,10 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
+    use:
+      - provider1
+      - provider2
+      - provider3
   - name: Ⓜ️1
     type: select
     expected-status: 204
@@ -533,6 +545,7 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
+      
   - name: Ⓜ️2
     type: select
     expected-status: 204
@@ -549,6 +562,7 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
+      
   - name: Ⓜ️3
     type: select
     expected-status: 204
@@ -565,6 +579,7 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
+      
   - name: 🍎
     type: select
     expected-status: 204
@@ -581,6 +596,7 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
+      
   - name: 🎮
     type: select
     expected-status: 204
@@ -596,34 +612,36 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
+      
   - name: 🎶
     type: select
     expected-status: 204
     proxies:
       - 🕹 select
       - ♻️ url-test
+      
   - name: 🎯
     type: select
     proxies:
       - DIRECT
       - 🕹 select
       - ♻️ url-test
+      
   - name: 🛑
     type: select
     proxies:
       - PASS
       - DIRECT
+      
   - name: 🍃
     type: select
     proxies:
       - REJECT
       - DIRECT
+      
   - name: 🐟
     type: select
     expected-status: 204
-    use:
-      - provider1
-      - provider2
     proxies:
       - 🕹 select
       - ✈️
@@ -637,7 +655,10 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
       - DIRECT
-      
+    use:
+      - provider1
+      - provider2
+      - provider3
   - name: 🇭🇰
     type: url-test
     url: https://cp.cloudflare.com/generate_204
