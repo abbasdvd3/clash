@@ -14,7 +14,6 @@ geodata-loader: memconservative
 geo-auto-update: true
 geo-update-interval: 24 
 external-controller: 0.0.0.0:9090 
-# secret: "123456"
 external-ui: /dashboard
 external-ui-name: xd
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
@@ -24,14 +23,11 @@ geox-url:
   geoip: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat"
   geosite: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat"
   mmdb: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/geoip.metadb"
-# always 
-# strict 
-find-process-mode: strict
+find-process-mode: always
 profile:
   store-selected: false
   store-fake-ip: true
 # interface-name: en0 
-#  TCP keep alive interval
 keep-alive-interval: 15 
 sniffer:
   enable: true
@@ -60,9 +56,7 @@ tun:
     - tcp://any:53
   # interface-name: 
   auto-route: true 
-  # auto set global route for Windows# It is recommended to use `interface-name`
   auto-detect-interface: true 
-  # auto detect interface, conflict with `interface-name`
   mtu: 9000 
   strict_route: true 
   inet4_route_address: 
@@ -72,21 +66,6 @@ tun:
     - '::/1'
     - '8000::/1'
   endpoint_independent_nat: true 
-    # - 0
-  # include_uid_range: 
-    # - 1000-99999
-  # exclude_uid: 
-    #- 1000
-  # exclude_uid_range: 
-    # - 1000-99999
-  # include_android_user: 
-    # - 0
-    # - 10
-  # include_package: 
-    # - com.android.chrome
-  # exclude_package: 
-    # - com.android.captiveportallogin
-
 dns:
   enable: true
   ipv6: true
@@ -102,10 +81,6 @@ dns:
     - tls://1.12.12.12:853
     - tls://223.5.5.5:853
     - https://223.5.5.5/dns-query
-#Adguard(No Filter/No log/Anycast)
-#    - quic://dns-unfiltered.adguard.com:784
-#    - tls://dns-unfiltered.adguard.com:853
-#    - https://dns-unfiltered.adguard.com/dns-query
     - quic://94.140.14.140:784
     - tls://94.140.14.140:853
     - https://94.140.14.140/dns-query
@@ -120,7 +95,6 @@ dns:
     - https://[2a10:50c0::2:ff]/dns-query
   listen: :1053
   use-hosts: true
-  #  fake-ip / redir-host
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
@@ -143,7 +117,7 @@ dns:
     - tls://a.passcloud.xyz:853
     - https://i.passcloud.xyz/dns-query
     - https://a.passcloud.xyz/dns-query
-  proxy-server-nameserver:          
+#  proxy-server-nameserver:          
 #iqiq.io(Filter ?/log ?)
 #    - quic://i.passcloud.xyz:784
 #    - quic://a.passcloud.xyz:784
@@ -161,8 +135,8 @@ dns:
 #    - https://162.159.36.1/dns-query
 #    - https://162.159.46.1/dns-query
 #Tuna DNS(Filter ?/log ?/Edns)
-    - tls://dns.tuna.tsinghua.edu.cn:8853
-    - https://dns.tuna.tsinghua.edu.cn:8443/dns-query
+ #   - tls://dns.tuna.tsinghua.edu.cn:8853
+#    - https://dns.tuna.tsinghua.edu.cn:8443/dns-query
 #Adguard(No Filter/No log/Anycast)
 #    - quic://dns-unfiltered.adguard.com:784
 #    - tls://dns-unfiltered.adguard.com:853
@@ -174,11 +148,11 @@ dns:
 #    - tls://94.140.14.141:853
 #    - https://94.140.14.141/dns-query
 #Apad DNS(Filter ?/log ?/Edns)
-    - tls://edns.apad.pro:853
-    - https://edns.apad.pro:3306/dns-query
-    - tls://h2o.apad.pro:853
-    - https://h2o.apad.pro/dns-query
-    - https://doh.apad.pro/dns-query
+ #   - tls://edns.apad.pro:853
+ #   - https://edns.apad.pro:3306/dns-query
+#    - tls://h2o.apad.pro:853
+#    - https://h2o.apad.pro/dns-query
+#    - https://doh.apad.pro/dns-query
 #Apad DNS CN
 #    - https://doh.apad.pro/cn-query
 #IBM Doh(No Filter/No log/Anycast/Edns)
@@ -300,8 +274,6 @@ dns:
        - +.services.googleapis.com
        - +.connectivitycheck.gstatic.cn
        - +.connectivitycheck.gstatic.com
-
-
 hosts:
    'ota.googlezip.net': 127.0.0.1
    'ota-cache1.googlezip.net': 127.0.0.1
@@ -310,9 +282,6 @@ proxies:
 proxy-groups:
   - name: 🕹 select
     type: select
-#    expected-status: 204
-#    use:
- #     - provider1
     proxies:
       - ♻️ url-test
       - 🚧 fallback
@@ -335,19 +304,16 @@ proxy-groups:
     type: url-test
     url: https://cp.cloudflare.com/generate_204
     interval: 300
-    #tolerance: 150
     proxies:
     use:
       - provider1
       - provider2
       - provider3
       
-#      - B
   - name: 🚧 fallback
     type: fallback
     url: https://cp.cloudflare.com/generate_204
     interval: 180
- #   tolerance: 0
     proxies:
     use:
       - provider1
@@ -359,8 +325,6 @@ proxy-groups:
     strategy: round-robin
     url: https://cp.cloudflare.com/generate_204
     interval: 180
-#    tolerance: 5
-    expected-status: 204
     proxies:
     use:
       - provider1
@@ -369,14 +333,12 @@ proxy-groups:
       
   - name: 📡 IP
     type: select
-    expected-status: 204
     proxies:
       - DIRECT
       - 🕹 select
       
   - name: 📲
     type: select
-    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
@@ -397,7 +359,6 @@ proxy-groups:
       
   - name: 💬 OpenAi
     type: select
-    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
@@ -437,7 +398,6 @@ proxy-groups:
       - provider3
   - name: 🎥
     type: select
-    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
@@ -454,7 +414,6 @@ proxy-groups:
       
   - name: 📺
     type: select
-    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
@@ -465,7 +424,6 @@ proxy-groups:
       - provider3
   - name: 📺2
     type: select
-    expected-status: 204
     proxies:
       - 🕹 select
       - 🇨🇳
@@ -477,7 +435,6 @@ proxy-groups:
       
   - name: 🌍
     type: select
-    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
@@ -511,7 +468,6 @@ proxy-groups:
       - provider3
   - name: 📢
     type: select
-    expected-status: 204
     proxies:
       - 🕹 select
       - DIRECT
@@ -531,7 +487,6 @@ proxy-groups:
       - provider3
   - name: Ⓜ️1
     type: select
-    expected-status: 204
     proxies:
       - 🕹 select
       - DIRECT
@@ -548,7 +503,6 @@ proxy-groups:
       
   - name: Ⓜ️2
     type: select
-    expected-status: 204
     proxies:
       - 🕹 select
       - DIRECT
@@ -565,7 +519,6 @@ proxy-groups:
       
   - name: Ⓜ️3
     type: select
-    expected-status: 204
     proxies:
       - 🕹 select
       - DIRECT
@@ -582,7 +535,6 @@ proxy-groups:
       
   - name: 🍎
     type: select
-    expected-status: 204
     proxies:
       - DIRECT
       - 🕹 select
@@ -599,7 +551,6 @@ proxy-groups:
       
   - name: 🎮
     type: select
-    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
@@ -615,7 +566,6 @@ proxy-groups:
       
   - name: 🎶
     type: select
-    expected-status: 204
     proxies:
       - 🕹 select
       - ♻️ url-test
@@ -641,7 +591,6 @@ proxy-groups:
       
   - name: 🐟
     type: select
-    expected-status: 204
     proxies:
       - 🕹 select
       - ✈️
@@ -659,27 +608,24 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
+      
   - name: 🇭🇰
     type: url-test
     url: https://cp.cloudflare.com/generate_204
     interval: 300
 #    tolerance: 50
     filter: '🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港'
-    expected-status: 204
     proxies: 
     use:
       - provider1
       - provider2
       - provider3
 
-      
   - name: 🇯🇵
     type: url-test
     url: https://cp.cloudflare.com/generate_204
     interval: 300
-#    tolerance: 50
     filter: '🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日'
-    expected-status: 204
     proxies: 
     use:
       - provider1
@@ -690,9 +636,7 @@ proxy-groups:
     type: url-test
     url: https://cp.cloudflare.com/generate_204
     interval: 300
-#    tolerance: 150
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
-    expected-status: 204
     proxies:
     use:
       - provider1
@@ -703,9 +647,7 @@ proxy-groups:
     type: url-test
     url: https://cp.cloudflare.com/generate_204
     interval: 300
-#    tolerance: 50
     filter: "cn|TW"
-    expected-status: 204
     proxies: 
     use:
       - provider1
@@ -716,23 +658,18 @@ proxy-groups:
     type: url-test
     url: https://cp.cloudflare.com/generate_204
     interval: 300
-#    tolerance: 50
     filter: '🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]'
-    expected-status: 204
     proxies: 
     use:
       - provider1
       - provider2
       - provider3
-
       
   - name: 🇰🇷
     type: url-test
     url: https://cp.cloudflare.com/generate_204
     interval: 300
- #   tolerance: 50
     filter: '🇰🇷|KO?R|Korea|首尔|韩|韓'
-    expected-status: 204
     proxies: 
     use:
       - provider1
