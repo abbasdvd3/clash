@@ -125,7 +125,7 @@ dns:
     - quic://[2a10:50c0::2:ff]:784
     - tls://[2a10:50c0::2:ff]:853
     - https://[2a10:50c0::2:ff]/dns-query
-  listen: 0.0.0.0:1053
+  listen: :1053
   use-hosts: true
   #  fake-ip / redir-host
   enhanced-mode: fake-ip
@@ -226,8 +226,6 @@ dns:
     "+.sxyprn.com": "https://doh.pub/dns-query"
     "+.spankbang.com": "https://doh.pub/dns-query"
     "+.samfw.com": "https://doh.pub/dns-query"    
-    ## global，dns 为 rule-providers 中的名为 global 和 dns 规则订阅，
-    ## 且 behavior 必须为 domain/classical，当为 classical 时仅会生效域名类规则
     "rule-set:GoogleFCM,ir": 8.8.8.8
   fallback:
     - https://dns.google/dns-query
@@ -257,10 +255,10 @@ dns:
        - 224.0.0.0/3
        - 240.0.0.0/4
        - 255.255.255.255/32
-#       - ::1/128
-#       - 64:ff9b:1::/48
-#       - fc00::/7
-#       - fe80::/10
+       - ::1/128
+       - 64:ff9b:1::/48
+       - fc00::/7
+       - fe80::/10
        - 39.102.194.95/32
        - 182.43.124.6/32
        - 101.35.177.86/32
