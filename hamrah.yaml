@@ -11,7 +11,7 @@ bind-address: '*'
 log-level: debug
 ipv6: true
 geodata-mode: true
-geodata-loader: memconservative
+# geodata-loader: memconservative
 geo-auto-update: true
 geo-update-interval: 24 
 external-controller: 0.0.0.0:9090 
@@ -2381,25 +2381,25 @@ rule-providers:
     interval: 3600
     path: ./ACL4SSR/ACL4SSR/SpeedTest.list    
 rules :
-  - RULE-SET,private,IRAN,no-resolve
-  - RULE-SET,apps,IRAN
+  - RULE-SET,private,DIRECT,no-resolve
+  - RULE-SET,apps,DIRECT
   - RULE-SET,ads,BlockAd
   - RULE-SET,malware,BlockAd
   - RULE-SET,phishing,BlockAd
   - RULE-SET,cryptominers,BlockAd
-  - RULE-SET,ir,IRAN
-  - RULE-SET,ircidr,IRAN
-  - RULE-SET,irasn,IRAN
+  - RULE-SET,ir,DIRECT
+  - RULE-SET,ircidr,DIRECT
+  - RULE-SET,irasn,DIRECT
   - RULE-SET,UnBan,IRAN
   - RULE-SET,BanAD,BlockAd
-  - RULE-SET,BanProgramAD,PROXY
+  - RULE-SET,BanProgramAD,BlockAd
   - RULE-SET,GoogleFCM,PROXY
   - RULE-SET,GoogleCN,IRAN
   - RULE-SET,SteamCN,IRAN
   - RULE-SET,Bing,PROXY
   - RULE-SET,OneDrive,PROXY
   - RULE-SET,Microsoft,PROXY
-  - RULE-SET,Apple,IRAN
+  - RULE-SET,Apple,DIRECT
   - RULE-SET,Telegram,PROXY
   - RULE-SET,OpenAi,PROXY
   - RULE-SET,NetEaseMusic,PROXY
@@ -2431,16 +2431,16 @@ rules :
 #  - RULE-SET,UnBan,✈️
 #  - RULE-SET,gfw,✈️  
   - RULE-SET,Adblock1,BlockAd
-  - RULE-SET,DNS2,IRAN
+  - RULE-SET,DNS2,DIRECT
   - RULE-SET,Domestic,PROXY
-  - RULE-SET,cloudflare,IRAN
-  - RULE-SET,ChinaDNS,IRAN
-  - RULE-SET,AdGuardSDNSFilterDirect,IRAN
+  - RULE-SET,cloudflare,DIRECT
+  - RULE-SET,ChinaDNS,DIRECT
+  - RULE-SET,AdGuardSDNSFilterDirect,DIRECT
   - RULE-SET,BlockHttpDNS,BlockAd
   - RULE-SET,AdGuardSDNSFilter,BlockAd
   - RULE-SET,Samsung,PROXY
-  - RULE-SET,SpeedTest,IRAN
-  - RULE-SET,DNS,IRAN
+  - RULE-SET,SpeedTest,DIRECT
+  - RULE-SET,DNS,DIRECT
 #  - RULE-SET,ProxyGFWlist,PROXY
   - RULE-SET,GitHub,PROXY
 #  - RULE-SET,Google,PROXY
