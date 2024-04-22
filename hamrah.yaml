@@ -6,12 +6,11 @@
 # tproxy-port: 9898
 # mode: rule
 allow-lan: true
-unified-delay: true
+###  unified-delay: true
 bind-address: '*'
 log-level: debug
 ipv6: true
 geodata-mode: true
-# geodata-loader: memconservative
 geo-auto-update: true
 geo-update-interval: 24 
 external-controller: 0.0.0.0:9090 
@@ -31,7 +30,7 @@ profile:
 # interface-name: en0 
 keep-alive-interval: 15 
 sniffer:
-  enable: true
+  enable: false
   sniffing:
     - tls
     - http
@@ -202,7 +201,7 @@ dns:
     - tcp://208.67.222.222
     - tcp://208.67.220.220
   fallback-filter:
-    geoip: true
+    geoip: false
     geoip-code: ir
    # geosite:                         
    #   - gfw
@@ -332,14 +331,6 @@ proxies:
   - {"name":"🇺🇸_US_美国_tr_1181","type":"trojan","server":"172.67.196.38","port":443,"udp":true,"password":"0ad5e311-7189-4124-ac8f-f828b681f10e","sni":"c5mt.cdncisco.org","skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇺🇸_US_美国_tr_1182","type":"trojan","server":"104.18.11.39","port":443,"udp":true,"password":"123456","sni":"trojan-amp-id01.globalssh.xyz","skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇮🇷_IR_伊朗_tr_1286","type":"trojan","server":"5.106.6.250","port":443,"udp":true,"password":"sGuEWtJBhG","sni":"mail.rubika.ir","skip-cert-verify":true,"network":"tcp"}
-  - {"name":"4Sarina-101","type":"ss","server":"series-a2-me.samanehha.co","port":443,"password":"Bog0ELmMM9DSxDdQ","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"4Sarina-792","type":"ss","server":"18.141.207.80","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"4Sarina-796","type":"ss","server":"18.177.138.167","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"4Sarina-823","type":"ss","server":"35.77.89.124","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"4Sarina-849","type":"ss","server":"43.203.192.6","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"4Sarina-864","type":"ss","server":"47.128.64.71","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"4Sarina-873","type":"ss","server":"52.195.237.101","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"4Sarina-901","type":"ss","server":"57.181.42.0","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
   - {"name":"4Sarina-2678","type":"trojan","server":"104.21.69.44","port":443,"udp":true,"password":"00ad4330-8d40-11ee-8d1a-1239d0255272","sni":"us1.test3.net","skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/howdy","headers":{"host":"us1.test3.net"}}}
   - {"name":"4Sarina-2679","type":"trojan","server":"172.67.204.84","port":443,"udp":true,"password":"00ad4330-8d40-11ee-8d1a-1239d0255272","sni":"us1.test3.net","skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/howdy","headers":{"host":"us1.test3.net"}}}
   - {"name":"4Sarina-2683","type":"trojan","server":"162.159.138.232","port":443,"udp":true,"password":"0346cf80-8b9b-11ee-ac12-1239d0255272","sni":"us1.test3.net","skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/howdy","headers":{"host":"us1.test3.net"}}}
@@ -892,14 +883,6 @@ proxy-groups:
       - 🇺🇸_US_美国_tr_1181
       - 🇺🇸_US_美国_tr_1182
       - 🇮🇷_IR_伊朗_tr_1286
-      - 4Sarina-101
-      - 4Sarina-792
-      - 4Sarina-796
-      - 4Sarina-823
-      - 4Sarina-849
-      - 4Sarina-864
-      - 4Sarina-873
-      - 4Sarina-901
       - 4Sarina-2678
       - 4Sarina-2679
       - 4Sarina-2683
@@ -1452,14 +1435,6 @@ proxy-groups:
       - 🇺🇸_US_美国_tr_1181
       - 🇺🇸_US_美国_tr_1182
       - 🇮🇷_IR_伊朗_tr_1286
-      - 4Sarina-101
-      - 4Sarina-792
-      - 4Sarina-796
-      - 4Sarina-823
-      - 4Sarina-849
-      - 4Sarina-864
-      - 4Sarina-873
-      - 4Sarina-901
       - 4Sarina-2678
       - 4Sarina-2679
       - 4Sarina-2683
