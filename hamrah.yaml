@@ -7,6 +7,7 @@
 # mode: rule
 allow-lan: true
 ###  unified-delay: true
+enable-process: true
 bind-address: '*'
 log-level: debug
 ipv6: false
@@ -5757,7 +5758,10 @@ rules :
   ## direct ntp
   # - AND,((NETWORK,UDP),(DST-PORT,123)),DIRECT
   # - DST-PORT,123/136/137-139,DIRECT,udp
-
+  - DOMAIN-SUFFIX,v2rayse.com,PROXY
+  - DOMAIN-SUFFIX,cff.pw,PROXY
+  - DOMAIN-SUFFIX,vpnse.org,PROXY
+  - DOMAIN-SUFFIX,cfmem.com,PROXY
   ## rules inner, recommended untuk non kuota reguler
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),BlockAd
   - IN-TYPE,inner,PROXY
