@@ -10,7 +10,7 @@ unified-delay: true
 enable-process: true
 bind-address: '*'
 log-level: debug
-ipv6: false
+ipv6: true
 # geodata-mode: true
 # geo-auto-update: true
 # geo-update-interval: 24 
@@ -4902,9 +4902,9 @@ proxy-groups:
       - 🇰🇿哈萨克斯坦1650
   - name: 🎒
     type: url-test
-#    url: http://www.gstatic.com/generate_204
-#    interval: 300
-#    tolerance: 100
+    url: http://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 100
     proxies:
       - 🇩🇪_DE_abbasdvd_1
       - 🇭🇰_HK_abbasdvd_2
@@ -7730,8 +7730,8 @@ rules :
   ## rules telegram
  # - GEOIP,telegram,PROXY
 # - GEOSITE,telegram,PROXY
-  - GEOIP,CN,IRAN
-  - GEOIP,ir,IRAN  
+  - GEOIP,CN,DIRECT
+  - GEOIP,ir,DIRECT
   ## direct ntp
   # - AND,((NETWORK,UDP),(DST-PORT,123)),DIRECT
   # - DST-PORT,123/136/137-139,DIRECT,udp
