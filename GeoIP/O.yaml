@@ -4,13 +4,13 @@
 # mixed-port: 10801
 # redir-port: 9797
 # tproxy-port: 9898
-# mode: rule
+mode: rule
 allow-lan: true
 unified-delay: true
 enable-process: true
 bind-address: '*'
 log-level: debug
-ipv6: false 
+ipv6: true
 external-controller: 0.0.0.0:9090 
 external-ui: /dashboard
 external-ui-name: xd
@@ -66,7 +66,7 @@ tun:
   endpoint_independent_nat: true 
 dns:
   enable: true
-  ipv6: false
+  ipv6: true
   prefer-h3: true
   default-nameserver:
     - 114.114.114.114
@@ -91,7 +91,7 @@ dns:
     - quic://[2a10:50c0::2:ff]:784
     - tls://[2a10:50c0::2:ff]:853
     - https://[2a10:50c0::2:ff]/dns-query
-  listen: :1053
+  listen: 127.0.0.1:1053
   use-hosts: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -284,28 +284,28 @@ proxy-groups:
     use:
       - provider1
       - provider2
-      - provider3
+  #    - provider3
       
   - name: 🎒
     type: url-test
     url: https://cp.cloudflare.com/generate_204
-#    interval: 300
+    interval: 5
 #    tolerance: 100
     proxies:
     use:
       - provider1
       - provider2
-      - provider3
+  #    - provider3
   - name: 🦋
     type: fallback
     url: https://cp.cloudflare.com/generate_204
-#    interval: 300
+    interval: 300
 #    tolerance: 100
     proxies:
     use:
       - provider1
       - provider2
-      - provider3
+  #    - provider3
       
   - name: IRAN
     type: select
@@ -316,7 +316,7 @@ proxy-groups:
   - name: BlockAd
     type: select
     proxies:
-      - PASS
+      - REJECT
       - DIRECT
 proxy-providers:
   provider1:
@@ -343,7 +343,7 @@ proxy-providers:
       
   provider3:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/GeoIP/hysteria2.yaml"   
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/2.yaml"   
     interval: 600
     path: Prem/provider3.yaml
     health-check:
