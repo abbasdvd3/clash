@@ -1,8 +1,8 @@
 
-port: 7890
-socks-port: 7891
+# port: 7890
+# socks-port: 7891
 # mixed-port: 10801
-redir-port: 9797
+# redir-port: 9797
 # tproxy-port: 9898
 # mode: rule
 allow-lan: true
@@ -26,7 +26,7 @@ geox-url:
   mmdb: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/geoip.metadb"
 find-process-mode: always
 profile:
-  store-selected: true
+  store-selected: false
   store-fake-ip: true
 # interface-name: en0 
 keep-alive-interval: 15 
@@ -82,7 +82,7 @@ dns:
     - tls://1.12.12.12:853
     - tls://223.5.5.5:853
     - https://223.5.5.5/dns-query
-  listen: 127.0.0.1:1053
+  listen: 0.0.0.0:1053
   use-hosts: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -184,7 +184,7 @@ dns:
     - tcp://208.67.222.222
     - tcp://208.67.220.220
   fallback-filter:
-    geoip: true
+    geoip: false
     geoip-code: ir
    # geosite:                         
    #   - gfw
@@ -725,8 +725,8 @@ proxy-groups:
   - name: PROXY
     type: select
     proxies:
-      - 🎒
       - 🦊
+      - 🎒
       - DIRECT
       - 🇯🇵JP-20.210.224.113-0780 | 18.126MB
       - 🇦🇪阿联酋1632
@@ -1194,8 +1194,8 @@ proxy-groups:
   - name: 🎒
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    interval: 100
+#    tolerance: 50
     proxies:
       - 🇯🇵JP-20.210.224.113-0780 | 18.126MB
       - 🇦🇪阿联酋1632
@@ -1663,7 +1663,7 @@ proxy-groups:
   - name: 🦊
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 180
+    interval: 300
     proxies:
       - 🇯🇵JP-20.210.224.113-0780 | 18.126MB
       - 🇦🇪阿联酋1632
