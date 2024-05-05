@@ -11,10 +11,10 @@ proxy-groups:
       - ♻️
       - 🚧
       - ⚖️
-
+      - 🇺🇲
   - name: ♻️
     type: url-test
-    url: https://i.ytimg.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
  #   tolerance: 50
     use:
@@ -23,8 +23,8 @@ proxy-groups:
 
   - name: 🚧
     type: fallback
-    url: https://i.ytimg.com/generate_204
-    interval: 300
+    url: https://cp.cloudflare.com/generate_204
+    interval: 180
  #   tolerance: 100
     use:
       - provider1
@@ -32,8 +32,8 @@ proxy-groups:
 
   - name: ⚖️
     type: load-balance
-    url: https://i.ytimg.com/generate_204
-    interval: 300
+    url: https://cp.cloudflare.com/generate_204
+    interval: 180
 #    tolerance: 150
     use:
       - provider1
@@ -152,7 +152,15 @@ proxy-groups:
       - 🚧
     use:
       - provider1
-
+      
+  - name: 🇺🇲
+    type: url-test
+    url: https://cp.cloudflare.com/generate_204
+    interval: 300
+    filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
+    proxies:
+    use:
+      - provider1
 
 proxy-providers:
   provider1:
