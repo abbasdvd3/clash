@@ -2138,7 +2138,13 @@ proxy-groups:
     type: select
     proxies:
       - REJECT
-      
+  - name: 🇺🇲
+    type: url-test
+    url: https://cp.cloudflare.com/generate_204
+    interval: 300
+    filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
+    proxies:
+    use:     
 
 rule-providers:
   ir:
