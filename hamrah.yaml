@@ -6,7 +6,7 @@
 # tproxy-port: 9898
 # mode: rule
 allow-lan: true
-unified-delay: true
+# unified-delay: true
 enable-process: true
 bind-address: '*'
 log-level: debug
@@ -69,7 +69,7 @@ tun:
   endpoint_independent_nat: true 
 dns:
   enable: true
-  ipv6: false
+  ipv6: true
   prefer-h3: true
   default-nameserver:
     - 114.114.114.114
@@ -2593,6 +2593,7 @@ proxy-groups:
       - 🦊
       - 🎒
       - 🇺🇲
+      - DIRECT
       - "🇭🇰HK_30000 @WangCai_8\r_1"
       - "🇭🇰HK_30001 @WangCai_8\r_1"
       - "🇭🇰HK_30002 @WangCai_8\r_1"
@@ -9598,6 +9599,8 @@ proxy-groups:
     type: select
     proxies:
       - REJECT
+      - DIRECT
+      - PROXY
   - name: 🇺🇲
     type: url-test
     url: https://cp.cloudflare.com/generate_204
