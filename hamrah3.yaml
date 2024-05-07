@@ -5,7 +5,7 @@
 # tproxy-port: 9898
 # mode: rule
 allow-lan: true
-unified-delay: true
+unified-delay: false
 bind-address: '*'
 log-level: debug
 ipv6: true
@@ -222,7 +222,7 @@ proxy-groups:
   - name: ♻️ url-test
     type: url-test
     url: https://cp.cloudflare.com/generate_204
-    interval: 300
+    interval: 500
     proxies:
     use:
       - provider1
@@ -463,6 +463,7 @@ proxy-groups:
     proxies:
       - PASS
       - DIRECT
+      - 🕹 select
       
   - name: 🍃
     type: select
