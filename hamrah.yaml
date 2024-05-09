@@ -8,11 +8,10 @@ dns:
   enable: true
   ipv6: true
   listen: 0.0.0.0:8053
-  default-nameserver :
+  default-nameserver:
     - 1.1.1.1
     - 8.8.8.8
   enhanced-mode: fake-ip
-  # 配置不使用fake-ip的域名
   fake-ip-filter:
     - '+.*'
     - '*.lan'
@@ -23,7 +22,7 @@ dns:
     - 8.8.8.8
     - 114.114.114.114
     - 119.29.29.29
-  fallback:   # 与 nameserver 内的服务器列表同时发起请求，当规则符合 GEOIP 在 CN 以外时，fallback 列表内的域名服务器生效。    
+  fallback: 
     - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
     - tcp://8.8.8.8:53
@@ -46,8 +45,6 @@ dns:
       - '+.blogger.com'
       - '+.gmail.com'
       - '+.gvt1.com'
-    
-
 proxies:
 proxy-groups:
   - name: PR
@@ -95,8 +92,6 @@ proxy-groups:
       - provider1
   - name: 🇭🇰
     type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
 #    tolerance: 50
     filter: '🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港'
     proxies: 
@@ -105,8 +100,6 @@ proxy-groups:
 
   - name: 🇯🇵
     type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
     filter: '🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日'
     proxies: 
     use:
@@ -114,8 +107,6 @@ proxy-groups:
 
   - name: 🇨🇳
     type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
     filter: "cn|TW"
     proxies: 
     use:
@@ -124,8 +115,6 @@ proxy-groups:
       
   - name: 🇸🇬
     type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
     filter: '🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]'
     proxies: 
     use:
@@ -133,8 +122,6 @@ proxy-groups:
 
   - name: 🇰🇷
     type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
     filter: '🇰🇷|KO?R|Korea|首尔|韩|韓'
     proxies: 
     use:
@@ -154,8 +141,6 @@ proxy-groups:
       - 🇰🇷 
    - name: 🦊🎒
     type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 400
     proxies:
       - 🇺🇲
       - 🇭🇰 
