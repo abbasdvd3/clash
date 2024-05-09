@@ -218,6 +218,7 @@ proxy-groups:
       - 🇰🇷 
     use:
       - provider1
+      - provider2
 
   - name: ♻️ url-test
     type: url-test
@@ -226,6 +227,7 @@ proxy-groups:
     proxies:
     use:
       - provider1
+      - provider2
 
       
   - name: 🚧 fallback
@@ -235,6 +237,7 @@ proxy-groups:
     proxies:
     use:
       - provider1
+      - provider2
 
       
   - name: ⚖️ load-balance
@@ -245,6 +248,7 @@ proxy-groups:
     proxies:
     use:
       - provider1
+      - provider2
 
       
   - name: 📡 IP
@@ -269,6 +273,7 @@ proxy-groups:
       - DIRECT
     use:
       - provider1
+      - provider2
 
       
   - name: 💬 OpenAi
@@ -287,6 +292,7 @@ proxy-groups:
       - DIRECT
     use:
       - provider1
+      - provider2
       
   - name: 📹
     type: select
@@ -304,6 +310,7 @@ proxy-groups:
       - DIRECT
     use:
       - provider1
+      - provider2
  
   - name: 🎥
     type: select
@@ -335,6 +342,7 @@ proxy-groups:
       - 🇰🇷
     use:
       - provider1
+      - provider2
 
   - name: 📺2
     type: select
@@ -351,6 +359,7 @@ proxy-groups:
       - 🇰🇷
     use:
       - provider1
+      - provider2
 
       
   - name: 🌍
@@ -369,6 +378,7 @@ proxy-groups:
       - DIRECT
     use:
       - provider1
+      - provider2
 
       
   - name: 🌏
@@ -386,6 +396,7 @@ proxy-groups:
       - 🇰🇷
     use:
       - provider1
+      - provider2
   - name: 📢
     type: select
     proxies:
@@ -401,6 +412,7 @@ proxy-groups:
       - 🇰🇷 
     use:
       - provider1
+      - provider2
       
   - name: Ⓜ️
     type: select
@@ -481,6 +493,7 @@ proxy-groups:
     proxies: 
     use:
       - provider1
+      - provider2
 
   - name: 🇯🇵
     type: url-test
@@ -490,6 +503,7 @@ proxy-groups:
     proxies: 
     use:
       - provider1
+      - provider2
 
       
   - name: 🇺🇲
@@ -500,6 +514,7 @@ proxy-groups:
     proxies:
     use:
       - provider1
+      - provider2
 
       
   - name: 🇨🇳
@@ -510,6 +525,7 @@ proxy-groups:
     proxies: 
     use:
       - provider1
+      - provider2
 
       
   - name: 🇸🇬
@@ -520,7 +536,7 @@ proxy-groups:
     proxies: 
     use:
       - provider1
-
+      - provider2
       
   - name: 🇰🇷
     type: url-test
@@ -530,6 +546,7 @@ proxy-groups:
     proxies: 
     use:
       - provider1
+      - provider2
 
 
 proxy-providers:
@@ -543,7 +560,16 @@ proxy-providers:
       interval: 300
   #    lazy: true
       url: https://cp.cloudflare.com/generate_204
-   
+   provider2:
+    type: http
+    url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml"    
+    interval: 900
+    path: Prem/provider2.yaml
+    health-check:
+      enable: true
+      interval: 300
+  #    lazy: true
+      url: https://cp.cloudflare.com/generate_204  
 rule-providers:
   block:
     type: http
