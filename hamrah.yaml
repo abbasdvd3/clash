@@ -17,8 +17,8 @@ geo-auto-update: true
 global-client-fingerprint: "random"
 ipv6: true
 log-level: "error" ## silent/error/warning/info/debug
-mixed-port: 7890
-mode: "rule"
+# mixed-port: 7890
+#  mode: "rule"
 tcp-concurrent: true
 unified-delay: true
 dns:
@@ -75,7 +75,7 @@ dns:
       - '*.mcdn.bilivideo.cn'
       - ntp.ntsc.ac.cn
     fallback-filter:
-      geoip: true
+      geoip: false
       geoip-code: ir
       ipcidr:
         - 0.0.0.0/32
@@ -99,14 +99,20 @@ proxy-groups:
     proxies:
       - 🦊
       - 🎒
+      - 🦊🎒
       - 🇺🇲
+      - 🇭🇰 
+      - 🇨🇳 
+      - 🇸🇬 
+      - 🇯🇵 
+      - 🇰🇷
       - DIRECT
  #   use:
 #      - provider1
   - name: 🎒
     type: url-test
     url: https://www.gstatic.com/generate_204
-    interval: 700
+    interval: 300
 #    tolerance: 100
     proxies:
     use:
@@ -114,8 +120,8 @@ proxy-groups:
   - name: 🦊
     type: fallback
     url: https://www.gstatic.com/generate_204
-    interval: 900
-    tolerance: 150
+    interval: 190
+  #  tolerance: 150
     proxies:
     use:
       - provider1
@@ -134,11 +140,81 @@ proxy-groups:
   - name: 🇺🇲
     type: url-test
     url: https://cp.cloudflare.com/generate_204
-    interval: 86400
+    interval: 300
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
     proxies:
     use:
       - provider1
+  - name: 🇭🇰
+    type: url-test
+    url: https://cp.cloudflare.com/generate_204
+    interval: 300
+#    tolerance: 50
+    filter: '🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港'
+    proxies: 
+    use:
+      - provider1
+
+  - name: 🇯🇵
+    type: url-test
+    url: https://cp.cloudflare.com/generate_204
+    interval: 300
+    filter: '🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日'
+    proxies: 
+    use:
+      - provider1
+
+  - name: 🇨🇳
+    type: url-test
+    url: https://cp.cloudflare.com/generate_204
+    interval: 300
+    filter: "cn|TW"
+    proxies: 
+    use:
+      - provider1
+
+      
+  - name: 🇸🇬
+    type: url-test
+    url: https://cp.cloudflare.com/generate_204
+    interval: 300
+    filter: '🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]'
+    proxies: 
+    use:
+      - provider1
+
+  - name: 🇰🇷
+    type: url-test
+    url: https://cp.cloudflare.com/generate_204
+    interval: 300
+    filter: '🇰🇷|KO?R|Korea|首尔|韩|韓'
+    proxies: 
+    use:
+      - provider1 
+  - name: PROXY
+    type: select
+    use:
+      - provider1
+    proxies:
+      - 🎒
+      - 🦊
+      - 🇺🇲
+      - 🇭🇰 
+      - 🇨🇳 
+      - 🇸🇬 
+      - 🇯🇵 
+      - 🇰🇷 
+   - name: 🦊🎒
+    type: url-test
+    url: https://cp.cloudflare.com/generate_204
+    interval: 400
+    proxies:
+      - 🇺🇲
+      - 🇭🇰 
+      - 🇨🇳 
+      - 🇸🇬 
+      - 🇯🇵 
+      - 🇰🇷         
 proxy-providers:
   provider1:
     type: http
