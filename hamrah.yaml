@@ -1,95 +1,51 @@
-# Copyright (C) 2023-24 demarcush
-# License: AGPL-3.0-or-later (https://www.gnu.org/licenses/agpl.txt)
-# Repository: https://github.com/demarcush/breakfree
-## Software: Clash Meta
-## Country: Iran
-
-p: &p {type: "http", interval: 86400, exclude-type: "http|socks5", exclude-filter: "AE|BH|CN|IL|IR|RU|TR", health-check: {enable: true, interval: 3600, lazy: true, url: "https://youtu.be/robots.txt", expected-status: 200}}
-
+port: 7890
+socks-port: 7891
+mixed-port: 7893
 allow-lan: true
-external-controller: '127.0.0.1:9090'
-external-ui: ./xd
-external-ui-name: xd
-external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip"
-find-process-mode: "always"
-geodata-mode: true
-geo-auto-update: true
-global-client-fingerprint: "random"
-ipv6: true
-log-level: "error" ## silent/error/warning/info/debug
-# mixed-port: 7890
-#  mode: "rule"
-tcp-concurrent: true
-unified-delay: true
+mode: Rule
+log-level: info
 dns:
-    enable: true
-    enhanced-mode: fake-ip
-    listen: '0.0.0.0:53'
-    ipv6: true
-    default-nameserver:
-      - 'tls://[2400:3200::1]:853'
-      - 'tls://[2400:3200:baba::1]:853'
-      - 'tls://223.5.5.5:853'
-      - 'tls://223.6.6.6:853' #阿里加密DNS
-      - 'tls://1.12.12.12:853'
-      - 'tls://120.53.53.53:853' #DNSPOD加密DNS
-    nameserver:
-      - 'tls://[2400:3200::1]:853'
-      - 'tls://[2400:3200:baba::1]:853'
-      - 'tls://223.5.5.5:853'
-      - 'tls://223.6.6.6:853' #阿里加密DNS
-      - 'tls://1.12.12.12:853'
-      - 'tls://120.53.53.53:853' #DNSPOD加密DNS
-    fallback:
-      - 'tls://dns.google:853' #Google加密DNS(支持ECS)
-      - 'https://doh.opendns.com/dns-query' #Cisco OpenDNS加密DNS(支持ECS)
-      - 'https://dns11.quad9.net/dns-query' #IBM Quad9加密DNS(支持ECS)
-      - 'https://101.101.101.101/dns-query' #TWNIC加密DNS(支持ECS)
-      - 'https://101.101.101.101/dns-query'
-      - 'https://101.102.103.104/dns-query'
-      - 'https://twnic-doh.libz.so/dns-query'
-      - 'https://45.125.0.26/dns-query'
-      - 'https://103.121.210.210/dns-query'
-      - 'https://202.5.221.133/dns-query'
-    fake-ip-filter:
-      - '*.msftncsi.com'
-      - '*.msftconnecttest.com'
-      - +.lan
-      - +.cn
-      - +.10010.com
-      - +.chinaunicom.com
-      - +.baidu.com
-      - '*.alipay.com'
-      - '*.alipayobjects.com'
-      - '*.jijifun.com'
-      - connect.rom.miui.com
-      - localhost.ptlogin2.qq.com
-      - dl.google.com
-      - +.stun.*.*
-      - +.stun.*.*.*
-      - +.stun.*.*.*.*
-      - +.stun.*.*.*.*.*
-      - lens.l.google.com
-      - '*.n.n.srv.nintendo.net'
-      - +.stun.playstation.net
-      - '*.mcdn.bilivideo.cn'
-      - ntp.ntsc.ac.cn
-    fallback-filter:
-      geoip: false
-      geoip-code: ir
-      ipcidr:
-        - 0.0.0.0/32
-        - 127.0.0.1/32
-        - 240.0.0.0/4
-        - '::/128'
-        - '::1/128'
-tun:
-    enable: true
-    stack: gvisor #改成system可提高性能,但需要在Windows防火墙放行Clash流量
-    auto-detect-interface: true
-    auto-route: true
-    dns-hijack:
-      - '198.18.0.2:53'
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:8053
+  default-nameserver :
+    - 1.1.1.1
+    - 8.8.8.8
+  enhanced-mode: fake-ip
+  # 配置不使用fake-ip的域名
+  fake-ip-filter:
+    - '+.*'
+    - '*.lan'
+    - localhost.ptlogin2.qq.com
+  nameserver:
+    - 223.5.5.5
+    - 1.1.1.1
+    - 8.8.8.8
+    - 114.114.114.114
+    - 119.29.29.29
+  fallback:   # 与 nameserver 内的服务器列表同时发起请求，当规则符合 GEOIP 在 CN 以外时，fallback 列表内的域名服务器生效。    
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+    - tcp://8.8.8.8:53
+    - tcp://8.8.4.4:53
+    - tcp://208.67.222.222:443
+    - tcp://208.67.220.220:443
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - '+.google.com'
+      - '+.googleapis.com'
+      - '+.youtube.com'
+      - '+.appspot.com'
+      - '+.telegram.com'
+      - '+.facebook.com'
+      - '+.twitter.com'
+      - '+.blogger.com'
+      - '+.gmail.com'
+      - '+.gvt1.com'
     
 
 proxies:
@@ -111,17 +67,11 @@ proxy-groups:
 #      - provider1
   - name: 🎒
     type: url-test
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-#    tolerance: 100
     proxies:
     use:
       - provider1
   - name: 🦊
     type: fallback
-    url: https://www.gstatic.com/generate_204
-    interval: 190
-  #  tolerance: 150
     proxies:
     use:
       - provider1
@@ -139,8 +89,6 @@ proxy-groups:
       - PROXY
   - name: 🇺🇲
     type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
     proxies:
     use:
