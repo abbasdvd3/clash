@@ -1,3 +1,26 @@
+# Copyright (C) 2023-24 demarcush
+# License: AGPL-3.0-or-later (https://www.gnu.org/licenses/agpl.txt)
+# Repository: https://github.com/demarcush/breakfree
+## Software: Clash Meta
+## Country: Iran
+
+p: &p {type: "http", interval: 86400, exclude-type: "http|socks5", exclude-filter: "AE|BH|CN|IL|IR|RU|TR", health-check: {enable: true, interval: 3600, lazy: true, url: "https://youtu.be/robots.txt", expected-status: 200}}
+
+allow-lan: true
+external-controller: '127.0.0.1:9090'
+external-ui: ./xd
+external-ui-name: xd
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip"
+find-process-mode: "always"
+geodata-mode: true
+geo-auto-update: true
+global-client-fingerprint: "random"
+ipv6: true
+log-level: "error" ## silent/error/warning/info/debug
+mixed-port: 7890
+mode: "rule"
+tcp-concurrent: true
+unified-delay: true
 dns:
     enable: true
     enhanced-mode: fake-ip
@@ -78,13 +101,13 @@ proxy-groups:
       - 🎒
       - 🇺🇲
       - DIRECT
-    use:
-      - provider1
+ #   use:
+#      - provider1
   - name: 🎒
     type: url-test
     url: https://www.gstatic.com/generate_204
-    interval: 86400
-    tolerance: 100
+    interval: 700
+#    tolerance: 100
     proxies:
     use:
       - provider1
