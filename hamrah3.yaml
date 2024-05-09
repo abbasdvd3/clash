@@ -5,7 +5,7 @@
 # tproxy-port: 9898
 # mode: rule
 allow-lan: true
-unified-delay: false
+unified-delay: true
 bind-address: '*'
 log-level: debug
 ipv6: true
@@ -223,7 +223,8 @@ proxy-groups:
   - name: ♻️ url-test
     type: url-test
     url: https://cp.cloudflare.com/generate_204
-    interval: 500
+    interval: 300
+    hidden: true
     proxies:
     use:
       - provider1
@@ -234,6 +235,7 @@ proxy-groups:
     type: fallback
     url: https://cp.cloudflare.com/generate_204
     interval: 180
+    hidden: true
     proxies:
     use:
       - provider1
@@ -245,6 +247,7 @@ proxy-groups:
     strategy: round-robin
     url: https://cp.cloudflare.com/generate_204
     interval: 180
+    hidden: true
     proxies:
     use:
       - provider1
@@ -259,6 +262,7 @@ proxy-groups:
       
   - name: 📲
     type: select
+    hidden: true
     proxies:
       - 🕹 select
       - ♻️ url-test
@@ -278,6 +282,7 @@ proxy-groups:
       
   - name: 💬 OpenAi
     type: select
+    hidden: true
     proxies:
       - 🕹 select
       - ♻️ url-test
@@ -296,6 +301,7 @@ proxy-groups:
       
   - name: 📹
     type: select
+    hidden: true
     proxies:
       - 🕹 select
       - ♻️ url-test
@@ -314,6 +320,7 @@ proxy-groups:
  
   - name: 🎥
     type: select
+    hidden: true
     proxies:
       - 🕹 select
       - ♻️ url-test
@@ -329,6 +336,7 @@ proxy-groups:
       
   - name: 📺
     type: select
+    hidden: true
     proxies:
       - 🕹 select
       - ♻️ url-test
@@ -346,6 +354,7 @@ proxy-groups:
 
   - name: 📺2
     type: select
+    hidden: true
     proxies:
       - 🕹 select
       - ♻️ url-test
@@ -364,6 +373,7 @@ proxy-groups:
       
   - name: 🌍
     type: select
+    hidden: true
     proxies:
       - 🕹 select
       - ♻️ url-test
@@ -383,6 +393,7 @@ proxy-groups:
       
   - name: 🌏
     type: select
+    hidden: true
     proxies:
       - 🕹 select
       - ♻️ url-test
@@ -399,6 +410,7 @@ proxy-groups:
       - provider2
   - name: 📢
     type: select
+    hidden: true
     proxies:
       - 🕹 select
       - ♻️ url-test
@@ -416,6 +428,7 @@ proxy-groups:
       
   - name: Ⓜ️
     type: select
+    hidden: true
     proxies:
       - 🕹 select
       - ♻️ url-test
@@ -430,6 +443,7 @@ proxy-groups:
       
   - name: 🍎
     type: select
+    hidden: true
     proxies:
       - DIRECT
       - 🕹 select
@@ -445,6 +459,7 @@ proxy-groups:
       
   - name: 🎮
     type: select
+    hidden: true
     proxies:
       - 🕹 select
       - ♻️ url-test
@@ -459,6 +474,7 @@ proxy-groups:
       
   - name: 🎶
     type: select
+    hidden: true
     proxies:
       - 🕹 select
       - ♻️ url-test
@@ -490,6 +506,7 @@ proxy-groups:
     interval: 300
 #    tolerance: 50
     filter: '🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港'
+    hidden: true
     proxies: 
     use:
       - provider1
@@ -500,6 +517,7 @@ proxy-groups:
     url: https://cp.cloudflare.com/generate_204
     interval: 300
     filter: '🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日'
+    hidden: true
     proxies: 
     use:
       - provider1
@@ -511,6 +529,7 @@ proxy-groups:
     url: https://cp.cloudflare.com/generate_204
     interval: 300
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
+    hidden: true
     proxies:
     use:
       - provider1
@@ -522,6 +541,7 @@ proxy-groups:
     url: https://cp.cloudflare.com/generate_204
     interval: 300
     filter: "cn|TW"
+    hidden: true
     proxies: 
     use:
       - provider1
@@ -533,6 +553,7 @@ proxy-groups:
     url: https://cp.cloudflare.com/generate_204
     interval: 300
     filter: '🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]'
+    hidden: true
     proxies: 
     use:
       - provider1
@@ -543,6 +564,7 @@ proxy-groups:
     url: https://cp.cloudflare.com/generate_204
     interval: 300
     filter: '🇰🇷|KO?R|Korea|首尔|韩|韓'
+    hidden: true
     proxies: 
     use:
       - provider1
