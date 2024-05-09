@@ -1,78 +1,19 @@
-# Copyright (C) 2023-24 demarcush
-# License: AGPL-3.0-or-later (https://www.gnu.org/licenses/agpl.txt)
-# Repository: https://github.com/demarcush/breakfree
-## Software: Clash Meta
-## Country: Iran
-
-p: &p {type: "http", interval: 86400, exclude-type: "http|socks5", exclude-filter: "AE|BH|CN|IL|IR|RU|TR", health-check: {enable: true, interval: 3600, lazy: true, url: "https://youtu.be/robots.txt", expected-status: 200}}
-
-allow-lan: true
-external-controller: '127.0.0.1:9090'
-external-ui: ./xd
-external-ui-name: xd
-external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip"
-find-process-mode: "always"
-geodata-mode: true
-geo-auto-update: true
-global-client-fingerprint: "random"
-ipv6: true
-log-level: "error" ## silent/error/warning/info/debug
 mixed-port: 7890
-mode: "rule"
-tcp-concurrent: true
-unified-delay: true
-
-profile:
-  store-fake-ip: true
-  store-selected: false
-
-ntp:
-  enable: false
-  write-to-system: false
-  server: "pool.ntp.org"
-
-tun:
-  enable: false
-  device: "utun0"
-  stack: "gvisor" ## system/gvisor/mixed
-  dns-hijack:
-    - "any:53"
-  auto-route: true
-  strict-route: false
-  auto-detect-interface: true
-  exclude-package:
-  - com.android.captiveportallogin
-  - com.biglybt.android.client
-  - com.bittorrent.client
-  - com.utorrent.client
-  - org.onionshare.android
-  - org.openobservatory.ooniprobe
-  - org.proninyaroslav.libretorrent
-  - org.torproject.android
-  - org.torproject.torbrowser
-
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: info
+external-controller: '127.0.0.1:9090'
 dns:
-  enable: true
-  listen: '127.0.0.1:1053'
-  ipv6: true
-  prefer-h3: true
-  enhanced-mode: "redir-host"
-  use-hosts: true
-  default-nameserver:
-    - '127.0.0.1'
-    - '8.8.8.8'
-  proxy-server-nameserver:
-    - "https://1.1.1.1/dns-query"
-    - "https://8.8.8.8/dns-query"
-    - "https://9.9.9.9/dns-query"
-    - "https://max.rethinkdns.com/dns-query"
-  nameserver:
-    - "https://1.1.1.1/dns-query#default"
-    - "https://8.8.8.8/dns-query#default"
-    - "https://9.9.9.9/dns-query#default"
-    - "https://185.222.222.222/dns-query#default"
-  fallback-filter:
-    geoip: false
+    enable: true
+    ipv6: true
+    default-nameserver: [223.5.5.5, 119.29.29.29]
+    enhanced-mode: fake-ip
+    fake-ip-range: 198.18.0.1/16
+    use-hosts: true
+    nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
+    fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://120.53.53.53/dns-query', dot.pub]
+    fallback-filter: { geo: [240.0.0.0/4, 0.0.0.0/32] }
 
 proxy-groups:
 
