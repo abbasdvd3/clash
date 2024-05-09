@@ -66,122 +66,59 @@ tun:
   endpoint_independent_nat: true 
 dns:
   enable: true
-  ipv6: true
+  ipv6: false
   prefer-h3: true
-  default-nameserver:
-    - 114.114.114.114
-    - 8.8.8.8
-    - 1.1.1.1
-    - tls://223.5.5.5
-    - https://223.5.5.5/dns-query
-    - 208.67.222.222
-    - 217.218.155.155
-    - tls://1.12.12.12:853
-    - tls://223.5.5.5:853
-    - https://223.5.5.5/dns-query
-    - quic://94.140.14.140:784
-    - tls://94.140.14.140:853
-    - https://94.140.14.140/dns-query
-    - quic://94.140.14.141:784
-    - tls://94.140.14.141:853
-    - https://94.140.14.141/dns-query
-    - quic://[2a10:50c0::1:ff]:784
-    - tls://[2a10:50c0::1:ff]:853
-    - https://[2a10:50c0::1:ff]/dns-query
-    - quic://[2a10:50c0::2:ff]:784
-    - tls://[2a10:50c0::2:ff]:853
-    - https://[2a10:50c0::2:ff]/dns-query
-  listen: 0.0.0.0:1053
-  use-hosts: true
+  listen: 0.0.0.0:53
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.0/16
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-    - '*.lan'
-    - '*.local'
-    - 'stun.*.*.*'
-    - 'stun.*.*'
-    - 'localhost.ptlogin2.qq.com'
-    - '*.msftncsi.com'
-    - '*.msftconnecttest.com'
-  nameserver:
-    - 223.5.5.5
-    - 1.1.1.1
-    - 8.8.8.8
-    - 114.114.114.114
-    - 119.29.29.29
-    - quic://i.passcloud.xyz:784
-    - quic://a.passcloud.xyz:784
-    - tls://i.passcloud.xyz:853
-    - tls://a.passcloud.xyz:853
-    - https://i.passcloud.xyz/dns-query
-    - https://a.passcloud.xyz/dns-query
-#  proxy-server-nameserver:          
-#iqiq.io(Filter ?/log ?)
-#    - quic://i.passcloud.xyz:784
-#    - quic://a.passcloud.xyz:784
-#    - tls://i.passcloud.xyz:853
-#    - tls://a.passcloud.xyz:853
-#    - https://i.passcloud.xyz/dns-query
-#    - https://a.passcloud.xyz/dns-query
-#UN-CN Dot NO 853(Filter ?/log ?)
-#    - tls://dns.cmrg.net:53053
-#    - tls://dns.cmrg.net:443
-#    - https://199.58.83.33/dns-query
-#    - tls://199.58.83.33:443
-#    - tls://199.58.83.33:53053
-#CloudFlare-Warp Doh(No Filter/No log/Anycast/Edns)
-#    - https://162.159.36.1/dns-query
-#    - https://162.159.46.1/dns-query
-#Tuna DNS(Filter ?/log ?/Edns)
- #   - tls://dns.tuna.tsinghua.edu.cn:8853
-#    - https://dns.tuna.tsinghua.edu.cn:8443/dns-query
-#Adguard(No Filter/No log/Anycast)
-#    - quic://dns-unfiltered.adguard.com:784
-#    - tls://dns-unfiltered.adguard.com:853
-#    - https://dns-unfiltered.adguard.com/dns-query
-#    - quic://94.140.14.140:784
-#    - tls://94.140.14.140:853
-#    - https://94.140.14.140/dns-query
-#    - quic://94.140.14.141:784
-#    - tls://94.140.14.141:853
-#    - https://94.140.14.141/dns-query
-#Apad DNS(Filter ?/log ?/Edns)
- #   - tls://edns.apad.pro:853
- #   - https://edns.apad.pro:3306/dns-query
-#    - tls://h2o.apad.pro:853
-#    - https://h2o.apad.pro/dns-query
-#    - https://doh.apad.pro/dns-query
-#Apad DNS CN
-#    - https://doh.apad.pro/cn-query
-#IBM Doh(No Filter/No log/Anycast/Edns)
-#    - tls://dns-nosec.quad9.net:853
-#    - tls://dns10.quad9.net:853
-#    - https://dns10.quad9.net:5053/dns-query
-#    - https://dns10.quad9.net/dns-query
-#NextDns
-#    - quic://103.127.124.46:853
-#    - quic://203.76.245.200:853
-#    - quic://203.162.172.59:853
-#    - quic://103.88.47.112:853
-#    - quic://103.199.17.192:853
-#    - quic://37.252.243.39:853
-#    - quic://141.164.63.208:853
-#    - quic://103.246.218.132:853
-#    - quic://45.11.104.186:853
-#    - quic://37.252.249.233:853
-#    - https://103.127.124.46/dns-query
-#    - https://203.76.245.200/dns-query
-#    - https://203.162.172.59/dns-query
-#    - https://103.88.47.112/dns-query
-#    - https://103.199.17.192/dns-query
-#    - https://37.252.243.39/dns-query
-#    - https://141.164.63.208/dns-query
-#    - https://103.246.218.132/dns-query
-#    - https://45.11.104.186/dns-query
-#    - https://37.252.249.233/dns-query    
+  - '*.lan'
+  - cable.auth.com
+  - +.msftconnecttest.com
+  - +.msftncsi.com
+  - network-test.debian.org
+  - detectportal.firefox.com
+  - resolver1.opendns.com
+  - +.srv.nintendo.net
+  - +.stun.playstation.net
+  - xbox.*.microsoft.com
+  - +.xboxlive.com
+  - stun.*
+  - global.turn.twilio.com
+  - global.stun.twilio.com
+  - localhost.*.qq.com
+  - +.logon.battlenet.com.cn
+  - +.logon.battle.net
+  - +.blzstatic.cn
+  - +.cmpassport.com
+  - id6.me
+  - open.e.189.cn
+  - mdn.open.wo.cn
+  - opencloud.wostore.cn
+  - auth.wosms.cn
+  - +.jegotrip.com.cn
+  - +.icitymobile.mobi
+  - +.pingan.com.cn
+  - +.cmbchina.com
+  - +.cmbchina.com.cn
+  - pool.ntp.org
+  - +.pool.ntp.org
+  - ntp.*.com
+  - time.*.com
+  - ntp?.*.com
+  - time?.*.com
+  - time.*.gov
+  - time.*.edu.cn
+  - +.ntp.org.cn
+  - time.*.apple.com
+  default-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
   nameserver-policy:
-    #   'www.baidu.com': '114.114.114.114'
-    #   '+.internal.crop.com': '10.0.0.1'
+    www.baidu.com: 114.114.114.114
+    +.internal.crop.com: 10.0.0.1
+    www.baidu.com,+.google.cn: https://doh.pub/dns-query
+    geosite:private,apple: https://dns.alidns.com/dns-query
     "geosite:ir,private,apple":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
@@ -192,16 +129,32 @@ dns:
     "+.spankbang.com": "https://doh.pub/dns-query"
     "+.samfw.com": "https://doh.pub/dns-query"    
     "rule-set:GoogleFCM,ir": 8.8.8.8
+    GEOSITE:google: 8.8.8.8
+  nameserver:
+  - https://doh.pub/dns-query
+  - https://dns.alidns.com/dns-query
   fallback:
-    - https://dns.google/dns-query
-    - https://1.1.1.1/dns-query
-    - tcp://8.8.4.4
-    - tcp://208.67.222.222
-    - tcp://208.67.220.220
-hosts:
-   'ota.googlezip.net': 127.0.0.1
-   'ota-cache1.googlezip.net': 127.0.0.1
-   'ota-cache2.googlezip.net': 127.0.0.1
+  - https://1.1.1.2/dns-query
+  - https://1.0.0.2/dns-query
+  - https://9.9.9.9/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    geosite:
+    - gfw
+    ipcidr:
+    - 240.0.0.0/4
+    - 0.0.0.0/32
+    domain:
+    - +.google.com
+    - +.google.cn
+    - +.googleapis.cn
+    - +.googleapis.com
+    - +.github.com
+    - +.facebook.com
+    - +.twitter.com
+    - +.youtube.com  
+
 proxies:
 proxy-groups:
   - name: 🕹 select
@@ -1031,28 +984,39 @@ rule-providers:
     url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/SpeedTest.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/SpeedTest.list    
+    path: ./ACL4SSR/ACL4SSR/SpeedTest.list   
+    
+  NSFW:  #here are some capital letters
+    type: http  
+    behavior: classical  
+    path: ./RuleSet/NSFW.yaml  
+    url: https://raw.githubusercontent.com/tanmoumou252/NSFW-website-rule-for-Clash/main/NSFW.yaml  
+    interval: 86400  
+
+rules:  
+🌍    
 rules:
-  - RULE-SET,private,🎯,no-resolve
-  - RULE-SET,apps,🎯
+  - RULE-SET,private,DIRECT,no-resolve
+  - RULE-SET,apps,DIRECT
   - RULE-SET,ads,🛑
   - RULE-SET,malware,🛑
   - RULE-SET,phishing,🛑
   - RULE-SET,cryptominers,🛑
-  - RULE-SET,ir,🎯
-  - RULE-SET,ircidr,🎯
-  - RULE-SET,arvancloud,🎯
-  - RULE-SET,derakcloud,🎯
-  - RULE-SET,iranserver,🎯
-  - RULE-SET,parspack,🎯
+  - RULE-SET,ir,DIRECT
+  - RULE-SET,ircidr,DIRECT
+  - RULE-SET,arvancloud,DIRECT
+  - RULE-SET,derakcloud,DIRECT
+  - RULE-SET,iranserver,DIRECT
+  - RULE-SET,parspack,DIRECT
 #  - RULE-SET,LocalAreaNetwork,🎯
   - RULE-SET,UnBan,🎯
   - RULE-SET,BanAD,🛑
   - RULE-SET,BanProgramAD,🍃
   - RULE-SET,GoogleFCM,📢
-  - RULE-SET,GoogleCN,🎯
-  - RULE-SET,SteamCN,🎯
+  - RULE-SET,GoogleCN,📢
+  - RULE-SET,SteamCN,📢
   - RULE-SET,Bing,Ⓜ️
+  - RULE-SET,nsfw,📢
   - RULE-SET,OneDrive,Ⓜ️
   - RULE-SET,Microsoft,Ⓜ️
   - RULE-SET,Apple,🍎
@@ -1077,9 +1041,9 @@ rules:
   - DOMAIN-SUFFIX,vpnse.org,🕹 select
   - DOMAIN-SUFFIX,cfmem.com,🕹 select
   - RULE-SET,ProxyGFWlist,🕹 select
-  - RULE-SET,ChinaDomain,🎯
-  - RULE-SET,ChinaCompanyIp,🎯
-  - RULE-SET,Download,🎯
+  - RULE-SET,ChinaDomain,REJECT
+  - RULE-SET,ChinaCompanyIp,REJECT
+  - RULE-SET,Download,REJECT
   - RULE-SET,GoogleCNProxyIP,📢
 #  - RULE-SET,GoogleCN,✈️
 #  - RULE-SET,LocalAreaNetwork,DIRECT
@@ -1087,16 +1051,16 @@ rules:
 #  - RULE-SET,UnBan,✈️
 #  - RULE-SET,gfw,✈️  
   - RULE-SET,Adblock1,🛑
-  - RULE-SET,DNS2,🎯
+  - RULE-SET,DNS2,DIRECT
   - RULE-SET,Domestic,🕹 select
-  - RULE-SET,cloudflare,🎯
-  - RULE-SET,ChinaDNS,🎯
-  - RULE-SET,AdGuardSDNSFilterDirect,🎯
+  - RULE-SET,cloudflare,REJECT
+  - RULE-SET,ChinaDNS,REJECT
+  - RULE-SET,AdGuardSDNSFilterDirect,REJECT
   - RULE-SET,BlockHttpDNS,🛑
   - RULE-SET,AdGuardSDNSFilter,🛑
   - RULE-SET,Samsung,🍎
   - RULE-SET,SpeedTest,📡 IP
-  - RULE-SET,DNS,🎯
+  - RULE-SET,DNS,REJECT
 #  - RULE-SET,ProxyGFWlist,✈️
   - RULE-SET,GitHub,🕹 select
 #  - RULE-SET,Google,📢  
