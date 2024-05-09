@@ -66,7 +66,7 @@ tun:
   endpoint_independent_nat: true 
 dns:
   enable: true
-  ipv6: false
+  ipv6: true
   prefer-h3: true
   listen: 0.0.0.0:53
   enhanced-mode: fake-ip
@@ -138,7 +138,7 @@ dns:
   - https://1.0.0.2/dns-query
   - https://9.9.9.9/dns-query
   fallback-filter:
-    geoip: true
+    geoip: false
     geoip-code: ir
     geosite:
     - gfw
@@ -157,7 +157,7 @@ dns:
 
 proxies:
 proxy-groups:
-  - name: 🕹 select
+  - name: 🕹
     type: select
     proxies:
       - ♻️ url-test
@@ -172,11 +172,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
-
   - name: ♻️ url-test
     type: url-test
     url: https://cp.cloudflare.com/generate_204
-    interval: 300
+    interval: 180
     hidden: true
     proxies:
     use:
@@ -523,7 +522,21 @@ proxy-groups:
       - provider1
       - provider2
 
-
+  - name: 🕹 select
+    type: select
+    proxies:
+      - ♻️ url-test
+      - 🚧 fallback
+      - ⚖️ load-balance
+      - 🇭🇰 
+      - 🇨🇳 
+      - 🇸🇬 
+      - 🇺🇲 
+      - 🇯🇵 
+      - 🇰🇷 
+    use:
+      - provider1
+      - provider2
 proxy-providers:
   provider1:
     type: http
