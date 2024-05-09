@@ -12,10 +12,11 @@ proxy-groups:
       - 🚧
       - ⚖️
       - 🇺🇲
+      - DIRECT 
   - name: ♻️
     type: url-test
     url: https://cp.cloudflare.com/generate_204
-    interval: 300
+    interval: 8300
  #   tolerance: 50
     use:
       - provider1
@@ -24,7 +25,7 @@ proxy-groups:
   - name: 🚧
     type: fallback
     url: https://cp.cloudflare.com/generate_204
-    interval: 180
+    interval: 980
  #   tolerance: 100
     use:
       - provider1
@@ -33,7 +34,7 @@ proxy-groups:
   - name: ⚖️
     type: load-balance
     url: https://cp.cloudflare.com/generate_204
-    interval: 180
+    interval: 580
 #    tolerance: 150
     use:
       - provider1
