@@ -16,8 +16,8 @@ proxy-groups:
   - name: ♻️
     type: url-test
     url: https://cp.cloudflare.com/generate_204
-    interval: 8300
- #   tolerance: 50
+    interval: 180
+    tolerance: 50
     use:
       - provider1
     proxies:
@@ -25,7 +25,7 @@ proxy-groups:
   - name: 🚧
     type: fallback
     url: https://cp.cloudflare.com/generate_204
-    interval: 980
+    interval: 180
  #   tolerance: 100
     use:
       - provider1
@@ -34,7 +34,7 @@ proxy-groups:
   - name: ⚖️
     type: load-balance
     url: https://cp.cloudflare.com/generate_204
-    interval: 580
+    interval: 280
 #    tolerance: 150
     use:
       - provider1
