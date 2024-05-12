@@ -1,3 +1,11 @@
+# Copyright (C) 2023-24 demarcush
+# License: AGPL-3.0-or-later (https://www.gnu.org/licenses/agpl.txt)
+# Repository: https://github.com/demarcush/breakfree
+## Software: Clash Meta
+## Country: Iran
+
+p: &p {type: "http", interval: 86400, health-check: {enable: true, interval: 3600, lazy: true, url: "https://youtu.be/robots.txt", expected-status: 200}}
+
 port: 7890
 socks-port: 7891
 allow-lan: true
@@ -49,9 +57,10 @@ proxy-groups:
   - name: PR
     type: select
     proxies:
+      - PROXY
+      - 🦊🎒
       - 🦊
       - 🎒
-      - 🦊🎒
       - 🇺🇲
       - 🇭🇰 
       - 🇨🇳 
@@ -66,11 +75,13 @@ proxy-groups:
     proxies:
     use:
       - provider1
+      - provider2
   - name: 🦊
     type: fallback
     proxies:
     use:
       - provider1
+      - provider2
   - name: IRAN
     type: select
     proxies:
@@ -89,6 +100,7 @@ proxy-groups:
     proxies:
     use:
       - provider1
+      - provider2
   - name: 🇭🇰
     type: url-test
 #    tolerance: 50
@@ -96,6 +108,7 @@ proxy-groups:
     proxies: 
     use:
       - provider1
+      - provider2
 
   - name: 🇯🇵
     type: url-test
@@ -103,6 +116,7 @@ proxy-groups:
     proxies: 
     use:
       - provider1
+      - provider2
 
   - name: 🇨🇳
     type: url-test
@@ -110,6 +124,7 @@ proxy-groups:
     proxies: 
     use:
       - provider1
+      - provider2
 
       
   - name: 🇸🇬
@@ -118,6 +133,7 @@ proxy-groups:
     proxies: 
     use:
       - provider1
+      - provider2
 
   - name: 🇰🇷
     type: url-test
@@ -125,7 +141,22 @@ proxy-groups:
     proxies: 
     use:
       - provider1 
+      - provider2
   - name: PROXY
+    type: select
+    use:
+      - provider1
+    proxies:
+      - 🦊🎒
+      - 🎒
+      - 🦊
+      - 🇺🇲
+      - 🇭🇰 
+      - 🇨🇳 
+      - 🇸🇬 
+      - 🇯🇵 
+      - 🇰🇷 
+  - name: 🦊🎒
     type: select
     use:
       - provider1
@@ -137,27 +168,17 @@ proxy-groups:
       - 🇨🇳 
       - 🇸🇬 
       - 🇯🇵 
-      - 🇰🇷 
-  - name: 🦊🎒
-    type: url-test
-    proxies:
-      - 🇺🇲
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇯🇵 
       - 🇰🇷         
 proxy-providers:
   provider1:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml"   #【Meta专属】支持解析V2rayN等工具使用的普通订阅
-    interval: 3600
-    path: Prem/provider1.yaml
-    health-check:
-      enable: true
-      interval: 300
-      # lazy: true
-      url: https://i.ytimg.com/generate_204
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml"
+    path: "./providers/2.yaml"
+    <<: *p
+
+  provider2:
+    url: "https://www.nameless13.com/sub?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fsplitted%2Ftrojan&expand=true&rename=%60%E9%A6%99%E6%B8%AF%40%E6%B8%AF%60%60%E6%96%B0%E5%8A%A0%E5%9D%A1%40%E7%8B%AE%E5%9F%8E%60&emoji=true&list=false&udp=true&tfo=false&scv=false"
+    path: "./providers/yebekhe.yaml"
+    <<: *p
 rule-providers:
   ir:
     type: http
