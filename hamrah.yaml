@@ -10,6 +10,7 @@ port: 7890
 socks-port: 7891
 allow-lan: true
 mode: Rule
+unified-delay: true
 log-level: info
 dns:
   enable: true
@@ -3693,6 +3694,9 @@ proxy-groups:
 #      - provider1
   - name: 🎒
     type: url-test
+    use:
+      - provider1
+      - provider2
     proxies:
       - ðŸ‡­ðŸ‡°HK_000 @WangCai_8_1_1
       - ðŸ‡­ðŸ‡°HK_001 @WangCai_8_1_1
@@ -25469,11 +25473,7 @@ proxy-groups:
       - 🇭🇰HK_253 @WangCai_8
       - 🇭🇰HK_254 @WangCai_8
       - 🇭🇰HK_255 @WangCai_8    
-    use:
-      - provider1
-      - provider2
 
-      
   - name: 🇸🇬
     type: url-test
     filter: '🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]'
@@ -32735,6 +32735,7 @@ proxy-groups:
     type: select
     use:
       - provider1
+      - provider2
     proxies:
       - 🦊🎒
       - 🎒
@@ -36370,6 +36371,7 @@ proxy-groups:
     type: select
     use:
       - provider1
+      - provider2
     proxies:
       - 🎒
       - 🦊
@@ -40007,8 +40009,8 @@ proxy-providers:
     <<: *p
 
   provider2:
-    url: "https://www.nameless13.com/sub?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fsplitted%2Ftrojan&expand=true&rename=%60%E9%A6%99%E6%B8%AF%40%E6%B8%AF%60%60%E6%96%B0%E5%8A%A0%E5%9D%A1%40%E7%8B%AE%E5%9F%8E%60&emoji=true&list=false&udp=true&tfo=false&scv=false"
-    path: "./providers/yebekhe.yaml"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/GeoIP/hysteria2"
+    path: "./providers/hysteria2.yaml"
     <<: *p
 rule-providers:
   ir:
