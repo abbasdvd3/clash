@@ -8,6 +8,7 @@ p: &p {type: "http", interval: 86400, health-check: {enable: true, interval: 360
 mixed-port: 7890
 allow-lan: true
 bind-address: '*'
+udp: true
 mode: rule
 log-level: info
 external-controller: '127.0.0.1:9090'
@@ -45,7 +46,7 @@ proxy-groups:
 proxy-providers:
 
   dvd:
-    url: "https://www.nameless13.com/sub?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fsplitted%2Fmixed&expand=true&emoji=true&list=false&udp=true&tfo=false&scv=false"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/GeoIP/hysteria2"
     path: "./providers/dvd.yaml"
     <<: *p
 rule-providers:
