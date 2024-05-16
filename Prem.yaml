@@ -1,190 +1,352 @@
-
-
+cfw-latency-timeout: 3000
+cfw-latency-url: http://connectivitycheck.gstatic.com
+experimental:
+  ignore-resolve-fail: true 
+proxy-test-url: http://connectivitycheck.gstatic.com
+test-timeout: 2
+interface-mode: auto
+sni-sniffing: true
+disable-stun: true
+disconnect-on-policy-change: true
+switch-node-after-failure-times: 3
 proxies:
-
 proxy-groups:
-  - name: 🕹
-    type: select
-    use:
-      - provider1
-    proxies:
-      - ♻️
-      - 🚧
-      - ⚖️
-      - 🇺🇲
-      - DIRECT 
-  - name: ♻️
-    type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 180
-    tolerance: 50
-    use:
-      - provider1
-    proxies:
 
-  - name: 🚧
+  - name: "PROXY"
+    type: select
+    disable-udp: false
+    use:
+#      - "provide"
+    proxies:
+      - "FALLBACK"
+      - "URL-TEST"
+      - "USA"
+      - "DIRECT"
+      - "REJECT"
+
+  - name: "FALLBACK"
     type: fallback
-    url: https://cp.cloudflare.com/generate_204
+    url: https://fast.com
     interval: 180
- #   tolerance: 100
+    tolerance: 1
+    disable-udp: false
+    lazy: true
     use:
-      - provider1
- 
+      - "provider1"
+      - "provider2"
+      - "provider3"
+      - "provider4"
+      - "provider5"
+      - "provider6"
+      - "provider7"
+      - "provider8"
+      - "provider9"
+      - "provider10"
+      - "provider13"
+      - "provider14"
+      - "provider15"
+      - "provider16"
 
-  - name: ⚖️
-    type: load-balance
-    url: https://cp.cloudflare.com/generate_204
-    interval: 280
-#    tolerance: 150
-    use:
-      - provider1
-    proxies:
-
-  - name: ✈️
-    type: select
-    use:
-      - provider1
-    proxies:
-      - 🕹
-      - ♻️
-      - 🚧
-      - ⚖️
-      - DIRECT
-  - name: 📲
-    type: select
-    use:
-      - provider1
-    proxies:
-      - 🕹
-      - ♻️
-      - 🚧
-      - ⚖️
-  - name: 🎥
-    type: select
-    use:
-      - provider1
-    proxies:
-      - 🕹
-      - ♻️
-      - 🚧
-      - ⚖️
-      - DIRECT
-  - name: 🤖 AI
-    type: select
-    use:
-      - provider1
-    proxies:
-      - 🕹
-      - 🚧
-      - DIRECT
-  - name: 📡 IP
-    type: select
-    proxies:
-      - DIRECT
-      - 🕹
-  - name: 📢
-    type: select
-    use:
-      - provider1
-    proxies:
-      - 🕹
-      - DIRECT
-      - ♻️
-      - 🚧
-      - ⚖️
-  - name: Ⓜ️
-    type: select
-    use:
-      - provider1
-    proxies:
-      - DIRECT
-      - 🕹
-      - ♻️
-      - 🚧
-      - ⚖️
-  - name: 🍎
-    type: select
-    use:
-      - provider1
-    proxies:
-      
-      - DIRECT
-      - 🕹
-      - ♻️
-      - 🚧
-      - ⚖️
-  - name: 📺
-    type: select
-    use:
-      - provider1
-    proxies:
-      - 🕹
-      - DIRECT
-      - ♻️
-      - 🚧
-      - ⚖️
-  - name: 🎮
-    type: select
-    use:
-      - provider1
-    proxies:
-      - 🕹
-      - DIRECT
-      - ♻️
-      - 🚧
-      - ⚖️
-  - name: 🎯
-    type: select
-    proxies:
-      - DIRECT
-      - 🕹
-      - ♻️
-  - name: 🛑
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT      
-  - name: 🐟
-    type: select
-    proxies:
-      - 🕹
-      - ♻️
-      - 🎯
-      - 🚧
-    use:
-      - provider1
-      
-  - name: 🇺🇲
+  - name: "URL-TEST"
     type: url-test
-    url: https://cp.cloudflare.com/generate_204
+    url: https://fast.com
     interval: 300
-    filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
-    proxies:
+    tolerance: 1
+    disable-udp: false
+    lazy: true
     use:
-      - provider1
+      - "provider1"
+      - "provider2"
+      - "provider3"
+      - "provider4"
+      - "provider5"
+      - "provider6"
+      - "provider7"
+      - "provider9"
+      - "provider10"
+      - "provider13"
+      - "provider14"
+      - "provider15"
+      - "provider16"
+      - "provider8"
+#      - "provide18"
+#      - "provide19"
 
-proxy-providers:
+  - name: "USA"
+    type: url-test
+    url: https://fast.com
+    interval: 300
+    tolerance: 1
+    disable-udp: false
+    lazy: true
+    filter: '(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)'
+    use:
+      - "provider1"
+      - "provider2"
+      - "provider3"
+      - "provider4"
+      - "provider5"
+      - "provider6"
+      - "provider7"
+      - "provider9"
+      - "provider10"
+      - "provider13"
+      - "provider14"
+      - "provider15"
+      - "provider16"
+      - "provider8"
+#      - "provide18"
+#      - "provide19"    
+      
+  - name: "IRAN"
+    type: select
+    proxies:
+      - "DIRECT"
+      - "PROXY"
+      - "URL-TEST"
+      
+  - name: "BlockAd"
+    type: select
+    proxies:
+      - "REJECT"
+      - "DIRECT"
+      - "PROXY"
+proxy-providers:    
   provider1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml"    #【Meta专属】支持解析V2rayN等工具使用的普通订阅
+    url: "https://timell.pages.dev/clash/proxies"
+    path: ./proxy_providers/provider1.yaml
     interval: 3600
-    path: Prem/provider1.yaml
+    proxy: 🕹 select
     health-check:
       enable: true
+      url: https://www.gstatic.com/generate_204
       interval: 300
-      # lazy: true
-      url: https://i.ytimg.com/generate_204
+      timeout: 500
+      lazy: true
 
+  provider2:
+    type: http
+    url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies"
+    path: ./proxy_providers/provider2.yaml
+    interval: 3600
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 500
+      lazy: true
+
+  provider3:
+    type: http
+    url: "https://proxypool.link/clash/proxies"
+    path: ./proxy_providers/provider3.yaml
+    interval: 3600
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 500
+      lazy: true
+
+  provider4:
+    type: http
+    url: "https://proxy.fldhhhhhh.top/clash/proxies"
+    path: ./proxy_providers/provider4.yaml
+    interval: 3600
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 500
+      lazy: true
+
+  provider5:
+    type: http
+    url: "https://proxy.crazygeeky.com/clash/proxies"
+    path: ./proxy_providers/provider5.yaml
+    interval: 3600
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 500
+      lazy: true
+
+  provider6:
+    type: http
+    url: "https://laxcity.pages.dev/clash/proxies"
+    path: ./proxy_providers/provider6.yaml
+    interval: 3600
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 500
+      lazy: true
+
+  provider7:
+    type: http
+    url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
+    path: ./proxy_providers/provider7.yaml
+    interval: 3600
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 500
+      lazy: true
+
+  provider9:
+    type: http
+    url: "http://beetle.lander.work/clash/proxies"
+    path: ./proxy_providers/provider9.yaml
+    interval: 3600
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 500
+      lazy: true
+
+  provider10:
+    type: http
+    url: "http://66.42.50.118:12580/clash/proxies"
+    path: ./proxy_providers/provider10.yaml
+    interval: 3600
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 500
+      lazy: true
+
+  provider13:
+    type: http
+    url: "http://174.137.58.32:12580/clash/proxies"
+    path: ./proxy_providers/provider13.yaml
+    interval: 3600
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 500
+      lazy: true
+
+  provider14:
+    type: http
+    url: "http://155.248.172.106:12580/clash/proxies"
+    path: ./proxy_providers/provider14.yaml
+    interval: 3600
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 500
+      lazy: true
+
+  provider15:
+    type: http
+    url: "http://150.230.195.209:12580/clash/proxies"
+    path: ./proxy_providers/provider15.yaml
+    interval: 3600
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 500
+      lazy: true
+  provider16:
+    type: http
+    url: "http://141.147.161.50:12580/clash/proxies"
+    path: ./proxy_providers/provider16.yaml
+    interval: 3600
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 500
+      lazy: true
+
+  "provider8":
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml"
+    interval: 3600
+    path: ./provide/provider8.yml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 3600
 
 rule-providers:
-  LocalAreaNetwork:
+  ir:
     type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
+    path: ./ruleset/ir.yaml
+    interval: 86400
+  ads:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
+    path: ./ruleset/ads.yaml
+    interval: 86400
+  malware:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
+    path: ./ruleset/malware.yaml
+    interval: 86400
+  phishing:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
+    path: ./ruleset/phishing.yaml
+    interval: 86400
+  cryptominers:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
+    path: ./ruleset/cryptominers.yaml
+    interval: 86400
+  apps:
+    type: http
+    format: yaml
     behavior: classical
-    url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/LocalAreaNetwork.list
-    format: text
-    interval: 3600
-    path: ./mphin/ProxyTools/LocalAreaNetwork.list
-
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml"
+    path: ./ruleset/apps.yaml
+    interval: 86400
+  ircidr:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
+    path: ./ruleset/ircidr.yaml
+    interval: 86400
+  private:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
+    path: ./ruleset/private.yaml
+    interval: 86400
   GoogleFCM:
     type: http
     behavior: classical
@@ -292,32 +454,38 @@ rule-providers:
     format: text
     interval: 3600
     path: ./ACL4SSR/ACL4SSR/BanEasyPrivacy.list
- 
-rules:
-  - RULE-SET,GoogleFCM,🕹
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🕹
-  - DOMAIN-SUFFIX,services.googleapis.cn,🕹
-  - RULE-SET,GoogleCNProxyIP,🕹
-  - RULE-SET,GoogleCN,📢
+rules :
+  - RULE-SET,private,DIRECT,no-resolve
+  - RULE-SET,apps,IRAN
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,ir,DIRECT
+  - RULE-SET,ircidr,DIRECT
+  - RULE-SET,GoogleFCM,PROXY
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
+  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
+  - RULE-SET,GoogleCNProxyIP,PROXY
+  - RULE-SET,GoogleCN,PROXY
 #  - RULE-SET,YouTube,📹 油管视频
-  - RULE-SET,LocalAreaNetwork,🎯
-  - RULE-SET,ProxyGFWlist,🕹
-  - RULE-SET,UnBan,🕹
-  - RULE-SET,gfw,🕹
-  - RULE-SET,BanAD,🛑
-  - RULE-SET,BanProgramAD,🕹
-  - RULE-SET,BanEasyList,🛑
-  - RULE-SET,BanEasyListChina,🛑
-  - RULE-SET,BanEasyPrivacy,🛑
+  - RULE-SET,ProxyGFWlist,PROXY
+  - RULE-SET,UnBan,PROXY
+  - RULE-SET,gfw,PROXY
+  - RULE-SET,BanAD,BlockAd
+  - RULE-SET,BanProgramAD,PROXY
+  - RULE-SET,BanEasyList,BlockAd
+  - RULE-SET,BanEasyListChina,BlockAd
+  - RULE-SET,BanEasyPrivacy,BlockAd
 #  - RULE-SET,YouTube,📺
 #  - RULE-SET,ProxyMedia,📺
 #  - RULE-SET,adguard,REJECT
-  - RULE-SET,Apple,🍎
-  - RULE-SET,IpinfoSpeedtest,📡 IP
-  - RULE-SET,Telegram,📲
-  - RULE-SET,ProxyGFWlist,🕹
+  - RULE-SET,Apple,PROXY
+  - RULE-SET,IpinfoSpeedtest,IRAN
+  - RULE-SET,Telegram,PROXY
+  - RULE-SET,ProxyGFWlist,PROXY
 #  - RULE-SET,LocalAreaNetwork,🎯
-  - RULE-SET,Google,🕹
-  - GEOIP,CN,🎯
-  - GEOIP,ir,🎯
-  - MATCH,🐟
+  - RULE-SET,Google,PROXY
+  - GEOIP,CN,IRAN
+  - GEOIP,ir,IRAN  
+  - MATCH,PROXY
