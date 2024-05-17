@@ -33,6 +33,10 @@ dns:
     - 8.8.8.8
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '+.*'
+    - '*.lan'
+    - localhost.ptlogin2.qq.com
   nameserver-policy:
     'rule-set:ir,Google,gfw':
       - "https://223.5.5.5/dns-query#IRAN"
@@ -56,10 +60,7 @@ dns:
     - "tcp://8.8.4.4:53"
     - "tcp://208.67.222.222:443"
     - "tcp://208.67.220.220:443"
-  fake-ip-filter:
-    - '+.*'
-    - '*.lan'
-    - localhost.ptlogin2.qq.com
+  fallback-filter:
     geoip: true
     geoip-code: ir
     ipcidr:
