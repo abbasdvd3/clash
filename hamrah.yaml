@@ -15,9 +15,10 @@ external-ui: /data/adb/box/clash/dashboard
 external-ui-name: xd
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 geox-url:
-  geoip: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat"
-  geosite: "https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat"
-  mmdb: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/geoip.metadb"
+  geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
+  geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
+  mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
+  asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
 geo-auto-update: true
 geo-update-interval: 48
 profile:
@@ -86,6 +87,8 @@ proxy-groups:
 
   - name: "FALLBACK"
     type: fallback
+    url: http://clients3.google.com/generate_204
+#    interval: "300"
     use:
       - provider1
       - provider2
@@ -103,11 +106,11 @@ proxy-groups:
       - provider14
       - provider15
       - provider16
-    url: http://clients3.google.com/generate_204
-    'interval': "300"
 
   - name: "URL-TEST"
     type: url-test
+    url: http://clients3.google.com/generate_204
+#    interval: "300"
     use:
       - provider1
       - provider2
@@ -125,8 +128,7 @@ proxy-groups:
       - provider14
       - provider15
       - provider16
-    url: http://clients3.google.com/generate_204
-    'interval': "300"
+
      
   - name: "IRAN"
     type: select
@@ -134,13 +136,6 @@ proxy-groups:
       - "DIRECT"
       - "PROXY"
       - "URL-TEST"
-      
-  - name: "BlockAd"
-    type: select
-    proxies:
-      - "REJECT"
-      - "DIRECT"
-      - "PROXY"
 proxy-providers:    
   provider1:
     type: http
@@ -708,19 +703,43 @@ rule-providers:
     format: text
     interval: 3600
     path: ./ACL4SSR/ACL4SSR/SpeedTest.list    
+  category-ads-all:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.yaml"
+    path: ./ruleset/category-ads-all.yaml
+    interval: 86400
+  nsfw1:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
+    path: ./ruleset/nsfw1.yaml
+    interval: 86400
+  social:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
+    path: ./ruleset/social.yaml
+    interval: 86400
 rules :
+  - RULE-SET,social,Foreign agents
+  - RULE-SET,nsfw1,Foreign agents
+  - RULE-SET,category-ads-all,REJECT
   - RULE-SET,private,DIRECT,no-resolve
   - RULE-SET,apps,DIRECT
-  - RULE-SET,ads,BlockAd
-  - RULE-SET,malware,BlockAd
-  - RULE-SET,phishing,BlockAd
-  - RULE-SET,cryptominers,BlockAd
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
   - RULE-SET,ir,DIRECT
   - RULE-SET,ircidr,DIRECT
   - RULE-SET,irasn,DIRECT
   - RULE-SET,UnBan,IRAN
-  - RULE-SET,BanAD,BlockAd
-  - RULE-SET,BanProgramAD,BlockAd
+  - RULE-SET,BanAD,REJECT
+  - RULE-SET,BanProgramAD,REJECT
   - RULE-SET,GoogleFCM,PROXY
   - RULE-SET,GoogleCN,PROXY
   - RULE-SET,SteamCN,PROXY
@@ -758,33 +777,33 @@ rules :
 #  - RULE-SET,ProxyGFWlist,✈️
 #  - RULE-SET,UnBan,✈️
 #  - RULE-SET,gfw,✈️  
-  - RULE-SET,Adblock1,BlockAd
+  - RULE-SET,Adblock1,REJECT
   - RULE-SET,DNS2,DIRECT
   - RULE-SET,Domestic,PROXY
   - RULE-SET,cloudflare,DIRECT
   - RULE-SET,ChinaDNS,DIRECT
   - RULE-SET,AdGuardSDNSFilterDirect,DIRECT
-  - RULE-SET,BlockHttpDNS,BlockAd
-  - RULE-SET,AdGuardSDNSFilter,BlockAd
+  - RULE-SET,BlockHttpDNS,REJECT
+  - RULE-SET,AdGuardSDNSFilter,REJECT
   - RULE-SET,Samsung,PROXY
   - RULE-SET,SpeedTest,DIRECT
   - RULE-SET,DNS,DIRECT
 #  - RULE-SET,ProxyGFWlist,PROXY
   - RULE-SET,GitHub,PROXY
 #  - RULE-SET,Google,PROXY
-  - RULE-SET,AWA,BlockAd
+  - RULE-SET,AWA,REJECT
   - DOMAIN-SUFFIX,googlesyndication.com,PROXY
-  - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),BlockAd
-  - GEOSITE,category-ads-all,BlockAd
-  - RULE-SET,block,BlockAd
+  - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
+  - GEOSITE,category-ads-all,REJECT
+  - RULE-SET,block,REJECT
   # - SCRIPT,quic,REJECT
   # - SCRIPT,youshit,REJECT
   ## direct FCM
   # - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),DIRECT
   # - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),DIRECT
   ## block udp/quic YouTube
-  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),BlockAd
-  - AND,((NETWORK,udp),(GEOSITE,youtube)),BlockAd
+  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
+  - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
   # # fix dnsleak
 #  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
 #  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
@@ -795,6 +814,7 @@ rules :
 # - GEOSITE,telegram,PROXY
   - GEOIP,CN,DIRECT
   - GEOIP,ir,DIRECT
+  - GEOIP,private,DIRECT,no-resolve
   ## direct ntp
   # - AND,((NETWORK,UDP),(DST-PORT,123)),DIRECT
   # - DST-PORT,123/136/137-139,DIRECT,udp
@@ -803,6 +823,6 @@ rules :
   - DOMAIN-SUFFIX,vpnse.org,PROXY
   - DOMAIN-SUFFIX,cfmem.com,PROXY
   ## rules inner, recommended untuk non kuota reguler
-  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),BlockAd
+  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,PROXY
   - MATCH,PROXY
