@@ -14,9 +14,21 @@ proxy-groups:
 
   - name: "PROXY"
     type: select
-    disable-udp: false
     use:
-#      - "provide"
+      - "provider1"
+      - "provider2"
+      - "provider3"
+      - "provider4"
+      - "provider5"
+      - "provider6"
+      - "provider7"
+      - "provider8"
+      - "provider9"
+      - "provider10"
+      - "provider13"
+      - "provider14"
+      - "provider15"
+      - "provider16"
     proxies:
       - "FALLBACK"
       - "URL-TEST"
@@ -26,11 +38,9 @@ proxy-groups:
 
   - name: "FALLBACK"
     type: fallback
-    url: https://fast.com
+    url: http://connectivitycheck.gstatic.com
     interval: 180
-    tolerance: 100
-    disable-udp: false
-    lazy: true
+ #   tolerance: 100
     use:
       - "provider1"
       - "provider2"
@@ -49,11 +59,9 @@ proxy-groups:
 
   - name: "URL-TEST"
     type: url-test
-    url: https://fast.com
+    url: http://connectivitycheck.gstatic.com
     interval: 300
-    tolerance: 150
-    disable-udp: false
-    lazy: true
+  #  tolerance: 50
     use:
       - "provider1"
       - "provider2"
@@ -98,19 +106,6 @@ proxy-groups:
 #      - "provide18"
 #      - "provide19"    
       
-  - name: "IRAN"
-    type: select
-    proxies:
-      - "DIRECT"
-      - "PROXY"
-      - "URL-TEST"
-      
-  - name: "BlockAd"
-    type: select
-    proxies:
-      - "REJECT"
-      - "DIRECT"
-      - "PROXY"
 proxy-providers:    
   provider1:
     type: http
@@ -121,8 +116,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 500
-      lazy: true
+
 
   provider2:
     type: http
@@ -133,8 +127,6 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 500
-      lazy: true
 
   provider3:
     type: http
@@ -145,8 +137,6 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 500
-      lazy: true
 
   provider4:
     type: http
@@ -157,8 +147,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 500
-      lazy: true
+
 
   provider5:
     type: http
@@ -169,8 +158,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 500
-      lazy: true
+
 
   provider6:
     type: http
@@ -181,8 +169,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 500
-      lazy: true
+  
 
   provider7:
     type: http
@@ -193,8 +180,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 500
-      lazy: true
+      
 
   provider9:
     type: http
@@ -205,8 +191,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 500
-      lazy: true
+     
 
   provider10:
     type: http
@@ -217,8 +202,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 500
-      lazy: true
+
 
   provider13:
     type: http
@@ -229,8 +213,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 500
-      lazy: true
+  
 
   provider14:
     type: http
@@ -241,8 +224,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 500
-      lazy: true
+   
 
   provider15:
     type: http
@@ -253,8 +235,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 500
-      lazy: true
+
   provider16:
     type: http
     url: "http://141.147.161.50:12580/clash/proxies"
@@ -264,8 +245,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 500
-      lazy: true
+ 
 
   "provider8":
     type: http
@@ -276,8 +256,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 500
-      lazy: true
+ 
 
 rule-providers:
   ir:
@@ -443,9 +422,33 @@ rule-providers:
     format: text
     interval: 3600
     path: ./ACL4SSR/ACL4SSR/BanEasyPrivacy.list
+  category-ads-all:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.yaml"
+    path: ./ruleset/category-ads-all.yaml
+    interval: 86400
+  nsfw1:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
+    path: ./ruleset/nsfw1.yaml
+    interval: 86400
+  social:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
+    path: ./ruleset/social.yaml
+    interval: 86400
 rules :
+  - RULE-SET,social,PROXY
+  - RULE-SET,nsfw1,PROXY
+  - RULE-SET,category-ads-all,REJECT
   - RULE-SET,private,DIRECT,no-resolve
-  - RULE-SET,apps,IRAN
+  - RULE-SET,apps,DIRECT
   - RULE-SET,ads,REJECT
   - RULE-SET,malware,REJECT
   - RULE-SET,phishing,REJECT
@@ -461,16 +464,16 @@ rules :
   - RULE-SET,ProxyGFWlist,PROXY
   - RULE-SET,UnBan,PROXY
   - RULE-SET,gfw,PROXY
-  - RULE-SET,BanAD,BlockAd
+  - RULE-SET,BanAD,REJECT
   - RULE-SET,BanProgramAD,PROXY
-  - RULE-SET,BanEasyList,BlockAd
-  - RULE-SET,BanEasyListChina,BlockAd
-  - RULE-SET,BanEasyPrivacy,BlockAd
+  - RULE-SET,BanEasyList,REJECT
+  - RULE-SET,BanEasyListChina,REJECT
+  - RULE-SET,BanEasyPrivacy,REJECT
 #  - RULE-SET,YouTube,📺
 #  - RULE-SET,ProxyMedia,📺
 #  - RULE-SET,adguard,REJECT
   - RULE-SET,Apple,PROXY
-  - RULE-SET,IpinfoSpeedtest,IRAN
+  - RULE-SET,IpinfoSpeedtest,DIRECT
   - RULE-SET,Telegram,PROXY
   - RULE-SET,ProxyGFWlist,PROXY
 #  - RULE-SET,LocalAreaNetwork,🎯
