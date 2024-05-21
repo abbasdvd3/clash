@@ -2,13 +2,13 @@
 # mode: rule
 allow-lan: true
 bind-address: '*'
-# unified-delay: true
+unified-delay: true
 tcp-concurrent: true
 enable-process: true
 find-process-mode: strict
 log-level: info
 ipv6: true
-geodata-mode: true
+geodata-mode: false
 #interface-name: tun0   
 external-controller: 0.0.0.0:9090 
 external-ui: /data/adb/box/clash/dashboard
@@ -55,11 +55,11 @@ dns:
     - "https://dns.google/dns-query"
     - "https://1.1.1.1/dns-query"
     - "tcp://8.8.8.8:53"
-    - "tcp://8.8.4.4:53"
-    - "tcp://208.67.222.222:443"
-    - "tcp://208.67.220.220:443"
+#    - "tcp://8.8.4.4:53"
+ #   - "tcp://208.67.222.222:443"
+   # - "tcp://208.67.220.220:443"
   fallback-filter:
-    geoip: true
+    geoip: false
     geoip-code: ir
     ipcidr:
       - 240.0.0.0/4
@@ -104,8 +104,8 @@ proxy-groups:
 
   - name: "FALLBACK"
     type: fallback
-#    url: http://clients3.google.com/generate_204
-#    interval: "300"
+    url: http://clients3.google.com/generate_204
+    interval: "300"
     use:
       - provider1
       - provider2
@@ -126,8 +126,8 @@ proxy-groups:
 
   - name: "URL-TEST"
     type: url-test
-  #  url: http://clients3.google.com/generate_204
-#    interval: "300"
+    url: http://clients3.google.com/generate_204
+    interval: "300"
     use:
       - provider1
       - provider2
@@ -789,8 +789,8 @@ rules :
 #  - RULE-SET,UnBan,✈️
 #  - RULE-SET,gfw,✈️  
   - RULE-SET,Adblock1,REJECT
-  - RULE-SET,DNS2,DIRECT
-  - RULE-SET,Domestic,PROXY
+ # - RULE-SET,DNS2,DIRECT
+ # - RULE-SET,Domestic,PROXY
   - RULE-SET,cloudflare,DIRECT
   - RULE-SET,ChinaDNS,DIRECT
   - RULE-SET,AdGuardSDNSFilterDirect,DIRECT
@@ -798,7 +798,7 @@ rules :
   - RULE-SET,AdGuardSDNSFilter,REJECT
   - RULE-SET,Samsung,PROXY
   - RULE-SET,SpeedTest,DIRECT
-  - RULE-SET,DNS,DIRECT
+#  - RULE-SET,DNS,DIRECT
 #  - RULE-SET,ProxyGFWlist,PROXY
   - RULE-SET,GitHub,PROXY
 #  - RULE-SET,Google,PROXY
