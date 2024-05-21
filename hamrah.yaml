@@ -1,6 +1,14 @@
 
+# port: 7890
+# socks-port: 7891
+# mixed-port: 10801
+# redir-port: 9797
+# tproxy-port: 9898
 # mode: rule
 allow-lan: true
+unified-delay: true
+bind-address: '*'
+log-level: debug
 bind-address: '*'
 unified-delay: true
 tcp-concurrent: true
@@ -25,60 +33,140 @@ profile:
   store-selected: true
   store-fake-ip: true
   
+keep-alive-interval: 15 
+sniffer:
+  enable: true
+  sniffing:
+    - tls
+    - http
+  skip-domain:
+    - 'Mijia Cloud'
+    - 'dlg.io.mi.com'
+    - '+.apple.com'
+    - '*.baidu.com'
+  force-domain:
+    - '+'
+    - '+.google.com'
+  port-whitelist:
+    - 80
+    - 443
+    - 8000-9000
+tun:
+  enable: true
+  stack: MIXED
+#system # gvisor / lwip
+  dns-hijack:
+    - any:53
+    - any:5353
+    - tcp://any:53
+  # interface-name: 
+  auto-route: true 
+  auto-detect-interface: true 
+  mtu: 9000 
+  strict_route: true 
+  inet4_route_address: 
+    - 0.0.0.0/1
+    - 128.0.0.0/1
+  inet6_route_address: 
+    - '::/1'
+    - '8000::/1'
+  endpoint_independent_nat: true 
 dns:
   enable: true
   ipv6: true
-  listen: 0.0.0.0:8053
-  default-nameserver:
-    - 1.1.1.1
-    - 8.8.8.8
+  prefer-h3: true
+  listen: 0.0.0.0:53
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-    - '+.*'
-    - '*.lan'
-    - localhost.ptlogin2.qq.com
+  - '*.lan'
+  - cable.auth.com
+  - +.msftconnecttest.com
+  - +.msftncsi.com
+  - network-test.debian.org
+  - detectportal.firefox.com
+  - resolver1.opendns.com
+  - +.srv.nintendo.net
+  - +.stun.playstation.net
+  - xbox.*.microsoft.com
+  - +.xboxlive.com
+  - stun.*
+  - global.turn.twilio.com
+  - global.stun.twilio.com
+  - localhost.*.qq.com
+  - +.logon.battlenet.com.cn
+  - +.logon.battle.net
+  - +.blzstatic.cn
+  - +.cmpassport.com
+  - id6.me
+  - open.e.189.cn
+  - mdn.open.wo.cn
+  - opencloud.wostore.cn
+  - auth.wosms.cn
+  - +.jegotrip.com.cn
+  - +.icitymobile.mobi
+  - +.pingan.com.cn
+  - +.cmbchina.com
+  - +.cmbchina.com.cn
+  - pool.ntp.org
+  - +.pool.ntp.org
+  - ntp.*.com
+  - time.*.com
+  - ntp?.*.com
+  - time?.*.com
+  - time.*.gov
+  - time.*.edu.cn
+  - +.ntp.org.cn
+  - time.*.apple.com
+  default-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
   nameserver-policy:
-    'rule-set:ir,Google,gfw':
-      - "https://223.5.5.5/dns-query#IRAN"
-      - "https://120.53.53.53/dns-query#IRAN"
-    'rule-set:irasn': 
-      - "https://8.8.4.4/dns-query#PROXY"
-      - "https://1.0.0.1/dns-query#PROXY"
-    'geosite:ir,irasn':
-      - "https://223.5.5.5/dns-query#IRAN"
-      - "https://120.53.53.53/dns-query#IRAN"
+    www.baidu.com: 114.114.114.114
+    +.internal.crop.com: 10.0.0.1
+    www.baidu.com,+.google.cn: https://doh.pub/dns-query
+    geosite:private,apple: https://dns.alidns.com/dns-query
+    "geosite:ir,private,apple":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+    "geosite:category-ads-all": rcode://success
+    "www.baidu.com,+.google.com": [223.5.5.5, https://dns.alidns.com/dns-query]
+    "+.pornhub.com": "https://doh.pub/dns-query"
+    "+.sxyprn.com": "https://doh.pub/dns-query"
+    "+.spankbang.com": "https://doh.pub/dns-query"
+    "+.samfw.com": "https://doh.pub/dns-query"    
+    "rule-set:GoogleFCM,ir": 8.8.8.8
+    GEOSITE:google: 8.8.8.8
   nameserver:
-    - "https://8.8.4.4/dns-query#PROXY"
-    - "https://1.0.0.1/dns-query#PROXY"   
-  fallback: 
-    - "https://dns.google/dns-query"
-    - "https://1.1.1.1/dns-query"
-    - "tcp://8.8.8.8:53"
-#    - "tcp://8.8.4.4:53"
- #   - "tcp://208.67.222.222:443"
-   # - "tcp://208.67.220.220:443"
+  - https://doh.pub/dns-query
+  - https://dns.alidns.com/dns-query
+  fallback:
+  - https://1.1.1.2/dns-query
+  - https://1.0.0.2/dns-query
+  - https://9.9.9.9/dns-query
   fallback-filter:
     geoip: false
     geoip-code: ir
+    geosite:
+  #  - gfw
     ipcidr:
-      - 240.0.0.0/4
+    - 240.0.0.0/4
+    - 0.0.0.0/32
     domain:
-      - '+.google.com'
-      - '+.googleapis.com'
-      - '+.youtube.com'
-      - '+.appspot.com'
-      - '+.telegram.com'
-      - '+.facebook.com'
-      - '+.twitter.com'
-      - '+.blogger.com'
-      - '+.gmail.com'
-      - '+.gvt1.com'
+    - +.google.com
+    - +.google.cn
+    - +.googleapis.cn
+    - +.googleapis.com
+    - +.github.com
+    - +.facebook.com
+    - +.twitter.com
+    - +.youtube.com  
 proxies:
 proxy-groups:
 
   - name: "PROXY"
     type: select
+    hidden: true
     use:
       - provider1
       - provider2
@@ -104,8 +192,9 @@ proxy-groups:
 
   - name: "FALLBACK"
     type: fallback
-    url: http://clients3.google.com/generate_204
-    interval: "180"
+    url: https://cp.cloudflare.com/generate_204
+    interval: 180
+    hidden: true
     use:
       - provider1
       - provider2
@@ -126,8 +215,9 @@ proxy-groups:
 
   - name: "URL-TEST"
     type: url-test
-    url: http://clients3.google.com/generate_204
-    interval: "300"
+    url: https://cp.cloudflare.com/generate_204
+    interval: 380
+    hidden: true
     use:
       - provider1
       - provider2
