@@ -105,7 +105,7 @@ proxy-groups:
   - name: "FALLBACK"
     type: fallback
     url: http://clients3.google.com/generate_204
-    interval: "300"
+    interval: "180"
     use:
       - provider1
       - provider2
@@ -791,16 +791,16 @@ rules :
   - RULE-SET,Adblock1,REJECT
  # - RULE-SET,DNS2,DIRECT
  # - RULE-SET,Domestic,PROXY
-  - RULE-SET,cloudflare,DIRECT
+#  - RULE-SET,cloudflare,DIRECT
   - RULE-SET,ChinaDNS,DIRECT
-  - RULE-SET,AdGuardSDNSFilterDirect,DIRECT
-  - RULE-SET,BlockHttpDNS,REJECT
-  - RULE-SET,AdGuardSDNSFilter,REJECT
-  - RULE-SET,Samsung,PROXY
+#  - RULE-SET,AdGuardSDNSFilterDirect,DIRECT
+ # - RULE-SET,BlockHttpDNS,REJECT
+#  - RULE-SET,AdGuardSDNSFilter,REJECT
+#  - RULE-SET,Samsung,PROXY
   - RULE-SET,SpeedTest,DIRECT
 #  - RULE-SET,DNS,DIRECT
 #  - RULE-SET,ProxyGFWlist,PROXY
-  - RULE-SET,GitHub,PROXY
+#  - RULE-SET,GitHub,PROXY
 #  - RULE-SET,Google,PROXY
   - RULE-SET,AWA,REJECT
   - DOMAIN-SUFFIX,googlesyndication.com,PROXY
@@ -813,8 +813,8 @@ rules :
   # - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),DIRECT
   # - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),DIRECT
   ## block udp/quic YouTube
-  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
-  - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
+#  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
+#  - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
   # # fix dnsleak
 #  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
 #  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
