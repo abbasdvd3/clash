@@ -1,6 +1,6 @@
 
-port: 7890
-socks-port: 7891
+# port: 7890
+# socks-port: 7891
 # mixed-port: 10801
 # redir-port: 9797
 # tproxy-port: 9898
@@ -123,11 +123,11 @@ dns:
 proxies:
 proxy-groups:
 
-  - name: "PROXY"
+  - name: "PRO"
     type: select
    # hidden: true
     use:
-      - provider8
+    #  - provider8
    #   - provider2
    #   - provider3
   #    - provider4
@@ -152,7 +152,7 @@ proxy-groups:
   - name: "FALLBACK"
     type: fallback
     url: https://cp.cloudflare.com/generate_204
-    interval: 80
+    interval: 180
     hidden: true
     use:
       - provider8
@@ -175,7 +175,7 @@ proxy-groups:
   - name: "URL-TEST"
     type: url-test
     url: https://cp.cloudflare.com/generate_204
-    interval: 80
+    interval: 180
     hidden: true
     use:
       - provider8
@@ -194,7 +194,16 @@ proxy-groups:
   #    - provider15
  #     - provider16
 
-    
+  - name: "PROXY"
+    type: select
+    hidden: true
+    use:
+      - provider8
+    proxies:
+      - "URL-TEST"
+      - "FALLBACK"
+      - "DIRECT"
+      - "REJECT"
 proxy-providers:    
   provider1:
     type: http
