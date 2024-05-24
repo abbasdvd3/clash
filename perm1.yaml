@@ -280,13 +280,233 @@ proxy-providers:
       enable: true
       url: http://connect.rom.miui.com/generate_204
       interval: 300
+rule-providers:
+  ir:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
+    path: ./ruleset/ir.yaml
+    interval: 86400
+  ads:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
+    path: ./ruleset/ads.yaml
+    interval: 86400
+  malware:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
+    path: ./ruleset/malware.yaml
+    interval: 86400
+  phishing:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
+    path: ./ruleset/phishing.yaml
+    interval: 86400
+  cryptominers:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
+    path: ./ruleset/cryptominers.yaml
+    interval: 86400
+  apps:
+    type: http
+    format: yaml
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml"
+    path: ./ruleset/apps.yaml
+    interval: 86400
+  ircidr:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
+    path: ./ruleset/ircidr.yaml
+    interval: 86400
+  private:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
+    path: ./ruleset/private.yaml
+    interval: 86400
+  GoogleFCM:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/GoogleFCM.list
+  GoogleCNProxyIP:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/GoogleCNProxyIP.list
+  GoogleCN:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/GoogleCN.list
 
+  Google:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/Google.list
+  Apple:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/Apple.list
+    format: text
+    interval: 3600
+    path: ./mphin/ProxyTools/Apple.list
+  IpinfoSpeedtest:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/IpinfoSpeedtest.list
+    format: text
+    interval: 3600
+    path: ./mphin/ProxyTools/IpinfoSpeedtest.list
+  Telegram:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/Telegram.list
+    format: text
+    interval: 3600
+    path: ./mphin/ProxyTools/Telegram.list
+  ProxyGFWlist:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/ProxyGFWlist.list
+    format: text
+    interval: 3600
+    path: ./mphin/ProxyTools/ProxyGFWlist.list
+
+  gfw:
+    type: http
+    format: yaml
+    behavior: domain
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
+    path: ./ruleset/gfw.txt
+    interval: 86400
+  UnBan:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/UnBan.list
+  BanAD:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanAD.list
+  BanProgramAD:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanProgramAD.list
+  BanEasyList:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanEasyList.list
+  BanEasyListChina:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanEasyListChina.list
+  BanEasyPrivacy:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanEasyPrivacy.list
+  category-ads-all:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.yaml"
+    path: ./ruleset/category-ads-all.yaml
+    interval: 86400
+  nsfw1:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
+    path: ./ruleset/nsfw1.yaml
+    interval: 86400
+  social:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
+    path: ./ruleset/social.yaml
+    interval: 86400
 
 
 
 
       
 rules:
+  - RULE-SET,social,PROXY
+  - RULE-SET,nsfw1,PROXY
+  - RULE-SET,category-ads-all,REJECT
+  - RULE-SET,private,DIRECT,no-resolve
+  - RULE-SET,apps,DIRECT
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,ir,DIRECT
+  - RULE-SET,ircidr,DIRECT
+  - RULE-SET,GoogleFCM,PROXY
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
+  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
+  - RULE-SET,GoogleCNProxyIP,PROXY
+  - RULE-SET,GoogleCN,PROXY
+#  - RULE-SET,YouTube,📹 油管视频
+  - RULE-SET,ProxyGFWlist,PROXY
+  - RULE-SET,UnBan,PROXY
+  - RULE-SET,gfw,PROXY
+  - RULE-SET,BanAD,REJECT
+  - RULE-SET,BanProgramAD,PROXY
+  - RULE-SET,BanEasyList,REJECT
+  - RULE-SET,BanEasyListChina,REJECT
+  - RULE-SET,BanEasyPrivacy,REJECT
+#  - RULE-SET,YouTube,📺
+#  - RULE-SET,ProxyMedia,📺
+#  - RULE-SET,adguard,REJECT
+  - RULE-SET,Apple,PROXY
+  - RULE-SET,IpinfoSpeedtest,DIRECT
+  - RULE-SET,Telegram,PROXY
+  - RULE-SET,ProxyGFWlist,PROXY
+#  - RULE-SET,LocalAreaNetwork,🎯
+  - RULE-SET,Google,PROXY
+  - GEOIP,CN,DIRECT
+  - GEOIP,ir,DIRECT
   # - SCRIPT,quic,REJECT
   # - SCRIPT,youshit,REJECT
   ## direct FCM
