@@ -31,43 +31,7 @@ profile:
   store-fake-ip: true
   
 keep-alive-interval: 15 
-sniffer:
-  enable: true
-  sniffing:
-    - tls
-    - http
-  skip-domain:
-    - 'Mijia Cloud'
-    - 'dlg.io.mi.com'
-    - '+.apple.com'
-    - '*.baidu.com'
-  force-domain:
-    - '+'
-    - '+.google.com'
-  port-whitelist:
-    - 80
-    - 443
-    - 8000-9000
-tun:
-  enable: true
-  stack: MIXED
-#system # gvisor / lwip
-  dns-hijack:
-    - any:53
-    - any:5353
-    - tcp://any:53
-  # interface-name: 
-  auto-route: true 
-  auto-detect-interface: true 
-  mtu: 9000 
-  strict_route: true 
-  inet4_route_address: 
-    - 0.0.0.0/1
-    - 128.0.0.0/1
-  inet6_route_address: 
-    - '::/1'
-    - '8000::/1'
-  endpoint_independent_nat: true 
+
 dns:
   enable: true
   ipv6: false
@@ -80,22 +44,6 @@ dns:
   default-nameserver:
   - 223.5.5.5
   - 119.29.29.29
-  nameserver-policy:
-    www.baidu.com: 114.114.114.114
-    +.internal.crop.com: 10.0.0.1
-    www.baidu.com,+.google.cn: https://doh.pub/dns-query
-    geosite:private,apple: https://dns.alidns.com/dns-query
-    "geosite:ir,private,apple":
-      - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
-    "geosite:category-ads-all": rcode://success
-    "www.baidu.com,+.google.com": [223.5.5.5, https://dns.alidns.com/dns-query]
-    "+.pornhub.com": "https://doh.pub/dns-query"
-    "+.sxyprn.com": "https://doh.pub/dns-query"
-    "+.spankbang.com": "https://doh.pub/dns-query"
-    "+.samfw.com": "https://doh.pub/dns-query"    
-    "rule-set:GoogleFCM,ir": 8.8.8.8
-    GEOSITE:google: 8.8.8.8
   nameserver:
   - https://doh.pub/dns-query
   - https://dns.alidns.com/dns-query
@@ -103,23 +51,7 @@ dns:
   - https://1.1.1.2/dns-query
   - https://1.0.0.2/dns-query
   - https://9.9.9.9/dns-query
-  fallback-filter:
-    geoip: false
-    geoip-code: ir
-    geosite:
-  #  - gfw
-    ipcidr:
-    - 240.0.0.0/4
-    - 0.0.0.0/32
-    domain:
-    - +.google.com
-    - +.google.cn
-    - +.googleapis.cn
-    - +.googleapis.com
-    - +.github.com
-    - +.facebook.com
-    - +.twitter.com
-    - +.youtube.com  
+
 proxies:
 proxy-groups:
 
@@ -127,7 +59,7 @@ proxy-groups:
     type: select
     hidden: false
     use:
-    #  - provider8
+      - provider8
    #   - provider2
    #   - provider3
   #    - provider4
