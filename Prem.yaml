@@ -1,14 +1,4 @@
-cfw-latency-timeout: 300
-cfw-latency-url: http://connectivitycheck.gstatic.com
-experimental:
-  ignore-resolve-fail: true 
-proxy-test-url: http://connectivitycheck.gstatic.com
-test-timeout: 5
-interface-mode: auto
-sni-sniffing: true
-disable-stun: true
-disconnect-on-policy-change: true
-switch-node-after-failure-times: 5
+
 proxies:
 proxy-groups:
 
@@ -35,7 +25,7 @@ proxy-groups:
       - "FALLBACK"
       - "USA"
       - "DIRECT"
-      - "REJECT"
+
 
   - name: "FALLBACK"
     type: fallback
@@ -81,11 +71,9 @@ proxy-groups:
 
   - name: "USA"
     type: url-test
-    url: https://fast.com
+    url: http://connectivitycheck.gstatic.com
     interval: 300
     tolerance: 50
-    disable-udp: false
-    lazy: true
     filter: '(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)'
     use:
       - "provider8"
