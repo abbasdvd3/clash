@@ -1,56 +1,203 @@
-
-# port: 7890
-# socks-port: 7891
+port: 7890
+socks-port: 7891
 # mixed-port: 10801
 # redir-port: 9797
 # tproxy-port: 9898
 # mode: rule
 allow-lan: true
+unified-delay: true
 bind-address: '*'
 log-level: debug
-unified-delay: true
-tcp-concurrent: true
-enable-process: true
-find-process-mode: strict
-ipv6: false
-geodata-mode: true
-#interface-name: tun0   
+ipv6: true
+geo-auto-update: true
+geo-update-interval: 24 
 external-controller: 0.0.0.0:9090 
-external-ui: /data/adb/box/clash/dashboard
+external-ui: /dashboard
 external-ui-name: xd
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+tcp-concurrent: true
+global-client-fingerprint: chrome
 geox-url:
   geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
   geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
   mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
   asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
-geo-auto-update: true
-geo-update-interval: 48
+find-process-mode: always
 profile:
-  store-selected: true
+  store-selected: false
   store-fake-ip: true
-  
+# interface-name: en0 
 keep-alive-interval: 15 
-
+clash-for-android:
+  append-system-dns: true
+sniffer:
+  enable: true
+  sniffing:
+    - tls
+    - http
+  skip-domain:
+    - 'Mijia Cloud'
+    - 'dlg.io.mi.com'
+    - '+.apple.com'
+    - '*.baidu.com'
+  force-domain:
+    - '+'
+    - '+.google.com'
+  port-whitelist:
+    - 80
+    - 443
+    - 8000-9000
+tun:
+  enable: true
+  stack: MIXED
+#system # gvisor / lwip
+  dns-hijack:
+    - any:53
+    - any:5353
+    - tcp://any:53
+  # interface-name: 
+  auto-route: true 
+  auto-detect-interface: true 
+  mtu: 9000 
+  strict_route: true 
+  inet4_route_address: 
+    - 0.0.0.0/1
+    - 128.0.0.0/1
+  inet6_route_address: 
+    - '::/1'
+    - '8000::/1'
+  endpoint_independent_nat: true 
 dns:
   enable: true
-  ipv6: false
+  ipv6: true
   prefer-h3: true
-  listen: 0.0.0.0:1053
+  listen: 0.0.0.0:53
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
   - '*.lan'
+  - cable.auth.com
+  - +.msftconnecttest.com
+  - +.msftncsi.com
+  - network-test.debian.org
+  - detectportal.firefox.com
+  - resolver1.opendns.com
+  - +.srv.nintendo.net
+  - +.stun.playstation.net
+  - xbox.*.microsoft.com
+  - +.xboxlive.com
+  - stun.*
+  - global.turn.twilio.com
+  - global.stun.twilio.com
+  - localhost.*.qq.com
+  - +.logon.battlenet.com.cn
+  - +.logon.battle.net
+  - +.blzstatic.cn
+  - +.cmpassport.com
+  - id6.me
+  - open.e.189.cn
+  - mdn.open.wo.cn
+  - opencloud.wostore.cn
+  - auth.wosms.cn
+  - +.jegotrip.com.cn
+  - +.icitymobile.mobi
+  - +.pingan.com.cn
+  - +.cmbchina.com
+  - +.cmbchina.com.cn
+  - pool.ntp.org
+  - +.pool.ntp.org
+  - ntp.*.com
+  - time.*.com
+  - ntp?.*.com
+  - time?.*.com
+  - time.*.gov
+  - time.*.edu.cn
+  - +.ntp.org.cn
+  - time.*.apple.com
   default-nameserver:
   - 223.5.5.5
   - 119.29.29.29
+  - 8.8.4.4
   nameserver:
   - https://doh.pub/dns-query
   - https://dns.alidns.com/dns-query
+  - 114.114.114.114
+  - tls://223.5.5.5:853
+  - tls://223.6.6.6:853
+  - tls://1.12.12.12
+  - tls://120.53.53.53
   fallback:
   - https://1.1.1.2/dns-query
   - https://1.0.0.2/dns-query
   - https://9.9.9.9/dns-query
+  - https://1.0.0.1/dns-query
+  - https://public.dns.iij.jp/dns-query
+  - tls://8.8.4.4:853
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    geosite:
+  #  - gfw
+    ipcidr:
+    - 240.0.0.0/4
+    - 0.0.0.0/32
+    - 127.0.0.1/32
+    - 0.0.0.0/8
+    - 10.0.0.0/8
+    - 100.64.0.0/10
+    - 127.0.0.0/8
+    - 169.254.0.0/16
+    - 172.16.0.0/12
+    - 192.0.0.0/24
+    - 192.0.2.0/24
+    - 192.88.99.0/24
+    - 192.168.0.0/16
+    - 198.18.0.0/15
+    - 198.51.100.0/24
+    - 203.0.113.0/24
+    - 224.0.0.0/3
+    - 255.255.255.255/32
+    - ::1/128
+    - 64:ff9b:1::/48
+    - fc00::/7
+    - fe80::/10
+    - 39.102.194.95/32
+    - 182.43.124.6/32
+    - 101.35.177.86/32
+    - 116.89.243.8/32
+    - 119.28.87.227/32
+    domain:
+    - +.facebook.com
+    - +.twitter.com
+    - +.google.com
+    - +.googleapis.com
+    - +.google.cn
+    - +.googleapis.cn
+    - +.xn--ngstr-lra8j.com
+    - +.googlevideo.com
+    - +.gvt1.com
+    - +.gmail.com
+    - +.youtube.com
+    - +.youtu.be
+    - +.gvt0.com
+    - +.gvt2.com
+    - +.gvt3.com
+    - +.gstatic.com
+    - +.265.com
+    - +.2mdn.net
+    - +.app-measurement.com
+    - +.c.admob.com
+    - +.clickserve.dartsearch.net
+    - +.crl.pki.goog
+    - +.doubleclick.net
+    - +.firebase-settings.crashlytics.com
+    - +.google-analytics.com
+    - +.googleadservices.com
+    - +.googleanalytics.com
+    - +.googleoptimize.com
+    - +.googlesyndication.com
+    - +.googletagmanager.com
+    - +.googletagservices.com
 
 
 proxies:
