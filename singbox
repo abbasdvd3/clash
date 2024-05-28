@@ -16,11 +16,6 @@
             {
                 "disable_cache": true,
                 "rule_set": [
-                    "AdGuardSDNSFilter",
-                    "chrome-doh"
-                ],
-                "server": "block"
-            },
             {
                 "query_type": [
                     "A",
@@ -35,10 +30,6 @@
             },
             {
                 "clash_mode": "direct",
-                "server": "local"
-            },
-            {
-                "rule_set": "geosite-cn",
                 "server": "local"
             }
         ],
@@ -37799,32 +37790,7 @@
     ],
     "route": {
         "auto_detect_interface": true,
-        "rule_set": [
-            {
-                "format": "binary",
-                "tag": "geoip-cn",
-                "type": "remote",
-                "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs"
-            },
-            {
-                "format": "binary",
-                "tag": "geosite-cn",
-                "type": "remote",
-                "url": "https://raw.githubusercontent.com/xmdhs/sing-geosite/rule-set-Loyalsoldier/geosite-cn.srs"
-            },
-            {
-                "format": "binary",
-                "tag": "AdGuardSDNSFilter",
-                "type": "remote",
-                "url": "https://raw.githubusercontent.com/xmdhs/sing-box-ruleset/rule-set/AdGuardSDNSFilter.srs"
-            },
-            {
-                "format": "source",
-                "tag": "chrome-doh",
-                "type": "remote",
-                "url": "https://gist.githubusercontent.com/xmdhs/71fc5ff6ef29f5ecaf2c52b8de5c3172/raw/chrome-doh.json"
-            }
-        ],
+        "rule_set": [],
         "rules": [
             {
                 "outbound": "dns-out",
@@ -37843,8 +37809,7 @@
                 "outbound": "direct"
             },
             {
-                "outbound": "direct",
-                "rule_set": "geoip-cn"
+                "outbound": "direct"
             }
         ]
     }
