@@ -12,8 +12,8 @@ ipv6: true
 geo-auto-update: true
 geo-update-interval: 24 
 external-controller: 0.0.0.0:9090 
-external-ui: /dashboard
-external-ui-name: xd
+external-ui: /data/adb/box/clash/dashboard/metacubexd
+# external-ui-name: xd
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 tcp-concurrent: true
 global-client-fingerprint: chrome
@@ -48,7 +48,7 @@ sniffer:
     - 443
     - 8000-9000
 tun:
-  enable: true
+  enable: false
   stack: MIXED
 #system # gvisor / lwip
   dns-hijack:
@@ -190,112 +190,80 @@ dns:
     - +.googletagmanager.com
     - +.googletagservices.com
 proxies:
-  - {"name":"🇳🇱_489","type":"ss","server":"beedoost.org","port":8080,"password":"a8bt9fY0QsLS6eLnXUe0Ym","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"🇯🇵_560","type":"ss","server":"13.231.229.48","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"🇸🇬_171","type":"ss","server":"47.128.230.112","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"🇨🇦加拿大909","type":"ss","server":"23.162.200.127","port":8080,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大816\r\r_2746_2746","type":"ss","server":"23.162.200.106","port":8080,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大983\r\r_2813_2813","type":"ss","server":"23.162.200.133","port":8080,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大1020\r\r_2852_2852","type":"ss","server":"23.162.200.154","port":8080,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸US_1502 | 4.02Mb\r\r_128_128_2","type":"ss","server":"23.157.40.19","port":5000,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"_478 | 8.01Mb\r\r_521_521_2","type":"ss","server":"38.110.1.43","port":5499,"password":"lGqs95QkFHo2NV","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸_575","type":"ss","server":"38.110.1.43","port":7001,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸_578","type":"ss","server":"15.204.87.225","port":7306,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
-  - {"name":"🇸🇬_612","type":"ss","server":"54.254.225.115","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"🇺🇸_618","type":"ss","server":"38.110.1.43","port":9102,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸_619","type":"ss","server":"38.110.1.43","port":8090,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大742\r\r_2964_2964","type":"ss","server":"23.162.200.28","port":8080,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸_232","type":"vmess","server":"obdii.cfd","port":443,"cipher":"auto","uuid":"05641cf5-58d2-4ba4-a9f1-b3cda0b1fb1d","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/linkws","headers":{"host":"obdii.cfd"}}}
   - {"name":"🇨🇦_625","type":"vmess","server":"108.181.200.220","port":17163,"cipher":"auto","uuid":"d54814a1-7a93-45f8-9117-db317a25d100","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
-  - {"name":"🇺🇸_235","type":"vmess","server":"us2e-20240116.v2freevpn.com","port":80,"cipher":"auto","uuid":"2a8a10fb-9ca3-367e-a234-cf09f841be4f","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/us2ekjds3nay","headers":{"host":"us2e-20240116.v2freevpn.com"}}}
-  - {"name":"🇺🇸_624","type":"vmess","server":"174.136.205.46","port":39027,"cipher":"auto","uuid":"26419143-8a06-43ab-d58c-bea7b7da8203","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
-  - {"name":"_18_2424","type":"vmess","server":"fcdn.flha.ru","port":2095,"cipher":"auto","uuid":"7a737f41-b792-4260-94ff-3d864da67b80","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":""}}
-  - {"name":"🇺🇸_924","type":"vmess","server":"205.234.231.35","port":31433,"cipher":"auto","uuid":"50e82581-bd14-4527-f7d6-e7824cd26f57","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
-  - {"name":"🇺🇸_67","type":"vmess","server":"107.148.192.148","port":41911,"cipher":"auto","uuid":"418048af-a293-4b99-9b0c-98ca3580dd24","alterId":64,"tls":false,"skip-cert-verify":true,"network":"tcp"}
-  - {"name":"v2cross.com_152_1523","type":"vmess","server":"us3e-mmnnfr9dop0.v2freevpn.com","port":80,"cipher":"auto","uuid":"2a8a10fb-9ca3-367e-a234-cf09f841be4f","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/v118-fccxmxm35"}}
-  - {"name":"v2cross.com_72_2497","type":"vmess","server":"slime-rhinestone-spy.glitch.me","port":80,"cipher":"auto","uuid":"83a5c82d-a047-418e-9ad9-6ce8c5aaba59","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/83a5c82d-a047-418e-9ad9-6ce8c5aaba59-vmess"}}
-  - {"name":"🇯🇵_586","type":"vmess","server":"140.83.63.38","port":24445,"cipher":"auto","uuid":"94c5ef37-4d82-49f9-c624-f01259374a17","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇺🇸_US_美国_493_1224","type":"vmess","server":"s1c.v2.v001sss.xyz","port":2082,"cipher":"auto","uuid":"112ac36f-3f53-4e26-8371-d25c028e1b9a","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/"}}
-  - {"name":"🇺🇸_878","type":"vmess","server":"jahfkjha.cfd","port":443,"cipher":"auto","uuid":"950db6aa-4926-4616-816e-ec0312dcb87b","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/linkws","headers":{"host":"jahfkjha.cfd"}}}
-  - {"name":"v2cross.com_167_1102","type":"vmess","server":"afrhms16v.bestxray.buzz","port":443,"cipher":"auto","uuid":"f584de15-2034-4170-a723-f48c2bae5e0f","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/linkws"}}
-  - {"name":"v2cross.com_361","type":"vmess","server":"glweidf.cfd","port":443,"cipher":"auto","uuid":"1052f24e-7b09-45eb-b0c5-d858eb124192","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/linkws","headers":{"host":"glweidf.cfd"}}}
-  - {"name":"🇺🇸_234","type":"vmess","server":"linde06.indiavideo.sbs","port":443,"cipher":"auto","uuid":"edbb1059-1633-4271-b66e-ed4fba47a1bf","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/linkws","headers":{"host":"linde06.indiavideo.sbs"}}}
-  - {"name":"🇨🇦_449","type":"vmess","server":"167.114.90.198","port":50577,"cipher":"auto","uuid":"132b0296-e304-45a6-b045-4cdf0902e2b7","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
-  - {"name":"🇺🇸_379","type":"vmess","server":"107.148.192.157","port":41911,"cipher":"auto","uuid":"418048af-a293-4b99-9b0c-98ca3580dd24","alterId":64,"tls":false,"skip-cert-verify":true,"network":"tcp"}
-  - {"name":"🇺🇸_916","type":"vmess","server":"2.58.87.221","port":46628,"cipher":"auto","uuid":"f6ba9e5a-711c-496f-be60-ac5464dec2b8","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
-  - {"name":"ChatGPT 🏁 ZZ_890_884","type":"vmess","server":"172.233.164.32","port":39841,"cipher":"auto","uuid":"4242d74d-b748-4e74-a7c2-2bfb9d6ed121","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
-  - {"name":"ChatGPT 🇺🇸 US_670","type":"vmess","server":"107.173.146.129","port":80,"cipher":"auto","uuid":"5820093a-bb7d-4e15-8575-1a529f2d8282","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":""}}
-  - {"name":"🇺🇸_585","type":"vmess","server":"2.58.87.221","port":12269,"cipher":"auto","uuid":"db85ff0e-c33f-401d-c415-4c7cce135704","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":""}}
-  - {"name":"🇺🇸_394","type":"vmess","server":"146.235.223.24","port":25943,"cipher":"auto","uuid":"520c82fe-3e74-43b9-9dfb-87cae71e8cc0","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/canada"}}
-  - {"name":"🇺🇸_572","type":"ss","server":"216.246.15.225","port":30129,"password":"Yc2CtrIz8L","cipher":"aes-128-gcm"}
-  - {"name":"ChatGPT 🇺🇸 US_657","type":"ss","server":"34.219.161.56","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"🇰🇷_158","type":"ss","server":"13.124.178.1","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"🇫🇷 FR_93","type":"ss","server":"145.239.6.202","port":9101,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
-  - {"name":"Relay_-🇧🇷BR_338\r\r_1188","type":"ss","server":"fell3.dogsvpn.top","port":7704,"password":"8be51adf-b081-4fb9-b751-8859cca58fd4","cipher":"aes-256-gcm"}
-  - {"name":"🇫🇷 FR_91","type":"ss","server":"145.239.6.202","port":8888,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇳🇱_864","type":"trojan","server":"209.250.246.191","port":443,"udp":true,"password":"wkmY1R4EcP","sni":"z-v2-003294.kailib.com","skip-cert-verify":true,"network":"tcp"}
+  - {"name":"_209 | 4.20Mb","type":"ss","server":"145.239.6.202","port":8119,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
   - {"name":"v2cross.com_5\r_809_809","type":"ss","server":"23.157.40.81","port":7001,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
   - {"name":"v2cross.com_132\r_1509_1509","type":"ss","server":"23.162.200.28","port":3389,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"v2cross.com_61\r_378_378","type":"ss","server":"23.157.40.19","port":2376,"password":"faBAoD54k87UJG7","cipher":"aes-256-gcm"}
   - {"name":"_255 | 6.69Mb\r\r_503_503","type":"ss","server":"23.157.40.81","port":6679,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
-  - {"name":"ChatGPT 🇸🇬 SG_339","type":"ss","server":"47.129.9.69","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"🇬🇮_557","type":"ss","server":"95.164.9.144","port":2927,"password":"ug4Fu79SEREdFGlt2sUyT4","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"🇫🇷_623","type":"ss","server":"145.239.6.202","port":8008,"password":"XKFKl2rULjIp74","cipher":"aes-256-gcm"}
+  - {"name":"🇷🇺_821","type":"ss","server":"217.196.103.206","port":29312,"password":"qgpdyzHj8rZW9fDxxkUHRI","cipher":"chacha20-ietf-poly1305"}
+  - {"name":"🇫🇷_502","type":"ss","server":"145.239.6.202","port":8090,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
   - {"name":"Relay_-🇺🇸US_527 |34.49Mb_2","type":"ss","server":"107.175.96.74","port":16899,"password":"Yc2CtrIz8L","cipher":"aes-128-gcm"}
-  - {"name":"🇺🇸_617","type":"ss","server":"38.75.136.108","port":8091,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸US_1505 | 5.84Mb\r\r_225_225","type":"ss","server":"23.157.40.19","port":8009,"password":"XKFKl2rULjIp74","cipher":"aes-256-gcm"}
-  - {"name":"_10 | 8.70Mb\r\r_1555","type":"ss","server":"69.50.92.116","port":8000,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
+  - {"name":"🇯🇵_560","type":"ss","server":"13.231.229.48","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"ChatGPT 🇸🇬 SG_312","type":"ss","server":"47.128.72.90","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"🇺🇸_565","type":"ss","server":"38.75.136.108","port":7306,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸US_1603 | 8.29Mb\r\r_395_395","type":"ss","server":"38.110.1.43","port":7307,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
+  - {"name":"_478 | 8.01Mb\r\r_521_521_2","type":"ss","server":"38.110.1.43","port":5499,"password":"lGqs95QkFHo2NV","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸_558","type":"ss","server":"15.204.87.225","port":9090,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"ChatGPT 🏁 ZZ_56","type":"ss","server":"3.34.95.205","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"🇺🇸US_1482 |64.52Mb\r\r_114","type":"ss","server":"38.75.136.108","port":3389,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸_621","type":"ss","server":"38.110.1.43","port":6379,"password":"zDNVedRFPQexG9v","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸_575","type":"ss","server":"38.110.1.43","port":7001,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸_618","type":"ss","server":"38.110.1.43","port":9102,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸_498","type":"ss","server":"38.110.1.43","port":5601,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸_485","type":"ss","server":"38.110.1.43","port":9101,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸_571","type":"ss","server":"15.204.87.225","port":5499,"password":"lGqs95QkFHo2NV","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸_622","type":"ss","server":"38.110.1.43","port":7306,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸_577","type":"ss","server":"15.204.87.225","port":8090,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸_627","type":"ss","server":"15.204.87.225","port":7002,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸_244","type":"ss","server":"38.75.136.108","port":7001,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸_559","type":"ss","server":"15.204.87.225","port":7307,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸_496","type":"ss","server":"38.75.136.108","port":5001,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸_564","type":"ss","server":"15.204.87.225","port":8118,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
   - {"name":"_179 | 8.28Mb\r\r_404_404","type":"ss","server":"38.110.1.43","port":8009,"password":"XKFKl2rULjIp74","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦CA_1304","type":"ss","server":"38.111.114.133","port":9101,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
+  - {"name":"🇬🇮GI_1548","type":"ss","server":"shadowsocks.ctsubvpn.ggff.net","port":2927,"password":"ug4Fu79SEREdFGlt2sUyT4","cipher":"chacha20-ietf-poly1305"}
+  - {"name":"🇯🇵_333","type":"ss","server":"18.181.198.10","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
   - {"name":"🇷🇺RU_1615_2","type":"ss","server":"139.28.221.242","port":27393,"password":"0dAyxbFiHWvq","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"🇸🇬SG_1650","type":"ss","server":"13.229.54.243","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"ChatGPT 🏁 ZZ_89","type":"ss","server":"18.143.93.163","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"🇸🇬SG_1656","type":"ss","server":"54.151.216.148","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"ChatGPT 🇸🇬 SG_342","type":"ss","server":"54.179.9.170","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
   - {"name":"🇺🇦UA_1682_2","type":"ss","server":"95.164.35.90","port":8388,"password":"YzMyMzU2","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"🇺🇦UA_1685","type":"ss","server":"95.164.44.21","port":8388,"password":"ZjVmYmJl","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"ChatGPT 🏁 ZZ_216\r\r_216_216","type":"ss","server":"23.157.40.19","port":6679,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸US_1502 | 4.02Mb\r\r_128_128_2","type":"ss","server":"23.157.40.19","port":5000,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸US_1454 | 8.04Mb\r\r_150_150","type":"ss","server":"23.157.40.19","port":8091,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
-  - {"name":" |18.06Mb\r\r_653_653","type":"ss","server":"23.157.40.19","port":8000,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸US_1557 | 5.80Mb\r\r_446_446","type":"ss","server":"23.157.40.19","port":7001,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸_579","type":"ss","server":"15.204.87.225","port":8000,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸US_1707_2","type":"ss","server":"188.212.132.20","port":52952,"password":"XRUwpkSouW5HCTUFUxErfnL5AmahofrjznVrAu2iNFMFGUCrChznAULhuHGAQdC463mzcgo2jV546Ut5HKhk3pz956cHYYyc","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"🇺🇸_822","type":"ss","server":"2.58.87.221","port":16899,"password":"Yc2CtrIz8L","cipher":"aes-128-gcm"}
-  - {"name":"v2cross.com_38\r_204_204","type":"ss","server":"23.157.40.19","port":8888,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸 US_355","type":"ss","server":"51.112.118.115","port":443,"password":"mps3FwmDjLrWaOVg","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"ChatGPT 🏁 ZZ_585\r\r_585_585","type":"ss","server":"23.157.40.19","port":9101,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
-  - {"name":"ChatGPT 🇨🇦 CA_07","type":"ss","server":"38.111.114.133","port":7002,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
-  - {"name":"ChatGPT 🇨🇦 CA_09","type":"ss","server":"38.111.114.133","port":8888,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"ChatGPT 🇨🇦 CA_16","type":"ss","server":"38.111.114.133","port":7306,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸_949","type":"ss","server":"35.91.178.223","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"🇺🇸US_1500 | 8.76Mb\r\r_2274","type":"ss","server":"23.157.40.81","port":8090,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸_578","type":"ss","server":"15.204.87.225","port":7306,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
+  - {"name":"v2cross.com_124\r_2148_2148","type":"ss","server":"188.94.155.82","port":35152,"password":"XyM5x6p4CJ8dlb0y9mVHBK","cipher":"chacha20-ietf-poly1305"}
   - {"name":"🇶🇦_216","type":"ss","server":"series-a2-me.varzesh360.co","port":443,"password":"Bog0ELmMM9DSxDdQ","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"🇺🇸_497","type":"ss","server":"38.110.1.43","port":8119,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
   - {"name":"🇭🇰_581","type":"ss","server":"8.210.67.215","port":81,"password":"a-wym4ovY4Yw","cipher":"aes-128-gcm"}
   - {"name":"🇧🇭_BH_巴林_902_950","type":"ss","server":"series-a2-me.samanehha.co","port":443,"password":"Bog0ELmMM9DSxDdQ","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"_346\r\r_1193","type":"ss","server":"13.214.211.185","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"🇯🇵_948","type":"ss","server":"43.206.232.102","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"🇫🇷_626","type":"ss","server":"145.239.6.202","port":5001,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇵🇱_675","type":"ss","server":"217.30.10.18","port":9040,"password":"p9z5BVADH2YFs3MN","cipher":"aes-256-cfb"}
-  - {"name":"🇵🇱_544","type":"ss","server":"217.30.10.18","port":9038,"password":"gYCYXfkUQEs2TaJQ","cipher":"aes-256-cfb"}
-  - {"name":"🇵🇱_HAMRAH_146\r\r_2631","type":"ss","server":"217.30.10.18","port":9060,"password":"ueLXVkvh4hckhErQ","cipher":"aes-256-cfb"}
+  - {"name":"🇨🇦加拿大916","type":"ss","server":"23.162.200.127","port":8888,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大905","type":"ss","server":"23.162.200.127","port":7307,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大917","type":"ss","server":"23.162.200.127","port":9090,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大898","type":"ss","server":"23.162.200.127","port":5601,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大893","type":"ss","server":"23.162.200.127","port":5004,"password":"g5MeD6Ft3CWlJId","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大912","type":"ss","server":"23.162.200.127","port":8118,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大907","type":"ss","server":"23.162.200.127","port":8008,"password":"XKFKl2rULjIp74","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大910","type":"ss","server":"23.162.200.127","port":8090,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大906","type":"ss","server":"23.162.200.127","port":8000,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大888","type":"ss","server":"23.162.200.127","port":3389,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大909","type":"ss","server":"23.162.200.127","port":8080,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大884","type":"ss","server":"23.162.200.127","port":445,"password":"zDNVedRFPQexG9v","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大890","type":"ss","server":"23.162.200.127","port":5000,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大908","type":"ss","server":"23.162.200.127","port":8009,"password":"XKFKl2rULjIp74","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大894","type":"ss","server":"23.162.200.127","port":5498,"password":"lGqs95QkFHo2NV","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大913","type":"ss","server":"23.162.200.127","port":8119,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大886","type":"ss","server":"23.162.200.127","port":2376,"password":"faBAoD54k87UJG7","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大903","type":"ss","server":"23.162.200.127","port":7002,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大899","type":"ss","server":"23.162.200.127","port":6379,"password":"zDNVedRFPQexG9v","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大889","type":"ss","server":"23.162.200.127","port":4444,"password":"pKEW8JPByTVTLtM","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大914","type":"ss","server":"23.162.200.127","port":8881,"password":"kDWvXYZoTBcGkC4","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大895","type":"ss","server":"23.162.200.127","port":5499,"password":"lGqs95QkFHo2NV","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大896","type":"ss","server":"23.162.200.127","port":5500,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大900","type":"ss","server":"23.162.200.127","port":6679,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大918","type":"ss","server":"23.162.200.127","port":9101,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大883","type":"ss","server":"23.162.200.127","port":443,"password":"pKEW8JPByTVTLtM","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大919","type":"ss","server":"23.162.200.127","port":9102,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大901","type":"ss","server":"23.162.200.127","port":6697,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大915","type":"ss","server":"23.162.200.127","port":8882,"password":"kDWvXYZoTBcGkC4","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大892","type":"ss","server":"23.162.200.127","port":5003,"password":"g5MeD6Ft3CWlJId","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大975\r\r_2737_2737","type":"ss","server":"23.162.200.133","port":6697,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大1015\r\r_2739_2739","type":"ss","server":"23.162.200.154","port":7306,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大959\r\r_2740_2740","type":"ss","server":"23.162.200.133","port":2375,"password":"faBAoD54k87UJG7","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大992\r\r_2742_2742","type":"ss","server":"23.162.200.133","port":9101,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大1027\r\r_2743_2743","type":"ss","server":"23.162.200.154","port":8888,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大816\r\r_2746_2746","type":"ss","server":"23.162.200.106","port":8080,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大1026\r\r_2747_2747","type":"ss","server":"23.162.200.154","port":8882,"password":"kDWvXYZoTBcGkC4","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大982\r\r_2748_2748","type":"ss","server":"23.162.200.133","port":8009,"password":"XKFKl2rULjIp74","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大820\r\r_2749_2749","type":"ss","server":"23.162.200.106","port":8119,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
@@ -316,19 +284,33 @@ proxies:
   - {"name":"🇨🇦加拿大958\r\r_2773_2773","type":"ss","server":"23.162.200.133","port":445,"password":"zDNVedRFPQexG9v","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大974\r\r_2774_2774","type":"ss","server":"23.162.200.133","port":6679,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大817\r\r_2776_2776","type":"ss","server":"23.162.200.106","port":8090,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大824\r\r_2867_2867","type":"ss","server":"23.162.200.106","port":9090,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大1000\r\r_2870_2870","type":"ss","server":"23.162.200.154","port":4444,"password":"pKEW8JPByTVTLtM","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大825\r\r_2874_2874","type":"ss","server":"23.162.200.106","port":9101,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大970\r\r_2875_2875","type":"ss","server":"23.162.200.133","port":5500,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大1028\r\r_2778_2778","type":"ss","server":"23.162.200.154","port":9090,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大977\r\r_2779_2779","type":"ss","server":"23.162.200.133","port":7002,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大1002\r\r_2782_2782","type":"ss","server":"23.162.200.154","port":5001,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大1025\r\r_2785_2785","type":"ss","server":"23.162.200.154","port":8881,"password":"kDWvXYZoTBcGkC4","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大799\r\r_2786_2786","type":"ss","server":"23.162.200.106","port":5003,"password":"g5MeD6Ft3CWlJId","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大793\r\r_2787_2787","type":"ss","server":"23.162.200.106","port":2376,"password":"faBAoD54k87UJG7","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大1014\r\r_2788_2788","type":"ss","server":"23.162.200.154","port":7002,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大995\r\r_2789_2789","type":"ss","server":"23.162.200.154","port":445,"password":"zDNVedRFPQexG9v","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大1001\r\r_2790_2790","type":"ss","server":"23.162.200.154","port":5000,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大963\r\r_2791_2791","type":"ss","server":"23.162.200.133","port":4444,"password":"pKEW8JPByTVTLtM","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大1009\r\r_2792_2792","type":"ss","server":"23.162.200.154","port":5601,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大822\r\r_2793_2793","type":"ss","server":"23.162.200.106","port":8882,"password":"kDWvXYZoTBcGkC4","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大1030\r\r_2796_2796","type":"ss","server":"23.162.200.154","port":9102,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大807\r\r_2799_2799","type":"ss","server":"23.162.200.106","port":6679,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大792\r\r_2803_2803","type":"ss","server":"23.162.200.106","port":2375,"password":"faBAoD54k87UJG7","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大1004\r\r_2804_2804","type":"ss","server":"23.162.200.154","port":5004,"password":"g5MeD6Ft3CWlJId","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大801\r\r_2805_2805","type":"ss","server":"23.162.200.106","port":5498,"password":"lGqs95QkFHo2NV","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大987\r\r_2806_2806","type":"ss","server":"23.162.200.133","port":8119,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大989\r\r_2810_2810","type":"ss","server":"23.162.200.133","port":8882,"password":"kDWvXYZoTBcGkC4","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大983\r\r_2813_2813","type":"ss","server":"23.162.200.133","port":8080,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大1020\r\r_2852_2852","type":"ss","server":"23.162.200.154","port":8080,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大819\r\r_2877_2877","type":"ss","server":"23.162.200.106","port":8118,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大798\r\r_2879_2879","type":"ss","server":"23.162.200.106","port":5001,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大818\r\r_2880_2880","type":"ss","server":"23.162.200.106","port":8091,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大811\r\r_2881_2881","type":"ss","server":"23.162.200.106","port":7306,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大1008\r\r_2883_2883","type":"ss","server":"23.162.200.154","port":5600,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大823\r\r_2887_2887","type":"ss","server":"23.162.200.106","port":8888,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大1011\r\r_2888_2888","type":"ss","server":"23.162.200.154","port":6679,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大972\r\r_2890_2890","type":"ss","server":"23.162.200.133","port":5601,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大855\r\r_2892_2892","type":"ss","server":"23.162.200.127","port":8091,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大1007\r\r_2893_2893","type":"ss","server":"23.162.200.154","port":5500,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大1006\r\r_2894_2894","type":"ss","server":"23.162.200.154","port":5499,"password":"lGqs95QkFHo2NV","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大795\r\r_2896_2896","type":"ss","server":"23.162.200.106","port":3389,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
@@ -338,23 +320,102 @@ proxies:
   - {"name":"🇨🇦加拿大800\r\r_2909_2909","type":"ss","server":"23.162.200.106","port":5004,"password":"g5MeD6Ft3CWlJId","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大980\r\r_2910_2910","type":"ss","server":"23.162.200.133","port":8000,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大805\r\r_2911_2911","type":"ss","server":"23.162.200.106","port":5601,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大734\r\r_2915_2915","type":"ss","server":"23.162.200.28","port":6697,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大720\r\r_2917_2917","type":"ss","server":"23.162.200.28","port":3306,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大804\r\r_2920_2920","type":"ss","server":"23.162.200.106","port":5600,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大808\r\r_2927_2927","type":"ss","server":"23.162.200.106","port":6697,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大749\r\r_2932","type":"ss","server":"23.162.200.28","port":8888,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大743\r\r_2934","type":"ss","server":"23.162.200.28","port":8090,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大725\r\r_2939_2939","type":"ss","server":"23.162.200.28","port":5003,"password":"g5MeD6Ft3CWlJId","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大726\r\r_2942_2942","type":"ss","server":"23.162.200.28","port":5004,"password":"g5MeD6Ft3CWlJId","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大1023\r\r_2943_2943","type":"ss","server":"23.162.200.154","port":8118,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大790\r\r_2947_2947","type":"ss","server":"23.162.200.106","port":443,"password":"pKEW8JPByTVTLtM","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大809\r\r_2949_2949","type":"ss","server":"23.162.200.106","port":7001,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大745\r\r_2950","type":"ss","server":"23.162.200.28","port":8118,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大722\r\r_2951_2951","type":"ss","server":"23.162.200.28","port":4444,"password":"pKEW8JPByTVTLtM","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大719\r\r_2956_2956","type":"ss","server":"23.162.200.28","port":2376,"password":"faBAoD54k87UJG7","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大737\r\r_2958_2958","type":"ss","server":"23.162.200.28","port":7306,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大728\r\r_2967_2967","type":"ss","server":"23.162.200.28","port":5499,"password":"lGqs95QkFHo2NV","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大742\r\r_2964_2964","type":"ss","server":"23.162.200.28","port":8080,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大718\r\r_2969_2969","type":"ss","server":"23.162.200.28","port":2375,"password":"faBAoD54k87UJG7","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大965\r\r_2975_2975","type":"ss","server":"23.162.200.133","port":5001,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大733\r\r_2978_2978","type":"ss","server":"23.162.200.28","port":6679,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
+  - {"name":"🇳🇱_489","type":"ss","server":"beedoost.org","port":8080,"password":"a8bt9fY0QsLS6eLnXUe0Ym","cipher":"chacha20-ietf-poly1305"}
+  - {"name":"🇸🇬_171","type":"ss","server":"47.128.230.112","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"🇸🇬_612","type":"ss","server":"54.254.225.115","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"🇺🇸_619","type":"ss","server":"38.110.1.43","port":8090,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸_232","type":"vmess","server":"obdii.cfd","port":443,"cipher":"auto","uuid":"05641cf5-58d2-4ba4-a9f1-b3cda0b1fb1d","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/linkws","headers":{"host":"obdii.cfd"}}}
+  - {"name":"🇺🇸_235","type":"vmess","server":"us2e-20240116.v2freevpn.com","port":80,"cipher":"auto","uuid":"2a8a10fb-9ca3-367e-a234-cf09f841be4f","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/us2ekjds3nay","headers":{"host":"us2e-20240116.v2freevpn.com"}}}
+  - {"name":"🇺🇸_624","type":"vmess","server":"174.136.205.46","port":39027,"cipher":"auto","uuid":"26419143-8a06-43ab-d58c-bea7b7da8203","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
+  - {"name":"_18_2424","type":"vmess","server":"fcdn.flha.ru","port":2095,"cipher":"auto","uuid":"7a737f41-b792-4260-94ff-3d864da67b80","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":""}}
+  - {"name":"🇺🇸_924","type":"vmess","server":"205.234.231.35","port":31433,"cipher":"auto","uuid":"50e82581-bd14-4527-f7d6-e7824cd26f57","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
+  - {"name":"🇺🇸_67","type":"vmess","server":"107.148.192.148","port":41911,"cipher":"auto","uuid":"418048af-a293-4b99-9b0c-98ca3580dd24","alterId":64,"tls":false,"skip-cert-verify":true,"network":"tcp"}
+  - {"name":"v2cross.com_152_1523","type":"vmess","server":"us3e-mmnnfr9dop0.v2freevpn.com","port":80,"cipher":"auto","uuid":"2a8a10fb-9ca3-367e-a234-cf09f841be4f","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/v118-fccxmxm35"}}
+  - {"name":"v2cross.com_72_2497","type":"vmess","server":"slime-rhinestone-spy.glitch.me","port":80,"cipher":"auto","uuid":"83a5c82d-a047-418e-9ad9-6ce8c5aaba59","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/83a5c82d-a047-418e-9ad9-6ce8c5aaba59-vmess"}}
+  - {"name":"🇯🇵_586","type":"vmess","server":"140.83.63.38","port":24445,"cipher":"auto","uuid":"94c5ef37-4d82-49f9-c624-f01259374a17","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
+  - {"name":"🇺🇸_878","type":"vmess","server":"jahfkjha.cfd","port":443,"cipher":"auto","uuid":"950db6aa-4926-4616-816e-ec0312dcb87b","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/linkws","headers":{"host":"jahfkjha.cfd"}}}
+  - {"name":"v2cross.com_167_1102","type":"vmess","server":"afrhms16v.bestxray.buzz","port":443,"cipher":"auto","uuid":"f584de15-2034-4170-a723-f48c2bae5e0f","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/linkws"}}
+  - {"name":"v2cross.com_361","type":"vmess","server":"glweidf.cfd","port":443,"cipher":"auto","uuid":"1052f24e-7b09-45eb-b0c5-d858eb124192","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/linkws","headers":{"host":"glweidf.cfd"}}}
+  - {"name":"🇺🇸_234","type":"vmess","server":"linde06.indiavideo.sbs","port":443,"cipher":"auto","uuid":"edbb1059-1633-4271-b66e-ed4fba47a1bf","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/linkws","headers":{"host":"linde06.indiavideo.sbs"}}}
+  - {"name":"🇨🇦_449","type":"vmess","server":"167.114.90.198","port":50577,"cipher":"auto","uuid":"132b0296-e304-45a6-b045-4cdf0902e2b7","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
+  - {"name":"🇺🇸_379","type":"vmess","server":"107.148.192.157","port":41911,"cipher":"auto","uuid":"418048af-a293-4b99-9b0c-98ca3580dd24","alterId":64,"tls":false,"skip-cert-verify":true,"network":"tcp"}
+  - {"name":"🇺🇸_916","type":"vmess","server":"2.58.87.221","port":46628,"cipher":"auto","uuid":"f6ba9e5a-711c-496f-be60-ac5464dec2b8","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
+  - {"name":"ChatGPT 🏁 ZZ_890_884","type":"vmess","server":"172.233.164.32","port":39841,"cipher":"auto","uuid":"4242d74d-b748-4e74-a7c2-2bfb9d6ed121","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
+  - {"name":"ChatGPT 🇺🇸 US_670","type":"vmess","server":"107.173.146.129","port":80,"cipher":"auto","uuid":"5820093a-bb7d-4e15-8575-1a529f2d8282","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":""}}
+  - {"name":"🇺🇸_585","type":"vmess","server":"2.58.87.221","port":12269,"cipher":"auto","uuid":"db85ff0e-c33f-401d-c415-4c7cce135704","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":""}}
+  - {"name":"🇺🇸_394","type":"vmess","server":"146.235.223.24","port":25943,"cipher":"auto","uuid":"520c82fe-3e74-43b9-9dfb-87cae71e8cc0","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/canada"}}
+  - {"name":"🇺🇸_572","type":"ss","server":"216.246.15.225","port":30129,"password":"Yc2CtrIz8L","cipher":"aes-128-gcm"}
+  - {"name":"ChatGPT 🇺🇸 US_657","type":"ss","server":"34.219.161.56","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"🇰🇷_158","type":"ss","server":"13.124.178.1","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"🇫🇷 FR_93","type":"ss","server":"145.239.6.202","port":9101,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
+  - {"name":"Relay_-🇧🇷BR_338\r\r_1188","type":"ss","server":"fell3.dogsvpn.top","port":7704,"password":"8be51adf-b081-4fb9-b751-8859cca58fd4","cipher":"aes-256-gcm"}
+  - {"name":"🇫🇷 FR_91","type":"ss","server":"145.239.6.202","port":8888,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"v2cross.com_61\r_378_378","type":"ss","server":"23.157.40.19","port":2376,"password":"faBAoD54k87UJG7","cipher":"aes-256-gcm"}
+  - {"name":"ChatGPT 🇸🇬 SG_339","type":"ss","server":"47.129.9.69","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"🇬🇮_557","type":"ss","server":"95.164.9.144","port":2927,"password":"ug4Fu79SEREdFGlt2sUyT4","cipher":"chacha20-ietf-poly1305"}
+  - {"name":"🇫🇷_623","type":"ss","server":"145.239.6.202","port":8008,"password":"XKFKl2rULjIp74","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸_617","type":"ss","server":"38.75.136.108","port":8091,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸US_1505 | 5.84Mb\r\r_225_225","type":"ss","server":"23.157.40.19","port":8009,"password":"XKFKl2rULjIp74","cipher":"aes-256-gcm"}
+  - {"name":"_10 | 8.70Mb\r\r_1555","type":"ss","server":"69.50.92.116","port":8000,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
+  - {"name":"ChatGPT 🏁 ZZ_56","type":"ss","server":"3.34.95.205","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"🇺🇸US_1482 |64.52Mb\r\r_114","type":"ss","server":"38.75.136.108","port":3389,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸_621","type":"ss","server":"38.110.1.43","port":6379,"password":"zDNVedRFPQexG9v","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸_622","type":"ss","server":"38.110.1.43","port":7306,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸_244","type":"ss","server":"38.75.136.108","port":7001,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸_496","type":"ss","server":"38.75.136.108","port":5001,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸_564","type":"ss","server":"15.204.87.225","port":8118,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦CA_1304","type":"ss","server":"38.111.114.133","port":9101,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
+  - {"name":"🇸🇬SG_1650","type":"ss","server":"13.229.54.243","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"ChatGPT 🏁 ZZ_89","type":"ss","server":"18.143.93.163","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"🇸🇬SG_1656","type":"ss","server":"54.151.216.148","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"ChatGPT 🇸🇬 SG_342","type":"ss","server":"54.179.9.170","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"🇺🇦UA_1685","type":"ss","server":"95.164.44.21","port":8388,"password":"ZjVmYmJl","cipher":"chacha20-ietf-poly1305"}
+  - {"name":"ChatGPT 🏁 ZZ_216\r\r_216_216","type":"ss","server":"23.157.40.19","port":6679,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
+  - {"name":" |18.06Mb\r\r_653_653","type":"ss","server":"23.157.40.19","port":8000,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸US_1557 | 5.80Mb\r\r_446_446","type":"ss","server":"23.157.40.19","port":7001,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸_822","type":"ss","server":"2.58.87.221","port":16899,"password":"Yc2CtrIz8L","cipher":"aes-128-gcm"}
+  - {"name":"v2cross.com_38\r_204_204","type":"ss","server":"23.157.40.19","port":8888,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸 US_355","type":"ss","server":"51.112.118.115","port":443,"password":"mps3FwmDjLrWaOVg","cipher":"chacha20-ietf-poly1305"}
+  - {"name":"ChatGPT 🏁 ZZ_585\r\r_585_585","type":"ss","server":"23.157.40.19","port":9101,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
+  - {"name":"ChatGPT 🇨🇦 CA_07","type":"ss","server":"38.111.114.133","port":7002,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
+  - {"name":"ChatGPT 🇨🇦 CA_09","type":"ss","server":"38.111.114.133","port":8888,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"ChatGPT 🇨🇦 CA_16","type":"ss","server":"38.111.114.133","port":7306,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸_949","type":"ss","server":"35.91.178.223","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"🇺🇸US_1500 | 8.76Mb\r\r_2274","type":"ss","server":"23.157.40.81","port":8090,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
+  - {"name":"🇺🇸_497","type":"ss","server":"38.110.1.43","port":8119,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
+  - {"name":"_346\r\r_1193","type":"ss","server":"13.214.211.185","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"🇯🇵_948","type":"ss","server":"43.206.232.102","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
+  - {"name":"🇫🇷_626","type":"ss","server":"145.239.6.202","port":5001,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇵🇱_675","type":"ss","server":"217.30.10.18","port":9040,"password":"p9z5BVADH2YFs3MN","cipher":"aes-256-cfb"}
+  - {"name":"🇵🇱_544","type":"ss","server":"217.30.10.18","port":9038,"password":"gYCYXfkUQEs2TaJQ","cipher":"aes-256-cfb"}
+  - {"name":"🇵🇱_HAMRAH_146\r\r_2631","type":"ss","server":"217.30.10.18","port":9060,"password":"ueLXVkvh4hckhErQ","cipher":"aes-256-cfb"}
+  - {"name":"🇨🇦加拿大824\r\r_2867_2867","type":"ss","server":"23.162.200.106","port":9090,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大1000\r\r_2870_2870","type":"ss","server":"23.162.200.154","port":4444,"password":"pKEW8JPByTVTLtM","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大825\r\r_2874_2874","type":"ss","server":"23.162.200.106","port":9101,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大970\r\r_2875_2875","type":"ss","server":"23.162.200.133","port":5500,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大798\r\r_2879_2879","type":"ss","server":"23.162.200.106","port":5001,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大818\r\r_2880_2880","type":"ss","server":"23.162.200.106","port":8091,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大855\r\r_2892_2892","type":"ss","server":"23.162.200.127","port":8091,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大734\r\r_2915_2915","type":"ss","server":"23.162.200.28","port":6697,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大720\r\r_2917_2917","type":"ss","server":"23.162.200.28","port":3306,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大749\r\r_2932","type":"ss","server":"23.162.200.28","port":8888,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大743\r\r_2934","type":"ss","server":"23.162.200.28","port":8090,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大745\r\r_2950","type":"ss","server":"23.162.200.28","port":8118,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
+  - {"name":"🇨🇦加拿大728\r\r_2967_2967","type":"ss","server":"23.162.200.28","port":5499,"password":"lGqs95QkFHo2NV","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大814\r\r_2973_2973","type":"ss","server":"23.162.200.106","port":8008,"password":"XKFKl2rULjIp74","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大730\r\r_3044","type":"ss","server":"23.162.200.28","port":5600,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
   - {"name":"🇨🇦加拿大736\r\r_3054_3054","type":"ss","server":"23.162.200.28","port":7002,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
@@ -478,7 +539,6 @@ proxies:
   - {"name":"🇺🇸_238","type":"ss","server":"38.75.136.108","port":6679,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸US_6697 @WangCai_8_1","type":"ss","server":"38.75.136.108","port":6697,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸US_7002 @WangCai_8_1","type":"ss","server":"38.75.136.108","port":7002,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸_565","type":"ss","server":"38.75.136.108","port":7306,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸US_8000 @WangCai_8_1","type":"ss","server":"38.75.136.108","port":8000,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸_243","type":"ss","server":"38.75.136.108","port":8008,"password":"XKFKl2rULjIp74","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸US_8009 @WangCai_8_1","type":"ss","server":"38.75.136.108","port":8009,"password":"XKFKl2rULjIp74","cipher":"aes-256-gcm"}
@@ -502,66 +562,6 @@ proxies:
   - {"name":"JP_日本_hk_241","type":"ss","server":"185.172.113.182","port":811,"password":"G!yBwPWH3Vao","cipher":"chacha20-ietf-poly1305"}
   - {"name":"JP_日本_hk_242","type":"ss","server":"185.172.113.182","port":806,"password":"G!yBwPWH3Vao","cipher":"chacha20-ietf-poly1305"}
   - {"name":"JP_日本_hk_246","type":"ss","server":"185.172.113.182","port":809,"password":"G!yBwPWH3Vao","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"🇳🇱_864","type":"trojan","server":"209.250.246.191","port":443,"udp":true,"password":"wkmY1R4EcP","sni":"z-v2-003294.kailib.com","skip-cert-verify":true,"network":"tcp"}
-  - {"name":"_209 | 4.20Mb","type":"ss","server":"145.239.6.202","port":8119,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
-  - {"name":"🇷🇺_821","type":"ss","server":"217.196.103.206","port":29312,"password":"qgpdyzHj8rZW9fDxxkUHRI","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"🇫🇷_502","type":"ss","server":"145.239.6.202","port":8090,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
-  - {"name":"ChatGPT 🇸🇬 SG_312","type":"ss","server":"47.128.72.90","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"🇺🇸US_1603 | 8.29Mb\r\r_395_395","type":"ss","server":"38.110.1.43","port":7307,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
-  - {"name":"🇺🇸_498","type":"ss","server":"38.110.1.43","port":5601,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇬🇮GI_1548","type":"ss","server":"shadowsocks.ctsubvpn.ggff.net","port":2927,"password":"ug4Fu79SEREdFGlt2sUyT4","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"🇯🇵_333","type":"ss","server":"18.181.198.10","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
-  - {"name":"v2cross.com_124\r_2148_2148","type":"ss","server":"188.94.155.82","port":35152,"password":"XyM5x6p4CJ8dlb0y9mVHBK","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"🇨🇦加拿大916","type":"ss","server":"23.162.200.127","port":8888,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大905","type":"ss","server":"23.162.200.127","port":7307,"password":"FoOiGlkAA9yPEGP","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大917","type":"ss","server":"23.162.200.127","port":9090,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大898","type":"ss","server":"23.162.200.127","port":5601,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大893","type":"ss","server":"23.162.200.127","port":5004,"password":"g5MeD6Ft3CWlJId","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大912","type":"ss","server":"23.162.200.127","port":8118,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大907","type":"ss","server":"23.162.200.127","port":8008,"password":"XKFKl2rULjIp74","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大910","type":"ss","server":"23.162.200.127","port":8090,"password":"PCnnH6SQSnfoS27","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大906","type":"ss","server":"23.162.200.127","port":8000,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大888","type":"ss","server":"23.162.200.127","port":3389,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大884","type":"ss","server":"23.162.200.127","port":445,"password":"zDNVedRFPQexG9v","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大890","type":"ss","server":"23.162.200.127","port":5000,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大908","type":"ss","server":"23.162.200.127","port":8009,"password":"XKFKl2rULjIp74","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大894","type":"ss","server":"23.162.200.127","port":5498,"password":"lGqs95QkFHo2NV","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大913","type":"ss","server":"23.162.200.127","port":8119,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大886","type":"ss","server":"23.162.200.127","port":2376,"password":"faBAoD54k87UJG7","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大903","type":"ss","server":"23.162.200.127","port":7002,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大899","type":"ss","server":"23.162.200.127","port":6379,"password":"zDNVedRFPQexG9v","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大889","type":"ss","server":"23.162.200.127","port":4444,"password":"pKEW8JPByTVTLtM","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大914","type":"ss","server":"23.162.200.127","port":8881,"password":"kDWvXYZoTBcGkC4","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大895","type":"ss","server":"23.162.200.127","port":5499,"password":"lGqs95QkFHo2NV","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大896","type":"ss","server":"23.162.200.127","port":5500,"password":"KixLvKzwjekG00rm","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大900","type":"ss","server":"23.162.200.127","port":6679,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大918","type":"ss","server":"23.162.200.127","port":9101,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大883","type":"ss","server":"23.162.200.127","port":443,"password":"pKEW8JPByTVTLtM","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大919","type":"ss","server":"23.162.200.127","port":9102,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大901","type":"ss","server":"23.162.200.127","port":6697,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大915","type":"ss","server":"23.162.200.127","port":8882,"password":"kDWvXYZoTBcGkC4","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大892","type":"ss","server":"23.162.200.127","port":5003,"password":"g5MeD6Ft3CWlJId","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大1028\r\r_2778_2778","type":"ss","server":"23.162.200.154","port":9090,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大977\r\r_2779_2779","type":"ss","server":"23.162.200.133","port":7002,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大1002\r\r_2782_2782","type":"ss","server":"23.162.200.154","port":5001,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大1025\r\r_2785_2785","type":"ss","server":"23.162.200.154","port":8881,"password":"kDWvXYZoTBcGkC4","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大799\r\r_2786_2786","type":"ss","server":"23.162.200.106","port":5003,"password":"g5MeD6Ft3CWlJId","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大793\r\r_2787_2787","type":"ss","server":"23.162.200.106","port":2376,"password":"faBAoD54k87UJG7","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大1014\r\r_2788_2788","type":"ss","server":"23.162.200.154","port":7002,"password":"RexnBgU7EV5ADxG","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大995\r\r_2789_2789","type":"ss","server":"23.162.200.154","port":445,"password":"zDNVedRFPQexG9v","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大1001\r\r_2790_2790","type":"ss","server":"23.162.200.154","port":5000,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大963\r\r_2791_2791","type":"ss","server":"23.162.200.133","port":4444,"password":"pKEW8JPByTVTLtM","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大1009\r\r_2792_2792","type":"ss","server":"23.162.200.154","port":5601,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大822\r\r_2793_2793","type":"ss","server":"23.162.200.106","port":8882,"password":"kDWvXYZoTBcGkC4","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大1030\r\r_2796_2796","type":"ss","server":"23.162.200.154","port":9102,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大807\r\r_2799_2799","type":"ss","server":"23.162.200.106","port":6679,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大792\r\r_2803_2803","type":"ss","server":"23.162.200.106","port":2375,"password":"faBAoD54k87UJG7","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大1004\r\r_2804_2804","type":"ss","server":"23.162.200.154","port":5004,"password":"g5MeD6Ft3CWlJId","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大801\r\r_2805_2805","type":"ss","server":"23.162.200.106","port":5498,"password":"lGqs95QkFHo2NV","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大987\r\r_2806_2806","type":"ss","server":"23.162.200.133","port":8119,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大989\r\r_2810_2810","type":"ss","server":"23.162.200.133","port":8882,"password":"kDWvXYZoTBcGkC4","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大965\r\r_2975_2975","type":"ss","server":"23.162.200.133","port":5001,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"🇨🇦加拿大733\r\r_2978_2978","type":"ss","server":"23.162.200.28","port":6679,"password":"TEzjfAYq2IjtuoS","cipher":"aes-256-gcm"}
   - {"name":"🇺🇸_1","type":"vless","server":"198.41.198.76","port":443,"uuid":"38a2070d-a256-48f3-891b-c9b68b01c8f7","tls":true,"servername":"jd.wxgqlfx.top","network":"ws","ws-opts":{"path":"/?ed"}}
   - {"name":"🇺🇸_2","type":"vless","server":"www.gov.se","port":443,"uuid":"66b2ba80-81b5-4580-8d1b-901d34dda0e3","tls":true,"servername":"ppal03.ms-albin-runolfsdottir.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560"},"client-fingerprint":"chrome"}
   - {"name":"🇺🇸_3","type":"vless","server":"www.gov.se","port":80,"uuid":"66b2ba80-81b5-4580-8d1b-901d34dda0e3","tls":false,"servername":"ppal03.ms-albin-runolfsdottir.workers.dev","network":"ws","ws-opts":{"path":"/?ed=2560"}}
@@ -1451,118 +1451,86 @@ proxies:
   - {"name":"🇸🇬_1116","type":"ss","server":"103.172.116.94","port":9059,"password":"9XwYyZsK8SNzQDtY","cipher":"aes-256-cfb"}
   - {"name":"🇸🇬_1117","type":"ss","server":"103.172.116.94","port":9014,"password":"KnJGad3FqTvjqbaX","cipher":"aes-256-cfb"}
 proxy-groups:
-  - name: PROXY 
+  - name: PROXY
     type: select
     proxies:
-      - ♻️
-      - 🔯
+      - ♻
+      - 🔯 
       - DIRECT
-      - 🇳🇱_489
-      - 🇯🇵_560
-      - 🇸🇬_171
-      - 🇨🇦加拿大909
-      - "🇨🇦加拿大816\r\r_2746_2746"
-      - "🇨🇦加拿大983\r\r_2813_2813"
-      - "🇨🇦加拿大1020\r\r_2852_2852"
-      - "🇺🇸US_1502 | 4.02Mb\r\r_128_128_2"
-      - "_478 | 8.01Mb\r\r_521_521_2"
-      - 🇺🇸_575
-      - 🇺🇸_578
-      - 🇸🇬_612
-      - 🇺🇸_618
-      - 🇺🇸_619
-      - "🇨🇦加拿大742\r\r_2964_2964"
-      - 🇺🇸_232
       - 🇨🇦_625
-      - 🇺🇸_235
-      - 🇺🇸_624
-      - _18_2424
-      - 🇺🇸_924
-      - 🇺🇸_67
-      - v2cross.com_152_1523
-      - v2cross.com_72_2497
-      - 🇯🇵_586
       - 🇺🇸_US_美国_493_1224
-      - 🇺🇸_878
-      - v2cross.com_167_1102
-      - v2cross.com_361
-      - 🇺🇸_234
-      - 🇨🇦_449
-      - 🇺🇸_379
-      - 🇺🇸_916
-      - ChatGPT 🏁 ZZ_890_884
-      - ChatGPT 🇺🇸 US_670
-      - 🇺🇸_585
-      - 🇺🇸_394
-      - 🇺🇸_572
-      - ChatGPT 🇺🇸 US_657
-      - 🇰🇷_158
-      - 🇫🇷 FR_93
-      - "Relay_-🇧🇷BR_338\r\r_1188"
-      - 🇫🇷 FR_91
+      - 🇳🇱_864
+      - _209 | 4.20Mb
       - "v2cross.com_5\r_809_809"
       - "v2cross.com_132\r_1509_1509"
-      - "v2cross.com_61\r_378_378"
       - "_255 | 6.69Mb\r\r_503_503"
-      - ChatGPT 🇸🇬 SG_339
-      - 🇬🇮_557
-      - 🇫🇷_623
+      - 🇷🇺_821
+      - 🇫🇷_502
       - Relay_-🇺🇸US_527 |34.49Mb_2
-      - 🇺🇸_617
-      - "🇺🇸US_1505 | 5.84Mb\r\r_225_225"
-      - "_10 | 8.70Mb\r\r_1555"
+      - 🇯🇵_560
+      - ChatGPT 🇸🇬 SG_312
+      - 🇺🇸_565
+      - "🇺🇸US_1603 | 8.29Mb\r\r_395_395"
+      - "_478 | 8.01Mb\r\r_521_521_2"
       - 🇺🇸_558
-      - ChatGPT 🏁 ZZ_56
-      - "🇺🇸US_1482 |64.52Mb\r\r_114"
-      - 🇺🇸_621
+      - 🇺🇸_575
+      - 🇺🇸_618
+      - 🇺🇸_498
       - 🇺🇸_485
       - 🇺🇸_571
-      - 🇺🇸_622
       - 🇺🇸_577
       - 🇺🇸_627
-      - 🇺🇸_244
       - 🇺🇸_559
-      - 🇺🇸_496
-      - 🇺🇸_564
       - "_179 | 8.28Mb\r\r_404_404"
-      - 🇨🇦CA_1304
+      - 🇬🇮GI_1548
+      - 🇯🇵_333
       - 🇷🇺RU_1615_2
-      - 🇸🇬SG_1650
-      - ChatGPT 🏁 ZZ_89
-      - 🇸🇬SG_1656
-      - ChatGPT 🇸🇬 SG_342
       - 🇺🇦UA_1682_2
-      - 🇺🇦UA_1685
-      - "ChatGPT 🏁 ZZ_216\r\r_216_216"
+      - "🇺🇸US_1502 | 4.02Mb\r\r_128_128_2"
       - "🇺🇸US_1454 | 8.04Mb\r\r_150_150"
-      - " |18.06Mb\r\r_653_653"
-      - "🇺🇸US_1557 | 5.80Mb\r\r_446_446"
       - 🇺🇸_579
       - 🇺🇸US_1707_2
-      - 🇺🇸_822
-      - "v2cross.com_38\r_204_204"
-      - 🇺🇸 US_355
-      - "ChatGPT 🏁 ZZ_585\r\r_585_585"
-      - ChatGPT 🇨🇦 CA_07
-      - ChatGPT 🇨🇦 CA_09
-      - ChatGPT 🇨🇦 CA_16
-      - 🇺🇸_949
-      - "🇺🇸US_1500 | 8.76Mb\r\r_2274"
+      - 🇺🇸_578
+      - "v2cross.com_124\r_2148_2148"
       - 🇶🇦_216
-      - 🇺🇸_497
       - 🇭🇰_581
       - 🇧🇭_BH_巴林_902_950
-      - "_346\r\r_1193"
-      - 🇯🇵_948
-      - 🇫🇷_626
-      - 🇵🇱_675
-      - 🇵🇱_544
-      - "🇵🇱_HAMRAH_146\r\r_2631"
+      - 🇨🇦加拿大916
+      - 🇨🇦加拿大905
+      - 🇨🇦加拿大917
+      - 🇨🇦加拿大898
+      - 🇨🇦加拿大893
+      - 🇨🇦加拿大912
+      - 🇨🇦加拿大907
+      - 🇨🇦加拿大910
+      - 🇨🇦加拿大906
+      - 🇨🇦加拿大888
+      - 🇨🇦加拿大909
+      - 🇨🇦加拿大884
+      - 🇨🇦加拿大890
+      - 🇨🇦加拿大908
+      - 🇨🇦加拿大894
+      - 🇨🇦加拿大913
+      - 🇨🇦加拿大886
+      - 🇨🇦加拿大903
+      - 🇨🇦加拿大899
+      - 🇨🇦加拿大889
+      - 🇨🇦加拿大914
+      - 🇨🇦加拿大895
+      - 🇨🇦加拿大896
+      - 🇨🇦加拿大900
+      - 🇨🇦加拿大918
+      - 🇨🇦加拿大883
+      - 🇨🇦加拿大919
+      - 🇨🇦加拿大901
+      - 🇨🇦加拿大915
+      - 🇨🇦加拿大892
       - "🇨🇦加拿大975\r\r_2737_2737"
       - "🇨🇦加拿大1015\r\r_2739_2739"
       - "🇨🇦加拿大959\r\r_2740_2740"
       - "🇨🇦加拿大992\r\r_2742_2742"
       - "🇨🇦加拿大1027\r\r_2743_2743"
+      - "🇨🇦加拿大816\r\r_2746_2746"
       - "🇨🇦加拿大1026\r\r_2747_2747"
       - "🇨🇦加拿大982\r\r_2748_2748"
       - "🇨🇦加拿大820\r\r_2749_2749"
@@ -1583,19 +1551,33 @@ proxy-groups:
       - "🇨🇦加拿大958\r\r_2773_2773"
       - "🇨🇦加拿大974\r\r_2774_2774"
       - "🇨🇦加拿大817\r\r_2776_2776"
-      - "🇨🇦加拿大824\r\r_2867_2867"
-      - "🇨🇦加拿大1000\r\r_2870_2870"
-      - "🇨🇦加拿大825\r\r_2874_2874"
-      - "🇨🇦加拿大970\r\r_2875_2875"
+      - "🇨🇦加拿大1028\r\r_2778_2778"
+      - "🇨🇦加拿大977\r\r_2779_2779"
+      - "🇨🇦加拿大1002\r\r_2782_2782"
+      - "🇨🇦加拿大1025\r\r_2785_2785"
+      - "🇨🇦加拿大799\r\r_2786_2786"
+      - "🇨🇦加拿大793\r\r_2787_2787"
+      - "🇨🇦加拿大1014\r\r_2788_2788"
+      - "🇨🇦加拿大995\r\r_2789_2789"
+      - "🇨🇦加拿大1001\r\r_2790_2790"
+      - "🇨🇦加拿大963\r\r_2791_2791"
+      - "🇨🇦加拿大1009\r\r_2792_2792"
+      - "🇨🇦加拿大822\r\r_2793_2793"
+      - "🇨🇦加拿大1030\r\r_2796_2796"
+      - "🇨🇦加拿大807\r\r_2799_2799"
+      - "🇨🇦加拿大792\r\r_2803_2803"
+      - "🇨🇦加拿大1004\r\r_2804_2804"
+      - "🇨🇦加拿大801\r\r_2805_2805"
+      - "🇨🇦加拿大987\r\r_2806_2806"
+      - "🇨🇦加拿大989\r\r_2810_2810"
+      - "🇨🇦加拿大983\r\r_2813_2813"
+      - "🇨🇦加拿大1020\r\r_2852_2852"
       - "🇨🇦加拿大819\r\r_2877_2877"
-      - "🇨🇦加拿大798\r\r_2879_2879"
-      - "🇨🇦加拿大818\r\r_2880_2880"
       - "🇨🇦加拿大811\r\r_2881_2881"
       - "🇨🇦加拿大1008\r\r_2883_2883"
       - "🇨🇦加拿大823\r\r_2887_2887"
       - "🇨🇦加拿大1011\r\r_2888_2888"
       - "🇨🇦加拿大972\r\r_2890_2890"
-      - "🇨🇦加拿大855\r\r_2892_2892"
       - "🇨🇦加拿大1007\r\r_2893_2893"
       - "🇨🇦加拿大1006\r\r_2894_2894"
       - "🇨🇦加拿大795\r\r_2896_2896"
@@ -1605,23 +1587,102 @@ proxy-groups:
       - "🇨🇦加拿大800\r\r_2909_2909"
       - "🇨🇦加拿大980\r\r_2910_2910"
       - "🇨🇦加拿大805\r\r_2911_2911"
-      - "🇨🇦加拿大734\r\r_2915_2915"
-      - "🇨🇦加拿大720\r\r_2917_2917"
       - "🇨🇦加拿大804\r\r_2920_2920"
       - "🇨🇦加拿大808\r\r_2927_2927"
-      - "🇨🇦加拿大749\r\r_2932"
-      - "🇨🇦加拿大743\r\r_2934"
       - "🇨🇦加拿大725\r\r_2939_2939"
       - "🇨🇦加拿大726\r\r_2942_2942"
       - "🇨🇦加拿大1023\r\r_2943_2943"
       - "🇨🇦加拿大790\r\r_2947_2947"
       - "🇨🇦加拿大809\r\r_2949_2949"
-      - "🇨🇦加拿大745\r\r_2950"
       - "🇨🇦加拿大722\r\r_2951_2951"
       - "🇨🇦加拿大719\r\r_2956_2956"
       - "🇨🇦加拿大737\r\r_2958_2958"
-      - "🇨🇦加拿大728\r\r_2967_2967"
+      - "🇨🇦加拿大742\r\r_2964_2964"
       - "🇨🇦加拿大718\r\r_2969_2969"
+      - "🇨🇦加拿大965\r\r_2975_2975"
+      - "🇨🇦加拿大733\r\r_2978_2978"
+      - 🇳🇱_489
+      - 🇸🇬_171
+      - 🇸🇬_612
+      - 🇺🇸_619
+      - 🇺🇸_232
+      - 🇺🇸_235
+      - 🇺🇸_624
+      - _18_2424
+      - 🇺🇸_924
+      - 🇺🇸_67
+      - v2cross.com_152_1523
+      - v2cross.com_72_2497
+      - 🇯🇵_586
+      - 🇺🇸_878
+      - v2cross.com_167_1102
+      - v2cross.com_361
+      - 🇺🇸_234
+      - 🇨🇦_449
+      - 🇺🇸_379
+      - 🇺🇸_916
+      - ChatGPT 🏁 ZZ_890_884
+      - ChatGPT 🇺🇸 US_670
+      - 🇺🇸_585
+      - 🇺🇸_394
+      - 🇺🇸_572
+      - ChatGPT 🇺🇸 US_657
+      - 🇰🇷_158
+      - 🇫🇷 FR_93
+      - "Relay_-🇧🇷BR_338\r\r_1188"
+      - 🇫🇷 FR_91
+      - "v2cross.com_61\r_378_378"
+      - ChatGPT 🇸🇬 SG_339
+      - 🇬🇮_557
+      - 🇫🇷_623
+      - 🇺🇸_617
+      - "🇺🇸US_1505 | 5.84Mb\r\r_225_225"
+      - "_10 | 8.70Mb\r\r_1555"
+      - ChatGPT 🏁 ZZ_56
+      - "🇺🇸US_1482 |64.52Mb\r\r_114"
+      - 🇺🇸_621
+      - 🇺🇸_622
+      - 🇺🇸_244
+      - 🇺🇸_496
+      - 🇺🇸_564
+      - 🇨🇦CA_1304
+      - 🇸🇬SG_1650
+      - ChatGPT 🏁 ZZ_89
+      - 🇸🇬SG_1656
+      - ChatGPT 🇸🇬 SG_342
+      - 🇺🇦UA_1685
+      - "ChatGPT 🏁 ZZ_216\r\r_216_216"
+      - " |18.06Mb\r\r_653_653"
+      - "🇺🇸US_1557 | 5.80Mb\r\r_446_446"
+      - 🇺🇸_822
+      - "v2cross.com_38\r_204_204"
+      - 🇺🇸 US_355
+      - "ChatGPT 🏁 ZZ_585\r\r_585_585"
+      - ChatGPT 🇨🇦 CA_07
+      - ChatGPT 🇨🇦 CA_09
+      - ChatGPT 🇨🇦 CA_16
+      - 🇺🇸_949
+      - "🇺🇸US_1500 | 8.76Mb\r\r_2274"
+      - 🇺🇸_497
+      - "_346\r\r_1193"
+      - 🇯🇵_948
+      - 🇫🇷_626
+      - 🇵🇱_675
+      - 🇵🇱_544
+      - "🇵🇱_HAMRAH_146\r\r_2631"
+      - "🇨🇦加拿大824\r\r_2867_2867"
+      - "🇨🇦加拿大1000\r\r_2870_2870"
+      - "🇨🇦加拿大825\r\r_2874_2874"
+      - "🇨🇦加拿大970\r\r_2875_2875"
+      - "🇨🇦加拿大798\r\r_2879_2879"
+      - "🇨🇦加拿大818\r\r_2880_2880"
+      - "🇨🇦加拿大855\r\r_2892_2892"
+      - "🇨🇦加拿大734\r\r_2915_2915"
+      - "🇨🇦加拿大720\r\r_2917_2917"
+      - "🇨🇦加拿大749\r\r_2932"
+      - "🇨🇦加拿大743\r\r_2934"
+      - "🇨🇦加拿大745\r\r_2950"
+      - "🇨🇦加拿大728\r\r_2967_2967"
       - "🇨🇦加拿大814\r\r_2973_2973"
       - "🇨🇦加拿大730\r\r_3044"
       - "🇨🇦加拿大736\r\r_3054_3054"
@@ -1745,7 +1806,6 @@ proxy-groups:
       - 🇺🇸_238
       - 🇺🇸US_6697 @WangCai_8_1
       - 🇺🇸US_7002 @WangCai_8_1
-      - 🇺🇸_565
       - 🇺🇸US_8000 @WangCai_8_1
       - 🇺🇸_243
       - 🇺🇸US_8009 @WangCai_8_1
@@ -1769,66 +1829,6 @@ proxy-groups:
       - JP_日本_hk_241
       - JP_日本_hk_242
       - JP_日本_hk_246
-      - 🇳🇱_864
-      - _209 | 4.20Mb
-      - 🇷🇺_821
-      - 🇫🇷_502
-      - ChatGPT 🇸🇬 SG_312
-      - "🇺🇸US_1603 | 8.29Mb\r\r_395_395"
-      - 🇺🇸_498
-      - 🇬🇮GI_1548
-      - 🇯🇵_333
-      - "v2cross.com_124\r_2148_2148"
-      - 🇨🇦加拿大916
-      - 🇨🇦加拿大905
-      - 🇨🇦加拿大917
-      - 🇨🇦加拿大898
-      - 🇨🇦加拿大893
-      - 🇨🇦加拿大912
-      - 🇨🇦加拿大907
-      - 🇨🇦加拿大910
-      - 🇨🇦加拿大906
-      - 🇨🇦加拿大888
-      - 🇨🇦加拿大884
-      - 🇨🇦加拿大890
-      - 🇨🇦加拿大908
-      - 🇨🇦加拿大894
-      - 🇨🇦加拿大913
-      - 🇨🇦加拿大886
-      - 🇨🇦加拿大903
-      - 🇨🇦加拿大899
-      - 🇨🇦加拿大889
-      - 🇨🇦加拿大914
-      - 🇨🇦加拿大895
-      - 🇨🇦加拿大896
-      - 🇨🇦加拿大900
-      - 🇨🇦加拿大918
-      - 🇨🇦加拿大883
-      - 🇨🇦加拿大919
-      - 🇨🇦加拿大901
-      - 🇨🇦加拿大915
-      - 🇨🇦加拿大892
-      - "🇨🇦加拿大1028\r\r_2778_2778"
-      - "🇨🇦加拿大977\r\r_2779_2779"
-      - "🇨🇦加拿大1002\r\r_2782_2782"
-      - "🇨🇦加拿大1025\r\r_2785_2785"
-      - "🇨🇦加拿大799\r\r_2786_2786"
-      - "🇨🇦加拿大793\r\r_2787_2787"
-      - "🇨🇦加拿大1014\r\r_2788_2788"
-      - "🇨🇦加拿大995\r\r_2789_2789"
-      - "🇨🇦加拿大1001\r\r_2790_2790"
-      - "🇨🇦加拿大963\r\r_2791_2791"
-      - "🇨🇦加拿大1009\r\r_2792_2792"
-      - "🇨🇦加拿大822\r\r_2793_2793"
-      - "🇨🇦加拿大1030\r\r_2796_2796"
-      - "🇨🇦加拿大807\r\r_2799_2799"
-      - "🇨🇦加拿大792\r\r_2803_2803"
-      - "🇨🇦加拿大1004\r\r_2804_2804"
-      - "🇨🇦加拿大801\r\r_2805_2805"
-      - "🇨🇦加拿大987\r\r_2806_2806"
-      - "🇨🇦加拿大989\r\r_2810_2810"
-      - "🇨🇦加拿大965\r\r_2975_2975"
-      - "🇨🇦加拿大733\r\r_2978_2978"
       - 🇺🇸_1
       - 🇺🇸_2
       - 🇺🇸_3
@@ -2717,118 +2717,86 @@ proxy-groups:
       - 🇸🇬_1115
       - 🇸🇬_1116
       - 🇸🇬_1117
-  - name: ♻️
+  - name: ♻
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 100
-    tolerance: 100
+    interval: 300
+    tolerance: 50
     proxies:
-      - 🇳🇱_489
-      - 🇯🇵_560
-      - 🇸🇬_171
-      - 🇨🇦加拿大909
-      - "🇨🇦加拿大816\r\r_2746_2746"
-      - "🇨🇦加拿大983\r\r_2813_2813"
-      - "🇨🇦加拿大1020\r\r_2852_2852"
-      - "🇺🇸US_1502 | 4.02Mb\r\r_128_128_2"
-      - "_478 | 8.01Mb\r\r_521_521_2"
-      - 🇺🇸_575
-      - 🇺🇸_578
-      - 🇸🇬_612
-      - 🇺🇸_618
-      - 🇺🇸_619
-      - "🇨🇦加拿大742\r\r_2964_2964"
-      - 🇺🇸_232
       - 🇨🇦_625
-      - 🇺🇸_235
-      - 🇺🇸_624
-      - _18_2424
-      - 🇺🇸_924
-      - 🇺🇸_67
-      - v2cross.com_152_1523
-      - v2cross.com_72_2497
-      - 🇯🇵_586
       - 🇺🇸_US_美国_493_1224
-      - 🇺🇸_878
-      - v2cross.com_167_1102
-      - v2cross.com_361
-      - 🇺🇸_234
-      - 🇨🇦_449
-      - 🇺🇸_379
-      - 🇺🇸_916
-      - ChatGPT 🏁 ZZ_890_884
-      - ChatGPT 🇺🇸 US_670
-      - 🇺🇸_585
-      - 🇺🇸_394
-      - 🇺🇸_572
-      - ChatGPT 🇺🇸 US_657
-      - 🇰🇷_158
-      - 🇫🇷 FR_93
-      - "Relay_-🇧🇷BR_338\r\r_1188"
-      - 🇫🇷 FR_91
+      - 🇳🇱_864
+      - _209 | 4.20Mb
       - "v2cross.com_5\r_809_809"
       - "v2cross.com_132\r_1509_1509"
-      - "v2cross.com_61\r_378_378"
       - "_255 | 6.69Mb\r\r_503_503"
-      - ChatGPT 🇸🇬 SG_339
-      - 🇬🇮_557
-      - 🇫🇷_623
+      - 🇷🇺_821
+      - 🇫🇷_502
       - Relay_-🇺🇸US_527 |34.49Mb_2
-      - 🇺🇸_617
-      - "🇺🇸US_1505 | 5.84Mb\r\r_225_225"
-      - "_10 | 8.70Mb\r\r_1555"
+      - 🇯🇵_560
+      - ChatGPT 🇸🇬 SG_312
+      - 🇺🇸_565
+      - "🇺🇸US_1603 | 8.29Mb\r\r_395_395"
+      - "_478 | 8.01Mb\r\r_521_521_2"
       - 🇺🇸_558
-      - ChatGPT 🏁 ZZ_56
-      - "🇺🇸US_1482 |64.52Mb\r\r_114"
-      - 🇺🇸_621
+      - 🇺🇸_575
+      - 🇺🇸_618
+      - 🇺🇸_498
       - 🇺🇸_485
       - 🇺🇸_571
-      - 🇺🇸_622
       - 🇺🇸_577
       - 🇺🇸_627
-      - 🇺🇸_244
       - 🇺🇸_559
-      - 🇺🇸_496
-      - 🇺🇸_564
       - "_179 | 8.28Mb\r\r_404_404"
-      - 🇨🇦CA_1304
+      - 🇬🇮GI_1548
+      - 🇯🇵_333
       - 🇷🇺RU_1615_2
-      - 🇸🇬SG_1650
-      - ChatGPT 🏁 ZZ_89
-      - 🇸🇬SG_1656
-      - ChatGPT 🇸🇬 SG_342
       - 🇺🇦UA_1682_2
-      - 🇺🇦UA_1685
-      - "ChatGPT 🏁 ZZ_216\r\r_216_216"
+      - "🇺🇸US_1502 | 4.02Mb\r\r_128_128_2"
       - "🇺🇸US_1454 | 8.04Mb\r\r_150_150"
-      - " |18.06Mb\r\r_653_653"
-      - "🇺🇸US_1557 | 5.80Mb\r\r_446_446"
       - 🇺🇸_579
       - 🇺🇸US_1707_2
-      - 🇺🇸_822
-      - "v2cross.com_38\r_204_204"
-      - 🇺🇸 US_355
-      - "ChatGPT 🏁 ZZ_585\r\r_585_585"
-      - ChatGPT 🇨🇦 CA_07
-      - ChatGPT 🇨🇦 CA_09
-      - ChatGPT 🇨🇦 CA_16
-      - 🇺🇸_949
-      - "🇺🇸US_1500 | 8.76Mb\r\r_2274"
+      - 🇺🇸_578
+      - "v2cross.com_124\r_2148_2148"
       - 🇶🇦_216
-      - 🇺🇸_497
       - 🇭🇰_581
       - 🇧🇭_BH_巴林_902_950
-      - "_346\r\r_1193"
-      - 🇯🇵_948
-      - 🇫🇷_626
-      - 🇵🇱_675
-      - 🇵🇱_544
-      - "🇵🇱_HAMRAH_146\r\r_2631"
+      - 🇨🇦加拿大916
+      - 🇨🇦加拿大905
+      - 🇨🇦加拿大917
+      - 🇨🇦加拿大898
+      - 🇨🇦加拿大893
+      - 🇨🇦加拿大912
+      - 🇨🇦加拿大907
+      - 🇨🇦加拿大910
+      - 🇨🇦加拿大906
+      - 🇨🇦加拿大888
+      - 🇨🇦加拿大909
+      - 🇨🇦加拿大884
+      - 🇨🇦加拿大890
+      - 🇨🇦加拿大908
+      - 🇨🇦加拿大894
+      - 🇨🇦加拿大913
+      - 🇨🇦加拿大886
+      - 🇨🇦加拿大903
+      - 🇨🇦加拿大899
+      - 🇨🇦加拿大889
+      - 🇨🇦加拿大914
+      - 🇨🇦加拿大895
+      - 🇨🇦加拿大896
+      - 🇨🇦加拿大900
+      - 🇨🇦加拿大918
+      - 🇨🇦加拿大883
+      - 🇨🇦加拿大919
+      - 🇨🇦加拿大901
+      - 🇨🇦加拿大915
+      - 🇨🇦加拿大892
       - "🇨🇦加拿大975\r\r_2737_2737"
       - "🇨🇦加拿大1015\r\r_2739_2739"
       - "🇨🇦加拿大959\r\r_2740_2740"
       - "🇨🇦加拿大992\r\r_2742_2742"
       - "🇨🇦加拿大1027\r\r_2743_2743"
+      - "🇨🇦加拿大816\r\r_2746_2746"
       - "🇨🇦加拿大1026\r\r_2747_2747"
       - "🇨🇦加拿大982\r\r_2748_2748"
       - "🇨🇦加拿大820\r\r_2749_2749"
@@ -2849,19 +2817,33 @@ proxy-groups:
       - "🇨🇦加拿大958\r\r_2773_2773"
       - "🇨🇦加拿大974\r\r_2774_2774"
       - "🇨🇦加拿大817\r\r_2776_2776"
-      - "🇨🇦加拿大824\r\r_2867_2867"
-      - "🇨🇦加拿大1000\r\r_2870_2870"
-      - "🇨🇦加拿大825\r\r_2874_2874"
-      - "🇨🇦加拿大970\r\r_2875_2875"
+      - "🇨🇦加拿大1028\r\r_2778_2778"
+      - "🇨🇦加拿大977\r\r_2779_2779"
+      - "🇨🇦加拿大1002\r\r_2782_2782"
+      - "🇨🇦加拿大1025\r\r_2785_2785"
+      - "🇨🇦加拿大799\r\r_2786_2786"
+      - "🇨🇦加拿大793\r\r_2787_2787"
+      - "🇨🇦加拿大1014\r\r_2788_2788"
+      - "🇨🇦加拿大995\r\r_2789_2789"
+      - "🇨🇦加拿大1001\r\r_2790_2790"
+      - "🇨🇦加拿大963\r\r_2791_2791"
+      - "🇨🇦加拿大1009\r\r_2792_2792"
+      - "🇨🇦加拿大822\r\r_2793_2793"
+      - "🇨🇦加拿大1030\r\r_2796_2796"
+      - "🇨🇦加拿大807\r\r_2799_2799"
+      - "🇨🇦加拿大792\r\r_2803_2803"
+      - "🇨🇦加拿大1004\r\r_2804_2804"
+      - "🇨🇦加拿大801\r\r_2805_2805"
+      - "🇨🇦加拿大987\r\r_2806_2806"
+      - "🇨🇦加拿大989\r\r_2810_2810"
+      - "🇨🇦加拿大983\r\r_2813_2813"
+      - "🇨🇦加拿大1020\r\r_2852_2852"
       - "🇨🇦加拿大819\r\r_2877_2877"
-      - "🇨🇦加拿大798\r\r_2879_2879"
-      - "🇨🇦加拿大818\r\r_2880_2880"
       - "🇨🇦加拿大811\r\r_2881_2881"
       - "🇨🇦加拿大1008\r\r_2883_2883"
       - "🇨🇦加拿大823\r\r_2887_2887"
       - "🇨🇦加拿大1011\r\r_2888_2888"
       - "🇨🇦加拿大972\r\r_2890_2890"
-      - "🇨🇦加拿大855\r\r_2892_2892"
       - "🇨🇦加拿大1007\r\r_2893_2893"
       - "🇨🇦加拿大1006\r\r_2894_2894"
       - "🇨🇦加拿大795\r\r_2896_2896"
@@ -2871,23 +2853,102 @@ proxy-groups:
       - "🇨🇦加拿大800\r\r_2909_2909"
       - "🇨🇦加拿大980\r\r_2910_2910"
       - "🇨🇦加拿大805\r\r_2911_2911"
-      - "🇨🇦加拿大734\r\r_2915_2915"
-      - "🇨🇦加拿大720\r\r_2917_2917"
       - "🇨🇦加拿大804\r\r_2920_2920"
       - "🇨🇦加拿大808\r\r_2927_2927"
-      - "🇨🇦加拿大749\r\r_2932"
-      - "🇨🇦加拿大743\r\r_2934"
       - "🇨🇦加拿大725\r\r_2939_2939"
       - "🇨🇦加拿大726\r\r_2942_2942"
       - "🇨🇦加拿大1023\r\r_2943_2943"
       - "🇨🇦加拿大790\r\r_2947_2947"
       - "🇨🇦加拿大809\r\r_2949_2949"
-      - "🇨🇦加拿大745\r\r_2950"
       - "🇨🇦加拿大722\r\r_2951_2951"
       - "🇨🇦加拿大719\r\r_2956_2956"
       - "🇨🇦加拿大737\r\r_2958_2958"
-      - "🇨🇦加拿大728\r\r_2967_2967"
+      - "🇨🇦加拿大742\r\r_2964_2964"
       - "🇨🇦加拿大718\r\r_2969_2969"
+      - "🇨🇦加拿大965\r\r_2975_2975"
+      - "🇨🇦加拿大733\r\r_2978_2978"
+      - 🇳🇱_489
+      - 🇸🇬_171
+      - 🇸🇬_612
+      - 🇺🇸_619
+      - 🇺🇸_232
+      - 🇺🇸_235
+      - 🇺🇸_624
+      - _18_2424
+      - 🇺🇸_924
+      - 🇺🇸_67
+      - v2cross.com_152_1523
+      - v2cross.com_72_2497
+      - 🇯🇵_586
+      - 🇺🇸_878
+      - v2cross.com_167_1102
+      - v2cross.com_361
+      - 🇺🇸_234
+      - 🇨🇦_449
+      - 🇺🇸_379
+      - 🇺🇸_916
+      - ChatGPT 🏁 ZZ_890_884
+      - ChatGPT 🇺🇸 US_670
+      - 🇺🇸_585
+      - 🇺🇸_394
+      - 🇺🇸_572
+      - ChatGPT 🇺🇸 US_657
+      - 🇰🇷_158
+      - 🇫🇷 FR_93
+      - "Relay_-🇧🇷BR_338\r\r_1188"
+      - 🇫🇷 FR_91
+      - "v2cross.com_61\r_378_378"
+      - ChatGPT 🇸🇬 SG_339
+      - 🇬🇮_557
+      - 🇫🇷_623
+      - 🇺🇸_617
+      - "🇺🇸US_1505 | 5.84Mb\r\r_225_225"
+      - "_10 | 8.70Mb\r\r_1555"
+      - ChatGPT 🏁 ZZ_56
+      - "🇺🇸US_1482 |64.52Mb\r\r_114"
+      - 🇺🇸_621
+      - 🇺🇸_622
+      - 🇺🇸_244
+      - 🇺🇸_496
+      - 🇺🇸_564
+      - 🇨🇦CA_1304
+      - 🇸🇬SG_1650
+      - ChatGPT 🏁 ZZ_89
+      - 🇸🇬SG_1656
+      - ChatGPT 🇸🇬 SG_342
+      - 🇺🇦UA_1685
+      - "ChatGPT 🏁 ZZ_216\r\r_216_216"
+      - " |18.06Mb\r\r_653_653"
+      - "🇺🇸US_1557 | 5.80Mb\r\r_446_446"
+      - 🇺🇸_822
+      - "v2cross.com_38\r_204_204"
+      - 🇺🇸 US_355
+      - "ChatGPT 🏁 ZZ_585\r\r_585_585"
+      - ChatGPT 🇨🇦 CA_07
+      - ChatGPT 🇨🇦 CA_09
+      - ChatGPT 🇨🇦 CA_16
+      - 🇺🇸_949
+      - "🇺🇸US_1500 | 8.76Mb\r\r_2274"
+      - 🇺🇸_497
+      - "_346\r\r_1193"
+      - 🇯🇵_948
+      - 🇫🇷_626
+      - 🇵🇱_675
+      - 🇵🇱_544
+      - "🇵🇱_HAMRAH_146\r\r_2631"
+      - "🇨🇦加拿大824\r\r_2867_2867"
+      - "🇨🇦加拿大1000\r\r_2870_2870"
+      - "🇨🇦加拿大825\r\r_2874_2874"
+      - "🇨🇦加拿大970\r\r_2875_2875"
+      - "🇨🇦加拿大798\r\r_2879_2879"
+      - "🇨🇦加拿大818\r\r_2880_2880"
+      - "🇨🇦加拿大855\r\r_2892_2892"
+      - "🇨🇦加拿大734\r\r_2915_2915"
+      - "🇨🇦加拿大720\r\r_2917_2917"
+      - "🇨🇦加拿大749\r\r_2932"
+      - "🇨🇦加拿大743\r\r_2934"
+      - "🇨🇦加拿大745\r\r_2950"
+      - "🇨🇦加拿大728\r\r_2967_2967"
       - "🇨🇦加拿大814\r\r_2973_2973"
       - "🇨🇦加拿大730\r\r_3044"
       - "🇨🇦加拿大736\r\r_3054_3054"
@@ -3011,7 +3072,6 @@ proxy-groups:
       - 🇺🇸_238
       - 🇺🇸US_6697 @WangCai_8_1
       - 🇺🇸US_7002 @WangCai_8_1
-      - 🇺🇸_565
       - 🇺🇸US_8000 @WangCai_8_1
       - 🇺🇸_243
       - 🇺🇸US_8009 @WangCai_8_1
@@ -3035,66 +3095,6 @@ proxy-groups:
       - JP_日本_hk_241
       - JP_日本_hk_242
       - JP_日本_hk_246
-      - 🇳🇱_864
-      - _209 | 4.20Mb
-      - 🇷🇺_821
-      - 🇫🇷_502
-      - ChatGPT 🇸🇬 SG_312
-      - "🇺🇸US_1603 | 8.29Mb\r\r_395_395"
-      - 🇺🇸_498
-      - 🇬🇮GI_1548
-      - 🇯🇵_333
-      - "v2cross.com_124\r_2148_2148"
-      - 🇨🇦加拿大916
-      - 🇨🇦加拿大905
-      - 🇨🇦加拿大917
-      - 🇨🇦加拿大898
-      - 🇨🇦加拿大893
-      - 🇨🇦加拿大912
-      - 🇨🇦加拿大907
-      - 🇨🇦加拿大910
-      - 🇨🇦加拿大906
-      - 🇨🇦加拿大888
-      - 🇨🇦加拿大884
-      - 🇨🇦加拿大890
-      - 🇨🇦加拿大908
-      - 🇨🇦加拿大894
-      - 🇨🇦加拿大913
-      - 🇨🇦加拿大886
-      - 🇨🇦加拿大903
-      - 🇨🇦加拿大899
-      - 🇨🇦加拿大889
-      - 🇨🇦加拿大914
-      - 🇨🇦加拿大895
-      - 🇨🇦加拿大896
-      - 🇨🇦加拿大900
-      - 🇨🇦加拿大918
-      - 🇨🇦加拿大883
-      - 🇨🇦加拿大919
-      - 🇨🇦加拿大901
-      - 🇨🇦加拿大915
-      - 🇨🇦加拿大892
-      - "🇨🇦加拿大1028\r\r_2778_2778"
-      - "🇨🇦加拿大977\r\r_2779_2779"
-      - "🇨🇦加拿大1002\r\r_2782_2782"
-      - "🇨🇦加拿大1025\r\r_2785_2785"
-      - "🇨🇦加拿大799\r\r_2786_2786"
-      - "🇨🇦加拿大793\r\r_2787_2787"
-      - "🇨🇦加拿大1014\r\r_2788_2788"
-      - "🇨🇦加拿大995\r\r_2789_2789"
-      - "🇨🇦加拿大1001\r\r_2790_2790"
-      - "🇨🇦加拿大963\r\r_2791_2791"
-      - "🇨🇦加拿大1009\r\r_2792_2792"
-      - "🇨🇦加拿大822\r\r_2793_2793"
-      - "🇨🇦加拿大1030\r\r_2796_2796"
-      - "🇨🇦加拿大807\r\r_2799_2799"
-      - "🇨🇦加拿大792\r\r_2803_2803"
-      - "🇨🇦加拿大1004\r\r_2804_2804"
-      - "🇨🇦加拿大801\r\r_2805_2805"
-      - "🇨🇦加拿大987\r\r_2806_2806"
-      - "🇨🇦加拿大989\r\r_2810_2810"
-      - "🇨🇦加拿大965\r\r_2975_2975"
-      - "🇨🇦加拿大733\r\r_2978_2978"
       - 🇺🇸_1
       - 🇺🇸_2
       - 🇺🇸_3
@@ -3986,114 +3986,82 @@ proxy-groups:
   - name: 🔯
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 50
+    interval: 180
     proxies:
-      - 🇳🇱_489
-      - 🇯🇵_560
-      - 🇸🇬_171
-      - 🇨🇦加拿大909
-      - "🇨🇦加拿大816\r\r_2746_2746"
-      - "🇨🇦加拿大983\r\r_2813_2813"
-      - "🇨🇦加拿大1020\r\r_2852_2852"
-      - "🇺🇸US_1502 | 4.02Mb\r\r_128_128_2"
-      - "_478 | 8.01Mb\r\r_521_521_2"
-      - 🇺🇸_575
-      - 🇺🇸_578
-      - 🇸🇬_612
-      - 🇺🇸_618
-      - 🇺🇸_619
-      - "🇨🇦加拿大742\r\r_2964_2964"
-      - 🇺🇸_232
       - 🇨🇦_625
-      - 🇺🇸_235
-      - 🇺🇸_624
-      - _18_2424
-      - 🇺🇸_924
-      - 🇺🇸_67
-      - v2cross.com_152_1523
-      - v2cross.com_72_2497
-      - 🇯🇵_586
       - 🇺🇸_US_美国_493_1224
-      - 🇺🇸_878
-      - v2cross.com_167_1102
-      - v2cross.com_361
-      - 🇺🇸_234
-      - 🇨🇦_449
-      - 🇺🇸_379
-      - 🇺🇸_916
-      - ChatGPT 🏁 ZZ_890_884
-      - ChatGPT 🇺🇸 US_670
-      - 🇺🇸_585
-      - 🇺🇸_394
-      - 🇺🇸_572
-      - ChatGPT 🇺🇸 US_657
-      - 🇰🇷_158
-      - 🇫🇷 FR_93
-      - "Relay_-🇧🇷BR_338\r\r_1188"
-      - 🇫🇷 FR_91
+      - 🇳🇱_864
+      - _209 | 4.20Mb
       - "v2cross.com_5\r_809_809"
       - "v2cross.com_132\r_1509_1509"
-      - "v2cross.com_61\r_378_378"
       - "_255 | 6.69Mb\r\r_503_503"
-      - ChatGPT 🇸🇬 SG_339
-      - 🇬🇮_557
-      - 🇫🇷_623
+      - 🇷🇺_821
+      - 🇫🇷_502
       - Relay_-🇺🇸US_527 |34.49Mb_2
-      - 🇺🇸_617
-      - "🇺🇸US_1505 | 5.84Mb\r\r_225_225"
-      - "_10 | 8.70Mb\r\r_1555"
+      - 🇯🇵_560
+      - ChatGPT 🇸🇬 SG_312
+      - 🇺🇸_565
+      - "🇺🇸US_1603 | 8.29Mb\r\r_395_395"
+      - "_478 | 8.01Mb\r\r_521_521_2"
       - 🇺🇸_558
-      - ChatGPT 🏁 ZZ_56
-      - "🇺🇸US_1482 |64.52Mb\r\r_114"
-      - 🇺🇸_621
+      - 🇺🇸_575
+      - 🇺🇸_618
+      - 🇺🇸_498
       - 🇺🇸_485
       - 🇺🇸_571
-      - 🇺🇸_622
       - 🇺🇸_577
       - 🇺🇸_627
-      - 🇺🇸_244
       - 🇺🇸_559
-      - 🇺🇸_496
-      - 🇺🇸_564
       - "_179 | 8.28Mb\r\r_404_404"
-      - 🇨🇦CA_1304
+      - 🇬🇮GI_1548
+      - 🇯🇵_333
       - 🇷🇺RU_1615_2
-      - 🇸🇬SG_1650
-      - ChatGPT 🏁 ZZ_89
-      - 🇸🇬SG_1656
-      - ChatGPT 🇸🇬 SG_342
       - 🇺🇦UA_1682_2
-      - 🇺🇦UA_1685
-      - "ChatGPT 🏁 ZZ_216\r\r_216_216"
+      - "🇺🇸US_1502 | 4.02Mb\r\r_128_128_2"
       - "🇺🇸US_1454 | 8.04Mb\r\r_150_150"
-      - " |18.06Mb\r\r_653_653"
-      - "🇺🇸US_1557 | 5.80Mb\r\r_446_446"
       - 🇺🇸_579
       - 🇺🇸US_1707_2
-      - 🇺🇸_822
-      - "v2cross.com_38\r_204_204"
-      - 🇺🇸 US_355
-      - "ChatGPT 🏁 ZZ_585\r\r_585_585"
-      - ChatGPT 🇨🇦 CA_07
-      - ChatGPT 🇨🇦 CA_09
-      - ChatGPT 🇨🇦 CA_16
-      - 🇺🇸_949
-      - "🇺🇸US_1500 | 8.76Mb\r\r_2274"
+      - 🇺🇸_578
+      - "v2cross.com_124\r_2148_2148"
       - 🇶🇦_216
-      - 🇺🇸_497
       - 🇭🇰_581
       - 🇧🇭_BH_巴林_902_950
-      - "_346\r\r_1193"
-      - 🇯🇵_948
-      - 🇫🇷_626
-      - 🇵🇱_675
-      - 🇵🇱_544
-      - "🇵🇱_HAMRAH_146\r\r_2631"
+      - 🇨🇦加拿大916
+      - 🇨🇦加拿大905
+      - 🇨🇦加拿大917
+      - 🇨🇦加拿大898
+      - 🇨🇦加拿大893
+      - 🇨🇦加拿大912
+      - 🇨🇦加拿大907
+      - 🇨🇦加拿大910
+      - 🇨🇦加拿大906
+      - 🇨🇦加拿大888
+      - 🇨🇦加拿大909
+      - 🇨🇦加拿大884
+      - 🇨🇦加拿大890
+      - 🇨🇦加拿大908
+      - 🇨🇦加拿大894
+      - 🇨🇦加拿大913
+      - 🇨🇦加拿大886
+      - 🇨🇦加拿大903
+      - 🇨🇦加拿大899
+      - 🇨🇦加拿大889
+      - 🇨🇦加拿大914
+      - 🇨🇦加拿大895
+      - 🇨🇦加拿大896
+      - 🇨🇦加拿大900
+      - 🇨🇦加拿大918
+      - 🇨🇦加拿大883
+      - 🇨🇦加拿大919
+      - 🇨🇦加拿大901
+      - 🇨🇦加拿大915
+      - 🇨🇦加拿大892
       - "🇨🇦加拿大975\r\r_2737_2737"
       - "🇨🇦加拿大1015\r\r_2739_2739"
       - "🇨🇦加拿大959\r\r_2740_2740"
       - "🇨🇦加拿大992\r\r_2742_2742"
       - "🇨🇦加拿大1027\r\r_2743_2743"
+      - "🇨🇦加拿大816\r\r_2746_2746"
       - "🇨🇦加拿大1026\r\r_2747_2747"
       - "🇨🇦加拿大982\r\r_2748_2748"
       - "🇨🇦加拿大820\r\r_2749_2749"
@@ -4114,19 +4082,33 @@ proxy-groups:
       - "🇨🇦加拿大958\r\r_2773_2773"
       - "🇨🇦加拿大974\r\r_2774_2774"
       - "🇨🇦加拿大817\r\r_2776_2776"
-      - "🇨🇦加拿大824\r\r_2867_2867"
-      - "🇨🇦加拿大1000\r\r_2870_2870"
-      - "🇨🇦加拿大825\r\r_2874_2874"
-      - "🇨🇦加拿大970\r\r_2875_2875"
+      - "🇨🇦加拿大1028\r\r_2778_2778"
+      - "🇨🇦加拿大977\r\r_2779_2779"
+      - "🇨🇦加拿大1002\r\r_2782_2782"
+      - "🇨🇦加拿大1025\r\r_2785_2785"
+      - "🇨🇦加拿大799\r\r_2786_2786"
+      - "🇨🇦加拿大793\r\r_2787_2787"
+      - "🇨🇦加拿大1014\r\r_2788_2788"
+      - "🇨🇦加拿大995\r\r_2789_2789"
+      - "🇨🇦加拿大1001\r\r_2790_2790"
+      - "🇨🇦加拿大963\r\r_2791_2791"
+      - "🇨🇦加拿大1009\r\r_2792_2792"
+      - "🇨🇦加拿大822\r\r_2793_2793"
+      - "🇨🇦加拿大1030\r\r_2796_2796"
+      - "🇨🇦加拿大807\r\r_2799_2799"
+      - "🇨🇦加拿大792\r\r_2803_2803"
+      - "🇨🇦加拿大1004\r\r_2804_2804"
+      - "🇨🇦加拿大801\r\r_2805_2805"
+      - "🇨🇦加拿大987\r\r_2806_2806"
+      - "🇨🇦加拿大989\r\r_2810_2810"
+      - "🇨🇦加拿大983\r\r_2813_2813"
+      - "🇨🇦加拿大1020\r\r_2852_2852"
       - "🇨🇦加拿大819\r\r_2877_2877"
-      - "🇨🇦加拿大798\r\r_2879_2879"
-      - "🇨🇦加拿大818\r\r_2880_2880"
       - "🇨🇦加拿大811\r\r_2881_2881"
       - "🇨🇦加拿大1008\r\r_2883_2883"
       - "🇨🇦加拿大823\r\r_2887_2887"
       - "🇨🇦加拿大1011\r\r_2888_2888"
       - "🇨🇦加拿大972\r\r_2890_2890"
-      - "🇨🇦加拿大855\r\r_2892_2892"
       - "🇨🇦加拿大1007\r\r_2893_2893"
       - "🇨🇦加拿大1006\r\r_2894_2894"
       - "🇨🇦加拿大795\r\r_2896_2896"
@@ -4136,23 +4118,102 @@ proxy-groups:
       - "🇨🇦加拿大800\r\r_2909_2909"
       - "🇨🇦加拿大980\r\r_2910_2910"
       - "🇨🇦加拿大805\r\r_2911_2911"
-      - "🇨🇦加拿大734\r\r_2915_2915"
-      - "🇨🇦加拿大720\r\r_2917_2917"
       - "🇨🇦加拿大804\r\r_2920_2920"
       - "🇨🇦加拿大808\r\r_2927_2927"
-      - "🇨🇦加拿大749\r\r_2932"
-      - "🇨🇦加拿大743\r\r_2934"
       - "🇨🇦加拿大725\r\r_2939_2939"
       - "🇨🇦加拿大726\r\r_2942_2942"
       - "🇨🇦加拿大1023\r\r_2943_2943"
       - "🇨🇦加拿大790\r\r_2947_2947"
       - "🇨🇦加拿大809\r\r_2949_2949"
-      - "🇨🇦加拿大745\r\r_2950"
       - "🇨🇦加拿大722\r\r_2951_2951"
       - "🇨🇦加拿大719\r\r_2956_2956"
       - "🇨🇦加拿大737\r\r_2958_2958"
-      - "🇨🇦加拿大728\r\r_2967_2967"
+      - "🇨🇦加拿大742\r\r_2964_2964"
       - "🇨🇦加拿大718\r\r_2969_2969"
+      - "🇨🇦加拿大965\r\r_2975_2975"
+      - "🇨🇦加拿大733\r\r_2978_2978"
+      - 🇳🇱_489
+      - 🇸🇬_171
+      - 🇸🇬_612
+      - 🇺🇸_619
+      - 🇺🇸_232
+      - 🇺🇸_235
+      - 🇺🇸_624
+      - _18_2424
+      - 🇺🇸_924
+      - 🇺🇸_67
+      - v2cross.com_152_1523
+      - v2cross.com_72_2497
+      - 🇯🇵_586
+      - 🇺🇸_878
+      - v2cross.com_167_1102
+      - v2cross.com_361
+      - 🇺🇸_234
+      - 🇨🇦_449
+      - 🇺🇸_379
+      - 🇺🇸_916
+      - ChatGPT 🏁 ZZ_890_884
+      - ChatGPT 🇺🇸 US_670
+      - 🇺🇸_585
+      - 🇺🇸_394
+      - 🇺🇸_572
+      - ChatGPT 🇺🇸 US_657
+      - 🇰🇷_158
+      - 🇫🇷 FR_93
+      - "Relay_-🇧🇷BR_338\r\r_1188"
+      - 🇫🇷 FR_91
+      - "v2cross.com_61\r_378_378"
+      - ChatGPT 🇸🇬 SG_339
+      - 🇬🇮_557
+      - 🇫🇷_623
+      - 🇺🇸_617
+      - "🇺🇸US_1505 | 5.84Mb\r\r_225_225"
+      - "_10 | 8.70Mb\r\r_1555"
+      - ChatGPT 🏁 ZZ_56
+      - "🇺🇸US_1482 |64.52Mb\r\r_114"
+      - 🇺🇸_621
+      - 🇺🇸_622
+      - 🇺🇸_244
+      - 🇺🇸_496
+      - 🇺🇸_564
+      - 🇨🇦CA_1304
+      - 🇸🇬SG_1650
+      - ChatGPT 🏁 ZZ_89
+      - 🇸🇬SG_1656
+      - ChatGPT 🇸🇬 SG_342
+      - 🇺🇦UA_1685
+      - "ChatGPT 🏁 ZZ_216\r\r_216_216"
+      - " |18.06Mb\r\r_653_653"
+      - "🇺🇸US_1557 | 5.80Mb\r\r_446_446"
+      - 🇺🇸_822
+      - "v2cross.com_38\r_204_204"
+      - 🇺🇸 US_355
+      - "ChatGPT 🏁 ZZ_585\r\r_585_585"
+      - ChatGPT 🇨🇦 CA_07
+      - ChatGPT 🇨🇦 CA_09
+      - ChatGPT 🇨🇦 CA_16
+      - 🇺🇸_949
+      - "🇺🇸US_1500 | 8.76Mb\r\r_2274"
+      - 🇺🇸_497
+      - "_346\r\r_1193"
+      - 🇯🇵_948
+      - 🇫🇷_626
+      - 🇵🇱_675
+      - 🇵🇱_544
+      - "🇵🇱_HAMRAH_146\r\r_2631"
+      - "🇨🇦加拿大824\r\r_2867_2867"
+      - "🇨🇦加拿大1000\r\r_2870_2870"
+      - "🇨🇦加拿大825\r\r_2874_2874"
+      - "🇨🇦加拿大970\r\r_2875_2875"
+      - "🇨🇦加拿大798\r\r_2879_2879"
+      - "🇨🇦加拿大818\r\r_2880_2880"
+      - "🇨🇦加拿大855\r\r_2892_2892"
+      - "🇨🇦加拿大734\r\r_2915_2915"
+      - "🇨🇦加拿大720\r\r_2917_2917"
+      - "🇨🇦加拿大749\r\r_2932"
+      - "🇨🇦加拿大743\r\r_2934"
+      - "🇨🇦加拿大745\r\r_2950"
+      - "🇨🇦加拿大728\r\r_2967_2967"
       - "🇨🇦加拿大814\r\r_2973_2973"
       - "🇨🇦加拿大730\r\r_3044"
       - "🇨🇦加拿大736\r\r_3054_3054"
@@ -4276,7 +4337,6 @@ proxy-groups:
       - 🇺🇸_238
       - 🇺🇸US_6697 @WangCai_8_1
       - 🇺🇸US_7002 @WangCai_8_1
-      - 🇺🇸_565
       - 🇺🇸US_8000 @WangCai_8_1
       - 🇺🇸_243
       - 🇺🇸US_8009 @WangCai_8_1
@@ -4300,66 +4360,6 @@ proxy-groups:
       - JP_日本_hk_241
       - JP_日本_hk_242
       - JP_日本_hk_246
-      - 🇳🇱_864
-      - _209 | 4.20Mb
-      - 🇷🇺_821
-      - 🇫🇷_502
-      - ChatGPT 🇸🇬 SG_312
-      - "🇺🇸US_1603 | 8.29Mb\r\r_395_395"
-      - 🇺🇸_498
-      - 🇬🇮GI_1548
-      - 🇯🇵_333
-      - "v2cross.com_124\r_2148_2148"
-      - 🇨🇦加拿大916
-      - 🇨🇦加拿大905
-      - 🇨🇦加拿大917
-      - 🇨🇦加拿大898
-      - 🇨🇦加拿大893
-      - 🇨🇦加拿大912
-      - 🇨🇦加拿大907
-      - 🇨🇦加拿大910
-      - 🇨🇦加拿大906
-      - 🇨🇦加拿大888
-      - 🇨🇦加拿大884
-      - 🇨🇦加拿大890
-      - 🇨🇦加拿大908
-      - 🇨🇦加拿大894
-      - 🇨🇦加拿大913
-      - 🇨🇦加拿大886
-      - 🇨🇦加拿大903
-      - 🇨🇦加拿大899
-      - 🇨🇦加拿大889
-      - 🇨🇦加拿大914
-      - 🇨🇦加拿大895
-      - 🇨🇦加拿大896
-      - 🇨🇦加拿大900
-      - 🇨🇦加拿大918
-      - 🇨🇦加拿大883
-      - 🇨🇦加拿大919
-      - 🇨🇦加拿大901
-      - 🇨🇦加拿大915
-      - 🇨🇦加拿大892
-      - "🇨🇦加拿大1028\r\r_2778_2778"
-      - "🇨🇦加拿大977\r\r_2779_2779"
-      - "🇨🇦加拿大1002\r\r_2782_2782"
-      - "🇨🇦加拿大1025\r\r_2785_2785"
-      - "🇨🇦加拿大799\r\r_2786_2786"
-      - "🇨🇦加拿大793\r\r_2787_2787"
-      - "🇨🇦加拿大1014\r\r_2788_2788"
-      - "🇨🇦加拿大995\r\r_2789_2789"
-      - "🇨🇦加拿大1001\r\r_2790_2790"
-      - "🇨🇦加拿大963\r\r_2791_2791"
-      - "🇨🇦加拿大1009\r\r_2792_2792"
-      - "🇨🇦加拿大822\r\r_2793_2793"
-      - "🇨🇦加拿大1030\r\r_2796_2796"
-      - "🇨🇦加拿大807\r\r_2799_2799"
-      - "🇨🇦加拿大792\r\r_2803_2803"
-      - "🇨🇦加拿大1004\r\r_2804_2804"
-      - "🇨🇦加拿大801\r\r_2805_2805"
-      - "🇨🇦加拿大987\r\r_2806_2806"
-      - "🇨🇦加拿大989\r\r_2810_2810"
-      - "🇨🇦加拿大965\r\r_2975_2975"
-      - "🇨🇦加拿大733\r\r_2978_2978"
       - 🇺🇸_1
       - 🇺🇸_2
       - 🇺🇸_3
@@ -5253,7 +5253,7 @@ proxy-groups:
     proxies:
       - DIRECT
       - PROXY
-      - ♻️
+      - ♻
   - name: 🆎 AdBlock
     type: select
     proxies:
@@ -5264,114 +5264,82 @@ proxy-groups:
     proxies:
       - PROXY
       - 🎯
-      - ♻️
+      - ♻
       - 🔯
-      - 🇳🇱_489
-      - 🇯🇵_560
-      - 🇸🇬_171
-      - 🇨🇦加拿大909
-      - "🇨🇦加拿大816\r\r_2746_2746"
-      - "🇨🇦加拿大983\r\r_2813_2813"
-      - "🇨🇦加拿大1020\r\r_2852_2852"
-      - "🇺🇸US_1502 | 4.02Mb\r\r_128_128_2"
-      - "_478 | 8.01Mb\r\r_521_521_2"
-      - 🇺🇸_575
-      - 🇺🇸_578
-      - 🇸🇬_612
-      - 🇺🇸_618
-      - 🇺🇸_619
-      - "🇨🇦加拿大742\r\r_2964_2964"
-      - 🇺🇸_232
       - 🇨🇦_625
-      - 🇺🇸_235
-      - 🇺🇸_624
-      - _18_2424
-      - 🇺🇸_924
-      - 🇺🇸_67
-      - v2cross.com_152_1523
-      - v2cross.com_72_2497
-      - 🇯🇵_586
       - 🇺🇸_US_美国_493_1224
-      - 🇺🇸_878
-      - v2cross.com_167_1102
-      - v2cross.com_361
-      - 🇺🇸_234
-      - 🇨🇦_449
-      - 🇺🇸_379
-      - 🇺🇸_916
-      - ChatGPT 🏁 ZZ_890_884
-      - ChatGPT 🇺🇸 US_670
-      - 🇺🇸_585
-      - 🇺🇸_394
-      - 🇺🇸_572
-      - ChatGPT 🇺🇸 US_657
-      - 🇰🇷_158
-      - 🇫🇷 FR_93
-      - "Relay_-🇧🇷BR_338\r\r_1188"
-      - 🇫🇷 FR_91
+      - 🇳🇱_864
+      - _209 | 4.20Mb
       - "v2cross.com_5\r_809_809"
       - "v2cross.com_132\r_1509_1509"
-      - "v2cross.com_61\r_378_378"
       - "_255 | 6.69Mb\r\r_503_503"
-      - ChatGPT 🇸🇬 SG_339
-      - 🇬🇮_557
-      - 🇫🇷_623
+      - 🇷🇺_821
+      - 🇫🇷_502
       - Relay_-🇺🇸US_527 |34.49Mb_2
-      - 🇺🇸_617
-      - "🇺🇸US_1505 | 5.84Mb\r\r_225_225"
-      - "_10 | 8.70Mb\r\r_1555"
+      - 🇯🇵_560
+      - ChatGPT 🇸🇬 SG_312
+      - 🇺🇸_565
+      - "🇺🇸US_1603 | 8.29Mb\r\r_395_395"
+      - "_478 | 8.01Mb\r\r_521_521_2"
       - 🇺🇸_558
-      - ChatGPT 🏁 ZZ_56
-      - "🇺🇸US_1482 |64.52Mb\r\r_114"
-      - 🇺🇸_621
+      - 🇺🇸_575
+      - 🇺🇸_618
+      - 🇺🇸_498
       - 🇺🇸_485
       - 🇺🇸_571
-      - 🇺🇸_622
       - 🇺🇸_577
       - 🇺🇸_627
-      - 🇺🇸_244
       - 🇺🇸_559
-      - 🇺🇸_496
-      - 🇺🇸_564
       - "_179 | 8.28Mb\r\r_404_404"
-      - 🇨🇦CA_1304
+      - 🇬🇮GI_1548
+      - 🇯🇵_333
       - 🇷🇺RU_1615_2
-      - 🇸🇬SG_1650
-      - ChatGPT 🏁 ZZ_89
-      - 🇸🇬SG_1656
-      - ChatGPT 🇸🇬 SG_342
       - 🇺🇦UA_1682_2
-      - 🇺🇦UA_1685
-      - "ChatGPT 🏁 ZZ_216\r\r_216_216"
+      - "🇺🇸US_1502 | 4.02Mb\r\r_128_128_2"
       - "🇺🇸US_1454 | 8.04Mb\r\r_150_150"
-      - " |18.06Mb\r\r_653_653"
-      - "🇺🇸US_1557 | 5.80Mb\r\r_446_446"
       - 🇺🇸_579
       - 🇺🇸US_1707_2
-      - 🇺🇸_822
-      - "v2cross.com_38\r_204_204"
-      - 🇺🇸 US_355
-      - "ChatGPT 🏁 ZZ_585\r\r_585_585"
-      - ChatGPT 🇨🇦 CA_07
-      - ChatGPT 🇨🇦 CA_09
-      - ChatGPT 🇨🇦 CA_16
-      - 🇺🇸_949
-      - "🇺🇸US_1500 | 8.76Mb\r\r_2274"
+      - 🇺🇸_578
+      - "v2cross.com_124\r_2148_2148"
       - 🇶🇦_216
-      - 🇺🇸_497
       - 🇭🇰_581
       - 🇧🇭_BH_巴林_902_950
-      - "_346\r\r_1193"
-      - 🇯🇵_948
-      - 🇫🇷_626
-      - 🇵🇱_675
-      - 🇵🇱_544
-      - "🇵🇱_HAMRAH_146\r\r_2631"
+      - 🇨🇦加拿大916
+      - 🇨🇦加拿大905
+      - 🇨🇦加拿大917
+      - 🇨🇦加拿大898
+      - 🇨🇦加拿大893
+      - 🇨🇦加拿大912
+      - 🇨🇦加拿大907
+      - 🇨🇦加拿大910
+      - 🇨🇦加拿大906
+      - 🇨🇦加拿大888
+      - 🇨🇦加拿大909
+      - 🇨🇦加拿大884
+      - 🇨🇦加拿大890
+      - 🇨🇦加拿大908
+      - 🇨🇦加拿大894
+      - 🇨🇦加拿大913
+      - 🇨🇦加拿大886
+      - 🇨🇦加拿大903
+      - 🇨🇦加拿大899
+      - 🇨🇦加拿大889
+      - 🇨🇦加拿大914
+      - 🇨🇦加拿大895
+      - 🇨🇦加拿大896
+      - 🇨🇦加拿大900
+      - 🇨🇦加拿大918
+      - 🇨🇦加拿大883
+      - 🇨🇦加拿大919
+      - 🇨🇦加拿大901
+      - 🇨🇦加拿大915
+      - 🇨🇦加拿大892
       - "🇨🇦加拿大975\r\r_2737_2737"
       - "🇨🇦加拿大1015\r\r_2739_2739"
       - "🇨🇦加拿大959\r\r_2740_2740"
       - "🇨🇦加拿大992\r\r_2742_2742"
       - "🇨🇦加拿大1027\r\r_2743_2743"
+      - "🇨🇦加拿大816\r\r_2746_2746"
       - "🇨🇦加拿大1026\r\r_2747_2747"
       - "🇨🇦加拿大982\r\r_2748_2748"
       - "🇨🇦加拿大820\r\r_2749_2749"
@@ -5392,19 +5360,33 @@ proxy-groups:
       - "🇨🇦加拿大958\r\r_2773_2773"
       - "🇨🇦加拿大974\r\r_2774_2774"
       - "🇨🇦加拿大817\r\r_2776_2776"
-      - "🇨🇦加拿大824\r\r_2867_2867"
-      - "🇨🇦加拿大1000\r\r_2870_2870"
-      - "🇨🇦加拿大825\r\r_2874_2874"
-      - "🇨🇦加拿大970\r\r_2875_2875"
+      - "🇨🇦加拿大1028\r\r_2778_2778"
+      - "🇨🇦加拿大977\r\r_2779_2779"
+      - "🇨🇦加拿大1002\r\r_2782_2782"
+      - "🇨🇦加拿大1025\r\r_2785_2785"
+      - "🇨🇦加拿大799\r\r_2786_2786"
+      - "🇨🇦加拿大793\r\r_2787_2787"
+      - "🇨🇦加拿大1014\r\r_2788_2788"
+      - "🇨🇦加拿大995\r\r_2789_2789"
+      - "🇨🇦加拿大1001\r\r_2790_2790"
+      - "🇨🇦加拿大963\r\r_2791_2791"
+      - "🇨🇦加拿大1009\r\r_2792_2792"
+      - "🇨🇦加拿大822\r\r_2793_2793"
+      - "🇨🇦加拿大1030\r\r_2796_2796"
+      - "🇨🇦加拿大807\r\r_2799_2799"
+      - "🇨🇦加拿大792\r\r_2803_2803"
+      - "🇨🇦加拿大1004\r\r_2804_2804"
+      - "🇨🇦加拿大801\r\r_2805_2805"
+      - "🇨🇦加拿大987\r\r_2806_2806"
+      - "🇨🇦加拿大989\r\r_2810_2810"
+      - "🇨🇦加拿大983\r\r_2813_2813"
+      - "🇨🇦加拿大1020\r\r_2852_2852"
       - "🇨🇦加拿大819\r\r_2877_2877"
-      - "🇨🇦加拿大798\r\r_2879_2879"
-      - "🇨🇦加拿大818\r\r_2880_2880"
       - "🇨🇦加拿大811\r\r_2881_2881"
       - "🇨🇦加拿大1008\r\r_2883_2883"
       - "🇨🇦加拿大823\r\r_2887_2887"
       - "🇨🇦加拿大1011\r\r_2888_2888"
       - "🇨🇦加拿大972\r\r_2890_2890"
-      - "🇨🇦加拿大855\r\r_2892_2892"
       - "🇨🇦加拿大1007\r\r_2893_2893"
       - "🇨🇦加拿大1006\r\r_2894_2894"
       - "🇨🇦加拿大795\r\r_2896_2896"
@@ -5414,23 +5396,102 @@ proxy-groups:
       - "🇨🇦加拿大800\r\r_2909_2909"
       - "🇨🇦加拿大980\r\r_2910_2910"
       - "🇨🇦加拿大805\r\r_2911_2911"
-      - "🇨🇦加拿大734\r\r_2915_2915"
-      - "🇨🇦加拿大720\r\r_2917_2917"
       - "🇨🇦加拿大804\r\r_2920_2920"
       - "🇨🇦加拿大808\r\r_2927_2927"
-      - "🇨🇦加拿大749\r\r_2932"
-      - "🇨🇦加拿大743\r\r_2934"
       - "🇨🇦加拿大725\r\r_2939_2939"
       - "🇨🇦加拿大726\r\r_2942_2942"
       - "🇨🇦加拿大1023\r\r_2943_2943"
       - "🇨🇦加拿大790\r\r_2947_2947"
       - "🇨🇦加拿大809\r\r_2949_2949"
-      - "🇨🇦加拿大745\r\r_2950"
       - "🇨🇦加拿大722\r\r_2951_2951"
       - "🇨🇦加拿大719\r\r_2956_2956"
       - "🇨🇦加拿大737\r\r_2958_2958"
-      - "🇨🇦加拿大728\r\r_2967_2967"
+      - "🇨🇦加拿大742\r\r_2964_2964"
       - "🇨🇦加拿大718\r\r_2969_2969"
+      - "🇨🇦加拿大965\r\r_2975_2975"
+      - "🇨🇦加拿大733\r\r_2978_2978"
+      - 🇳🇱_489
+      - 🇸🇬_171
+      - 🇸🇬_612
+      - 🇺🇸_619
+      - 🇺🇸_232
+      - 🇺🇸_235
+      - 🇺🇸_624
+      - _18_2424
+      - 🇺🇸_924
+      - 🇺🇸_67
+      - v2cross.com_152_1523
+      - v2cross.com_72_2497
+      - 🇯🇵_586
+      - 🇺🇸_878
+      - v2cross.com_167_1102
+      - v2cross.com_361
+      - 🇺🇸_234
+      - 🇨🇦_449
+      - 🇺🇸_379
+      - 🇺🇸_916
+      - ChatGPT 🏁 ZZ_890_884
+      - ChatGPT 🇺🇸 US_670
+      - 🇺🇸_585
+      - 🇺🇸_394
+      - 🇺🇸_572
+      - ChatGPT 🇺🇸 US_657
+      - 🇰🇷_158
+      - 🇫🇷 FR_93
+      - "Relay_-🇧🇷BR_338\r\r_1188"
+      - 🇫🇷 FR_91
+      - "v2cross.com_61\r_378_378"
+      - ChatGPT 🇸🇬 SG_339
+      - 🇬🇮_557
+      - 🇫🇷_623
+      - 🇺🇸_617
+      - "🇺🇸US_1505 | 5.84Mb\r\r_225_225"
+      - "_10 | 8.70Mb\r\r_1555"
+      - ChatGPT 🏁 ZZ_56
+      - "🇺🇸US_1482 |64.52Mb\r\r_114"
+      - 🇺🇸_621
+      - 🇺🇸_622
+      - 🇺🇸_244
+      - 🇺🇸_496
+      - 🇺🇸_564
+      - 🇨🇦CA_1304
+      - 🇸🇬SG_1650
+      - ChatGPT 🏁 ZZ_89
+      - 🇸🇬SG_1656
+      - ChatGPT 🇸🇬 SG_342
+      - 🇺🇦UA_1685
+      - "ChatGPT 🏁 ZZ_216\r\r_216_216"
+      - " |18.06Mb\r\r_653_653"
+      - "🇺🇸US_1557 | 5.80Mb\r\r_446_446"
+      - 🇺🇸_822
+      - "v2cross.com_38\r_204_204"
+      - 🇺🇸 US_355
+      - "ChatGPT 🏁 ZZ_585\r\r_585_585"
+      - ChatGPT 🇨🇦 CA_07
+      - ChatGPT 🇨🇦 CA_09
+      - ChatGPT 🇨🇦 CA_16
+      - 🇺🇸_949
+      - "🇺🇸US_1500 | 8.76Mb\r\r_2274"
+      - 🇺🇸_497
+      - "_346\r\r_1193"
+      - 🇯🇵_948
+      - 🇫🇷_626
+      - 🇵🇱_675
+      - 🇵🇱_544
+      - "🇵🇱_HAMRAH_146\r\r_2631"
+      - "🇨🇦加拿大824\r\r_2867_2867"
+      - "🇨🇦加拿大1000\r\r_2870_2870"
+      - "🇨🇦加拿大825\r\r_2874_2874"
+      - "🇨🇦加拿大970\r\r_2875_2875"
+      - "🇨🇦加拿大798\r\r_2879_2879"
+      - "🇨🇦加拿大818\r\r_2880_2880"
+      - "🇨🇦加拿大855\r\r_2892_2892"
+      - "🇨🇦加拿大734\r\r_2915_2915"
+      - "🇨🇦加拿大720\r\r_2917_2917"
+      - "🇨🇦加拿大749\r\r_2932"
+      - "🇨🇦加拿大743\r\r_2934"
+      - "🇨🇦加拿大745\r\r_2950"
+      - "🇨🇦加拿大728\r\r_2967_2967"
       - "🇨🇦加拿大814\r\r_2973_2973"
       - "🇨🇦加拿大730\r\r_3044"
       - "🇨🇦加拿大736\r\r_3054_3054"
@@ -5554,7 +5615,6 @@ proxy-groups:
       - 🇺🇸_238
       - 🇺🇸US_6697 @WangCai_8_1
       - 🇺🇸US_7002 @WangCai_8_1
-      - 🇺🇸_565
       - 🇺🇸US_8000 @WangCai_8_1
       - 🇺🇸_243
       - 🇺🇸US_8009 @WangCai_8_1
@@ -5578,66 +5638,6 @@ proxy-groups:
       - JP_日本_hk_241
       - JP_日本_hk_242
       - JP_日本_hk_246
-      - 🇳🇱_864
-      - _209 | 4.20Mb
-      - 🇷🇺_821
-      - 🇫🇷_502
-      - ChatGPT 🇸🇬 SG_312
-      - "🇺🇸US_1603 | 8.29Mb\r\r_395_395"
-      - 🇺🇸_498
-      - 🇬🇮GI_1548
-      - 🇯🇵_333
-      - "v2cross.com_124\r_2148_2148"
-      - 🇨🇦加拿大916
-      - 🇨🇦加拿大905
-      - 🇨🇦加拿大917
-      - 🇨🇦加拿大898
-      - 🇨🇦加拿大893
-      - 🇨🇦加拿大912
-      - 🇨🇦加拿大907
-      - 🇨🇦加拿大910
-      - 🇨🇦加拿大906
-      - 🇨🇦加拿大888
-      - 🇨🇦加拿大884
-      - 🇨🇦加拿大890
-      - 🇨🇦加拿大908
-      - 🇨🇦加拿大894
-      - 🇨🇦加拿大913
-      - 🇨🇦加拿大886
-      - 🇨🇦加拿大903
-      - 🇨🇦加拿大899
-      - 🇨🇦加拿大889
-      - 🇨🇦加拿大914
-      - 🇨🇦加拿大895
-      - 🇨🇦加拿大896
-      - 🇨🇦加拿大900
-      - 🇨🇦加拿大918
-      - 🇨🇦加拿大883
-      - 🇨🇦加拿大919
-      - 🇨🇦加拿大901
-      - 🇨🇦加拿大915
-      - 🇨🇦加拿大892
-      - "🇨🇦加拿大1028\r\r_2778_2778"
-      - "🇨🇦加拿大977\r\r_2779_2779"
-      - "🇨🇦加拿大1002\r\r_2782_2782"
-      - "🇨🇦加拿大1025\r\r_2785_2785"
-      - "🇨🇦加拿大799\r\r_2786_2786"
-      - "🇨🇦加拿大793\r\r_2787_2787"
-      - "🇨🇦加拿大1014\r\r_2788_2788"
-      - "🇨🇦加拿大995\r\r_2789_2789"
-      - "🇨🇦加拿大1001\r\r_2790_2790"
-      - "🇨🇦加拿大963\r\r_2791_2791"
-      - "🇨🇦加拿大1009\r\r_2792_2792"
-      - "🇨🇦加拿大822\r\r_2793_2793"
-      - "🇨🇦加拿大1030\r\r_2796_2796"
-      - "🇨🇦加拿大807\r\r_2799_2799"
-      - "🇨🇦加拿大792\r\r_2803_2803"
-      - "🇨🇦加拿大1004\r\r_2804_2804"
-      - "🇨🇦加拿大801\r\r_2805_2805"
-      - "🇨🇦加拿大987\r\r_2806_2806"
-      - "🇨🇦加拿大989\r\r_2810_2810"
-      - "🇨🇦加拿大965\r\r_2975_2975"
-      - "🇨🇦加拿大733\r\r_2978_2978"
       - 🇺🇸_1
       - 🇺🇸_2
       - 🇺🇸_3
@@ -6526,7 +6526,6 @@ proxy-groups:
       - 🇸🇬_1115
       - 🇸🇬_1116
       - 🇸🇬_1117
-
 rule-providers:
   ir:
     type: http
@@ -7085,3 +7084,6 @@ rules :
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🆎 AdBlock
   - IN-TYPE,inner,PROXY
   - MATCH,PROXY
+
+tproxy-port: 9898
+redir-port: 9797
