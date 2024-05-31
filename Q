@@ -1,148 +1,5 @@
-{
-  "log": {
-    "level": "warn",
-    "output": "box.log",
-    "timestamp": true
-  },
-  "dns": {
-    "servers": [
-      {
-        "tag": "dns-remote",
-        "address": "h3://8.8.8.8/dns-query",
-        "address_resolver": "dns-direct",
-        "strategy": "ipv4_only"
-      },
-      {
-        "tag": "dns-direct",
-        "address": "1.1.1.1",
-        "address_resolver": "dns-local",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-local",
-        "address": "local",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-block",
-        "address": "rcode://success"
-      }
-    ],
-    "rules": [
-      {
-        "domain": [
-          "cloud.kinononva.top",
-          "lc1.shikpik.net",
-          "lc2.shikpik.net"
-        ],
-        "server": "dns-direct"
-      },
-      {
-        "domain": "cp.cloudflare.com",
-        "server": "dns-remote",
-        "rewrite_ttl": 3000
-      }
-    ],
-    "final": "dns-remote"
-  },
-  "inbounds": [
-    {
-      "type": "tun",
-      "tag": "tun-in",
-      "mtu": 9000,
-      "inet4_address": "172.19.0.1/28",
-      "inet6_address": "fdfe:dcba:9876::1/126",
-      "auto_route": true,
-      "strict_route": true,
-      "endpoint_independent_nat": true,
-      "stack": "mixed",
-      "sniff": true,
-      "sniff_override_destination": true
-    },
-    {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "0.0.0.0",
-      "listen_port": 2334,
-      "sniff": true,
-      "sniff_override_destination": true
-    },
-    {
-      "type": "direct",
-      "tag": "dns-in",
-      "listen": "0.0.0.0",
-      "listen_port": 6450,
-      "override_address": "1.1.1.1",
-      "override_port": 53
-    }
-  ],
+{      
   "outbounds": [
-    {
-      "type": "selector",
-      "tag": "select",
-      "outbounds": [
-        "auto",
-        "LA5 § 0",
-        "Dubai § 1",
-        "main § 2",
-        "Lb2 § 3",
-        "V7 PRO § 4",
-        "LA11 § 5",
-        "LA2 § 6",
-        "LA1 § 7",
-        "LA7 § 8",
-        "LA1 § 9",
-        "V7 PRO V6 § 10",
-        "lc1-irancell § 11",
-        "LA13 § 12",
-        "LA14 § 13",
-        "LA8 § 14",
-        "Lb3 § 15",
-        "Germany § 16",
-        "LA12 § 17",
-        "LA1 § 18",
-        "LA4 § 19",
-        "LA3 § 20",
-        "lb1 § 21",
-        "lc2-irancell § 22",
-        "LA6 § 23",
-        "Germany § 24"
-      ],
-      "default": "auto"
-    },
-    {
-      "type": "urltest",
-      "tag": "auto",
-      "outbounds": [
-        "LA5 § 0",
-        "Dubai § 1",
-        "main § 2",
-        "Lb2 § 3",
-        "V7 PRO § 4",
-        "LA11 § 5",
-        "LA2 § 6",
-        "LA1 § 7",
-        "LA7 § 8",
-        "LA1 § 9",
-        "V7 PRO V6 § 10",
-        "lc1-irancell § 11",
-        "LA13 § 12",
-        "LA14 § 13",
-        "LA8 § 14",
-        "Lb3 § 15",
-        "Germany § 16",
-        "LA12 § 17",
-        "LA1 § 18",
-        "LA4 § 19",
-        "LA3 § 20",
-        "lb1 § 21",
-        "lc2-irancell § 22",
-        "LA6 § 23",
-        "Germany § 24"
-      ],
-      "url": "http://hi.bonds.id/ping",
-      "interval": "10m0s"
-    },
     {
       "type": "vless",
       "tag": "LA5 § 0",
@@ -637,63 +494,213 @@
       "packet_encoding": ""
     },
     {
-      "type": "dns",
-      "tag": "dns-out"
+      "type": "vless",
+      "tag": "la2-RULES § 0",
+      "server": "la2.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
     },
     {
-      "type": "direct",
-      "tag": "direct"
+      "type": "vless",
+      "tag": "Lc7-RULES § 1",
+      "server": "lc7.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
     },
     {
-      "type": "direct",
-      "tag": "bypass"
+      "type": "vless",
+      "tag": "Lc8-RULES § 2",
+      "server": "lc8.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
     },
     {
-      "type": "block",
-      "tag": "block"
+      "type": "vless",
+      "tag": "Lc6-RULES § 3",
+      "server": "lc6.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "LA1-RULES § 4",
+      "server": "la1.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Lc3-RULES § 5",
+      "server": "Lc3.resturanbest.com",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Lb2 § 6",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "lb2.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "lb2.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "LA3-RULES § 7",
+      "server": "la3.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Lc4-RULES § 8",
+      "server": "Lc4.resturanbest.com",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Lc5-RULES § 9",
+      "server": "Lc5.resturanbest.com",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "lb1 § 10",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "lb1.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "lb1.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Lc1-RULES § 11",
+      "server": "lc1.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Lc2-RULES § 12",
+      "server": "Lc2.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Lb3 § 13",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "lb3.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "lb3.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
     }
-  ],
-  "route": {
-    "geoip": {
-      "path": "geo-assets/sagernet-sing-geoip-geoip.db"
-    },
-    "geosite": {
-      "path": "geo-assets/sagernet-sing-geosite-geosite.db"
-    },
-    "rules": [
-      {
-        "inbound": "dns-in",
-        "outbound": "dns-out"
-      },
-      {
-        "port": 53,
-        "outbound": "dns-out"
-      },
-      {
-        "clash_mode": "Direct",
-        "outbound": "direct"
-      },
-      {
-        "clash_mode": "Global",
-        "outbound": "select"
-      },
-      {
-        "geoip": "private",
-        "outbound": "bypass"
-      }
-    ],
-    "final": "select",
-    "auto_detect_interface": true,
-    "override_android_vpn": true
-  },
-  "experimental": {
-    "cache_file": {
-      "enabled": true,
-      "path": "clash.db"
-    },
-    "clash_api": {
-      "external_controller": "127.0.0.1:9090",
-      "secret": "0swEQsncP3G-BdGU"
-    }
-  }
+  ]
 }
