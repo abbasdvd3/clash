@@ -1,5 +1,1006 @@
 {
-  "outbounds": [
+    "log": {
+        "level": "error",
+        "timestamp": true
+    },
+    "dns": {
+        "servers": [
+            {
+                "tag": "Internet-dns",
+                "address": "1.0.0.1",
+                "strategy": "prefer_ipv4",
+                "detour": "🦊"
+            },
+            {
+                "tag": "Best Latency-dns",
+                "address": "1.1.1.1",
+                "strategy": "prefer_ipv4",
+                "detour": "Best Latency"
+            },
+            {
+                "tag": "direct-dns",
+                "address": "local",
+                "strategy": "prefer_ipv4",
+                "detour": "direct"
+            },
+            {
+                "tag": "block-dns",
+                "address": "rcode://success"
+            }
+        ],
+        "rules": [
+            {
+                "network": "udp",
+                "port": 443,
+                "server": "block-dns",
+                "rewrite_ttl": 600
+            },
+            {
+                "outbound": "🦊",
+                "server": "Internet-dns",
+                "rewrite_ttl": 600
+            },
+            {
+                "outbound": "Best Latency",
+                "server": "Best Latency-dns",
+                "rewrite_ttl": 600
+            },
+            {
+                "outbound": "direct",
+                "server": "direct-dns",
+                "rewrite_ttl": 600
+            },
+            {
+                "outbound": "any",
+                "server": "direct-dns",
+                "rewrite_ttl": 600
+            }
+        ],
+        "final": "Internet-dns",
+        "strategy": "prefer_ipv4",
+        "disable_cache": true,
+        "independent_cache": true
+    },
+    "inbounds": [
+        {
+            "type": "tun",
+            "tag": "tun-in",
+            "interface_name": "tun0",
+            "mtu": 1358,
+            "inet4_address": "172.19.0.1/30",
+            "inet6_address": "fdfe:dcba:9876::1/126",
+            "auto_route": true,
+            "strict_route": true,
+            "endpoint_independent_nat": true,
+            "udp_timeout": 300,
+            "stack": "mixed",
+            "sniff": true
+        },
+        {
+            "type": "mixed",
+            "tag": "mixed-in",
+            "listen": "0.0.0.0",
+            "listen_port": 60080,
+            "sniff": true
+        }
+    ],
+    "outbounds": [
+        {
+            "type": "selector",
+            "tag": "🦊",
+      "outbounds": [
+        "Best Latency",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "Lb3 § 0",
+        "Le1 § 1",
+        "Le6 § 2",
+        "LG3 § 3",
+        "Lc6-RULES § 4",
+        "Ld8-RULES § 5",
+        "la2-RULES § 6",
+        "Lc3-RULES § 7",
+        "LG2 § 8",
+        "Lc4-RULES § 9",
+        "LG1 § 10",
+        "Lc2-RULES § 11",
+        "Ld5-RULES § 12",
+        "Le5 § 13",
+        "Ld2-RULES § 14",
+        "LF3 § 15",
+        "Ld1-RULES § 16",
+        "Lc7-RULES § 17",
+        "LF1 § 18",
+        "Ld7-RULES § 19",
+        "Ld3-RULES § 20",
+        "Lc1-RULES § 21",
+        "Lc5-RULES § 22",
+        "LA3-RULES § 23",
+        "Ld6-RULES § 24",
+        "Le4 § 25",
+        "Lb2 § 26",
+        "Le2 § 27",
+        "Ld4-RULES § 28",
+        "LA1-RULES § 29",
+        "Lc8-RULES § 30",
+        "LF2 § 31",
+        "lb1 § 32",
+        "Le3 § 33",
+        "🦊1x",
+        "🦊x2",
+        "🦊2",
+        "🦊3",
+        "🦊4",
+        "🦊5",
+        "🦊6",
+        "🦊7",
+        "🦊8",
+        "🦊9",
+        "🦊10",
+        "lc1-irancell § 11",
+        "🦊12",
+        "🦊13",
+        "🦊14",
+        "🦊15",
+        "🦊16",
+        "🦊17",
+        "🦊18",
+        "🦊19",
+        "🦊20",
+        "🦊21",
+        "lc2-iranhdfcell § 22",
+        "LA6 dhh§ 23",
+        "Germafnydd § 24",
+        "la2-RULryyES § 0",
+        "Lc7-RkfULES § 1",
+        "Lc8-RULjddES § 2",
+        "Lc6-RULrddES § 3",
+        "LA1-RULESjfds § 4",
+        "Lc3-RULgdfghES § 5",
+        "Lb2 sdghdf§ 6",
+        "LA3-RUhddjgLES § 7",
+        "Lc4-RULEasasS § 8",
+        "Lc5-RULaasdES § 9",
+        "lb1 nhng§ 10",
+        "Lc1-RmkjvhULES § 11",
+        "Lc2-RUzvzLES § 12",
+        "Lb3 §nvnv 13",
+        "🦊🦊1🦊",
+        "🦊2🦊",
+        "🦊Ld8-RUbcnvLES § 2",
+        "🦊Lc2-RULEvvxS § 3",
+        "🦊Lb2 § zCz4",
+        "🦊Lc1-cnvcRULES § 5",
+        "🦊Ld1-RULEScxnnv § 6",
+        "🦊Lc3-RULmvmvES § 7",
+        "🦊Ld4-RUzczbcLES § 8",
+        "🦊LF2z §mvv 9",
+        "🦊lb1 vzb§ 10",
+        "🦊LA3-Rbn vcbnULES § 11",
+        "🦊LF1 §mbvmvb 12",
+        "🦊Le6 § bnb13",
+        "🦊Lennbn1 § 14",
+        "🦊Le3 § 1mnvbnm5",
+        "🦊Lc7-RULbbmvmS § 16",
+        "🦊LA1-RmmmULES § 17",
+        "🦊Ld3-RnnULxxES § 18",
+        "🦊Lb3 § 536519",
+        "🦊Le5352 § 20",
+        "🦊Le4 3553§ 21",
+        "🦊Le553535§ 22",
+        "🦊Ld2-RU65LES § 23",
+        "🦊Lc6gj-RULES § 24",
+        "🦊Lc4-RULjfES § 25",
+        "🦊Ld6-RULESfjf § 26",
+        "🦊LG1 § fjf27",
+        "🦊LG2 §fjfj 28",
+        "🦊Lc8-RfjfjULES § 29",
+        "🦊Lc5-RULEfjfjS § 30",
+        "🦊LG3 jgfjj§ 31",
+        "🦊LF3 §gm 32",
+        "🦊la2-RUmhgmLES § 33",
+        "🦊LA3-RUmhmLES § 0",
+        "🦊la2-Rv bmULES § 1",
+        "🦊Lc1-R mb mULES § 2",
+        "🦊Lc5-R,.,cbULES § 3",
+        "🦊Lb2 mbmbm§ 4",
+        "🦊Ld4-nmmbm § 5",
+        "🦊Ld2-RUvnbLES § 6",
+        "🦊LA1-RULEnnnvcS § 7",
+        "🦊Ld1-nnnnRULES § 8",
+        "🦊Lc4-RUncnLES § 9",
+        "🦊Ld3-RULEncncS § 10",
+        "🦊Lb3 §cvnc 11",
+        "🦊Le2 bnv§ 12",
+        "🦊Lc8-RULnnnnnnccxES § 13",
+        "🦊Lebbbb1 § 14",
+        "🦊lb1 bbbxbx§ 15",
+        "🦊Le3 bxbxb§ 16",
+        "🦊Lc6nbcnc-RULES § 17",
+        "🦊Lc2-RULEncncnS § 18",
+        "🦊Lc7-RULncncxES § 19",
+        "🦊Lc3-RULES ,nb,bn§ 20"
+      ],
+      "default": "Best Latency"
+    },
+    {
+      "type": "urltest",
+      "tag": "Best Latency",
+      "outbounds": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "Lb3 § 0",
+        "Le1 § 1",
+        "Le6 § 2",
+        "LG3 § 3",
+        "Lc6-RULES § 4",
+        "Ld8-RULES § 5",
+        "la2-RULES § 6",
+        "Lc3-RULES § 7",
+        "LG2 § 8",
+        "Lc4-RULES § 9",
+        "LG1 § 10",
+        "Lc2-RULES § 11",
+        "Ld5-RULES § 12",
+        "Le5 § 13",
+        "Ld2-RULES § 14",
+        "LF3 § 15",
+        "Ld1-RULES § 16",
+        "Lc7-RULES § 17",
+        "LF1 § 18",
+        "Ld7-RULES § 19",
+        "Ld3-RULES § 20",
+        "Lc1-RULES § 21",
+        "Lc5-RULES § 22",
+        "LA3-RULES § 23",
+        "Ld6-RULES § 24",
+        "Le4 § 25",
+        "Lb2 § 26",
+        "Le2 § 27",
+        "Ld4-RULES § 28",
+        "LA1-RULES § 29",
+        "Lc8-RULES § 30",
+        "LF2 § 31",
+        "lb1 § 32",
+        "Le3 § 33",
+        "🦊1x",
+        "🦊x2",
+        "🦊2",
+        "🦊3",
+        "🦊4",
+        "🦊5",
+        "🦊6",
+        "🦊7",
+        "🦊8",
+        "🦊9",
+        "🦊10",
+        "lc1-irancell § 11",
+        "🦊12",
+        "🦊13",
+        "🦊14",
+        "🦊15",
+        "🦊16",
+        "🦊17",
+        "🦊18",
+        "🦊19",
+        "🦊20",
+        "🦊21",
+        "lc2-iranhdfcell § 22",
+        "LA6 dhh§ 23",
+        "Germafnydd § 24",
+        "la2-RULryyES § 0",
+        "Lc7-RkfULES § 1",
+        "Lc8-RULjddES § 2",
+        "Lc6-RULrddES § 3",
+        "LA1-RULESjfds § 4",
+        "Lc3-RULgdfghES § 5",
+        "Lb2 sdghdf§ 6",
+        "LA3-RUhddjgLES § 7",
+        "Lc4-RULEasasS § 8",
+        "Lc5-RULaasdES § 9",
+        "lb1 nhng§ 10",
+        "Lc1-RmkjvhULES § 11",
+        "Lc2-RUzvzLES § 12",
+        "Lb3 §nvnv 13",
+        "🦊🦊1🦊",
+        "🦊2🦊",
+        "🦊Ld8-RUbcnvLES § 2",
+        "🦊Lc2-RULEvvxS § 3",
+        "🦊Lb2 § zCz4",
+        "🦊Lc1-cnvcRULES § 5",
+        "🦊Ld1-RULEScxnnv § 6",
+        "🦊Lc3-RULmvmvES § 7",
+        "🦊Ld4-RUzczbcLES § 8",
+        "🦊LF2z §mvv 9",
+        "🦊lb1 vzb§ 10",
+        "🦊LA3-Rbn vcbnULES § 11",
+        "🦊LF1 §mbvmvb 12",
+        "🦊Le6 § bnb13",
+        "🦊Lennbn1 § 14",
+        "🦊Le3 § 1mnvbnm5",
+        "🦊Lc7-RULbbmvmS § 16",
+        "🦊LA1-RmmmULES § 17",
+        "🦊Ld3-RnnULxxES § 18",
+        "🦊Lb3 § 536519",
+        "🦊Le5352 § 20",
+        "🦊Le4 3553§ 21",
+        "🦊Le553535§ 22",
+        "🦊Ld2-RU65LES § 23",
+        "🦊Lc6gj-RULES § 24",
+        "🦊Lc4-RULjfES § 25",
+        "🦊Ld6-RULESfjf § 26",
+        "🦊LG1 § fjf27",
+        "🦊LG2 §fjfj 28",
+        "🦊Lc8-RfjfjULES § 29",
+        "🦊Lc5-RULEfjfjS § 30",
+        "🦊LG3 jgfjj§ 31",
+        "🦊LF3 §gm 32",
+        "🦊la2-RUmhgmLES § 33",
+        "🦊LA3-RUmhmLES § 0",
+        "🦊la2-Rv bmULES § 1",
+        "🦊Lc1-R mb mULES § 2",
+        "🦊Lc5-R,.,cbULES § 3",
+        "🦊Lb2 mbmbm§ 4",
+        "🦊Ld4-nmmbm § 5",
+        "🦊Ld2-RUvnbLES § 6",
+        "🦊LA1-RULEnnnvcS § 7",
+        "🦊Ld1-nnnnRULES § 8",
+        "🦊Lc4-RUncnLES § 9",
+        "🦊Ld3-RULEncncS § 10",
+        "🦊Lb3 §cvnc 11",
+        "🦊Le2 bnv§ 12",
+        "🦊Lc8-RULnnnnnnccxES § 13",
+        "🦊Lebbbb1 § 14",
+        "🦊lb1 bbbxbx§ 15",
+        "🦊Le3 bxbxb§ 16",
+        "🦊Lc6nbcnc-RULES § 17",
+        "🦊Lc2-RULEncncnS § 18",
+        "🦊Lc7-RULncncxES § 19",
+        "🦊Lc3-RULES ,nb,bn§ 20"
+      ],
+      "url": "https://connectivitycheck.grapheneos.network/generate_204",
+      "interval": "1m0s",
+      "idle_timeout": "10m0s"
+    },
+    {
+      "type": "vless",
+      "tag": "1",
+      "server": "Ld2.resturanbest.com",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "2",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "lb3.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "lb3.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "3",
+      "server": "Ld8.resturanbest.com",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "4",
+      "server": "la3.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "5",
+      "server": "lc8.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "6",
+      "server": "la1.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "7",
+      "server": "Ld5.resturanbest.com",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "8",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "lf2.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "lf2.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "9",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "lf3.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "lf3.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "10",
+      "server": "Ld7.resturanbest.com",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "11",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "le2.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "le2.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "12",
+      "server": "Lc5.resturanbest.com",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "13",
+      "server": "Ld3.resturanbest.com",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "14",
+      "server": "Ld1.resturanbest.com",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "15",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "le5.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "le5.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "16",
+      "server": "la2.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "17",
+      "server": "Ld4.resturanbest.com",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "18",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "lb1.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "lb1.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "19",
+      "server": "lc1.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "20",
+      "server": "Lc4.resturanbest.com",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "21",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "lg1.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "lg1.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "22",
+      "server": "Lc3.resturanbest.com",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "23",
+      "server": "lc6.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "24",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "le1.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "le1.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "25",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "lf1.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "lf1.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "26",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "lb2.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "lb2.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "27",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "le4.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "le4.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "28",
+      "server": "lc7.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "29",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "lg3.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "lg3.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "30",
+      "server": "Ld6.resturanbest.com",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Le3 § 30",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "le3.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "le3.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "31",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "le6.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "le6.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "32",
+      "server": "cloud.kinononva.top",
+      "server_port": 2096,
+      "uuid": "2a3263e2-891c-4446-b474-a8c63acb6e25",
+      "tls": {
+        "enabled": true,
+        "server_name": "lg2.nicolkidman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "lg2.nicolkidman.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "33",
+      "server": "Lc2.shikpik.net",
+      "server_port": 80,
+      "uuid": "af309ad2-c943-48ea-b570-2e51a2f079d9",
+      "transport": {
+        "type": "ws",
+        "path": "/DSDaswd22!11*fdfm55247.COM.",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
     {
       "type": "vless",
       "tag": "Lb3 § 0",
@@ -2182,6 +3183,52 @@
         "early_data_header_name": "Sec-WebSocket-Protocol"
       },
       "packet_encoding": ""
+    },
+    {
+            "type": "direct",
+            "tag": "direct"
+        },
+        {
+            "type": "block",
+            "tag": "block"
+        },
+        {
+            "type": "dns",
+            "tag": "dns-out"
+        }
+    ],
+    "route": {
+        "geoip": {
+            "download_url": "https://github.com/malikshi/sing-box-geo/releases/latest/download/geoip.db",
+            "download_detour": "Best Latency"
+        },
+        "geosite": {
+            "download_url": "https://github.com/malikshi/v2ray-rules-dat/releases/latest/download/geosite.db",
+            "download_detour": "Best Latency"
+        },
+        "rules": [
+            {
+                "port": 53,
+                "outbound": "dns-out"
+            },
+            {
+                "network": "udp",
+                "port": 443,
+                "outbound": "block"
+            }
+        ],
+        "final": "🦊",
+        "auto_detect_interface": true,
+        "override_android_vpn": true
+    },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "clash.db"
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "secret": ""
     }
-  ]
+  }
 }
