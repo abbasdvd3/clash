@@ -1,95 +1,95 @@
 {
-    "log": {
-        "level": "error",
-        "timestamp": true
-    },
-    "dns": {
-        "servers": [
-            {
-                "tag": "Internet-dns",
-                "address": "1.0.0.1",
-                "strategy": "prefer_ipv4",
-                "detour": "🦊"
-            },
-            {
-                "tag": "Best Latency-dns",
-                "address": "1.1.1.1",
-                "strategy": "prefer_ipv4",
-                "detour": "Best Latency"
-            },
-            {
-                "tag": "direct-dns",
-                "address": "local",
-                "strategy": "prefer_ipv4",
-                "detour": "direct"
-            },
-            {
-                "tag": "block-dns",
-                "address": "rcode://success"
-            }
-        ],
-        "rules": [
-            {
-                "network": "udp",
-                "port": 443,
-                "server": "block-dns",
-                "rewrite_ttl": 600
-            },
-            {
-                "outbound": "🦊",
-                "server": "Internet-dns",
-                "rewrite_ttl": 600
-            },
-            {
-                "outbound": "🐳Best Latency🐳",
-                "server": "Best Latency-dns",
-                "rewrite_ttl": 600
-            },
-            {
-                "outbound": "direct",
-                "server": "direct-dns",
-                "rewrite_ttl": 600
-            },
-            {
-                "outbound": "any",
-                "server": "direct-dns",
-                "rewrite_ttl": 600
-            }
-        ],
-        "final": "Internet-dns",
+  "log": {
+    "level": "error",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "Internet-dns",
+        "address": "1.0.0.1",
         "strategy": "prefer_ipv4",
-        "disable_cache": true,
-        "independent_cache": true
-    },
-    "inbounds": [
-        {
-            "type": "tun",
-            "tag": "tun-in",
-            "interface_name": "tun0",
-            "mtu": 1358,
-            "inet4_address": "172.19.0.1/30",
-            "inet6_address": "fdfe:dcba:9876::1/126",
-            "auto_route": true,
-            "strict_route": true,
-            "endpoint_independent_nat": true,
-            "udp_timeout": 300,
-            "stack": "mixed",
-            "sniff": true
-        },
-        {
-            "type": "mixed",
-            "tag": "mixed-in",
-            "listen": "0.0.0.0",
-            "listen_port": 60080,
-            "sniff": true
-        }
+        "detour": "🦊"
+      },
+      {
+        "tag": "Best Latency-dns",
+        "address": "1.1.1.1",
+        "strategy": "prefer_ipv4",
+        "detour": "Best Latency"
+      },
+      {
+        "tag": "direct-dns",
+        "address": "local",
+        "strategy": "prefer_ipv4",
+        "detour": "direct"
+      },
+      {
+        "tag": "block-dns",
+        "address": "rcode://success"
+      }
     ],
-    "outbounds": [
-        {
-    "type": "selector",
-     "tag": "🦊",
+    "rules": [
+      {
+        "network": "udp",
+        "port": 443,
+        "server": "block-dns",
+        "rewrite_ttl": 600
+      },
+      {
+        "outbound": "🦊",
+        "server": "Internet-dns",
+        "rewrite_ttl": 600
+      },
+      {
+        "outbound": "Best Latency",
+        "server": "Best Latency-dns",
+        "rewrite_ttl": 600
+      },
+      {
+        "outbound": "direct",
+        "server": "direct-dns",
+        "rewrite_ttl": 600
+      },
+      {
+        "outbound": "any",
+        "server": "direct-dns",
+        "rewrite_ttl": 600
+      }
+    ],
+    "final": "Internet-dns",
+    "strategy": "prefer_ipv4",
+    "disable_cache": true,
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "tun0",
+      "mtu": 1358,
+      "inet4_address": "172.19.0.1/30",
+      "inet6_address": "fdfe:dcba:9876::1/126",
+      "auto_route": true,
+      "strict_route": true,
+      "endpoint_independent_nat": true,
+      "udp_timeout": "5m0s",
+      "stack": "mixed",
+      "sniff": true
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "0.0.0.0",
+      "listen_port": 60080,
+      "sniff": true
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "🦊",
       "outbounds": [
-        "🐳Best Latency🐳",
+        "Best Latency",
         "1",
         "2",
         "3",
@@ -305,7 +305,7 @@
         "Warp-Main2",
         "Warp-IR2"
       ],
-      "default": "🐳Best Latency🐳"
+      "default": "Best Latency"
     },
     {
       "type": "urltest",
@@ -3562,8 +3562,7 @@
       "server": "162.159.195.165",
       "server_port": 890,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3576,8 +3575,7 @@
       "server": "162.159.195.165",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3590,8 +3588,7 @@
       "server": "188.114.97.20",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3604,8 +3601,7 @@
       "server": "188.114.97.49",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3618,8 +3614,7 @@
       "server": "188.114.96.27",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3632,8 +3627,7 @@
       "server": "162.159.192.6",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3646,8 +3640,7 @@
       "server": "188.114.98.186",
       "server_port": 890,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3660,8 +3653,7 @@
       "server": "188.114.98.65",
       "server_port": 890,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3674,8 +3666,7 @@
       "server": "162.159.195.118",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3688,8 +3679,7 @@
       "server": "162.159.195.41",
       "server_port": 890,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3702,8 +3692,7 @@
       "server": "188.114.96.154",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3716,8 +3705,7 @@
       "server": "188.114.98.5",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3730,8 +3718,7 @@
       "server": "188.114.98.229",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3744,8 +3731,7 @@
       "server": "188.114.99.15",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3758,8 +3744,7 @@
       "server": "188.114.98.72",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3772,8 +3757,7 @@
       "server": "162.159.195.250",
       "server_port": 890,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3786,8 +3770,7 @@
       "server": "188.114.99.167",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3800,8 +3783,7 @@
       "server": "188.114.96.201",
       "server_port": 890,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3814,8 +3796,7 @@
       "server": "188.114.99.15",
       "server_port": 890,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3828,8 +3809,7 @@
       "server": "188.114.97.171",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3842,8 +3822,7 @@
       "server": "188.114.96.57",
       "server_port": 890,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3856,8 +3835,7 @@
       "server": "188.114.96.199",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3870,8 +3848,7 @@
       "server": "188.114.98.5",
       "server_port": 890,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3884,8 +3861,7 @@
       "server": "188.114.99.166",
       "server_port": 890,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3898,8 +3874,7 @@
       "server": "162.159.195.29",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3912,8 +3887,7 @@
       "server": "188.114.98.77",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3926,8 +3900,7 @@
       "server": "162.159.193.69",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3940,8 +3913,7 @@
       "server": "162.159.193.249",
       "server_port": 890,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3954,8 +3926,7 @@
       "server": "162.159.193.18",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3968,8 +3939,7 @@
       "server": "162.159.193.84",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3982,8 +3952,7 @@
       "server": "162.159.193.90",
       "server_port": 890,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -3996,8 +3965,7 @@
       "server": "162.159.193.198",
       "server_port": 890,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -4010,8 +3978,7 @@
       "server": "162.159.193.1",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -4024,8 +3991,7 @@
       "server": "162.159.193.90",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
       "type": "wireguard",
@@ -4038,54 +4004,52 @@
       "server": "162.159.193.26",
       "server_port": 4233,
       "peer_public_key": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-      "mtu": 1120,
-      "fake_packets": "5-10"
+      "mtu": 1120
     },
     {
-            "type": "direct",
-            "tag": "direct"
-        },
-        {
-            "type": "block",
-            "tag": "block"
-        },
-        {
-            "type": "dns",
-            "tag": "dns-out"
-        }
-    ],
-    "route": {
-        "geoip": {
-            "download_url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/release/geoip.db",
-            "download_detour": "Best Latency"
-        },
-        "geosite": {
-            "download_url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/release/geosite.db",
-            "download_detour": "Best Latency"
-        },
-        "rules": [
-            {
-                "port": 53,
-                "outbound": "dns-out"
-            },
-            {
-                "network": "udp",
-                "port": 443,
-                "outbound": "block"
-            }
-        ],
-        "final": "🦊",
-        "auto_detect_interface": true,
-        "override_android_vpn": true
+      "type": "direct",
+      "tag": "direct"
     },
+    {
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    }
+  ],
+  "route": {
+    "geoip": {
+      "download_url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/release/geoip.db",
+      "download_detour": "Best Latency"
+    },
+    "geosite": {
+      "download_url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/release/geosite.db",
+      "download_detour": "Best Latency"
+    },
+    "rules": [
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "network": "udp",
+        "port": 443,
+        "outbound": "block"
+      }
+    ],
+    "final": "🦊",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
+  },
   "experimental": {
     "cache_file": {
       "enabled": true,
       "path": "clash.db"
     },
     "clash_api": {
-      "external_controller": "127.0.0.1:9090",
-      "secret": ""
+      "external_controller": "127.0.0.1:9090"
     }
   }
 }
