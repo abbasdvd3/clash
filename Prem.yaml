@@ -480,6 +480,14 @@ proxies:
   - {"name":"🇯🇵_477","type":"ss","server":"185.172.113.182","port":809,"password":"G!yBwPWH3Vao","cipher":"chacha20-ietf-poly1305"}
   - {"name":"🇺🇸_478","type":"vmess","server":"jahfkjha.cfd","port":443,"cipher":"auto","uuid":"950db6aa-4926-4616-816e-ec0312dcb87b","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/linkws","headers":{"host":"jahfkjha.cfd"}}}
 proxy-groups:
+  - name: PRO
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 30
+    tolerance: 50
+    proxies:
+      - url-test
+      - fallback
   - name: PROXY
     type: select
     proxies:
