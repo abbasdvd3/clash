@@ -1,244 +1,411 @@
 {
   "outbounds": [
     {
+      "type": "selector",
+      "tag": "Internet",
+      "outbounds": [
+        "Best Latency",
+        "Germany1 🇩🇪",
+        "Germany2 🇩🇪",
+        "Netherland 🇳🇱",
+        "England1 🇬🇧",
+        "England2 🇬🇧",
+        "France 🇫🇷",
+        "Germany1🇩🇪",
+        "Germany2🇩🇪",
+        "Netherland🇳🇱",
+        "England1🇬🇧",
+        "England2🇬🇧",
+        "France🇫🇷",
+        "Germany1🇩🇪 IRANCELL",
+        "Germany2🇩🇪 IRANCELL",
+        "Netherland🇳🇱 IRANCELL",
+        "England1🇬🇧 IRANCELL",
+        "England2🇬🇧 IRANCELL",
+        "France🇫🇷 IRANCELL"
+      ]
+    },
+    {
+      "type": "urltest",
+      "tag": "Best Latency",
+      "outbounds": [
+        "Germany1 🇩🇪",
+        "Germany2 🇩🇪",
+        "Netherland 🇳🇱",
+        "England1 🇬🇧",
+        "England2 🇬🇧",
+        "France 🇫🇷",
+        "Germany1🇩🇪",
+        "Germany2🇩🇪",
+        "Netherland🇳🇱",
+        "England1🇬🇧",
+        "England2🇬🇧",
+        "France🇫🇷",
+        "Germany1🇩🇪 IRANCELL",
+        "Germany2🇩🇪 IRANCELL",
+        "Netherland🇳🇱 IRANCELL",
+        "England1🇬🇧 IRANCELL",
+        "England2🇬🇧 IRANCELL",
+        "France🇫🇷 IRANCELL"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m0s"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
       "type": "vless",
-      "tag": "cdn § 0",
-      "server": "37.27.31.124",
-      "server_port": 80,
-      "uuid": "b04afcd6-16c6-430c-bdfb-273517fcde31",
+      "tag": "Germany1 🇩🇪",
+      "server": "zula.ir",
+      "server_port": 2053,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7ProqwoiqjufhgjkcnvnbvbDhduDuryrhqjbQfjkaidahsdPlmkasJsaaSdwgG.DrLimit.CoM."
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "Germany2 🇩🇪",
+      "server": "zula.ir",
+      "server_port": 2053,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7ProqsswoiqjufhgjkcnVnbvbdhduDuryrhqjbqfjkaidahsdplmKasjsaaSdD.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "Netherland 🇳🇱",
+      "server": "zula.ir",
+      "server_port": 2053,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7ProqsswoiqjufhgjkcnvNbvbdhduDuryrhqJbqfJkaidahsdsDplmkasjsadS.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "England1 🇬🇧",
+      "server": "zula.ir",
+      "server_port": 2053,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7ProqsswoiqjufhgjkcnvnbvbdhduduryrhqjbqfjkaidahsdDssdplmkasjsA.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "England2 🇬🇧",
+      "server": "zula.ir",
+      "server_port": 2053,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7ProqwoiqjufhgjkcnvnbsdDhduDuryrhqjbQfjkaidahsdPlmkasJsaaSdwgG.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "France 🇫🇷",
+      "server": "zula.ir",
+      "server_port": 2053,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7ProqwoiqjufhgjkcnvnbsdDhduDuryrhqjbQfjksidahsdPlmkasJsaaSdwgG.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "Germany1🇩🇪",
+      "server": "104.25.85.27",
+      "server_port": 2083,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7ProqwoiqjufhgjkcnvnbvbDhduDuryrhqjbQfjkaidahsdPlmkasJsaaSdwgG.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
-        "path": "/asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray",
+        "path": "v7Prov2rayng-V2rayngdr-telegram-V7Pro_v2rayng",
         "headers": {
-          "Host": "2.v2ray.debian.org.fxp.debian.org.speedtest.net.bestmoonlive.COM."
+          "Host": "V7ProqwoiqjufhgjkcnvnbvbDhduDuryrhqjbQfjkaidahsdPlmkasJsaaSdwgG.DrLimit.CoM."
         },
-        "max_early_data": 80,
+        "max_early_data": 2083,
         "early_data_header_name": "Sec-WebSocket-Protocol"
-      },
-      "packet_encoding": ""
+      }
     },
     {
       "type": "vless",
-      "tag": "cdn § 1",
-      "server": "37.27.29.203",
-      "server_port": 80,
-      "uuid": "7488f8d7-05fc-448a-82a5-1b1bc544f315",
+      "tag": "Germany2🇩🇪",
+      "server": "104.25.85.27",
+      "server_port": 2083,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7ProqsswoiqjufhgjkcnVnbvbdhduDuryrhqjbqfjkaidahsdplmKasjsaaSdD.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
-        "path": "/asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray",
+        "path": "v7Prov2rayng-V2rayngdr-telegram-V7Pro_v2rayng",
         "headers": {
-          "Host": "2.V5ray.debian.org.fxp.debian.org.speedtest.net.bestmoonlive.com."
+          "Host": "V7ProqsswoiqjufhgjkcnVnbvbdhduDuryrhqjbqfjkaidahsdplmKasjsaaSdD.DrLimit.CoM."
         },
-        "max_early_data": 80,
+        "max_early_data": 2083,
         "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "Netherland🇳🇱",
+      "server": "104.25.85.27",
+      "server_port": 2083,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7ProqsswoiqjufhgjkcnvNbvbdhduDuryrhqJbqfJkaidahsdsDplmkasjsadS.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
       },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "V7 PRO § 2",
-      "server": "128.140.57.179",
-      "server_port": 8080,
-      "uuid": "1a0badbc-1566-40db-a8a8-4d3d8eca9059",
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "cdn § 3",
-      "server": "95.217.161.102",
-      "server_port": 80,
-      "uuid": "7488f8d7-05fc-448a-82a5-1b1bc544f315",
       "transport": {
         "type": "ws",
-        "path": "/asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray",
+        "path": "v7Prov2rayng-V2rayngdr-telegram-V7Pro_v2rayng",
         "headers": {
-          "Host": "2.V6ray.debian.org.fxp.debian.org.speedtest.net.bestmoonlive.com."
+          "Host": "V7ProqsswoiqjufhgjkcnvNbvbdhduDuryrhqJbqfJkaidahsdsDplmkasjsadS.DrLimit.CoM."
         },
-        "max_early_data": 80,
+        "max_early_data": 2083,
         "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "England1🇬🇧",
+      "server": "104.25.85.27",
+      "server_port": 2083,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7ProqsswoiqjufhgjkcnvnbvbdhduduryrhqjbqfjkaidahsdDssdplmkasjsA.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
       },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "V7 PRO § 4",
-      "server": "65.108.88.207",
-      "server_port": 8080,
-      "uuid": "1a0badbc-1566-40db-a8a8-4d3d8eca9059",
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "V7 PRO § 5",
-      "server": "37.27.30.22",
-      "server_port": 8080,
-      "uuid": "1a0badbc-1566-40db-a8a8-4d3d8eca9059",
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "V7 PRO § 6",
-      "server": "135.181.26.135",
-      "server_port": 8080,
-      "uuid": "1a0badbc-1566-40db-a8a8-4d3d8eca9059",
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "cdn § 7",
-      "server": "65.21.152.116",
-      "server_port": 80,
-      "uuid": "7488f8d7-05fc-448a-82a5-1b1bc544f315",
       "transport": {
         "type": "ws",
-        "path": "/asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray",
+        "path": "v7Prov2rayng-V2rayngdr-telegram-V7Pro_v2rayng",
         "headers": {
-          "Host": "2.V4ray.debian.org.fxp.debian.org.speedtest.net.bestmoonlive.com."
+          "Host": "V7ProqsswoiqjufhgjkcnvnbvbdhduduryrhqjbqfjkaidahsdDssdplmkasjsA.DrLimit.CoM."
         },
-        "max_early_data": 80,
+        "max_early_data": 2083,
         "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "England2🇬🇧",
+      "server": "104.25.85.27",
+      "server_port": 2083,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7ProqwoiqjufhgjkcnvnbsdDhduDuryrhqjbQfjkaidahsdPlmkasJsaaSdwgG.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
       },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "V7 PRO § 8",
-      "server": "65.109.167.26",
-      "server_port": 8080,
-      "uuid": "1a0badbc-1566-40db-a8a8-4d3d8eca9059",
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "cdn § 9",
-      "server": "65.108.250.55",
-      "server_port": 80,
-      "uuid": "7488f8d7-05fc-448a-82a5-1b1bc544f315",
       "transport": {
         "type": "ws",
-        "path": "/asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray",
+        "path": "v7Prov2rayng-V2rayngdr-telegram-V7Pro_v2rayng",
         "headers": {
-          "Host": "2.v3ray.debian.org.fxp.debian.org.speedtest.net.bestmoonlive.com."
+          "Host": "V7ProqwoiqjufhgjkcnvnbsdDhduDuryrhqjbQfjkaidahsdPlmkasJsaaSdwgG.DrLimit.CoM."
         },
-        "max_early_data": 80,
+        "max_early_data": 2083,
         "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "France🇫🇷",
+      "server": "104.25.85.27",
+      "server_port": 2083,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7ProqwoiqjufhgjkcnvnbsdDhduDuryrhqjbQfjksidahsdPlmkasJsaaSdwgG.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
       },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "V7 PRO § 10",
-      "server": "37.27.31.67",
-      "server_port": 8080,
-      "uuid": "1a0badbc-1566-40db-a8a8-4d3d8eca9059",
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "V7 PRO § 11",
-      "server": "37.27.81.118",
-      "server_port": 8080,
-      "uuid": "1a0badbc-1566-40db-a8a8-4d3d8eca9059",
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "cdn § 12",
-      "server": "37.27.29.203",
-      "server_port": 80,
-      "uuid": "7488f8d7-05fc-448a-82a5-1b1bc544f315",
       "transport": {
         "type": "ws",
-        "path": "/asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray",
+        "path": "v7Prov2rayng-V2rayngdr-telegram-V7Pro_v2rayng",
         "headers": {
-          "Host": "2.V5ray.debian.org.fxp.debian.org.speedtest.net.bestmoonlive.com."
+          "Host": "V7ProqwoiqjufhgjkcnvnbsdDhduDuryrhqjbQfjksidahsdPlmkasJsaaSdwgG.DrLimit.CoM."
         },
-        "max_early_data": 80,
+        "max_early_data": 2083,
         "early_data_header_name": "Sec-WebSocket-Protocol"
-      },
-      "packet_encoding": ""
+      }
     },
     {
       "type": "vless",
-      "tag": "V7 PRO § 13",
-      "server": "65.21.177.3",
-      "server_port": 8080,
-      "uuid": "1a0badbc-1566-40db-a8a8-4d3d8eca9059",
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "V7 PRO § 14",
-      "server": "116.203.102.40",
-      "server_port": 8080,
-      "uuid": "1a0badbc-1566-40db-a8a8-4d3d8eca9059",
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "V7 PRO § 15",
-      "server": "188.34.202.118",
-      "server_port": 8080,
-      "uuid": "1a0badbc-1566-40db-a8a8-4d3d8eca9059",
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "V7 PRO § 16",
-      "server": "37.27.30.120",
-      "server_port": 8080,
-      "uuid": "1a0badbc-1566-40db-a8a8-4d3d8eca9059",
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "V7 PRO § 17",
-      "server": "65.109.6.144",
-      "server_port": 8080,
-      "uuid": "1a0badbc-1566-40db-a8a8-4d3d8eca9059",
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "cdn § 18",
-      "server": "95.217.161.102",
-      "server_port": 80,
-      "uuid": "7488f8d7-05fc-448a-82a5-1b1bc544f315",
+      "tag": "Germany1🇩🇪 IRANCELL",
+      "server": "germany1.tomk.fun",
+      "server_port": 5000,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
       "transport": {
-        "type": "ws",
-        "path": "/asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray",
-        "headers": {
-          "Host": "2.V6ray.debian.org.fxp.debian.org.speedtest.net.bestmoonlive.com."
-        },
-        "max_early_data": 80,
-        "early_data_header_name": "Sec-WebSocket-Protocol"
-      },
-      "packet_encoding": ""
+        "type": "http",
+        "host": "speedtest.net",
+        "path": "/",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
     },
     {
       "type": "vless",
-      "tag": "V7 PRO § 19",
-      "server": "65.21.1.183",
-      "server_port": 8080,
-      "uuid": "1a0badbc-1566-40db-a8a8-4d3d8eca9059",
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "cdn § 20",
-      "server": "95.217.161.102",
-      "server_port": 80,
-      "uuid": "7488f8d7-05fc-448a-82a5-1b1bc544f315",
+      "tag": "Germany2🇩🇪 IRANCELL",
+      "server": "germany2.tomk.fun",
+      "server_port": 5000,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
       "transport": {
-        "type": "ws",
-        "path": "/asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray,asrnovin-ArV2ray",
-        "headers": {
-          "Host": "2.V6ray.debian.org.fxp.debian.org.speedtest.net.bestmoonlive.com."
-        },
-        "max_early_data": 80,
-        "early_data_header_name": "Sec-WebSocket-Protocol"
-      },
-      "packet_encoding": ""
+        "type": "http",
+        "host": "speedtest.net",
+        "path": "/",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "Netherland🇳🇱 IRANCELL",
+      "server": "netherland.tomk.fun",
+      "server_port": 5000,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "transport": {
+        "type": "http",
+        "host": "speedtest.net",
+        "path": "/",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "England1🇬🇧 IRANCELL",
+      "server": "england1.tomk.fun",
+      "server_port": 5000,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "transport": {
+        "type": "http",
+        "host": "speedtest.net",
+        "path": "/",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "England2🇬🇧 IRANCELL",
+      "server": "england2.tomk.fun",
+      "server_port": 5000,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "transport": {
+        "type": "http",
+        "host": "speedtest.net",
+        "path": "/",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "France🇫🇷 IRANCELL",
+      "server": "france.tomk.fun",
+      "server_port": 5000,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "transport": {
+        "type": "http",
+        "host": "speedtest.net",
+        "path": "/",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
     }
   ]
 }
