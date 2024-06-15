@@ -1,91 +1,108 @@
 {
   "log": {
     "disabled": false,
-    "level": "error",
-    "output": "box.log",
+    "level": "info",
     "timestamp": true
   },
   "dns": {
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
-    },
     "servers": [
       {
-        "tag": "dns-remote",
-        "address": "udp://1.1.1.1",
-        "address_resolver": "dns-direct"
+        "tag": "proxyDns",
+        "address": "8.8.8.8",
+        "detour": "select"
       },
       {
-        "tag": "dns-direct",
-        "address": "1.1.1.1",
-        "address_resolver": "dns-local",
+        "tag": "localDns",
+        "address": "https://223.5.5.5/dns-query",
         "detour": "direct"
       },
       {
-        "tag": "dns-local",
-        "address": "local",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-block",
+        "tag": "block",
         "address": "rcode://success"
+      },
+      {
+        "tag": "remote",
+        "address": "fakeip"
       }
     ],
     "rules": [
       {
         "domain": [
-          "zula.ir",
-          "germany2.tomk.fun",
-          "england2.tomk.fun",
-          "france.tomk.fun",
-          "usa.tomk.fun",
-          "germany1.tomk.fun",
-          "netherland.tomk.fun",
-          "england1.tomk.fun",
-          "england3.tomk.fun"
+          "ghproxy.com",
+          "cdn.jsdelivr.net",
+          "testingcf.jsdelivr.net"
         ],
-        "server": "dns-direct"
+        "server": "localDns"
       },
       {
-        "domain": "cp.cloudflare.com",
-        "server": "dns-remote",
-        "rewrite_ttl": 3000
+        "geosite": [
+          "category-ads-all"
+        ],
+        "server": "block"
+      },
+      {
+        "server": "localDns",
+        "outbound": "any",
+        "disable_cache": true
+      },
+      {
+        "geosite": [
+          "cn"
+        ],
+        "server": "localDns"
+      },
+      {
+        "server": "localDns",
+        "clash_mode": "direct"
+      },
+      {
+        "server": "proxyDns",
+        "clash_mode": "global"
+      },
+      {
+        "geosite": [
+          "geolocation-!cn"
+        ],
+        "server": "proxyDns"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "remote"
       }
     ],
-    "final": "dns-remote",
-    "strategy": "ipv4_only",
-    "independent_cache": true
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
+    "independent_cache": true,
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
-      "type": "tun",
-      "tag": "tun-in",
-      "mtu": 9000,
-      "inet4_address": "172.19.0.1/28",
-      "auto_route": true,
-      "strict_route": true,
-      "endpoint_independent_nat": true,
-      "stack": "mixed",
       "sniff": true,
-      "sniff_override_destination": true
-    },
-    {
       "type": "mixed",
-      "tag": "mixed-in",
       "listen": "127.0.0.1",
-      "listen_port": 2334,
-      "sniff": true,
-      "sniff_override_destination": true
+      "listen_port": 1081
     },
     {
-      "type": "direct",
-      "tag": "dns-in",
-      "listen": "127.0.0.1",
-      "listen_port": 6450,
-      "override_address": "1.1.1.1",
-      "override_port": 53
+      "stack": "system",
+      "auto_route": true,
+      "inet4_address": "172.19.0.1/30",
+      "mtu": 9000,
+      "sniff": true,
+      "strict_route": true,
+      "type": "tun",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 1081
+        }
+      }
     }
   ],
   "outbounds": [
@@ -631,26 +648,101 @@
     }
   ],
   "route": {
+    "geoip": {
+      "download_url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/release/geoip.db"
+  },
+  "geosite": {
+    "download_url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/release/geosite.db"
+      "download_detour": "select"
+    },
     "rules": [
       {
-        "inbound": "dns-in",
+        "protocol": "dns",
         "outbound": "dns-out"
       },
       {
-        "port": 53,
-        "outbound": "dns-out"
+        "network": "udp",
+        "port": 443,
+        "outbound": "block"
       },
       {
-        "clash_mode": "Direct",
+        "clash_mode": "direct",
         "outbound": "direct"
       },
       {
-        "clash_mode": "Global",
+        "clash_mode": "global",
         "outbound": "select"
       },
       {
-        "geoip": "private",
-        "outbound": "bypass"
+        "domain": [
+          "v2rayse.com",
+          "cfmem.com",
+          "vpnse.org",
+          "cff.pw",
+          "tt.vg"
+        ],
+        "outbound": "select"
+      },
+      {
+        "domain": [
+          "clash.razord.top",
+          "yacd.metacubex.one",
+          "yacd.haishan.me",
+          "d.metacubex.one"
+        ],
+        "outbound": "direct"
+      },
+      {
+      "geosite": [
+        "category-ads-all",
+        "malware",
+        "phishing",
+        "cryptominers"
+      ],
+      "outbound": "block"
+    },
+    {
+      "geoip": [
+        "malware",
+        "phishing"
+      ],
+      "outbound": "block"
+    },
+    {
+      "geoip": [
+        "openai",
+        "telegram",
+        "facebook",
+        "github",
+        "bing",
+        "microsoft",
+       "google"
+      ],
+      "outbound": "select"
+    },
+      {
+      "geosite": [
+        "nsfw",
+        "social",
+        "telegram",
+        "facebook",
+        "github",
+        "bing",
+        "microsoft",
+       "google"
+      ],
+      "outbound": "select"
+    },
+    {
+      "geosite": "ir",
+      "outbound": "direct"
+    },
+    {
+      "geoip": [
+        "ir",
+        "private"
+      ],
+      "outbound": "direct"
       }
     ],
     "final": "select",
@@ -661,11 +753,12 @@
   "experimental": {
     "cache_file": {
       "enabled": true,
-      "path": "clash.db"
-    },
+      "path": "cache.db",
+      "store_fakeip": true
+},
     "clash_api": {
-      "external_controller": "127.0.0.1:6756",
-      "secret": "poPNmikiLETSlm5V"
+      "external_controller": "127.0.0.1:9090",
+      "secret": ""
     }
   }
 }
