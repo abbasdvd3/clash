@@ -1,67 +1,149 @@
 {
-  "outbounds": [
+  "log": {
+    "level": "warn",
+    "output": "box.log",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-remote",
+        "address": "udp://1.1.1.1",
+        "address_resolver": "dns-direct"
+      },
+      {
+        "tag": "dns-direct",
+        "address": "1.1.1.1",
+        "address_resolver": "dns-local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-local",
+        "address": "local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "domain": [
+          "zula.ir",
+          "germany2.tomk.fun",
+          "england2.tomk.fun",
+          "france.tomk.fun",
+          "usa.tomk.fun",
+          "germany1.tomk.fun",
+          "netherland.tomk.fun",
+          "england1.tomk.fun",
+          "england3.tomk.fun"
+        ],
+        "server": "dns-direct"
+      },
+      {
+        "domain": "cp.cloudflare.com",
+        "server": "dns-remote",
+        "rewrite_ttl": 3000
+      }
+    ],
+    "final": "dns-remote"
+  },
+  "inbounds": [
     {
-      "type": "selector",
-      "tag": "Internet",
-      "outbounds": [
-        "Best Latency",
-        "Germany1 🇩🇪",
-        "Germany2 🇩🇪",
-        "Netherland 🇳🇱",
-        "England1 🇬🇧",
-        "England2 🇬🇧",
-        "France 🇫🇷",
-        "Germany1🇩🇪",
-        "Germany2🇩🇪",
-        "Netherland🇳🇱",
-        "England1🇬🇧",
-        "England2🇬🇧",
-        "France🇫🇷",
-        "Germany1🇩🇪 IRANCELL",
-        "Germany2🇩🇪 IRANCELL",
-        "Netherland🇳🇱 IRANCELL",
-        "England1🇬🇧 IRANCELL",
-        "England2🇬🇧 IRANCELL",
-        "France🇫🇷 IRANCELL"
-      ]
+      "type": "tun",
+      "tag": "tun-in",
+      "mtu": 9000,
+      "inet4_address": "172.19.0.1/28",
+      "auto_route": true,
+      "strict_route": true,
+      "endpoint_independent_nat": true,
+      "stack": "mixed",
+      "sniff": true,
+      "sniff_override_destination": true
     },
     {
-      "type": "urltest",
-      "tag": "Best Latency",
-      "outbounds": [
-        "Germany1 🇩🇪",
-        "Germany2 🇩🇪",
-        "Netherland 🇳🇱",
-        "England1 🇬🇧",
-        "England2 🇬🇧",
-        "France 🇫🇷",
-        "Germany1🇩🇪",
-        "Germany2🇩🇪",
-        "Netherland🇳🇱",
-        "England1🇬🇧",
-        "England2🇬🇧",
-        "France🇫🇷",
-        "Germany1🇩🇪 IRANCELL",
-        "Germany2🇩🇪 IRANCELL",
-        "Netherland🇳🇱 IRANCELL",
-        "England1🇬🇧 IRANCELL",
-        "England2🇬🇧 IRANCELL",
-        "France🇫🇷 IRANCELL"
-      ],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "1m0s"
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2334,
+      "sniff": true,
+      "sniff_override_destination": true
     },
     {
       "type": "direct",
-      "tag": "direct"
+      "tag": "dns-in",
+      "listen": "127.0.0.1",
+      "listen_port": 6450,
+      "override_address": "1.1.1.1",
+      "override_port": 53
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "select",
+      "outbounds": [
+        "auto",
+        "Germany1 🇩🇪",
+        "Germany2 🇩🇪",
+        "Netherland 🇳🇱",
+        "England1 🇬🇧",
+        "England2 🇬🇧",
+        "England3 🇬🇧",
+        "France 🇫🇷",
+        "USA 🇺🇸",
+        "Germany1🇩🇪",
+        "Germany2🇩🇪",
+        "Netherland🇳🇱",
+        "England1🇬🇧",
+        "England2🇬🇧",
+        "England3🇬🇧",
+        "France🇫🇷",
+        "USA🇺🇸",
+        "Germany1🇩🇪 IRANCELL",
+        "Germany2🇩🇪 IRANCELL",
+        "Netherland🇳🇱 IRANCELL",
+        "England1🇬🇧 IRANCELL",
+        "England2🇬🇧 IRANCELL",
+        "England3🇬🇧 IRANCELL",
+        "France🇫🇷 IRANCELL",
+        "USA🇺🇸 IRANCELL"
+      ],
+      "default": "auto"
     },
     {
-      "type": "block",
-      "tag": "block"
-    },
-    {
-      "type": "dns",
-      "tag": "dns-out"
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "Germany1 🇩🇪",
+        "Germany2 🇩🇪",
+        "Netherland 🇳🇱",
+        "England1 🇬🇧",
+        "England2 🇬🇧",
+        "England3 🇬🇧",
+        "France 🇫🇷",
+        "USA 🇺🇸",
+        "Germany1🇩🇪",
+        "Germany2🇩🇪",
+        "Netherland🇳🇱",
+        "England1🇬🇧",
+        "England2🇬🇧",
+        "England3🇬🇧",
+        "France🇫🇷",
+        "USA🇺🇸",
+        "Germany1🇩🇪 IRANCELL",
+        "Germany2🇩🇪 IRANCELL",
+        "Netherland🇳🇱 IRANCELL",
+        "England1🇬🇧 IRANCELL",
+        "England2🇬🇧 IRANCELL",
+        "England3🇬🇧 IRANCELL",
+        "France🇫🇷 IRANCELL",
+        "USA🇺🇸 IRANCELL"
+      ],
+      "url": "http://cp.cloudflare.com/",
+      "interval": "10m0s"
     },
     {
       "type": "vless",
@@ -161,6 +243,26 @@
     },
     {
       "type": "vless",
+      "tag": "England3 🇬🇧",
+      "server": "zula.ir",
+      "server_port": 2053,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7PromwoiQjufhgjkcnvnBsddhduduryrhqjbqfjkaidahsdplmkasjsaasdwgg.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vless",
       "tag": "France 🇫🇷",
       "server": "zula.ir",
       "server_port": 2053,
@@ -168,6 +270,26 @@
       "tls": {
         "enabled": true,
         "server_name": "V7ProqwoiqjufhgjkcnvnbsdDhduDuryrhqjbQfjksidahsdPlmkasJsaaSdwgG.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "USA 🇺🇸",
+      "server": "zula.ir",
+      "server_port": 2053,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7PromwoiQjufhgjkcnvnBsddhduduryrhqjbqfjkaidahsdplmkasjsaasdwgg.DrLimit.CoM.",
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
@@ -301,6 +423,30 @@
     },
     {
       "type": "vless",
+      "tag": "England3🇬🇧",
+      "server": "104.25.85.27",
+      "server_port": 2083,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7PromwoiQjufhgjkcnvnBsddhduduryrhqjbqfjkaidahsdplmkasjsaasdwgg.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "v7Prov2rayng-V2rayngdr-telegram-V7Pro_v2rayng",
+        "headers": {
+          "Host": "V7PromwoiQjufhgjkcnvnBsddhduduryrhqjbqfjkaidahsdplmkasjsaasdwgg.DrLimit.CoM."
+        },
+        "max_early_data": 2083,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vless",
       "tag": "France🇫🇷",
       "server": "104.25.85.27",
       "server_port": 2083,
@@ -318,6 +464,30 @@
         "path": "v7Prov2rayng-V2rayngdr-telegram-V7Pro_v2rayng",
         "headers": {
           "Host": "V7ProqwoiqjufhgjkcnvnbsdDhduDuryrhqjbQfjksidahsdPlmkasJsaaSdwgG.DrLimit.CoM."
+        },
+        "max_early_data": 2083,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "USA🇺🇸",
+      "server": "104.25.85.27",
+      "server_port": 2083,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "tls": {
+        "enabled": true,
+        "server_name": "V7PromwoiQjufhgjkcnvnBsddhduduryrhqjbqfjkaidahsdplmkasjsaasdwgg.DrLimit.CoM.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "v7Prov2rayng-V2rayngdr-telegram-V7Pro_v2rayng",
+        "headers": {
+          "Host": "V7PromwoiQjufhgjkcnvnBsddhduduryrhqjbqfjkaidahsdplmkasjsaasdwgg.DrLimit.CoM."
         },
         "max_early_data": 2083,
         "early_data_header_name": "Sec-WebSocket-Protocol"
@@ -395,6 +565,20 @@
     },
     {
       "type": "vless",
+      "tag": "England3🇬🇧 IRANCELL",
+      "server": "england3.tomk.fun",
+      "server_port": 5000,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "transport": {
+        "type": "http",
+        "host": "speedtest.net",
+        "path": "/",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vless",
       "tag": "France🇫🇷 IRANCELL",
       "server": "france.tomk.fun",
       "server_port": 5000,
@@ -406,6 +590,73 @@
         "idle_timeout": "15s",
         "ping_timeout": "15s"
       }
+    },
+    {
+      "type": "vless",
+      "tag": "USA🇺🇸 IRANCELL",
+      "server": "usa.tomk.fun",
+      "server_port": 5000,
+      "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
+      "transport": {
+        "type": "http",
+        "host": "speedtest.net",
+        "path": "/",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "direct",
+      "tag": "bypass"
+    },
+    {
+      "type": "block",
+      "tag": "block"
     }
-  ]
+  ],
+  "route": {
+    "rules": [
+      {
+        "inbound": "dns-in",
+        "outbound": "dns-out"
+      },
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "clash_mode": "Direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "Global",
+        "outbound": "select"
+      },
+      {
+        "geoip": "private",
+        "outbound": "bypass"
+      }
+    ],
+    "final": "select",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "clash.db"
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:6756",
+      "secret": "poPNmikiLETSlm5V"
+    }
+  }
 }
