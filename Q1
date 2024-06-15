@@ -1,10 +1,16 @@
 {
   "log": {
-    "level": "warn",
+    "disabled": false,
+    "level": "error",
     "output": "box.log",
     "timestamp": true
   },
   "dns": {
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
     "servers": [
       {
         "tag": "dns-remote",
@@ -48,7 +54,9 @@
         "rewrite_ttl": 3000
       }
     ],
-    "final": "dns-remote"
+    "final": "dns-remote",
+    "strategy": "ipv4_only",
+    "independent_cache": true
   },
   "inbounds": [
     {
@@ -647,6 +655,7 @@
     ],
     "final": "select",
     "auto_detect_interface": true,
+    "find_process": true,
     "override_android_vpn": true
   },
   "experimental": {
