@@ -158,24 +158,20 @@ dns:
 
 proxies:
 proxy-groups:
+  - name: 🕹
+    type: select
+    proxies:
+      - 🕹load-balance
+      - ♻️ url-test
+      - 🚧 fallback
+      - ⚖️ load-balance
+      
   - name: 🕹load-balance
-    type: load-balance
+    type: url-test
     url: https://cp.cloudflare.com/generate_204
     interval: 180
     hidden: true
     proxies:
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
-  - name: 🕹
-    type: select
-    proxies:
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
       - 🇭🇰 
       - 🇨🇳 
       - 🇸🇬 
