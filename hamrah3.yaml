@@ -158,6 +158,18 @@ dns:
 
 proxies:
 proxy-groups:
+  - name: 🕹load-balance
+    type: load-balance
+    url: https://cp.cloudflare.com/generate_204
+    interval: 180
+    hidden: true
+    proxies:
+      - 🇭🇰 
+      - 🇨🇳 
+      - 🇸🇬 
+      - 🇺🇲 
+      - 🇯🇵 
+      - 🇰🇷 
   - name: 🕹
     type: select
     proxies:
@@ -170,9 +182,6 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-    use:
-      - provider1
-      - provider2
   - name: ♻️ url-test
     type: url-test
     url: https://cp.cloudflare.com/generate_204
