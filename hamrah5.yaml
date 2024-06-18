@@ -1,110 +1,62 @@
-####################################################################################
-#
-# Work on Linux, as a transparent proxy gateway, just replace the Subscription-1 URL.
-#
-# 运行在Linux机器上，作为透明代理网关使用，只需替换Subscription-1的订阅链接，
-# 请把客户端的网关和DNS指向Linux机器的IP，客户端DNS为公网DNS时可不用指向网关的DNS。
-#
-####################################################################################
-
-#mixed-port: 7890
-#mitm-port: 7891
-
+mixed-port: 7890
+# 局域网访问控制(白名单/黑名单)
 allow-lan: true
-
-bind-address: '*'
-
-# rule / script / global / direct (default value is rule)
+lan-allowed-ips: ["0.0.0.0/0", "::/0"]
+lan-disallowed-ips: []
+# 运行模式
 mode: rule
-
-# set log level to stdout (default value is info)
-# debug / info / warning / error
-log-level: warning
-
-ipv6: false
-
-sniffing: false
-
-force-cert-verify: true
-
-profile:
-  store-selected: true
-  store-fake-ip: true
-  tracing: false # default value is true
-
-experimental:
-#  udp-fallback-policy: 'proxy' # a proxy that supports UDP
-
-# A RESTful API for clash
+# 日志级别
+log-level: info
+# 接受IPv6流量
+ipv6: true
+# 外部控制监听地址、访问密钥
 external-controller: 0.0.0.0:9090
+secret: ""
+# 延迟计算去除握手等额外延迟
+unified-delay: true
+# TCP并发
+tcp-concurrent: true
+# 全局客户端指纹(支持VLESS,VMess,Trojan)
+global-client-fingerprint: chrome
+# 下载外部资源(proxy-provider、rule-provider、GEO等)使用的UA
+global-ua: clash.meta
 
-# Secret for RESTful API (Optional)
-#secret: xxxx
-
-external-ui: ./dashboard
-
-# outbound interface name
-interface-name: eth0
-
-ebpf:
-  auto-redir:
-    - eth0 # gateway interface name, 网关对应的网卡接口名称
-#    - wlan0
-
-tun:
-  enable: true
-  stack: system # system or gvisor
-  device: tun://utun
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  auto-route: true # auto set global route
-#  auto-detect-interface: true # conflict with interface-name
-
-hosts:
-  'localhost': '127.0.0.1'
-
+# DNS配置
+nameservers: &nameservers
+  - https://dns.alidns.com/dns-query # 阿里云公共DNS
+  - https://doh.pub/dns-query # 腾讯DNSPod
+  - https://doh.360.cn/dns-query # 360安全DNS
+fallback_nameservers: &fallback_nameservers
+  - https://1.1.1.1/dns-query # Cloudflare(主)
+  - https://1.0.0.1/dns-query # Cloudflare(备)
+  - https://208.67.222.222/dns-query # OpenDNS(主)
+  - https://208.67.220.220/dns-query # OpenDNS(备)
+  - https://194.242.2.2/dns-query # Mullvad(主)
+  - https://194.242.2.3/dns-query # Mullvad(备)
 dns:
   enable: true
-  use-hosts: true
-  ipv6: false
-  remote-dns-resolve: true # default value is true
+  ipv6: true
+  use-system-hosts: false
+  cache-algorithm: arc
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  listen: 0.0.0.0:53
-#  nameserver-policy:
-#    '+.example.com': 192.168.1.254
-  default-nameserver:
-    - 119.29.29.29
-    - 223.6.6.6
-  proxy-server-nameserver:
-    - https://1.12.12.12/dns-query
-    - https://223.5.5.5/dns-query
-  nameserver:
-    - https://120.53.53.53/dns-query
-    - tls://223.6.6.6:853
-  remote-nameserver:
-    - tls://8.8.8.8:853
-    - tls://1.1.1.1:853
-  fallback:
-    - tcp://8.8.8.8:53#DNS-Proxy # if set `remote-dns-resolve` to false, then enable it.
   fake-ip-filter:
-    - '*.lan'
-#    - '+.example.com'
-  fallback-filter:
-    geoip: false
-    geosite:
-      - gfw
-#    domain:
-#      - '+.example.com'
-    ipcidr:
-      - 0.0.0.0/32
-
-#mitm:
-#  hosts:
-#    - '+.google.cn'
-#  rules:
-#    - ^https?://(.*)google\.cn(.*) url 307 https://$1google.com$2
+    [
+      "+.lan",
+      "+.local",
+      "+.msftconnecttest.com",
+      "+.msftncsi.com",
+      "localhost.ptlogin2.qq.com",
+      "localhost.sec.qq.com",
+      "localhost.work.weixin.qq.com"
+    ]
+  default-nameserver: ["223.5.5.5", "114.114.114.114", "1.1.1.1", "8.8.8.8"]
+  nameserver: *nameservers
+  proxy-server-nameserver: *nameservers
+  nameserver-policy:
+    "+.mirror.ghproxy.com": *fallback_nameservers
+    "geosite:private,cn,geolocation-cn": *nameservers
+    "geosite:google,youtube,telegram,gfw,geolocation-!cn": *fallback_nameservers
 
 proxy-groups:
   - name: Auto
@@ -527,16 +479,16 @@ rules:
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN,iosapps.itunes.apple.com,DIRECT
 
-  - GEOSITE,icloud,iCloud
-  - GEOSITE,apple,Apple
-  - GEOSITE,microsoft@cn,MicrosoftCN
-  - GEOSITE,paypal@cn,CN
-  - GEOSITE,paypal,PayPal
-  - GEOSITE,twitter,Twitter
-  - GEOSITE,facebook,Facebook
-  - GEOSITE,youtube,YouTube
-  - GEOSITE,geolocation-!cn,Proxy
-  - GEOSITE,geolocation-cn,CN
+  - GEOIP,icloud,iCloud
+  - GEOIP,apple,Apple
+  - GEOIP,microsoft,MicrosoftCN
+  - GEOIP,paypal@cn,CN
+  - GEOIP,paypal,PayPal
+  - GEOIP,twitter,Twitter
+  - GEOIP,facebook,Facebook
+  - GEOIP,youtube,YouTube
+
+
 
   - GEOIP,cn,CN
 
