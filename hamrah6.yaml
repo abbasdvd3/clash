@@ -1,110 +1,101 @@
-####################################################################################
-#
-# Work on Linux, as a transparent proxy gateway, just replace the Subscription-1 URL.
-#
-# 运行在Linux机器上，作为透明代理网关使用，只需替换Subscription-1的订阅链接，
-# 请把客户端的网关和DNS指向Linux机器的IP，客户端DNS为公网DNS时可不用指向网关的DNS。
-#
-####################################################################################
-
-#mixed-port: 7890
-#mitm-port: 7891
-
+# port: 7890
+# socks-port: 7891
 allow-lan: true
-
-bind-address: '*'
-
-# rule / script / global / direct (default value is rule)
-mode: rule
-
-# set log level to stdout (default value is info)
-# debug / info / warning / error
-log-level: warning
-
+mode: Rule
+bind-address: "*"
 ipv6: false
+log-level: info
+find-process-mode: always
+enable-process: true
+unified-delay: false
+keep-alive-interval: 15
+tcp-concurrent: true
+geodata-mode: false
 
-sniffing: false
-
-force-cert-verify: true
-
+external-controller: 0.0.0.0:9090
+external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+global-client-fingerprint: chrome
+geo-auto-update: true
+geo-update-interval: 24
+global-ua: clash.meta
 profile:
   store-selected: true
   store-fake-ip: true
-  tracing: false # default value is true
-
 experimental:
-#  udp-fallback-policy: 'proxy' # a proxy that supports UDP
-
-# A RESTful API for clash
-external-controller: 0.0.0.0:9090
-
-# Secret for RESTful API (Optional)
-#secret: xxxx
-
-external-ui: ./dashboard
-
-# outbound interface name
-interface-name: eth0
-
-ebpf:
-  auto-redir:
-    - eth0 # gateway interface name, 网关对应的网卡接口名称
-#    - wlan0
-
+  quic-go-disable-gso: false
+  quic-go-disable-ecn: false
+sniffer:
+  enable: false
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
 tun:
   enable: true
-  stack: system # system or gvisor
-  device: tun://utun
+  stack: mixed
   dns-hijack:
-    - any:53
-    - tcp://any:53
-  auto-route: true # auto set global route
-#  auto-detect-interface: true # conflict with interface-name
-
-hosts:
-  'localhost': '127.0.0.1'
-
+    - 'any:53'
+  auto-route: true
+  auto-detect-interface: true
 dns:
   enable: true
   use-hosts: true
   ipv6: false
-  remote-dns-resolve: true # default value is true
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  listen: 0.0.0.0:53
-#  nameserver-policy:
-#    '+.example.com': 192.168.1.254
+  remote-dns-resolve: false# default value is true
+  enhanced-mode: fake-ip # redir-host # fake-ip
+  fake-ip-range: 28.0.0.0/16
+  listen: 0.0.0.0:1053
   default-nameserver:
-    - 119.29.29.29
-    - 223.6.6.6
-  proxy-server-nameserver:
-    - https://1.12.12.12/dns-query
-    - https://223.5.5.5/dns-query
+#    - 114.114.114.114
+  #  - 119.29.29.29
+ #   - 119.28.28.28
+    - 8.8.8.8
+    - 1.1.1.1
+#    - tls://1.12.12.12:853
+#    - tls://223.5.5.5:853
+ # proxy-server-nameserver:
+#    - https://1.12.12.12/dns-query
+#    - https://223.5.5.5/dns-query
   nameserver:
-    - https://120.53.53.53/dns-query
-    - tls://223.6.6.6:853
+    - 1.1.1.1
+#    - https://120.53.53.53/dns-query
+#    - tls://223.6.6.6:853
+    - 8.8.8.8
+ #   - tls://223.5.5.5:853
+#    - tls://223.6.6.6:853
+#    - tls://120.53.53.53
+ #   - tls://1.12.12.12
+#    - 114.114.114.114#PROXY 
+ #   - tls://223.5.5.5:853
+ #   - dhcp://en0
+#    - quic://dns.adguard.com:784#PROXY
+ #   - tls://dot.pub:853
   remote-nameserver:
-    - tls://8.8.8.8:853
-    - tls://1.1.1.1:853
-  fallback:
-    - tcp://8.8.8.8:53#DNS-Proxy # if set `remote-dns-resolve` to false, then enable it.
+    - https://8.8.8.8/dns-query
+#    - tls://8.8.8.8:853
+#  fallback:
+ #   - tcp://8.8.8.8:53#DNS-Proxy # if set `remote-dns-resolve` to false, then enable it.
   fake-ip-filter:
     - '*.lan'
-#    - '+.example.com'
-  fallback-filter:
-    geoip: false
-    geosite:
-      - gfw
-#    domain:
-#      - '+.example.com'
-    ipcidr:
-      - 0.0.0.0/32
-
-#mitm:
-#  hosts:
-#    - '+.google.cn'
-#  rules:
-#    - ^https?://(.*)google\.cn(.*) url 307 https://$1google.com$2
+    - '+.example.com'
+#  nameserver-policy:
+#    '+.example.com': 192.168.1.254  
+#    "geosite:.ir,private": 
+#      - https://223.5.5.5/dns-query
+#      - https://120.53.53.53/dns-query
+#    "geosite:ir":
+#      - https://8.8.4.4/dns-query#机场
+#      - https://1.0.0.1/dns-query#机场
+ # proxy-server-nameserver:
+#    - https://223.5.5.5/dns-query
+ #   - https://120.53.53.53/dns-query
 
 proxy-groups:
   - name: Auto
@@ -522,17 +513,22 @@ rules:
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN,iosapps.itunes.apple.com,DIRECT
 
-  - GEOSITE,icloud,iCloud
-  - GEOSITE,apple,Apple
-  - GEOSITE,microsoft@cn,MicrosoftCN
-  - GEOSITE,paypal@cn,CN
-  - GEOSITE,paypal,PayPal
-  - GEOSITE,twitter,Twitter
-  - GEOSITE,facebook,Facebook
-  - GEOSITE,youtube,YouTube
-  - GEOSITE,geolocation-!cn,Proxy
-  - GEOSITE,geolocation-cn,CN
+#  - GEOSITE,icloud,iCloud
+#  - GEOSITE,apple,Apple
+  - GEOSITE,microsoft,MicrosoftCN
+  - GEOSITE,nsfw,PayPal
+  - GEOIP,nsfw,Twitter
+  - GEOSITE,social,Facebook
+  - GEOIP,social,YouTube
 
-  - GEOIP,cn,CN
+  - GEOIP,private,DIRECT,no-resolve
+  - GEOSITE,category-ads-all,REJECT
+  - GEOSITE,malware,REJECT
+  - GEOSITE,phishing,REJECT
+  - GEOSITE,cryptominers,REJECT
+  - GEOIP,malware,REJECT
+  - GEOIP,phishing,REJECT
+  - GEOSITE,ir,DIRECT
+  - GEOIP,ir,DIRECT
 
   - MATCH,Mismatch
