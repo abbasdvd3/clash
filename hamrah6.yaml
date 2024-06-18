@@ -110,6 +110,7 @@ proxy-groups:
       - Subscription-4
       - Subscription-5
       - Subscription-6
+      - Subscription-7
 
   - name: Geo-HK
     type: url-test
@@ -173,7 +174,7 @@ proxy-groups:
     filter: "China|CN|中国"
     use: *Use
     proxies:
-      - DIRECT
+    #  - DIRECT
 
   - name: Block
     type: select
@@ -412,7 +413,22 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
 
-
+  Subscription-7:
+    type: http
+    url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml" # replace this URL with your provider's subscription link
+    path: ./providers/Subscription-7.yaml
+    interval: 6
+#    prefix-name: "S-"
+#    url-proxy: true
+#    udp: true
+    header:
+      User-Agent:
+        - "Clash/v1.11.8"
+    health-check:
+      enable: false
+      interval: 0
+      url: http://www.gstatic.com/generate_204
+#      lazy: false # default value is true
 script:
 #  path: ./script.star
   code: |
