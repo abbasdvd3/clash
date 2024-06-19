@@ -1,4 +1,92 @@
 {
+  "log": {
+    "level": "trace",
+    "output": "box.log",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-remote",
+        "address": "h3://8.8.8.8/dns-query",
+        "address_resolver": "dns-direct"
+      },
+      {
+        "tag": "dns-direct",
+        "address": "h3://8.8.8.8/dns-query",
+        "address_resolver": "dns-local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-local",
+        "address": "local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "domain": [
+          "6france.tomk.fun",
+          "germany1.tomk.fun",
+          "england1.tomk.fun",
+          "6germany1.tomk.fun",
+          "6netherland.tomk.fun",
+          "6england2.tomk.fun",
+          "germany2.tomk.fun",
+          "netherland.tomk.fun",
+          "usa.tomk.fun",
+          "zula.ir",
+          "6germany2.tomk.fun",
+          "6usa.tomk.fun",
+          "6england1.tomk.fun",
+          "6england3.tomk.fun",
+          "england2.tomk.fun",
+          "england3.tomk.fun",
+          "france.tomk.fun"
+        ],
+        "server": "dns-direct"
+      },
+      {
+        "domain": "cp.cloudflare.com",
+        "server": "dns-remote",
+        "rewrite_ttl": 3000
+      }
+    ],
+    "final": "dns-remote"
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "mtu": 9000,
+      "inet4_address": "172.19.0.1/28",
+      "inet6_address": "fdfe:dcba:9876::1/126",
+      "auto_route": true,
+      "strict_route": true,
+      "endpoint_independent_nat": true,
+      "stack": "mixed",
+      "sniff": true,
+      "sniff_override_destination": true
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 7890,
+      "sniff": true,
+      "sniff_override_destination": true
+    },
+    {
+      "type": "direct",
+      "tag": "dns-in",
+      "listen": "127.0.0.1",
+      "listen_port": 6450
+    }
+  ],
   "outbounds": [
     {
       "type": "selector",
@@ -6,6 +94,30 @@
       "outbounds": [
         "auto",
         "Germany1g 🇩🇪",
+        "Germany2g 🇩🇪",
+        "Netherlandf 🇳🇱",
+        "England1g 🇬🇧",
+        "England2t 🇬🇧",
+        "England3o 🇬🇧",
+        "Franceo 🇫🇷",
+        "USAjuc 🇺🇸",
+        "Germanyxjb1🇩🇪",
+        "Germany2bz🇩🇪",
+        "Netherlazbnd🇳🇱",
+        "Englanbzjd1🇬🇧",
+        "Englazjbnd2🇬🇧",
+        "Englanzvjd3🇬🇧",
+        "Franzce🇫🇷",
+        "UzjSA🇺🇸",
+        "Germany1zzv🇩🇪 IRANCELL",
+        "Germany2🇩🇪 IRANCELL",
+        "Netherlandzj🇳🇱 IRANCELL",
+        "England1z🇬🇧 IRANCELL",
+        "England2🇬🇧 IRANCELL",
+        "Englandz3🇬🇧 IRANCELL",
+        "France🇫🇷 IRANCELL",
+        "USA🇺🇸 IRANCELL",
+        "Germany1 🇩🇪",
         "Germany2 🇩🇪",
         "Netherland 🇳🇱",
         "England1 🇬🇧",
@@ -28,31 +140,7 @@
         "England2🇬🇧 IPV6",
         "England3🇬🇧 IPV6",
         "France🇫🇷 IPV6",
-        "USA🇺🇸 IPV6",
-        "Germany1 🇩🇪",
-        "Germany2 🇩🇪",
-        "Netherland 🇳🇱",
-        "England1 🇬🇧",
-        "England2 🇬🇧",
-        "England3 🇬🇧",
-        "France 🇫🇷",
-        "USA 🇺🇸",
-        "Germany1🇩🇪",
-        "Germany2🇩🇪",
-        "Netherland🇳🇱",
-        "England1🇬🇧",
-        "England2🇬🇧",
-        "England3🇬🇧",
-        "France🇫🇷",
-        "USA🇺🇸",
-        "Germany1🇩🇪 IRANCELL",
-        "Germany2🇩🇪 IRANCELL",
-        "Netherland🇳🇱 IRANCELL",
-        "England1🇬🇧 IRANCELL",
-        "England2🇬🇧 IRANCELL",
-        "England3🇬🇧 IRANCELL",
-        "France🇫🇷 IRANCELL",
-        "USA🇺🇸 IRANCELL"
+        "USA🇺🇸 IPV6"
       ],
       "default": "auto"
     },
@@ -61,6 +149,30 @@
       "tag": "auto",
       "outbounds": [
         "Germany1g 🇩🇪",
+        "Germany2g 🇩🇪",
+        "Netherlandf 🇳🇱",
+        "England1g 🇬🇧",
+        "England2t 🇬🇧",
+        "England3o 🇬🇧",
+        "Franceo 🇫🇷",
+        "USAjuc 🇺🇸",
+        "Germanyxjb1🇩🇪",
+        "Germany2bz🇩🇪",
+        "Netherlazbnd🇳🇱",
+        "Englanbzjd1🇬🇧",
+        "Englazjbnd2🇬🇧",
+        "Englanzvjd3🇬🇧",
+        "Franzce🇫🇷",
+        "UzjSA🇺🇸",
+        "Germany1zzv🇩🇪 IRANCELL",
+        "Germany2🇩🇪 IRANCELL",
+        "Netherlandzj🇳🇱 IRANCELL",
+        "England1z🇬🇧 IRANCELL",
+        "England2🇬🇧 IRANCELL",
+        "Englandz3🇬🇧 IRANCELL",
+        "France🇫🇷 IRANCELL",
+        "USA🇺🇸 IRANCELL",
+        "Germany1 🇩🇪",
         "Germany2 🇩🇪",
         "Netherland 🇳🇱",
         "England1 🇬🇧",
@@ -83,34 +195,11 @@
         "England2🇬🇧 IPV6",
         "England3🇬🇧 IPV6",
         "France🇫🇷 IPV6",
-        "USA🇺🇸 IPV6",
-        "Germany1 🇩🇪",
-        "Germany2 🇩🇪",
-        "Netherland 🇳🇱",
-        "England1 🇬🇧",
-        "England2 🇬🇧",
-        "England3 🇬🇧",
-        "France 🇫🇷",
-        "USA 🇺🇸",
-        "Germany1🇩🇪",
-        "Germany2🇩🇪",
-        "Netherland🇳🇱",
-        "England1🇬🇧",
-        "England2🇬🇧",
-        "England3🇬🇧",
-        "France🇫🇷",
-        "USA🇺🇸",
-        "Germany1🇩🇪 IRANCELL",
-        "Germany2🇩🇪 IRANCELL",
-        "Netherland🇳🇱 IRANCELL",
-        "England1🇬🇧 IRANCELL",
-        "England2🇬🇧 IRANCELL",
-        "England3🇬🇧 IRANCELL",
-        "France🇫🇷 IRANCELL",
-        "USA🇺🇸 IRANCELL"
+        "USA🇺🇸 IPV6"
       ],
-      "url": "http://cp.cloudflare.com/",
-      "interval": "10m0s"
+      "url": "http://clients3.google.com/generate_204",
+      "interval": "10s",
+      "idle_timeout": "10s"
     },
     {
       "type": "vless",
@@ -130,7 +219,7 @@
     },
     {
       "type": "vless",
-      "tag": "Germany2 🇩🇪",
+      "tag": "Germany2g 🇩🇪",
       "server": "zula.ir",
       "server_port": 2053,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -150,7 +239,7 @@
     },
     {
       "type": "vless",
-      "tag": "Netherland 🇳🇱",
+      "tag": "Netherlandf 🇳🇱",
       "server": "zula.ir",
       "server_port": 2053,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -170,7 +259,7 @@
     },
     {
       "type": "vless",
-      "tag": "England1 🇬🇧",
+      "tag": "England1g 🇬🇧",
       "server": "zula.ir",
       "server_port": 2053,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -190,7 +279,7 @@
     },
     {
       "type": "vless",
-      "tag": "England2 🇬🇧",
+      "tag": "England2t 🇬🇧",
       "server": "zula.ir",
       "server_port": 2053,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -210,7 +299,7 @@
     },
     {
       "type": "vless",
-      "tag": "England3 🇬🇧",
+      "tag": "England3o 🇬🇧",
       "server": "zula.ir",
       "server_port": 2053,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -230,7 +319,7 @@
     },
     {
       "type": "vless",
-      "tag": "France 🇫🇷",
+      "tag": "Franceo 🇫🇷",
       "server": "zula.ir",
       "server_port": 2053,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -250,7 +339,7 @@
     },
     {
       "type": "vless",
-      "tag": "USA 🇺🇸",
+      "tag": "USAjuc 🇺🇸",
       "server": "zula.ir",
       "server_port": 2053,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -270,7 +359,7 @@
     },
     {
       "type": "vless",
-      "tag": "Germany1🇩🇪",
+      "tag": "Germanyxjb1🇩🇪",
       "server": "104.25.85.27",
       "server_port": 2083,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -294,7 +383,7 @@
     },
     {
       "type": "vless",
-      "tag": "Germany2🇩🇪",
+      "tag": "Germany2bz🇩🇪",
       "server": "104.25.85.27",
       "server_port": 2083,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -318,7 +407,7 @@
     },
     {
       "type": "vless",
-      "tag": "Netherland🇳🇱",
+      "tag": "Netherlazbnd🇳🇱",
       "server": "104.25.85.27",
       "server_port": 2083,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -342,7 +431,7 @@
     },
     {
       "type": "vless",
-      "tag": "England1🇬🇧",
+      "tag": "Englanbzjd1🇬🇧",
       "server": "104.25.85.27",
       "server_port": 2083,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -366,7 +455,7 @@
     },
     {
       "type": "vless",
-      "tag": "England2🇬🇧",
+      "tag": "Englazjbnd2🇬🇧",
       "server": "104.25.85.27",
       "server_port": 2083,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -390,7 +479,7 @@
     },
     {
       "type": "vless",
-      "tag": "England3🇬🇧",
+      "tag": "Englanzvjd3🇬🇧",
       "server": "104.25.85.27",
       "server_port": 2083,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -414,7 +503,7 @@
     },
     {
       "type": "vless",
-      "tag": "France🇫🇷",
+      "tag": "Franzce🇫🇷",
       "server": "104.25.85.27",
       "server_port": 2083,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -438,7 +527,7 @@
     },
     {
       "type": "vless",
-      "tag": "USA🇺🇸",
+      "tag": "UzjSA🇺🇸",
       "server": "104.25.85.27",
       "server_port": 2083,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -462,7 +551,7 @@
     },
     {
       "type": "vless",
-      "tag": "Germany1🇩🇪 IRANCELL",
+      "tag": "Germany1zzv🇩🇪 IRANCELL",
       "server": "germany1.tomk.fun",
       "server_port": 5000,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -490,7 +579,7 @@
     },
     {
       "type": "vless",
-      "tag": "Netherland🇳🇱 IRANCELL",
+      "tag": "Netherlandzj🇳🇱 IRANCELL",
       "server": "netherland.tomk.fun",
       "server_port": 5000,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -504,7 +593,7 @@
     },
     {
       "type": "vless",
-      "tag": "England1🇬🇧 IRANCELL",
+      "tag": "England1z🇬🇧 IRANCELL",
       "server": "england1.tomk.fun",
       "server_port": 5000,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -532,7 +621,7 @@
     },
     {
       "type": "vless",
-      "tag": "England3🇬🇧 IRANCELL",
+      "tag": "Englandz3🇬🇧 IRANCELL",
       "server": "england3.tomk.fun",
       "server_port": 5000,
       "uuid": "d29a5a70-8608-4055-9f98-7aa8c55d9caa",
@@ -1062,15 +1151,6 @@
     },
     {
       "type": "direct",
-      "tag": "direct-fragment",
-      "tls_fragment": {
-        "enabled": true,
-        "size": "1-500",
-        "sleep": "0-500"
-      }
-    },
-    {
-      "type": "direct",
       "tag": "bypass"
     },
     {
@@ -1078,13 +1158,7 @@
       "tag": "block"
     }
   ],
-  "route": {
-    "geoip": {
-      "path": "geo-assets/sagernet-sing-geoip-geoip.db"
-    },
-    "geosite": {
-      "path": "geo-assets/sagernet-sing-geosite-geosite.db"
-    },
+  "route": 
     "rules": [
       {
         "inbound": "dns-in",
@@ -1117,8 +1191,8 @@
       "path": "clash.db"
     },
     "clash_api": {
-      "external_controller": "127.0.0.1:6756",
-      "secret": "HAlnMHOD06bvCsQZ"
+      "external_controller": "127.0.0.1:9999",
+      "secret": "r2-i8Anl8aoQ5Ooq"
     }
   }
 }
