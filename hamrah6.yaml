@@ -107,7 +107,7 @@ proxies:
 proxy-groups:
   - name: Proxy
     type: select
-    use: *Use
+    use: 
     proxies:
       - Auto
       - dns-out
@@ -126,7 +126,7 @@ proxy-groups:
     interval: 900
     tolerance: 100
     url: http://www.gstatic.com/generate_204
-    use: &Use
+    use: 
       - Subscription-1
       - Subscription-2
       - Subscription-3
@@ -141,67 +141,120 @@ proxy-groups:
     tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "HongKong|HK|香港"
-    use: *Use
-
+    use:
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
   - name: Geo-TW
     type: url-test
     interval: 600
     tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Taiwan|TW|台湾"
-    use: *Use
-
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
   - name: Geo-SG
     type: url-test
     interval: 600
     tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Singapore|SG|新加坡"
-    use: *Use
-
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      
   - name: Geo-JP
     type: url-test
     interval: 600
     tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Japan|JP|日本"
-    use: *Use
-
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
   - name: Geo-US
     type: url-test
     interval: 600
     tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "America|United States|US|美国"
-    use: *Use
-
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      
   - name: Geo-UK
     type: url-test
     interval: 600
     tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Britain|England|UK|英国"
-    use: *Use
-
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      
   - name: Geo-DE
     type: url-test
     interval: 600
     tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Germany|Deutsch|DE|德国"
-    use: *Use
-
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      
   - name: Geo-CN
     type: select
  #   disable-dns: true
     filter: "China|CN|中国"
-    use: *Use
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
     proxies:
     #  - DIRECT
 
   - name: Block
     type: select
-    use: *Use
+    use: 
     proxies:
       - REJECT
       - DIRECT
@@ -217,8 +270,8 @@ proxy-groups:
 
   - name: DNS-Proxy
     type: select
-    use: *Use
-    proxies: &Proxy
+    use: 
+    proxies: 
       - Proxy
       - Auto
       - dns-out
@@ -235,90 +288,90 @@ proxy-groups:
 
   - name: Netflix
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: Apple
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: iCloud
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: MicrosoftCN
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: PayPal
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: Steam
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use:
+    proxies: 
+      - Proxy
   - name: Game
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: Facebook
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: Twitter
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: Telegram
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: GlobalTV
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: YouTube
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: Spotify
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: SpeedTest
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: Download
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: CN
     type: select
  #   disable-dns: true
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
   - name: Mismatch
     type: select
-    use: *Use
-    proxies: *Proxy
-
+    use: 
+    proxies: 
+      - Proxy
 proxy-providers:
   Subscription-1:
     type: http
@@ -345,7 +398,7 @@ proxy-providers:
 #    prefix-name: "S-"
 #    url-proxy: true
 #    udp: true
-     header:
+    header:
 #      User-Agent:
 #        - "Clash/v1.11.8"
     health-check:
@@ -441,36 +494,36 @@ proxy-providers:
 
 
 rules:
-  - GEOIP,private,DIRECT,no-resolve
-  - GEOIP,telegram,Telegram,no-resolve
+  - geoip,private,DIRECT,no-resolve
+  - geoip,telegram,Telegram,no-resolve
 
   - DOMAIN-SUFFIX,push.apple.com,DIRECT
 
-  - GEOSITE,category-ads-all,Block
+  - geosite,category-ads-all,Block
 
   - DOMAIN-SUFFIX,jetbrains.com,DIRECT
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN,iosapps.itunes.apple.com,DIRECT
 
-  - GEOSITE,openai,iCloud
-  - GEOIP,openai,Apple
-  - GEOSITE,microsoft,MicrosoftCN
-  - GEOSITE,nsfw,PayPal
-  - GEOIP,nsfw,Twitter
-  - GEOSITE,social,Facebook
-  - GEOIP,social,YouTube
-  - GEOSITE,google,YouTube
-  - GEOIP,google,YouTube
-  - GEOIP,private,DIRECT,no-resolve
-  - GEOIP,github,DIRECT,no-resolve
-  - GEOSITE,github,DIRECT,no-resolve
-  - GEOSITE,category-ads-all,REJECT
-  - GEOSITE,malware,REJECT
-  - GEOSITE,phishing,REJECT
-  - GEOSITE,cryptominers,REJECT
-  - GEOIP,malware,REJECT
-  - GEOIP,phishing,REJECT
-  - GEOSITE,ir,DIRECT
-  - GEOIP,ir,DIRECT
+#  - geosite,openai,iCloud
+#  - geoip,openai,Apple
+  - geosite,microsoft,MicrosoftCN
+#  - geosite,nsfw,PayPal
+#  - geoip,nsfw,Twitter
+#  - geosite,social,Facebook
+#  - geoip,social,YouTube
+  - geosite,google,YouTube
+  - geoip,google,YouTube
+  - geoip,private,DIRECT,no-resolve
+#  - geoip,github,DIRECT,no-resolve
+#  - geosite,github,DIRECT,no-resolve
+  - geosite,category-ads-all,REJECT
+#  - geosite,malware,REJECT
+#  - geosite,phishing,REJECT
+#  - geosite,cryptominers,REJECT
+#  - geoip,malware,REJECT
+#  - geoip,phishing,REJECT
+#  - geosite,ir,DIRECT
+  - geoip,ir,DIRECT
 
   - MATCH,Mismatch
