@@ -101,12 +101,30 @@ dns:
  # proxy-server-nameserver:
 #    - https://223.5.5.5/dns-query
  #   - https://120.53.53.53/dns-query
-
+proxies:
+  - name: dns-out
+    type: dns
 proxy-groups:
+  - name: Proxy
+    type: select
+    use: *Use
+    proxies:
+      - Auto
+      - dns-out
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
   - name: Auto
     type: url-test
-    interval: 1200
-    tolerance: 150
+    interval: 900
+    tolerance: 100
     url: http://www.gstatic.com/generate_204
     use: &Use
       - Subscription-1
@@ -175,7 +193,7 @@ proxy-groups:
 
   - name: Geo-CN
     type: select
-    disable-dns: true
+ #   disable-dns: true
     filter: "China|CN|中国"
     use: *Use
     proxies:
@@ -187,6 +205,7 @@ proxy-groups:
     proxies:
       - REJECT
       - DIRECT
+      - dns-out
       - Geo-HK
       - Geo-TW
       - Geo-SG
@@ -195,22 +214,6 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-
-  - name: Proxy
-    type: select
-    use: *Use
-    proxies:
-      - Auto
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-UK
-      - Geo-DE
-      - Geo-CN
-      - DIRECT
-      - Block
 
   - name: DNS-Proxy
     type: select
@@ -218,6 +221,7 @@ proxy-groups:
     proxies: &Proxy
       - Proxy
       - Auto
+      - dns-out
       - Geo-HK
       - Geo-TW
       - Geo-SG
@@ -306,7 +310,7 @@ proxy-groups:
 
   - name: CN
     type: select
-    disable-dns: true
+ #   disable-dns: true
     use: *Use
     proxies: *Proxy
 
