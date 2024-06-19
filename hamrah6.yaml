@@ -325,10 +325,10 @@ proxy-providers:
 #    url-proxy: true
 #    udp: true
     header:
-      User-Agent:
-        - "Clash/v1.11.8"
+#      User-Agent:
+#        - "Clash/v1.11.8"
     health-check:
-      enable: false
+      enable: true
       interval: 0
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
@@ -341,11 +341,11 @@ proxy-providers:
 #    prefix-name: "S-"
 #    url-proxy: true
 #    udp: true
-    header:
-      User-Agent:
-        - "Clash/v1.11.8"
+     header:
+#      User-Agent:
+#        - "Clash/v1.11.8"
     health-check:
-      enable: false
+      enable: true
       interval: 0
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
@@ -359,10 +359,10 @@ proxy-providers:
 #    url-proxy: true
 #    udp: true
     header:
-      User-Agent:
-        - "Clash/v1.11.8"
+#      User-Agent:
+#        - "Clash/v1.11.8"
     health-check:
-      enable: false
+      enable: true
       interval: 0
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
@@ -376,10 +376,10 @@ proxy-providers:
 #    url-proxy: true
 #    udp: true
     header:
-      User-Agent:
-        - "Clash/v1.11.8"
+#      User-Agent:
+#        - "Clash/v1.11.8"
     health-check:
-      enable: false
+      enable: true
       interval: 0
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
@@ -393,10 +393,10 @@ proxy-providers:
 #    url-proxy: true
 #    udp: true
     header:
-      User-Agent:
-        - "Clash/v1.11.8"
+#      User-Agent:
+#        - "Clash/v1.11.8"
     health-check:
-      enable: false
+      enable: true
       interval: 0
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
@@ -410,10 +410,10 @@ proxy-providers:
 #    url-proxy: true
 #    udp: true
     header:
-      User-Agent:
-        - "Clash/v1.11.8"
+#      User-Agent:
+#        - "Clash/v1.11.8"
     health-check:
-      enable: false
+      enable: true
       interval: 0
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
@@ -427,100 +427,14 @@ proxy-providers:
 #    url-proxy: true
 #    udp: true
     header:
-      User-Agent:
-        - "Clash/v1.11.8"
+#      User-Agent:
+#        - "Clash/v1.11.8"
     health-check:
-      enable: false
+      enable: true
       interval: 0
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
-script:
-#  path: ./script.star
-  code: |
-    blockHosts = ['analytics', 'adservice', 'firebase', 'bugly', 'safebrowsing', 'doubleclick']
-    directHosts = ['push.apple.com', 'iosapps.itunes.apple.com', 'jetbrains.com', 'msftconnecttest.com']
 
-    def main(ctx, metadata):
-      network = metadata["network"]
-      dst_port = int(metadata["dst_port"])
-      if network == 'udp' and dst_port == 443:
-        return "REJECT"
-
-      if network == "udp" and (dst_port == 123 or (dst_port >= 136 and dst_port <=139)):
-        return "DIRECT"
-
-      host = metadata["host"]
-      for kw in blockHosts:
-        if kw in host:
-          return "REJECT"
-
-      if ctx.rule_providers['category-ads-all'].match(metadata):
-        return "Block"
-
-      for kw in directHosts:
-        if kw in host:
-          return "DIRECT"
-
-      if ctx.rule_providers['icloud'].match(metadata):
-        return "iCloud"
-
-      if ctx.rule_providers['apple'].match(metadata):
-        return "Apple"
-
-      if ctx.rule_providers['microsoft@cn'].match(metadata):
-        return "MicrosoftCN"
-
-      if ctx.rule_providers['paypal@cn'].match(metadata):
-        return "CN"
-
-      if ctx.rule_providers['paypal'].match(metadata):
-        return "PayPal"
-
-      if ctx.rule_providers['twitter'].match(metadata):
-        return "Twitter"
-
-      if ctx.rule_providers['facebook'].match(metadata):
-        return "Facebook"
-
-      if ctx.rule_providers['youtube'].match(metadata):
-        return "YouTube"
-
-      if ctx.rule_providers['geolocation-!cn'].match(metadata):
-        return "Proxy"
-
-      if ctx.rule_providers['geolocation-cn'].match(metadata):
-        return "CN"
-
-      code = ""
-      ip = metadata["dst_ip"]
-      if ip != "":
-        code = ctx.geoip(ip)
-        if code == "PRIVATE" or code == "LAN":
-          return "DIRECT"
-        if code == "TELEGRAM":
-          return "Telegram"
-      else:
-        ip = ctx.resolve_ip(host)
-
-      if ip == "":
-        return "Mismatch"
-
-      code = ctx.geoip(ip) if code == "" else code
-      if code == "CN":
-        return "CN"
-
-      return "Mismatch" # default policy for requests which are not matched by any other script
-
-  engine: expr # or starlark (10x to 20x slower)
-  shortcuts:
-    QUIC: |
-      network == "udp" and dst_port == 443
-    Privacy: |
-      any(["analytics", "adservice", "firebase", "safebrowsing", "doubleclick", "bugly", "bugsnag"], host contains #)
-    BilibiliUdp: |
-      network == "udp" and match_provider("bilibili")
-    DirectUdp: |
-      network == "udp" and (dst_port == 123 or (dst_port >= 136 and dst_port <=139))
 
 rules:
   - GEOIP,private,DIRECT,no-resolve
@@ -534,15 +448,18 @@ rules:
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN,iosapps.itunes.apple.com,DIRECT
 
-#  - GEOSITE,icloud,iCloud
-#  - GEOSITE,apple,Apple
+  - GEOSITE,openai,iCloud
+  - GEOIP,openai,Apple
   - GEOSITE,microsoft,MicrosoftCN
   - GEOSITE,nsfw,PayPal
   - GEOIP,nsfw,Twitter
   - GEOSITE,social,Facebook
   - GEOIP,social,YouTube
-
+  - GEOSITE,google,YouTube
+  - GEOIP,google,YouTube
   - GEOIP,private,DIRECT,no-resolve
+  - GEOIP,github,DIRECT,no-resolve
+  - GEOSITE,github,DIRECT,no-resolve
   - GEOSITE,category-ads-all,REJECT
   - GEOSITE,malware,REJECT
   - GEOSITE,phishing,REJECT
