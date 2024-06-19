@@ -1,27 +1,16 @@
 mixed-port: 7890
-# 局域网访问控制(白名单/黑名单)
 allow-lan: true
 lan-allowed-ips: ["0.0.0.0/0", "::/0"]
 lan-disallowed-ips: []
-# 运行模式
 mode: rule
-# 日志级别
 log-level: info
-# 接受IPv6流量
 ipv6: true
-# 外部控制监听地址、访问密钥
 external-controller: 0.0.0.0:9090
 secret: ""
-# 延迟计算去除握手等额外延迟
 unified-delay: true
-# TCP并发
 tcp-concurrent: true
-# 全局客户端指纹(支持VLESS,VMess,Trojan)
 global-client-fingerprint: chrome
-# 下载外部资源(proxy-provider、rule-provider、GEO等)使用的UA
 global-ua: clash.meta
-
-# DNS配置
 nameservers: &nameservers
   - https://dns.alidns.com/dns-query # 阿里云公共DNS
   - https://doh.pub/dns-query # 腾讯DNSPod
@@ -61,8 +50,8 @@ dns:
 proxy-groups:
   - name: Auto
     type: url-test
-    interval: 1200
-    tolerance: 150
+    interval: 400
+   # tolerance: 150
     url: http://www.gstatic.com/generate_204
     use: &Use
       - Subscription-1
@@ -74,16 +63,16 @@ proxy-groups:
 
   - name: Geo-HK
     type: url-test
-    interval: 600
-    tolerance: 100
+    interval: 300
+ #   tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "HongKong|HK|香港"
     use: *Use
 
   - name: Geo-TW
     type: url-test
-    interval: 600
-    tolerance: 100
+    interval: 300
+#    tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Taiwan|TW|台湾"
     use: *Use
@@ -91,46 +80,49 @@ proxy-groups:
   - name: Geo-SG
     type: url-test
     interval: 600
-    tolerance: 100
+#    tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Singapore|SG|新加坡"
     use: *Use
 
   - name: Geo-JP
     type: url-test
-    interval: 600
-    tolerance: 100
+    interval: 300
+ #   tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Japan|JP|日本"
     use: *Use
 
   - name: Geo-US
     type: url-test
-    interval: 600
-    tolerance: 100
+    interval: 300
+#    tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "America|United States|US|美国"
     use: *Use
 
   - name: Geo-UK
     type: url-test
-    interval: 600
-    tolerance: 100
+    interval: 300
+#    tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Britain|England|UK|英国"
     use: *Use
 
   - name: Geo-DE
     type: url-test
-    interval: 600
-    tolerance: 100
+    interval: 300
+#    tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Germany|Deutsch|DE|德国"
     use: *Use
 
   - name: Geo-CN
-    type: select
-    disable-dns: true
+    type: url-test
+    interval: 300
+#    tolerance: 100
+    url: http://www.gstatic.com/generate_204
+#    disable-dns: true
     filter: "China|CN|中国"
     use: *Use
     proxies:
@@ -280,11 +272,11 @@ proxy-providers:
 #    url-proxy: true
 #    udp: true
     header:
-      User-Agent:
-        - "Clash/v1.11.8"
+  #    User-Agent:
+  #      - "Clash/v1.11.8"
     health-check:
-      enable: false
-      interval: 0
+      enable: true
+      interval: 300
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
 
@@ -297,11 +289,11 @@ proxy-providers:
 #    url-proxy: true
 #    udp: true
     header:
-      User-Agent:
-        - "Clash/v1.11.8"
+  #    User-Agent:
+  #      - "Clash/v1.11.8"
     health-check:
-      enable: false
-      interval: 0
+      enable: true
+      interval: 300
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
 
@@ -314,11 +306,11 @@ proxy-providers:
 #    url-proxy: true
 #    udp: true
     header:
-      User-Agent:
-        - "Clash/v1.11.8"
+  #    User-Agent:
+  #      - "Clash/v1.11.8"
     health-check:
-      enable: false
-      interval: 0
+      enable: true
+      interval: 300
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
 
@@ -331,11 +323,11 @@ proxy-providers:
 #    url-proxy: true
 #    udp: true
     header:
-      User-Agent:
-        - "Clash/v1.11.8"
+  #    User-Agent:
+  #      - "Clash/v1.11.8"
     health-check:
-      enable: false
-      interval: 0
+      enable: true
+      interval: 300
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
 
@@ -348,11 +340,11 @@ proxy-providers:
 #    url-proxy: true
 #    udp: true
     header:
-      User-Agent:
-        - "Clash/v1.11.8"
+  #    User-Agent:
+  #      - "Clash/v1.11.8"
     health-check:
-      enable: false
-      interval: 0
+      enable: true
+      interval: 300
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
 
@@ -365,102 +357,13 @@ proxy-providers:
 #    url-proxy: true
 #    udp: true
     header:
-      User-Agent:
-        - "Clash/v1.11.8"
+  #    User-Agent:
+  #      - "Clash/v1.11.8"
     health-check:
-      enable: false
-      interval: 0
+      enable: true
+      interval: 300
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
-
-
-script:
-#  path: ./script.star
-  code: |
-    blockHosts = ['analytics', 'adservice', 'firebase', 'bugly', 'safebrowsing', 'doubleclick']
-    directHosts = ['push.apple.com', 'iosapps.itunes.apple.com', 'jetbrains.com', 'msftconnecttest.com']
-
-    def main(ctx, metadata):
-      network = metadata["network"]
-      dst_port = int(metadata["dst_port"])
-      if network == 'udp' and dst_port == 443:
-        return "REJECT"
-
-      if network == "udp" and (dst_port == 123 or (dst_port >= 136 and dst_port <=139)):
-        return "DIRECT"
-
-      host = metadata["host"]
-      for kw in blockHosts:
-        if kw in host:
-          return "REJECT"
-
-      if ctx.rule_providers['category-ads-all'].match(metadata):
-        return "Block"
-
-      for kw in directHosts:
-        if kw in host:
-          return "DIRECT"
-
-      if ctx.rule_providers['icloud'].match(metadata):
-        return "iCloud"
-
-      if ctx.rule_providers['apple'].match(metadata):
-        return "Apple"
-
-      if ctx.rule_providers['microsoft@cn'].match(metadata):
-        return "MicrosoftCN"
-
-      if ctx.rule_providers['paypal@cn'].match(metadata):
-        return "CN"
-
-      if ctx.rule_providers['paypal'].match(metadata):
-        return "PayPal"
-
-      if ctx.rule_providers['twitter'].match(metadata):
-        return "Twitter"
-
-      if ctx.rule_providers['facebook'].match(metadata):
-        return "Facebook"
-
-      if ctx.rule_providers['youtube'].match(metadata):
-        return "YouTube"
-
-      if ctx.rule_providers['geolocation-!cn'].match(metadata):
-        return "Proxy"
-
-      if ctx.rule_providers['geolocation-cn'].match(metadata):
-        return "CN"
-
-      code = ""
-      ip = metadata["dst_ip"]
-      if ip != "":
-        code = ctx.geoip(ip)
-        if code == "PRIVATE" or code == "LAN":
-          return "DIRECT"
-        if code == "TELEGRAM":
-          return "Telegram"
-      else:
-        ip = ctx.resolve_ip(host)
-
-      if ip == "":
-        return "Mismatch"
-
-      code = ctx.geoip(ip) if code == "" else code
-      if code == "CN":
-        return "CN"
-
-      return "Mismatch" # default policy for requests which are not matched by any other script
-
-  engine: expr # or starlark (10x to 20x slower)
-  shortcuts:
-    QUIC: |
-      network == "udp" and dst_port == 443
-    Privacy: |
-      any(["analytics", "adservice", "firebase", "safebrowsing", "doubleclick", "bugly", "bugsnag"], host contains #)
-    BilibiliUdp: |
-      network == "udp" and match_provider("bilibili")
-    DirectUdp: |
-      network == "udp" and (dst_port == 123 or (dst_port >= 136 and dst_port <=139))
 
 rules:
   - GEOIP,private,DIRECT,no-resolve
@@ -487,9 +390,5 @@ rules:
   - GEOIP,twitter,Twitter
   - GEOIP,facebook,Facebook
   - GEOIP,youtube,YouTube
-
-
-
-  - GEOIP,cn,CN
-
+  - GEOIP,ir,DIRECT
   - MATCH,Mismatch
