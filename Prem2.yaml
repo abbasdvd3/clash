@@ -1,62 +1,159 @@
+# 混合端口
+mixed-port: 7890
+# 局域网访问控制(白名单/黑名单)
+allow-lan: true
+lan-allowed-ips: ["0.0.0.0/0", "::/0"]
+lan-disallowed-ips: []
+# 运行模式
+mode: rule
+# 日志级别
+log-level: info
+# 接受IPv6流量
+ipv6: true
+# 外部控制监听地址、访问密钥
+external-controller: 0.0.0.0:9090
+secret: ""
+# 延迟计算去除握手等额外延迟
+unified-delay: true
+# TCP并发
+tcp-concurrent: true
+# 全局客户端指纹(支持VLESS,VMess,Trojan)
+global-client-fingerprint: chrome
+# 下载外部资源(proxy-provider、rule-provider、GEO等)使用的UA
+global-ua: clash.meta
 
+# DNS配置
+nameservers: &nameservers
+  - https://dns.alidns.com/dns-query # 阿里云公共DNS
+  - https://doh.pub/dns-query # 腾讯DNSPod
+  - https://doh.360.cn/dns-query # 360安全DNS
+fallback_nameservers: &fallback_nameservers
+  - https://1.1.1.1/dns-query # Cloudflare(主)
+  - https://1.0.0.1/dns-query # Cloudflare(备)
+  - https://208.67.222.222/dns-query # OpenDNS(主)
+  - https://208.67.220.220/dns-query # OpenDNS(备)
+  - https://194.242.2.2/dns-query # Mullvad(主)
+  - https://194.242.2.3/dns-query # Mullvad(备)
+dns:
+  enable: true
+  ipv6: true
+  use-system-hosts: false
+  cache-algorithm: arc
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    [
+      "+.lan",
+      "+.local",
+      "+.msftconnecttest.com",
+      "+.msftncsi.com",
+      "localhost.ptlogin2.qq.com",
+      "localhost.sec.qq.com",
+      "localhost.work.weixin.qq.com"
+    ]
+  default-nameserver: ["223.5.5.5", "114.114.114.114", "1.1.1.1", "8.8.8.8"]
+  nameserver: *nameservers
+  proxy-server-nameserver: *nameservers
+  nameserver-policy:
+    "+.mirror.ghproxy.com": *fallback_nameservers
+    "geosite:private,cn,geolocation-cn": *nameservers
+    "geosite:google,youtube,telegram,gfw,geolocation-!cn": *fallback_nameservers
+
+# GEO自动更新、更新间隔(单位: 小时)、更新下载地址
+geo-auto-update: true
+geo-update-interval: 48
+geox-url:
+  geoip: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat
+  geosite: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat
+  mmdb: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb
+
+
+proxies: 
 
 proxy-groups:
-  - name: Proxy
+  - name: GENERAL
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
+    proxies: 
+      - Cloudflare
+      - SPEED TEST
+      - FALLBACK
+      - BALANCE
+      - X BALANCE
+      - TAWAN
+      
+      
+  - name: SPEED TEST
     type: url-test
-    interval: 12
-    tolerance: 15
-    url: http://www.gstatic.com/generate_204
-    use: 
-    proxies:
-      - Auto
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-UK
-      - Geo-DE
-      - Geo-CN
- #     - DIRECT
-  #    - Block
-  - name: Auto
-    type: url-test
-    interval: 12
-    tolerance: 15
-    url: http://www.gstatic.com/generate_204
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-     
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14
-      - Subscription-15
-#      - Subscription-16
-      - Subscription-17
-      - Subscription-18
-  
-      - Subscription-20
-#      - Subscription-21
- 
-      - Subscription-23
-      - Subscription-24
-      - Subscription-25
-
-  - name: Geo-HK
-    type: url-test
-    interval: 300
     tolerance: 100
-    url: http://www.gstatic.com/generate_204
-    filter: "HongKong|HK|香港"
+    lazy: true
+    interval: 60
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
+    proxies: 
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+      - Subscription-17
+      - Subscription-18
+      - Subscription-20
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25    
+  - name: FALLBACK
+    type: fallback
+    lazy: true
+    interval: 60
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/ambulance.svg
+    proxies: 
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+      - Subscription-17
+      - Subscription-18
+      - Subscription-20
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25    
+  - name: BALANCE
+    type: load-balance
+    strategy: consistent-hashing
+    lazy: true
+    interval: 60
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/merry_go.svg
+    proxies: 
     use: 
       - Subscription-1
       - Subscription-2
@@ -82,14 +179,17 @@ proxy-groups:
    
       - Subscription-23
       - Subscription-24
-      - Subscription-25
-
-  - name: Geo-TW
-    type: url-test
-    interval: 30
-    tolerance: 10
-    url: http://www.gstatic.com/generate_204
-    filter: "Taiwan|TW|台湾"
+      - Subscription-25    
+  - name: X BALANCE
+    type: load-balance
+    strategy: round-robin
+    lazy: true
+    interval: 60
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/balance.svg
+    proxies: 
     use: 
       - Subscription-1
       - Subscription-2
@@ -101,28 +201,20 @@ proxy-groups:
       - Subscription-8
       - Subscription-9
       - Subscription-10
-  
       - Subscription-12
       - Subscription-13
       - Subscription-14
       - Subscription-15
-  #    - Subscription-16
       - Subscription-17
       - Subscription-18
-   
       - Subscription-20
-  #    - Subscription-21
-  
       - Subscription-23
       - Subscription-24
-      - Subscription-25
-
-  - name: Geo-SG
-    type: url-test
-    interval: 30
-    tolerance: 10
-    url: http://www.gstatic.com/generate_204
-    filter: "Singapore|SG|新加坡"
+      - Subscription-25    
+  - name: GOOGLE
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/google.svg
+    proxies: 
     use: 
       - Subscription-1
       - Subscription-2
@@ -134,7 +226,7 @@ proxy-groups:
       - Subscription-8
       - Subscription-9
       - Subscription-10
-  
+     
       - Subscription-12
       - Subscription-13
       - Subscription-14
@@ -144,18 +236,15 @@ proxy-groups:
       - Subscription-18
   
       - Subscription-20
- #     - Subscription-21
+#      - Subscription-21
    
       - Subscription-23
       - Subscription-24
-      - Subscription-25
-
-  - name: Geo-JP
-    type: url-test
-    interval: 30
-    tolerance: 10
-    url: http://www.gstatic.com/generate_204
-    filter: "Japan|JP|日本"
+      - Subscription-25    
+  - name: YOU TUBE
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/youtube.svg
+    proxies: 
     use: 
       - Subscription-1
       - Subscription-2
@@ -167,59 +256,25 @@ proxy-groups:
       - Subscription-8
       - Subscription-9
       - Subscription-10
-
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14
-      - Subscription-15
-#      - Subscription-16
-      - Subscription-17
-      - Subscription-18
-   
-      - Subscription-20
-#      - Subscription-21
      
-      - Subscription-23
-      - Subscription-24
-      - Subscription-25
-
-  - name: Geo-US
-    type: url-test
-    interval: 30
-    tolerance: 10
-    url: http://www.gstatic.com/generate_204
-    filter: "America|United States|US|美国"
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-
       - Subscription-12
       - Subscription-13
       - Subscription-14
       - Subscription-15
-#      - Subscription-16
+ #     - Subscription-16
       - Subscription-17
       - Subscription-18
- 
+  
       - Subscription-20
 #      - Subscription-21
+   
       - Subscription-23
       - Subscription-24
-      - Subscription-25
-  - name: Geo-UK
-    type: url-test
-    interval: 30
-    tolerance: 10
-    url: http://www.gstatic.com/generate_204
-    filter: "Britain|England|UK|英国|tr|s|ss"
+      - Subscription-25        
+  - name: TELEGRAM
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/telegram.svg
+    proxies: 
     use: 
       - Subscription-1
       - Subscription-2
@@ -231,28 +286,142 @@ proxy-groups:
       - Subscription-8
       - Subscription-9
       - Subscription-10
-  
+     
       - Subscription-12
       - Subscription-13
       - Subscription-14
       - Subscription-15
-#      - Subscription-16
+ #     - Subscription-16
       - Subscription-17
       - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25        
+
+  - name: WINDOWS
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/microsoft.svg
+    proxies: 
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25        
+
+  - name: APPLE
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/apple.svg
+    proxies: 
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25        
+  - name: TROJAN
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/bug.svg
+    proxies: ['REJECT', 'DIRECT']
+
+  - name: DOWNLOAD
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
+    proxies: 
+      - DIRECT
     
+  - name: AD BLOCK
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/block.svg
+    proxies: ['REJECT', 'DIRECT']
+
+  - name: FINALL
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg
+    proxies: 
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
       - Subscription-20
 #      - Subscription-21
- 
+   
       - Subscription-23
       - Subscription-24
-      - Subscription-25
+      - Subscription-25        
 
-  - name: Geo-DE
+  - name: IRAN M
     type: url-test
-    interval: 30
-    tolerance: 10
-    url: http://www.gstatic.com/generate_204
-    filter: "Germany|Deutsch|DE|德国"
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/mo.svg
+    hidden: false
+    filter: "HongKong|HK|香港"
+    proxies: 
     use: 
       - Subscription-1
       - Subscription-2
@@ -264,29 +433,225 @@ proxy-groups:
       - Subscription-8
       - Subscription-9
       - Subscription-10
- 
+     
       - Subscription-12
       - Subscription-13
       - Subscription-14
       - Subscription-15
-#      - Subscription-16
+ #     - Subscription-16
       - Subscription-17
       - Subscription-18
- 
+  
       - Subscription-20
- #     - Subscription-21
- 
+#      - Subscription-21
+   
       - Subscription-23
       - Subscription-24
-      - Subscription-25
+      - Subscription-25        
 
-  - name: Geo-CN
+  - name: TAWAN
     type: url-test
-    interval: 30
-    tolerance: 10
-    url: http://www.gstatic.com/generate_204
-#    disable-dns: false
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/tw.svg
+    hidden: false
+    filter: "Taiwan|TW|台湾"
+    proxies: 
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25        
+  - name: JAPAN
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/jp.svg
+    hidden: false
+    proxies: 
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25        
+
+  - name: HONGKONG
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/hk.svg
+    hidden: false
+    filter: "HongKong|HK|香港"
+    proxies: 
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25        
+
+  - name: VITNAM
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/vn.svg
+    hidden: false
+    filter: "Japan|JP|日本"
+    proxies: 
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25        
+
+  - name: MAYAMY
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/my.svg
+    hidden: false
+    proxies: 
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25        
+  - name: NATERLAND
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/nl.svg
+    hidden: false
     filter: "China|CN|中国"
+    proxies: 
     use: 
       - Subscription-1
       - Subscription-2
@@ -298,143 +663,478 @@ proxy-groups:
       - Subscription-8
       - Subscription-9
       - Subscription-10
- 
+     
       - Subscription-12
       - Subscription-13
       - Subscription-14
       - Subscription-15
-#      - Subscription-16
+ #     - Subscription-16
       - Subscription-17
       - Subscription-18
- 
+  
       - Subscription-20
- #     - Subscription-21
- 
+#      - Subscription-21
+   
       - Subscription-23
       - Subscription-24
-      - Subscription-25
-    proxies:
- #     - DIRECT
+      - Subscription-25        
 
-  - name: Block
-    type: select
+  - name: KORE
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/kr.svg
+    hidden: false
+    filter: "China|CN|中国"
+    proxies: 
     use: 
-    proxies:
-      - REJECT
-      - DIRECT
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-UK
-      - Geo-DE
-      - Geo-CN
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25        
 
-
-
-  - name: DNS-Proxy
-    type: select
+  - name: GERMANY
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/de.svg
+    hidden: false
+    filter: "Germany|Deutsch|DE|德国"
+    proxies: 
     use: 
-    proxies: 
-      - Proxy
-      - Auto
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-UK
-      - Geo-DE
-      - Geo-CN
-      - DIRECT
-      - Block
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25        
 
-  - name: Netflix
-    type: select
+  - name: UK
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/gb.svg
+    hidden: false
+    filter: "Britain|England|UK|英国|tr|s|ss"
     proxies: 
-      - Proxy
-
-  - name: Apple
-    type: select
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25        
+  - name: SG
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/sg.svg
+    hidden: false
+    filter: "Singapore|SG|新加坡"
     proxies: 
-      - Proxy
-
-  - name: iCloud
-    type: select
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25    
+  - name: Cloudflare
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/cloudflare.svg
+    hidden: false
     proxies: 
-      - Proxy
-
-  - name: MicrosoftCN
-    type: select
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25    
+  - name: TURK
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/th.svg
+    hidden: false
     proxies: 
-      - Proxy
-
-  - name: PayPal
-    type: select
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25    
+  - name: IRA
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/tr.svg
+    hidden: false
     proxies: 
-      - Proxy
-
-  - name: Steam
-    type: select
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25    
+  - name: 未知节点
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/unknown.svg
+    hidden: false
     proxies: 
-      - Proxy
-
-  - name: Game
-    type: select
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25    
+  - name: USA
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/us.svg
+    hidden: false
+    filter: "America|United States|US|美国"
     proxies: 
-      - Proxy
-
-  - name: Facebook
-    type: select
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25        
+    
+  - name: EG
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/eg.svg
+    hidden: false
+    filter: '🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日'
     proxies: 
-      - Proxy
-
-  - name: Twitter
-    type: select
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25    
+  - name: FRANCE
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/fr.svg
+    hidden: false
+    filter: "China|CN|中国"
     proxies: 
-      - Proxy
-
-  - name: Telegram
-    type: select
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25  
+      
+  - name: PHOLAND
+    type: url-test
+    tolerance: 50
+    lazy: false
+    interval: 300
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/pl.svg
+    hidden: false
+    filter: "China|CN|中国"
     proxies: 
-      - Proxy
-
-  - name: GlobalTV
-    type: select
-    proxies: 
-      - Proxy
-
-  - name: YouTube
-    type: select
-    proxies: 
-      - Proxy
-
-  - name: Spotify
-    type: select
-    proxies: 
-      - Proxy
-
-  - name: SpeedTest
-    type: select
-    proxies: 
-      - Proxy
-
-  - name: Download
-    type: select
-    proxies: 
-      - Proxy
-
-  - name: CN
-    type: select
-    disable-dns: true
-    proxies: 
-      - Proxy
-
-  - name: Mismatch
-    type: select
-    proxies: 
-      - Proxy
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+     
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14
+      - Subscription-15
+ #     - Subscription-16
+      - Subscription-17
+      - Subscription-18
+  
+      - Subscription-20
+#      - Subscription-21
+   
+      - Subscription-23
+      - Subscription-24
+      - Subscription-25    
 
 proxy-providers:
   Subscription-1:
@@ -797,110 +1497,139 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
 #      lazy: false # default value is true
 
-script:
-#  path: ./script.star
-  code: |
-    blockHosts = ['analytics', 'adservice', 'firebase', 'bugly', 'safebrowsing', 'doubleclick']
-    directHosts = ['push.apple.com', 'iosapps.itunes.apple.com', 'jetbrains.com', 'msftconnecttest.com']
-
-    def main(ctx, metadata):
-      network = metadata["network"]
-      dst_port = int(metadata["dst_port"])
-      if network == 'udp' and dst_port == 443:
-        return "REJECT"
-
-      if network == "udp" and (dst_port == 123 or (dst_port >= 136 and dst_port <=139)):
-        return "DIRECT"
-
-      host = metadata["host"]
-      for kw in blockHosts:
-        if kw in host:
-          return "REJECT"
-
-      if ctx.rule_providers['category-ads-all'].match(metadata):
-        return "Block"
-
-      for kw in directHosts:
-        if kw in host:
-          return "DIRECT"
-
-      if ctx.rule_providers['icloud'].match(metadata):
-        return "iCloud"
-
-      if ctx.rule_providers['apple'].match(metadata):
-        return "Apple"
-
-      if ctx.rule_providers['microsoft@cn'].match(metadata):
-        return "MicrosoftCN"
-
-      if ctx.rule_providers['paypal@cn'].match(metadata):
-        return "CN"
-
-      if ctx.rule_providers['paypal'].match(metadata):
-        return "PayPal"
-
-      if ctx.rule_providers['twitter'].match(metadata):
-        return "Twitter"
-
-      if ctx.rule_providers['facebook'].match(metadata):
-        return "Facebook"
-
-      if ctx.rule_providers['youtube'].match(metadata):
-        return "YouTube"
-
-      if ctx.rule_providers['geolocation-!cn'].match(metadata):
-        return "Proxy"
-
-      if ctx.rule_providers['geolocation-cn'].match(metadata):
-        return "CN"
-
-      code = ""
-      ip = metadata["dst_ip"]
-      if ip != "":
-        code = ctx.geoip(ip)
-        if code == "PRIVATE" or code == "LAN":
-          return "DIRECT"
-        if code == "TELEGRAM":
-          return "Telegram"
-      else:
-        ip = ctx.resolve_ip(host)
-
-      if ip == "":
-        return "Mismatch"
-
-      code = ctx.geoip(ip) if code == "" else code
-      if code == "CN":
-        return "CN"
-
-      return "Mismatch" # default policy for requests which are not matched by any other script
-
-  engine: expr # or starlark (10x to 20x slower)
-  shortcuts:
-    QUIC: |
-      network == "udp" and dst_port == 443
-    Privacy: |
-      any(["analytics", "adservice", "firebase", "safebrowsing", "doubleclick", "bugly", "bugsnag"], host contains #)
-    BilibiliUdp: |
-      network == "udp" and match_provider("bilibili")
-    DirectUdp: |
-      network == "udp" and (dst_port == 123 or (dst_port >= 136 and dst_port <=139))
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    format: yaml
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
+    path: ./rulesets/loyalsoldier/reject.yaml
+    interval: 86400
+  icloud:
+    type: http
+    behavior: domain
+    format: yaml
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/icloud.txt
+    path: ./rulesets/loyalsoldier/icloud.yaml
+    interval: 86400
+  apple:
+    type: http
+    behavior: domain
+    format: yaml
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt
+    path: ./rulesets/loyalsoldier/apple.yaml
+    interval: 86400
+  google:
+    type: http
+    behavior: domain
+    format: yaml
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/google.txt
+    path: ./rulesets/loyalsoldier/google.yaml
+    interval: 86400
+  proxy:
+    type: http
+    behavior: domain
+    format: yaml
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt
+    path: ./rulesets/loyalsoldier/proxy.yaml
+    interval: 86400
+  direct:
+    type: http
+    behavior: domain
+    format: yaml
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt
+    path: ./rulesets/loyalsoldier/direct.yaml
+    interval: 86400
+  private:
+    type: http
+    behavior: domain
+    format: yaml
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt
+    path: ./rulesets/loyalsoldier/private.yaml
+    interval: 86400
+  gfw:
+    type: http
+    behavior: domain
+    format: yaml
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
+    path: ./rulesets/loyalsoldier/gfw.yaml
+    interval: 86400
+  tld-not-cn:
+    type: http
+    behavior: domain
+    format: yaml
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt
+    path: ./rulesets/loyalsoldier/tld-not-cn.yaml
+    interval: 86400
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    format: yaml
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt
+    path: ./rulesets/loyalsoldier/telegramcidr.yaml
+    interval: 86400
+  cncidr:
+    type: http
+    behavior: ipcidr
+    format: yaml
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt
+    path: ./rulesets/loyalsoldier/cncidr.yaml
+    interval: 86400
+  lancidr:
+    type: http
+    behavior: ipcidr
+    format: yaml
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt
+    path: ./rulesets/loyalsoldier/lancidr.yaml
+    interval: 86400
+  applications:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt
+    path: ./rulesets/loyalsoldier/applications.yaml
+    interval: 86400
 
 rules:
+
   - GEOIP,private,DIRECT,no-resolve
-  - GEOIP,telegram,Telegram,no-resolve
+  - GEOIP,telegram,TELEGRAM,no-resolve
 #  - GEOIP,paypal@cn,CN
 #  - GEOIP,paypal,PayPal
-  - GEOIP,twitter,Twitter
-  - GEOIP,facebook,Facebook
-  - GEOIP,youtube,YouTube
-  - SCRIPT,QUIC,REJECT # Disable QUIC
-  - SCRIPT,Privacy,REJECT
-  - SCRIPT,BilibiliUdp,REJECT
-  - SCRIPT,DirectUdp,DIRECT
+  - GEOIP,twitter,TELEGRAM
+  - GEOIP,facebook,TELEGRAM
+  - GEOIP,youtube,YOU TUBE
+
   - DOMAIN-SUFFIX,push.apple.com,DIRECT
   - DOMAIN-SUFFIX,jetbrains.com,DIRECT
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN,iosapps.itunes.apple.com,DIRECT
-  - GEOIP,cn,CN
-  - GEOIP,ir,CN
-  - MATCH,Mismatch
+  - GEOIP,cn,DOWNLOAD
+  - GEOIP,ir,DOWNLOAD
+  # Google
+  - DOMAIN-SUFFIX,googleapis.cn,GENERAL
+  - DOMAIN-SUFFIX,gstatic.com,GENERAL
+  # Google Play
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,GENERAL
+  # Github Pages
+  - DOMAIN-SUFFIX,github.io,GENERAL
+  # V2raySE
+  - DOMAIN,v2rayse.com,GENERAL
+  # loyalsoldier 规则集
+  - RULE-SET,reject,TROJAN
+  - RULE-SET,icloud,APPLE
+  - RULE-SET,apple,APPLE
+  - RULE-SET,google,GOOGLE
+  - RULE-SET,proxy,GENERAL
+  - RULE-SET,gfw,GENERAL
+  - RULE-SET,tld-not-cn,GENERAL
+  - RULE-SET,applications,DOWNLOAD
+  - RULE-SET,private,DOWNLOAD
+  - RULE-SET,direct,DOWNLOAD
+  - RULE-SET,lancidr,DOWNLOAD,no-resolve
+  - RULE-SET,cncidr,DOWNLOAD,no-resolve
+  - RULE-SET,telegramcidr,TELEGRAM,no-resolve
+  # 其他
+  - GEOIP,LAN,DOWNLOAD,no-resolve
+  - GEOIP,CN,DOWNLOAD,no-resolve
+  - MATCH,FINALL
