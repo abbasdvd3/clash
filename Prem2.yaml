@@ -17,9 +17,9 @@ proxy-groups:
   - name: SPEED TEST
     type: url-test
     tolerance: 100
-    lazy: true
+    lazy: false
     interval: 60
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
@@ -47,9 +47,9 @@ proxy-groups:
       - Subscription-25    
   - name: FALLBACK
     type: fallback
-    lazy: true
+    lazy: false
     interval: 60
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/ambulance.svg
@@ -78,9 +78,9 @@ proxy-groups:
   - name: BALANCE
     type: load-balance
     strategy: consistent-hashing
-    lazy: true
+    lazy: false
     interval: 60
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/merry_go.svg
@@ -114,9 +114,9 @@ proxy-groups:
   - name: X BALANCE
     type: load-balance
     strategy: round-robin
-    lazy: true
+    lazy: false
     interval: 60
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/balance.svg
@@ -146,6 +146,11 @@ proxy-groups:
     type: select
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/google.svg
     proxies: 
+      - Cloudflare
+      - SPEED TEST
+      - FALLBACK
+      - BALANCE
+      - X BALANCE
     use: 
       - Subscription-1
       - Subscription-2
@@ -176,6 +181,11 @@ proxy-groups:
     type: select
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/youtube.svg
     proxies: 
+      - Cloudflare
+      - SPEED TEST
+      - FALLBACK
+      - BALANCE
+      - X BALANCE
     use: 
       - Subscription-1
       - Subscription-2
@@ -195,10 +205,8 @@ proxy-groups:
  #     - Subscription-16
       - Subscription-17
       - Subscription-18
-  
       - Subscription-20
 #      - Subscription-21
-   
       - Subscription-23
       - Subscription-24
       - Subscription-25        
@@ -223,18 +231,14 @@ proxy-groups:
       - Subscription-8
       - Subscription-9
       - Subscription-10
-     
       - Subscription-12
       - Subscription-13
       - Subscription-14
       - Subscription-15
- #     - Subscription-16
       - Subscription-17
       - Subscription-18
-  
       - Subscription-20
 #      - Subscription-21
-   
       - Subscription-23
       - Subscription-24
       - Subscription-25        
@@ -260,7 +264,6 @@ proxy-groups:
       - Subscription-8
       - Subscription-9
       - Subscription-10
-     
       - Subscription-12
       - Subscription-13
       - Subscription-14
@@ -268,10 +271,8 @@ proxy-groups:
  #     - Subscription-16
       - Subscription-17
       - Subscription-18
-  
       - Subscription-20
 #      - Subscription-21
-   
       - Subscription-23
       - Subscription-24
       - Subscription-25        
@@ -297,7 +298,6 @@ proxy-groups:
       - Subscription-8
       - Subscription-9
       - Subscription-10
-     
       - Subscription-12
       - Subscription-13
       - Subscription-14
@@ -305,10 +305,8 @@ proxy-groups:
  #     - Subscription-16
       - Subscription-17
       - Subscription-18
-  
       - Subscription-20
 #      - Subscription-21
-   
       - Subscription-23
       - Subscription-24
       - Subscription-25        
@@ -370,7 +368,7 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/mo.svg
@@ -409,7 +407,7 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/tw.svg
@@ -447,7 +445,7 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/jp.svg
@@ -485,7 +483,7 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/hk.svg
@@ -524,7 +522,7 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/vn.svg
@@ -563,7 +561,7 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/my.svg
@@ -600,7 +598,7 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/nl.svg
@@ -639,7 +637,7 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/kr.svg
@@ -678,7 +676,7 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/de.svg
@@ -717,7 +715,7 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/gb.svg
@@ -755,7 +753,7 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/sg.svg
@@ -793,11 +791,12 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+#    timeout: 200
+    udp: true
     url: https://www.youtube.com/generate_204
-    max-failed-times: 3
+#    max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/cloudflare.svg
-    hidden: false
+    hidden: true
     proxies: 
     use: 
       - Subscription-1
@@ -830,11 +829,11 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/th.svg
-    hidden: false
+    hidden: true
     proxies: 
     use: 
       - Subscription-1
@@ -867,11 +866,11 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/tr.svg
-    hidden: false
+    hidden: true
     proxies: 
     use: 
       - Subscription-1
@@ -904,11 +903,11 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/unknown.svg
-    hidden: false
+    hidden: true
     proxies: 
     use: 
       - Subscription-1
@@ -941,11 +940,11 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/us.svg
-    hidden: false
+    hidden: true
     filter: "America|United States|US|美国"
     proxies: 
     use: 
@@ -980,11 +979,11 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/eg.svg
-    hidden: false
+    hidden: true
     filter: '🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日'
     proxies: 
     use: 
@@ -1018,11 +1017,11 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/fr.svg
-    hidden: false
+    hidden: true
     filter: "China|CN|中国"
     proxies: 
     use: 
@@ -1057,11 +1056,11 @@ proxy-groups:
     tolerance: 50
     lazy: false
     interval: 300
-    timeout: 2000
+    timeout: 200
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/pl.svg
-    hidden: false
+    hidden: true
     filter: "China|CN|中国"
     proxies: 
     use: 
