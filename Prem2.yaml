@@ -16,10 +16,11 @@ proxy-groups:
       
   - name: SPEED TEST
     type: url-test
-    tolerance: 100
+    tolerance: 10
+    udp: true
     lazy: false
-    interval: 60
-    timeout: 200
+    interval: 20
+    timeout: 20
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
@@ -47,9 +48,10 @@ proxy-groups:
       - Subscription-25    
   - name: FALLBACK
     type: fallback
+    udp: true
     lazy: false
-    interval: 60
-    timeout: 200
+    interval: 6
+    timeout: 20
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/ambulance.svg
@@ -79,8 +81,9 @@ proxy-groups:
     type: load-balance
     strategy: consistent-hashing
     lazy: false
-    interval: 60
-    timeout: 200
+    udp: true
+    interval: 6
+    timeout: 20
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/merry_go.svg
