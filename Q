@@ -163,19 +163,20 @@
       {
         "rule_set": [
           "geosite-netflix",
-          "geosite:nsfw",
-          "geosite:social",
+          "geosite-nsfw",
+          "geosite-social",
           "geosite-youtube",
           "geosite-telegram",
           "geosite-category-media",
           "geosite-openai",
           "geosite-speedtest",
-          "geosite-github",
           "geosite-jetbrains",
           "geosite-spotify",
           "geosite-cloudflare",
           "geosite-google",
           "geosite-pornpros",
+          "geosite-twitter",
+          "geoip-twitter",
           "geosite-xhamster"
         ],
         "server": "fakeip-dns",
@@ -201,11 +202,13 @@
       {
         "rule_set": [
           "geosite-cn",
-          "geosite:ir",
+          "geosite-ir",
           "geosite-icloud@cn",
           "geosite-apple@cn",
           "geosite-private",
           "geosite-airwick",
+          "geosite-github",
+          "geoip-github",
           "geosite-category-media-ir",
           "geosite-category-news-ir",
           "geosite-category-payment-ir",
@@ -15818,16 +15821,17 @@
         "geosite-cloudflare",
         "geoip-cloudflare",
         "geosite-google",
-        "geoip:google",
+        "geoip-google",
         "geosite-twitter",
-        "geoip:twitter",
-         "geosite:bing",
-        "geoip:bing",
-        "geosite:microsoft",
-        "geoip:microsoft",
-         "geosite:amazon",
-        "geoip:amazon",
-        "geosite:nsfw",
+        "geoip-twitter",
+        "geosite:bing",
+        "geoip-bing",
+        "geosite-microsoft",
+        "geoip-microsoft",
+         "geosite-amazon",
+        "geoip-amazon",
+        "geosite-social",
+        "geosite-nsfw",
         "geosite-pornpros"
         ],
         "outbound": "selecto"
@@ -15852,7 +15856,6 @@
           "geosite-category-tech-ir",
           "geosite-category-travel-ir",
           "geoip-ir",
-          "geoip-iranserver",
           "geosite-ziroom"
         ],
         "outbound": "direct"
@@ -17125,9 +17128,9 @@
       },
       {
         "type": "remote",
-        "tag": "geosite-iranserver",
+        "tag": "geosite-ir",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-iranserver.srs",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
         "download_detour": "direct",
         "update_interval": "20d"
       },
@@ -17171,6 +17174,22 @@
         "download_detour": "direct",
         "update_interval": "20d"
       },
+      {
+        "tag": "geosite-twitter",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-twitter.srs",
+        "download_detour": "direct",
+        "update_interval": "20d"
+      },
+      {
+        "tag": "geoip-twitter",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-twitter.srs",
+        "download_detour": "direct",
+        "update_interval": "20d"
+      },
        {
         "tag": "geosite-amazon",
         "type": "remote",
@@ -17196,10 +17215,34 @@
         "update_interval": "20d"
       },
       {
+        "tag": "geosite-nsfw",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-nsfw.srs",
+        "download_detour": "direct",
+        "update_interval": "20d"
+      },
+      {
+        "tag": "geosite-social",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-social.srs",
+        "download_detour": "direct",
+        "update_interval": "20d"
+      },
+      {
         "type": "remote",
         "tag": "geoip-microsoft",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-microsoft.srs",
+        "download_detour": "direct",
+        "update_interval": "20d"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-github",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-github.srs",
         "download_detour": "direct",
         "update_interval": "20d"
       }
