@@ -2416,9 +2416,9 @@
                 "🇺🇸_1067"
       ],
       "url": "https://connectivitycheck.grapheneos.network/generate_204",
-      "interval": "5s",
+      "interval": "1m",
       "tolerance": 5s,
-      "idle_timeout": "5s",
+      "idle_timeout": "1m",
       "interrupt_exist_connections": false
     },
 	{
@@ -15803,72 +15803,31 @@
         "outbound": "Proxy"
       },
       {
-        "rule_set": "geosite-netflix",
-        "outbound": "selecto"
-      },
-      {
-        "rule_set": "geoip-netflix",
-        "outbound": "selecto"
-      },
-      {
-        "rule_set": "geosite-youtube",
-        "outbound": "selecto"
-      },
-      {
-        "rule_set": "geosite-telegram",
-        "outbound": "selecto"
-      },
-      {
-        "rule_set": "geoip-telegram",
-        "outbound": "selecto"
-      },
-      {
-        "rule_set": "geosite-category-media",
-        "outbound": "selecto"
-      },
-      {
-        "rule_set": "geosite-openai",
-        "outbound": "selecto"
-      },
-      {
-        "rule_set": "geosite-speedtest",
-        "outbound": "selecto"
-      },
-      {
-        "rule_set": "geosite-github",
-        "outbound": "direct"
-      },
-      {
-        "rule_set": "geosite-jetbrains",
-        "outbound": "selecto"
-      },
-      {
-        "rule_set": "geosite-spotify",
-        "outbound": "selecto"
-      },
-      {
-        "rule_set": "geosite-cloudflare",
-        "outbound": "selecto"
-      },
-      {
-        "rule_set": "geoip-cloudflare",
-        "outbound": "selecto"
-      },
-      {
-        "rule_set": "geosite-google",
-        "outbound": "selecto"
-      },
-      {
-        "rule_set": "geosite-pornpros",
-        "outbound": "selecto"
-      },
-      {
-        "rule_set": "geosite-xhamster",
+        "rule_set": [
+        "geosite-netflix", 
+        "geoip-netflix", 
+        "geosite-youtube",
+        "geosite-telegram",
+        "geoip-telegram",
+        "geosite-category-media",
+        "geosite-openai", 
+        "geosite-speedtest",
+        "geosite-xhamster",
+        "geosite-jetbrains",
+        "geosite-spotify",
+        "geosite-cloudflare",
+        "geoip-cloudflare",
+        "geosite-google",
+        "geosite:social",
+        "geosite:nsfw",
+        "geosite-pornpros"
+        ],
         "outbound": "selecto"
       },
       {
         "rule_set": [
           "GeoIP2-CN",
+          "geosite-github",
           "geosite-cn",
           "geosite-icloud@cn",
           "geosite-apple@cn",
@@ -17014,18 +16973,6 @@
         "format": "binary",
         "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite:nsfw.srs"
       },
-      {
-        "tag": "geoip-malware",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-malware.srs"
-      },
-      {
-        "tag": "geoip-phishing",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-phishing.srs"
-      }
       {
         "type": "remote",
         "tag": "geosite-sina@ads",
