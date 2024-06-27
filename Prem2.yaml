@@ -5,6 +5,7 @@ proxy-groups:
   - name: GENERAL
     type: select
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
+    disable-dns: false
     proxies: 
       - Cloudflare
       - SPEED TEST
@@ -24,7 +25,7 @@ proxy-groups:
   - name: SPEED TEST
     type: url-test
     tolerance: 30
-    udp: false
+    disable-dns: false
     lazy: true
     interval: 100
     timeout: 5
@@ -49,7 +50,7 @@ proxy-groups:
       - Subscription-14    
   - name: FALLBACK
     type: fallback
-    udp: false
+    disable-dns: false
     lazy: true
     interval: 100
     timeout: 5
@@ -76,7 +77,7 @@ proxy-groups:
     type: load-balance
     strategy: consistent-hashing
     lazy: true
-    udp: false
+    disable-dns: false
     interval: 100
     timeout: 5
     url: https://www.youtube.com/generate_204
@@ -100,6 +101,7 @@ proxy-groups:
       - Subscription-14     
   - name: GOOGLE
     type: select
+    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/google.svg
     proxies: 
       - USA
@@ -124,6 +126,7 @@ proxy-groups:
       - Subscription-14 
   - name: YOU TUBE
     type: select
+    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/youtube.svg
     proxies: 
       - USA
@@ -149,6 +152,7 @@ proxy-groups:
       - Subscription-14   
   - name: TELEGRAM
     type: select
+    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/telegram.svg
     proxies:
       - Cloudflare
@@ -172,6 +176,7 @@ proxy-groups:
       - Subscription-14     
   - name: WINDOWS
     type: select
+    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/microsoft.svg
     proxies: 
       - Cloudflare
@@ -197,6 +202,7 @@ proxy-groups:
 
   - name: APPLE
     type: select
+    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/apple.svg
     proxies: 
       - Cloudflare
@@ -221,22 +227,26 @@ proxy-groups:
       - Subscription-14       
   - name: TROJAN
     type: select
+    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/bug.svg
     proxies: ['REJECT', 'DIRECT']
 
   - name: DOWNLOAD
     type: select
+    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
     proxies: 
       - DIRECT
     
   - name: AD BLOCK
     type: select
+    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/block.svg
     proxies: ['REJECT', 'DIRECT']
 
   - name: FINALL
     type: select
+    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg
     proxies: 
       - Cloudflare
@@ -263,6 +273,7 @@ proxy-groups:
     type: url-test
     tolerance: 30
     lazy: false
+    disable-dns: false
     interval: 100
     timeout: 20
     url: https://www.youtube.com/generate_204
@@ -292,6 +303,7 @@ proxy-groups:
     lazy: false
     interval: 100
     timeout: 20
+    disable-dns: false
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/tw.svg
@@ -317,6 +329,7 @@ proxy-groups:
     type: url-test
     tolerance: 30
     lazy: false
+    disable-dns: false
     interval: 100
     timeout: 20
     url: https://www.youtube.com/generate_204
@@ -345,6 +358,7 @@ proxy-groups:
     type: url-test
     tolerance: 30
     lazy: false
+    disable-dns: false
     interval: 100
     timeout: 20
     url: https://www.youtube.com/generate_204
@@ -372,6 +386,7 @@ proxy-groups:
     type: url-test
     tolerance: 30
     lazy: false
+    disable-dns: false
     interval: 100
     timeout: 20
     url: https://www.youtube.com/generate_204
@@ -402,6 +417,7 @@ proxy-groups:
     lazy: false
     interval: 100
     timeout: 20
+    disable-dns: false
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/nl.svg
@@ -423,6 +439,7 @@ proxy-groups:
     lazy: false
     interval: 100
     timeout: 20
+    disable-dns: false
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/kr.svg
@@ -450,6 +467,7 @@ proxy-groups:
     lazy: false
     interval: 100
     timeout: 20
+    disable-dns: false
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/de.svg
@@ -477,6 +495,7 @@ proxy-groups:
     lazy: false
     interval: 100
     timeout: 20
+    disable-dns: false
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/gb.svg
@@ -504,6 +523,7 @@ proxy-groups:
     lazy: false
     interval: 100
     timeout: 20
+    disable-dns: false
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/sg.svg
@@ -531,7 +551,7 @@ proxy-groups:
     lazy: false
     interval: 100
     timeout: 20
-    udp: true
+    disable-dns: false
     url: https://www.youtube.com/generate_204
 #    max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/cloudflare.svg
@@ -557,6 +577,7 @@ proxy-groups:
     type: url-test
     tolerance: 30
     lazy: false
+    disable-dns: false
     interval: 100
     timeout: 20
     url: https://www.youtube.com/generate_204
@@ -585,6 +606,7 @@ proxy-groups:
     type: url-test
     tolerance: 30
     lazy: false
+    disable-dns: false
     interval: 100
     timeout: 20
     url: https://www.youtube.com/generate_204
@@ -612,6 +634,7 @@ proxy-groups:
     type: url-test
     tolerance: 30
     lazy: false
+    disable-dns: false
     interval: 100
     timeout: 20
     url: https://www.youtube.com/generate_204
@@ -640,6 +663,7 @@ proxy-groups:
     type: url-test
     tolerance: 30
     lazy: false
+    disable-dns: false
     interval: 100
     timeout: 20
     url: https://www.youtube.com/generate_204
@@ -984,5 +1008,5 @@ rules:
   - RULE-SET,telegramcidr,TELEGRAM,no-resolve
   # 其他
   - GEOIP,LAN,DOWNLOAD,no-resolve
-  - GEOIP,CN,DOWNLOAD,no-resolve
+  - GEOIP,ir,DOWNLOAD,no-resolve
   - MATCH,FINALL
