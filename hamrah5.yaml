@@ -48,9 +48,13 @@ dns:
     "geosite:google,youtube,telegram,gfw,geolocation-!cn": *fallback_nameservers
 
 proxy-groups:
+  - name: Mismatch
+    type: select
+#    use: *Use
+    proxies: *Proxy
   - name: Auto
     type: url-test
-    interval: 300
+    interval: 8400
    # tolerance: 150
     url: http://www.gstatic.com/generate_204
     use: &Use
@@ -130,7 +134,7 @@ proxy-groups:
 
   - name: Block
     type: select
-    use: *Use
+#    use: *Use
     proxies:
       - REJECT
       - DIRECT
@@ -145,7 +149,7 @@ proxy-groups:
 
   - name: Proxy
     type: select
-    use: *Use
+ #   use: *Use
     proxies:
       - Auto
       - Geo-HK
@@ -161,7 +165,7 @@ proxy-groups:
 
   - name: DNS-Proxy
     type: select
-    use: *Use
+#    use: *Use
     proxies: &Proxy
       - Proxy
       - Auto
@@ -178,89 +182,86 @@ proxy-groups:
 
   - name: Netflix
     type: select
-    use: *Use
+#    use: *Use
     proxies: *Proxy
 
   - name: Apple
     type: select
-    use: *Use
+#    use: *Use
     proxies: *Proxy
 
   - name: iCloud
     type: select
-    use: *Use
+#    use: *Use
     proxies: *Proxy
 
   - name: MicrosoftCN
     type: select
-    use: *Use
+#    use: *Use
     proxies: *Proxy
 
   - name: PayPal
     type: select
-    use: *Use
+#    use: *Use
     proxies: *Proxy
 
   - name: Steam
     type: select
-    use: *Use
+#    use: *Use
     proxies: *Proxy
 
   - name: Game
     type: select
-    use: *Use
+ #   use: *Use
     proxies: *Proxy
 
   - name: Facebook
     type: select
-    use: *Use
+  #  use: *Use
     proxies: *Proxy
 
   - name: Twitter
     type: select
-    use: *Use
+ #   use: *Use
     proxies: *Proxy
 
   - name: Telegram
     type: select
-    use: *Use
+#    use: *Use
     proxies: *Proxy
 
   - name: GlobalTV
     type: select
-    use: *Use
+#    use: *Use
     proxies: *Proxy
 
   - name: YouTube
     type: select
-    use: *Use
+ #   use: *Use
     proxies: *Proxy
 
   - name: Spotify
     type: select
-    use: *Use
+#    use: *Use
     proxies: *Proxy
 
   - name: SpeedTest
     type: select
-    use: *Use
+#    use: *Use
     proxies: *Proxy
 
   - name: Download
     type: select
-    use: *Use
+#    use: *Use
     proxies: *Proxy
 
   - name: CN
     type: select
     disable-dns: true
-    use: *Use
+#    use: *Use
     proxies: *Proxy
 
-  - name: Mismatch
-    type: select
-    use: *Use
-    proxies: *Proxy
+
 
 proxy-providers:
   Subscription-1:
