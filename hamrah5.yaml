@@ -50,14 +50,25 @@ dns:
 proxy-groups:
   - name: Mismatch
     type: select
-#    use: *Use
-    proxies: *Proxy
+    proxies:
+      - Proxy
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
   - name: Auto
     type: url-test
     interval: 8400
    # tolerance: 150
     url: http://www.gstatic.com/generate_204
-    use: &Use
+    use: 
       - Subscription-1
     #  - Subscription-2
       - Subscription-3
@@ -71,15 +82,26 @@ proxy-groups:
  #   tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "HongKong|HK|香港"
-    use: *Use
-
+    use: 
+      - Subscription-1
+    #  - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
   - name: Geo-TW
     type: url-test
     interval: 300
 #    tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Taiwan|TW|台湾"
-    use: *Use
+    use: 
+      - Subscription-1
+    #  - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
 
   - name: Geo-SG
     type: url-test
@@ -87,7 +109,13 @@ proxy-groups:
 #    tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Singapore|SG|新加坡"
-    use: *Use
+    use: 
+      - Subscription-1
+    #  - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
 
   - name: Geo-JP
     type: url-test
@@ -95,7 +123,13 @@ proxy-groups:
  #   tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Japan|JP|日本"
-    use: *Use
+    use: 
+      - Subscription-1
+    #  - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
 
   - name: Geo-US
     type: url-test
@@ -103,7 +137,13 @@ proxy-groups:
 #    tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "America|United States|US|美国"
-    use: *Use
+    use: 
+      - Subscription-1
+    #  - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
 
   - name: Geo-UK
     type: url-test
@@ -111,7 +151,14 @@ proxy-groups:
 #    tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Britain|England|UK|英国"
-    use: *Use
+    use: 
+      - Subscription-1
+    #  - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+ 
 
   - name: Geo-DE
     type: url-test
@@ -119,7 +166,13 @@ proxy-groups:
 #    tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Germany|Deutsch|DE|德国"
-    use: *Use
+    use: 
+      - Subscription-1
+    #  - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
 
   - name: Geo-CN
     type: url-test
@@ -166,7 +219,7 @@ proxy-groups:
   - name: DNS-Proxy
     type: select
 #    use: *Use
-    proxies: &Proxy
+    proxies: 
       - Proxy
       - Auto
       - Geo-HK
@@ -183,77 +236,241 @@ proxy-groups:
   - name: Netflix
     type: select
 #    use: *Use
-    proxies: *Proxy
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
 
   - name: Apple
     type: select
 #    use: *Use
-    proxies: *Proxy
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
 
   - name: iCloud
     type: select
 #    use: *Use
-    proxies: *Proxy
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
 
   - name: MicrosoftCN
     type: select
 #    use: *Use
-    proxies: *Proxy
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
 
   - name: PayPal
     type: select
 #    use: *Use
-    proxies: *Proxy
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
 
   - name: Steam
     type: select
 #    use: *Use
-    proxies: *Proxy
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
 
   - name: Game
     type: select
  #   use: *Use
-    proxies: *Proxy
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
 
   - name: Facebook
     type: select
   #  use: *Use
-    proxies: *Proxy
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
 
   - name: Twitter
     type: select
  #   use: *Use
-    proxies: *Proxy
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
 
   - name: Telegram
     type: select
 #    use: *Use
-    proxies: *Proxy
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
 
   - name: GlobalTV
     type: select
 #    use: *Use
-    proxies: *Proxy
-
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
   - name: YouTube
     type: select
  #   use: *Use
-    proxies: *Proxy
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
 
   - name: Spotify
     type: select
 #    use: *Use
-    proxies: *Proxy
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
 
   - name: SpeedTest
     type: select
 #    use: *Use
-    proxies: *Proxy
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
 
   - name: Download
     type: select
 #    use: *Use
-    proxies: *Proxy
+    proxies:
+      - Auto
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
+      - DIRECT
+      - Block
 
   - name: CN
     type: select
