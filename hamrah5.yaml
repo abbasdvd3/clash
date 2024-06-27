@@ -7,10 +7,16 @@ log-level: info
 ipv6: true
 external-controller: 0.0.0.0:9090
 secret: ""
-unified-delay: false
+unified-delay: true
 tcp-concurrent: true
 global-client-fingerprint: chrome
 global-ua: clash.meta
+geox-url:
+  geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
+  geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
+  mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
+  asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
+
 nameservers: &nameservers
   - https://dns.alidns.com/dns-query # 阿里云公共DNS
   - https://doh.pub/dns-query # 腾讯DNSPod
@@ -25,7 +31,7 @@ fallback_nameservers: &fallback_nameservers
 dns:
   enable: true
   ipv6: true
-  use-system-hosts: false
+  use-system-hosts: true
   cache-algorithm: arc
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -44,8 +50,8 @@ dns:
   proxy-server-nameserver: *nameservers
   nameserver-policy:
     "+.mirror.ghproxy.com": *fallback_nameservers
-    "geosite:private,cn,geolocation-cn": *nameservers
-    "geosite:google,youtube,telegram,gfw,geolocation-!cn": *fallback_nameservers
+    "geosite:private,ir,social": *nameservers
+    "GEOIP:google,ir,telegram,gfw,social": *fallback_nameservers
 
 proxy-groups:
   - name: Mismatch
@@ -574,16 +580,28 @@ proxy-providers:
 #      lazy: false # default value is true
 
 rules:
-  - GEOIP,private,DIRECT,no-resolve
-  - GEOIP,telegram,Telegram,no-resolve
+  - RULE-SET,openai,DNS-Proxy
+  - RULE-SET,telegram,Telegram
+  - RULE-SET,twitter,Twitter
+  - RULE-SET,facebook,Facebook
+  - RULE-SET,github,DIRECT
+  - RULE-SET,bing,MicrosoftCN
+  - RULE-SET,microsoft,MicrosoftCN
+  - RULE-SET,amazon,,Proxy
+  - RULE-SET,google,,Proxy
+  - RULE-SET,cloudflare,Proxy
+  - RULE-SET,iranserver,DIRECT
   - DOMAIN-SUFFIX,push.apple.com,DIRECT
   - DOMAIN-SUFFIX,jetbrains.com,DIRECT
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN,iosapps.itunes.apple.com,DIRECT
-  - GEOIP,apple,Apple
-  - GEOIP,microsoft,MicrosoftCN
-  - GEOIP,twitter,Twitter
-  - GEOIP,facebook,Facebook
-  - GEOIP,youtube,YouTube
+  - GEOIP,private,DIRECT,no-resolve
+  - GEOSITE,category-ads-all,REJECT
+  - GEOSITE,malware,REJECT
+  - GEOSITE,phishing,REJECT
+  - GEOSITE,cryptominers,REJECT
+  - GEOIP,malware,REJECT
+  - GEOIP,phishing,REJECT
+  - GEOSITE,ir,DIRECT
   - GEOIP,ir,DIRECT
   - MATCH,Mismatch
