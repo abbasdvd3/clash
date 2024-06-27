@@ -3,7 +3,7 @@ port: 7890
 allow-lan: true
 mode: Rule
 bind-address: "*"
-ipv6: false
+ipv6: true
 log-level: info
 find-process-mode: always
 enable-process: true
@@ -950,13 +950,13 @@ rule-providers:
     interval: 3600
     path: ./ACL4SSR/ACL4SSR/LocalAreaNetwork.list   
 rules:
-  - geoip,private,DIRECT,no-resolve
-  - geoip,telegram,Telegram,no-resolve
-  - RULE-SET,social,Facebook
-  - RULE-SET,nsfw1,Facebook
+ # - geoip,private,DIRECT,no-resolve
+#  - geoip,telegram,Telegram,no-resolve
+#  - RULE-SET,social,Facebook
+#  - RULE-SET,nsfw1,Facebook
   - DOMAIN-SUFFIX,push.apple.com,DIRECT
 
-  - geosite,category-ads-all,Block
+#  - geosite,category-ads-all,Block
 
   - DOMAIN-SUFFIX,jetbrains.com,DIRECT
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
@@ -964,24 +964,24 @@ rules:
 
 #  - geosite,openai,iCloud
 #  - geoip,openai,Apple
-  - geosite,microsoft,MicrosoftCN
+#  - geosite,microsoft,MicrosoftCN
 #  - geosite,nsfw,PayPal
 #  - geoip,nsfw,Twitter
 #  - geosite,social,Facebook
 #  - geoip,social,YouTube
-  - geosite,google,YouTube
-  - geoip,google,YouTube
-  - geoip,private,DIRECT,no-resolve
+#  - geosite,google,YouTube
+#  - geoip,google,YouTube
+#  - geoip,private,DIRECT,no-resolve
 #  - geoip,github,DIRECT,no-resolve
 #  - geosite,github,DIRECT,no-resolve
-  - geosite,category-ads-all,REJECT
+#  - geosite,category-ads-all,REJECT
 #  - geosite,malware,REJECT
 #  - geosite,phishing,REJECT
 #  - geosite,cryptominers,REJECT
 #  - geoip,malware,REJECT
 #  - geoip,phishing,REJECT
 #  - geosite,ir,DIRECT
-  - geoip,ir,DIRECT
+#  - geoip,ir,DIRECT
   - RULE-SET,GoogleFCM,YouTube
   - RULE-SET,GoogleCN,YouTube
   - RULE-SET,SteamCN,YouTube
@@ -1037,7 +1037,7 @@ rules:
   - RULE-SET,AWA,REJECT
   - DOMAIN-SUFFIX,googlesyndication.com,Mismatch
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
-  - GEOSITE,category-ads-all,REJECT
+#  - GEOSITE,category-ads-all,REJECT
   - RULE-SET,block,REJECT
   # - SCRIPT,quic,REJECT
   # - SCRIPT,youshit,REJECT
@@ -1053,13 +1053,13 @@ rules:
 #  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
 #  - IP-CIDR6,::1/128,REJECT,no-resolve
   ## rules telegram
-  - GEOIP,telegram,Telegram,no-resolve
-  - GEOSITE,telegram,Telegram,no-resolve
+#  - GEOIP,telegram,Telegram,no-resolve
+#  - GEOSITE,telegram,Telegram,no-resolve
  # - GEOIP,social,PROXY
 #  - GEOIP,nsfw1,PROXY
-  - GEOIP,CN,DIRECT
-  - GEOIP,ir,DIRECT
-  - GEOIP,private,DIRECT,no-resolve
+#  - GEOIP,CN,DIRECT
+#  - GEOIP,ir,DIRECT
+#  - GEOIP,private,DIRECT,no-resolve
   ## direct ntp
   # - AND,((NETWORK,UDP),(DST-PORT,123)),DIRECT
   # - DST-PORT,123/136/137-139,DIRECT,udp
