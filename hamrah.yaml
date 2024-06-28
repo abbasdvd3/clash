@@ -1,9 +1,8 @@
 
 # port: 7890
 # socks-port: 7891
-# mixed-port: 10801
-# redir-port: 9797
-#tproxy-port: 9898
+mixed-port: 10801
+redir-port: 9797
 mode: rule
 allow-lan: true
 unified-delay: false
@@ -29,10 +28,9 @@ profile:
   store-fake-ip: true
 interface-name: rmnet0
 keep-alive-interval: 15 
-clash-for-android:
-  append-system-dns: true
+
 sniffer:
-  enable: false
+  enable: true
   sniffing:
     - tls
     - http
@@ -19115,13 +19113,13 @@ proxy-groups:
   - name: U
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 0
+    interval: 120
     tolerance: 100
 #    include-all-proxies: true
     proxies:
       - 🍆
       - 🔯
-#      - PROXY
+      - PROXY
   - name: PROXY
     type: select
     include-all-proxies: true
@@ -19134,8 +19132,8 @@ proxy-groups:
   - name: 🍆
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    interval: 120
+    tolerance: 100
     include-all-proxies: true
     proxies:
 
@@ -19614,8 +19612,8 @@ rule-providers:
     path: ./ACL4SSR/ACL4SSR/LocalAreaNetwork.list   
 rules :
   - RULE-SET,LocalAreaNetwork,DIRECT
-  - RULE-SET,social,PROXY
-  - RULE-SET,nsfw1,PROXY
+  - RULE-SET,social,🐝
+  - RULE-SET,nsfw1,🐝
   - RULE-SET,category-ads-all,🆎 AdBlock
   - RULE-SET,private,DIRECT,no-resolve
   - RULE-SET,apps,🐝
@@ -19629,40 +19627,40 @@ rules :
   - RULE-SET,UnBan,PROXY
   - RULE-SET,BanAD,🆎 AdBlock
   - RULE-SET,BanProgramAD,🆎 AdBlock
-  - RULE-SET,GoogleFCM,PROXY
-  - RULE-SET,GoogleCN,PROXY
-  - RULE-SET,SteamCN,PROXY
-  - RULE-SET,Bing,PROXY
-  - RULE-SET,OneDrive,PROXY
-  - RULE-SET,Microsoft,PROXY
+  - RULE-SET,GoogleFCM,🐝
+  - RULE-SET,GoogleCN,🐝
+  - RULE-SET,SteamCN,🐝
+  - RULE-SET,Bing,🐝
+  - RULE-SET,OneDrive,🐝
+  - RULE-SET,Microsoft,🐝
   - RULE-SET,Apple,🐝
-  - RULE-SET,Telegram,PROXY
-  - RULE-SET,OpenAi,PROXY
-  - RULE-SET,NetEaseMusic,PROXY
-  - RULE-SET,Epic,PROXY
-  - RULE-SET,Origin,PROXY
-  - RULE-SET,Sony,PROXY
-  - RULE-SET,Steam,PROXY
-  - RULE-SET,Nintendo,PROXY
-  - RULE-SET,YouTube,PROXY
-  - RULE-SET,Netflix,PROXY
-  - RULE-SET,Bahamut,PROXY
-  - RULE-SET,BilibiliHMT,PROXY
-  - RULE-SET,Bilibili,PROXY
-  - RULE-SET,ChinaMedia,PROXY
-  - RULE-SET,ProxyMedia,PROXY
-  - RULE-SET,Google1,PROXY 
-  - RULE-SET,Google,PROXY 
+  - RULE-SET,Telegram,🐝
+  - RULE-SET,OpenAi,🐝
+  - RULE-SET,NetEaseMusic,🐝
+  - RULE-SET,Epic,🐝
+  - RULE-SET,Origin,🐝
+  - RULE-SET,Sony,🐝
+  - RULE-SET,Steam,🐝
+  - RULE-SET,Nintendo,🐝
+  - RULE-SET,YouTube,🐝
+  - RULE-SET,Netflix,🐝
+  - RULE-SET,Bahamut,🐝
+  - RULE-SET,BilibiliHMT,🐝
+  - RULE-SET,Bilibili,🐝
+  - RULE-SET,ChinaMedia,🐝
+  - RULE-SET,ProxyMedia,🐝
+  - RULE-SET,Google1,🐝 
+  - RULE-SET,Google,🐝 
 # 长风网站，自动注入
-  - DOMAIN-SUFFIX,v2rayse.com,PROXY
-  - DOMAIN-SUFFIX,cff.pw,PROXY
-  - DOMAIN-SUFFIX,vpnse.org,PROXY
-  - DOMAIN-SUFFIX,cfmem.com,PROXY
-  - RULE-SET,ProxyGFWlist,PROXY
+  - DOMAIN-SUFFIX,v2rayse.com,🐝
+  - DOMAIN-SUFFIX,cff.pw,🐝
+  - DOMAIN-SUFFIX,vpnse.org,🐝
+  - DOMAIN-SUFFIX,cfmem.com,🐝
+  - RULE-SET,ProxyGFWlist,🐝
   - RULE-SET,ChinaDomain,🐝
   - RULE-SET,ChinaCompanyIp,🐝
   - RULE-SET,Download,🐝
-  - RULE-SET,GoogleCNProxyIP,PROXY
+  - RULE-SET,GoogleCNProxyIP,🐝
 #  - RULE-SET,GoogleCN,✈️
 #  - RULE-SET,LocalAreaNetwork,DIRECT
 #  - RULE-SET,ProxyGFWlist,✈️
@@ -19670,20 +19668,20 @@ rules :
 #  - RULE-SET,gfw,✈️  
   - RULE-SET,Adblock1,🆎 AdBlock
  # - RULE-SET,DNS2,DIRECT
- # - RULE-SET,Domestic,PROXY
+ # - RULE-SET,Domestic,🐝
 #  - RULE-SET,cloudflare,DIRECT
 #  - RULE-SET,ChinaDNS,🎯
 #  - RULE-SET,AdGuardSDNSFilterDirect,DIRECT
  # - RULE-SET,BlockHttpDNS,REJECT
 #  - RULE-SET,AdGuardSDNSFilter,REJECT
-#  - RULE-SET,Samsung,PROXY
+#  - RULE-SET,Samsung,🐝
   - RULE-SET,SpeedTest,🎯
 #  - RULE-SET,DNS,DIRECT
-#  - RULE-SET,ProxyGFWlist,PROXY
-#  - RULE-SET,GitHub,PROXY
-#  - RULE-SET,Google,PROXY
+#  - RULE-SET,ProxyGFWlist,🐝
+#  - RULE-SET,GitHub,🐝
+#  - RULE-SET,Google,🐝
   - RULE-SET,AWA,🆎 AdBlock
-  - DOMAIN-SUFFIX,googlesyndication.com,PROXY
+  - DOMAIN-SUFFIX,googlesyndication.com,🐝
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),🆎 AdBlock
   - GEOSITE,category-ads-all,🆎 AdBlock
   - RULE-SET,block,🆎 AdBlock
@@ -19701,20 +19699,20 @@ rules :
 #  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
 #  - IP-CIDR6,::1/128,REJECT,no-resolve
   ## rules telegram
-  - GEOIP,telegram,PROXY
-  - GEOSITE,telegram,PROXY
-  - GEOIP,social,PROXY
-  - GEOIP,nsfw1,PROXY
+  - GEOIP,telegram,🐝
+  - GEOSITE,telegram,🐝
+  - GEOIP,social,🐝
+  - GEOIP,nsfw1,🐝
   - GEOIP,CN,🎯
   - GEOIP,ir,DIRECT
   - GEOIP,private,DIRECT,no-resolve
   ## direct ntp
   # - AND,((NETWORK,UDP),(DST-PORT,123)),DIRECT
   # - DST-PORT,123/136/137-139,DIRECT,udp
-  - DOMAIN-SUFFIX,v2rayse.com,PROXY
-  - DOMAIN-SUFFIX,cff.pw,PROXY
-  - DOMAIN-SUFFIX,vpnse.org,PROXY
-  - DOMAIN-SUFFIX,cfmem.com,PROXY
+  - DOMAIN-SUFFIX,v2rayse.com,🐝
+  - DOMAIN-SUFFIX,cff.pw,🐝
+  - DOMAIN-SUFFIX,vpnse.org,🐝
+  - DOMAIN-SUFFIX,cfmem.com,🐝
   ## rules inner, recommended untuk non kuota reguler
 #  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🆎 AdBlock
 # local
@@ -19724,32 +19722,32 @@ rules :
   - PROCESS-NAME,com.google.android.gms.location.history,🆎 AdBlock
   - PROCESS-NAME,com.sec.location.nsflp2,🆎 AdBlock
   - PROCESS-NAME,com.android.location.fused,🆎 AdBlock
-  - IN-TYPE,inner,PROXY
-  - PROCESS-NAME,org.telegram.messenger,PROXY
-  - PROCESS-NAME,com.tumblr,PROXY
-  - PROCESS-NAME,com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0,PROXY
-  - PROCESS-NAME,com.tumblr/org.chromium.content.app.SandboxedProcessService0:0,PROXY
-  - PROCESS-NAME,com.google.android.gms,PROXY
-  - PROCESS-NAME,com.google.android.webview,PROXY
-  - PROCESS-NAME,com.android.vending,PROXY
-  - PROCESS-NAME,com.google.android.gm,PROXY
-  - PROCESS-NAME,com.picsart.studio,PROXY
-  - PROCESS-NAME,com.tomclaw.appsend,PROXY
-  - PROCESS-NAME,com.photoroom.app,PROXY
-  - PROCESS-NAME,com.frontrow.flow,PROXY
-  - PROCESS-NAME,com.xt.retouchoversea,PROXY
-  - PROCESS-NAME,com.prequel.app,PROXY
-  - PROCESS-NAME,com.circular.pixels,PROXY
-  - PROCESS-NAME,jp.pxv.android,PROXY
-  - PROCESS-NAME,com.facebook.katana,PROXY
-  - PROCESS-NAME,com.facebook.katanb,PROXY
-  - PROCESS-NAME,com.discord,PROXY
-  - PROCESS-NAME,com.pinterest,PROXY
-  - PROCESS-NAME,com.twitter.plus,PROXY
-  - PROCESS-NAME,com.twitter.android,PROXY
-  - PROCESS-NAME,com.aeroinsta.android,PROXY
-  - PROCESS-NAME,com.instagold.android,PROXY
-  - PROCESS-NAME,com.instathunder.android,PROXY
-  - PROCESS-NAME,com.myinsta.android,PROXY
-  - PROCESS-NAME,com.instagram.android,PROXY
+  - IN-TYPE,inner,🐝
+  - PROCESS-NAME,org.telegram.messenger,🐝
+  - PROCESS-NAME,com.tumblr,🐝
+  - PROCESS-NAME,com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0,🐝
+  - PROCESS-NAME,com.tumblr/org.chromium.content.app.SandboxedProcessService0:0,🐝
+  - PROCESS-NAME,com.google.android.gms,🐝
+  - PROCESS-NAME,com.google.android.webview,🐝
+  - PROCESS-NAME,com.android.vending,🐝
+  - PROCESS-NAME,com.google.android.gm,🐝
+  - PROCESS-NAME,com.picsart.studio,🐝
+  - PROCESS-NAME,com.tomclaw.appsend,🐝
+  - PROCESS-NAME,com.photoroom.app,🐝
+  - PROCESS-NAME,com.frontrow.flow,🐝
+  - PROCESS-NAME,com.xt.retouchoversea,🐝
+  - PROCESS-NAME,com.prequel.app,🐝
+  - PROCESS-NAME,com.circular.pixels,🐝
+  - PROCESS-NAME,jp.pxv.android,🐝
+  - PROCESS-NAME,com.facebook.katana,🐝
+  - PROCESS-NAME,com.facebook.katanb,🐝
+  - PROCESS-NAME,com.discord,🐝
+  - PROCESS-NAME,com.pinterest,🐝
+  - PROCESS-NAME,com.twitter.plus,🐝
+  - PROCESS-NAME,com.twitter.android,🐝
+  - PROCESS-NAME,com.aeroinsta.android,🐝
+  - PROCESS-NAME,com.instagold.android,🐝
+  - PROCESS-NAME,com.instathunder.android,🐝
+  - PROCESS-NAME,com.myinsta.android,🐝
+  - PROCESS-NAME,com.instagram.android,🐝
   - MATCH,🐝
