@@ -184,9 +184,11 @@
                 "rule_set": [
                     "geosite-cn",
                     "geosite-ir",
+                    "geoip-ir",
                     "geosite-icloud@cn",
                     "geosite-apple@cn",
                     "geosite-private",
+                    "geoip-private",
                     "geosite-airwick",
                     "geosite-github",
                     "geoip-github",
@@ -199,6 +201,14 @@
                     "geosite-category-tech-ir",
                     "geosite-category-travel-ir",
                     "geosite-ziroom"
+                    "geosite-category-bank-ir",
+                    "geosite-category-bourse-ir",
+                    "geosite-category-education-ir",
+                    "geosite-category-forums-ir",
+                    "geosite-category-gov-ir",
+                    "geosite-category-insurance-ir",
+                    "geosite-category-ir",
+                    "geosite-aparat",
                 ],
                 "outbound": "direct",
                 "server": "local-dns"
@@ -1492,7 +1502,7 @@
                 "tag": "GeoIP2-CN",
                 "type": "remote",
                 "update_interval": "20d",
-                "url": "https://wiki.jokin.uk/cnip2.srs"
+                "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs"
             },
             {
                 "download_detour": "direct",
@@ -2742,6 +2752,27 @@
                 "update_interval": "20d",
                 "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-github.srs"
             }
+            {
+        "type": "remote",
+        "format": "binary",
+        "download_detour": "direct",
+        "tag": "geoip-ir",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/ir.srs"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "download_detour": "direct",
+        "tag": "geoip-private",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/private.srs"
+      },
+      {
+        "type": "remote",
+        "format": "binary",
+        "download_detour": "direct",
+        "tag": "geosite-category-bank-ir",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-bank-ir.srs"
+      }
         ],
         "rules": [
             {
@@ -2834,14 +2865,17 @@
                 "outbound": "direct",
                 "rule_set": [
                     "GeoIP2-CN",
-                    "geosite-github",
                     "geosite-cn",
+                    "geoip-ir",
+                    "geosite-ir",
                     "geosite-icloud@cn",
                     "geosite-apple@cn",
                     "geosite-private",
                     "geoip-private",
                     "geoip-github",
+                    "geosite-github",
                     "geosite-airwick",
+                    "geosite-category-bank-ir",
                     "geosite-category-media-ir",
                     "geosite-category-news-ir",
                     "geosite-category-payment-ir",
@@ -2850,7 +2884,6 @@
                     "geosite-category-social-media-ir",
                     "geosite-category-tech-ir",
                     "geosite-category-travel-ir",
-                    "geoip-ir",
                     "geosite-ziroom"
                 ]
             }
