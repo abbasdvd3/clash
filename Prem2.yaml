@@ -1,36 +1,52 @@
-udp: true
+
 proxies: 
 
 proxy-groups:
   - name: GENERAL
     type: select
+    disable-udp: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
-    disable-dns: false
+    use:
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+      - Subscription-11
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14 
     proxies: 
       - Cloudflare
       - SPEED TEST
       - FALLBACK
       - BALANCE
-      - USA
+      - 🇺🇸
       - 🇰🇷
-      - GERMANY
+      - 🇩🇪
       - 🇸🇬
+      - 🇯🇵
+      - 🇭🇰
+      - 🏁
       - UK
-      - VITNAM
-      - IRAN M
-      - TAWAN
-      - HONGKONG
-      - JAPAN
+      - 🇹🇷🇦🇫
+      - 🏴🏁
+      - 🇨🇳🇹🇼
       
   - name: SPEED TEST
     type: url-test
-    tolerance: 30
-    disable-dns: false
+    disable-udp: false
+    tolerance: 100
     lazy: true
     interval: 100
     timeout: 5
+    max-failed-times: 10
     url: https://www.youtube.com/generate_204
-    max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
     proxies: 
     use: 
@@ -50,12 +66,12 @@ proxy-groups:
       - Subscription-14    
   - name: FALLBACK
     type: fallback
-    disable-dns: false
+    disable-udp: false
     lazy: true
-    interval: 100
-    timeout: 5
+    interval: 70
+    timeout: 10
     url: https://www.youtube.com/generate_204
-    max-failed-times: 3
+    max-failed-times: 10
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/ambulance.svg
     proxies: 
     use: 
@@ -77,11 +93,11 @@ proxy-groups:
     type: load-balance
     strategy: consistent-hashing
     lazy: true
-    disable-dns: false
+    disable-udp: false
     interval: 100
     timeout: 5
     url: https://www.youtube.com/generate_204
-    max-failed-times: 3
+    max-failed-times: 1
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/merry_go.svg
     proxies: 
     use: 
@@ -101,10 +117,9 @@ proxy-groups:
       - Subscription-14     
   - name: GOOGLE
     type: select
-    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/google.svg
     proxies: 
-      - USA
+      - 🇺🇸
       - Cloudflare
       - SPEED TEST
       - FALLBACK
@@ -126,10 +141,9 @@ proxy-groups:
       - Subscription-14 
   - name: YOU TUBE
     type: select
-    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/youtube.svg
     proxies: 
-      - USA
+      - 🇺🇸
       - Cloudflare
       - SPEED TEST
       - FALLBACK
@@ -152,13 +166,12 @@ proxy-groups:
       - Subscription-14   
   - name: TELEGRAM
     type: select
-    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/telegram.svg
     proxies:
       - Cloudflare
       - SPEED TEST
       - FALLBACK
-      - USA
+      - 🇺🇸
     use: 
       - Subscription-1
       - Subscription-2
@@ -176,14 +189,13 @@ proxy-groups:
       - Subscription-14     
   - name: WINDOWS
     type: select
-    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/microsoft.svg
     proxies: 
       - Cloudflare
       - SPEED TEST
       - FALLBACK
       - BALANCE
-      - USA
+      - 🇺🇸
     use: 
       - Subscription-1
       - Subscription-2
@@ -202,14 +214,13 @@ proxy-groups:
 
   - name: APPLE
     type: select
-    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/apple.svg
     proxies: 
       - Cloudflare
       - SPEED TEST
       - FALLBACK
       - BALANCE
-      - USA
+      - 🇺🇸
     use: 
       - Subscription-1
       - Subscription-2
@@ -227,32 +238,39 @@ proxy-groups:
       - Subscription-14       
   - name: TROJAN
     type: select
-    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/bug.svg
     proxies: ['REJECT', 'DIRECT']
 
   - name: DOWNLOAD
     type: select
-    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
     proxies: 
       - DIRECT
-    
+      - Cloudflare
+      - FALLBACK
   - name: AD BLOCK
     type: select
-    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/block.svg
     proxies: ['REJECT', 'DIRECT']
 
   - name: FINALL
     type: select
-    disable-dns: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg
     proxies: 
       - Cloudflare
       - SPEED TEST
       - FALLBACK
-      - USA
+      - 🇺🇸
+      - 🇰🇷
+      - 🇩🇪
+      - 🇸🇬
+      - 🇯🇵
+      - 🇭🇰
+      - 🏁
+      - UK
+      - 🇹🇷🇦🇫
+      - 🏴🏁
+      - 🇨🇳🇹🇼
     use: 
       - Subscription-1
       - Subscription-2
@@ -269,15 +287,15 @@ proxy-groups:
       - Subscription-13
       - Subscription-14        
 
-  - name: IRAN M
+  - name: 🏴🏁
     type: url-test
-    tolerance: 30
-    lazy: false
-    disable-dns: false
+    tolerance: 100
+    disable-udp: false
+    lazy: true
     interval: 100
-    timeout: 20
+    timeout: 5
+    max-failed-times: 10
     url: https://www.youtube.com/generate_204
-    max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/mo.svg
     hidden: true
     filter: "iran|IR|🇮🇷"
@@ -297,18 +315,18 @@ proxy-groups:
       - Subscription-12
       - Subscription-13
       - Subscription-14  
-  - name: TAWAN
+  - name: 🇨🇳🇹🇼
     type: url-test
-    tolerance: 30
-    lazy: false
+    tolerance: 100
+    disable-udp: false
+    lazy: true
     interval: 100
-    timeout: 20
-    disable-dns: false
+    timeout: 5
+    max-failed-times: 10
     url: https://www.youtube.com/generate_204
-    max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/tw.svg
     hidden: false
-    filter: "China|CN|中|国cn|Taiwan|TW|台湾"
+    filter: "🇨🇳|🇹🇼|China|CN|中|国cn|Taiwan|TW|台湾"
     proxies: 
     use: 
       - Subscription-1
@@ -325,15 +343,15 @@ proxy-groups:
       - Subscription-12
       - Subscription-13
       - Subscription-14     
-  - name: JAPAN
+  - name: 🇯🇵
     type: url-test
-    tolerance: 30
-    lazy: false
-    disable-dns: false
+    tolerance: 100
+    disable-udp: false
+    lazy: true
     interval: 100
-    timeout: 20
+    timeout: 5
+    max-failed-times: 10
     url: https://www.youtube.com/generate_204
-    max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/jp.svg
     hidden: false
     filter: '🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日'
@@ -354,11 +372,10 @@ proxy-groups:
       - Subscription-13
       - Subscription-14       
 
-  - name: HONGKONG
+  - name: 🇭🇰
     type: url-test
     tolerance: 30
     lazy: false
-    disable-dns: false
     interval: 100
     timeout: 20
     url: https://www.youtube.com/generate_204
@@ -382,64 +399,35 @@ proxy-groups:
       - Subscription-12
       - Subscription-13
       - Subscription-14 
-  - name: VITNAM
-    type: url-test
-    tolerance: 30
-    lazy: false
-    disable-dns: false
-    interval: 100
-    timeout: 20
-    url: https://www.youtube.com/generate_204
-    max-failed-times: 3
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/vn.svg
-    hidden: true
-    filter: "Japan|JP|日本"
-    proxies: 
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14   
 
-  - name: NATERLAND
+  - name: 🇭🇰🇯🇵🇭🇰🇰🇷🇸🇬
     type: url-test
     tolerance: 30
     lazy: false
     interval: 100
     timeout: 20
-    disable-dns: false
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/nl.svg
     hidden: false
     proxies: 
-      - USA
+      - 🇺🇸
       - 🇰🇷
-      - GERMANY
+      - 🇩🇪
       - 🇸🇬
+      - 🇯🇵
+      - 🇭🇰
+      - 🏁
       - UK
-      - VITNAM
-      - IRAN M
-      - TAWAN
-      - HONGKONG
-      - JAPAN
+      - 🇹🇷🇦🇫
+      - 🏴🏁
+      - 🇨🇳🇹🇼
   - name: 🇰🇷
     type: url-test
     tolerance: 30
     lazy: false
     interval: 100
     timeout: 20
-    disable-dns: false
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/kr.svg
@@ -461,18 +449,17 @@ proxy-groups:
       - Subscription-12
       - Subscription-13
       - Subscription-14 
-  - name: GERMANY
+  - name: 🇩🇪
     type: url-test
-    tolerance: 30
+    tolerance: 100
     lazy: false
     interval: 100
     timeout: 20
-    disable-dns: false
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/de.svg
     hidden: true
-    filter: "Germany|Deutsch|DE|德国"
+    filter: "🇩🇪|Germany|Deutsch|DE|德国"
     proxies: 
     use: 
       - Subscription-1
@@ -495,7 +482,6 @@ proxy-groups:
     lazy: false
     interval: 100
     timeout: 20
-    disable-dns: false
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/gb.svg
@@ -523,7 +509,6 @@ proxy-groups:
     lazy: false
     interval: 100
     timeout: 20
-    disable-dns: false
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/sg.svg
@@ -547,11 +532,11 @@ proxy-groups:
       - Subscription-14 
   - name: Cloudflare
     type: url-test
-    tolerance: 30
+    tolerance: 100
     lazy: false
     interval: 100
     timeout: 20
-    disable-dns: false
+    disable-udp: false
     url: https://www.youtube.com/generate_204
 #    max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/cloudflare.svg
@@ -573,15 +558,15 @@ proxy-groups:
       - Subscription-13
       - Subscription-14 
 
-  - name: USA
+  - name: 🇺🇸
     type: url-test
-    tolerance: 30
-    lazy: false
-    disable-dns: false
+    tolerance: 100
+    disable-udp: false
+    lazy: true
     interval: 100
-    timeout: 20
+    timeout: 5
+    max-failed-times: 10
     url: https://www.youtube.com/generate_204
-    max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/us.svg
     hidden: false
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
@@ -602,11 +587,11 @@ proxy-groups:
       - Subscription-13
       - Subscription-14         
 
-  - name: EG
+  - name: 🇯🇵
     type: url-test
     tolerance: 30
+    disable-udp: false
     lazy: false
-    disable-dns: false
     interval: 100
     timeout: 20
     url: https://www.youtube.com/generate_204
@@ -630,18 +615,18 @@ proxy-groups:
       - Subscription-12
       - Subscription-13
       - Subscription-14   
-  - name: FRANCE
+  - name: 🇹🇷🇦🇫
     type: url-test
+    disable-udp: false
     tolerance: 30
     lazy: false
-    disable-dns: false
     interval: 100
     timeout: 20
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/fr.svg
     hidden: true
-    filter: "China|CN|中国"
+    filter: "tr|🇦🇿|🇦🇫|🇮🇶|🇮🇳|🇵🇰|🇵🇳|🇵🇷|🇵🇸|🇹🇷"
     proxies: 
     use: 
       - Subscription-1
@@ -659,18 +644,18 @@ proxy-groups:
       - Subscription-13
       - Subscription-14 
       
-  - name: PHOLAND
+  - name: 🏁
     type: url-test
+    disable-udp: false
     tolerance: 30
     lazy: false
-    disable-dns: false
     interval: 100
     timeout: 20
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/pl.svg
     hidden: true
-    filter: "China|CN|中国"
+    filter: "🏁"
     proxies: 
     use: 
       - Subscription-1
@@ -695,7 +680,8 @@ proxy-providers:
     url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies" # replace this URL with your provider's subscription link
     path: ./Prem2/Subscription-1.yaml
     interval: 600
-    udp: true
+    proxy: DIRECT
+    disable-udp: false
     header:
     health-check:
       enable: true
@@ -707,7 +693,8 @@ proxy-providers:
     url: "http://brovee.myds.me:12580/clash/proxies" # replace this URL with your provider's subscription link
     path: ./Prem2/Subscription-2.yaml
     interval: 600
-    udp: true
+    proxy: DIRECT
+    disable-udp: false
     header:
     health-check:
       enable: true
@@ -720,7 +707,8 @@ proxy-providers:
     url: "http://haohaoxiong.myqnapcloud.com:12580/clash/proxies" 
     path: ./Prem2/Subscription-3.yaml
     interval: 600
-    udp: true
+    proxy: DIRECT
+    disable-udp: false
     header:
     health-check:
       enable: true
@@ -733,7 +721,8 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/WilliamStar007/ClashX-V2Ray-TopFreeProxy/main/combine/clash.config.yaml" # replace this URL with your provider's subscription link
     path: ./Prem2/Subscription-4.yaml
     interval: 600
-    udp: true
+    proxy: DIRECT
+    disable-udp: false
     header:
     health-check:
       enable: true
@@ -746,7 +735,8 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml" 
     path: ./Prem2/Subscription-5.yaml
     interval: 600
-    udp: true
+    proxy: DIRECT
+    disable-udp: false
     header:
     health-check:
       enable: true
@@ -759,7 +749,8 @@ proxy-providers:
     url: "http://150.230.195.209:12580/clash/proxies" # replace this URL with your provider's subscription link
     path: ./Prem2/Subscription-6.yaml
     interval: 600
-    udp: true
+    proxy: DIRECT
+    disable-udp: false
     header:
     health-check:
       enable: true
@@ -771,7 +762,8 @@ proxy-providers:
     url: "http://beetle.lander.work/clash/proxies" # replace this URL with your provider's subscription link
     path: ./Prem2/Subscription-7.yaml
     interval: 600
-    udp: true
+    proxy: DIRECT
+    disable-udp: false
     header:
     health-check:
       enable: true
@@ -784,7 +776,8 @@ proxy-providers:
     url: "http://66.42.50.118:12580/clash/proxies" 
     path: ./Prem2/Subscription-8.yaml
     interval: 600
-    udp: true
+    proxy: DIRECT
+    disable-udp: false
     header:
     health-check:
       enable: true
@@ -797,7 +790,8 @@ proxy-providers:
     url: "http://174.137.58.32:12580/clash/proxies" 
     path: ./Prem2/Subscription-9.yaml
     interval: 600
-    udp: true
+    proxy: DIRECT
+    disable-udp: false
     header:
     health-check:
       enable: true
@@ -810,7 +804,8 @@ proxy-providers:
     url: "http://155.248.172.106:12580/clash/proxies" 
     path: ./Prem2/Subscription-10.yaml
     interval: 600
-    udp: true
+    proxy: DIRECT
+    disable-udp: false
     header:
     health-check:
       enable: true
@@ -823,7 +818,8 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml" 
     path: ./Prem2/Subscription-11.yaml
     interval: 600
-    udp: true
+    proxy: DIRECT
+    disable-udp: false
     header:
     health-check:
       enable: true
@@ -836,7 +832,8 @@ proxy-providers:
     url: "https://laxcity.pages.dev/clash/proxies" 
     path: ./Prem2/Subscription-12.yaml
     interval: 600
-    udp: true
+    proxy: DIRECT
+    disable-udp: false
     header:
     health-check:
       enable: true
@@ -849,7 +846,8 @@ proxy-providers:
     url: "https://proxy.fldhhhhhh.top/clash/proxies" 
     path: ./Prem2/Subscription-13.yaml
     interval: 600
-    udp: true
+    proxy: DIRECT
+    disable-udp: false
     header:
     health-check:
       enable: true
@@ -862,7 +860,8 @@ proxy-providers:
     url: "https://timell.pages.dev/clash/proxies" 
     path: ./Prem2/Subscription-14.yaml
     interval: 600
-    udp: true
+    proxy: DIRECT
+    disable-udp: false
     header:
     health-check:
       enable: true
@@ -968,6 +967,95 @@ rule-providers:
     interval: 86400
 
 rules:
+payload:
+  # Mulai baris ini kebawah bisa di edit/hapus
+  # INSTAGRAM
+  - DOMAIN-KEYWORD,instagram,TELEGRAM
+  - DOMAIN,instagram.com,TELEGRAM
+  - DOMAIN,i.instagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,*,instagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,*.cdninstagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,achat-followers-instagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,DOMAIN-SUFFIX,acheter-followers-instagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,DOMAIN-SUFFIX,acheterdesfollowersinstagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,DOMAIN-SUFFIX,acheterfollowersinstagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,DOMAIN-SUFFIX,bookstagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,DOMAIN-SUFFIX,carstagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,DOMAIN-SUFFIX,cdninstagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,DOMAIN-SUFFIX,chickstagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,DOMAIN-SUFFIX,ig.me,TELEGRAM
+  - DOMAIN-SUFFIX,DOMAIN-SUFFIX,igcdn.com,TELEGRAM
+  - DOMAIN-SUFFIX,DOMAIN-SUFFIX,igsonar.com,TELEGRAM
+  - DOMAIN-SUFFIX,igtv.com,TELEGRAM
+  - DOMAIN-SUFFIX,imstagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,imtagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,instaadder.com,TELEGRAM
+  - DOMAIN-SUFFIX,instachecker.com,TELEGRAM
+  - DOMAIN-SUFFIX,instafallow.com,TELEGRAM
+  - DOMAIN-SUFFIX,instafollower.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagainer.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagda.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagify.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagmania.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagor.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagram-brand.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagram-engineering.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagram-help.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagram-press.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagram-press.net,TELEGRAM
+  - DOMAIN-SUFFIX,instagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramci.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramcn.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramdi.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramhashtags.net
+  - DOMAIN-SUFFIX,instagramhilecim.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramhilesi.org,TELEGRAM
+  - DOMAIN-SUFFIX,instagramium.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramizlenme.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramkusu.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramlogin.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramm.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramn.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagrampartners.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramphoto.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramq.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramsepeti.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramtakipcisatinal.net
+  - DOMAIN-SUFFIX,instagramtakiphilesi.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramtips.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagramtr.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagran.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagranm.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagrem.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagrm.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagtram.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagy.com,TELEGRAM
+  - DOMAIN-SUFFIX,instamgram.com,TELEGRAM
+  - DOMAIN-SUFFIX,instangram.com,TELEGRAM
+  - DOMAIN-SUFFIX,instanttelegram.com,TELEGRAM
+  - DOMAIN-SUFFIX,instaplayer.net,TELEGRAM
+  - DOMAIN-SUFFIX,instastyle.tv,TELEGRAM
+  - DOMAIN-SUFFIX,instgram.com,TELEGRAM
+  - DOMAIN-SUFFIX,intagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,intagrm.com,TELEGRAM
+  - DOMAIN-SUFFIX,intgram.com,TELEGRAM
+  - DOMAIN-SUFFIX,kingstagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,lnstagram-help.com,TELEGRAM
+  - DOMAIN-SUFFIX,theinstagramhack.com,TELEGRAM
+  - DOMAIN-SUFFIX,oninstagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,online-instagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,onlineinstagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,web-instagram.net,TELEGRAM
+  - DOMAIN-SUFFIX,wwwinstagram.com,TELEGRAM
+  - DOMAIN-KEYWORD,instagram,TELEGRAM
+  - DOMAIN,instagram.com,TELEGRAM
+  - DOMAIN,i.instagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,*,instagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,*.cdninstagram.com,TELEGRAM
+  - DOMAIN-KEYWORD,instagram,TELEGRAM
+  - DOMAIN-SUFFIX,cdninstagram.com,TELEGRAM
+  - DOMAIN-SUFFIX,instagr.am,TELEGRAM
+  - DOMAIN-SUFFIX,instagram.com,TELEGRAM
 
   - GEOIP,private,DIRECT,no-resolve
   - GEOIP,telegram,TELEGRAM,no-resolve
@@ -976,7 +1064,7 @@ rules:
   - GEOIP,twitter,TELEGRAM
   - GEOIP,facebook,TELEGRAM
   - GEOIP,youtube,YOU TUBE
-
+  - DOMAIN-SUFFIX,brovee.myds.me,DIRECT
   - DOMAIN-SUFFIX,push.apple.com,DIRECT
   - DOMAIN-SUFFIX,jetbrains.com,DIRECT
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
@@ -989,7 +1077,9 @@ rules:
   # Google Play
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,GENERAL
   # Github Pages
-  - DOMAIN-SUFFIX,github.io,GENERAL
+  - DOMAIN-SUFFIX,github.io,DOWNLOAD,no-resolve
+  - DOMAIN-SUFFIX,github.com,DOWNLOAD,no-resolve
+  - DOMAIN-SUFFIX,github,DOWNLOAD,no-resolve
   # V2raySE
   - DOMAIN,v2rayse.com,GENERAL
   # loyalsoldier 规则集
@@ -1008,5 +1098,5 @@ rules:
   - RULE-SET,telegramcidr,TELEGRAM,no-resolve
   # 其他
   - GEOIP,LAN,DOWNLOAD,no-resolve
-  - GEOIP,ir,DOWNLOAD,no-resolve
+  - GEOIP,CN,DOWNLOAD,no-resolve
   - MATCH,FINALL
