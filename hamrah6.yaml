@@ -110,15 +110,14 @@ proxy-groups:
       - Geo-SG
       - Geo-JP
       - Geo-US
-      - Geo-UK
       - Geo-DE
       - Geo-CN
       - DIRECT
       - Block
   - name: Auto
     type: url-test
-    interval: 300
-    tolerance: 10
+    interval: 120
+    tolerance: 100
     url: http://www.gstatic.com/generate_204
     use: 
       - Subscription-1
@@ -130,11 +129,11 @@ proxy-groups:
       - Subscription-7
 
   - name: Geo-HK
-    type: url-test
-    interval: 300
-    tolerance: 50
+    type: fallback
+    interval: 120
+  #  tolerance: 100
     url: http://www.gstatic.com/generate_204
-    filter: "HongKong|HK|香港"
+   # filter: "HongKong|HK|香港"
     use:
       - Subscription-1
       - Subscription-2
@@ -145,37 +144,37 @@ proxy-groups:
       - Subscription-7
   - name: Geo-TW
     type: url-test
-    interval: 300
-    tolerance: 50
+    interval: 120
+    tolerance: 100
     url: http://www.gstatic.com/generate_204
-    filter: "Taiwan|TW|台湾"
+#    filter: "Taiwan|TW|台湾"
     use: 
-      - Subscription-1
       - Subscription-2
-      - Subscription-3
       - Subscription-4
-      - Subscription-5
       - Subscription-6
       - Subscription-7
+      - Subscription-3
+      - Subscription-5
+      - Subscription-1
   - name: Geo-SG
     type: url-test
-    interval: 300
-    tolerance: 50
+    interval: 120
+    tolerance: 100
     url: http://www.gstatic.com/generate_204
-    filter: "Singapore|SG|新加坡"
+   # filter: "Singapore|SG|新加坡"
     use: 
+      - Subscription-3
+      - Subscription-5
+      - Subscription-7
       - Subscription-1
       - Subscription-2
-      - Subscription-3
       - Subscription-4
-      - Subscription-5
       - Subscription-6
-      - Subscription-7
       
   - name: Geo-JP
     type: url-test
-    interval: 300
-    tolerance: 50
+    interval: 120
+    tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Japan|JP|日本"
     use: 
@@ -188,8 +187,8 @@ proxy-groups:
       - Subscription-7
   - name: Geo-US
     type: url-test
-    interval: 300
-    tolerance: 50
+    interval: 120
+    tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "America|United States|US|美国"
     use: 
@@ -201,25 +200,10 @@ proxy-groups:
       - Subscription-6
       - Subscription-7
       
-  - name: Geo-UK
-    type: url-test
-    interval: 300
-    tolerance: 50
-    url: http://www.gstatic.com/generate_204
-    filter: "Britain|England|UK|英国"
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      
   - name: Geo-DE
     type: url-test
-    interval: 300
-    tolerance: 50
+    interval: 120
+    tolerance: 100
     url: http://www.gstatic.com/generate_204
     filter: "Germany|Deutsch|DE|德国"
     use: 
@@ -233,19 +217,19 @@ proxy-groups:
       
   - name: Geo-CN
     type: url-test
-    interval: 300
-    tolerance: 50
+    interval: 120
+    tolerance: 100
     url: http://www.gstatic.com/generate_204
  #   disable-dns: true
     filter: "China|CN|中国"
     use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
       - Subscription-7
+      - Subscription-6
+      - Subscription-5
+      - Subscription-4
+      - Subscription-3
+      - Subscription-2
+      - Subscription-1
     proxies:
     #  - DIRECT
 
@@ -261,7 +245,6 @@ proxy-groups:
       - Geo-SG
       - Geo-JP
       - Geo-US
-      - Geo-UK
       - Geo-DE
       - Geo-CN
 
@@ -277,7 +260,6 @@ proxy-groups:
       - Geo-SG
       - Geo-JP
       - Geo-US
-      - Geo-UK
       - Geo-DE
       - Geo-CN
       - DIRECT
@@ -364,6 +346,7 @@ proxy-groups:
     use: 
     proxies: 
       - Proxy
+      - DIRECT
   - name: Mismatch
     type: select
     use: 
