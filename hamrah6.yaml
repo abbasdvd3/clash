@@ -1,6 +1,6 @@
-port: 7890
-socks-port: 7891
-mixed-port: 7893
+# port: 7890
+# socks-port: 7891
+# mixed-port: 7893
 allow-lan: true
 mode: Rule
 bind-address: "*"
@@ -65,15 +65,16 @@ dns:
     - 223.5.5.5
     - 119.29.29.29
     - 1.1.1.1
+    - 8.8.8.8
   enhanced-mode: fake-ip
-  fake-ip-range: 22.0.0.0/8
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - "*.lan"
     - "*.local"
   nameserver:
     - 223.5.5.5
     - 119.29.29.29
-  #  - dhcp://system
+    - 8.8.4.4
     - https://dns.alidns.com/dns-query
     - https://dns.cfiec.net/dns-query
     - https://doh.pub/dns-query
@@ -117,8 +118,8 @@ proxy-groups:
       - Block
   - name: Auto
     type: url-test
-    interval: 120
-    tolerance: 20
+    interval: 180
+   # tolerance: 20
     url: http://www.gstatic.com/generate_204
     use: 
       - Subscription-1
@@ -131,7 +132,7 @@ proxy-groups:
 
   - name: Geo-HK
     type: fallback
-    interval: 120
+    interval: 160
   #  tolerance: 100
     url: http://www.gstatic.com/generate_204
    # filter: "HongKong|HK|香港"
@@ -146,7 +147,7 @@ proxy-groups:
   - name: Geo-TW
     type: url-test
     interval: 120
-    tolerance: 10
+#    tolerance: 10
     url: http://www.gstatic.com/generate_204
 #    filter: "Taiwan|TW|台湾"
     use: 
@@ -160,7 +161,7 @@ proxy-groups:
   - name: Geo-SG
     type: url-test
     interval: 120
-    tolerance: 5
+ #   tolerance: 5
     url: http://www.gstatic.com/generate_204
    # filter: "Singapore|SG|新加坡"
     use: 
@@ -175,7 +176,7 @@ proxy-groups:
   - name: Geo-JP
     type: url-test
     interval: 120
-    tolerance: 40
+ #   tolerance: 40
     url: http://www.gstatic.com/generate_204
     filter: "Japan|JP|日本"
     use: 
@@ -204,7 +205,7 @@ proxy-groups:
   - name: Geo-DE
     type: url-test
     interval: 120
-    tolerance: 40
+#    tolerance: 40
     url: http://www.gstatic.com/generate_204
     filter: "Germany|Deutsch|DE|德国"
     use: 
@@ -219,7 +220,7 @@ proxy-groups:
   - name: Geo-CN
     type: url-test
     interval: 120
-    tolerance: 40
+ #   tolerance: 40
     url: http://www.gstatic.com/generate_204
  #   disable-dns: true
     filter: "China|CN|中国"
@@ -431,7 +432,7 @@ proxy-providers:
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fchromego-sub.netlify.app%2Fsub%2Fmerged_proxies_new.yaml&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true" # https://chromego-sub.netlify.app/sub/merged_proxies_new.yaml" # replace this URL with your provider's subscription link
     path: ./providers6/Subscription-1.yaml
     proxy: DIRECT
-    interval: 60
+    interval: 600
 #    prefix-name: "S-"
     url-proxy: true
     udp: true
@@ -449,7 +450,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml" # replace this URL with your provider's subscription link
     path: ./providers6/Subscription-2.yaml
     proxy: DIRECT
-    interval: 60
+    interval: 600
 #    prefix-name: "S-"
     url-proxy: true
     udp: true
@@ -467,7 +468,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml" # replace this URL with your provider's subscription link
     path: ./providers6/Subscription-3.yaml
     proxy: DIRECT
-    interval: 60
+    interval: 600
 #    prefix-name: "S-"
     url-proxy: true
     udp: true
@@ -485,7 +486,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml" # replace this URL with your provider's subscription link
     path: ./providers6/Subscription-4.yaml
     proxy: DIRECT
-    interval: 60
+    interval: 600
 #    prefix-name: "S-"
     url-proxy: true
     udp: true
@@ -503,7 +504,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/combine.yaml" # replace this URL with your provider's subscription link
     path: ./providers6/Subscription-5.yaml
     proxy: DIRECT
-    interval: 60
+    interval: 600
 #    prefix-name: "S-"
     url-proxy: true
     udp: true
@@ -521,7 +522,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml" # replace this URL with your provider's subscription link
     path: ./providers6/Subscription-6.yaml
     proxy: DIRECT
-    interval: 60
+    interval: 600
 #    prefix-name: "S-"
     url-proxy: true
     udp: true
@@ -539,7 +540,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/dongchengjie/airport/main/subs/merged/tested_within.yaml" # replace this URL with your provider's subscription link
     path: ./providers6/Subscription-7.yaml
     proxy: DIRECT
-    interval: 60
+    interval: 600
 #    prefix-name: "S-"
     url-proxy: true
     udp: true
