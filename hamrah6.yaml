@@ -1005,7 +1005,21 @@ rule-providers:
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/LocalAreaNetwork.list   
+    path: ./ACL4SSR/ACL4SSR/LocalAreaNetwork.list  
+  iran_other:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_other.txt"
+    path: ./ruleset/iran_other.txt
+    interval: 432000
+  iran_ads:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_ads.txt"
+    path: ./ruleset/iran_ads.txt
+    interval: 432000
 rules:
  # - geoip,private,DIRECT,no-resolve
 #  - geoip,telegram,Telegram,no-resolve
@@ -1014,7 +1028,10 @@ rules:
   - DOMAIN-SUFFIX,push.apple.com,DIRECT
 
 #  - geosite,category-ads-all,Block
-
+  - RULE-SET,iran_ads,REJECT
+  - DOMAIN-SUFFIX,ir,DIRECT
+  - RULE-SET,iran_other,DIRECT
+  - GEOIP,IR,DIRECT
   - DOMAIN-SUFFIX,jetbrains.com,DIRECT
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN,iosapps.itunes.apple.com,DIRECT
