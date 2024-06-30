@@ -481,103 +481,79 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/hamrah.yaml" # replace this URL with your provider's subscription link
     path: ./providers5/Subscription-1.yaml
-    interval: 6
-#    prefix-name: "S-"
-#    url-proxy: true
-#    udp: true
-    header:
-  #    User-Agent:
-  #      - "Clash/v1.11.8"
+    interval: 600
+    url-proxy: true
+    udp: true
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-#      lazy: false # default value is true
+      lazy: false 
 
   Subscription-2:
     type: http
     url: "https://raw.githubusercontent.com/hkpc/V2ray-Configs/main/All_Configs_base64_Sub.txt" # replace this URL with your provider's subscription link
     path: ./providers5/Subscription-2.yaml
-    interval: 6
-#    prefix-name: "S-"
-#    url-proxy: true
-#    udp: true
-    header:
-  #    User-Agent:
-  #      - "Clash/v1.11.8"
+    interval: 600
+    url-proxy: true
+    udp: true
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-#      lazy: false # default value is true
+      lazy: false 
 
   Subscription-3:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/Vfarid-fix/main/sub64" # replace this URL with your provider's subscription link
     path: ./providers5/Subscription-3.yaml
-    interval: 6
-#    prefix-name: "S-"
-#    url-proxy: true
-#    udp: true
-    header:
-  #    User-Agent:
-  #      - "Clash/v1.11.8"
+    interval: 600
+    url-proxy: true
+    udp: true
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-#      lazy: false # default value is true
+      lazy: false 
 
   Subscription-4:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/master/Eternity" # replace this URL with your provider's subscription link
     path: ./providers5/Subscription-4.yaml
-    interval: 6
-#    prefix-name: "S-"
-#    url-proxy: true
-#    udp: true
-    header:
-  #    User-Agent:
-  #      - "Clash/v1.11.8"
+    interval: 600
+    url-proxy: true
+    udp: true
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-#      lazy: false # default value is true
+      lazy: false 
 
   Subscription-5:
     type: http
     url: "https://raw.githubusercontent.com/chfchf0306/jeidian4.18/main/4.18" # replace this URL with your provider's subscription link
     path: ./providers5/Subscription-5.yaml
-    interval: 6
-#    prefix-name: "S-"
-#    url-proxy: true
-#    udp: true
-    header:
-  #    User-Agent:
-  #      - "Clash/v1.11.8"
+    interval: 600
+    url-proxy: true
+    udp: true
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-#      lazy: false # default value is true
+      lazy: false 
 
   Subscription-6:
     type: http
     url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_base64_Sub.txt" # replace this URL with your provider's subscription link
     path: ./providers5/Subscription-6.yaml
-    interval: 6
-#    prefix-name: "S-"
-#    url-proxy: true
-#    udp: true
-    header:
-  #    User-Agent:
-  #      - "Clash/v1.11.8"
+    interval: 600
+    url-proxy: true
+    udp: true
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-#      lazy: false # default value is true
+      lazy: false 
 rule-providers:
   ir:
     type: http
@@ -841,7 +817,41 @@ rule-providers:
     format: text
     interval: 3600
     path: ./ACL4SSR/ACL4SSR/GitHub.yaml
+  nsfw1:
+    type: http
+    format: yaml
+    behavior: domain
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml
+    path: ./ruleset/nsfw1.yaml
+    interval: 86400
+  social:
+    type: http
+    format: yaml
+    behavior: domain
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml
+    path: ./ruleset/social.yaml
+    interval: 86400
+  iran_other:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_other.txt"
+    path: ./ruleset/iran_other.txt
+    interval: 432000
+  iran_ads:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_ads.txt"
+    path: ./ruleset/iran_ads.txt
+    interval: 432000    
 rules:
+  - RULE-SET,iran_ads,REJECT
+  - DOMAIN-SUFFIX,ir,DIRECT
+  - RULE-SET,iran_other,DIRECT
+  - RULE-SET,social,Proxy
+  - RULE-SET,nsfw1,Proxy
+
   - RULE-SET,OpenAi,DNS-Proxy
   - RULE-SET,GoogleCNProxyIP,Mismatch
   - RULE-SET,DNS,DIRECT
