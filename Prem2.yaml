@@ -4,23 +4,8 @@ proxies:
 proxy-groups:
   - name: GENERAL
     type: select
-    disable-udp: true
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
-    use:
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14 
+    disable-udp: false
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg 
     proxies: 
       - Cloudflare
       - SPEED TEST
@@ -40,12 +25,13 @@ proxy-groups:
       
   - name: SPEED TEST
     type: url-test
-    disable-udp: true
+    disable-udp: false
+    hidden: true
     tolerance: 50
     lazy: true
-    interval: 100
+    interval: 200
     timeout: 5
-    max-failed-times: 10
+    max-failed-times: 1
     url: https://www.youtube.com/generate_204
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
     proxies: 
@@ -66,9 +52,10 @@ proxy-groups:
       - Subscription-14    
   - name: FALLBACK
     type: fallback
-    disable-udp: true
+    disable-udp: false
+    hidden: true
     lazy: true
-    interval: 70
+    interval: 150
     timeout: 10
     url: https://www.youtube.com/generate_204
     max-failed-times: 10
@@ -93,7 +80,8 @@ proxy-groups:
     type: load-balance
     strategy: consistent-hashing
     lazy: true
-    disable-udp: true
+    disable-udp: false
+    hidden: true
     interval: 100
     timeout: 5
     url: https://www.youtube.com/generate_204
@@ -124,21 +112,7 @@ proxy-groups:
       - SPEED TEST
       - FALLBACK
       - BALANCE
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14 
+     
   - name: YOU TUBE
     type: select
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/youtube.svg
@@ -148,22 +122,7 @@ proxy-groups:
       - SPEED TEST
       - FALLBACK
       - BALANCE
-      
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14   
+         
   - name: TELEGRAM
     type: select
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/telegram.svg
@@ -172,21 +131,7 @@ proxy-groups:
       - SPEED TEST
       - FALLBACK
       - 🇺🇸
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14     
+     
   - name: WINDOWS
     type: select
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/microsoft.svg
@@ -196,21 +141,7 @@ proxy-groups:
       - FALLBACK
       - BALANCE
       - 🇺🇸
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14        
+
 
   - name: APPLE
     type: select
@@ -221,23 +152,11 @@ proxy-groups:
       - FALLBACK
       - BALANCE
       - 🇺🇸
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14       
+    
+             
   - name: TROJAN
     type: select
+    hidden: true
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/bug.svg
     proxies: ['REJECT', 'DIRECT']
 
@@ -255,6 +174,7 @@ proxy-groups:
 
   - name: FINALL
     type: select
+    hidden: true
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg
     proxies: 
       - Cloudflare
@@ -325,7 +245,7 @@ proxy-groups:
     max-failed-times: 10
     url: https://www.youtube.com/generate_204
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/tw.svg
-    hidden: false
+    hidden: true
     filter: "🇨🇳|🇹🇼|China|CN|中|国cn|Taiwan|TW|台湾"
     proxies: 
     use: 
@@ -374,14 +294,14 @@ proxy-groups:
 
   - name: 🇭🇰🇯🇵🇭🇰🇰🇷🇸🇬
     type: url-test
-    tolerance: 30
-    lazy: false
-    interval: 100
+    tolerance: 50
+    lazy: true
+    interval: 200
     timeout: 20
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/nl.svg
-    hidden: false
+    hidden: true
     proxies: 
       - 🇺🇸
       - 🇰🇷
@@ -396,6 +316,7 @@ proxy-groups:
       - 🇨🇳🇹🇼
   - name: 🇰🇷
     type: url-test
+    hidden: true
     tolerance: 30
     lazy: false
     interval: 100
@@ -423,9 +344,10 @@ proxy-groups:
       - Subscription-14 
   - name: 🇩🇪
     type: url-test
-    tolerance: 100
-    lazy: false
-    interval: 100
+    hidden: true
+    tolerance: 50
+    lazy: true
+    interval: 200
     timeout: 20
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
@@ -450,6 +372,7 @@ proxy-groups:
       - Subscription-14 
   - name: UK
     type: url-test
+    hidden: true
     tolerance: 30
     lazy: false
     interval: 100
@@ -477,7 +400,8 @@ proxy-groups:
       - Subscription-14 
   - name: 🇸🇬
     type: url-test
-    tolerance: 30
+    hidden: true
+    tolerance: 40
     lazy: false
     interval: 100
     timeout: 20
@@ -504,11 +428,12 @@ proxy-groups:
       - Subscription-14 
   - name: Cloudflare
     type: url-test
-    tolerance: 100
-    lazy: false
+    hidden: true
+    tolerance: 300
+    lazy: true
     interval: 100
     timeout: 20
-    disable-udp: true
+    disable-udp: false
     url: https://www.youtube.com/generate_204
 #    max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/cloudflare.svg
@@ -532,6 +457,7 @@ proxy-groups:
 
   - name: 🇺🇸
     type: url-test
+    hidden: true
     tolerance: 100
     disable-udp: true
     lazy: true
@@ -561,6 +487,7 @@ proxy-groups:
 
   - name: 🇯🇵
     type: url-test
+    hidden: true
     tolerance: 30
     disable-udp: true
     lazy: false
@@ -589,6 +516,7 @@ proxy-groups:
       - Subscription-14   
   - name: 🇹🇷🇦🇫
     type: url-test
+    hidden: true
     disable-udp: true
     tolerance: 30
     lazy: false
@@ -618,6 +546,7 @@ proxy-groups:
       
   - name: 🏁
     type: url-test
+    hidden: true
     disable-udp: true
     tolerance: 30
     lazy: false
