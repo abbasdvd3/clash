@@ -4,7 +4,7 @@ proxies:
 proxy-groups:
   - name: GENERAL
     type: select
-    disable-udp: false
+    disable-udp: true
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
     use:
       - Subscription-1
@@ -40,7 +40,7 @@ proxy-groups:
       
   - name: SPEED TEST
     type: url-test
-    disable-udp: false
+    disable-udp: true
     tolerance: 100
     lazy: true
     interval: 100
@@ -66,7 +66,7 @@ proxy-groups:
       - Subscription-14    
   - name: FALLBACK
     type: fallback
-    disable-udp: false
+    disable-udp: true
     lazy: true
     interval: 70
     timeout: 10
@@ -93,7 +93,7 @@ proxy-groups:
     type: load-balance
     strategy: consistent-hashing
     lazy: true
-    disable-udp: false
+    disable-udp: true
     interval: 100
     timeout: 5
     url: https://www.youtube.com/generate_204
@@ -290,7 +290,7 @@ proxy-groups:
   - name: 🏴🏁
     type: url-test
     tolerance: 100
-    disable-udp: false
+    disable-udp: true
     lazy: true
     interval: 100
     timeout: 5
@@ -318,7 +318,7 @@ proxy-groups:
   - name: 🇨🇳🇹🇼
     type: url-test
     tolerance: 100
-    disable-udp: false
+    disable-udp: true
     lazy: true
     interval: 100
     timeout: 5
@@ -508,7 +508,7 @@ proxy-groups:
     lazy: false
     interval: 100
     timeout: 20
-    disable-udp: false
+    disable-udp: true
     url: https://www.youtube.com/generate_204
 #    max-failed-times: 3
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/cloudflare.svg
@@ -533,7 +533,7 @@ proxy-groups:
   - name: 🇺🇸
     type: url-test
     tolerance: 100
-    disable-udp: false
+    disable-udp: true
     lazy: true
     interval: 100
     timeout: 5
@@ -562,7 +562,7 @@ proxy-groups:
   - name: 🇯🇵
     type: url-test
     tolerance: 30
-    disable-udp: false
+    disable-udp: true
     lazy: false
     interval: 100
     timeout: 20
@@ -589,7 +589,7 @@ proxy-groups:
       - Subscription-14   
   - name: 🇹🇷🇦🇫
     type: url-test
-    disable-udp: false
+    disable-udp: true
     tolerance: 30
     lazy: false
     interval: 100
@@ -618,7 +618,7 @@ proxy-groups:
       
   - name: 🏁
     type: url-test
-    disable-udp: false
+    disable-udp: true
     tolerance: 30
     lazy: false
     interval: 100
@@ -938,10 +938,24 @@ rule-providers:
     path: ./rulesets/loyalsoldier/applications.yaml
     interval: 86400
 
+  iran_other:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_other.txt"
+    path: ./ruleset/iran_other.txt
+    interval: 432000
+  iran_ads:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_ads.txt"
+    path: ./ruleset/iran_ads.txt
+    interval: 432000    
 rules:
-payload:
-  # Mulai baris ini kebawah bisa di edit/hapus
-  # INSTAGRAM
+  - RULE-SET,iran_ads,REJECT
+  - DOMAIN-SUFFIX,ir,DIRECT
+  - RULE-SET,iran_other,DIRECT
   - DOMAIN-KEYWORD,instagram,TELEGRAM
   - DOMAIN,instagram.com,TELEGRAM
   - DOMAIN,i.instagram.com,TELEGRAM
