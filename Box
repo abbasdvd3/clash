@@ -1,182 +1,68 @@
 {
-  "experimental": {
-    "clash_api": {
-      "external_controller": "127.0.0.1:9090",
-      "secret": "1f6048d287f4b652"
-    },
-    "debug": {
-      "max_threads": 200,
-      "panic_on_fault": false
-    },
-    "cache_file": {
-      "enabled": true,
-      "store_fakeip": true
-    }
-  },
   "log": {
     "disabled": false,
-    "level": "warn",
+    "level": "info",
     "timestamp": true
   },
   "dns": {
-    "final": "dns_final_out",
-    "strategy": "ipv4_only",
-    "independent_cache": true,
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.20.0.0/15",
-      "inet6_range": "fc00::/18"
-    },
-    "rules": [
+    "servers": [
       {
-        "domain": [
-          "fscus.fscloud123456789.com",
-          "jp03-alt-vm0.entry.srthdw.art",
-          "jp01-alt-vm0.entry.srthdw.art",
-          "series-a2.varzesh360.co",
-          "series-a2-mec.varzesh360.co",
-          "need.uno",
-          "hinet.mjt001.com",
-          "aws-uae-1.f1rocketnode.com",
-          "fr.test3.net",
-          "pt.mjt001.com",
-          "il.mjt001.com",
-          "no.08.ijg.cc",
-          "kh.mjt001.com",
-          "aws-us-nyc-1.f1rocketnode.com",
-          "stream.varzeshtv.live",
-          "aws-uk-london-1.f1cflinea.com",
-          "series-a2.samanehha.co",
-          "awskr1.072659.xyz",
-          "us3e-mmnnfr9dop0.v2freevpn.com",
-          "www.wakaka0818.com"
-        ],
-        "server": "dns_outbound_out"
+        "tag": "google",
+        "address": "tls://8.8.8.8"
       },
       {
-        "server": "dns_fakeip_out",
+        "tag": "local",
+        "address": "223.5.5.5",
+        "detour": "direct"
+      },
+      {
+        "tag": "remote",
+        "address": "fakeip"
+      }
+    ],
+    "rules": [
+      {
+        "server": "local",
+        "outbound": "any"
+      },
+      {
         "query_type": [
           "A",
           "AAAA"
         ],
-        "rewrite_ttl": 1
-      },
-      {
-        "domain_suffix": [
-          "ingest.sentry.io",
-          "karing.app",
-          "yacd.metacubex.one"
-        ],
-        "server": "dns_direct_out"
-      },
-      {
-        "domain_suffix": [
-          "speedtest.net"
-        ],
-        "server": "dns_fakeip_out"
-      },
-      {
-        "domain_suffix": [
-          "v2rayse.com",
-          "cff.pw",
-          "vpnse.org",
-          "cfmem.com",
-          "googlesyndication.com"
-        ],
-        "server": "dns_fakeip_out",
-        "disable_cache": false
+        "server": "remote"
       }
     ],
-    "servers": [
-      {
-        "tag": "dns_outbound_out",
-        "address": "udp://223.5.5.5",
-        "address_resolver": "dns_resolver_out",
-        "detour": "direct_out"
-      },
-      {
-        "tag": "dns_direct_out",
-        "address": "local"
-      },
-      {
-        "tag": "dns_proxy_out",
-        "address": "udp://1.1.1.1",
-        "address_resolver": "dns_resolver_out",
-        "detour": "selector_out"
-      },
-      {
-        "tag": "dns_final_out",
-        "address": "udp://1.1.1.1",
-        "address_resolver": "dns_resolver_out",
-        "detour": "selector_out"
-      },
-      {
-        "tag": "dns_resolver_out",
-        "address": "local"
-      },
-      {
-        "tag": "dns_local_out",
-        "address": "local",
-        "detour": "direct_out"
-      },
-      {
-        "tag": "dns_block_out",
-        "address": "rcode://success"
-      },
-      {
-        "tag": "dns_fakeip_out",
-        "address": "fakeip"
-      }
-    ]
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
+    "independent_cache": true,
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
-      "domain_strategy": "ipv4_only",
-      "listen": "0.0.0.0",
-      "listen_port": 2333,
       "sniff": true,
-      "tag": "socks-in",
-      "type": "socks",
-      "users": null
-    },
-    {
-      "domain_strategy": "ipv4_only",
-      "listen": "0.0.0.0",
-      "listen_port": 2334,
-      "sniff": true,
-      "tag": "mixed-in",
       "type": "mixed",
-      "users": null
+      "listen": "127.0.0.1",
+      "listen_port": 1081
     },
     {
-      "type": "tun",
-      "tag": "tun-in",
-      "interface_name": "",
-      "inet4_address": "172.19.0.1/30",
-      "inet6_address": "fdfe:dcba:9876::1/126",
-      "mtu": 9000,
       "stack": "system",
       "auto_route": true,
-      "strict_route": false,
-      "inet4_route_exclude_address": [
-        "192.168.0.0/16"
-      ],
-      "inet6_route_exclude_address": [
-        "fc00::/7"
-      ],
+      "inet4_address": "172.19.0.1/30",
+      "mtu": 9000,
       "sniff": true,
-      "sniff_override_destination": false,
-      "include_android_user": null,
-      "include_package": null,
-      "exclude_package": null
-    },
-    {
-      "type": "redirect",
-      "tag": "redirect-in",
-      "listen": "::",
-      "listen_port": 9797,
-      "sniff": true,
-      "sniff_override_destination": false
+      "strict_route": true,
+      "type": "tun",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 1081
+        }
+      }
     }
   ],
   "outbounds": [
@@ -12662,63 +12548,24 @@
     }
   ],
   "route": {
-    "final": "selector_out",
-    "find_process": true,
-    "auto_detect_interface": true,
-    "geoip": {
-      "path": "/storage/emulated/0/Android/data/com.nebula.karingX/files/datas/geoip.db"
-    },
-    "geosite": {
-      "path": "/storage/emulated/0/Android/data/com.nebula.karingX/files/datas/geosite.db"
-    },
     "rules": [
       {
-        "protocol": [
-          "dns"
-        ],
-        "outbound": "dns_out"
+        "protocol": "dns",
+        "outbound": "dns-out"
       },
       {
         "ip_is_private": true,
-        "outbound": "direct_out"
-      },
-      {
-        "inbound": [
-          "mixed_in_direct"
-        ],
-        "outbound": "direct_out"
-      },
-      {
-        "inbound": [
-          "mixed_in_forword"
-        ],
-        "outbound": "selector_out"
-      },
-      {
-        "domain_suffix": [
-          "ingest.sentry.io",
-          "karing.app",
-          "yacd.metacubex.one"
-        ],
-        "outbound": "direct_out"
-      },
-      {
-        "domain_suffix": [
-          "speedtest.net"
-        ],
-        "outbound": "selector_out"
-      },
-      {
-        "domain_suffix": [
-          "v2rayse.com",
-          "cff.pw",
-          "vpnse.org",
-          "cfmem.com",
-          "googlesyndication.com"
-        ],
-        "outbound": "selector_out"
+        "outbound": "direct"
       }
     ],
-    "rule_set": []
+    "auto_detect_interface": true,
+    "final": "select"
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "./dashboard",
+      "store_selected": true
+    }
   }
 }
