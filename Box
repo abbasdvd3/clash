@@ -12547,11 +12547,25 @@
       "tag": "dns_out"
     }
   ],
-  "route": {
-    "rules": [
-      {
-        "protocol": "dns"
-      },
+"route": {
+        "geoip": {
+            "download_url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/release/geoip.db",
+            "download_detour": "direct"
+        },
+        "geosite": {
+            "download_url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/release/geosite.db",
+            "download_detour": "direct"
+        },
+        "rules": [
+            {
+                "port": 53,
+                "outbound": "dns-out"
+            },
+            {
+                "network": "udp",
+                "port": 443,
+                "outbound": "block"
+            }
       {
         "ip_is_private": true,
         "outbound": "direct"
