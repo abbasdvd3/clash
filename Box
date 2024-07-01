@@ -1,7 +1,7 @@
 {
   "experimental": {
     "clash_api": {
-      "external_controller": "127.0.0.1:3057",
+      "external_controller": "127.0.0.1:9090",
       "secret": "1f6048d287f4b652"
     },
     "debug": {
@@ -100,13 +100,13 @@
       },
       {
         "tag": "dns_proxy_out",
-        "address": "https://1.1.1.1/dns-query",
+        "address": "udp://1.1.1.1",
         "address_resolver": "dns_resolver_out",
         "detour": "selector_out"
       },
       {
         "tag": "dns_final_out",
-        "address": "https://1.1.1.1/dns-query",
+        "address": "udp://1.1.1.1",
         "address_resolver": "dns_resolver_out",
         "detour": "selector_out"
       },
@@ -131,48 +131,52 @@
   },
   "inbounds": [
     {
-      "type": "mixed",
-      "tag": "mixed_in_direct",
-      "set_system_proxy": false,
-      "listen": "127.0.0.1",
-      "listen_port": 3065,
+      "domain_strategy": "ipv4_only",
+      "listen": "0.0.0.0",
+      "listen_port": 2333,
       "sniff": true,
-      "domain_strategy": "ipv4_only"
+      "tag": "socks-in",
+      "type": "socks",
+      "users": null
     },
     {
-      "type": "mixed",
-      "tag": "mixed_in_forword",
-      "set_system_proxy": false,
-      "listen": "127.0.0.1",
-      "listen_port": 3066,
+      "domain_strategy": "ipv4_only",
+      "listen": "0.0.0.0",
+      "listen_port": 2334,
       "sniff": true,
-      "domain_strategy": "ipv4_only"
+      "tag": "mixed-in",
+      "type": "mixed",
+      "users": null
     },
     {
       "type": "tun",
-      "tag": "tun_in",
-      "interface_name": "Karing TUN Network Adapter",
-      "inet4_address": [
-        "10.20.0.1/30"
-      ],
-      "inet6_address": null,
+      "tag": "tun-in",
+      "interface_name": "",
+      "inet4_address": "172.19.0.1/30",
+      "inet6_address": "fdfe:dcba:9876::1/126",
+      "mtu": 9000,
+      "stack": "system",
       "auto_route": true,
       "strict_route": false,
-      "stack": "mixed",
-      "platform": null,
-      "include_package": null,
-      "exclude_package": null,
+      "inet4_route_exclude_address": [
+        "192.168.0.0/16"
+      ],
+      "inet6_route_exclude_address": [
+        "fc00::/7"
+      ],
       "sniff": true,
-      "domain_strategy": "ipv4_only"
+      "sniff_override_destination": false,
+      "include_android_user": null,
+      "include_package": null,
+      "exclude_package": null
     },
     {
-      "type": "mixed",
-      "tag": "mixed_in",
-      "set_system_proxy": false,
-      "listen": "127.0.0.1",
-      "listen_port": 3067,
+      "type": "redirect",
+      "tag": "redirect-in",
+      "listen": "::",
+      "listen_port": 9797,
       "sniff": true,
-      "domain_strategy": "ipv4_only"
+      "sniff_override_destination": false
     }
   ],
   "outbounds": [
