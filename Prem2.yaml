@@ -1,287 +1,18 @@
 
-proxies: 
-
+proxies:
 proxy-groups:
-  - name: GENERAL
+
+  - name: PROXY
     type: select
-    disable-udp: false
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg 
-    proxies: 
-      - Cloudflare
-      - SPEED TEST
+    proxies:
       - FALLBACK
-      - BALANCE
+      - URL-TEST
       - 🇺🇸
-      - 🇭🇰🇯🇵🇭🇰🇰🇷🇸🇬
-      - 🇩🇪
-      - 🇸🇬
-      - 🇯🇵
-      - 🇭🇰
-      - 🏁
-      - UK
-      - 🇹🇷🇦🇫
-      - 🏴🏁
-      - 🇨🇳🇹🇼
-      
-  - name: SPEED TEST
-    type: url-test
-    disable-udp: false
-    hidden: true
-    tolerance: 50
-    lazy: true
-    interval: 200
-    timeout: 5
-    max-failed-times: 1
-    url: https://www.youtube.com/generate_204
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
-    proxies: 
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14    
   - name: FALLBACK
     type: fallback
-    disable-udp: false
     hidden: true
-    lazy: true
     interval: 150
-    timeout: 10
     url: https://www.youtube.com/generate_204
-    max-failed-times: 10
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/ambulance.svg
-    proxies: 
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14     
-  - name: BALANCE
-    type: load-balance
-    strategy: consistent-hashing
-    lazy: true
-    disable-udp: false
-    hidden: true
-    interval: 100
-    timeout: 5
-    url: https://www.youtube.com/generate_204
-    max-failed-times: 1
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/merry_go.svg
-    proxies: 
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14     
-  - name: GOOGLE
-    type: select
-    hidden: true
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/google.svg
-    proxies: 
-      - Cloudflare
-      - SPEED TEST
-      - FALLBACK
-      - BALANCE
-      - 🇺🇸
-     
-  - name: YOU TUBE
-    type: select
-    hidden: true
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/youtube.svg
-    proxies: 
-      - Cloudflare
-      - SPEED TEST
-      - FALLBACK
-      - BALANCE
-      - 🇺🇸
-         
-  - name: TELEGRAM
-    type: select
-    hidden: true
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/telegram.svg
-    proxies:
-      - Cloudflare
-      - SPEED TEST
-      - FALLBACK
-      - 🇺🇸
-     
-  - name: WINDOWS
-    type: select
-    hidden: true
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/microsoft.svg
-    proxies: 
-      - Cloudflare
-      - SPEED TEST
-      - FALLBACK
-      - BALANCE
-      - 🇺🇸
-
-
-  - name: APPLE
-    type: select
-    hidden: true
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/apple.svg
-    proxies: 
-      - Cloudflare
-      - SPEED TEST
-      - FALLBACK
-      - BALANCE
-      - 🇺🇸
-    
-             
-  - name: TROJAN
-    type: select
-    hidden: true
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/bug.svg
-    proxies: ['REJECT', 'DIRECT']
-
-  - name: DOWNLOAD
-    type: select
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
-    proxies: 
-      - DIRECT
-      - Cloudflare
-      - FALLBACK
-  - name: AD BLOCK
-    type: select
-    hidden: true
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/block.svg
-    proxies: ['REJECT', 'DIRECT']
-
-  - name: FINALL
-    type: select
-    hidden: true
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg
-    proxies: 
-      - Cloudflare
-      - SPEED TEST
-      - FALLBACK
-      - 🇺🇸
-      - 🇰🇷
-      - 🇩🇪
-      - 🇸🇬
-      - 🇯🇵
-      - 🇭🇰
-      - 🏁
-      - UK
-      - 🇹🇷🇦🇫
-      - 🏴🏁
-      - 🇨🇳🇹🇼
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14        
-
-  - name: 🏴🏁
-    type: url-test
-    tolerance: 100
-    disable-udp: true
-    lazy: true
-    interval: 100
-    timeout: 5
-    max-failed-times: 10
-    url: https://www.youtube.com/generate_204
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/mo.svg
-    hidden: true
-    filter: "iran|IR|🇮🇷"
-    proxies: 
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14  
-  - name: 🇨🇳🇹🇼
-    type: url-test
-    tolerance: 100
-    disable-udp: true
-    lazy: true
-    interval: 100
-    timeout: 5
-    max-failed-times: 10
-    url: https://www.youtube.com/generate_204
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/tw.svg
-    hidden: true
-    filter: "🇨🇳|🇹🇼|China|CN|中|国cn|Taiwan|TW|台湾"
-    proxies: 
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14     
-
-  - name: 🇭🇰
-    type: url-test
-    tolerance: 30
-    lazy: false
-    interval: 100
-    timeout: 20
-    url: https://www.youtube.com/generate_204
-    max-failed-times: 3
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/hk.svg
-    hidden: true
-    filter: '🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港'
-    proxies: 
     use: 
       - Subscription-1
       - Subscription-2
@@ -298,40 +29,12 @@ proxy-groups:
       - Subscription-13
       - Subscription-14 
 
-  - name: 🇭🇰🇯🇵🇭🇰🇰🇷🇸🇬
-    type: url-test
-    tolerance: 50
-    lazy: true
-    interval: 200
-    timeout: 20
-    url: https://www.youtube.com/generate_204
-    max-failed-times: 3
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/nl.svg
-    hidden: true
-    proxies: 
-      - 🇺🇸
-      - 🇰🇷
-      - 🇩🇪
-      - 🇸🇬
-      - 🇯🇵
-      - 🇭🇰
-      - 🏁
-      - UK
-      - 🇹🇷🇦🇫
-      - 🏴🏁
-      - 🇨🇳🇹🇼
-  - name: 🇰🇷
+  - name: URL-TEST
     type: url-test
     hidden: true
-    tolerance: 30
-    lazy: false
-    interval: 100
-    timeout: 20
+    tolerance: 200
+    interval: 40
     url: https://www.youtube.com/generate_204
-    max-failed-times: 3
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/kr.svg
-    filter: '🇰🇷|KO?R|Korea|首尔|韩|韓'
-    proxies: 
     use: 
       - Subscription-1
       - Subscription-2
@@ -347,186 +50,12 @@ proxy-groups:
       - Subscription-12
       - Subscription-13
       - Subscription-14 
-  - name: 🇩🇪
-    type: url-test
-    hidden: true
-    tolerance: 50
-    lazy: true
-    interval: 200
-    timeout: 20
-    url: https://www.youtube.com/generate_204
-    max-failed-times: 3
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/de.svg
-    filter: "🇩🇪|Germany|Deutsch|DE|德国"
-    proxies: 
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14 
-  - name: UK
-    type: url-test
-    hidden: true
-    tolerance: 30
-    lazy: false
-    interval: 100
-    timeout: 20
-    url: https://www.youtube.com/generate_204
-    max-failed-times: 3
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/gb.svg
-    filter: "Britain|England|UK|英国|tr|s|ss"
-    proxies: 
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14 
-  - name: 🇸🇬
-    type: url-test
-    hidden: true
-    tolerance: 40
-    lazy: false
-    interval: 100
-    timeout: 20
-    url: https://www.youtube.com/generate_204
-    max-failed-times: 3
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/sg.svg
-    filter: '🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]'
-    proxies: 
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14 
-  - name: Cloudflare
-    type: url-test
-    hidden: true
-    tolerance: 300
-    lazy: true
-    interval: 100
-    timeout: 20
-    disable-udp: false
-    url: https://www.youtube.com/generate_204
-#    max-failed-times: 3
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/cloudflare.svg
-    proxies: 
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14 
-
   - name: 🇺🇸
     type: url-test
-    hidden: true
     tolerance: 100
-    disable-udp: true
-    lazy: true
-    interval: 100
-    timeout: 5
-    max-failed-times: 10
+    interval: 40
     url: https://www.youtube.com/generate_204
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/us.svg
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
-    proxies: 
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14         
-
-  - name: 🇯🇵
-    type: url-test
-    hidden: true
-    tolerance: 30
-    disable-udp: true
-    lazy: false
-    interval: 100
-    timeout: 20
-    url: https://www.youtube.com/generate_204
-    max-failed-times: 3
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/eg.svg
-    filter: '🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日'
-    proxies: 
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14   
-  - name: 🇹🇷🇦🇫
-    type: url-test
-    hidden: true
-    disable-udp: true
-    tolerance: 30
-    lazy: false
-    interval: 100
-    timeout: 20
-    url: https://www.youtube.com/generate_204
-    max-failed-times: 3
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/fr.svg
-  
-    filter: "tr|🇦🇿|🇦🇫|🇮🇶|🇮🇳|🇵🇰|🇵🇳|🇵🇷|🇵🇸|🇹🇷"
-    proxies: 
     use: 
       - Subscription-1
       - Subscription-2
@@ -542,37 +71,6 @@ proxy-groups:
       - Subscription-12
       - Subscription-13
       - Subscription-14 
-      
-  - name: 🏁
-    type: url-test
-    hidden: true
-    disable-udp: true
-    tolerance: 30
-    lazy: false
-    interval: 100
-    timeout: 20
-    url: https://www.youtube.com/generate_204
-    max-failed-times: 3
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/flags/pl.svg
-    
-    filter: "🏁"
-    proxies: 
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14 
-
 proxy-providers:
 
   Subscription-1:
@@ -781,34 +279,7 @@ rule-providers:
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
     path: ./rulesets/loyalsoldier/reject.yaml
     interval: 86400
-  icloud:
-    type: http
-    behavior: domain
-    format: yaml
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/icloud.txt
-    path: ./rulesets/loyalsoldier/icloud.yaml
-    interval: 86400
-  apple:
-    type: http
-    behavior: domain
-    format: yaml
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt
-    path: ./rulesets/loyalsoldier/apple.yaml
-    interval: 86400
-  google:
-    type: http
-    behavior: domain
-    format: yaml
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/google.txt
-    path: ./rulesets/loyalsoldier/google.yaml
-    interval: 86400
-  proxy:
-    type: http
-    behavior: domain
-    format: yaml
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt
-    path: ./rulesets/loyalsoldier/proxy.yaml
-    interval: 86400
+
   direct:
     type: http
     behavior: domain
@@ -830,40 +301,13 @@ rule-providers:
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
     path: ./rulesets/loyalsoldier/gfw.yaml
     interval: 86400
-  tld-not-cn:
-    type: http
-    behavior: domain
-    format: yaml
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt
-    path: ./rulesets/loyalsoldier/tld-not-cn.yaml
-    interval: 86400
+
   telegramcidr:
     type: http
     behavior: ipcidr
     format: yaml
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt
     path: ./rulesets/loyalsoldier/telegramcidr.yaml
-    interval: 86400
-  cncidr:
-    type: http
-    behavior: ipcidr
-    format: yaml
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt
-    path: ./rulesets/loyalsoldier/cncidr.yaml
-    interval: 86400
-  lancidr:
-    type: http
-    behavior: ipcidr
-    format: yaml
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt
-    path: ./rulesets/loyalsoldier/lancidr.yaml
-    interval: 86400
-  applications:
-    type: http
-    behavior: classical
-    format: yaml
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt
-    path: ./rulesets/loyalsoldier/applications.yaml
     interval: 86400
 
   iran_other:
@@ -881,124 +325,80 @@ rule-providers:
     path: ./ruleset/iran_ads.txt
     interval: 432000    
 rules:
+  - RULE-SET,telegramcidr,PROXY
+  - RULE-SET,gfw,PROXY
+  - RULE-SET,private,DIRECT
+  - RULE-SET,direct,DIRECT
+  - RULE-SET,reject,REJECT
   - RULE-SET,iran_ads,REJECT
   - DOMAIN-SUFFIX,ir,DIRECT
   - RULE-SET,iran_other,DIRECT
-  - DOMAIN-SUFFIX,cdninstagram.com,TELEGRAM
-  - DOMAIN-SUFFIX,bookstagram.com,TELEGRAM
-  - DOMAIN-SUFFIX,carstagram.com,TELEGRAM
-  - DOMAIN-SUFFIX,cdninstagram.com,TELEGRAM
-  - DOMAIN-SUFFIX,chickstagram.com,TELEGRAM
-  - DOMAIN-SUFFIX,ig.me,TELEGRAM
-  - DOMAIN-SUFFIX,igcdn.com,TELEGRAM
-  - DOMAIN-SUFFIX,igsonar.com,TELEGRAM
-  - DOMAIN-SUFFIX,igtv.com,TELEGRAM
-  - DOMAIN-SUFFIX,imstagram.com,TELEGRAM
-  - DOMAIN-SUFFIX,imtagram.com,TELEGRAM
-  - DOMAIN-SUFFIX,instaadder.com,TELEGRAM
-  - DOMAIN-SUFFIX,instachecker.com,TELEGRAM
-  - DOMAIN-SUFFIX,instafallow.com,TELEGRAM
-  - DOMAIN-SUFFIX,instafollower.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagainer.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagda.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagify.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagmania.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagor.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagram-brand.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagram-engineering.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagram-help.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagram-press.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagram-press.net,TELEGRAM
-  - DOMAIN-SUFFIX,instagram.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramci.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramcn.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramdi.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramhashtags.net,TELEGRAM
-  - DOMAIN-SUFFIX,instagramhilecim.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramhilesi.org,TELEGRAM
-  - DOMAIN-SUFFIX,instagramium.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramizlenme.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramkusu.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramlogin.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramm.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramn.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagrampartners.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramphoto.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramq.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramsepeti.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramtakipcisatinal.net,TELEGRAM
-  - DOMAIN-SUFFIX,instagramtakiphilesi.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramtips.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagramtr.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagran.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagranm.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagrem.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagrm.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagtram.com,TELEGRAM
-  - DOMAIN-SUFFIX,instagy.com,TELEGRAM
-  - DOMAIN-SUFFIX,instamgram.com,TELEGRAM
-  - DOMAIN-SUFFIX,instangram.com,TELEGRAM
-  - DOMAIN-SUFFIX,instanttelegram.com,TELEGRAM
-  - DOMAIN-SUFFIX,instaplayer.net,TELEGRAM
-  - DOMAIN-SUFFIX,instastyle.tv,TELEGRAM
-  - DOMAIN-SUFFIX,instgram.com,TELEGRAM
-  - DOMAIN-SUFFIX,intagram.com,TELEGRAM
-  - DOMAIN-SUFFIX,intagrm.com,TELEGRAM
-  - DOMAIN-SUFFIX,intgram.com,TELEGRAM
-  - DOMAIN-SUFFIX,kingstagram.com,TELEGRAM
-  - DOMAIN-SUFFIX,lnstagram-help.com,TELEGRAM
-  - DOMAIN-SUFFIX,theinstagramhack.com,TELEGRAM
-  - DOMAIN-SUFFIX,oninstagram.com,TELEGRAM
-  - DOMAIN-SUFFIX,online-instagram.com,TELEGRAM
-  - DOMAIN-SUFFIX,onlineinstagram.com,TELEGRAM
-  - DOMAIN-SUFFIX,web-instagram.net,TELEGRAM
-  - DOMAIN-SUFFIX,wwwinstagram.com,TELEGRAM
-  - GEOIP,private,DIRECT,no-resolve
-  - GEOIP,telegram,TELEGRAM,no-resolve
-  - DOMAIN-SUFFIX,timell.pages.dev,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,proxy.fldhhhhhh.top,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,laxcity.pages.dev,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,155.248.172.106:12580,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,155.248.172.106:12580,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,174.137.58.32:12580,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,66.42.50.118:12580,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,beetle.lander.work,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,150.230.195.209:12580,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,haohaoxiong.myqnapcloud.com,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,proxypool1999.banyunxiaoxi.icu,DIRECT,no-resolve
-#  - GEOIP,paypal@cn,CN
-#  - GEOIP,paypal,PayPal
-  - DOMAIN-SUFFIX,brovee.myds.me,DIRECT
-  - DOMAIN-SUFFIX,push.apple.com,DIRECT
-  - DOMAIN-SUFFIX,jetbrains.com,DIRECT
-  - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
-  - DOMAIN,iosapps.itunes.apple.com,DIRECT
-  - GEOIP,ir,DOWNLOAD,no-resolve
-  # Google
-  - DOMAIN-SUFFIX,googleapis.cn,GENERAL
-  - DOMAIN-SUFFIX,gstatic.com,GENERAL
-  # Google Play
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,GENERAL
-  # Github Pages
-  - DOMAIN-SUFFIX,github.io,DOWNLOAD,no-resolve
-  - DOMAIN-SUFFIX,github.com,DOWNLOAD,no-resolve
-  - DOMAIN-SUFFIX,github,DOWNLOAD,no-resolve
-  # V2raySE
-  - DOMAIN,v2rayse.com,GENERAL
-  # loyalsoldier 规则集
-  - RULE-SET,reject,TROJAN
-  - RULE-SET,icloud,APPLE
-  - RULE-SET,apple,APPLE
-  - RULE-SET,google,GOOGLE
-  - RULE-SET,proxy,GENERAL
-  - RULE-SET,gfw,GENERAL
-  - RULE-SET,tld-not-cn,GENERAL
-  - RULE-SET,applications,DOWNLOAD
-  - RULE-SET,private,DOWNLOAD
-  - RULE-SET,direct,DOWNLOAD
-  - RULE-SET,lancidr,DOWNLOAD,no-resolve
-  - RULE-SET,cncidr,DOWNLOAD,no-resolve
-  - RULE-SET,telegramcidr,TELEGRAM,no-resolve
-  # 其他
-  - GEOIP,CN,DOWNLOAD,no-resolve
-  - MATCH,FINALL
+  - DOMAIN-SUFFIX,cdninstagram.com,PROXY
+  - DOMAIN-SUFFIX,bookstagram.com,PROXY
+  - DOMAIN-SUFFIX,carstagram.com,PROXY
+  - DOMAIN-SUFFIX,cdninstagram.com,PROXY
+  - DOMAIN-SUFFIX,chickstagram.com,PROXY
+  - DOMAIN-SUFFIX,ig.me,PROXY
+  - DOMAIN-SUFFIX,igcdn.com,PROXY
+  - DOMAIN-SUFFIX,igsonar.com,PROXY
+  - DOMAIN-SUFFIX,igtv.com,PROXY
+  - DOMAIN-SUFFIX,imstagram.com,PROXY
+  - DOMAIN-SUFFIX,imtagram.com,PROXY
+  - DOMAIN-SUFFIX,instaadder.com,PROXY
+  - DOMAIN-SUFFIX,instachecker.com,PROXY
+  - DOMAIN-SUFFIX,instafallow.com,PROXY
+  - DOMAIN-SUFFIX,instafollower.com,PROXY
+  - DOMAIN-SUFFIX,instagainer.com,PROXY
+  - DOMAIN-SUFFIX,instagda.com,PROXY
+  - DOMAIN-SUFFIX,instagify.com,PROXY
+  - DOMAIN-SUFFIX,instagmania.com,PROXY
+  - DOMAIN-SUFFIX,instagor.com,PROXY
+  - DOMAIN-SUFFIX,instagram-brand.com,PROXY
+  - DOMAIN-SUFFIX,instagram-engineering.com,PROXY
+  - DOMAIN-SUFFIX,instagram-help.com,PROXY
+  - DOMAIN-SUFFIX,instagram-press.com,PROXY
+  - DOMAIN-SUFFIX,instagram-press.net,PROXY
+  - DOMAIN-SUFFIX,instagram.com,PROXY
+  - DOMAIN-SUFFIX,instagramci.com,PROXY
+  - DOMAIN-SUFFIX,instagramcn.com,PROXY
+  - DOMAIN-SUFFIX,instagramdi.com,PROXY
+  - DOMAIN-SUFFIX,instagramhashtags.net,PROXY
+  - DOMAIN-SUFFIX,instagramhilecim.com,PROXY
+  - DOMAIN-SUFFIX,instagramhilesi.org,PROXY
+  - DOMAIN-SUFFIX,instagramium.com,PROXY
+  - DOMAIN-SUFFIX,instagramizlenme.com,PROXY
+  - DOMAIN-SUFFIX,instagramkusu.com,PROXY
+  - DOMAIN-SUFFIX,instagramlogin.com,PROXY
+  - DOMAIN-SUFFIX,instagramm.com,PROXY
+  - DOMAIN-SUFFIX,instagramn.com,PROXY
+  - DOMAIN-SUFFIX,instagrampartners.com,PROXY
+  - DOMAIN-SUFFIX,instagramphoto.com,PROXY
+  - DOMAIN-SUFFIX,instagramq.com,PROXY
+  - DOMAIN-SUFFIX,instagramsepeti.com,PROXY
+  - DOMAIN-SUFFIX,instagramtakipcisatinal.net,PROXY
+  - DOMAIN-SUFFIX,instagramtakiphilesi.com,PROXY
+  - DOMAIN-SUFFIX,instagramtips.com,PROXY
+  - DOMAIN-SUFFIX,instagramtr.com,PROXY
+  - DOMAIN-SUFFIX,instagran.com,PROXY
+  - DOMAIN-SUFFIX,instagranm.com,PROXY
+  - DOMAIN-SUFFIX,instagrem.com,PROXY
+  - DOMAIN-SUFFIX,instagrm.com,PROXY
+  - DOMAIN-SUFFIX,instagtram.com,PROXY
+  - DOMAIN-SUFFIX,instagy.com,PROXY
+  - DOMAIN-SUFFIX,instamgram.com,PROXY
+  - DOMAIN-SUFFIX,instangram.com,PROXY
+  - DOMAIN-SUFFIX,instaplayer.net,PROXY
+  - DOMAIN-SUFFIX,instastyle.tv,PROXY
+  - DOMAIN-SUFFIX,instgram.com,PROXY
+  - DOMAIN-SUFFIX,intagram.com,PROXY
+  - DOMAIN-SUFFIX,intagrm.com,PROXY
+  - DOMAIN-SUFFIX,intgram.com,PROXY
+  - DOMAIN-SUFFIX,kingstagram.com,PROXY
+  - DOMAIN-SUFFIX,lnstagram-help.com,PROXY
+  - DOMAIN-SUFFIX,theinstagramhack.com,PROXY
+  - DOMAIN-SUFFIX,oninstagram.com,PROXY
+  - DOMAIN-SUFFIX,online-instagram.com,PROXY
+  - DOMAIN-SUFFIX,onlineinstagram.com,PROXY
+  - DOMAIN-SUFFIX,web-instagram.net,PROXY
+  - DOMAIN-SUFFIX,wwwinstagram.com,PROXY
+  - MATCH,PROXY
