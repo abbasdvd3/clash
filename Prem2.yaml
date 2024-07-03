@@ -5,56 +5,9 @@ proxy-groups:
   - name: PROXY
     type: select
     proxies:
-      - FALLBACK
-      - URL-TEST
       - 🇺🇸
-  - name: FALLBACK
-    type: fallback
-    hidden: true
-    interval: 150
-    url: https://www.youtube.com/generate_204
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14 
-
-  - name: URL-TEST
-    type: url-test
-    hidden: true
-    tolerance: 200
-  #  interval: 40
-    url: https://www.youtube.com/generate_204
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
-      - Subscription-8
-      - Subscription-9
-      - Subscription-10
-      - Subscription-11
-      - Subscription-12
-      - Subscription-13
-      - Subscription-14 
   - name: 🇺🇸
     type: url-test
-    tolerance: 100
-    interval: 40
-    url: https://www.youtube.com/generate_204
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
     use: 
       - Subscription-1
