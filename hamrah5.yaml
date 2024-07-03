@@ -71,7 +71,8 @@ proxy-groups:
       - Block
   - name: Auto
     type: url-test
-    interval: 8400
+    interval: 840
+    expected-status: 200/204
    # tolerance: 150
     url: http://www.gstatic.com/generate_204
     use: 
@@ -85,7 +86,8 @@ proxy-groups:
   - name: Geo-HK
     type: url-test
     interval: 300
- #   tolerance: 100
+    expected-status: 200/204
+    tolerance: 50
     url: http://www.gstatic.com/generate_204
     filter: "HongKong|HK|香港"
     use: 
@@ -97,8 +99,9 @@ proxy-groups:
       - Subscription-6
   - name: Geo-TW
     type: url-test
+    expected-status: 200/204
     interval: 300
-#    tolerance: 100
+    tolerance: 50
     url: http://www.gstatic.com/generate_204
     filter: "Taiwan|TW|台湾"
     use: 
@@ -112,7 +115,8 @@ proxy-groups:
   - name: Geo-SG
     type: url-test
     interval: 300
-#    tolerance: 100
+    tolerance: 50
+    expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "Singapore|SG|新加坡"
     use: 
@@ -126,7 +130,8 @@ proxy-groups:
   - name: Geo-JP
     type: url-test
     interval: 300
- #   tolerance: 100
+    tolerance: 50
+    expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "Japan|JP|日本"
     use: 
@@ -140,7 +145,8 @@ proxy-groups:
   - name: Geo-US
     type: url-test
     interval: 300
-#    tolerance: 100
+    tolerance: 50
+    expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "America|United States|US|美国"
     use: 
@@ -154,7 +160,8 @@ proxy-groups:
   - name: Geo-UK
     type: url-test
     interval: 300
-#    tolerance: 100
+    tolerance: 50
+    expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "Britain|England|UK|英国"
     use: 
@@ -169,7 +176,8 @@ proxy-groups:
   - name: Geo-DE
     type: url-test
     interval: 300
-#    tolerance: 100
+    tolerance: 50
+    expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "Germany|Deutsch|DE|德国"
     use: 
@@ -183,7 +191,10 @@ proxy-groups:
   - name: Geo-CN
     type: url-test
     interval: 300
-#    tolerance: 100
+    tolerance: 50
+    interval: 300
+    tolerance: 50
+    expected-status: 200/204
     url: http://www.gstatic.com/generate_204
 #    disable-dns: true
     filter: "China|CN|中国"
@@ -199,6 +210,7 @@ proxy-groups:
 
   - name: Block
     type: select
+    expected-status: 200/204
     proxies:
       - REJECT
       - DIRECT
@@ -213,6 +225,7 @@ proxy-groups:
 
   - name: Proxy
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -228,6 +241,7 @@ proxy-groups:
 
   - name: DNS-Proxy
     type: select
+    expected-status: 200/204
     proxies: 
       - Proxy
       - Auto
@@ -244,6 +258,7 @@ proxy-groups:
 
   - name: Netflix
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -259,6 +274,7 @@ proxy-groups:
 
   - name: Apple
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -274,6 +290,7 @@ proxy-groups:
 
   - name: iCloud
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -289,6 +306,7 @@ proxy-groups:
 
   - name: MicrosoftCN
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -304,7 +322,7 @@ proxy-groups:
 
   - name: PayPal
     type: select
-#    use: *Use
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -320,6 +338,7 @@ proxy-groups:
 
   - name: Steam
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -335,6 +354,7 @@ proxy-groups:
 
   - name: Game
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -350,6 +370,7 @@ proxy-groups:
 
   - name: Facebook
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -365,6 +386,7 @@ proxy-groups:
 
   - name: Twitter
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -380,6 +402,7 @@ proxy-groups:
 
   - name: Telegram
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -395,6 +418,7 @@ proxy-groups:
 
   - name: GlobalTV
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -409,6 +433,7 @@ proxy-groups:
       - Block
   - name: YouTube
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -424,6 +449,7 @@ proxy-groups:
 
   - name: Spotify
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -439,6 +465,7 @@ proxy-groups:
 
   - name: SpeedTest
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -454,6 +481,7 @@ proxy-groups:
 
   - name: Download
     type: select
+    expected-status: 200/204
     proxies:
       - Auto
       - Geo-HK
@@ -469,7 +497,6 @@ proxy-groups:
 
   - name: CN
     type: select
-    disable-dns: true
     proxies:
       - DIRECT
       - Block
