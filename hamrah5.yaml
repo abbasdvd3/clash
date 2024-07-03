@@ -7,7 +7,7 @@ log-level: info
 ipv6: true
 external-controller: 0.0.0.0:9090
 secret: ""
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: chrome
 global-ua: clash.meta
@@ -71,7 +71,7 @@ proxy-groups:
       - Block
   - name: Auto
     type: url-test
-    interval: 840
+ #   interval: 300
     expected-status: 200/204
    # tolerance: 150
     url: http://www.gstatic.com/generate_204
@@ -85,9 +85,9 @@ proxy-groups:
 
   - name: Geo-HK
     type: url-test
-    interval: 300
+  #  interval: 300
     expected-status: 200/204
-    tolerance: 50
+#    tolerance: 50
     url: http://www.gstatic.com/generate_204
     filter: "HongKong|HK|香港"
     use: 
@@ -100,8 +100,8 @@ proxy-groups:
   - name: Geo-TW
     type: url-test
     expected-status: 200/204
-    interval: 300
-    tolerance: 50
+   # interval: 300
+  #  tolerance: 50
     url: http://www.gstatic.com/generate_204
     filter: "Taiwan|TW|台湾"
     use: 
@@ -114,8 +114,8 @@ proxy-groups:
 
   - name: Geo-SG
     type: url-test
-    interval: 300
-    tolerance: 50
+    # interval: 300
+  #  tolerance: 50
     expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "Singapore|SG|新加坡"
@@ -129,8 +129,8 @@ proxy-groups:
 
   - name: Geo-JP
     type: url-test
-    interval: 300
-    tolerance: 50
+    # interval: 300
+  #  tolerance: 50
     expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "Japan|JP|日本"
@@ -144,8 +144,8 @@ proxy-groups:
 
   - name: Geo-US
     type: url-test
-    interval: 300
-    tolerance: 50
+    # interval: 300
+  #  tolerance: 50
     expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "America|United States|US|美国"
@@ -159,8 +159,8 @@ proxy-groups:
 
   - name: Geo-UK
     type: url-test
-    interval: 300
-    tolerance: 50
+    # interval: 300
+  #  tolerance: 50
     expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "Britain|England|UK|英国"
@@ -175,8 +175,8 @@ proxy-groups:
 
   - name: Geo-DE
     type: url-test
-    interval: 300
-    tolerance: 50
+    # interval: 300
+  #  tolerance: 50
     expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "Germany|Deutsch|DE|德国"
@@ -190,8 +190,8 @@ proxy-groups:
 
   - name: Geo-CN
     type: url-test
-    interval: 300
-    tolerance: 50
+    # interval: 300
+  #  tolerance: 50
     expected-status: 200/204
     url: http://www.gstatic.com/generate_204
 #    disable-dns: true
