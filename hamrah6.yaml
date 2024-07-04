@@ -1,6 +1,6 @@
 # port: 7890
 # socks-port: 7891
-# mixed-port: 7893
+mixed-port: 7893
 allow-lan: true
 mode: Rule
 bind-address: "*"
@@ -8,7 +8,7 @@ ipv6: true
 log-level: info
 find-process-mode: always
 enable-process: true
-unified-delay: true
+unified-delay: false
 keep-alive-interval: 15
 tcp-concurrent: true
 geodata-mode: true
@@ -102,24 +102,19 @@ proxies:
     type: dns
 proxy-groups:
   - name: Proxy
-    type: select
+    type: url-test
     use: 
     proxies:
-      - Auto
-      - dns-out
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
       - Geo-DE
-      - Geo-CN
-      - DIRECT
-      - Block
+      - Auto
+      - Geo-TW
+      - fallback
+      - Geo-SG
+
   - name: Auto
     type: url-test
-    interval: 180
-   # tolerance: 20
+    interval: 300
+    tolerance: 50
     url: http://www.gstatic.com/generate_204
     use: 
       - Subscription-1
@@ -129,10 +124,19 @@ proxy-groups:
       - Subscription-5
       - Subscription-6
       - Subscription-7
-
+      
+  - name: fallback
+    type: fallback
+    interval: 200
+  #  tolerance: 100
+    url: http://www.gstatic.com/generate_204
+   # filter: ""
+    proxies:
+      - Geo-HK
+      
   - name: Geo-HK
     type: fallback
-    interval: 160
+    interval: 300
   #  tolerance: 100
     url: http://www.gstatic.com/generate_204
    # filter: ""
@@ -147,31 +151,42 @@ proxy-groups:
       
   - name: Geo-TW
     type: url-test
-    interval: 420
-#    tolerance: 10
+    interval: 300
+    tolerance: 50
     url: http://www.gstatic.com/generate_204
     proxies:
       - Geo-SG
       - Geo-DE
-      
+
+  - name: Geo-DE
+    type: url-test
+    interval: 300
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
+    proxies: 
+      - Geo-HK
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-CN
+    
   - name: Geo-SG
     type: url-test
-    interval: 320
+    interval: 300
     tolerance: 50
     url: http://www.gstatic.com/generate_204
     filter: "HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国"
     use: 
-      - Subscription-3
-      - Subscription-5
-      - Subscription-7
       - Subscription-1
       - Subscription-2
+      - Subscription-3
       - Subscription-4
+      - Subscription-5
       - Subscription-6
-      
+      - Subscription-7
   - name: Geo-JP
     type: url-test
-    interval: 320
+    interval: 300
     tolerance: 50
     url: http://www.gstatic.com/generate_204
     filter: "Japan|JP|日本"
@@ -185,7 +200,7 @@ proxy-groups:
       - Subscription-7
   - name: Geo-US
     type: url-test
-    interval: 320
+    interval: 300
     tolerance: 50
     url: http://www.gstatic.com/generate_204
     filter: "America|United States|US|美国"
@@ -198,21 +213,9 @@ proxy-groups:
       - Subscription-6
       - Subscription-7
       
-  - name: Geo-DE
-    type: url-test
-    interval: 320
-    tolerance: 50
-    url: http://www.gstatic.com/generate_204
-    proxies: 
-      - Geo-HK
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-CN
-      
   - name: Geo-CN
     type: url-test
-    interval: 320
+    interval: 300
     tolerance: 50
     url: http://www.gstatic.com/generate_204
  #   disable-dns: true
@@ -261,7 +264,7 @@ proxy-groups:
       - Block
 
   - name: Netflix
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
@@ -271,12 +274,12 @@ proxy-groups:
     proxies: 
       - Proxy
   - name: iCloud
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
   - name: MicrosoftCN
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
@@ -286,115 +289,73 @@ proxy-groups:
     proxies: 
       - Proxy
   - name: Steam
-    type: select
+    type: url-test
     use:
     proxies: 
       - Proxy
   - name: Game
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
   - name: Facebook
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
       - Auto
-      - dns-out
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-DE
-      - Geo-CN
+#      - dns-out
+
   - name: Twitter
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
       - Auto
-      - dns-out
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-DE
-      - Geo-CN
+#      - dns-out
+
   - name: Telegram
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
       - Auto
-      - dns-out
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-DE
-      - Geo-CN
+#      - dns-out
+
   - name: GlobalTV
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
       - Auto
-      - dns-out
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-DE
-      - Geo-CN
+#      - dns-out
+
   - name: YouTube
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
       - Auto
-      - dns-out
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-DE
-      - Geo-CN
+#      - dns-out
+
   - name: Spotify
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
       - Auto
-      - dns-out
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-DE
-      - Geo-CN
+#      - dns-out
+
   - name: SpeedTest
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
       - Auto
-      - dns-out
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-DE
-      - Geo-CN
+#      - dns-out
+
   - name: Download
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
@@ -403,22 +364,27 @@ proxy-groups:
  #   disable-dns: true
     use: 
     proxies: 
-      - Proxy
       - DIRECT
+      - Proxy
   - name: Mismatch
     type: select
+    udp: true
     use: 
+      - Subscription-7
+      - Subscription-6
+      - Subscription-5
+      - Subscription-4
+      - Subscription-3
+      - Subscription-2
+      - Subscription-1
     proxies: 
       - Proxy
-      - Auto
-      - dns-out
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
       - Geo-DE
-      - Geo-CN
+      - Auto
+      - Geo-TW
+      - fallback
+      - Geo-SG
+
 proxy-providers:
   Subscription-1:
     type: http
