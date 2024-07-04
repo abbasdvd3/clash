@@ -27,11 +27,11 @@ geo-update-interval: 24
 global-ua: clash.meta
 
 experimental:
-  ignore-resolve-fail: false
-  sniff-tls-sni: false
-  udp-fallback-match: false
-  quic-go-disable-gso: false
-  quic-go-disable-ecn: false
+  ignore-resolve-fail: true
+  sniff-tls-sni: true
+  udp-fallback-match: true
+  quic-go-disable-gso: true
+  quic-go-disable-ecn: true
 sniffer:
   enable: true
   sniff:
@@ -135,7 +135,7 @@ proxy-groups:
     interval: 160
   #  tolerance: 100
     url: http://www.gstatic.com/generate_204
-   # filter: "HongKong|HK|香港"
+   # filter: ""
     use:
       - Subscription-1
       - Subscription-2
@@ -144,26 +144,22 @@ proxy-groups:
       - Subscription-5
       - Subscription-6
       - Subscription-7
+      
   - name: Geo-TW
     type: url-test
-    interval: 120
+    interval: 420
 #    tolerance: 10
     url: http://www.gstatic.com/generate_204
-#    filter: "Taiwan|TW|台湾"
-    use: 
-      - Subscription-2
-      - Subscription-4
-      - Subscription-6
-      - Subscription-7
-      - Subscription-3
-      - Subscription-5
-      - Subscription-1
+    proxies:
+      - Geo-SG
+      - Geo-DE
+      
   - name: Geo-SG
     type: url-test
-    interval: 120
- #   tolerance: 5
+    interval: 320
+    tolerance: 50
     url: http://www.gstatic.com/generate_204
-   # filter: "Singapore|SG|新加坡"
+    filter: "HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国"
     use: 
       - Subscription-3
       - Subscription-5
@@ -175,8 +171,8 @@ proxy-groups:
       
   - name: Geo-JP
     type: url-test
-    interval: 120
- #   tolerance: 40
+    interval: 320
+    tolerance: 50
     url: http://www.gstatic.com/generate_204
     filter: "Japan|JP|日本"
     use: 
@@ -189,8 +185,8 @@ proxy-groups:
       - Subscription-7
   - name: Geo-US
     type: url-test
-    interval: 120
-    tolerance: 40
+    interval: 320
+    tolerance: 50
     url: http://www.gstatic.com/generate_204
     filter: "America|United States|US|美国"
     use: 
@@ -204,23 +200,20 @@ proxy-groups:
       
   - name: Geo-DE
     type: url-test
-    interval: 120
-#    tolerance: 40
+    interval: 320
+    tolerance: 50
     url: http://www.gstatic.com/generate_204
-    filter: "Germany|Deutsch|DE|德国"
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
-      - Subscription-7
+    proxies: 
+      - Geo-HK
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-CN
       
   - name: Geo-CN
     type: url-test
-    interval: 120
- #   tolerance: 40
+    interval: 320
+    tolerance: 50
     url: http://www.gstatic.com/generate_204
  #   disable-dns: true
     filter: "China|CN|中国"
