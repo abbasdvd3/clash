@@ -1,6 +1,3 @@
-# port: 7890
-# socks-port: 7891
-mixed-port: 10801
 # redir-port: 9797
 # tproxy-port: 9898
 mode: rule
@@ -120,71 +117,74 @@ dns:
 
 proxies:
 proxy-groups:
-  - name: 🕹 select 🕹
-    type: select
+  - name: 🕹 select
+    type: url-test
+    expected-status: 200/204
+    nodeGroupType: 0
+    interval: 300
+ #   tolerance: 50
     proxies:
-      - 🕹🕹
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
-  - name: 🕹🕹
-    type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 180
-    hidden: true
-    proxies:
-      - ♻️ url-test
+      - ✈️
       - 🇭🇰 
       - 🇨🇳 
       - 🇸🇬 
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
+  - name: ✈️
+    type: url-test
+    url: https://fiber.google.com/speedtest
+    interval: 300
+    expected-status: 200/204
+    proxies:
+    use:
+      - provider1
+    
   - name: ♻️ url-test
     type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 180
-    hidden: true
+    url: https://fiber.google.com/speedtest
+    interval: 300
+    expected-status: 200/204
+#    nodeGroupType: 0
+#    interval: 300
+  #  tolerance: 50
     proxies:
     use:
-      - provider1
       - provider2
-
-      
+#      - B
   - name: 🚧 fallback
     type: fallback
-    url: https://cp.cloudflare.com/generate_204
-    interval: 180
-    hidden: true
+    url: https://fiber.google.com/speedtest
+    interval: 300
+    expected-status: 200/204
+#    nodeGroupType: 0
     proxies:
-    use:
-      - provider1
-      - provider2
-
-      
+      - 🇭🇰 
+      - 🇨🇳 
+      - 🇸🇬 
+      - 🇺🇲 
+      - 🇯🇵 
+      - 🇰🇷 
   - name: ⚖️ load-balance
     type: load-balance
-    strategy: round-robin
-    url: https://cp.cloudflare.com/generate_204
-    interval: 180
-    hidden: true
+    url: https://fiber.google.com/speedtest
+    interval: 300
+    expected-status: 200/204
+#    nodeGroupType: 0
     proxies:
     use:
       - provider1
       - provider2
 
-      
-  - name: 📡 IP
-    type: select
-    proxies:
-      - DIRECT
-      - 🕹 select
-      
   - name: 📲
     type: select
-    hidden: true
+    expected-status: 200/204
     proxies:
       - 🕹 select
+      - ✈️
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -195,16 +195,12 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
       - DIRECT
-    use:
-      - provider1
-      - provider2
-
-      
   - name: 💬 OpenAi
     type: select
-    hidden: true
+    expected-status: 200/204
     proxies:
       - 🕹 select
+      - ✈️
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -215,15 +211,12 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
       - DIRECT
-    use:
-      - provider1
-      - provider2
-      
   - name: 📹
     type: select
-    hidden: true
+    expected-status: 200/204
     proxies:
       - 🕹 select
+      - ✈️
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -234,15 +227,12 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
       - DIRECT
-    use:
-      - provider1
-      - provider2
- 
   - name: 🎥
     type: select
-    hidden: true
+    expected-status: 200/204
     proxies:
       - 🕹 select
+      - ✈️
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -253,49 +243,27 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
       - DIRECT
-      
   - name: 📺
     type: select
-    hidden: true
+    expected-status: 200/204
     proxies:
+      - 🇨🇳
       - 🕹 select
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷
-    use:
-      - provider1
-      - provider2
-
+      - ✈️
+      - DIRECT
   - name: 📺2
     type: select
-    hidden: true
+    expected-status: 200/204
     proxies:
-      - 🕹 select
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷
-    use:
-      - provider1
-      - provider2
-
-      
+      - 🎯
+      - 🇨🇳
+      - 🇭🇰
   - name: 🌍
     type: select
-    hidden: true
+    expected-status: 200/204
     proxies:
       - 🕹 select
+      - ✈️
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -306,33 +274,23 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
       - DIRECT
-    use:
-      - provider1
-      - provider2
-
-      
   - name: 🌏
     type: select
-    hidden: true
+    expected-status: 200/204
     proxies:
+      - DIRECT
+      - 🇭🇰
+      - 🇨🇳
+      - 🇸🇬
+      - 🇯🇵
       - 🕹 select
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷
-    use:
-      - provider1
-      - provider2
   - name: 📢
     type: select
-    hidden: true
+    expected-status: 200/204
     proxies:
+      - DIRECT
       - 🕹 select
+      - ✈️
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -342,15 +300,13 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-    use:
-      - provider1
-      - provider2
-      
-  - name: Ⓜ️
+  - name: Ⓜ️1
     type: select
-    hidden: true
+    expected-status: 200/204
     proxies:
+      - DIRECT
       - 🕹 select
+      - ✈️
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -360,139 +316,103 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-      
+  - name: Ⓜ️2
+    type: select
+    expected-status: 200/204
+    proxies:
+      - DIRECT
+      - 🕹 select
+      - ✈️
+      - ♻️ url-test
+      - 🚧 fallback
+      - ⚖️ load-balance
+      - 🇭🇰 
+      - 🇨🇳 
+      - 🇸🇬 
+      - 🇺🇲 
+      - 🇯🇵 
+      - 🇰🇷 
+  - name: Ⓜ️3
+    type: select
+    expected-status: 200/204
+    proxies:
+      - DIRECT
+      - 🕹 select
+      - ✈️
+      - ♻️ url-test
+      - 🚧 fallback
+      - ⚖️ load-balance
+      - 🇭🇰 
+      - 🇨🇳 
+      - 🇸🇬 
+      - 🇺🇲 
+      - 🇯🇵 
+      - 🇰🇷 
   - name: 🍎
     type: select
-    hidden: true
+    expected-status: 200/204
+    proxies:
+      - DIRECT
+      - 🕹 select
+      - ✈️
+      - ♻️ url-test
+      - 🚧 fallback
+      - ⚖️ load-balance
+      - 🇭🇰 
+      - 🇨🇳 
+      - 🇸🇬 
+      - 🇺🇲 
+      - 🇯🇵 
+      - 🇰🇷 
+  - name: 🎮
+    type: select
+    expected-status: 200/204
+    proxies:
+      - DIRECT
+      - 🕹 select
+      - ✈️
+      - ♻️ url-test
+      - 🚧 fallback
+      - ⚖️ load-balance
+      - 🇭🇰 
+      - 🇨🇳 
+      - 🇸🇬 
+      - 🇺🇲 
+      - 🇯🇵 
+      - 🇰🇷 
+  - name: 🎶
+    type: select
+    expected-status: 200/204
     proxies:
       - DIRECT
       - 🕹 select
       - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
-      
-  - name: 🎮
-    type: select
-    hidden: true
-    proxies:
-      - 🕹 select
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
-      
-  - name: 🎶
-    type: select
-    hidden: true
-    proxies:
-      - 🕹 select
-      - ♻️ url-test
-      
   - name: 🎯
     type: select
     proxies:
       - DIRECT
       - 🕹 select
       - ♻️ url-test
-      
   - name: 🛑
     type: select
     proxies:
-      - PASS
+      - REJECT
       - DIRECT
-      - 🕹 select
-      
   - name: 🍃
     type: select
     proxies:
       - REJECT
       - DIRECT
-      
-      
-  - name: 🇭🇰
-    type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
-#    tolerance: 50
-    filter: '🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港'
-    hidden: true
-    proxies: 
-    use:
-      - provider1
-      - provider2
-
-  - name: 🇯🇵
-    type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
-    filter: '🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日'
-    hidden: true
-    proxies: 
-    use:
-      - provider1
-      - provider2
-
-      
-  - name: 🇺🇲
-    type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
-    filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
-    hidden: true
-    proxies:
-    use:
-      - provider1
-      - provider2
-
-      
-  - name: 🇨🇳
-    type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
-    filter: "cn|TW"
-    hidden: true
-    proxies: 
-    use:
-      - provider1
-      - provider2
-
-      
-  - name: 🇸🇬
-    type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
-    filter: '🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]'
-    hidden: true
-    proxies: 
-    use:
-      - provider1
-      - provider2
-      
-  - name: 🇰🇷
-    type: url-test
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
-    filter: '🇰🇷|KO?R|Korea|首尔|韩|韓'
-    hidden: true
-    proxies: 
-    use:
-      - provider1
-      - provider2
-
-  - name: 🕹 select
+  - name: 🐟
     type: select
+    expected-status: 200/204
+    use:
+      - provider1
+      - provider2
+      
     proxies:
+      - 🕹 select
+      - ✈️
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -502,32 +422,90 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
+      - DIRECT
+      
+  - name: 🇭🇰
+    type: url-test
+    url: https://fiber.google.com/speedtest
+    interval: 300
+    expected-status: 200/204
+    filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
+    proxies: 
+    use:
+      - provider1
+      - provider2
+  - name: 🇯🇵
+    type: url-test
+    url: https://fiber.google.com/speedtest
+    interval: 300
+    expected-status: 200/204
+    filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
+    proxies: 
+    use:
+      - provider1
+      - provider2
+  - name: 🇺🇲
+    type: url-test
+    url: https://fiber.google.com/speedtest
+    interval: 300
+    expected-status: 200/204
+    proxies:
+    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
+    use:
+      - provider1
+      - provider2
+  - name: 🇨🇳
+    type: url-test
+    url: https://fiber.google.com/speedtest
+    interval: 300
+    expected-status: 200/204
+    filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
+    proxies: 
+    use:
+      - provider1
+      - provider2
+  - name: 🇸🇬
+    type: url-test
+    url: https://fiber.google.com/speedtest
+    interval: 300
+    expected-status: 200/204
+    filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
+    proxies: 
+    use:
+      - provider1
+      - provider2
+  - name: 🇰🇷
+    type: url-test
+    url: https://fiber.google.com/speedtest
+    interval: 300
+    expected-status: 200/204
+    filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
+    proxies: 
     use:
       - provider1
       - provider2
 proxy-providers:
   provider1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/10.yaml"    
-    interval: 8900
-    path: Prem3/provider1.yaml
-    proxy: DIRECT
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml"    #【Meta专属】支持解析V2rayN等工具使用的普通订阅
+    interval: 3600
+    path: Prem/provider1.yaml
     health-check:
       enable: true
       interval: 300
-  #    lazy: true
-      url: https://cp.cloudflare.com/generate_204
+      # lazy: true
+      url: https://fiber.google.com/speedtest
+
   provider2:
     type: http
-    url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml"    
-    interval: 8900
-    path: Prem3/provider2.yaml
-    proxy: DIRECT
+    url: "http://haohaoxiong.myqnapcloud.com:12580/clash/proxies"    #【Meta专属】支持解析V2rayN等工具使用的普通订阅
+    interval: 3600
+    path: Prem/provider2.yaml
     health-check:
       enable: true
       interval: 300
-  #    lazy: true
-      url: https://cp.cloudflare.com/generate_204  
+      # lazy: true
+      url: https://fiber.google.com/speedtest
 rule-providers:
   block:
     type: http
@@ -877,130 +855,29 @@ rule-providers:
     format: text
     interval: 3600
     path: ./ACL4SSR/ACL4SSR/Download.list
-  GoogleCNProxyIP:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/GoogleCNProxyIP.list
-  DNS:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/DNS/DNS.yaml
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/DNS.yaml
-  GitHub:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/GitHub/GitHub.yaml
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/GitHub.yaml
-  AdGuardSDNSFilter:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/AdGuardSDNSFilter/AdGuardSDNSFilter_Domain.txt
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/AdGuardSDNSFilter.txt
-  BlockHttpDNS:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/BlockHttpDNS/BlockHttpDNS.yaml
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/BlockHttpDNS
-  AdGuardSDNSFilterDirect:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/AdGuardSDNSFilter/Direct/Direct.yaml
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/AdGuardS DNS Filter Direct.yaml
-  Samsung:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Samsung/Samsung.yaml
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Samsung.yaml
-  ChinaDNS:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/ChinaDNS/ChinaDNS.yaml
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/ChinaDNS.yaml
-  cloudflare:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geosite/cloudflare.list
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/cloudflare.list
-  Domestic:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Domestic.list
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Domestic.list
-  Adblock1:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Adblock/Adblock.list
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Adblock1.list
-  DNS2:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Special/DNS.list
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/DNS2.list
-  SpeedTest:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/SpeedTest.list
-    format: text
-    interval: 3600
-    path: ./ACL4SSR/ACL4SSR/SpeedTest.list   
-    
-  NSFW:  #here are some capital letters
-    type: http  
-    behavior: classical  
-    path: ./RuleSet/NSFW.yaml  
-    url: https://raw.githubusercontent.com/tanmoumou252/NSFW-website-rule-for-Clash/main/NSFW.yaml  
-    interval: 86400  
-
-
 rules:
-  - RULE-SET,private,DIRECT,no-resolve
-  - RULE-SET,apps,DIRECT
+  - RULE-SET,private,🎯,no-resolve
+  - RULE-SET,apps,🎯
   - RULE-SET,ads,🛑
   - RULE-SET,malware,🛑
   - RULE-SET,phishing,🛑
   - RULE-SET,cryptominers,🛑
-  - RULE-SET,ir,DIRECT
-  - RULE-SET,ircidr,DIRECT
-  - RULE-SET,arvancloud,DIRECT
-  - RULE-SET,derakcloud,DIRECT
-  - RULE-SET,iranserver,DIRECT
-  - RULE-SET,parspack,DIRECT
+  - RULE-SET,ir,🎯
+  - RULE-SET,ircidr,🎯
+  - RULE-SET,arvancloud,🎯
+  - RULE-SET,derakcloud,🎯
+  - RULE-SET,iranserver,🎯
+  - RULE-SET,parspack,🎯
 #  - RULE-SET,LocalAreaNetwork,🎯
   - RULE-SET,UnBan,🎯
   - RULE-SET,BanAD,🛑
   - RULE-SET,BanProgramAD,🍃
   - RULE-SET,GoogleFCM,📢
-  - RULE-SET,GoogleCN,📢
-  - RULE-SET,SteamCN,📢
-  - RULE-SET,Bing,Ⓜ️
-  - RULE-SET,NSFW,📢
-  - RULE-SET,OneDrive,Ⓜ️
-  - RULE-SET,Microsoft,Ⓜ️
+  - RULE-SET,GoogleCN,🎯
+  - RULE-SET,SteamCN,🎯
+  - RULE-SET,Bing,Ⓜ️1
+  - RULE-SET,OneDrive,Ⓜ️2
+  - RULE-SET,Microsoft,Ⓜ️3
   - RULE-SET,Apple,🍎
   - RULE-SET,Telegram,📲
   - RULE-SET,OpenAi,💬 OpenAi
@@ -1023,29 +900,16 @@ rules:
   - DOMAIN-SUFFIX,vpnse.org,🕹 select
   - DOMAIN-SUFFIX,cfmem.com,🕹 select
   - RULE-SET,ProxyGFWlist,🕹 select
-  - RULE-SET,ChinaDomain,REJECT
-  - RULE-SET,ChinaCompanyIp,REJECT
-  - RULE-SET,Download,REJECT
-  - RULE-SET,GoogleCNProxyIP,📢
-#  - RULE-SET,GoogleCN,✈️
-#  - RULE-SET,LocalAreaNetwork,DIRECT
-#  - RULE-SET,ProxyGFWlist,✈️
-#  - RULE-SET,UnBan,✈️
-#  - RULE-SET,gfw,✈️  
-  - RULE-SET,Adblock1,🛑
-  - RULE-SET,DNS2,DIRECT
-  - RULE-SET,Domestic,🕹 select
-  - RULE-SET,cloudflare,REJECT
-  - RULE-SET,ChinaDNS,REJECT
-  - RULE-SET,AdGuardSDNSFilterDirect,REJECT
-  - RULE-SET,BlockHttpDNS,🛑
-  - RULE-SET,AdGuardSDNSFilter,🛑
-  - RULE-SET,Samsung,🍎
-  - RULE-SET,SpeedTest,📡 IP
-  - RULE-SET,DNS,REJECT
-#  - RULE-SET,ProxyGFWlist,✈️
-  - RULE-SET,GitHub,🕹 select
-#  - RULE-SET,Google,📢  
+  - RULE-SET,ChinaDomain,🎯
+  - RULE-SET,ChinaCompanyIp,🎯
+  - RULE-SET,Download,🎯
+  - RULE-SET,gfw,🕹 select
+  - RULE-SET,BanEasyList,🛑
+  - RULE-SET,BanEasyListChina,🛑
+  - RULE-SET,BanEasyPrivacy,🛑
+#  - RULE-SET,adguard,REJECT
+  - RULE-SET,IpinfoSpeedtest,🎯
+  - RULE-SET,Google,📢  
   - RULE-SET,AWA,🛑
   - DOMAIN-SUFFIX,googlesyndication.com,🕹 select
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),🛑
@@ -1053,31 +917,25 @@ rules:
   - RULE-SET,block,🛑
   # - SCRIPT,quic,REJECT
   # - SCRIPT,youshit,REJECT
-
   ## direct FCM
   # - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),DIRECT
   # - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),DIRECT
- 
   ## block udp/quic YouTube
   - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),🛑
   - AND,((NETWORK,udp),(GEOSITE,youtube)),🛑
-
   # # fix dnsleak
 #  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
 #  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
 #  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
 #  - IP-CIDR6,::1/128,REJECT,no-resolve
-  
   ## rules telegram
   # - GEOIP,telegram,🐟
   # - GEOSITE,telegram,PROXY
-
   ## direct ntp
   # - AND,((NETWORK,UDP),(DST-PORT,123)),DIRECT
   # - DST-PORT,123/136/137-139,DIRECT,udp
-
   ## rules inner, recommended untuk non kuota reguler
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑
-  - IN-TYPE,inner,🕹 select
+  - IN-TYPE,inner,🐟
 
-  - MATCH,🕹 select
+  - MATCH,🐟
