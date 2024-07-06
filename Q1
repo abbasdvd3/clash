@@ -222,12 +222,12 @@
         ],
         "servers": [
             {
-                "address": "1.1.1.1",
+                "address": "8.8.8.8",
                 "detour": "Proxy",
                 "tag": "google"
             },
             {
-                "address": "local",
+                "address": "udp://223.5.5.5/dns-query",
                 "detour": "direct",
                 "tag": "local-dns"
             },
@@ -258,31 +258,35 @@
     },
     "inbounds": [
         {
+            "listen": "0.0.0.0",
+            "listen_port": 6450,
+            "override_address": "8.8.8.8",
+            "override_port": 53,
+            "tag": "dns-local",
+            "type": "direct"
+        },
+        {
             "auto_route": true,
-            "domain_strategy": "prefer_ipv4",
+            "domain_strategy": "",
             "endpoint_independent_nat": true,
             "inet4_address": "172.19.0.1/30",
-            "inet6_address": "2001:0470:f9da:fdfa::1/64",
+            "interface_name": "tun0",
             "mtu": 9000,
             "sniff": true,
+            "sniff_override_destination": false,
+            "stack": "system",
             "strict_route": true,
+            "tag": "tun-in",
             "type": "tun"
         },
         {
-            "domain_strategy": "prefer_ipv4",
-            "listen": "127.0.0.1",
-            "listen_port": 2333,
-            "tag": "socks-in",
-            "type": "socks",
-            "users": []
-        },
-        {
-            "domain_strategy": "prefer_ipv4",
-            "listen": "127.0.0.1",
-            "listen_port": 2334,
+            "domain_strategy": "",
+            "listen": "0.0.0.0",
+            "listen_port": 2080,
+            "sniff": true,
+            "sniff_override_destination": false,
             "tag": "mixed-in",
-            "type": "mixed",
-            "users": []
+            "type": "mixed"
         }
     ],
     "log": {
