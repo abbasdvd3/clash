@@ -1,8 +1,14 @@
+//profile-title: base64:VFZDIHwgTUlY
+//profile-update-interval: 1
+//subscription-userinfo: upload=0; download=0; total=10737418240000000; expire=2546249531
+//support-url: https://t.me/abbasdvd10
+//profile-web-page-url: https://shua.leyz.top/
 {
     "dns": {
         "fakeip": {
             "enabled": true,
-            "inet4_range": "198.18.0.0/15"
+            "inet4_range": "198.18.0.0/15",
+            "inet6_range": "fc00::/18"
         },
         "rules": [
             {
@@ -136,31 +142,9 @@
                 "server": "block-dns"
             },
             {
-                "outbound": "block",
-                "server": "local-dns"
-            },
-            {
-                "rewrite_ttl": 1,
-                "rule_set": [
-                    "geosite-netflix",
-                    "geosite-nsfw",
-                    "geosite-social",
-                    "geosite-youtube",
-                    "geosite-telegram",
-                    "geosite-category-media",
-                    "geosite-openai",
-                    "geosite-speedtest",
-                    "geosite-jetbrains",
-                    "geosite-spotify",
-                    "geosite-cloudflare",
-                    "geosite-google",
-                    "geosite-pornpros",
-                    "geosite-twitter",
-                    "geoip-twitter",
-                    "geosite-xhamster"
-                ],
-                "outbound": "dns-out",
-                "server": "fakeip-dns"
+                "outbound": "any",
+                "server": "local-dns",
+                "disable_cache": true
             },
             {
                 "domain_suffix": [
@@ -177,7 +161,7 @@
                     "xn--fiqs8s",
                     "xn--fiq228c"
                 ],
-                "outbound": "direct",
+                "clash_mode": "direct",
                 "server": "local-dns"
             },
             {
@@ -201,11 +185,37 @@
                     "geosite-category-travel-ir",
                     "geosite-ziroom"
                 ],
-                "outbound": "direct",
+                "clash_mode": "direct",
                 "server": "local-dns"
             },
             {
-                "query_type": "A",
+                "rewrite_ttl": 1,
+                "rule_set": [
+                    "geosite-netflix",
+                    "geosite-nsfw",
+                    "geosite-social",
+                    "geosite-youtube",
+                    "geosite-telegram",
+                    "geosite-category-media",
+                    "geosite-openai",
+                    "geosite-speedtest",
+                    "geosite-jetbrains",
+                    "geosite-spotify",
+                    "geosite-cloudflare",
+                    "geosite-google",
+                    "geosite-pornpros",
+                    "geosite-twitter",
+                    "geoip-twitter",
+                    "geosite-xhamster"
+                ],
+                "clash_mode": "global",
+                "server": "google"
+            },
+            {
+                "query_type": [
+                "A",
+               "AAAA"
+              ],
                 "rewrite_ttl": 1,
                 "server": "fakeip-dns"
             }
@@ -217,7 +227,7 @@
                 "tag": "google"
             },
             {
-                "address": "1.1.1.1",
+                "address": "https://223.5.5.5/dns-query",
                 "detour": "direct",
                 "tag": "local-dns"
             },
@@ -298,14 +308,36 @@
         "Germany 8🇩🇪 § 7",
         "Germany 9🇩🇪 § 8",
         "Germany 10🇩🇪 § 9",
-        "France 🇫🇷  § 10"
+        "France 🇫🇷  § 10",
+        "Germany 1🇩🇪🟦 § 0",
+        "Germany 2🇩🇪🟦 § 1",
+        "Germany 3🇩🇪🟦 § 2",
+        "Germany 4🇩🇪🟦 § 3",
+        "Germany 5🇩🇪🟦 § 4",
+        "Germany 6🇩🇪🟦 § 5",
+        "Germany 7🇩🇪🟦 § 6",
+        "Germany 8🇩🇪🟦 § 7",
+        "Germany 9🇩🇪🟦 § 8",
+        "Germany 10🇩🇪🟦 § 9",
+        "France 🇫🇷  § 11",
+        "Germany 11🇩🇪🟨 § 11",
+        "Germany 12🇩🇪🟨 § 12",
+        "Germany 13🇩🇪🟨 § 13",
+        "Germany 14🇩🇪🟨 § 14",
+        "Germany 15🇩🇪🟨 § 15",
+        "Germany 16🇩🇪🟨 § 16",
+        "Germany 17🇩🇪🟨 § 17",
+        "Germany 18🇩🇪🟨 § 18",
+        "Germany 19🇩🇪🟨 § 19",
+        "Germany 20🇩🇪🟨 § 20"
       ]
     },
     {
       "type": "urltest",
       "tag": "urltest",
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "30m",
+      "interval": "1m",
+      "tolerance": 50
       "interrupt_exist_connections": false,
       "idle_timeout": "30m",
       "outbounds": [
@@ -319,9 +351,482 @@
         "Germany 8🇩🇪 § 7",
         "Germany 9🇩🇪 § 8",
         "Germany 10🇩🇪 § 9",
-        "France 🇫🇷  § 10"
+        "France 🇫🇷  § 10",
+        "Germany 1🇩🇪🟦 § 0",
+        "Germany 2🇩🇪🟦 § 1",
+        "Germany 3🇩🇪🟦 § 2",
+        "Germany 4🇩🇪🟦 § 3",
+        "Germany 5🇩🇪🟦 § 4",
+        "Germany 6🇩🇪🟦 § 5",
+        "Germany 7🇩🇪🟦 § 6",
+        "Germany 8🇩🇪🟦 § 7",
+        "Germany 9🇩🇪🟦 § 8",
+        "Germany 10🇩🇪🟦 § 9",
+        "France 🇫🇷  § 11",
+        "Germany 11🇩🇪🟨 § 11",
+        "Germany 12🇩🇪🟨 § 12",
+        "Germany 13🇩🇪🟨 § 13",
+        "Germany 14🇩🇪🟨 § 14",
+        "Germany 15🇩🇪🟨 § 15",
+        "Germany 16🇩🇪🟨 § 16",
+        "Germany 17🇩🇪🟨 § 17",
+        "Germany 18🇩🇪🟨 § 18",
+        "Germany 19🇩🇪🟨 § 19",
+        "Germany 20🇩🇪🟨 § 20"
         
       ]
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 1🇩🇪🟦 § 0",
+      "server": "ip1.tomk.fun",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "GeR1.SimAnSaNat.iR.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "GeR1.SimAnSaNat.iR."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 2🇩🇪🟦 § 1",
+      "server": "ip1.tomk.fun",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "GeR2.SimAnSaNat.iR.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "GeR2.SimAnSaNat.iR."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 3🇩🇪🟦 § 2",
+      "server": "ip1.tomk.fun",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "GeR3.SimAnSaNat.iR.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "GeR3.SimAnSaNat.iR."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 4🇩🇪🟦 § 3",
+      "server": "ip1.tomk.fun",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "GeR4.SimAnSaNat.iR.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "GeR4.SimAnSaNat.iR."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 5🇩🇪🟦 § 4",
+      "server": "ip1.tomk.fun",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "GeR5.SimAnSaNat.iR.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "GeR5.SimAnSaNat.iR."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 6🇩🇪🟦 § 5",
+      "server": "ip2.tomk.fun",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "GeR6.SimAnSaNat.iR.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "GeR6.SimAnSaNat.iR."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 7🇩🇪🟦 § 6",
+      "server": "ip2.tomk.fun",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "GeR7.SimAnSaNat.iR.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "GeR7.SimAnSaNat.iR."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 8🇩🇪🟦 § 7",
+      "server": "ip2.tomk.fun",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "GeR8.SimAnSaNat.iR.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "GeR8.SimAnSaNat.iR."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 9🇩🇪🟦 § 8",
+      "server": "ip2.tomk.fun",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "GeR9.SimAnSaNat.iR.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "GeR9.SimAnSaNat.iR."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 10🇩🇪🟦 § 9",
+      "server": "ip2.tomk.fun",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "GeR10.SimAnSaNat.iR.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "GeR10.SimAnSaNat.iR."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "France 🇫🇷  § 11",
+      "server": "ip2.tomk.fun",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "PaRiS.SimAnSaNat.iR.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "PaRiS.SimAnSaNat.iR."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 11🇩🇪🟨 § 11",
+      "server": "r1.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 12🇩🇪🟨 § 12",
+      "server": "r2.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 13🇩🇪🟨 § 13",
+      "server": "r3.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 14🇩🇪🟨 § 14",
+      "server": "r4.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 15🇩🇪🟨 § 15",
+      "server": "r5.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 16🇩🇪🟨 § 16",
+      "server": "r6.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 17🇩🇪🟨 § 17",
+      "server": "r7.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 18🇩🇪🟨 § 18",
+      "server": "r8.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 19🇩🇪🟨 § 19",
+      "server": "r9.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 20🇩🇪🟨 § 20",
+      "server": "r10.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
     },
     {
       "type": "vless",
@@ -583,6 +1088,38 @@
                 "urltest",
                 "selecto",
                 "🎒Direct"
+                "Germany 1🇩🇪 § 0",
+                "Germany 2🇩🇪 § 1",
+                "Germany 3🇩🇪 § 2",
+                "Germany 4🇩🇪 § 3",
+                "Germany 5🇩🇪 § 4",
+                "Germany 6🇩🇪 § 5",
+                "Germany 7🇩🇪 § 6",
+                "Germany 8🇩🇪 § 7",
+                "Germany 9🇩🇪 § 8",
+                "Germany 10🇩🇪 § 9",
+                "France 🇫🇷  § 10",
+                "Germany 1🇩🇪🟦 § 0",
+                "Germany 2🇩🇪🟦 § 1",
+                "Germany 3🇩🇪🟦 § 2",
+                "Germany 4🇩🇪🟦 § 3",
+                "Germany 5🇩🇪🟦 § 4",
+                "Germany 6🇩🇪🟦 § 5",
+                "Germany 7🇩🇪🟦 § 6",
+                "Germany 8🇩🇪🟦 § 7",
+                "Germany 9🇩🇪🟦 § 8",
+                "Germany 10🇩🇪🟦 § 9",
+                "France 🇫🇷  § 11",
+                "Germany 11🇩🇪🟨 § 11",
+                "Germany 12🇩🇪🟨 § 12",
+                "Germany 13🇩🇪🟨 § 13",
+                "Germany 14🇩🇪🟨 § 14",
+                "Germany 15🇩🇪🟨 § 15",
+                "Germany 16🇩🇪🟨 § 16",
+                "Germany 17🇩🇪🟨 § 17",
+                "Germany 18🇩🇪🟨 § 18",
+                "Germany 19🇩🇪🟨 § 19",
+                "Germany 20🇩🇪🟨 § 20"
             ],
             "tag": "Proxy",
             "type": "selector"
@@ -2043,7 +2580,7 @@
             },
             {
                 "clash_mode": "Global",
-                "outbound": "selecto"
+                "outbound": "Proxy"
             },
             {
                 "outbound": "Proxy",
