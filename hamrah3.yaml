@@ -7,6 +7,14 @@ bind-address: '*'
 log-level: debug
 ipv6: true
 geo-auto-update: true
+skip-auth-prefixes:
+  - 127.0.0.1/8
+  - ::1/128
+lan-allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+lan-disallowed-ips:
+  - 192.168.0.3/32
 geo-update-interval: 24 
 external-controller: 0.0.0.0:9090 
 external-ui: /dashboard
@@ -14,6 +22,7 @@ external-ui-name: xd
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 tcp-concurrent: true
 global-client-fingerprint: chrome
+geosite-matcher: succinct # - mph
 geox-url:
   geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
   geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
@@ -63,8 +72,10 @@ tun:
     - '8000::/1'
   endpoint_independent_nat: true 
 dns:
+  cache-algorithm: arc
   enable: true
   ipv6: true
+  ipv6-timeout: 300
   prefer-h3: true
   listen: 0.0.0.0:53
   enhanced-mode: fake-ip
@@ -74,6 +85,10 @@ dns:
   default-nameserver:
   - 223.5.5.5
   - 119.29.29.29
+  - 114.114.114.114
+  - 8.8.8.8
+  - tls://1.12.12.12:853
+  - tls://223.5.5.5:853
   nameserver-policy:
     www.baidu.com: 114.114.114.114
     +.internal.crop.com: 10.0.0.1
@@ -91,14 +106,27 @@ dns:
     "rule-set:GoogleFCM,ir": 8.8.8.8
     GEOSITE:google: 8.8.8.8
   nameserver:
+  - 114.114.114.114
+  - 8.8.8.8 
+  - tls://223.5.5.5:853
+  - https://doh.pub/dns-query 
+  - https://dns.alidns.com/dns-query#h3=true 
+  - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true 
+  - dhcp://en0 
+  - quic://dns.adguard.com:784 
+  - '8.8.8.8#en0' 
   - https://doh.pub/dns-query
   - https://dns.alidns.com/dns-query
   fallback:
+  - tcp://1.1.1.1
   - https://1.1.1.2/dns-query
   - https://1.0.0.2/dns-query
   - https://9.9.9.9/dns-query
+  proxy-server-nameserver:
+  - https://dns.google/dns-query
+  - tls://one.one.one.one
   fallback-filter:
-    geoip: false
+    geoip: true
     geoip-code: ir
     geosite:
   #  - gfw
@@ -119,14 +147,15 @@ proxies:
 proxy-groups:
   - name: 🕹 select
     type: url-test
+    url: https://fiber.google.com/speedtest/generate_204
     expected-status: 200/204
     nodeGroupType: 0
-    interval: 300
- #   tolerance: 50
+    interval: 100
+    tolerance: 150
     proxies:
       - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
+    #  - 🚧 fallback
+    #  - ⚖️ load-balance
       - ✈️
       - 🇭🇰 
       - 🇨🇳 
@@ -136,7 +165,7 @@ proxy-groups:
       - 🇰🇷 
   - name: ✈️
     type: url-test
-    url: https://fiber.google.com/speedtest
+    url: https://fiber.google.com/speedtest/generate_204
     interval: 300
     expected-status: 200/204
     proxies:
@@ -145,20 +174,19 @@ proxy-groups:
     
   - name: ♻️ url-test
     type: url-test
-    url: https://fiber.google.com/speedtest
+    url: https://fiber.google.com/speedtest/generate_204
     interval: 300
     expected-status: 200/204
 #    nodeGroupType: 0
-#    interval: 300
-  #  tolerance: 50
+    tolerance: 150
     proxies:
     use:
       - provider2
 #      - B
   - name: 🚧 fallback
     type: fallback
-    url: https://fiber.google.com/speedtest
-    interval: 300
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 200
     expected-status: 200/204
 #    nodeGroupType: 0
     proxies:
@@ -171,7 +199,7 @@ proxy-groups:
   - name: ⚖️ load-balance
     type: load-balance
     url: https://fiber.google.com/speedtest
-    interval: 300
+    interval: 160
     expected-status: 200/204
 #    nodeGroupType: 0
     proxies:
@@ -389,6 +417,7 @@ proxy-groups:
       - ♻️ url-test
   - name: 🎯
     type: select
+    interface-name: tun0
     proxies:
       - DIRECT
       - 🕹 select
@@ -426,7 +455,7 @@ proxy-groups:
       
   - name: 🇭🇰
     type: url-test
-    url: https://fiber.google.com/speedtest
+    url: https://fiber.google.com/speedtest/generate_204
     interval: 300
     expected-status: 200/204
     filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
@@ -436,7 +465,7 @@ proxy-groups:
       - provider2
   - name: 🇯🇵
     type: url-test
-    url: https://fiber.google.com/speedtest
+    url: https://fiber.google.com/speedtest/generate_204
     interval: 300
     expected-status: 200/204
     filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
@@ -446,7 +475,7 @@ proxy-groups:
       - provider2
   - name: 🇺🇲
     type: url-test
-    url: https://fiber.google.com/speedtest
+    url: https://fiber.google.com/speedtest/generate_204
     interval: 300
     expected-status: 200/204
     proxies:
@@ -456,7 +485,7 @@ proxy-groups:
       - provider2
   - name: 🇨🇳
     type: url-test
-    url: https://fiber.google.com/speedtest
+    url: https://fiber.google.com/speedtest/generate_204
     interval: 300
     expected-status: 200/204
     filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
@@ -466,7 +495,7 @@ proxy-groups:
       - provider2
   - name: 🇸🇬
     type: url-test
-    url: https://fiber.google.com/speedtest
+    url: https://fiber.google.com/speedtest/generate_204
     interval: 300
     expected-status: 200/204
     filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
@@ -476,7 +505,7 @@ proxy-groups:
       - provider2
   - name: 🇰🇷
     type: url-test
-    url: https://fiber.google.com/speedtest
+    url: https://fiber.google.com/speedtest/generate_204
     interval: 300
     expected-status: 200/204
     filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
@@ -489,23 +518,23 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml"    #【Meta专属】支持解析V2rayN等工具使用的普通订阅
     interval: 3600
-    path: Prem/provider1.yaml
+    path: h3/provider1.yaml
     health-check:
       enable: true
       interval: 300
-      # lazy: true
-      url: https://fiber.google.com/speedtest
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
 
   provider2:
     type: http
     url: "http://haohaoxiong.myqnapcloud.com:12580/clash/proxies"    #【Meta专属】支持解析V2rayN等工具使用的普通订阅
     interval: 3600
-    path: Prem/provider2.yaml
+    path: h3/provider2.yaml
     health-check:
       enable: true
       interval: 300
-      # lazy: true
-      url: https://fiber.google.com/speedtest
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
 rule-providers:
   block:
     type: http
