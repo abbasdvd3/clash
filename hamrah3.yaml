@@ -1,5 +1,8 @@
-# redir-port: 9797
-# tproxy-port: 9898
+port: 7890
+socks-port: 7891
+mixed-port: 10801
+redir-port: 9797
+tproxy-port: 9898
 mode: rule
 allow-lan: true
 unified-delay: false
@@ -147,11 +150,11 @@ proxies:
 proxy-groups:
   - name: 🕹 select
     type: url-test
-    url: https://fiber.google.com/speedtest/generate_204
-    expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_104
+    expected-status: 100/104
     nodeGroupType: 0
     interval: 100
-    tolerance: 150
+    tolerance: 50
     proxies:
       - ♻️ url-test
     #  - 🚧 fallback
