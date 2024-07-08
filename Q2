@@ -8,12 +8,12 @@
     "servers": [
       {
         "tag": "dns-remote",
-        "address": "udp://1.1.1.1",
+        "address": "udp://8.8.8.8",
         "address_resolver": "dns-direct"
       },
       {
         "tag": "dns-direct",
-        "address": "1.1.1.1",
+        "address": "8.8.4.4",
         "address_resolver": "dns-local",
         "detour": "direct"
       },
@@ -80,7 +80,7 @@
       "auto_route": true,
       "strict_route": true,
       "endpoint_independent_nat": true,
-      "stack": "system",
+      "stack": "mixed",
       "sniff": true,
       "sniff_override_destination": true
     },
@@ -2933,13 +2933,17 @@
     "override_android_vpn": true
   },
   "experimental": {
-    "cache_file": {
-      "enabled": true,
-      "path": "clash.db"
-    },
-    "clash_api": {
-      "external_controller": "127.0.0.1:9099",
-      "secret": "VWdQXyqHnN03SYrU"
+        "cache_file": {
+            "cache_id": "my_profile2",
+            "enabled": true,
+            "path": "cache.db",
+            "store_fakeip": true
+        },
+        "clash_api": {
+            "default_mode": "rule",
+            "external_controller": "0.0.0.0:9090",
+            "external_ui": "ui",
+            "external_ui_download_detour": "direct"
     }
   }
 }
