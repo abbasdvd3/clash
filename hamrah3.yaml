@@ -153,8 +153,8 @@ proxy-groups:
     url: https://fiber.google.com/speedtest/generate_104
     expected-status: 100/104
     nodeGroupType: 0
-    interval: 100
-    tolerance: 50
+  #  interval: 100
+ #   tolerance: 50
     proxies:
       - ♻️ url-test
     #  - 🚧 fallback
@@ -170,22 +170,23 @@ proxy-groups:
     type: url-test
     url: https://fiber.google.com/speedtest/generate_204
     interval: 300
+    tolerance: 100
     expected-status: 200/204
     proxies:
     use:
       - provider1
-    
+      - provider2
   - name: ♻️ url-test
     type: url-test
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 300
+    interval: 200
     expected-status: 200/204
 #    nodeGroupType: 0
     tolerance: 150
     proxies:
     use:
+      - provider1
       - provider2
-#      - B
   - name: 🚧 fallback
     type: fallback
     url: https://fiber.google.com/speedtest/generate_204
@@ -200,11 +201,12 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
   - name: ⚖️ load-balance
-    type: load-balance
-    url: https://fiber.google.com/speedtest
-    interval: 160
-    expected-status: 200/204
+    type: url-test
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 500
+    expected-status: 300/304
 #    nodeGroupType: 0
+    tolerance: 150
     proxies:
     use:
       - provider1
