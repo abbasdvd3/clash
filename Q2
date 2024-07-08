@@ -1,35 +1,36 @@
 {
   "log": {
+    "disabled": false,
     "level": "trace",
-    "output": "box.log",
     "timestamp": true
   },
   "dns": {
     "servers": [
       {
-        "tag": "dns-remote",
-        "address": "udp://8.8.8.8",
-        "address_resolver": "dns-direct"
+        "tag": "proxyDns",
+        "address": "223.5.5.5",
+        "detour": "select"
       },
       {
-        "tag": "dns-direct",
-        "address": "8.8.4.4",
-        "address_resolver": "dns-local",
+        "tag": "localDns",
+        "address": "1.1.1.1",
         "detour": "direct"
       },
       {
-        "tag": "dns-local",
-        "address": "local",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-block",
+        "tag": "block",
         "address": "rcode://success"
+      },
+      {
+        "tag": "remote",
+        "address": "fakeip"
       }
     ],
     "rules": [
       {
         "domain": [
+          "ghproxy.com",
+          "cdn.jsdelivr.net",
+          "testingcf.jsdelivr.net",
           "zula.ir",
           "ip1.tomk.fun",
           "6england1.tomk.fun",
@@ -60,43 +61,112 @@
           "ip3.tomk.fun",
           "speedtest.org"
         ],
-        "server": "dns-direct"
+        "server": "localDns"
       },
       {
-        "domain": "cp.cloudflare.com",
-        "server": "dns-remote",
-        "rewrite_ttl": 3000
+        "geosite": [
+          "category-ads-all"
+        ],
+        "server": "block"
+      },
+      {
+        "server": "localDns",
+        "outbound": "any",
+        "disable_cache": true
+      },
+      {
+        "geosite": [
+          "ir",
+          "github"
+        ],
+        "server": "localDns"
+      },
+      {
+        "server": "localDns",
+        "clash_mode": "direct"
+      },
+      {
+        "server": "proxyDns",
+        "clash_mode": "global"
+      },
+      {
+        "geosite": [
+          "google",
+          "youtube",
+          "openai",
+          "telegram",
+          "microsoftbing",
+          "social",
+          "nsfw"
+        ],
+        "server": "proxyDns"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "remote"
       }
     ],
-    "final": "dns-remote"
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
+    "independent_cache": true,
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
-      "type": "tun",
-      "tag": "tun-in",
-      "mtu": 9000,
-      "inet4_address": "172.19.0.1/28",
+     "type": "tun",
+      "inet4_address": "172.19.0.1/30",
       "inet6_address": "fdfe:dcba:9876::1/126",
       "auto_route": true,
       "strict_route": true,
-      "endpoint_independent_nat": false,
       "stack": "system",
-      "sniff": true,
-      "sniff_override_destination": true
+      "exclude_package": ["com.android.captiveportallogin"],
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 7890
+        }
+      },
+      "sniff": true
     },
     {
       "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "0.0.0.0",
+      "listen": "::",
       "listen_port": 7890,
       "sniff": true,
-      "sniff_override_destination": true
+      "sniff_override_destination": true,
+      "domain_strategy": "ipv4_only",
+      "tcp_fast_open": true,
+      "tcp_multi_path": true,
+      "udp_fragment": true
     },
     {
-      "type": "direct",
-      "tag": "dns-in",
-      "listen": "0.0.0.0",
-      "listen_port": 6450
+      "type": "http",
+      "listen": "::",
+      "listen_port": 7891,
+      "sniff": true,
+      "sniff_override_destination": true,
+      "domain_strategy": "ipv4_only",
+      "tcp_fast_open": true,
+      "tcp_multi_path": true,
+      "udp_fragment": true
+    },
+    {
+      "type": "socks",
+      "listen": "::",
+      "listen_port": 7892,
+      "sniff": true,
+      "sniff_override_destination": true,
+      "domain_strategy": "ipv4_only",
+      "tcp_fast_open": true,
+      "tcp_multi_path": true,
+      "udp_fragment": true
     }
   ],
   "outbounds": [
@@ -231,6 +301,11 @@
     {
       "type": "urltest",
       "tag": "auto",
+      "url": "https://connectivitycheck.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50,
+      "interrupt_exist_connections": false,
+      "idle_timeout": "30m",
       "outbounds": [
         "Germany1 🇩🇪",
         "Germany2 🇩🇪",
@@ -352,10 +427,19 @@
         "Germany 13x🇩🇪 § 13",
         "Germany 14x🇩🇪 § 14",
         "Germany 15x🇩🇪 § 15"
-      ],
-      "url": "https://connectivitycheck.gstatic.com/generate_204",
-      "interval": "5m0s",
-      "idle_timeout": "50m0s"
+      ]
+    },
+    {
+      "tag": "direct",
+      "type": "direct"
+    },
+    {
+      "tag": "block",
+      "type": "block"
+    },
+    {
+      "tag": "dns-out",
+      "type": "dns"
     },
     {
       "type": "vless",
@@ -2887,28 +2971,12 @@
         }
       },
       "packet_encoding": ""
-    },
-    {
-      "type": "dns",
-      "tag": "dns-out"
-    },
-    {
-      "type": "direct",
-      "tag": "direct"
-    },
-    {
-      "type": "direct",
-      "tag": "bypass"
-    },
-    {
-      "type": "block",
-      "tag": "block"
     }
   ],
   "route": {
     "rules": [
       {
-        "inbound": "dns-in",
+        "protocol": "dns",
         "outbound": "dns-out"
       },
       {
@@ -2916,19 +2984,16 @@
         "outbound": "dns-out"
       },
       {
-        "clash_mode": "Direct",
+        "clash_mode": "direct",
         "outbound": "direct"
       },
       {
-        "clash_mode": "Global",
+        "clash_mode": "global",
         "outbound": "select"
-      },
-      {
-        "geoip": "private",
-        "outbound": "bypass"
       }
     ],
     "final": "select",
+    "find_process": true,
     "auto_detect_interface": true,
     "override_android_vpn": true
   },
