@@ -4,12 +4,16 @@ proxy-groups:
 
   - name: PROXY
     type: select
-    disable-udp: false
+    disable-udp: true
     proxies:
       - 🇺🇸
+      - 🇺🇸2
   - name: 🇺🇸
     type: url-test
-    disable-udp: false
+    disable-udp: true
+    url: http://www.gstatic.com/generate_204
+    interval: 500
+    lazy: true 
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
     use: 
       - Subscription-1
@@ -26,6 +30,28 @@ proxy-groups:
       - Subscription-12
       - Subscription-13
       - Subscription-14 
+  - name: 🇺🇸2
+    type: url-test
+    disable-udp: true
+    url: http://www.gstatic.com/generate_204
+    interval: 500
+    lazy: true 
+    hidden: true
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+      - Subscription-11
+      - Subscription-12
+      - Subscription-13
+      - Subscription-14       
 proxy-providers:
 
   Subscription-1:
@@ -34,26 +60,26 @@ proxy-providers:
     path: ./Prem2/Subscription-1.yaml
     interval: 600
     proxy: DIRECT
-    disable-udp: false
+    disable-udp: true
     header:
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: false 
+      lazy: true 
   Subscription-2:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml" 
     path: ./Prem2/Subscription-2.yaml
     interval: 600
     proxy: DIRECT
-    disable-udp: false
+    disable-udp: true
     header:
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: false 
+      lazy: true 
 
   Subscription-3:
     type: http
@@ -61,13 +87,13 @@ proxy-providers:
     path: ./Prem2/Subscription-3.yaml
     interval: 600
     proxy: DIRECT
-    disable-udp: false
+    disable-udp: true
     header:
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: false 
+      lazy: true 
       
   Subscription-4:
     type: http
@@ -75,13 +101,13 @@ proxy-providers:
     path: ./Prem2/Subscription-4.yaml
     interval: 600
     proxy: DIRECT
-    disable-udp: false
+    disable-udp: true
     header:
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: false 
+      lazy: true 
       
   Subscription-5:
     type: http
@@ -89,13 +115,13 @@ proxy-providers:
     path: ./Prem2/Subscription-5.yaml
     interval: 600
     proxy: DIRECT
-    disable-udp: false
+    disable-udp: true
     header:
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: false 
+      lazy: true 
       
   Subscription-6:
     type: http
@@ -103,26 +129,26 @@ proxy-providers:
     path: ./Prem2/Subscription-6.yaml
     interval: 600
     proxy: DIRECT
-    disable-udp: false
+    disable-udp: true
     header:
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: false 
+      lazy: true 
   Subscription-7:
     type: http
     url: "http://beetle.lander.work/clash/proxies" # replace this URL with your provider's subscription link
     path: ./Prem2/Subscription-7.yaml
     interval: 600
     proxy: DIRECT
-    disable-udp: false
+    disable-udp: true
     header:
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: false 
+      lazy: true 
 
   Subscription-8:
     type: http
@@ -130,13 +156,13 @@ proxy-providers:
     path: ./Prem2/Subscription-8.yaml
     interval: 600
     proxy: DIRECT
-    disable-udp: false
+    disable-udp: true
     header:
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: false 
+      lazy: true 
       
   Subscription-9:
     type: http
@@ -144,13 +170,13 @@ proxy-providers:
     path: ./Prem2/Subscription-9.yaml
     interval: 600
     proxy: DIRECT
-    disable-udp: false
+    disable-udp: true
     header:
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: false 
+      lazy: true 
 
   Subscription-10:
     type: http
@@ -158,13 +184,13 @@ proxy-providers:
     path: ./Prem2/Subscription-10.yaml
     interval: 600
     proxy: DIRECT
-    disable-udp: false
+    disable-udp: true
     header:
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: false 
+      lazy: true 
 
   Subscription-11:
     type: http
@@ -172,13 +198,13 @@ proxy-providers:
     path: ./Prem2/Subscription-11.yaml
     interval: 600
     proxy: DIRECT
-    disable-udp: false
+    disable-udp: true
     header:
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: false 
+      lazy: true 
       
   Subscription-12:
     type: http
@@ -186,13 +212,13 @@ proxy-providers:
     path: ./Prem2/Subscription-12.yaml
     interval: 600
     proxy: DIRECT
-    disable-udp: false
+    disable-udp: true
     header:
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: false 
+      lazy: true 
 
   Subscription-13:
     type: http
@@ -200,13 +226,13 @@ proxy-providers:
     path: ./Prem2/Subscription-13.yaml
     interval: 600
     proxy: DIRECT
-    disable-udp: false
+    disable-udp: true
     header:
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: false 
+      lazy: true 
 
   Subscription-14:
     type: http
@@ -214,13 +240,13 @@ proxy-providers:
     path: ./Prem2/Subscription-14.yaml
     interval: 600
     proxy: DIRECT
-    disable-udp: false
+    disable-udp: true
     header:
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: false 
+      lazy: true 
 
 
 
