@@ -3,8 +3,12 @@ proxies:
 proxy-groups:
 
   - name: PROXY
-    type: select
+    type: url-test
     disable-udp: true
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    lazy: true
     proxies:
       - 🇺🇸
       - 🇺🇸2
@@ -12,7 +16,8 @@ proxy-groups:
     type: url-test
     disable-udp: true
     url: http://www.gstatic.com/generate_204
-    interval: 500
+    interval: 300
+    tolerance: 50
     lazy: true 
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
     use: 
@@ -35,6 +40,7 @@ proxy-groups:
     disable-udp: true
     url: http://www.gstatic.com/generate_204
     interval: 500
+    tolerance: 50
     lazy: true 
     hidden: true
     use: 
