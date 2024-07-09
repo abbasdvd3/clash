@@ -124,33 +124,24 @@
   },
   "inbounds": [
     {
-     "type": "tun",
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "tun0",
       "inet4_address": "172.19.0.1/30",
-      "inet6_address": "fdfe:dcba:9876::1/126",
+      "mtu": 9000,
       "auto_route": true,
       "strict_route": true,
       "stack": "system",
-      "exclude_package": ["com.android.captiveportallogin"],
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 7890
-        }
-      },
+      "endpoint_independent_nat": true,
       "sniff": true
     },
     {
-      "type": "mixed",
-      "listen": "::",
-      "listen_port": 7890,
+      "listen": "0.0.0.0",
+      "listen_port": 2080,
       "sniff": true,
-      "sniff_override_destination": true,
-      "domain_strategy": "ipv4_only",
-      "tcp_fast_open": true,
-      "tcp_multi_path": true,
-      "udp_fragment": true
-    },
+      "tag": "mixed-in",
+      "type": "mixed"
+    }
     {
       "type": "http",
       "listen": "::",
@@ -352,7 +343,141 @@
         "Germany Full🇩🇪12 § 40",
         "Germany Full🇩🇪13 § 41",
         "Germany Full🇩🇪14 § 42",
-        "Germany Full🇩🇪15 § 43"
+        "Germany Full🇩🇪15 § 43",
+		"🇺🇸美国凤凰城_gpt\r",
+        "🇺🇸美国凤凰城1号\r",
+        "🇺🇸美国凤凰城2号\r",
+        "🇺🇸美国凤凰城3号\r",
+        "🇺🇸美国凤凰城4号\r",
+        "🇯🇵日本-0.1-gpt\r",
+        "🇫🇷法国hy\r",
+        "🇸🇪瑞典斯德哥尔摩-1.5倍率\r",
+        "🇰🇷韩国首尔-3倍率\r",
+        "🇰🇷韩国首尔2-3倍率\r",
+        "🇩🇪德国法兰克福\r",
+        "🇩🇪德国法兰克福2\r",
+        "🇧🇷巴西圣保罗-1.5倍率\r",
+        "🇺🇸美国芝加哥\r",
+        "🇦🇪迪拜-1.2倍率\r",
+        "🇦🇪迪拜2-1.5倍率\r",
+        "🇰🇷韩国春川-1.5倍率\r",
+        "🇦🇺澳大利亚悉尼-1.5倍率\r",
+        "🇦🇺澳大利亚墨尔本-1.6倍率\r",
+        "🇮🇳印度孟买-1.5倍率\r",
+        "🇮🇳印度海得拉巴-1.5倍率\r",
+        "🇬🇧英国伦敦-2倍率\r",
+        "🇬🇧英国伦敦2-1.8倍率\r",
+        "🇿🇦非洲约翰内斯堡-3.5倍率\r",
+        "🇨🇦加拿大多伦多-1.5倍率\r",
+        "香港A|HongKong01\r",
+        "香港A|HongKong02\r",
+        "香港A|HongKong03\r",
+        "香港|HongKong08\r",
+        "香港|HongKong09\r",
+        "新加坡|Singapore01\r",
+        "新加坡|Singapore02\r",
+        "泰国|Thailand\r",
+        "马来西亚|Malaysia\r",
+        "日本|Japan01\r",
+        "日本|Japan02\r",
+        "日本|Japan03\r",
+        "日本|Japan04\r",
+        "日本|Japan05\r",
+        "韩国|Korea\r",
+        "台湾|Taiwan01\r",
+        "台湾|Taiwan02\r",
+        "美国|United States01\r",
+        "美国|United States02\r",
+        "美国|United States03\r",
+        "俄罗斯|🇷ussia01\r",
+        "U|阿根廷|Argentina\r",
+        "U|巴西|Brazil\r",
+        "U|加拿大|Canada\r",
+        "U|墨西哥|Mexico\r",
+        "E|德国|Germany\r",
+        "E|西班牙|Spain\r",
+        "E|法国|France\r",
+        "E|尼日利亚|Nigeria\r",
+        "E|沙特阿拉伯|Saudi Arabia\r",
+        "E|土耳其|Turkey\r",
+        "E|印度|India\r",
+        "E|英国|United Kingdom\r",
+        "E|埃及|Egypt\r",
+        "[Hy2]🇰🇷韩国-首尔3-500M\r_1",
+        "[Hy2]🇰🇷韩国-首尔4-500M\r_1",
+        "[Hy2]🇯🇵日本-东京-500M-1\r_1",
+        "[Hy2]🇯🇵日本-东京-500M-2\r",
+        "[Hy2]🇩🇪德国-法兰克福-2500M\r_1",
+        "[Hy2]🇩🇪德国-法兰克福-500M 1\r_1",
+        "[Hy2]🇩🇪德国-法兰克福-500M 2\r_1",
+        "新加坡 01\r_1",
+        "新加坡 02\r_1",
+        "新加坡 03\r_1",
+        "香港 01\r_1",
+        "香港 02\r_1",
+        "香港 03\r_1",
+        "美国 (GPT)专用 1\r_1",
+        "美国 (GPT)专用 2\r_1",
+        "韩国（三网优化）01\r_1",
+        "韩国（三网优化）02\r_1",
+        "韩国（三网优化）3\r_1",
+        "香港 电信优化\r_1",
+        "日本 01\r_1",
+        "日本 02\r_1",
+        "日本 03\r_1",
+        "美国 01\r_1",
+        "美国 02\r_1",
+        "香港 01 原生ip\r_1",
+        "香港 02（原生ip）\r_1",
+        "香港 03（原生ip）\r_1",
+        "澳大利亚悉尼（移动优化）\r_1",
+        "印度孟买\r_1",
+        "巴西\r_1",
+        "荷兰\r_1",
+        "加拿大 0.1倍流量消耗\r_1",
+        "新加坡一|三网优化\r",
+        "新加坡二|三网优化\r",
+        "新加坡三|三网优化\r",
+        "日本一|三网优化\r",
+        "新加坡 01\r_2",
+        "新加坡 02\r_2",
+        "新加坡 03\r_2",
+        "香港 01\r_2",
+        "香港 02\r_2",
+        "香港 03\r_2",
+        "美国 (GPT)专用 1\r_2",
+        "美国 (GPT)专用 2\r_2",
+        "韩国（三网优化）01\r_2",
+        "韩国（三网优化）02\r_2",
+        "韩国（三网优化）3\r_2",
+        "香港 电信优化\r_2",
+        "日本 01\r_2",
+        "日本 02\r_2",
+        "日本 03\r_2",
+        "美国 01\r_2",
+        "美国 02\r_2",
+        "香港 01 原生ip\r_2",
+        "香港 02（原生ip）\r_2",
+        "香港 03（原生ip）\r_2",
+        "澳大利亚悉尼（移动优化）\r_2",
+        "印度孟买\r_2",
+        "巴西\r_2",
+        "荷兰\r_2",
+        "加拿大 0.1倍流量消耗\r_2",
+        "[Hy2]🇩🇪德国-法兰克福-500M 1\r_2",
+        "[Hy2]🇩🇪德国-法兰克福-500M 2\r_2",
+        "[Hy2]🇸🇬新加坡-2500M\r",
+        "[Hy2]🇸🇬新加坡-流媒体\r",
+        "[Hy2]🇸🇬新加坡-2500M x2\r",
+        "[Hy2]🇰🇷韩国-首尔3-500M\r_2",
+        "[Hy2]🇰🇷韩国-首尔4-500M\r_2",
+        "[Hy2]🇩🇪德国-法兰克福-2500M\r_2",
+        "[Hy2]🇨🇳台湾-2-流媒体\r",
+        "[Hy2]🇺🇸美国-旧金山-1\r",
+        "[Hy2]🇺🇸美国-旧金山-3\r",
+        "[Hy2]🇺🇸美国-阿什本-1\r",
+        "US\r",
+        "[Hy2]🇯🇵日本-东京-500M-1\r_2"
       ],
       "default": "auto"
     },
@@ -537,7 +662,141 @@
         "Germany Full🇩🇪12 § 40",
         "Germany Full🇩🇪13 § 41",
         "Germany Full🇩🇪14 § 42",
-        "Germany Full🇩🇪15 § 43"
+        "Germany Full🇩🇪15 § 43",
+		"🇺🇸美国凤凰城_gpt\r",
+        "🇺🇸美国凤凰城1号\r",
+        "🇺🇸美国凤凰城2号\r",
+        "🇺🇸美国凤凰城3号\r",
+        "🇺🇸美国凤凰城4号\r",
+        "🇯🇵日本-0.1-gpt\r",
+        "🇫🇷法国hy\r",
+        "🇸🇪瑞典斯德哥尔摩-1.5倍率\r",
+        "🇰🇷韩国首尔-3倍率\r",
+        "🇰🇷韩国首尔2-3倍率\r",
+        "🇩🇪德国法兰克福\r",
+        "🇩🇪德国法兰克福2\r",
+        "🇧🇷巴西圣保罗-1.5倍率\r",
+        "🇺🇸美国芝加哥\r",
+        "🇦🇪迪拜-1.2倍率\r",
+        "🇦🇪迪拜2-1.5倍率\r",
+        "🇰🇷韩国春川-1.5倍率\r",
+        "🇦🇺澳大利亚悉尼-1.5倍率\r",
+        "🇦🇺澳大利亚墨尔本-1.6倍率\r",
+        "🇮🇳印度孟买-1.5倍率\r",
+        "🇮🇳印度海得拉巴-1.5倍率\r",
+        "🇬🇧英国伦敦-2倍率\r",
+        "🇬🇧英国伦敦2-1.8倍率\r",
+        "🇿🇦非洲约翰内斯堡-3.5倍率\r",
+        "🇨🇦加拿大多伦多-1.5倍率\r",
+        "香港A|HongKong01\r",
+        "香港A|HongKong02\r",
+        "香港A|HongKong03\r",
+        "香港|HongKong08\r",
+        "香港|HongKong09\r",
+        "新加坡|Singapore01\r",
+        "新加坡|Singapore02\r",
+        "泰国|Thailand\r",
+        "马来西亚|Malaysia\r",
+        "日本|Japan01\r",
+        "日本|Japan02\r",
+        "日本|Japan03\r",
+        "日本|Japan04\r",
+        "日本|Japan05\r",
+        "韩国|Korea\r",
+        "台湾|Taiwan01\r",
+        "台湾|Taiwan02\r",
+        "美国|United States01\r",
+        "美国|United States02\r",
+        "美国|United States03\r",
+        "俄罗斯|🇷ussia01\r",
+        "U|阿根廷|Argentina\r",
+        "U|巴西|Brazil\r",
+        "U|加拿大|Canada\r",
+        "U|墨西哥|Mexico\r",
+        "E|德国|Germany\r",
+        "E|西班牙|Spain\r",
+        "E|法国|France\r",
+        "E|尼日利亚|Nigeria\r",
+        "E|沙特阿拉伯|Saudi Arabia\r",
+        "E|土耳其|Turkey\r",
+        "E|印度|India\r",
+        "E|英国|United Kingdom\r",
+        "E|埃及|Egypt\r",
+        "[Hy2]🇰🇷韩国-首尔3-500M\r_1",
+        "[Hy2]🇰🇷韩国-首尔4-500M\r_1",
+        "[Hy2]🇯🇵日本-东京-500M-1\r_1",
+        "[Hy2]🇯🇵日本-东京-500M-2\r",
+        "[Hy2]🇩🇪德国-法兰克福-2500M\r_1",
+        "[Hy2]🇩🇪德国-法兰克福-500M 1\r_1",
+        "[Hy2]🇩🇪德国-法兰克福-500M 2\r_1",
+        "新加坡 01\r_1",
+        "新加坡 02\r_1",
+        "新加坡 03\r_1",
+        "香港 01\r_1",
+        "香港 02\r_1",
+        "香港 03\r_1",
+        "美国 (GPT)专用 1\r_1",
+        "美国 (GPT)专用 2\r_1",
+        "韩国（三网优化）01\r_1",
+        "韩国（三网优化）02\r_1",
+        "韩国（三网优化）3\r_1",
+        "香港 电信优化\r_1",
+        "日本 01\r_1",
+        "日本 02\r_1",
+        "日本 03\r_1",
+        "美国 01\r_1",
+        "美国 02\r_1",
+        "香港 01 原生ip\r_1",
+        "香港 02（原生ip）\r_1",
+        "香港 03（原生ip）\r_1",
+        "澳大利亚悉尼（移动优化）\r_1",
+        "印度孟买\r_1",
+        "巴西\r_1",
+        "荷兰\r_1",
+        "加拿大 0.1倍流量消耗\r_1",
+        "新加坡一|三网优化\r",
+        "新加坡二|三网优化\r",
+        "新加坡三|三网优化\r",
+        "日本一|三网优化\r",
+        "新加坡 01\r_2",
+        "新加坡 02\r_2",
+        "新加坡 03\r_2",
+        "香港 01\r_2",
+        "香港 02\r_2",
+        "香港 03\r_2",
+        "美国 (GPT)专用 1\r_2",
+        "美国 (GPT)专用 2\r_2",
+        "韩国（三网优化）01\r_2",
+        "韩国（三网优化）02\r_2",
+        "韩国（三网优化）3\r_2",
+        "香港 电信优化\r_2",
+        "日本 01\r_2",
+        "日本 02\r_2",
+        "日本 03\r_2",
+        "美国 01\r_2",
+        "美国 02\r_2",
+        "香港 01 原生ip\r_2",
+        "香港 02（原生ip）\r_2",
+        "香港 03（原生ip）\r_2",
+        "澳大利亚悉尼（移动优化）\r_2",
+        "印度孟买\r_2",
+        "巴西\r_2",
+        "荷兰\r_2",
+        "加拿大 0.1倍流量消耗\r_2",
+        "[Hy2]🇩🇪德国-法兰克福-500M 1\r_2",
+        "[Hy2]🇩🇪德国-法兰克福-500M 2\r_2",
+        "[Hy2]🇸🇬新加坡-2500M\r",
+        "[Hy2]🇸🇬新加坡-流媒体\r",
+        "[Hy2]🇸🇬新加坡-2500M x2\r",
+        "[Hy2]🇰🇷韩国-首尔3-500M\r_2",
+        "[Hy2]🇰🇷韩国-首尔4-500M\r_2",
+        "[Hy2]🇩🇪德国-法兰克福-2500M\r_2",
+        "[Hy2]🇨🇳台湾-2-流媒体\r",
+        "[Hy2]🇺🇸美国-旧金山-1\r",
+        "[Hy2]🇺🇸美国-旧金山-3\r",
+        "[Hy2]🇺🇸美国-阿什本-1\r",
+        "US\r",
+        "[Hy2]🇯🇵日本-东京-500M-1\r_2"
       ]
     },
     {
@@ -551,6 +810,1349 @@
     {
       "tag": "dns-out",
       "type": "dns"
+    },
+	{
+      "type": "hysteria2",
+      "tag": "🇺🇸美国凤凰城_gpt\r",
+      "server": "163.123.192.167",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇺🇸美国凤凰城1号\r",
+      "server": "129.153.75.202",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇺🇸美国凤凰城2号\r",
+      "server": "129.153.80.156",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇺🇸美国凤凰城3号\r",
+      "server": "158.101.37.59",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇺🇸美国凤凰城4号\r",
+      "server": "129.146.249.162",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇯🇵日本-0.1-gpt\r",
+      "server": "205.178.183.33",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇫🇷法国hy\r",
+      "server": "62.210.71.30",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇸🇪瑞典斯德哥尔摩-1.5倍率\r",
+      "server": "129.151.193.163",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇰🇷韩国首尔-3倍率\r",
+      "server": "193.123.229.26",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇰🇷韩国首尔2-3倍率\r",
+      "server": "146.56.168.6",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇩🇪德国法兰克福\r",
+      "server": "138.2.179.192",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇩🇪德国法兰克福2\r",
+      "server": "152.70.176.68",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇧🇷巴西圣保罗-1.5倍率\r",
+      "server": "168.75.85.171",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇺🇸美国芝加哥\r",
+      "server": "207.211.179.132",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇦🇪迪拜-1.2倍率\r",
+      "server": "139.185.32.100",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇦🇪迪拜2-1.5倍率\r",
+      "server": "139.185.34.29",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇰🇷韩国春川-1.5倍率\r",
+      "server": "146.56.114.61",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇦🇺澳大利亚悉尼-1.5倍率\r",
+      "server": "159.13.38.138",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇦🇺澳大利亚墨尔本-1.6倍率\r",
+      "server": "152.69.186.200",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇮🇳印度孟买-1.5倍率\r",
+      "server": "144.24.99.141",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇮🇳印度海得拉巴-1.5倍率\r",
+      "server": "144.24.146.216",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇬🇧英国伦敦-2倍率\r",
+      "server": "132.145.52.10",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇬🇧英国伦敦2-1.8倍率\r",
+      "server": "132.145.28.17",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇿🇦非洲约翰内斯堡-3.5倍率\r",
+      "server": "129.151.169.64",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇨🇦加拿大多伦多-1.5倍率\r",
+      "server": "40.233.77.86",
+      "server_port": 443,
+      "password": "de77d530-18f1-4a96-a87f-b21bc7c2142d",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港A|HongKong01\r",
+      "server": "jphk1.pithecia.com",
+      "server_port": 443,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港A|HongKong02\r",
+      "server": "jphk1.pithecia.com",
+      "server_port": 443,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港A|HongKong03\r",
+      "server": "hk3.pithecia.com",
+      "server_port": 443,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港|HongKong08\r",
+      "server": "hk8.pithecia.com",
+      "server_port": 50000,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港|HongKong09\r",
+      "server": "hk8.pithecia.com",
+      "server_port": 50001,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "新加坡|Singapore01\r",
+      "server": "sg1.pithecia.com",
+      "server_port": 50000,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "新加坡|Singapore02\r",
+      "server": "sg2.pithecia.com",
+      "server_port": 50000,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "泰国|Thailand\r",
+      "server": "jphk1.pithecia.com",
+      "server_port": 443,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "马来西亚|Malaysia\r",
+      "server": "jp2.pithecia.com",
+      "server_port": 443,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "日本|Japan01\r",
+      "server": "jp1.pithecia.com",
+      "server_port": 443,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "日本|Japan02\r",
+      "server": "jp2.pithecia.com",
+      "server_port": 443,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "日本|Japan03\r",
+      "server": "jp3.pithecia.com",
+      "server_port": 443,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "日本|Japan04\r",
+      "server": "jp4.pithecia.com",
+      "server_port": 443,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "日本|Japan05\r",
+      "server": "jp5.pithecia.com",
+      "server_port": 443,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "韩国|Korea\r",
+      "server": "jp4.pithecia.com",
+      "server_port": 60000,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "台湾|Taiwan01\r",
+      "server": "jp4.pithecia.com",
+      "server_port": 60001,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "台湾|Taiwan02\r",
+      "server": "jp4.pithecia.com",
+      "server_port": 63001,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "美国|United States01\r",
+      "server": "us1.pithecia.com",
+      "server_port": 443,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "美国|United States02\r",
+      "server": "us2.pithecia.com",
+      "server_port": 443,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "美国|United States03\r",
+      "server": "us3.pithecia.com",
+      "server_port": 50000,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "俄罗斯|🇷ussia01\r",
+      "server": "ru1.pithecia.com",
+      "server_port": 443,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "U|阿根廷|Argentina\r",
+      "server": "u.pithecia.com",
+      "server_port": 30000,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "U|巴西|Brazil\r",
+      "server": "u.pithecia.com",
+      "server_port": 30001,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "U|加拿大|Canada\r",
+      "server": "u.pithecia.com",
+      "server_port": 30002,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "U|墨西哥|Mexico\r",
+      "server": "u.pithecia.com",
+      "server_port": 30003,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "E|德国|Germany\r",
+      "server": "e.pithecia.com",
+      "server_port": 20000,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "E|西班牙|Spain\r",
+      "server": "e.pithecia.com",
+      "server_port": 20001,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "E|法国|France\r",
+      "server": "e.pithecia.com",
+      "server_port": 20002,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "E|尼日利亚|Nigeria\r",
+      "server": "e.pithecia.com",
+      "server_port": 20003,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "E|沙特阿拉伯|Saudi Arabia\r",
+      "server": "e.pithecia.com",
+      "server_port": 20004,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "E|土耳其|Turkey\r",
+      "server": "e.pithecia.com",
+      "server_port": 20005,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "E|印度|India\r",
+      "server": "e.pithecia.com",
+      "server_port": 20006,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "E|英国|United Kingdom\r",
+      "server": "e.pithecia.com",
+      "server_port": 20007,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "E|埃及|Egypt\r",
+      "server": "e.pithecia.com",
+      "server_port": 20008,
+      "password": "4165c205-af85-4c87-8e63-0447648048e3",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇰🇷韩国-首尔3-500M\r_1",
+      "server": "seoul3-500m.yljc.online",
+      "server_port": 443,
+      "password": "85509d13-a5ea-460f-ae9d-12a58fc3aa9f",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇰🇷韩国-首尔4-500M\r_1",
+      "server": "seoul4-500m.yljc.online",
+      "server_port": 443,
+      "password": "85509d13-a5ea-460f-ae9d-12a58fc3aa9f",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇯🇵日本-东京-500M-1\r_1",
+      "server": "tokyo2-500m.yljc.online",
+      "server_port": 443,
+      "password": "85509d13-a5ea-460f-ae9d-12a58fc3aa9f",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇯🇵日本-东京-500M-2\r",
+      "server": "tokyo3-500m.yljc.online",
+      "server_port": 443,
+      "password": "85509d13-a5ea-460f-ae9d-12a58fc3aa9f",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇩🇪德国-法兰克福-2500M\r_1",
+      "server": "frankfurt1-2500m.yljc.online",
+      "server_port": 443,
+      "password": "85509d13-a5ea-460f-ae9d-12a58fc3aa9f",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇩🇪德国-法兰克福-500M 1\r_1",
+      "server": "frankfurt2-500m.yljc.online",
+      "server_port": 443,
+      "password": "85509d13-a5ea-460f-ae9d-12a58fc3aa9f",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇩🇪德国-法兰克福-500M 2\r_1",
+      "server": "frankfurt3-500m.yljc.online",
+      "server_port": 443,
+      "password": "85509d13-a5ea-460f-ae9d-12a58fc3aa9f",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "新加坡 01\r_1",
+      "server": "aws-sgsg.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "新加坡 02\r_1",
+      "server": "aws-sgsg.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "新加坡 03\r_1",
+      "server": "aws-sgsg.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港 01\r_1",
+      "server": "aws-hkhk.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港 02\r_1",
+      "server": "aws-hkhk.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港 03\r_1",
+      "server": "aws-hkhk.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "美国 (GPT)专用 1\r_1",
+      "server": "216.73.156.50",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "美国 (GPT)专用 2\r_1",
+      "server": "216.73.156.98",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "韩国（三网优化）01\r_1",
+      "server": "krseoul.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "韩国（三网优化）02\r_1",
+      "server": "krseoul.aikunapp.com",
+      "server_port": 9001,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "韩国（三网优化）3\r_1",
+      "server": "146.56.129.111",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港 电信优化\r_1",
+      "server": "hktddns2.aikunapp.com",
+      "server_port": 1000,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "日本 01\r_1",
+      "server": "aws-jp.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "日本 02\r_1",
+      "server": "aws-jp.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "日本 03\r_1",
+      "server": "aws-jp.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "美国 01\r_1",
+      "server": "158.101.21.220",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "美国 02\r_1",
+      "server": "129.146.107.52",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港 01 原生ip\r_1",
+      "server": "hkt.aikunapp.com",
+      "server_port": 789,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港 02（原生ip）\r_1",
+      "server": "hkt.aikunapp.com",
+      "server_port": 789,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港 03（原生ip）\r_1",
+      "server": "hkt.aikunapp.com",
+      "server_port": 789,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "澳大利亚悉尼（移动优化）\r_1",
+      "server": "140.238.202.137",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "印度孟买\r_1",
+      "server": "141.148.205.3",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "巴西\r_1",
+      "server": "144.22.51.181",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "荷兰\r_1",
+      "server": "141.144.204.126",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "加拿大 0.1倍流量消耗\r_1",
+      "server": "148.113.182.56",
+      "server_port": 444,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "新加坡一|三网优化\r",
+      "server": "yup.441122.xyz",
+      "server_port": 443,
+      "password": "2d068322-b0e3-4c35-991e-58d46d8775f8",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "新加坡二|三网优化\r",
+      "server": "ynn.441166.xyz",
+      "server_port": 443,
+      "password": "2d068322-b0e3-4c35-991e-58d46d8775f8",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "新加坡三|三网优化\r",
+      "server": "ynb.441122.xyz",
+      "server_port": 443,
+      "password": "2d068322-b0e3-4c35-991e-58d46d8775f8",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "日本一|三网优化\r",
+      "server": "dj1.yiyiyun.top",
+      "server_port": 443,
+      "password": "2d068322-b0e3-4c35-991e-58d46d8775f8",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "新加坡 01\r_2",
+      "server": "aws-sgsg.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "新加坡 02\r_2",
+      "server": "aws-sgsg.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "新加坡 03\r_2",
+      "server": "aws-sgsg.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港 01\r_2",
+      "server": "aws-hkhk.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港 02\r_2",
+      "server": "aws-hkhk.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港 03\r_2",
+      "server": "aws-hkhk.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "美国 (GPT)专用 1\r_2",
+      "server": "216.73.156.50",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "美国 (GPT)专用 2\r_2",
+      "server": "216.73.156.98",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "韩国（三网优化）01\r_2",
+      "server": "krseoul.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "韩国（三网优化）02\r_2",
+      "server": "krseoul.aikunapp.com",
+      "server_port": 9001,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "韩国（三网优化）3\r_2",
+      "server": "146.56.129.111",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港 电信优化\r_2",
+      "server": "hktddns2.aikunapp.com",
+      "server_port": 1000,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "日本 01\r_2",
+      "server": "aws-jp.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "日本 02\r_2",
+      "server": "aws-jp.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "日本 03\r_2",
+      "server": "aws-jp.aikunapp.com",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "美国 01\r_2",
+      "server": "158.101.21.220",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "美国 02\r_2",
+      "server": "129.146.107.52",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港 01 原生ip\r_2",
+      "server": "hkt.aikunapp.com",
+      "server_port": 789,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港 02（原生ip）\r_2",
+      "server": "hkt.aikunapp.com",
+      "server_port": 789,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "香港 03（原生ip）\r_2",
+      "server": "hkt.aikunapp.com",
+      "server_port": 789,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "澳大利亚悉尼（移动优化）\r_2",
+      "server": "140.238.202.137",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "印度孟买\r_2",
+      "server": "141.148.205.3",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "巴西\r_2",
+      "server": "144.22.51.181",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "荷兰\r_2",
+      "server": "141.144.204.126",
+      "server_port": 443,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "加拿大 0.1倍流量消耗\r_2",
+      "server": "148.113.182.56",
+      "server_port": 444,
+      "password": "1b600cbc-5417-41cb-a109-f02f1b70e853",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇩🇪德国-法兰克福-500M 1\r_2",
+      "server": "frankfurt2-500m.yljc.online",
+      "server_port": 443,
+      "password": "8df48fe3-a609-44f2-98b8-9f4cb0672427",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇩🇪德国-法兰克福-500M 2\r_2",
+      "server": "frankfurt3-500m.yljc.online",
+      "server_port": 443,
+      "password": "8df48fe3-a609-44f2-98b8-9f4cb0672427",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇸🇬新加坡-2500M\r",
+      "server": "singapore1-2500m.yljc.online",
+      "server_port": 443,
+      "password": "8df48fe3-a609-44f2-98b8-9f4cb0672427",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇸🇬新加坡-流媒体\r",
+      "server": "seoul2-2500m.yljc.online",
+      "server_port": 30021,
+      "password": "8df48fe3-a609-44f2-98b8-9f4cb0672427",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇸🇬新加坡-2500M x2\r",
+      "server": "seoul1-2500m.yljc.online",
+      "server_port": 30018,
+      "password": "8df48fe3-a609-44f2-98b8-9f4cb0672427",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇰🇷韩国-首尔3-500M\r_2",
+      "server": "seoul3-500m.yljc.online",
+      "server_port": 443,
+      "password": "8df48fe3-a609-44f2-98b8-9f4cb0672427",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇰🇷韩国-首尔4-500M\r_2",
+      "server": "seoul4-500m.yljc.online",
+      "server_port": 443,
+      "password": "8df48fe3-a609-44f2-98b8-9f4cb0672427",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇩🇪德国-法兰克福-2500M\r_2",
+      "server": "frankfurt1-2500m.yljc.online",
+      "server_port": 443,
+      "password": "8df48fe3-a609-44f2-98b8-9f4cb0672427",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇨🇳台湾-2-流媒体\r",
+      "server": "akile-taiwan2.yljc.online",
+      "server_port": 30023,
+      "password": "8df48fe3-a609-44f2-98b8-9f4cb0672427",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇺🇸美国-旧金山-1\r",
+      "server": "do-sanfrancisco1.yljc.online",
+      "server_port": 443,
+      "password": "8df48fe3-a609-44f2-98b8-9f4cb0672427",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇺🇸美国-旧金山-3\r",
+      "server": "do-sanfrancisco3.yljc.online",
+      "server_port": 443,
+      "password": "8df48fe3-a609-44f2-98b8-9f4cb0672427",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇺🇸美国-阿什本-1\r",
+      "server": "ashburn1.yljc.online",
+      "server_port": 443,
+      "password": "8df48fe3-a609-44f2-98b8-9f4cb0672427",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "US\r",
+      "server": "las01.telecom.moe",
+      "server_port": 61000,
+      "obfs": {
+        "password": "MjU1NzY1MzM3MWQ1NWI4NQ=="
+      },
+      "password": "168af5f3-2f3a-4ee1-b7d0-f7fbfaf0f25c",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "[Hy2]🇯🇵日本-东京-500M-1\r_2",
+      "server": "tokyo2-500m.yljc.online",
+      "server_port": 443,
+      "password": "8df48fe3-a609-44f2-98b8-9f4cb0672427",
+      "tls": {
+        "enabled": true
+      }
     },
     {
       "type": "vless",
