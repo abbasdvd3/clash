@@ -124,25 +124,9 @@
   },
   "inbounds": [
     {
-      "type": "mixed",
-      "tag": "mixed_in_direct",
-      "set_system_proxy": false,
-      "listen": "127.0.0.1",
-      "listen_port": 3065,
-      "sniff": true
-    },
-    {
-      "type": "mixed",
-      "tag": "mixed_in_forword",
-      "set_system_proxy": false,
-      "listen": "127.0.0.1",
-      "listen_port": 3066,
-      "sniff": true
-    },
-    {
       "type": "tun",
       "tag": "tun_in",
-      "interface_name": "Karing TUN Network Adapter",
+      "interface_name": "",
       "inet4_address": [
         "10.20.0.1/30"
       ],
@@ -152,7 +136,7 @@
       "mtu": 9000,
       "auto_route": true,
       "strict_route": false,
-      "stack": "mixed",
+      "stack": "system",
       "platform": {
         "http_proxy": {
           "enabled": true,
@@ -362,7 +346,7 @@
       "url": "https://connectivitycheck.gstatic.com/generate_204",
       "interval": "1m",
       "tolerance": 50,
-      "interrupt_exist_connections": false,
+      "interrupt_exist_connections": true,
       "idle_timeout": "30m",
       "outbounds": [
         "Germany1 🇩🇪",
