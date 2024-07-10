@@ -13,7 +13,7 @@
       },
       {
         "tag": "local-dns",
-        "address": "10.202.10.102",
+        "address": "local",
         "detour": "direct"
       },
       {
@@ -266,7 +266,7 @@
       },
       "include_package": null,
       "exclude_package": null,
-      "udp_timeout": "10s",
+      "udp_timeout": "50s",
       "sniff": true
     },
     {
@@ -280,12 +280,16 @@
   ],
   "outbounds": [
     {
-      "type": "selector",
+      "type": "urltest",
+      "url": "https://connectivitycheck.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50,
+      "interrupt_exist_connections": true,
+      "idle_timeout": "3m",
       "tag": "Proxy",
       "outbounds": [ 
         "selecto",
         "urltest",
-        "🎒Direct"
       ],
       "interrupt_exist_connections": true
     },
@@ -999,7 +1003,7 @@
       "url": "https://connectivitycheck.grapheneos.network/generate_204",
       "interval": "1m",
       "tolerance": 10,
-      "idle_timeout": "0",
+      "idle_timeout": "1m",
       "interrupt_exist_connections": true
     },
     {
