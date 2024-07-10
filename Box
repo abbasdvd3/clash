@@ -1,11 +1,8 @@
-//profile-title: base64:VFZDIHwgTUlY
+//profile-title: base64:QWJiYXNkdmQxMA==
 //profile-update-interval: 1
 //subscription-userinfo: upload=0; download=0; total=10737418240000000; expire=2546249531
 //support-url: https://t.me/v2raycollector
-//profile-web-page-url: https://github.com/yebekhe/TelegramV2rayCollector
-
-
-
+//profile-web-page-url: https://github.com/abbasdvd3
 {
   "log": {
     "disabled": false,
@@ -16,11 +13,11 @@
     "servers": [
       {
         "tag": "google",
-        "address": "tls://8.8.8.8"
+        "address": "8.8.8.8"
       },
       {
         "tag": "local",
-        "address": "223.5.5.5",
+        "address": "local",
         "detour": "direct"
       },
       {
@@ -53,7 +50,7 @@
     {
       "sniff": true,
       "type": "mixed",
-      "listen": "127.0.0.1",
+      "listen": "0.0.0.0",
       "listen_port": 1081
     },
     {
@@ -12566,17 +12563,21 @@
         },
         "rules": [
             {
+           "protocol": "dns",
+           "outbound": "dns-out"
+           },
+            { 
                 "port": 53,
                 "outbound": "dns-out"
             },
             {
                 "network": "udp",
                 "port": 443,
-                "outbound": "block"
+                "outbound": "block_out"
             },
       {
         "ip_is_private": true,
-        "outbound": "direct"
+        "outbound": "direct_out"
       }
     ],
     "auto_detect_interface": true,
