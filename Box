@@ -88,7 +88,7 @@
         },
         {
             "domain_strategy": "prefer_ipv4",
-            "listen": "127.0.0.1",
+            "listen": "0.0.0.0",
             "listen_port": 2333,
             "tag": "socks-in",
             "type": "socks",
@@ -96,7 +96,7 @@
         },
         {
             "domain_strategy": "prefer_ipv4",
-            "listen": "127.0.0.1",
+            "listen": "0.0.0.0",
             "listen_port": 2334,
             "tag": "mixed-in",
             "type": "mixed",
@@ -108,7 +108,7 @@
       "tag": "select",
       "type": "selector",
       "default": "urltest",
-      "interrupt_exist_connections": false,
+      "interrupt_exist_connections": true,
       "outbounds": [
         "urltest"
       ]
@@ -116,10 +116,10 @@
     {
       "type": "urltest",
       "tag": "urltest",
-      "interval": "8m",
+      "interval": "2m",
       "url": "https://gh.con.sh/https://github.com/AaronFeng753/Waifu2x-Extension-GUI/releases/download/v2.21.12/Waifu2x-Extension-GUI-v2.21.12-Portable.7z",
-      "interrupt_exist_connections": false,
-      "idle_timeout": "8m",
+      "interrupt_exist_connections": true,
+      "idle_timeout": "4m",
       "outbounds": [
         "ðŸ‡µðŸ‡±æ³¢å…°1120",
         "[SS] _R_1040",
@@ -833,10 +833,10 @@
     {
       "type": "urltest",
       "tag": "urltest_out_HAMRAH",
-      "interval": "-1h",
+      "interval": "2m",
       "url": "https://gh.con.sh/https://github.com/AaronFeng753/Waifu2x-Extension-GUI/releases/download/v2.21.12/Waifu2x-Extension-GUI-v2.21.12-Portable.7z",
-      "interrupt_exist_connections": false,
-      "idle_timeout": "-1h",
+      "interrupt_exist_connections": true,
+      "idle_timeout": "4m",
       "outbounds": [
         "ðŸ‡¯ðŸ‡µJP-20.210.224.113-0780 | 18.126MB",
         "ðŸ‡¦ðŸ‡ªé˜¿è”é…‹1632",
@@ -1307,9 +1307,9 @@
       "type": "urltest",
       "tag": "urltest_out_abbas",
       "url": "https://gh.con.sh/https://github.com/AaronFeng753/Waifu2x-Extension-GUI/releases/download/v2.21.12/Waifu2x-Extension-GUI-v2.21.12-Portable.7z",
-      "interval": "-1h",
-      "interrupt_exist_connections": false,
-      "idle_timeout": "-1h",
+      "interval": "2m",
+      "interrupt_exist_connections": true,
+      "idle_timeout": "4m",
       "outbounds": [
         "ðŸ‡¯ðŸ‡µJP_0 @WangCai_8",
         "ðŸ‡¯ðŸ‡µJP_1 @WangCai_8",
