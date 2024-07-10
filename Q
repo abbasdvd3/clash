@@ -222,10 +222,7 @@
         "server": "local-dns"
       },
       {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
+        "query_type": "A",
         "server": "fakeip-dns",
         "rewrite_ttl": 1
       }
@@ -241,7 +238,7 @@
     {
       "type": "redirect",
       "tag": "redirect-in",
-      "listen": "::",
+      "listen": "0.0.0.0",
       "listen_port": 9887,
       "sniff": true,
       "sniff_override_destination": true
@@ -263,7 +260,7 @@
       "platform": {
         "http_proxy": {
           "enabled": true,
-          "server": "127.0.0.1",
+          "server": "0.0.0.0",
           "server_port": 3067
         }
       },
@@ -276,7 +273,7 @@
       "type": "mixed",
       "tag": "mixed_in",
       "set_system_proxy": false,
-      "listen": "127.0.0.1",
+      "listen": "0.0.0.0",
       "listen_port": 3067,
       "sniff": true
     }
