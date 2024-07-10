@@ -4,85 +4,122 @@
 //support-url: https://t.me/v2raycollector
 //profile-web-page-url: https://github.com/abbasdvd3
 {
-  "log": {
-    "disabled": false,
-    "level": "info",
-    "timestamp": true
-  },
-  "dns": {
-    "servers": [
-      {
-        "tag": "google",
-        "address": "8.8.8.8"
-      },
-      {
-        "tag": "local",
-        "address": "local",
-        "detour": "direct"
-      },
-      {
-        "tag": "remote",
-        "address": "fakeip"
-      }
-    ],
-    "rules": [
-      {
-        "server": "local",
-        "outbound": "any"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA"
+    "dns": {
+        "fakeip": {
+            "enabled": true,
+            "inet4_range": "198.18.0.0/15",
+            "inet6_range": "fc00::/18"
+        },
+        "independent_cache": true,
+        "rules": [
+            {
+                "outbound": [
+                    "any"
+                ],
+                "server": "local"
+            },
+            {
+                "disable_cache": true,
+                "rule_set": [
+                    "AdGuardSDNSFilter",
+                    "chrome-doh"
+                ],
+                "server": "block"
+            },
+            {
+                "query_type": [
+                    "A",
+                    "AAAA"
+                ],
+                "rewrite_ttl": 1,
+                "server": "fakeip"
+            },
+            {
+                "clash_mode": "global",
+                "server": "remote"
+            },
+            {
+                "clash_mode": "direct",
+                "server": "local"
+            },
+            {
+                "rule_set": "geosite-cn",
+                "server": "local"
+            }
         ],
-        "server": "remote"
-      }
-    ],
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
+        "servers": [
+            {
+                "address": "local",
+                "detour": "select",
+                "tag": "remote"
+            },
+            {
+                "address": "local",
+                "detour": "direct",
+                "tag": "local"
+            },
+            {
+                "address": "rcode://success",
+                "tag": "block"
+            },
+            {
+                "address": "fakeip",
+                "tag": "fakeip"
+            }
+        ],
+        "strategy": "prefer_ipv4"
     },
-    "independent_cache": true,
-    "strategy": "ipv4_only"
-  },
-  "inbounds": [
-    {
-      "sniff": true,
-      "type": "mixed",
-      "listen": "0.0.0.0",
-      "listen_port": 1081
-    },
-    {
-      "stack": "system",
-      "auto_route": true,
-      "inet4_address": "172.19.0.1/30",
-      "mtu": 9000,
-      "sniff": true,
-      "strict_route": true,
-      "type": "tun",
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 1081
+    "experimental": {
+        "cache_file": {
+            "enabled": true
+        },
+        "clash_api": {
+            "external_controller": "127.0.0.1:9090",
+            "secret": ""
         }
-      }
-    }
+    },
+    "inbounds": [
+        {
+            "auto_route": true,
+            "domain_strategy": "prefer_ipv4",
+            "endpoint_independent_nat": true,
+            "inet4_address": "172.19.0.1/30",
+            "inet6_address": "2001:0470:f9da:fdfa::1/64",
+            "mtu": 9000,
+            "sniff": true,
+            "strict_route": true,
+            "type": "tun"
+        },
+        {
+            "domain_strategy": "prefer_ipv4",
+            "listen": "127.0.0.1",
+            "listen_port": 2333,
+            "tag": "socks-in",
+            "type": "socks",
+            "users": []
+        },
+        {
+            "domain_strategy": "prefer_ipv4",
+            "listen": "127.0.0.1",
+            "listen_port": 2334,
+            "tag": "mixed-in",
+            "type": "mixed",
+            "users": []
+        }
   ],
   "outbounds": [
     {
+      "tag": "select",
       "type": "selector",
-      "tag": "selector_out",
-      "default": "urltest_out",
+      "default": "urltest",
       "interrupt_exist_connections": false,
       "outbounds": [
-        "urltest_out"
+        "urltest"
       ]
     },
     {
       "type": "urltest",
-      "tag": "urltest_out",
+      "tag": "urltest",
       "interval": "8m",
       "interrupt_exist_connections": false,
       "idle_timeout": "8m",
@@ -12540,48 +12577,206 @@
       "password": "e4FCWrgpkji3QY"
     },
     {
-      "type": "direct",
-      "tag": "direct_out"
-    },
-    {
-      "type": "block",
-      "tag": "block_out"
-    },
-    {
-      "type": "dns",
-      "tag": "dns_out"
-    }
-  ],
-"route": {
-        "geoip": {
-            "download_url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/release/geoip.db",
-            "download_detour": "direct"
+            "tag": "direct",
+            "type": "direct"
         },
-        "geosite": {
-            "download_url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/release/geosite.db",
-            "download_detour": "direct"
+        {
+            "tag": "block",
+            "type": "block"
         },
-        "rules": [
+        {
+            "tag": "dns-out",
+            "type": "dns"
+        }
+    ],
+    "route": {
+        "auto_detect_interface": true,
+        "rule_set": [
             {
-           "protocol": "dns",
-           "outbound": "dns-out"
-           },
-            { 
-                "port": 53,
-                "outbound": "dns-out"
+                "format": "binary",
+                "download_detour": "direct",
+                "tag": "geoip-ir",
+                "type": "remote",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs"
             },
             {
-                "network": "udp",
-                "port": 443,
-                "outbound": "block_out"
+                "format": "binary",
+                "download_detour": "direct",
+                "tag": "geosite-ir",
+                "type": "remote",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs"
             },
+            {
+                "tag": "geosite-category-ads-all",
+                "type": "remote",
+                "format": "binary",
+                "download_detour": "direct",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-category-ads-all.srs"
+            },
+            {
+                "format": "binary",
+                "download_detour": "direct",
+                "tag": "geosite-nsfw",
+                "type": "remote",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-nsfw.srs"
+            },
+            {
+                "format": "binary",
+                "download_detour": "direct",
+                "tag": "AdGuardSDNSFilter",
+                "type": "remote",
+                "url": "https://raw.githubusercontent.com/xmdhs/sing-box-ruleset/rule-set/AdGuardSDNSFilter.srs"
+            },
+            {
+                "format": "binary",
+                "download_detour": "direct",
+                "tag": "geoip-phishing",
+                "type": "remote",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-phishing.srs"
+            },
+            {
+                "tag": "geoip-amazon",
+                "type": "remote",
+                "format": "binary",
+                "download_detour": "direct",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-amazon.srs"
+            },
+            {
+                "format": "binary",
+                "download_detour": "direct",
+                "tag": "geoip-microsoft",
+                "type": "remote",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-microsoft.srs"
+            },
+            {
+                "format": "binary",
+                "download_detour": "direct",
+                "tag": "geoip-bing",
+                "type": "remote",
+                "url": "https://raw.githubusercontent.com/xmdhs/sing-box-ruleset/rule-set/geoip-bing.srs"
+            },
+           {
+                "format": "binary",
+                "download_detour": "direct",
+                "tag": "geosite-social",
+                "type": "remote",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-social.srs"
+            },
+            {
+                "format": "binary",
+                "download_detour": "direct",
+                "tag": "geoip-github",
+                "type": "remote",
+                "url": "https://raw.githubusercontent.com/xmdhs/sing-box-ruleset/rule-set/geoip-github.srs"
+            },
+            {
+                "tag": "geoip-iranserver",
+                "type": "remote",
+                "format": "binary",
+                "download_detour": "direct",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-iranserver.srs"
+      },
+      {
+                "tag": "geoip-cloudflare",
+                "type": "remote",
+                "format": "binary",
+                "download_detour": "direct",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-cloudflare.srs"
+      },
+      {
+                "tag": "geosite-google",
+                "type": "remote",
+                "format": "binary",
+                "download_detour": "direct",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-google.srs"
+      },
+      {
+                "tag": "geosite-facebook",
+                "type": "remote",
+                "format": "binary",
+                "download_detour": "direct",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-facebook.srs"
+      },
+      {
+                "tag": "geosite-twitter",
+                "type": "remote",
+                "format": "binary",
+                "download_detour": "direct",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-twitter.srs"
+      },
+      {
+                "tag": "geoip-telegram",
+                "type": "remote",
+                "format": "binary",
+                "download_detour": "direct",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-telegram.srs"
+      },
+      {
+                "tag": "geoip-linode",
+                "type": "remote",
+                "format": "binary",
+                "download_detour": "direct",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-linode.srs"
+      },
+      {
+                "tag": "geoip-openai",
+                "type": "remote",
+                "format": "binary",
+                "download_detour": "direct",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-openai.srs"
+      }
+                    {
+                "format": "source",
+                "tag": "chrome-doh",
+                "type": "remote",
+                "url": "https://gist.githubusercontent.com/xmdhs/71fc5ff6ef29f5ecaf2c52b8de5c3172/raw/chrome-doh.json"
+                    }
+                ],
+                "rules": [
       {
         "ip_is_private": true,
-        "outbound": "direct_out"
-      }
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "geosite-category-ads-all",
+          "AdGuardSDNSFilter",
+          "geoip-phishing",
+          "port": 53
+        ],
+        "outbound": "block"
+      },
+      {
+        "rule_set": [
+          "geosite-ir",
+          "geosite-github",
+          "geoip-ir"
+        ],
+        "outbound": "direct"
+      },
+           {
+           "clash_mode": "global",
+           "outbound": "select"
+            },
+            {
+                "rule_set": [
+          "geoip-amazon",
+          "geoip-microsoft",
+          "geoip-bing",
+          "geoip-openai"
+          "geoip-telegram",
+          "geoip-cloudflare",
+          "geoip-google",
+          "geoip-facebook",
+          "geoip-twitter",
+          "geosite-social",
+          "geosite-nsfw"
+        ],
+        "outbound": "select"
+            }
     ],
     "auto_detect_interface": true,
-    "final": "selector_out"
+    "final": "select"
   },
   "experimental": {
     "clash_api": {
