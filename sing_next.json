@@ -1,7 +1,7 @@
 {
   "experimental": {
     "clash_api": {
-      "external_controller": "",
+      "external_controller": "0.0.0.0:9090",
       "secret": ""
     },
     "debug": {
@@ -9,8 +9,8 @@
       "panic_on_fault": false
     },
     "cache_file": {
-      "enabled": false,
-      "path": "",
+      "enabled": true,
+      "path": "cache.db",
       "store_fakeip": true
     }
   },
@@ -137,7 +137,7 @@
     {
       "type": "tun",
       "tag": "tun_in",
-      "interface_name": "Karing TUN Network Adapter",
+      "interface_name": "",
       "inet4_address": [
         "10.20.0.1/30"
       ],
@@ -173,6 +173,14 @@
       "type": "shadowsocks",
       "method": "chacha20-ietf-poly1305",
       "password": "mps3FwmDjLrWaOVg"
+    },
+    {
+      "server": "205.134.180.137",
+      "server_port": 443,
+      "password": "g13S7doXar0A",
+      "method": "chacha20-ietf-poly1305",
+      "tag": "Ss_69",
+      "type": "shadowsocks"
     },
     {
       "server": "series-a2-mec.samanehha.co",
@@ -6804,6 +6812,7 @@
         "✅سرورهایبیشتردرکانال:prrofile_purple@✅-133",
         "✅سرورهایبیشتردرکانال:prrofile_purple@✅-140",
         "✅سرورهایبیشتردرکانال:prrofile_purple@✅-176",
+        "Ss_69",
         "✅سرورهایبیشتردرکانال:prrofile_purple@✅-184"
       ]
     },
@@ -6868,7 +6877,7 @@
         "rules": [
           {
             "rule_set": [
-              "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs"
+              "geosite:ir"
             ]
           }
         ],
