@@ -4,537 +4,2213 @@
 //support-url: https://t.me/Abbasdvd10
 //profile-web-page-url: @Abbasdvd10
 {
-  "log": {
-    "disabled": false,
-    "level": "trace",
-    "timestamp": true
-  },
-  "dns": {
-    "servers": [
-      {
-        "tag": "proxyDns",
-        "address": "223.5.5.5",
-        "detour": "select"
-      },
-      {
-        "tag": "localDns",
-        "address": "1.1.1.1",
-        "detour": "direct"
-      },
-      {
-        "tag": "block",
-        "address": "rcode://success"
-      },
-      {
-        "tag": "remote",
-        "address": "fakeip"
-      }
-    ],
-    "rules": [
-      {
-        "domain": [
-          "ghproxy.com",
-          "cdn.jsdelivr.net",
-          "testingcf.jsdelivr.net",
-          "zula.ir",
-          "ip1.tomk.fun",
-          "6england1.tomk.fun",
-          "r2.tomk.fun",
-          "ip.tomk.fun",
-          "6england3.tomk.fun",
-          "6usa.tomk.fun",
-          "r4.tomk.fun",
-          "r3.tomk.fun",
-          "r13.tomk.fun",
-          "r14.tomk.fun",
-          "r5.tomk.fun",
-          "r9.tomk.fun",
-          "r10.tomk.fun",
-          "ip-tamiz.besat1.ir",
-          "ip2.tomk.fun",
-          "r8.tomk.fun",
-          "6germany2.tomk.fun",
-          "6netherland.tomk.fun",
-          "6england2.tomk.fun",
-          "r1.tomk.fun",
-          "r6.tomk.fun",
-          "r7.tomk.fun",
-          "r11.tomk.fun",
-          "r12.tomk.fun",
-          "6germany1.tomk.fun",
-          "6france.tomk.fun",
-          "ip3.tomk.fun",
-          "speedtest.org"
-        ],
-        "server": "localDns"
-      },
-      {
-        "geosite": [
-          "category-ads-all"
-        ],
-        "server": "block"
-      },
-      {
-        "server": "localDns",
-        "outbound": "any",
-        "disable_cache": true
-      },
-      {
-        "geosite": [
-          "ir",
-          "github"
-        ],
-        "server": "localDns"
-      },
-      {
-        "server": "localDns",
-        "clash_mode": "direct"
-      },
-      {
-        "server": "proxyDns",
-        "clash_mode": "global"
-      },
-      {
-        "geosite": [
-          "google",
-          "youtube",
-          "openai",
-          "telegram",
-          "microsoftbing",
-          "social",
-          "nsfw"
-        ],
-        "server": "proxyDns"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
-        "server": "remote"
-      }
-    ],
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
-    },
-    "independent_cache": true,
-    "strategy": "ipv4_only"
-  },
-  "inbounds": [
+      "outbounds": [
     {
-      "type": "tun",
-      "tag": "tun_in",
-      "interface_name": "",
-      "inet4_address": [
-        "10.20.0.1/30"
-      ],
-      "inet6_address": [
-        "fdfe:dcba:9876::1/126"
-      ],
-      "mtu": 9000,
-      "auto_route": true,
-      "strict_route": false,
-      "stack": "system",
-      "platform": {
-        "http_proxy": {
+      "type": "vless",
+      "tag": "Germany 🇩🇪1 § 0",
+      "server": "speedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De01.SiMaNsAnAt.Ir.",
+        "utls": {
           "enabled": true,
-          "server": "0.0.0.0",
-          "server_port": 3067
+          "fingerprint": "chrome"
         }
       },
-      "include_package": null,
-      "exclude_package": null,
-      "udp_timeout": "50s",
-      "sniff": true
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De01.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
     },
     {
-      "type": "mixed",
-      "tag": "mixed_in",
-      "set_system_proxy": false,
-      "listen": "0.0.0.0",
-      "listen_port": 3067,
-      "sniff": true
-    }
-  ],
-  "outbounds": [
-    {
-      "type": "selector",
-      "tag": "select",
-      "outbounds": [
-        "auto",
-        "Germany1 🇩🇪",
-        "Germany2 🇩🇪",
-        "Netherland 🇳🇱",
-        "England1 🇬🇧",
-        "England2 🇬🇧",
-        "England3 🇬🇧",
-        "France 🇫🇷",
-        "USA 🇺🇸",
-        "Germany1🇩🇪",
-        "Germany2🇩🇪",
-        "Netherland🇳🇱",
-        "England1🇬🇧",
-        "England2🇬🇧",
-        "England3🇬🇧",
-        "France🇫🇷",
-        "USA🇺🇸",
-        "Germany1🇩🇪 IPV6",
-        "Germany2🇩🇪 IPV6",
-        "Netherland🇳🇱 IPV6",
-        "England1🇬🇧 IPV6",
-        "England2🇬🇧 IPV6",
-        "England3🇬🇧 IPV6",
-        "France🇫🇷 IPV6",
-        "USA🇺🇸 IPV6",
-        "Germany 1🇩🇪🟦 § 0",
-        "Germany 2🇩🇪🟦 § 1",
-        "Germany 3🇩🇪🟦 § 2",
-        "Germany 4🇩🇪🟦 § 3",
-        "Germany 5🇩🇪🟦 § 4",
-        "Germany 6🇩🇪🟦 § 5",
-        "Germany 7🇩🇪🟦 § 6",
-        "Germany 8🇩🇪🟦 § 7",
-        "Germany 9🇩🇪🟦 § 8",
-        "Germany 10🇩🇪🟦 § 9",
-        "Germany 11🇩🇪🟦 § 10",
-        "Germany 12🇩🇪🟦 § 11",
-        "Germany 13🇩🇪🟦 § 12",
-        "Germany 14🇩🇪🟦 § 13",
-        "Germany 15🇩🇪🟦 § 14",
-        "Germany 16🇩🇪🟨 § 15",
-        "Germany 17🇩🇪🟨 § 16",
-        "Germany 18🇩🇪🟨 § 17",
-        "Germany 19🇩🇪🟨 § 18",
-        "Germany 20🇩🇪🟨 § 19",
-        "Germany 21🇩🇪🟨 § 20",
-        "Germany 22🇩🇪🟨 § 21",
-        "Germany 23🇩🇪🟨 § 22",
-        "Germany 24🇩🇪🟨 § 23",
-        "Germany 25🇩🇪🟨 § 24",
-        "Germany 26🇩🇪🟨 § 25",
-        "Germany 27🇩🇪🟨 § 26",
-        "Germany 28🇩🇪🟨 § 27",
-        "Germany 29🇩🇪🟨 § 28",
-        "Germany 30🇩🇪🟨 § 29",
-        "Germany 31🇩🇪🟨 § 30",
-        "Germany 32🇩🇪🟨 § 31",
-        "Germany 33🇩🇪🟨 § 32",
-        "USA1🇺🇸k § 0",
-        "USA2🇺🇸k § 1",
-        "USA3🇺🇸k § 2",
-        "USA4🇺🇸k § 3",
-        "USA5🇺🇸k § 4",
-        "USA6🇺🇸k § 5",
-        "USA7🇺🇸k § 6",
-        "USA8🇺🇸k § 7",
-        "USA9🇺🇸k § 8",
-        "USA10🇺🇸k § 9",
-        "USA11🇺🇸k § 10",
-        "USA12🇺🇸k § 11",
-        "USA13🇺🇸k § 12",
-        "USA14🇺🇸k § 13",
-        "PREMIUM⭐️⭐️🇺🇸🇺🇸USA🇺🇸🇺🇸⭐️⭐️PREMIUM § 0",
-        "USA2🇺🇸u § 1",
-        "USA3🇺🇸u § 2",
-        "USA4🇺🇸u § 3",
-        "USA5🇺🇸u § 4",
-        "USA6🇺🇸u § 5",
-        "USA7🇺🇸u § 6",
-        "USA8🇺🇸u § 7",
-        "USA9🇺🇸u § 8",
-        "USA10🇺🇸u § 9",
-        "USA11🇺🇸u § 10",
-        "USA12🇺🇸u § 11",
-        "Germanyz 1 § 0",
-        "PARISz 1 § 1",
-        "PARISz 2 § 2",
-        "PARISz 3 § 3",
-        "PARISz 4 § 4",
-        "PARISz 5 § 5",
-        "PARISz 6 § 6",
-        "PARISz 7 § 7",
-        "PARISz 8 § 8",
-        "PARISz 9 § 9",
-        "Germany 1m🇩🇪 § 0",
-        "Germany 2m🇩🇪 § 1",
-        "Germany 3m🇩🇪 § 2",
-        "Germany 4m🇩🇪 § 3",
-        "Germany 5m🇩🇪 § 4",
-        "Germany 6m🇩🇪 § 5",
-        "Germany 7m🇩🇪 § 6",
-        "Germany 8m🇩🇪 § 7",
-        "Germany 9m🇩🇪 § 8",
-        "Germany 10m🇩🇪 § 9",
-        "France 🇫🇷  § 10",
-        "Germany 1x🇩🇪 § 0",
-        "Germany 2🇩🇪 § 1",
-        "Germany 3x🇩🇪 § 2",
-        "Germany 4x🇩🇪 § 3",
-        "Germany 5x🇩🇪 § 4",
-        "Germany 6x🇩🇪 § 5",
-        "Germany 7x🇩🇪 § 6",
-        "Germany 8x🇩🇪 § 7",
-        "Germany 9x🇩🇪 § 8",
-        "Germany 10x🇩🇪 § 9",
-        "Germany 11x🇩🇪 § 10",
-        "Germany 12x🇩🇪 § 11",
-        "France 🇫🇷  § 12",
-        "Germany 13x🇩🇪 § 13",
-        "Germany 14x🇩🇪 § 14",
-        "Germany 15x🇩🇪 § 15",
-        "United States, None § 0",
-        "France, Paris § 1",
-        "United States, None § 2",
-        "United States, None § 3",
-        "France, None § 4",
-        "France, None § 5",
-        "France, None § 6",
-        "France, None § 7",
-        "France, Paris § 8",
-        "Germany 🇩🇪1q § 0",
-        "Germany 🇩🇪2q § 1",
-        "Germany 🇩🇪3q § 2",
-        "Germany 🇩🇪5q § 3",
-        "Germany 🇩🇪6q § 4",
-        "Germany 🇩🇪7q § 5",
-        "Germany 🇩🇪8q § 6",
-        "Germany 🇩🇪9q § 7",
-        "Germany 🇩🇪10q § 8",
-        "Germany 🇩🇪11q § 9",
-        "Germany 🇩🇪12q § 10",
-        "Germany 🇩🇪13q § 11",
-        "Germany 🇩🇪14q § 12",
-        "Germany 🇩🇪15q § 13",
-        "Germany micro 🇩🇪1 § 14",
-        "Germany micro 🇩🇪2 § 15",
-        "Germany micro 🇩🇪3 § 16",
-        "Germany micro 🇩🇪4 § 17",
-        "Germany micro 🇩🇪5 § 18",
-        "Germany micro 🇩🇪6 § 19",
-        "Germany micro 🇩🇪7 § 20",
-        "Germany micro 🇩🇪8 § 21",
-        "Germany micro 🇩🇪9 § 22",
-        "Germany micro 🇩🇪10 § 23",
-        "Germany micro 🇩🇪11 § 24",
-        "Germany micro 🇩🇪12 § 25",
-        "Germany micro 🇩🇪13 § 26",
-        "Germany micro 🇩🇪14 § 27",
-        "Germany micro 🇩🇪15 § 28",
-        "Germany Full🇩🇪1 § 29",
-        "Germany Full🇩🇪2 § 30",
-        "Germany Full🇩🇪3 § 31",
-        "Germany Full🇩🇪4 § 32",
-        "Germany Full🇩🇪5 § 33",
-        "Germany Full🇩🇪6 § 34",
-        "Germany Full🇩🇪7 § 35",
-        "Germany Full🇩🇪8 § 36",
-        "Germany Full🇩🇪9 § 37",
-        "Germany Full🇩🇪10 § 38",
-        "Germany Full🇩🇪11 § 39",
-        "Germany Full🇩🇪12 § 40",
-        "Germany Full🇩🇪13 § 41",
-        "Germany Full🇩🇪14 § 42",
-        "Germany Full🇩🇪15 § 43"
-      ],
-      "default": "auto"
+      "type": "vless",
+      "tag": "Germany 🇩🇪2 § 1",
+      "server": "speedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De02.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De02.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
     },
     {
-      "type": "urltest",
-      "tag": "auto",
-      "url": "https://connectivitycheck.gstatic.com/generate_204",
-      "interval": "1m",
-      "tolerance": 50,
-      "interrupt_exist_connections": true,
-      "idle_timeout": "3m",
-      "outbounds": [
-        "Germany1 🇩🇪",
-        "Germany2 🇩🇪",
-        "Netherland 🇳🇱",
-        "England1 🇬🇧",
-        "England2 🇬🇧",
-        "England3 🇬🇧",
-        "France 🇫🇷",
-        "USA 🇺🇸",
-        "Germany1🇩🇪",
-        "Germany2🇩🇪",
-        "Netherland🇳🇱",
-        "England1🇬🇧",
-        "England2🇬🇧",
-        "England3🇬🇧",
-        "France🇫🇷",
-        "USA🇺🇸",
-        "Germany1🇩🇪 IPV6",
-        "Germany2🇩🇪 IPV6",
-        "Netherland🇳🇱 IPV6",
-        "England1🇬🇧 IPV6",
-        "England2🇬🇧 IPV6",
-        "England3🇬🇧 IPV6",
-        "France🇫🇷 IPV6",
-        "USA🇺🇸 IPV6",
-        "Germany 1🇩🇪🟦 § 0",
-        "Germany 2🇩🇪🟦 § 1",
-        "Germany 3🇩🇪🟦 § 2",
-        "Germany 4🇩🇪🟦 § 3",
-        "Germany 5🇩🇪🟦 § 4",
-        "Germany 6🇩🇪🟦 § 5",
-        "Germany 7🇩🇪🟦 § 6",
-        "Germany 8🇩🇪🟦 § 7",
-        "Germany 9🇩🇪🟦 § 8",
-        "Germany 10🇩🇪🟦 § 9",
-        "Germany 11🇩🇪🟦 § 10",
-        "Germany 12🇩🇪🟦 § 11",
-        "Germany 13🇩🇪🟦 § 12",
-        "Germany 14🇩🇪🟦 § 13",
-        "Germany 15🇩🇪🟦 § 14",
-        "Germany 16🇩🇪🟨 § 15",
-        "Germany 17🇩🇪🟨 § 16",
-        "Germany 18🇩🇪🟨 § 17",
-        "Germany 19🇩🇪🟨 § 18",
-        "Germany 20🇩🇪🟨 § 19",
-        "Germany 21🇩🇪🟨 § 20",
-        "Germany 22🇩🇪🟨 § 21",
-        "Germany 23🇩🇪🟨 § 22",
-        "Germany 24🇩🇪🟨 § 23",
-        "Germany 25🇩🇪🟨 § 24",
-        "Germany 26🇩🇪🟨 § 25",
-        "Germany 27🇩🇪🟨 § 26",
-        "Germany 28🇩🇪🟨 § 27",
-        "Germany 29🇩🇪🟨 § 28",
-        "Germany 30🇩🇪🟨 § 29",
-        "Germany 31🇩🇪🟨 § 30",
-        "Germany 32🇩🇪🟨 § 31",
-        "Germany 33🇩🇪🟨 § 32",
-        "USA1🇺🇸k § 0",
-        "USA2🇺🇸k § 1",
-        "USA3🇺🇸k § 2",
-        "USA4🇺🇸k § 3",
-        "USA5🇺🇸k § 4",
-        "USA6🇺🇸k § 5",
-        "USA7🇺🇸k § 6",
-        "USA8🇺🇸k § 7",
-        "USA9🇺🇸k § 8",
-        "USA10🇺🇸k § 9",
-        "USA11🇺🇸k § 10",
-        "USA12🇺🇸k § 11",
-        "USA13🇺🇸k § 12",
-        "USA14🇺🇸k § 13",
-        "PREMIUM⭐️⭐️🇺🇸🇺🇸USA🇺🇸🇺🇸⭐️⭐️PREMIUM § 0",
-        "USA2🇺🇸u § 1",
-        "USA3🇺🇸u § 2",
-        "USA4🇺🇸u § 3",
-        "USA5🇺🇸u § 4",
-        "USA6🇺🇸u § 5",
-        "USA7🇺🇸u § 6",
-        "USA8🇺🇸u § 7",
-        "USA9🇺🇸u § 8",
-        "USA10🇺🇸u § 9",
-        "USA11🇺🇸u § 10",
-        "USA12🇺🇸u § 11",
-        "Germanyz 1 § 0",
-        "PARISz 1 § 1",
-        "PARISz 2 § 2",
-        "PARISz 3 § 3",
-        "PARISz 4 § 4",
-        "PARISz 5 § 5",
-        "PARISz 6 § 6",
-        "PARISz 7 § 7",
-        "PARISz 8 § 8",
-        "PARISz 9 § 9",
-        "Germany 1m🇩🇪 § 0",
-        "Germany 2m🇩🇪 § 1",
-        "Germany 3m🇩🇪 § 2",
-        "Germany 4m🇩🇪 § 3",
-        "Germany 5m🇩🇪 § 4",
-        "Germany 6m🇩🇪 § 5",
-        "Germany 7m🇩🇪 § 6",
-        "Germany 8m🇩🇪 § 7",
-        "Germany 9m🇩🇪 § 8",
-        "Germany 10m🇩🇪 § 9",
-        "France 🇫🇷  § 10",
-        "Germany 1x🇩🇪 § 0",
-        "Germany 2🇩🇪 § 1",
-        "Germany 3x🇩🇪 § 2",
-        "Germany 4x🇩🇪 § 3",
-        "Germany 5x🇩🇪 § 4",
-        "Germany 6x🇩🇪 § 5",
-        "Germany 7x🇩🇪 § 6",
-        "Germany 8x🇩🇪 § 7",
-        "Germany 9x🇩🇪 § 8",
-        "Germany 10x🇩🇪 § 9",
-        "Germany 11x🇩🇪 § 10",
-        "Germany 12x🇩🇪 § 11",
-        "France 🇫🇷  § 12",
-        "Germany 13x🇩🇪 § 13",
-        "Germany 14x🇩🇪 § 14",
-        "Germany 15x🇩🇪 § 15",
-        "United States, None § 0",
-        "France, Paris § 1",
-        "United States, None § 2",
-        "United States, None § 3",
-        "France, None § 4",
-        "France, None § 5",
-        "France, None § 6",
-        "France, None § 7",
-        "France, Paris § 8",
-        "Germany 🇩🇪1q § 0",
-        "Germany 🇩🇪2q § 1",
-        "Germany 🇩🇪3q § 2",
-        "Germany 🇩🇪5q § 3",
-        "Germany 🇩🇪6q § 4",
-        "Germany 🇩🇪7q § 5",
-        "Germany 🇩🇪8q § 6",
-        "Germany 🇩🇪9q § 7",
-        "Germany 🇩🇪10q § 8",
-        "Germany 🇩🇪11q § 9",
-        "Germany 🇩🇪12q § 10",
-        "Germany 🇩🇪13q § 11",
-        "Germany 🇩🇪14q § 12",
-        "Germany 🇩🇪15q § 13",
-        "Germany micro 🇩🇪1 § 14",
-        "Germany micro 🇩🇪2 § 15",
-        "Germany micro 🇩🇪3 § 16",
-        "Germany micro 🇩🇪4 § 17",
-        "Germany micro 🇩🇪5 § 18",
-        "Germany micro 🇩🇪6 § 19",
-        "Germany micro 🇩🇪7 § 20",
-        "Germany micro 🇩🇪8 § 21",
-        "Germany micro 🇩🇪9 § 22",
-        "Germany micro 🇩🇪10 § 23",
-        "Germany micro 🇩🇪11 § 24",
-        "Germany micro 🇩🇪12 § 25",
-        "Germany micro 🇩🇪13 § 26",
-        "Germany micro 🇩🇪14 § 27",
-        "Germany micro 🇩🇪15 § 28",
-        "Germany Full🇩🇪1 § 29",
-        "Germany Full🇩🇪2 § 30",
-        "Germany Full🇩🇪3 § 31",
-        "Germany Full🇩🇪4 § 32",
-        "Germany Full🇩🇪5 § 33",
-        "Germany Full🇩🇪6 § 34",
-        "Germany Full🇩🇪7 § 35",
-        "Germany Full🇩🇪8 § 36",
-        "Germany Full🇩🇪9 § 37",
-        "Germany Full🇩🇪10 § 38",
-        "Germany Full🇩🇪11 § 39",
-        "Germany Full🇩🇪12 § 40",
-        "Germany Full🇩🇪13 § 41",
-        "Germany Full🇩🇪14 § 42",
-        "Germany Full🇩🇪15 § 43"
-      ]
+      "type": "vless",
+      "tag": "Germany 🇩🇪3 § 2",
+      "server": "speedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De03.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De03.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
     },
     {
-      "tag": "direct",
-      "type": "direct"
+      "type": "vless",
+      "tag": "Germany 🇩🇪4 § 3",
+      "server": "speedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De04.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De04.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
     },
     {
-      "tag": "block",
-      "type": "block"
+      "type": "vless",
+      "tag": "Germany 🇩🇪5 § 4",
+      "server": "speedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De05.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De05.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
     },
     {
-      "tag": "dns-out",
-      "type": "dns"
+      "type": "vless",
+      "tag": "Germany 🇩🇪6 § 5",
+      "server": "bspeedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De06.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De06.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 🇩🇪7 § 6",
+      "server": "speedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De07.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De07.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 🇩🇪8 § 7",
+      "server": "speedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De08.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De08.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 🇩🇪9 § 8",
+      "server": "speedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De09.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De09.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 🇩🇪10 § 9",
+      "server": "speedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De10.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De10.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 🇩🇪11 § 10",
+      "server": "speedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De11.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De11.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 🇩🇪12 § 11",
+      "server": "speedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De12.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De12.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 🇩🇪13 § 12",
+      "server": "speedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De13.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De13.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 🇩🇪14 § 13",
+      "server": "speedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De14.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De14.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 🇩🇪15 § 14",
+      "server": "speedtest.org",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De15.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De15.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪1 § 15",
+      "server": "de01.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪2 § 16",
+      "server": "de02.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪3 § 17",
+      "server": "de03.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪4 § 18",
+      "server": "de04.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪5 § 19",
+      "server": "de05.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪6 § 20",
+      "server": "de06.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪7 § 21",
+      "server": "de07.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪8 § 22",
+      "server": "de80.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪9 § 23",
+      "server": "de09.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪10 § 24",
+      "server": "de10.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪11 § 25",
+      "server": "de11.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪12 § 26",
+      "server": "de12.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪13 § 27",
+      "server": "de13.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪14 § 28",
+      "server": "de14.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany micro 🇩🇪15 § 29",
+      "server": "de15.tomk.fun",
+      "server_port": 1234,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L2b7MW4F9bT8ALwebQtCbXGTaH5sl9o97BxmynrlxHo",
+          "short_id": "8f90c18dc7b2652b"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪1 § 30",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de01.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪2 § 31",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de02.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪3 § 32",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de03.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪4 § 33",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de04.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪5 § 34",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de05.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪6 § 35",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de06.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪7 § 36",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de07.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪8 § 37",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de08.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪9 § 38",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de09.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪10 § 39",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de10.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪11 § 40",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de11.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪12 § 41",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de12.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪13 § 42",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de13.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪14 § 43",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de14.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪15 § 44",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de15.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港01",
+      "server": "103.148.72.58",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "cdn.livechatinc.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港02",
+      "server": "103.148.73.3",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.icbcasia.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港03",
+      "server": "103.157.42.3",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "assets.adobedtm.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港04",
+      "server": "103.157.43.3",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "dahsing.d2.sc.omtrdc.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港05",
+      "server": "103.180.20.3",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "s.go-mpulse.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港06",
+      "server": "103.180.21.3",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "dahsing.sc.omtrdc.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港07",
+      "server": "103.99.142.3",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "a.c.appier.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港08",
+      "server": "103.99.143.3",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.coronavirus.gov.hk",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港09",
+      "server": "103.20.98.3",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.hkctc.gov.hk",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港10",
+      "server": "103.20.99.3",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.itc.gov.hk",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇳台湾01",
+      "server": "220.130.73.115",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "cdn.livechatinc.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇳台湾02",
+      "server": "118.163.175.198",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "rc-widget-frame.js.driftt.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇳台湾03",
+      "server": "220.130.73.152",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "b.6sc.co",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇳台湾04",
+      "server": "61.222.202.100",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "atiprod.112.2o7.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇳台湾05",
+      "server": "220.130.213.85",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "684d0d46.akstat.io",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇳台湾06",
+      "server": "211.72.156.15",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "assets.adobedtm.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇳台湾07",
+      "server": "211.72.156.21",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "ipv6.6sc.co",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇳台湾08",
+      "server": "59.125.68.209",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "sc.lfeeder.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇳台湾09",
+      "server": "60.249.89.77",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "m.stripe.network",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇳台湾10",
+      "server": "211.75.223.135",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "fastly.jsdelivr.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇸🇬新加坡01",
+      "server": "51.79.156.172",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "a.storyblok.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇸🇬新加坡02",
+      "server": "51.79.156.172",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "a.storyblok.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇸🇬新加坡03",
+      "server": "51.79.156.172",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "a.storyblok.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇸🇬新加坡04",
+      "server": "51.79.156.172",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "a.storyblok.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇺🇸美国01",
+      "server": "149.115.231.164",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "cdn.flowplayer.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇺🇸美国02",
+      "server": "149.115.231.109",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "p.typekit.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇺🇸美国03",
+      "server": "149.115.231.125",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "script.hotjar.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇺🇸美国04",
+      "server": "149.115.231.139",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "use.typekit.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇯🇵日本01-东京市",
+      "server": "211.72.156.14",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.nss.com.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇯🇵日本02-丰田市",
+      "server": "211.72.156.14",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "static.wixstatic.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇯🇵日本03-札幌市",
+      "server": "211.72.156.14",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.mirai.com.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇬🇧英国",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.clipstudio.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇲🇴澳门",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "s.ad.smaato.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇻🇳越南",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.foxconn.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "9g5pd_bKt1sB4jLbBYPUiPS53knyjHwUMoKWQRfsEWo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇲🇲缅甸",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "down-tw.img.susercontent.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇬🇭加纳",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "diep.io",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇱🇦老挝",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "homer.com.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇳🇱荷兰",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "km.eck.org.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇹🇭泰国",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "bunny.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇬刚果",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "git.powerful.com.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇲🇱马里",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.htlh.com.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇦🇪迪拜",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "powerful.com.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇪🇬埃及",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "meet.secudocx.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇧🇷巴西",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "vdsm-a1.dscloud.biz",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇰🇷韩国",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "texcolor.com.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇮🇳印度",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "kedpcpa.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇩🇪德国",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "nasbookstore.myqnapcloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇱🇺卢森堡",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "app.getflywheel.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇰🇭柬埔寨",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "video.jsgc.com.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇦🇴安哥拉",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "fungannas.dsmynas.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇰🇪肯尼亚",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bronci.com.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇺🇦乌克兰",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "healthywell.com.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇵🇭菲律宾",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "cp5.twmail.cc",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇹🇷土耳其",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "bpm.jourdeness.com.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇸🇬新加坡",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "c01.wordpress.pdn.com.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇦加拿大",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "blog.twnic.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇪🇸西班牙",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "cdnsun.r.worldssl.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇲🇽墨西哥",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "script.hotjar.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇦🇺澳大利亚",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "cmail.tpetrade.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇧🇩孟加拉国",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "api.heran.tvsoga.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇸🇿斯威士兰",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.hotprivateeye.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇲🇿莫桑比克",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "uof.kti.com.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇲🇾马来西亚",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "leyan.dscloud.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇮🇩印度尼西亚",
+      "server": "60.249.89.73",
+      "server_port": 443,
+      "uuid": "9ab41529-fca8-405a-8e25-0b46e6801afe",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.nss.com.tw",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "OGxCQq8J9m0Nkp33DbBsm9R0RBi34RtHJfP3XNHlgQo",
+          "short_id": "0000000000000000"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 🇩🇪99 § 0",
+      "server": "162.120.94.131",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De99.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De99.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany 🇩🇪1 § 14",
+      "server": "14.102.229.221",
+      "server_port": 2096,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "tls": {
+        "enabled": true,
+        "server_name": "De01.SiMaNsAnAt.Ir.",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "De01.SiMaNsAnAt.Ir."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪99 § 30",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de99.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "Germany Full🇩🇪1 § 44",
+      "server": "speedtest.org",
+      "server_port": 80,
+      "uuid": "1149be91-5a4f-47de-995f-66f8d7d64498",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "www.speedtest.net.whiteber.insistom.d6625996.de01.simansanat.ir"
+        }
+      },
+      "packet_encoding": ""
     },
     {
       "type": "vless",
@@ -4069,43 +5745,5 @@
       },
       "packet_encoding": ""
     }
-  ],
-  "route": {
-    "rules": [
-      {
-        "protocol": "dns",
-        "outbound": "dns-out"
-      },
-      {
-        "port": 53,
-        "outbound": "dns-out"
-      },
-      {
-        "clash_mode": "direct",
-        "outbound": "direct"
-      },
-      {
-        "clash_mode": "global",
-        "outbound": "select"
-      }
-    ],
-    "final": "select",
-    "find_process": true,
-    "auto_detect_interface": true,
-    "override_android_vpn": true
-  },
-  "experimental": {
-        "cache_file": {
-            "cache_id": "my_profile2",
-            "enabled": true,
-            "path": "cache.db",
-            "store_fakeip": true
-        },
-        "clash_api": {
-            "default_mode": "rule",
-            "external_controller": "0.0.0.0:9090",
-            "external_ui": "ui",
-            "external_ui_download_detour": "direct"
-    }
-  }
+  ]
 }
