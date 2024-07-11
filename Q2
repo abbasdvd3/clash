@@ -11,8 +11,8 @@
   "experimental": {
     "clash_api": {
       "external_controller": "127.0.0.1:9090",
-      "external_ui": "",
-      "secret": "ID_lbjowb5d",
+      "external_ui": "dashboard",
+      "secret": "",
       "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
       "default_mode": "rule"
     },
@@ -24,7 +24,7 @@
   "inbounds": [
     {
       "type": "mixed",
-      "listen": "::",
+      "listen": "0.0.0.0",
       "listen_port": 20122,
       "sniff": true,
       "sniff_override_destination": true,
@@ -35,7 +35,7 @@
     },
     {
       "type": "http",
-      "listen": "::",
+      "listen": "0.0.0.0",
       "listen_port": 7892,
       "sniff": true,
       "sniff_override_destination": true,
@@ -46,7 +46,7 @@
     },
     {
       "type": "socks",
-      "listen": "::",
+      "listen": "0.0.0.0",
       "listen_port": 7890,
       "sniff": true,
       "sniff_override_destination": true,
@@ -62,11 +62,11 @@
       "auto_route": true,
       "strict_route": true,
       "endpoint_independent_nat": true,
-      "stack": "gvisor",
+      "stack": "mixed",
       "platform": {
         "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
+          "enabled": false,
+          "server": "0.0.0.0",
           "server_port": 20122
         }
       },
