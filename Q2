@@ -28,10 +28,10 @@
       "listen_port": 20123,
       "sniff": true,
       "sniff_override_destination": true,
-      "domain_strategy": "ipv4_only",
+      "domain_strategy": "prefer_ipv4",
       "tcp_fast_open": true,
       "tcp_multi_path": true,
-      "udp_fragment": false
+      "udp_fragment": true
     },
     {
       "type": "http",
@@ -39,10 +39,10 @@
       "listen_port": 7892,
       "sniff": true,
       "sniff_override_destination": true,
-      "domain_strategy": "ipv4_only",
+      "domain_strategy": "prefer_ipv4",
       "tcp_fast_open": true,
       "tcp_multi_path": true,
-      "udp_fragment": false
+      "udp_fragment": true
     },
     {
       "type": "socks",
@@ -50,17 +50,22 @@
       "listen_port": 7890,
       "sniff": true,
       "sniff_override_destination": true,
-      "domain_strategy": "ipv4_only",
+      "domain_strategy": "prefer_ipv4",
       "tcp_fast_open": true,
       "tcp_multi_path": true,
-      "udp_fragment": false
+      "udp_fragment": true
     },
     {
       "type": "tun",
-      "inet4_address": "172.19.0.1/30",
+      "inet4_address": [
+        "10.20.0.1/30"
+      ],
+      "inet6_address": [
+        "fdfe:dcba:9876::1/126"
+      ],
       "mtu": 9000,
       "auto_route": true,
-      "strict_route": false,
+      "strict_route": true,
       "endpoint_independent_nat": true,
       "stack": "mixed",
       "platform": {
@@ -72,12 +77,13 @@
       },
       "sniff": true,
       "sniff_override_destination": true,
-      "domain_strategy": "ipv4_only"
+      "domain_strategy": "prefer_ipv4"
     }
   ],
   "outbounds": [
     {
       "tag": "🚀 Select",
+      "interrupt_exist_connections": true,
       "type": "selector",
       "outbounds": [
         "🎈 Auto Select",
@@ -121,6 +127,7 @@
     },
     {
       "tag": "🎈 Auto Select",
+      "interrupt_exist_connections": true,
       "type": "urltest",
       "outbounds": [
         "12357158275🇩🇪",
@@ -1154,11 +1161,11 @@
         "server": "remote-dns"
       },
       {
-        "rule_set": "GEOSITE-CN",
+        "rule_set": "GEOSITE-IR",
         "server": "local-dns"
       },
       {
-        "rule_set": "GEOLOCATION-!CN",
+        "rule_set": "geosite-social",
         "server": "remote-dns"
       }
     ],
@@ -1168,6 +1175,6 @@
       "inet6_range": "fc00::/18"
     },
     "final": "remote-dns",
-    "strategy": "ipv4_only"
+    "strategy": "prefer_ipv4"
   }
 }
