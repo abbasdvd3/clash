@@ -25,13 +25,13 @@
     {
       "type": "mixed",
       "listen": "0.0.0.0",
-      "listen_port": 20122,
+      "listen_port": 20123,
       "sniff": true,
       "sniff_override_destination": true,
       "domain_strategy": "ipv4_only",
       "tcp_fast_open": true,
       "tcp_multi_path": true,
-      "udp_fragment": true
+      "udp_fragment": false
     },
     {
       "type": "http",
@@ -42,7 +42,7 @@
       "domain_strategy": "ipv4_only",
       "tcp_fast_open": true,
       "tcp_multi_path": true,
-      "udp_fragment": true
+      "udp_fragment": false
     },
     {
       "type": "socks",
@@ -53,19 +53,19 @@
       "domain_strategy": "ipv4_only",
       "tcp_fast_open": true,
       "tcp_multi_path": true,
-      "udp_fragment": true
+      "udp_fragment": false
     },
     {
       "type": "tun",
       "inet4_address": "172.19.0.1/30",
       "mtu": 9000,
       "auto_route": true,
-      "strict_route": true,
+      "strict_route": false,
       "endpoint_independent_nat": true,
       "stack": "mixed",
       "platform": {
         "http_proxy": {
-          "enabled": false,
+          "enabled": true,
           "server": "0.0.0.0",
           "server_port": 20122
         }
@@ -183,10 +183,11 @@
       "type": "selector",
       "outbounds": [
         "🚀 Select",
+        "🎈 Auto Select",
         "🎯 Direct"
       ]
     },
-    {
+        {
       "type": "vless",
       "tag": "12357158275🇩🇪",
       "server": "104.23.109.237",
