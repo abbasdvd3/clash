@@ -396,17 +396,13 @@ proxy-providers:
     path: ./providers6/Subscription-1.yaml
     proxy: DIRECT
     interval: 600
-#    prefix-name: "S-"
-    url-proxy: true
     udp: true
     header:
-#      User-Agent:
-#        - "Clash/v1.11.8"
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-#      lazy: false # default value is true
+      lazy: true 
 
   Subscription-2:
     type: http
@@ -414,17 +410,13 @@ proxy-providers:
     path: ./providers6/Subscription-2.yaml
     proxy: DIRECT
     interval: 600
-#    prefix-name: "S-"
-    url-proxy: true
     udp: true
     header:
-#      User-Agent:
-#        - "Clash/v1.11.8"
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-#      lazy: false # default value is true
+      lazy: true 
 
   Subscription-3:
     type: http
@@ -432,17 +424,13 @@ proxy-providers:
     path: ./providers6/Subscription-3.yaml
     proxy: DIRECT
     interval: 600
-#    prefix-name: "S-"
-    url-proxy: true
     udp: true
     header:
-#      User-Agent:
-#        - "Clash/v1.11.8"
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-#      lazy: false # default value is true
+      lazy: true 
 
   Subscription-4:
     type: http
@@ -450,35 +438,27 @@ proxy-providers:
     path: ./providers6/Subscription-4.yaml
     proxy: DIRECT
     interval: 600
-#    prefix-name: "S-"
-    url-proxy: true
     udp: true
     header:
-#      User-Agent:
-#        - "Clash/v1.11.8"
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-#      lazy: false # default value is true
+      lazy: true 
 
   Subscription-5:
     type: http
     url: "https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/combine.yaml" # replace this URL with your provider's subscription link
     path: ./providers6/Subscription-5.yaml
-    proxy: DIRECT
+proxy: DIRECT
     interval: 600
-#    prefix-name: "S-"
-    url-proxy: true
     udp: true
     header:
-#      User-Agent:
-#        - "Clash/v1.11.8"
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-#      lazy: false # default value is true
+      lazy: true 
 
   Subscription-6:
     type: http
@@ -486,17 +466,13 @@ proxy-providers:
     path: ./providers6/Subscription-6.yaml
     proxy: DIRECT
     interval: 600
-#    prefix-name: "S-"
-    url-proxy: true
     udp: true
     header:
-#      User-Agent:
-#        - "Clash/v1.11.8"
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-#      lazy: false # default value is true
+      lazy: true 
 
   Subscription-7:
     type: http
@@ -504,17 +480,13 @@ proxy-providers:
     path: ./providers6/Subscription-7.yaml
     proxy: DIRECT
     interval: 600
-#    prefix-name: "S-"
-    url-proxy: true
     udp: true
     header:
-#      User-Agent:
-#        - "Clash/v1.11.8"
     health-check:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-#      lazy: false # default value is true
+      lazy: true 
 
 rule-providers:
   ir:
@@ -1139,4 +1111,5 @@ rules:
   - PROCESS-NAME,com.instathunder.android,Mismatch
   - PROCESS-NAME,com.myinsta.android,Mismatch
   - PROCESS-NAME,com.instagram.android,Mismatch
+
   - MATCH,Mismatch
