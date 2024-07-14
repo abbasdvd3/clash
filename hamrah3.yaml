@@ -953,12 +953,8 @@ rules:
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),🛑
   - GEOSITE,category-ads-all,🛑
   - RULE-SET,block,🛑
-  # - SCRIPT,quic,REJECT
-  # - SCRIPT,youshit,REJECT
-  ## direct FCM
-  # - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),DIRECT
-  # - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),DIRECT
-  ## block udp/quic YouTube
+  - DOMAIN-SUFFIX,haohaoxiong.myqnapcloud.com,DIRECT
+
   - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),🛑
   - AND,((NETWORK,udp),(GEOSITE,youtube)),🛑
   # # fix dnsleak
