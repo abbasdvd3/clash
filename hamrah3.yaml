@@ -38,7 +38,7 @@ profile:
 # interface-name: en0 
 keep-alive-interval: 15 
 sniffer:
-  enable: true
+  enable: false
   sniffing:
     - tls
     - http
@@ -82,7 +82,7 @@ dns:
   prefer-h3: true
   listen: 0.0.0.0:53
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  fake-ip-range: 22.0.0.0/16
   fake-ip-filter:
   - '*.lan'
   default-nameserver:
@@ -103,12 +103,12 @@ dns:
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
     "geosite:category-ads-all": rcode://success
-    "www.baidu.com,+.google.com": [223.5.5.5, https://dns.alidns.com/dns-query]
-    "+.pornhub.com": "https://doh.pub/dns-query"
-    "+.sxyprn.com": "https://doh.pub/dns-query"
-    "+.spankbang.com": "https://doh.pub/dns-query"
-    "+.samfw.com": "https://doh.pub/dns-query"    
-    "rule-set:GoogleFCM,ir": 8.8.8.8
+    "www.baidu.com,+.google.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "+.pornhub.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "+.sxyprn.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "+.spankbang.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "+.samfw.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]  
+    "rule-set:GoogleFCM,ir,social,nsfw1": [223.5.5.5, https://dns.alidns.com/dns-query]
     GEOSITE:google: 8.8.8.8
   nameserver:
   - 78.157.42.100
@@ -549,7 +549,7 @@ rule-providers:
     type: http
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
-    path: ./ruleset/block.yaml
+    path: ruleset/block.yaml
     interval: 86400
 
 
@@ -557,7 +557,7 @@ rule-providers:
     type: http
     behavior: domain
     format: yaml
-    path: ./ruleset/AWAvenue-Ads-Rule-Clash.yaml
+    path: ruleset/AWAvenue-Ads-Rule-Clash.yaml
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
     interval: 86400
 
@@ -566,84 +566,84 @@ rule-providers:
     format: text
     behavior: domain
     url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ir.txt"
-    path: ./ruleset/ir.txt
+    path: ruleset/ir.txt
     interval: 86400
   ads:
     type: http
     format: text
     behavior: domain
     url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ads.txt"
-    path: ./ruleset/ads.txt
+    path: ruleset/ads.txt
     interval: 86400
   malware:
     type: http
     format: text
     behavior: domain
     url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/malware.txt"
-    path: ./ruleset/malware.txt
+    path: ruleset/malware.txt
     interval: 86400
   phishing:
     type: http
     format: text
     behavior: domain
     url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/phishing.txt"
-    path: ./ruleset/phishing.txt
+    path: ruleset/phishing.txt
     interval: 86400
   cryptominers:
     type: http
     format: text
     behavior: domain
     url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/cryptominers.txt"
-    path: ./ruleset/cryptominers.txt
+    path: ruleset/cryptominers.txt
     interval: 86400
   apps:
     type: http
     format: text
     behavior: classical
     url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/apps.txt"
-    path: ./ruleset/apps.txt
+    path: ruleset/apps.txt
     interval: 86400
   ircidr:
     type: http
     format: text
     behavior: ipcidr
     url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ircidr.txt"
-    path: ./ruleset/ircidr.txt
+    path: ruleset/ircidr.txt
     interval: 86400
   private:
     type: http
     format: text
     behavior: ipcidr
     url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/private.txt"
-    path: ./ruleset/private.txt
+    path: ruleset/private.txt
     interval: 86400
   arvancloud:
     type: http
     format: text
     behavior: ipcidr
     url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/arvancloud.txt"
-    path: ./ruleset/arvancloud.txt
+    path: ruleset/arvancloud.txt
     interval: 86400
   derakcloud:
     type: http
     format: text
     behavior: ipcidr
     url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/derakcloud.txt"
-    path: ./ruleset/derakcloud.txt
+    path: ruleset/derakcloud.txt
     interval: 86400
   iranserver:
     type: http
     format: text
     behavior: ipcidr
     url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/iranserver.txt"
-    path: ./ruleset/iranserver.txt
+    path: ruleset/iranserver.txt
     interval: 86400
   parspack:
     type: http
     format: text
     behavior: ipcidr
     url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/parspack.txt"
-    path: ./ruleset/parspack.txt
+    path: ruleset/parspack.txt
     interval: 86400
 
   Google:
@@ -652,7 +652,7 @@ rule-providers:
     url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/Google.list
     format: text
     interval: 3600
-    path: ./mphin/ProxyTools/Google.list
+    path: ruleset/Google.list
 
   IpinfoSpeedtest:
     type: http
@@ -660,14 +660,14 @@ rule-providers:
     url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/IpinfoSpeedtest.list
     format: text
     interval: 3600
-    path: ./mphin/ProxyTools/IpinfoSpeedtest.list
+    path: ruleset/IpinfoSpeedtest.list
 
   gfw:
     type: http
     format: yaml
     behavior: domain
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
-    path: ./ruleset/gfw.txt
+    path: ruleset/gfw.txt
     interval: 86400
   UnBan:
     type: http
@@ -675,224 +675,224 @@ rule-providers:
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/UnBan.list
+    path: ruleset/UnBan.list
   BanAD:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/BanAD.list
+    path: ruleset/BanAD.list
   BanProgramAD:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/BanProgramAD.list
+    path: ruleset/BanProgramAD.list
   BanEasyList:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/BanEasyList.list
+    path: ruleset/BanEasyList.list
   BanEasyListChina:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/BanEasyListChina.list
+    path: ruleset/BanEasyListChina.list
   BanEasyPrivacy:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/BanEasyPrivacy.list    
+    path: ruleset/BanEasyPrivacy.list    
   GoogleFCM:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/GoogleFCM.list
+    path: ruleset/GoogleFCM.list
   GoogleCN:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/GoogleCN.list
+    path: ruleset/GoogleCN.list
   SteamCN:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/SteamCN.list
+    path: ruleset/SteamCN.list
   Bing:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Bing.list
+    path: ruleset/Bing.list
   OneDrive:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/OneDrive.list
+    path: ruleset/OneDrive.list
   Microsoft:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Microsoft.list
+    path: ruleset/Microsoft.list
   Apple:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Apple.list
+    path: ruleset/Apple.list
   Telegram:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Telegram.list
+    path: ruleset/Telegram.list
   OpenAi:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/OpenAi.list
+    path: ruleset/OpenAi.list
   NetEaseMusic:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/NetEaseMusic.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/NetEaseMusic.list
+    path: ruleset/NetEaseMusic.list
   Epic:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Epic.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Epic.list
+    path: ruleset/Epic.list
   Origin:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Origin.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Origin.list
+    path: ruleset/Origin.list
   Sony:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Sony.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Sony.list
+    path: ruleset/Sony.list
   Steam:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Steam.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Steam.list
+    path: ruleset/Steam.list
   Nintendo:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Nintendo.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Nintendo.list
+    path: ruleset/Nintendo.list
   YouTube:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/YouTube.list
+    path: ruleset/YouTube.list
   Netflix:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Netflix.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Netflix.list
+    path: ruleset/Netflix.list
   Bahamut:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bahamut.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Bahamut.list
+    path: ruleset/Bahamut.list
   BilibiliHMT:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/BilibiliHMT.list
+    path: ruleset/BilibiliHMT.list
   Bilibili:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bilibili.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Bilibili.list
+    path: ruleset/Bilibili.list
   ChinaMedia:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/ChinaMedia.list
+    path: ruleset/ChinaMedia.list
   ProxyMedia:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/ProxyMedia.list
+    path: ruleset/ProxyMedia.list
   ProxyGFWlist:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/ProxyGFWlist.list
+    path: ruleset/ProxyGFWlist.list
   ChinaDomain:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/ChinaDomain.list
+    path: ruleset/ChinaDomain.list
   ChinaCompanyIp:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/ChinaCompanyIp.list
+    path: ruleset/ChinaCompanyIp.list
   Download:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list
     format: text
     interval: 3600
-    path: ./ACL4SSR/ACL4SSR/Download.list
+    path: ruleset/Download.list
 rules:
   - RULE-SET,private,🎯,no-resolve
   - RULE-SET,apps,🎯
@@ -971,5 +971,4 @@ rules:
   ## rules inner, recommended untuk non kuota reguler
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑
   - IN-TYPE,inner,🐟
-
   - MATCH,🐟
