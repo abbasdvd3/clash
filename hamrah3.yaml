@@ -563,89 +563,81 @@ rule-providers:
 
   ir:
     type: http
-    format: text
+    format: yaml
     behavior: domain
-    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ir.txt"
-    path: ruleset/ir.txt
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
+    path: ./ruleset/ir.yaml
     interval: 86400
   ads:
     type: http
-    format: text
+    format: yaml
     behavior: domain
-    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ads.txt"
-    path: ruleset/ads.txt
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
+    path: ./ruleset/ads.yaml
     interval: 86400
   malware:
     type: http
-    format: text
+    format: yaml
     behavior: domain
-    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/malware.txt"
-    path: ruleset/malware.txt
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
+    path: ./ruleset/malware.yaml
     interval: 86400
   phishing:
     type: http
-    format: text
+    format: yaml
     behavior: domain
-    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/phishing.txt"
-    path: ruleset/phishing.txt
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
+    path: ./ruleset/phishing.yaml
     interval: 86400
   cryptominers:
     type: http
-    format: text
+    format: yaml
     behavior: domain
-    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/cryptominers.txt"
-    path: ruleset/cryptominers.txt
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
+    path: ./ruleset/cryptominers.yaml
     interval: 86400
   apps:
     type: http
-    format: text
+    format: yaml
     behavior: classical
-    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/apps.txt"
-    path: ruleset/apps.txt
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml"
+    path: ./ruleset/apps.yaml
     interval: 86400
   ircidr:
     type: http
-    format: text
+    format: yaml
     behavior: ipcidr
-    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ircidr.txt"
-    path: ruleset/ircidr.txt
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
+    path: ./ruleset/ircidr.yaml
     interval: 86400
   private:
     type: http
-    format: text
+    format: yaml
     behavior: ipcidr
-    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/private.txt"
-    path: ruleset/private.txt
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
+    path: ./ruleset/private.yaml
     interval: 86400
-  arvancloud:
+  irasn:
     type: http
-    format: text
-    behavior: ipcidr
-    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/arvancloud.txt"
-    path: ruleset/arvancloud.txt
+    format: yaml
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
+    path: ./ruleset/irasn.yaml
     interval: 86400
-  derakcloud:
+  social:
     type: http
-    format: text
-    behavior: ipcidr
-    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/derakcloud.txt"
-    path: ruleset/derakcloud.txt
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
+    path: ./ruleset/social.yaml
     interval: 86400
-  iranserver:
+  nsfw1:
     type: http
-    format: text
-    behavior: ipcidr
-    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/iranserver.txt"
-    path: ruleset/iranserver.txt
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
+    path: ./ruleset/nsfw1.yaml
     interval: 86400
-  parspack:
-    type: http
-    format: text
-    behavior: ipcidr
-    url: "https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/parspack.txt"
-    path: ruleset/parspack.txt
-    interval: 86400
-
   Google:
     type: http
     behavior: classical
@@ -894,19 +886,17 @@ rule-providers:
     interval: 3600
     path: ruleset/Download.list
 rules:
-  - RULE-SET,private,🎯,no-resolve
-  - RULE-SET,apps,🎯
-  - RULE-SET,ads,🛑
-  - RULE-SET,malware,🛑
-  - RULE-SET,phishing,🛑
-  - RULE-SET,cryptominers,🛑
-  - RULE-SET,ir,🎯
-  - RULE-SET,ircidr,🎯
-  - RULE-SET,arvancloud,🎯
-  - RULE-SET,derakcloud,🎯
-  - RULE-SET,iranserver,🎯
-  - RULE-SET,parspack,🎯
-#  - RULE-SET,LocalAreaNetwork,🎯
+  - RULE-SET,private,DIRECT,no-resolve
+  - RULE-SET,apps,DIRECT
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,ir,DIRECT
+  - RULE-SET,ircidr,DIRECT
+  - RULE-SET,irasn,DIRECT
+  - RULE-SET,nsfw1,🕹 select
+  - RULE-SET,social,🕹 select
   - RULE-SET,UnBan,🎯
   - RULE-SET,BanAD,🛑
   - RULE-SET,BanProgramAD,🍃
