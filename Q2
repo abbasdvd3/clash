@@ -1080,23 +1080,31 @@
         "download_detour": "🎯 Direct"
       },
       {
-        "tag": "GEOSITE-CN",
+        "tag": "geoip-google",
         "type": "remote",
         "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-google.srs",
         "download_detour": "🎯 Direct"
       },
       {
-        "tag": "GEOLOCATION-!CN",
+        "tag": "geosite-google",
         "type": "remote",
         "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-google.srs",
         "download_detour": "🎯 Direct"
       }
     ],
     "rules": [
       {
         "rule_set": "geosite-social",
+        "outbound": "🚀 Select"
+      },
+      {
+        "rule_set": "geosite-google",
+        "outbound": "🚀 Select"
+      },
+       {
+        "rule_set": "geoip-google",
         "outbound": "🚀 Select"
       },
       {
@@ -1162,7 +1170,7 @@
       },
       {
         "tag": "remote-resolver-dns",
-        "address": "https://1.1.1.1/dns/",
+        "address": "8.8.8.8",
         "detour": "🚀 Select"
       },
       {
