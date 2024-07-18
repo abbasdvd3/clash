@@ -18,62 +18,38 @@
   },
   "inbounds": [
     {
-      "type": "mixed",
-      "listen": "127.0.0.1",
-      "listen_port": 20123,
-      "sniff": true,
-      "sniff_override_destination": true,
-      "domain_strategy": "prefer_ipv4",
-      "tcp_fast_open": true,
-      "tcp_multi_path": true,
-      "udp_fragment": false
-    },
-    {
-      "type": "http",
-      "listen": "127.0.0.1",
-      "listen_port": 7892,
-      "sniff": true,
-      "sniff_override_destination": true,
-      "domain_strategy": "prefer_ipv4",
-      "tcp_fast_open": true,
-      "tcp_multi_path": true,
-      "udp_fragment": false
-    },
-    {
-      "type": "socks",
-      "listen": "127.0.0.1",
-      "listen_port": 7890,
-      "sniff": true,
-      "sniff_override_destination": true,
-      "domain_strategy": "prefer_ipv4",
-      "tcp_fast_open": true,
-      "tcp_multi_path": true,
-      "udp_fragment": false
-    },
-    {
-      "type": "tun",
-      "inet4_address": [
-        "198.18.0.0/16"
-      ],
-      "inet6_address": [
-        "fdfe:dcba:9876::1/126"
-      ],
-      "mtu": 9000,
-      "auto_route": true,
-      "strict_route": true,
-      "endpoint_independent_nat": true,
-      "stack": "mixed",
-      "platform": {
-        "http_proxy": {
-          "enabled": false,
-          "server": "127.0.0.1",
-          "server_port": 20122
+            "auto_route": true,
+            "domain_strategy": "prefer_ipv4",
+            "endpoint_independent_nat": true,
+            "inet4_address": "172.19.0.1/30",
+            "inet6_address": "2001:0470:f9da:fdfa::1/64",
+            "mtu": 9000,
+            "sniff": true,
+            "strict_route": true,
+            "type": "tun"
+        },
+        {
+            "domain_strategy": "prefer_ipv4",
+            "tcp_fast_open": true,
+            "tcp_multi_path": true,
+            "udp_fragment": false,
+            "listen": "127.0.0.1",
+            "listen_port": 2333,
+            "tag": "socks-in",
+            "type": "socks",
+            "users": []
+        },
+        {
+            "domain_strategy": "prefer_ipv4",
+            "tcp_fast_open": true,
+            "tcp_multi_path": true,
+            "udp_fragment": false,
+            "listen": "127.0.0.1",
+            "listen_port": 2334,
+            "tag": "mixed-in",
+            "type": "mixed",
+            "users": []
         }
-      },
-      "sniff": true,
-      "sniff_override_destination": true,
-      "domain_strategy": "prefer_ipv4"
-    }
   ],
   "outbounds": [
     {
