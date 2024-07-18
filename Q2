@@ -19,41 +19,41 @@
   "inbounds": [
     {
       "type": "mixed",
-      "listen": "0.0.0.0",
+      "listen": "127.0.0.1",
       "listen_port": 20123,
       "sniff": true,
       "sniff_override_destination": true,
       "domain_strategy": "prefer_ipv4",
       "tcp_fast_open": true,
       "tcp_multi_path": true,
-      "udp_fragment": true
+      "udp_fragment": false
     },
     {
       "type": "http",
-      "listen": "0.0.0.0",
+      "listen": "127.0.0.1",
       "listen_port": 7892,
       "sniff": true,
       "sniff_override_destination": true,
       "domain_strategy": "prefer_ipv4",
       "tcp_fast_open": true,
       "tcp_multi_path": true,
-      "udp_fragment": true
+      "udp_fragment": false
     },
     {
       "type": "socks",
-      "listen": "0.0.0.0",
+      "listen": "127.0.0.1",
       "listen_port": 7890,
       "sniff": true,
       "sniff_override_destination": true,
       "domain_strategy": "prefer_ipv4",
       "tcp_fast_open": true,
       "tcp_multi_path": true,
-      "udp_fragment": true
+      "udp_fragment": false
     },
     {
       "type": "tun",
       "inet4_address": [
-        "10.20.0.1/30"
+        "198.18.0.0/16"
       ],
       "inet6_address": [
         "fdfe:dcba:9876::1/126"
@@ -65,8 +65,8 @@
       "stack": "mixed",
       "platform": {
         "http_proxy": {
-          "enabled": true,
-          "server": "0.0.0.0",
+          "enabled": false,
+          "server": "127.0.0.1",
           "server_port": 20122
         }
       },
