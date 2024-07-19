@@ -66,40 +66,95 @@ tun:
     - '8000::/1'
   endpoint_independent_nat: true 
 dns:
+  cache-algorithm: arc
   enable: true
   ipv6: true
-  listen: '0.0.0.0:1053'
+  ipv6-timeout: 300
+  prefer-h3: true
+  listen: 0.0.0.0:53
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.0/8
+  fake-ip-range: 28.0.0.0/16
+  fake-ip-filter:
+  - '*.lan'
+  default-nameserver:
+  - tcp://223.5.5.5#🐝
+  - tcp://8.8.8.8
+  - tcp://1.1.1.1
+  - udp://1.1.1.1
+  - udp://223.6.6.6
+  - udp://119.29.29.29
+  - udp://8.8.8.8
+  - udp://114.114.114.114
+  - 223.5.5.5
+  - 10.202.10.202
+  - 10.0.0.0
+  - 119.29.29.29
+  - 114.114.114.114
+  - 8.8.8.8
+  - tls://1.12.12.12:853#🐝
+  - tls://223.5.5.5:853#🐝
+  nameserver-policy:
+    www.baidu.com: 114.114.114.114
+    +.instagram.com: [223.5.5.5:853, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    www.baidu.com,+.google.cn: https://doh.pub/dns-query
+    geosite:private,apple: https://dns.alidns.com/dns-query
+    "geosite:ir,private,apple":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+    "geosite:category-ads-all": rcode://success
+    "www.baidu.com,+.google.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "+.pornhub.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "+.sxyprn.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "+.spankbang.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "+.samfw.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]  
+    "rule-set:GoogleFCM,ir,social,nsfw1,ProxyGFWlist": [223.5.5.5, https://dns.alidns.com/dns-query]
+    GEOSITE:google: 8.8.8.8
   nameserver:
-    - 10.0.0.0
-    - 10.202.10.102
-    - tcp://223.5.5.5
-    - tcp://8.8.8.8
-    - tcp://1.1.1.1
-    - udp://1.1.1.1
-    - udp://223.6.6.6
-    - udp://119.29.29.29
-    - udp://8.8.8.8
-    - udp://114.114.114.114
+  - 78.157.42.100
+  - 10.202.10.102
+  - 114.114.114.114
+  - 8.8.8.8 
+  - tls://223.5.5.5:853
+  - https://doh.pub/dns-query 
+  - https://dns.alidns.com/dns-query#h3=true 
+  - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true 
+  - dhcp://en0 
+  - quic://dns.adguard.com:784
+  - https://doh.pub/dns-query#🐝
+  - https://dns.alidns.com/dns-query
   fallback:
-    - 78.157.42.100
-    - 10.202.10.202
-    - udp://223.5.5.5:853
-    - https://223.5.5.5/dns-query
-    - udp://1.0.0.1
-    - udp://8.8.4.4
+  - tcp://1.1.1.1
+  - https://1.1.1.2/dns-query
+  - https://1.0.0.2/dns-query
+  - https://9.9.9.9/dns-query
+  - 78.157.42.100
+  - 10.202.10.202
+  - udp://223.5.5.5:853
+  - https://223.5.5.5/dns-query
+  - udp://1.0.0.1
+  - udp://8.8.4.4
+  proxy-server-nameserver:
+  - https://dns.google/dns-query
+  - tls://one.one.one.one
   fallback-filter:
-    geoip: true
+    geoip: false
     geoip-code: ir
+    geosite:
+  #  - gfw
     ipcidr:
-      - 240.0.0.0/4
+    - 240.0.0.0/4
+    - 0.0.0.0/32
     domain:
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
-      - '+.telegram.com'
-      - '+.instagram.com'
+    - +.google.com
+    - +.google.cn
+    - +.googleapis.cn
+    - +.googleapis.com
+    - +.github.com
+    - +.facebook.com
+    - +.twitter.com
+    - +.youtube.com  
+
+   
 
 
 proxies:
@@ -487,80 +542,41 @@ proxy-groups:
   - name: 🐝
     type: select
     proxies:
-      - U
-      - PROXY
-      - 🍆
-      - 🔯
-  - name: U🍆
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 100
-#    include-all-proxies: true
-    proxies:
-      - PROXY🍆
-      - 🍆      
-  - name: U🔯
-    type: fallback
-    url: http://www.gstatic.com/generate_204
-    interval: 180
-#    tolerance: 100
-#    include-all-proxies: true
-    proxies:
-      - PROXY🔯
-      - 🔯
-  - name: PROXY🔯
+      - 🐝🐝
+
+  - name: 🐝🐝
     type: select
     include-all-proxies: true
+    include-all-providers: true
     proxies:
       - 🔯
       - 🍆
-   - name: PROXY🍆
-    type: select
-    include-all-proxies: true
-    proxies:
-      - 🍆
-      - 🔯
-      
-  - name: 🍆🍆
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 100
-#    include-all-proxies: true
-    proxies:
-      - U🍆
-      - U🔯 
-  - name: 🔯🔯
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 100
-#    include-all-proxies: true
-    proxies:
-      - U🔯
-      - U🍆
   - name: 🍆
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 100
+    tolerance: 50
     include-all-proxies: true
+    include-all-providers: true
+#    expected-status: 204
+#    timeout: 500
     proxies:
-
+    
   - name: 🔯
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 180
     include-all-proxies: true
+    include-all-providers: true
+#    expected-status: 204
+#    timeout: 500
     proxies:
-
-
+    
   - name: 🎯
     type: select
     proxies:
       - DIRECT
-      - PROXY
+      - 🍆
       - 🐝
   - name: 🆎 AdBlock
     type: select
@@ -568,6 +584,99 @@ proxy-groups:
       - REJECT
       - DIRECT
       - 🐝
+      
+
+proxy-providers:
+  Subscription-1:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/hamrah.yaml" # https://chromego-sub.netlify.app/sub/merged_proxies_new.yaml" # replace this URL with your provider's subscription link
+    path: providers6/Subscription-1.yaml
+    proxy: DIRECT
+    interval: 600
+    udp: true
+    health-check:
+      enable: true
+      interval: 300
+      url: http://www.gstatic.com/generate_204
+      lazy: true 
+
+  Subscription-2:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml" # replace this URL with your provider's subscription link
+    path: providers6/Subscription-2.yaml
+    proxy: DIRECT
+    interval: 600
+    udp: true
+    health-check:
+      enable: true
+      interval: 300
+      url: http://www.gstatic.com/generate_204
+      lazy: true 
+
+  Subscription-3:
+    type: http
+    url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml" # replace this URL with your provider's subscription link
+    path: providers6/Subscription-3.yaml
+    proxy: DIRECT
+    interval: 600
+    udp: true
+    health-check:
+      enable: true
+      interval: 300
+      url: http://www.gstatic.com/generate_204
+      lazy: true 
+
+  Subscription-4:
+    type: http
+    url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml" # replace this URL with your provider's subscription link
+    path: providers6/Subscription-4.yaml
+    proxy: DIRECT
+    interval: 600
+    udp: true
+    health-check:
+      enable: true
+      interval: 300
+      url: http://www.gstatic.com/generate_204
+      lazy: true 
+
+  Subscription-5:
+    type: http
+    url: "https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/combine.yaml" # replace this URL with your provider's subscription link
+    path: providers6/Subscription-5.yaml
+    proxy: DIRECT
+    interval: 600
+    udp: true
+    health-check:
+      enable: true
+      interval: 300
+      url: http://www.gstatic.com/generate_204
+      lazy: true 
+
+  Subscription-6:
+    type: http
+    url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml" # replace this URL with your provider's subscription link
+    path: providers6/Subscription-6.yaml
+    proxy: DIRECT
+    interval: 600
+    udp: true
+    health-check:
+      enable: true
+      interval: 300
+      url: http://www.gstatic.com/generate_204
+      lazy: true 
+
+  Subscription-7:
+    type: http
+    url: "https://raw.githubusercontent.com/dongchengjie/airport/main/subs/merged/tested_within.yaml" # replace this URL with your provider's subscription link
+    path: providers6/Subscription-7.yaml
+    proxy: DIRECT
+    interval: 600
+    udp: true
+    health-check:
+      enable: true
+      interval: 300
+      url: http://www.gstatic.com/generate_204
+      lazy: true 
 rule-providers:
   ir:
     type: http
