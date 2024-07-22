@@ -4,7 +4,7 @@ socks-port: 7891
 mixed-port: 7890
 mode: rule
 allow-lan: true
-unified-delay: false
+unified-delay: true
 bind-address: '*'
 log-level: debug
 ipv6: true
@@ -71,7 +71,7 @@ dns:
   ipv6: true
   ipv6-timeout: 300
   prefer-h3: true
-  listen: 0.0.0.0:53
+  listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.0/16
   fake-ip-filter:
@@ -107,7 +107,7 @@ dns:
     "+.sxyprn.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
     "+.spankbang.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
     "+.samfw.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]  
-    "rule-set:GoogleFCM,ir,social,nsfw1,ProxyGFWlist": [223.5.5.5, https://dns.alidns.com/dns-query]
+    "rule-set:GoogleFCM,ir,social,nsfw1,GoogleCNProxyIP,ProxyGFWlist": [223.5.5.5, https://dns.alidns.com/dns-query]
     GEOSITE:google: 8.8.8.8
   nameserver:
   - 78.157.42.100:853
@@ -140,7 +140,6 @@ dns:
   - quic://ipv4-anexia-hkg-1.edge.nextdns.io:853
   - quic://ipv4-zepto-tyo-1.edge.nextdns.io:853
   - quic://ipv4-vultr-tyo-1.edge.nextdns.io:853
-
   - tls://ipv4-xtom-osa-1.edge.nextdns.io:853
   - tls://ipv4-zepto-sel-1.edge.nextdns.io:853
   - tls://ipv4-starry-osa-1.edge.nextdns.io:853
@@ -724,6 +723,11 @@ proxies:
 proxy-groups:
   - name: 🐝
     type: select
+    include-all-proxies: true
+    include-all-providers: true
+    hidden: true
+    expected-status: 204
+    timeout: 500
     proxies:
       - 🐝🐝
 
@@ -732,18 +736,19 @@ proxy-groups:
     include-all-proxies: true
     include-all-providers: true
     proxies:
-      - 🔯
       - 🍆
+      - 🔯
+      
   - name: 🍆
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
-  #  tolerance: 50
+    tolerance: 50
     include-all-proxies: true
     include-all-providers: true
     hidden: true
-#    expected-status: 204
-#    timeout: 500
+    expected-status: 204
+    timeout: 500
     proxies:
     
   - name: 🔯
@@ -753,8 +758,8 @@ proxy-groups:
     include-all-proxies: true
     include-all-providers: true
     hidden: true
-#    expected-status: 204
-#    timeout: 500
+    expected-status: 204
+    timeout: 500
     proxies:
     
   - name: 🎯
