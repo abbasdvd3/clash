@@ -3,18 +3,53 @@ proxies:
 proxy-groups:
 
   - name: PROXY
+    type: select
+    proxies:
+      - url-test
+      - fallback
+      - 🇺🇸a-url-test
+
+  - name: url-test
     type: url-test
-    disable-udp: true
+    disable-udp: false
     url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 70
+ #   tolerance: 70
     lazy: true
     proxies:
+      - 🇺🇸1
       - 🇺🇸2
-      - 🇺🇸
-  - name: 🇺🇸
+      - 🇺🇸3
+      - 🇺🇸4
+      - 🇺🇸5
+      - 🇺🇸6
+      - 🇺🇸7
+      - 🇺🇸8
+      - 🇺🇸9
+      - 🇺🇸10
+      - 🇺🇸11
+  - name: fallback
+    type: fallback
+    disable-udp: false
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+ #   tolerance: 70
+    lazy: true
+    proxies:
+      - 🇺🇸1
+      - 🇺🇸2
+      - 🇺🇸3
+      - 🇺🇸4
+      - 🇺🇸5
+      - 🇺🇸6
+      - 🇺🇸7
+      - 🇺🇸8
+      - 🇺🇸9
+      - 🇺🇸10
+      - 🇺🇸11
+  - name: 🇺🇸a-url-test
     type: url-test
-    disable-udp: true
+    disable-udp: false
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -32,12 +67,9 @@ proxy-groups:
       - Subscription-9
       - Subscription-10
       - Subscription-11
-   #   - Subscription-12
-   #   - Subscription-13
- #     - Subscription-14 
-  - name: 🇺🇸2
+  - name: 🇺🇸1
     type: url-test
-    disable-udp: true
+    disable-udp: false
     url: http://www.gstatic.com/generate_204
     interval: 500
     tolerance: 50
@@ -45,19 +77,106 @@ proxy-groups:
     hidden: true
     use: 
       - Subscription-1
+  - name: 🇺🇸2
+    type: url-test
+    disable-udp: false
+    url: http://www.gstatic.com/generate_204
+    interval: 500
+    tolerance: 50
+    lazy: true 
+    hidden: true
+    use: 
       - Subscription-2
+  - name: 🇺🇸3
+    type: url-test
+    disable-udp: false
+    url: http://www.gstatic.com/generate_204
+    interval: 500
+    tolerance: 50
+    lazy: true 
+    hidden: true
+    use: 
       - Subscription-3
+  - name: 🇺🇸4
+    type: url-test
+    disable-udp: false
+    url: http://www.gstatic.com/generate_204
+    interval: 500
+    tolerance: 50
+    lazy: true 
+    hidden: true
+    use: 
       - Subscription-4
+  - name: 🇺🇸5
+    type: url-test
+    disable-udp: false
+    url: http://www.gstatic.com/generate_204
+    interval: 500
+    tolerance: 50
+    lazy: true 
+    hidden: true
+    use: 
       - Subscription-5
+  - name: 🇺🇸6
+    type: url-test
+    disable-udp: false
+    url: http://www.gstatic.com/generate_204
+    interval: 500
+    tolerance: 50
+    lazy: true 
+    hidden: true
+    use: 
       - Subscription-6
+  - name: 🇺🇸7
+    type: url-test
+    disable-udp: false
+    url: http://www.gstatic.com/generate_204
+    interval: 500
+    tolerance: 50
+    lazy: true 
+    hidden: true
+    use: 
       - Subscription-7
+  - name: 🇺🇸8
+    type: url-test
+    disable-udp: false
+    url: http://www.gstatic.com/generate_204
+    interval: 500
+    tolerance: 50
+    lazy: true 
+    hidden: true
+    use: 
       - Subscription-8
+  - name: 🇺🇸9
+    type: url-test
+    disable-udp: false
+    url: http://www.gstatic.com/generate_204
+    interval: 500
+    tolerance: 50
+    lazy: true 
+    hidden: true
+    use: 
       - Subscription-9
+  - name: 🇺🇸10
+    type: url-test
+    disable-udp: false
+    url: http://www.gstatic.com/generate_204
+    interval: 500
+    tolerance: 50
+    lazy: true 
+    hidden: true
+    use: 
       - Subscription-10
-      - Subscription-11
-  #    - Subscription-12
-   #   - Subscription-13
- #     - Subscription-14       
+  - name: 🇺🇸11
+    type: url-test
+    disable-udp: false
+    url: http://www.gstatic.com/generate_204
+    interval: 500
+    tolerance: 50
+    lazy: true 
+    hidden: true
+    use: 
+      - Subscription-11 
 proxy-providers:
 
   Subscription-1:
