@@ -2,7 +2,7 @@
 proxies:
 proxy-groups:
 
-  - name: PROXY
+  - name: PRO
     type: select
     proxies:
       - url-test
@@ -176,7 +176,25 @@ proxy-groups:
     lazy: true 
     hidden: true
     use: 
-      - Subscription-11 
+      - Subscription-11
+  - name: PROXY
+    type: select
+    proxies:
+      - url-test
+      - fallback
+      - 🇺🇸a-url-test
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - Subscription-7
+      - Subscription-8
+      - Subscription-9
+      - Subscription-10
+      - Subscription-11
 proxy-providers:
 
   Subscription-1:
@@ -2250,16 +2268,10 @@ rules:
   - DOMAIN-SUFFIX,ytimg.com,PROXY
   - IP-CIDR,74.125.0.0/16,PROXY,no-resolve
   - IP-CIDR,173.194.0.0/16,PROXY,no-resolve
-# Bing
-# From https://github.com/ACL4SSR/ACL4SSR/issues/121#issuecomment-1793673237
   - DOMAIN-SUFFIX,bing.com,PROXY
   - DOMAIN-SUFFIX,copilot.microsoft.com,PROXY
-# OneDrive
-#DOMAIN-SUFFIX,aria.microsoft.com
   - PROCESS-NAME,OneDrive,PROXY
   - PROCESS-NAME,OneDriveUpdater,PROXY
-#   - USER-AGENT,OneDrive*,PROXY
-#   - USER-AGENT,OneDriveiOSApp*,PROXY
   - DOMAIN-KEYWORD,1drv,PROXY
   - DOMAIN-KEYWORD,onedrive,PROXY
   - DOMAIN-KEYWORD,skydrive,PROXY
@@ -2274,9 +2286,6 @@ rules:
   - DOMAIN-SUFFIX,spoprod-a.akamaihd.net,PROXY
   - DOMAIN-SUFFIX,storage.live.com,PROXY
   - DOMAIN-SUFFIX,storage.msn.com,PROXY
-# Microsoft Services
-# optimized from https://gist.github.com/TTTPOB/ce93fb3b04ba2f21880b09427442d831
-# source: https://docs.microsoft.com/en-us/office365/enterprise/urls-and-ip-address-ranges
   - DOMAIN-KEYWORD,1drv,PROXY
   - DOMAIN-KEYWORD,microsoft,PROXY
   - DOMAIN-SUFFIX,aadrm.com,PROXY
@@ -9419,20 +9428,12 @@ rules:
   - DOMAIN-SUFFIX,picjs.xyz,PROXY
   - DOMAIN-SUFFIX,smtp,DIRECT
   - DOMAIN-KEYWORD,aria2,DIRECT
-#   - URL-REGEX,(Subject|HELO|SMTP),DIRECT
-#   - URL-REGEX,(api|ps|sv|offnavi|newvector|ulog.imap|newloc)(.map|).(baidu|n.shifen).com,DIRECT
-#   - URL-REGEX,(.+.|^)(360|so|qihoo|360safe|qhimg|360totalsecurity|yunpan).(cn|com),DIRECT
-#   - URL-REGEX,(.+.)?(torrent|announce.php?passkey=|tracker|BitTorrent|bt_key|ed2k|find_node|get_peers|info_hash|magnet:|peer_id=|xunlei)(..+)?,DIRECT
-#   - URL-REGEX,(.?)(xunlei|sandai|Thunder|XLLiveUD)(.),DIRECT
   - PROCESS-NAME,DownloadService.exe,DIRECT
-#   - URL-REGEX,(.+\.|^)(360|so)\.(cn|com),DIRECT
   - PROCESS-NAME,Weiyun.exe,DIRECT
   - PROCESS-NAME,baidunetdisk.exe,DIRECT
   - GEOIP,CN,PROXY
   - RULE-SET,telegramcidr,PROXY
   - RULE-SET,gfw,PROXY
-  - RULE-SET,private,DIRECT
-  - RULE-SET,direct,DIRECT
   - RULE-SET,reject,REJECT
   - RULE-SET,iran_ads,REJECT
   - DOMAIN-SUFFIX,ir,DIRECT
