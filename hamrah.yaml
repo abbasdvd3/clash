@@ -721,7 +721,7 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
     include-all-proxies: true
     include-all-providers: true
-    proxies: [url-test, fallback, DIRECT]
+    proxies: [url-test, fallback, 🇭🇰, 🇯🇵, 🇺🇲, 🇰🇷, 🇸🇬, 🇨🇳, DIRECT]
 
   - name: url-test
     type: url-test
@@ -787,12 +787,12 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
     include-all-proxies: true
     include-all-providers: true
-    proxies: []
+    proxies: [🇭🇰, 🇯🇵, 🇺🇲, 🇰🇷, 🇸🇬, 🇨🇳]
 
   - name: 🆎 AdBlock
     type: select
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/block.svg
-    proxies: ["REJECT", "DIRECT"]
+    proxies: [REJECT, DIRECT]
 
   - name: 🐝
     type: select
@@ -802,8 +802,97 @@ proxy-groups:
     hidden: false
 #    expected-status: 204
 #    timeout: 50
-    proxies: ["url-test", "fallback", 'DIRECT']
+    proxies: [url-test, fallback, DIRECT]
     
+  - name: 🇭🇰
+    type: url-test
+    lazy: true
+    interval: 600
+    timeout: 2000
+    expected-status: 100/104
+    nodeGroupType: 0
+    url: https://www.youtube.com/generate_204 # https://fiber.google.com/speedtest/generate_104
+    max-failed-times: 3
+    icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/hongkong.svg
+    include-all-proxies: true
+    include-all-providers: true
+    filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
+    proxies: 
+
+  - name: 🇯🇵
+    type: url-test
+    lazy: true
+    interval: 600
+    timeout: 2000
+    expected-status: 100/104
+    nodeGroupType: 0
+    url: https://www.youtube.com/generate_204 # https://fiber.google.com/speedtest/generate_104
+    max-failed-times: 3
+    icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/japan-flag-round-circle-icon.svg
+    include-all-proxies: true
+    include-all-providers: true
+    filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
+    proxies: 
+
+  - name: 🇺🇲
+    type: url-test
+    lazy: true
+    interval: 600
+    timeout: 2000
+    expected-status: 100/104
+    nodeGroupType: 0
+    url: https://www.youtube.com/generate_204 # https://fiber.google.com/speedtest/generate_104
+    max-failed-times: 3
+    icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/usa.svg
+    include-all-proxies: true
+    include-all-providers: true
+    proxies:
+    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
+
+  - name: 🇨🇳
+    type: url-test
+    lazy: true
+    interval: 600
+    timeout: 2000
+    expected-status: 100/104
+    nodeGroupType: 0
+    url: https://www.youtube.com/generate_204 # https://fiber.google.com/speedtest/generate_104
+    max-failed-times: 3
+    icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/taiwan.svg
+    include-all-proxies: true
+    include-all-providers: true
+    filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
+    proxies: 
+
+  - name: 🇸🇬
+    type: url-test
+    lazy: true
+    interval: 600
+    timeout: 2000
+    expected-status: 100/104
+    nodeGroupType: 0
+    url: https://www.youtube.com/generate_204 # https://fiber.google.com/speedtest/generate_104
+    max-failed-times: 3
+    icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/singapore.svg
+    include-all-proxies: true
+    include-all-providers: true
+    filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
+    proxies: 
+
+  - name: 🇰🇷
+    type: url-test
+    lazy: true
+    interval: 600
+    timeout: 2000
+    expected-status: 100/104
+    nodeGroupType: 0
+    url: https://www.youtube.com/generate_204 # https://fiber.google.com/speedtest/generate_104
+    max-failed-times: 3
+    icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/korea.svg
+    include-all-proxies: true
+    include-all-providers: true
+    filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
+    proxies: 
 proxy-providers:
   Subscription-1:
     type: http
