@@ -25,11 +25,11 @@ find-process-mode: always
 profile:
   store-selected: true
   store-fake-ip: true
-interface-name: rmnet0
+interface-name: ""
 keep-alive-interval: 15 
 
 sniffer:
-  enable: true
+  enable: false
   sniffing:
     - tls
     - http
@@ -53,6 +53,11 @@ tun:
     - any:53
     - any:5353
     - tcp://any:53
+    - tcp://any:53
+    - tcp://8.8.8.8:53
+    - tcp://8.8.4.4:53
+    - 192.18.0.0.1
+    - 127.0.0.1
   # interface-name: 
   auto-route: true 
   auto-detect-interface: true 
@@ -73,13 +78,13 @@ dns:
   prefer-h3: true
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.0/16
+  fake-ip-range: 114.0.0.0/16
   fake-ip-filter:
   - '*.lan'
   default-nameserver:
-  - tcp://223.5.5.5#🐝
+  - 94.140.14.141
   - tcp://8.8.8.8:853
-  - tcp://1.1.1.1:853
+  - 1.1.1.1:853
   - udp://1.1.1.1:853
   - udp://223.6.6.6:853
   - udp://119.29.29.29
@@ -89,39 +94,36 @@ dns:
   - udp://10.202.10.202
   - udp://10.0.0.0
   - udp://119.29.29.29
-  - udp://114.114.114.114
-  - udp://8.8.8.8
-  - tls://1.12.12.12:853#🐝
-  - tls://223.5.5.5:853#🐝
+  - 114.114.114.114
+  - 223.6.6.6:853
+  - 119.29.29.29
+  - 8.8.8.8
+  - 1.12.12.12
+  - 114.114.114.114
   nameserver-policy:
     www.baidu.com: 114.114.114.114
-    +.instagram.com: [223.5.5.5:853, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
-    www.baidu.com,+.google.cn: https://doh.pub/dns-query
-    geosite:private,apple: https://dns.alidns.com/dns-query
-    "geosite:ir,private,apple":
-      - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
+    www.instagram.com: [94.140.14.141, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, 1.12.12.12, 8.8.8.8, 119.29.29.29, 114.114.114.114]
+    www.baidu.com,+.google.com: [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, 1.12.12.12, 8.8.8.8, 119.29.29.29, 114.114.114.114]
+    geosite:private,apple: [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, 1.12.12.12, 8.8.8.8, 119.29.29.29, 114.114.114.114]
+    "geosite:ir,private,apple": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, 1.12.12.12, 8.8.8.8, 119.29.29.29, 114.114.114.114]
     "geosite:category-ads-all": rcode://success
-    "www.baidu.com,+.google.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
-    "+.pornhub.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
-    "+.sxyprn.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
-    "+.spankbang.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
-    "+.samfw.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]  
-    "rule-set:GoogleFCM,ir,social,nsfw1,GoogleCNProxyIP,ProxyGFWlist": [223.5.5.5, https://dns.alidns.com/dns-query]
-    GEOSITE:google: 8.8.8.8
+    "www.baidu.com,+.google.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, 1.12.12.12, 8.8.8.8, 119.29.29.29, 114.114.114.114]
+    "+.pornhub.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, 1.12.12.12, 8.8.8.8, 119.29.29.29, 114.114.114.114]
+    "+.sxyprn.com":[223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, 1.12.12.12, 8.8.8.8, 119.29.29.29, 114.114.114.114]
+    "+.spankbang.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, 1.12.12.12, 8.8.8.8, 119.29.29.29, 114.114.114.114]
+    "+.samfw.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, 1.12.12.12, 8.8.8.8, 119.29.29.29, 114.114.114.114]
+    "rule-set:GoogleFCM,ir,social,nsfw1,GoogleCNProxyIP,ProxyGFWlist,ProxyMedia": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, 1.12.12.12, 8.8.8.8, 119.29.29.29, 114.114.114.114]
+    GEOSITE:google: [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, 1.12.12.12, 8.8.8.8, 119.29.29.29, 114.114.114.114]
   nameserver:
   - udp://78.157.42.100:853
   - udp://10.202.10.102:853
   - udp://114.114.114.114:853
   - udp://8.8.8.8:853
   - udp://223.5.5.5:853
-  - https://doh.pub/dns-query 
   - https://dns.alidns.com/dns-query#h3=true 
   - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true 
   - dhcp://en0 
   - quic://dns.adguard.com:784
-  - https://doh.pub/dns-query#🐝
-  - https://dns.alidns.com/dns-query
   - https://dns.alidns.com/dns-query
   - https://dns.cfiec.net/dns-query
   - https://doh.pub/dns-query
@@ -209,18 +211,12 @@ dns:
   - quic://dns.nextdns.io:853
   - tls://dns.nextdns.io:853
   - https://dns.nextdns.io/dns-query
-  - udp://45.90.28.55:853
-  - udp://45.90.30.55:853
-  - udp://45.90.28.55:853
-  - udp://45.90.30.55:853
+  - udp://45.90.28.55
+  - udp://45.90.30.55
   - https://45.90.28.55/dns-query
   - https://45.90.30.55/dns-query
-  - udp://45.90.28.0:853
+  - 45.90.28.0:853
   - udp://45.90.30.0:853
-  - udp://45.90.28.0:853
-  - udp://45.90.30.0:853
-  - https://45.90.28.0/dns-query
-  - https://45.90.30.0/dns-query
   - https://anycast.dns.nextdns.io/dns-query
   - quic://dns-unfiltered.adguard.com:784
   - tls://dns-unfiltered.adguard.com:853
@@ -228,14 +224,13 @@ dns:
   - udp://94.140.14.140:784
   - udp://94.140.14.140:853
   - https://94.140.14.140/dns-query
-  - udp://94.140.14.141:784
-  - udp://94.140.14.141:853
+  - 94.140.14.141
+  - udp://94.140.14.141
   - https://94.140.14.141/dns-query
   - quic://[2a10:50c0::1:ff]:784
   - tls://[2a10:50c0::1:ff]:853
   - https://[2a10:50c0::1:ff]/dns-query
   - quic://[2a10:50c0::2:ff]:784
-  - tls://[2a10:50c0::2:ff]:853
   - https://[2a10:50c0::2:ff]/dns-query
   - https://dns-adguard.heinu.cf/dns-query
   - https://dns-adguard.heinu.ga/dns-query
@@ -721,63 +716,94 @@ proxies:
   - {"name":"🇺🇸_美国_379","type":"ss","server":"51.159.111.208","port":989,"password":"f8f7aCzcPKbsF8p3","cipher":"aes-256-cfb"}
   - {"name":"🇳🇱_荷兰_380","type":"ss","server":"sha.majidcttls.ggff.net","port":443,"password":"shadowsocks","cipher":"aes-128-cfb"}
 proxy-groups:
-  - name: 🐝
+  - name: proxy
     type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
     include-all-proxies: true
     include-all-providers: true
-    hidden: true
-    expected-status: 204
-#    timeout: 500
-    proxies:
-      - 🐝🐝
+    proxies: [url-test, fallback, DIRECT]
 
-  - name: 🐝🐝
+  - name: url-test
     type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
+    tolerance: 100
+    lazy: true
+    interval: 60
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
     include-all-proxies: true
     include-all-providers: true
-    proxies:
-      - 🍆
-      - 🔯
-      
-  - name: 🍆
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 150
+    proxies: []
+
+  - name: google
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/google.svg
     include-all-proxies: true
     include-all-providers: true
-    hidden: true
-    expected-status: 204
-    timeout: 50
-    proxies:
-    
-  - name: 🔯
-    type: fallback
-    url: http://www.gstatic.com/generate_204
-    interval: 180
+    proxies: [url-test, fallback, DIRECT]
+
+  - name: youtube
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/youtube.svg
     include-all-proxies: true
     include-all-providers: true
-    hidden: true
-    expected-status: 204
-    timeout: 50
-    proxies:
-    
+    proxies: [url-test, fallback, DIRECT]
+
+  - name: Social
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/telegram.svg
+    include-all-proxies: true
+    include-all-providers: true
+    proxies: [url-test, fallback, DIRECT]
+
+  - name: microsoft
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/microsoft.svg
+    include-all-proxies: true
+    include-all-providers: true
+    proxies: [url-test, fallback, DIRECT]
+
+  - name: apple
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/apple.svg
+    include-all-proxies: true
+    include-all-providers: true
+    proxies: [url-test, fallback, DIRECT]
+
   - name: 🎯
     type: select
-    proxies:
-      - DIRECT
-      - 🍆
-      - 🐝
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/bug.svg
+    proxies: [DIRECT, url-test, fallback]
+
+  - name: fallback
+    type: fallback
+    tolerance: 100
+    lazy: true
+    interval: 60
+    timeout: 2000
+    url: https://www.youtube.com/generate_204
+    max-failed-times: 3
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
+    include-all-proxies: true
+    include-all-providers: true
+    proxies: []
+
   - name: 🆎 AdBlock
     type: select
-    proxies:
-      - REJECT
-      - DIRECT
-      - 🐝
-      
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/block.svg
+    proxies: ["REJECT", "DIRECT"]
 
+  - name: 🐝
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg
+    include-all-proxies: true
+    include-all-providers: true
+    hidden: false
+#    expected-status: 204
+#    timeout: 50
+    proxies: ["url-test", "fallback", 'DIRECT']
+    
 proxy-providers:
   Subscription-1:
     type: http
@@ -1331,12 +1357,12 @@ rule-providers:
     path: ruleset/LocalAreaNetwork.list   
 rules :
   - RULE-SET,LocalAreaNetwork,🎯
-  - RULE-SET,social,🐝
-  - RULE-SET,nsfw1,🐝
+  - RULE-SET,social,social
+  - RULE-SET,nsfw1,social
   - RULE-SET,category-ads-all,🆎 AdBlock
   - RULE-SET,private,🎯,no-resolve
-  - RULE-SET,GitHub,🎯,no-resolve
-  - RULE-SET,apps,🐝
+  - RULE-SET,GitHub,proxy
+  - RULE-SET,apps,proxy
   - RULE-SET,ads,🆎 AdBlock
   - RULE-SET,malware,🆎 AdBlock
   - RULE-SET,phishing,🆎 AdBlock
@@ -1347,53 +1373,53 @@ rules :
   - RULE-SET,UnBan,🆎 AdBlock
   - RULE-SET,BanAD,🆎 AdBlock
   - RULE-SET,BanProgramAD,🆎 AdBlock
-  - RULE-SET,GoogleFCM,🐝
-  - RULE-SET,GoogleCN,🐝
-  - RULE-SET,SteamCN,🐝
-  - RULE-SET,Bing,🐝
-  - RULE-SET,OneDrive,🐝
-  - RULE-SET,Microsoft,🎯
-  - RULE-SET,Apple,🐝
-  - RULE-SET,Telegram,🐝
-  - RULE-SET,OpenAi,🐝
-  - RULE-SET,NetEaseMusic,🐝
-  - RULE-SET,Epic,🐝
-  - RULE-SET,Origin,🐝
-  - RULE-SET,Sony,🐝
-  - RULE-SET,Steam,🐝
-  - RULE-SET,Nintendo,🐝
-  - RULE-SET,YouTube,🐝
-  - RULE-SET,Netflix,🐝
-  - RULE-SET,Bahamut,🐝
-  - RULE-SET,BilibiliHMT,🐝
-  - RULE-SET,Bilibili,🐝
-  - RULE-SET,ChinaMedia,🐝
-  - RULE-SET,ProxyMedia,🐝
-  - RULE-SET,Google1,🐝 
-  - RULE-SET,Google,🐝 
-  - DOMAIN-SUFFIX,v2rayse.com,🐝
-  - DOMAIN-SUFFIX,cff.pw,🐝
-  - DOMAIN-SUFFIX,vpnse.org,🐝
-  - DOMAIN-SUFFIX,cfmem.com,🐝
-  - RULE-SET,ProxyGFWlist,🐝
-  - RULE-SET,ChinaDomain,🐝
-  - RULE-SET,ChinaCompanyIp,🐝
-  - RULE-SET,Download,🐝
-  - RULE-SET,GoogleCNProxyIP,🐝
-  - RULE-SET,gfw,🐝  
+  - RULE-SET,GoogleFCM,google
+  - RULE-SET,GoogleCN,google
+  - RULE-SET,SteamCN,proxy
+  - RULE-SET,Bing,microsoft
+  - RULE-SET,OneDrive,microsoft
+  - RULE-SET,Microsoft,microsoft
+  - RULE-SET,Apple,apple
+  - RULE-SET,Telegram,social
+  - RULE-SET,OpenAi,proxy
+  - RULE-SET,NetEaseMusic,proxy
+  - RULE-SET,Epic,proxy
+  - RULE-SET,Origin,proxy
+  - RULE-SET,Sony,proxy
+  - RULE-SET,Steam,proxy
+  - RULE-SET,Nintendo,proxy
+  - RULE-SET,YouTube,youtube
+  - RULE-SET,Netflix,proxy
+  - RULE-SET,Bahamut,proxy
+  - RULE-SET,BilibiliHMT,🎯
+  - RULE-SET,Bilibili,🎯
+  - RULE-SET,ChinaMedia,proxy
+  - RULE-SET,ProxyMedia,proxy
+  - RULE-SET,Google1,google
+  - RULE-SET,Google,google
+  - DOMAIN-SUFFIX,v2rayse.com,proxy
+  - DOMAIN-SUFFIX,cff.pw,proxy
+  - DOMAIN-SUFFIX,vpnse.org,proxy
+  - DOMAIN-SUFFIX,cfmem.com,proxy
+  - RULE-SET,ProxyGFWlist,google
+  - RULE-SET,ChinaDomain,proxy
+  - RULE-SET,ChinaCompanyIp,proxy
+  - RULE-SET,Download,proxy
+  - RULE-SET,GoogleCNProxyIP,google
+  - RULE-SET,gfw,proxy
   - RULE-SET,Adblock1,🆎 AdBlock
   - RULE-SET,DNS2,🆎 AdBlock
-  - RULE-SET,Domestic,🐝
-  - RULE-SET,cloudflare,🐝
+  - RULE-SET,Domestic,🎯
+  - RULE-SET,cloudflare,proxy
   - RULE-SET,ChinaDNS,🎯
-  - RULE-SET,AdGuardSDNSFilterDirect,🐝
+  - RULE-SET,AdGuardSDNSFilterDirect,🎯
   - RULE-SET,BlockHttpDNS,🆎 AdBlock
   - RULE-SET,AdGuardSDNSFilter,🆎 AdBlock
-  - RULE-SET,Samsung,🐝
+  - RULE-SET,Samsung,proxy
   - RULE-SET,SpeedTest,🎯
   - RULE-SET,DNS,🆎 AdBlock
   - RULE-SET,AWA,🆎 AdBlock
-  - DOMAIN-SUFFIX,googlesyndication.com,🐝
+  - DOMAIN-SUFFIX,googlesyndication.com,proxy
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),🆎 AdBlock
   - GEOSITE,category-ads-all,🆎 AdBlock
   - RULE-SET,block,🆎 AdBlock
@@ -1406,10 +1432,10 @@ rules :
   - GEOIP,CN,🎯
   - GEOIP,ir,🎯
   - GEOIP,private,🎯,no-resolve
-  - DOMAIN-SUFFIX,v2rayse.com,🐝
-  - DOMAIN-SUFFIX,cff.pw,🐝
-  - DOMAIN-SUFFIX,vpnse.org,🐝
-  - DOMAIN-SUFFIX,cfmem.com,🐝
+  - DOMAIN-SUFFIX,v2rayse.com,proxy
+  - DOMAIN-SUFFIX,cff.pw,proxy
+  - DOMAIN-SUFFIX,vpnse.org,proxy
+  - DOMAIN-SUFFIX,cfmem.com,proxy
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🆎 AdBlock
   - PROCESS-NAME,com.sec.location.nsflp2,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.location,🆎 AdBlock
@@ -1417,32 +1443,32 @@ rules :
   - PROCESS-NAME,com.google.android.gms.location.history,🆎 AdBlock
   - PROCESS-NAME,com.sec.location.nsflp2,🆎 AdBlock
   - PROCESS-NAME,com.android.location.fused,🆎 AdBlock
-  - IN-TYPE,inner,🐝
-  - PROCESS-NAME,org.telegram.messenger,🐝
-  - PROCESS-NAME,com.tumblr,🐝
-  - PROCESS-NAME,com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0,🐝
-  - PROCESS-NAME,com.tumblr/org.chromium.content.app.SandboxedProcessService0:0,🐝
-  - PROCESS-NAME,com.google.android.gms,🐝
-  - PROCESS-NAME,com.google.android.webview,🐝
-  - PROCESS-NAME,com.android.vending,🐝
-  - PROCESS-NAME,com.google.android.gm,🐝
-  - PROCESS-NAME,com.picsart.studio,🐝
-  - PROCESS-NAME,com.tomclaw.appsend,🐝
-  - PROCESS-NAME,com.photoroom.app,🐝
-  - PROCESS-NAME,com.frontrow.flow,🐝
-  - PROCESS-NAME,com.xt.retouchoversea,🐝
-  - PROCESS-NAME,com.prequel.app,🐝
-  - PROCESS-NAME,com.circular.pixels,🐝
-  - PROCESS-NAME,jp.pxv.android,🐝
-  - PROCESS-NAME,com.facebook.katana,🐝
-  - PROCESS-NAME,com.facebook.katanb,🐝
-  - PROCESS-NAME,com.discord,🐝
-  - PROCESS-NAME,com.pinterest,🐝
-  - PROCESS-NAME,com.twitter.plus,🐝
-  - PROCESS-NAME,com.twitter.android,🐝
-  - PROCESS-NAME,com.aeroinsta.android,🐝
-  - PROCESS-NAME,com.instagold.android,🐝
-  - PROCESS-NAME,com.instathunder.android,🐝
-  - PROCESS-NAME,com.myinsta.android,🐝
-  - PROCESS-NAME,com.instagram.android,🐝
+  - IN-TYPE,inner,proxy
+  - PROCESS-NAME,org.telegram.messenger,social
+  - PROCESS-NAME,com.tumblr,social
+  - PROCESS-NAME,com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0,social
+  - PROCESS-NAME,com.tumblr/org.chromium.content.app.SandboxedProcessService0:0,social
+  - PROCESS-NAME,com.google.android.gms,social
+  - PROCESS-NAME,com.google.android.webview,social
+  - PROCESS-NAME,com.android.vending,social
+  - PROCESS-NAME,com.google.android.gm,social
+  - PROCESS-NAME,com.picsart.studio,social
+  - PROCESS-NAME,com.tomclaw.appsend,social
+  - PROCESS-NAME,com.photoroom.app,social
+  - PROCESS-NAME,com.frontrow.flow,social
+  - PROCESS-NAME,com.xt.retouchoversea,social
+  - PROCESS-NAME,com.prequel.app,social
+  - PROCESS-NAME,com.circular.pixels,social
+  - PROCESS-NAME,jp.pxv.android,social
+  - PROCESS-NAME,com.facebook.katana,social
+  - PROCESS-NAME,com.facebook.katanb,social
+  - PROCESS-NAME,com.discord,social
+  - PROCESS-NAME,com.pinterest,social
+  - PROCESS-NAME,com.twitter.plus,social
+  - PROCESS-NAME,com.twitter.android,social
+  - PROCESS-NAME,com.aeroinsta.android,social
+  - PROCESS-NAME,com.instagold.android,social
+  - PROCESS-NAME,com.instathunder.android,social
+  - PROCESS-NAME,com.myinsta.android,social
+  - PROCESS-NAME,com.instagram.android,social
   - MATCH,🐝
