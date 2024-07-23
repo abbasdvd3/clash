@@ -705,15 +705,15 @@ proxy-groups:
   - name: proxy
     type: select
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
-    include-all-proxies: true
-    include-all-providers: true
+  #  include-all-proxies: true
+   # include-all-providers: true
     proxies: [url-test, fallback, 🇭🇰, 🇯🇵, 🇺🇲, 🇰🇷, 🇸🇬, 🇨🇳, DIRECT]
 
   - name: url-test
     type: url-test
     tolerance: 100
     lazy: true
-    interval: 60
+    interval: 600
     timeout: 2000
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
@@ -766,7 +766,7 @@ proxy-groups:
     type: fallback
     tolerance: 100
     lazy: true
-    interval: 60
+    interval: 600
     timeout: 2000
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
