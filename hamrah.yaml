@@ -100,6 +100,23 @@ dns:
   - 8.8.8.8
   - 1.12.12.12
   - 114.114.114.114
+  nameserver-policy:
+    www.baidu.com: 114.114.114.114
+    www.instagram.com: [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
+    +.internal.crop.com: 10.0.0.1
+    www.baidu.com,+.google.com: https://doh.pub/dns-query
+    geosite:private,apple: https://dns.alidns.com/dns-query
+    "geosite:ir,private,apple":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+    "geosite:category-ads-all": rcode://success
+    "www.baidu.com,+.google.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "+.pornhub.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "+.sxyprn.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "+.spankbang.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "+.samfw.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]  
+    "rule-set:GoogleFCM,ir,social,nsfw1": [223.5.5.5, https://dns.alidns.com/dns-query]
+    GEOSITE:google: 8.8.8.8
   nameserver:
   - udp://78.157.42.100:853
   - udp://10.202.10.102:853
