@@ -420,10 +420,10 @@ proxy-groups:
     proxies: [🇭🇰, 🇯🇵, 🇺🇲, 🇰🇷, 🇸🇬, 🇨🇳]
 proxy-providers: 
 
-  Subscription-2:
+  Subscription-1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml" 
-    path: providers6/Subscription-2.yaml
+    path: provider/Subscription-1.yaml
     proxy: DIRECT
     interval: 36400
     udp: true
@@ -433,7 +433,36 @@ proxy-providers:
       url: http://speed.cloudflare.com/__down?bytes=20000000
       expected-status: 204
       lazy: true 
- 
+  Subscription-2:
+    type: http
+    url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config.yaml"    
+    interval: 8900
+    path: Prem/provider2.yaml
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_104
+  provider3:
+    type: http
+    url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config_extra_US.yaml"    
+    interval: 8900
+    path: Prem/provider3.yaml
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_104
+  provider4:
+    type: http
+    url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config_extra.yaml"    
+    interval: 8900
+    path: Prem/provider4.yaml
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_104
 rule-providers:
   ir:
     type: http
