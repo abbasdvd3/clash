@@ -52,6 +52,9 @@ proxy-groups:
       - Subscription-4
       - Subscription-5
       - Subscription-6
+      - provider2
+      - provider3
+      - provider4
   - name: 🇺🇸1
     type: url-test
     disable-udp: false
@@ -137,8 +140,40 @@ proxy-groups:
       - Subscription-4
       - Subscription-5
       - Subscription-6
+      - provider2
+      - provider3
+      - provider4
 proxy-providers:
-
+  provider2:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml"    
+    interval: 8900
+    path: Prem2/provider2.yaml
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_104
+  provider3:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml"    
+    interval: 8900
+    path: Prem2/provider3.yaml
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_104
+  provider4:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml"    
+    interval: 8900
+    path: Prem2/provider4.yaml
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_104
   Subscription-1:
     type: http
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml" 
