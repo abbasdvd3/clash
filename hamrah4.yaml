@@ -154,6 +154,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
 
       
   - name: 🚧 fallback
@@ -165,6 +169,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
 
       
   - name: ⚖️ load-balance
@@ -177,7 +185,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
-
+      - provider3
+      - provider4
+      - provider5
+      - provider6
       
   - name: 📡 IP
     type: select
@@ -203,7 +214,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
-
+      - provider3
+      - provider4
+      - provider5
+      - provider6
       
   - name: 💬 OpenAi
     type: select
@@ -223,6 +237,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
       
   - name: 📹
     type: select
@@ -242,6 +260,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
  
   - name: 🎥
     type: select
@@ -276,6 +298,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
 
   - name: 📺2
     type: select
@@ -294,7 +320,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
-
+      - provider3
+      - provider4
+      - provider5
+      - provider6
       
   - name: 🌍
     type: select
@@ -314,7 +343,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
-
+      - provider3
+      - provider4
+      - provider5
+      - provider6
       
   - name: 🌏
     type: select
@@ -350,6 +382,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
       
   - name: Ⓜ️
     type: select
@@ -435,6 +471,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
 
   - name: 🇯🇵
     type: url-test
@@ -446,7 +486,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
-
+      - provider3
+      - provider4
+      - provider5
+      - provider6
       
   - name: 🇺🇲
     type: url-test
@@ -458,8 +501,11 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
 
-      
   - name: 🇨🇳
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
@@ -470,7 +516,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
-
+      - provider3
+      - provider4
+      - provider5
+      - provider6
       
   - name: 🇸🇬
     type: url-test
@@ -482,7 +531,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
-      
+      - provider3
+      - provider4
+      - provider5
+      - provider6
   - name: 🇰🇷
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
@@ -493,7 +545,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
-
+      - provider3
+      - provider4
+      - provider5
+      - provider6
   - name: 🕹 select
     type: select
     proxies:
@@ -509,12 +564,16 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
 proxy-providers:
   provider1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml"    
     interval: 8900
-    path: Prem4/provider1.yaml
+    path: hamrah4/provider1.yaml
     proxy: 🕹 select
     health-check:
       enable: true
@@ -525,13 +584,61 @@ proxy-providers:
     type: http
     url: "http://haohaoxiong.myqnapcloud.com:12580/clash/proxies"    
     interval: 8900
-    path: Prem4/provider2.yaml
-    proxy: DIRECT
+    path: hamrah4/provider2.yaml
+    proxy: 🕹 select
     health-check:
       enable: true
       interval: 300
       lazy: true
       url: http://speed.cloudflare.com/__down?bytes=20000000
+  provider3:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml"    
+    interval: 8900
+    path: hamrah4/provider3.yaml
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: http://speed.cloudflare.com/__down?bytes=20000000
+  provider4:
+    type: http
+    url: "http://haohaoxiong.myqnapcloud.com:12580/clash/proxies"    
+    interval: 8900
+    path: hamrah4/provider4.yaml
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: http://speed.cloudflare.com/__down?bytes=20000000
+  provider5:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml"    
+    interval: 8900
+    path: hamrah4/provider5.yaml
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: http://speed.cloudflare.com/__down?bytes=20000000
+  provider6:
+    type: http
+    url: "http://haohaoxiong.myqnapcloud.com:12580/clash/proxies"    
+    interval: 8900
+    path: hamrah4/provider6.yaml
+    proxy: 🕹 select
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: http://speed.cloudflare.com/__down?bytes=20000000
+
+
+
+      
 rule-providers:
   block:
     type: http
