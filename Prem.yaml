@@ -16,6 +16,9 @@ proxy-groups:
       - DIRECT
     use:
       - provider1
+      - provider2
+      - provider3
+      - provider4
   - name: url-test
     type: url-test
     url: https://fiber.google.com/speedtest/generate_104
@@ -24,6 +27,9 @@ proxy-groups:
     proxies:
     use:
       - provider1
+      - provider2
+      - provider3
+      - provider4
   - name: fallback
     type: fallback
     url: https://fiber.google.com/speedtest/generate_104
@@ -31,6 +37,9 @@ proxy-groups:
     proxies:
     use:
       - provider1
+      - provider2
+      - provider3
+      - provider4
   - name: D.IRECT
     type: select
     proxies:
@@ -46,6 +55,9 @@ proxy-groups:
     type: select
     use:
       - provider1
+      - provider2
+      - provider3
+      - provider4
     proxies:
       - PROXY
       - D.IRECT
@@ -60,8 +72,41 @@ proxy-providers:
     health-check:
       enable: true
       interval: 300
-  #    lazy: true
+      lazy: true
       url: https://fiber.google.com/speedtest/generate_104
+  provider2:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml"    
+    interval: 8900
+    path: Prem/provider2.yaml
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_104
+  provider3:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml"    
+    interval: 8900
+    path: Prem/provider3.yaml
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_104
+  provider4:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml"    
+    interval: 8900
+    path: Prem/provider4.yaml
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_104
+
+
+      
 rule-providers:
   ir:
     type: http
