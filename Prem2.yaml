@@ -144,6 +144,16 @@ proxy-groups:
       - provider3
       - provider4
 proxy-providers:
+  provider1:
+    type: http
+    url: "https://raw.githubusercontent.com/Junely/clash/main/template3.yaml"    
+    interval: 8900
+    path: Prem2/provider1.yaml
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_104
   provider2:
     type: http
     url: "https://raw.githubusercontent.com/Alvin9999/pac2/master/clash/1/config.yaml"    
@@ -156,7 +166,7 @@ proxy-providers:
       url: https://fiber.google.com/speedtest/generate_104
   provider3:
     type: http
-    url: "https://raw.githubusercontent.com/tbbatbb/Proxy/master/dist/clash.config.yaml"    
+    url: "https://raw.githubusercontent.com/kevin-wud/v2ray-node/main/clash.yaml"    
     interval: 8900
     path: Prem2/provider3.yaml
     health-check:
