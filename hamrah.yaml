@@ -4,7 +4,7 @@
 #  mixed-port: 7890
 mode: rule
 allow-lan: true
-unified-delay: true
+unified-delay: false
 bind-address: '*'
 log-level: debug
 ipv6: true
@@ -84,22 +84,20 @@ dns:
   default-nameserver:
   - 94.140.14.141
   - 8.8.8.8
-  - 1.1.1.1:853
-  - udp://1.1.1.1:853
-  - udp://223.6.6.6:853
+  - 1.1.1.1
+  - udp://1.1.1.1
+  - udp://223.6.6.6
   - udp://119.29.29.29
   - udp://8.8.8.8
-  - udp://114.114.114.114:853
-  - udp://223.5.5.5:853
+  - udp://114.114.114.114
+  - udp://223.5.5.5
   - udp://10.202.10.202
   - udp://10.0.0.0
   - udp://119.29.29.29
   - 114.114.114.114
   - 223.6.6.6:853
   - 119.29.29.29
-  - 8.8.8.8
   - 1.12.12.12
-  - 114.114.114.114
   nameserver-policy:
     www.baidu.com: 114.114.114.114
     www.instagram.com: [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
@@ -118,18 +116,18 @@ dns:
     "rule-set:GoogleFCM,ir,social,nsfw1": [223.5.5.5, https://dns.alidns.com/dns-query]
     GEOSITE:google: 8.8.8.8
   nameserver:
-  - udp://78.157.42.100:853
-  - udp://10.202.10.102:853
-  - udp://114.114.114.114:853
+  - udp://78.157.42.100
+  - udp://10.202.10.102
+  - udp://114.114.114.114
   - udp://8.8.8.8:853
-  - udp://223.5.5.5:853
+  - udp://223.5.5.5
   - https://dns.alidns.com/dns-query#h3=true 
   - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true
   - udp://45.90.28.55
   - udp://45.90.30.55
   - https://45.90.28.55/dns-query
   - 45.90.28.0:853
-  - udp://45.90.30.0:853
+  - udp://45.90.30.0
   - https://anycast.dns.nextdns.io/dns-query
   - quic://dns-unfiltered.adguard.com:784
   - tls://dns-unfiltered.adguard.com:853
@@ -143,12 +141,12 @@ dns:
   - https://dns-adguard.heinu.cf/dns-query
   - https://dns-adguard.heinu.ga/dns-query
   fallback:
-  - udp://1.1.1.1:853
+  - udp://1.1.1.1
   - https://1.1.1.2/dns-query
   - https://1.0.0.2/dns-query
   - https://9.9.9.9/dns-query
-  - udp://78.157.42.100:853
-  - udp://10.202.10.202:853
+  - udp://78.157.42.100
+  - udp://10.202.10.202
   - udp://223.5.5.5:853
   - https://223.5.5.5/dns-query
   - udp://1.0.0.1
@@ -225,7 +223,7 @@ proxy-groups:
     tolerance: 70
     lazy: true
     interval: 300
-    timeout: 200
+    #timeout: 200
     hidden: true
     url: https://www.youtube.com/generate_204
     max-failed-times: 5
@@ -284,7 +282,7 @@ proxy-groups:
     type: fallback
     lazy: true
     interval: 180
-    timeout: 2000
+   # timeout: 2000
     url: https://www.youtube.com/generate_204
     max-failed-times: 3
     hidden: true
