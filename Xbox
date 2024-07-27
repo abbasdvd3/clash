@@ -35,6 +35,12 @@
                 "server": "fakeip"
             },
             {
+                "rule_set": [
+                "geosite-social"
+                ],
+               "outbound": "remote"
+            },
+            {
                 "clash_mode": "global",
                 "server": "remote"
             },
@@ -43,7 +49,10 @@
                 "server": "local"
             },
             {
-                "rule_set": "geosite-ir",
+                "rule_set": [
+                    "geosite-ir",
+                    "geoip-ir"
+                ],
                 "server": "local"
             }
         ],
@@ -9092,27 +9101,38 @@
         "rule_set": [
             {
                 "format": "binary",
-                "tag": "geoip-cn",
+                "tag": "geoip-ir",
                 "type": "remote",
-                "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs"
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-ir",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+                "download_detour": "direct"
             },
             {
                 "format": "binary",
-                "tag": "geosite-cn",
+                "tag": "geosite-social",
                 "type": "remote",
-                "url": "https://raw.githubusercontent.com/xmdhs/sing-geosite/rule-set-Loyalsoldier/geosite-geolocation-cn.srs"
+                "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-social.srs",
+                "download_detour": "direct"
             },
             {
                 "format": "binary",
                 "tag": "AdGuardSDNSFilter",
                 "type": "remote",
-                "url": "https://raw.githubusercontent.com/xmdhs/sing-box-ruleset/rule-set/AdGuardSDNSFilter.srs"
+                "url": "https://raw.githubusercontent.com/xmdhs/sing-box-ruleset/rule-set/AdGuardSDNSFilter.srs",
+                "download_detour": "direct"
             },
             {
                 "format": "source",
                 "tag": "chrome-doh",
                 "type": "remote",
                 "url": "https://gist.githubusercontent.com/xmdhs/71fc5ff6ef29f5ecaf2c52b8de5c3172/raw/chrome-doh.json"
+                "download_detour": "direct"
             }
         ],
         "rules": [
@@ -9134,7 +9154,10 @@
             },
             {
                 "outbound": "direct",
-                "rule_set": "geoip-cn"
+                "rule_set": [
+              "geosite:ir",
+              "geoip-ir"
+            ],
             }
         ]
     }
