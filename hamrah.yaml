@@ -105,7 +105,7 @@ dns:
     www.instagram.com: [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
     +.internal.crop.com: 10.0.0.1
     www.baidu.com,+.google.com: https://doh.pub/dns-query
-    geosite:private,apple: https://dns.alidns.com/dns-query
+    "geosite:private,apple": https://dns.alidns.com/dns-query
     "geosite:ir,private,apple":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
@@ -420,10 +420,10 @@ proxy-groups:
     proxies: [🇭🇰, 🇯🇵, 🇺🇲, 🇰🇷, 🇸🇬, 🇨🇳]
 proxy-providers: 
 
-  Subscription-1:
+  provider1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml" 
-    path: provider/Subscription-1.yaml
+    path: hamrah/provider1.yaml
     proxy: proxy
     interval: 1200
     udp: true
@@ -432,10 +432,10 @@ proxy-providers:
       interval: 300
       url: http://speed.cloudflare.com/__down?bytes=20000000
       lazy: true 
-  Subscription-2:
+  provider2:
     type: http
     url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config.yaml"
-    path: Prem/provider2.yaml
+    path: hamrah/provider2.yaml
     proxy: proxy
     interval: 1200
     udp: true
@@ -447,7 +447,7 @@ proxy-providers:
   provider3:
     type: http
     url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config_extra_US.yaml"    
-    path: Prem/provider3.yaml
+    path: hamrah/provider3.yaml
     proxy: proxy
     interval: 1200
     udp: true
@@ -459,7 +459,7 @@ proxy-providers:
   provider4:
     type: http
     url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config_extra.yaml"    
-    path: Prem/provider4.yaml
+    path: hamrah/provider4.yaml
     proxy: proxy
     interval: 1200
     udp: true
