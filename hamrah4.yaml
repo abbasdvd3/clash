@@ -10,7 +10,7 @@ profile-web-page-url: https://github.com/abbasdvd3
 # tproxy-port: 9898
 mode: rule
 allow-lan: true
-unified-delay: true
+unified-delay: false
 bind-address: '*'
 log-level: debug
 ipv6: true
@@ -27,7 +27,7 @@ geox-url:
   geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
   mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
   asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
-find-process-mode: always
+find-process-mode: strict
 profile:
   store-selected: true
   store-fake-ip: true
@@ -35,93 +35,66 @@ profile:
 keep-alive-interval: 15 
 sniffer:
   enable: true
-  sniffing:
-    - tls
-    - http
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
   skip-domain:
-    - 'Mijia Cloud'
-    - 'dlg.io.mi.com'
-    - '+.apple.com'
-    - '*.baidu.com'
-  force-domain:
-    - '+'
-    - '+.google.com'
-  port-whitelist:
-    - 80
-    - 443
-    - 8000-9000
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+    
 tun:
   enable: true
-  stack: MIXED
-#system # gvisor / lwip
+  stack: mixed
   dns-hijack:
-    - any:53
-    - any:5353
-    - tcp://any:53
-  # interface-name: 
-  auto-route: true 
-  auto-detect-interface: true 
-  mtu: 9000 
-  strict_route: true 
-  inet4_route_address: 
-    - 0.0.0.0/1
-    - 128.0.0.0/1
-  inet6_route_address: 
-    - '::/1'
-    - '8000::/1'
-  endpoint_independent_nat: true 
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  
 dns:
   enable: true
   ipv6: true
-  prefer-h3: true
-  listen: 0.0.0.0:1053
+  respect-rules: true
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-  - '*.lan'
-  default-nameserver:
-  - 223.5.5.5
-  - 119.29.29.29
+    - "*"
+    - "+.lan"
+    - "+.local"
+  nameserver:
+    - "https://120.53.53.53/dns-query"
+    - "https://223.5.5.5/dns-query"
+  proxy-server-nameserver:
+    - "https://120.53.53.53/dns-query"
+    - "https://223.5.5.5/dns-query"
   nameserver-policy:
-    www.baidu.com: 114.114.114.114
+    "www.baidu.com": "114.114.114.114"
     +.internal.crop.com: 10.0.0.1
-    www.baidu.com,+.google.cn: https://doh.pub/dns-query
-    geosite:private,apple: https://dns.alidns.com/dns-query
+    "www.baidu.com,+.google.com": "https://doh.pub/dns-query"
+    "geosite:private,apple": "https://dns.alidns.com/dns-query"
     "geosite:ir,private,apple":
-      - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
+      - "https://doh.pub/dns-query"
+      - "https://dns.alidns.com/dns-query"
     "geosite:category-ads-all": rcode://success
-    "www.baidu.com,+.google.com": [223.5.5.5, https://dns.alidns.com/dns-query]
+    "www.baidu.com,+.google.com": ["223.5.5.5", "https://dns.alidns.com/dns-query"]
     "+.pornhub.com": "https://doh.pub/dns-query"
     "+.sxyprn.com": "https://doh.pub/dns-query"
     "+.spankbang.com": "https://doh.pub/dns-query"
     "+.samfw.com": "https://doh.pub/dns-query"    
     "rule-set:GoogleFCM,ir": 8.8.8.8
-    GEOSITE:google: 8.8.8.8
-  nameserver:
-  - https://doh.pub/dns-query
-  - https://dns.alidns.com/dns-query
-  fallback:
-  - https://1.1.1.2/dns-query
-  - https://1.0.0.2/dns-query
-  - https://9.9.9.9/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: ir
-    geosite:
-  #  - gfw
-    ipcidr:
-    - 240.0.0.0/4
-    - 0.0.0.0/32
-    domain:
-    - +.google.com
-    - +.google.cn
-    - +.googleapis.cn
-    - +.googleapis.com
-    - +.github.com
-    - +.facebook.com
-    - +.twitter.com
-    - +.youtube.com  
+    "GEOSITE:google": "8.8.8.8"
+    "rule-set:cn_domain,private_domain":
+      - "https://120.53.53.53/dns-query"
+      - "https://223.5.5.5/dns-query"
+    "rule-set:geolocation-!cn":
+      - "https://dns.cloudflare.com/dns-query"
+      - "https://dns.google/dns-query"
+  
 
 proxies:
 proxy-groups:
@@ -136,8 +109,11 @@ proxy-groups:
   - name: 🕹load-balance
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: true
     interval: 180
-    hidden: true
+    include-all: true
+    tolerance: 10
+    hidden: false
     proxies:
       - 🇭🇰 
       - 🇨🇳 
@@ -148,8 +124,11 @@ proxy-groups:
   - name: ♻️ url-test
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: true
     interval: 180
-    hidden: true
+    include-all: true
+    tolerance: 10
+    hidden: false
     proxies:
     use:
       - provider1
@@ -163,8 +142,11 @@ proxy-groups:
   - name: 🚧 fallback
     type: fallback
     url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: true
     interval: 180
-    hidden: true
+    include-all: true
+    tolerance: 10
+    hidden: false
     proxies:
     use:
       - provider1
@@ -179,8 +161,11 @@ proxy-groups:
     type: load-balance
     strategy: round-robin
     url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: true
     interval: 180
-    hidden: true
+    include-all: true
+    tolerance: 10
+    hidden: false
     proxies:
     use:
       - provider1
@@ -198,9 +183,9 @@ proxy-groups:
       
   - name: 📲
     type: select
-    hidden: true
+    hidden: false
     proxies:
-      - 🕹 select
+      - 🕹
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -221,9 +206,9 @@ proxy-groups:
       
   - name: 💬 OpenAi
     type: select
-    hidden: true
+    hidden: false
     proxies:
-      - 🕹 select
+      - 🕹
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -244,9 +229,9 @@ proxy-groups:
       
   - name: 📹
     type: select
-    hidden: true
+    hidden: false
     proxies:
-      - 🕹 select
+      - 🕹
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -267,9 +252,9 @@ proxy-groups:
  
   - name: 🎥
     type: select
-    hidden: true
+    hidden: false
     proxies:
-      - 🕹 select
+      - 🕹
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -283,9 +268,9 @@ proxy-groups:
       
   - name: 📺
     type: select
-    hidden: true
+    hidden: false
     proxies:
-      - 🕹 select
+      - 🕹
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -305,9 +290,9 @@ proxy-groups:
 
   - name: 📺2
     type: select
-    hidden: true
+    hidden: false
     proxies:
-      - 🕹 select
+      - 🕹
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -327,9 +312,9 @@ proxy-groups:
       
   - name: 🌍
     type: select
-    hidden: true
+    hidden: false
     proxies:
-      - 🕹 select
+      - 🕹
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -350,9 +335,9 @@ proxy-groups:
       
   - name: 🌏
     type: select
-    hidden: true
+    hidden: false
     proxies:
-      - 🕹 select
+      - 🕹
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -367,9 +352,9 @@ proxy-groups:
       - provider2
   - name: 📢
     type: select
-    hidden: true
+    hidden: false
     proxies:
-      - 🕹 select
+      - 🕹
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -389,9 +374,9 @@ proxy-groups:
       
   - name: Ⓜ️
     type: select
-    hidden: true
+    hidden: false
     proxies:
-      - 🕹 select
+      - 🕹
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -404,9 +389,9 @@ proxy-groups:
       
   - name: 🍎
     type: select
-    hidden: true
+    hidden: false
     proxies:
-      - 🕹 select
+      - 🕹
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -419,9 +404,9 @@ proxy-groups:
       - DIRECT
   - name: 🎮
     type: select
-    hidden: true
+    hidden: false
     proxies:
-      - 🕹 select
+      - 🕹
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -434,16 +419,16 @@ proxy-groups:
       
   - name: 🎶
     type: select
-    hidden: true
+    hidden: false
     proxies:
-      - 🕹 select
+      - 🕹
       - ♻️ url-test
       
   - name: 🎯
     type: select
     proxies:
       - DIRECT
-      - 🕹 select
+      - 🕹
       - ♻️ url-test
       
   - name: 🛑
@@ -451,7 +436,7 @@ proxy-groups:
     proxies:
       - REJECT
       - DIRECT
-      - 🕹 select
+      - 🕹
       
   - name: 🍃
     type: select
@@ -463,10 +448,11 @@ proxy-groups:
   - name: 🇭🇰
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: true
     interval: 300
-#    tolerance: 50
+    tolerance: 10
     filter: '🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港'
-    hidden: true
+    hidden: false
     proxies: 
     use:
       - provider1
@@ -479,9 +465,11 @@ proxy-groups:
   - name: 🇯🇵
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: true
     interval: 300
+    tolerance: 10
     filter: '🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日'
-    hidden: true
+    hidden: false
     proxies: 
     use:
       - provider1
@@ -494,9 +482,11 @@ proxy-groups:
   - name: 🇺🇲
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: true
     interval: 300
+    tolerance: 10
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
-    hidden: true
+    hidden: false
     proxies:
     use:
       - provider1
@@ -509,9 +499,11 @@ proxy-groups:
   - name: 🇨🇳
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: true
     interval: 300
+    tolerance: 10
     filter: "cn|TW"
-    hidden: true
+    hidden: false
     proxies: 
     use:
       - provider1
@@ -524,9 +516,11 @@ proxy-groups:
   - name: 🇸🇬
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: true
     interval: 300
+    tolerance: 10
     filter: '🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]'
-    hidden: true
+    hidden: false
     proxies: 
     use:
       - provider1
@@ -538,9 +532,11 @@ proxy-groups:
   - name: 🇰🇷
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: true
     interval: 300
+    tolerance: 10
     filter: '🇰🇷|KO?R|Korea|首尔|韩|韓'
-    hidden: true
+    hidden: false
     proxies: 
     use:
       - provider1
@@ -552,7 +548,7 @@ proxy-groups:
   - name: 🕹 select
     type: select
     proxies:
-      - ♻️ url-test
+      - 🕹
       - 🚧 fallback
       - ⚖️ load-balance
       - 🇭🇰 
@@ -572,74 +568,107 @@ proxy-providers:
   provider1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml"    
-    interval: 8900
-    path: hamrah4/provider1.yaml
-    proxy: 🕹 select
-    health-check:
-      enable: true
-      interval: 300
-      lazy: true
-      url: http://speed.cloudflare.com/__down?bytes=20000000
+    interval: 86400
+    health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
+    override:
+      additional-prefix: "[provider1]"
+
   provider2:
     type: http
     url: "http://haohaoxiong.myqnapcloud.com:12580/clash/proxies"    
-    interval: 8900
-    path: hamrah4/provider2.yaml
-    proxy: 🕹 select
-    health-check:
-      enable: true
-      interval: 300
-      lazy: true
-      url: http://speed.cloudflare.com/__down?bytes=20000000
+    interval: 86400
+    health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
+    override:
+      additional-prefix: "[provider2]"
+      
   provider3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml"    
-    interval: 8900
-    path: hamrah4/provider3.yaml
-    proxy: 🕹 select
-    health-check:
-      enable: true
-      interval: 300
-      lazy: true
-      url: http://speed.cloudflare.com/__down?bytes=20000000
+    interval: 86400
+    health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
+    override:
+      additional-prefix: "[provider3]"
+      
   provider4:
     type: http
     url: "http://haohaoxiong.myqnapcloud.com:12580/clash/proxies"    
-    interval: 8900
-    path: hamrah4/provider4.yaml
-    proxy: 🕹 select
-    health-check:
-      enable: true
-      interval: 300
-      lazy: true
-      url: http://speed.cloudflare.com/__down?bytes=20000000
+    interval: 86400
+    health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
+    override:
+      additional-prefix: "[provider4]"
+      
   provider5:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml"    
-    interval: 8900
-    path: hamrah4/provider5.yaml
-    proxy: 🕹 select
-    health-check:
-      enable: true
-      interval: 300
-      lazy: true
-      url: http://speed.cloudflare.com/__down?bytes=20000000
+    interval: 86400
+    health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
+    override:
+      additional-prefix: "[provider5]"
+      
   provider6:
     type: http
     url: "http://haohaoxiong.myqnapcloud.com:12580/clash/proxies"    
-    interval: 8900
-    path: hamrah4/provider6.yaml
-    proxy: 🕹 select
-    health-check:
-      enable: true
-      interval: 300
-      lazy: true
-      url: http://speed.cloudflare.com/__down?bytes=20000000
+    interval: 86400
+    health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
+    override:
+      additional-prefix: "[provider6]"
 
 
 
       
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: yaml}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: yaml}
 rule-providers:
+  private_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml"
+  ehentai_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ehentai.yaml"
+  github_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.yaml"
+  twitter_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.yaml"
+  youtube_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.yaml"
+  google_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.yaml"
+  telegram_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.yaml"
+  netflix_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.yaml"
+  pixiv_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pixiv.yaml"
+  geolocation-!cn:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
+
+  private_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.yaml"
+  cn_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.yaml"
+  google_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml"
+  netflix_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.yaml"
+  twitter_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.yaml"
+  telegram_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.yaml"
   block:
     type: http
     behavior: domain
@@ -1097,12 +1126,24 @@ rule-providers:
 
 
 rules:
+  - RULE-SET,private_ip,🎯,no-resolve
+  - RULE-SET,github_domain,🕹 select
+  - RULE-SET,twitter_domain,📲
+  - RULE-SET,youtube_domain,📹
+  - RULE-SET,google_domain,📢
+  - RULE-SET,telegram_domain,📲
+  - RULE-SET,netflix_domain,📲
+  - RULE-SET,geolocation-!cn,🕹 select
+
+  - RULE-SET,google_ip,📢
+  - RULE-SET,netflix_ip,📲
+  - RULE-SET,telegram_ip,📲
+  - RULE-SET,twitter_ip,📲
+
+  - RULE-SET,LocalAreaNetwork,🎯
   - RULE-SET,private,DIRECT,no-resolve
   - RULE-SET,apps,🎯
-  - RULE-SET,ads,🛑
-  - RULE-SET,malware,🛑
-  - RULE-SET,phishing,🛑
-  - RULE-SET,cryptominers,🛑
+  - RULE-SET,UnBan,🎯
   - RULE-SET,ir,🎯
   - RULE-SET,ircidr,🎯
   - RULE-SET,irasn,🎯
@@ -1114,10 +1155,7 @@ rules:
   - GEOIP,twitter,📲
   - GEOIP,telegram,📲
   - GEOIP,openai,💬 OpenAi
-  - RULE-SET,iranserver,🎯
-  - RULE-SET,parspack,🎯
-  - RULE-SET,LocalAreaNetwork,🎯
-  - RULE-SET,UnBan,🎯
+
 
   - RULE-SET,BanProgramAD,🍃
   
@@ -1176,13 +1214,13 @@ rules:
   - RULE-SET,ChinaCompanyIp,🕹 select
   - RULE-SET,Download,🕹 select
 
-  - RULE-SET,Adblock1,🛑
-  - RULE-SET,DNS2,🛑
-  - RULE-SET,category-ads-all,🛑
   - RULE-SET,ads,🛑
   - RULE-SET,malware,🛑
   - RULE-SET,phishing,🛑
   - RULE-SET,cryptominers,🛑
+  - RULE-SET,Adblock1,🛑
+  - RULE-SET,DNS2,🛑
+  - RULE-SET,category-ads-all,🛑
   - RULE-SET,BanAD,🛑
   - RULE-SET,ChinaDNS,🛑
   - RULE-SET,AdGuardSDNSFilterDirect,🛑
