@@ -4,10 +4,10 @@ profile-update-interval: 1
 subscription-userinfo: upload=7000000; download=500000; total=10737418240000000; expire=2546249531
 support-url: https://github.com/abbasdvd3
 profile-web-page-url: https://github.com/abbasdvd3
-# port: 7890
-# socks-port: 7891
-# mixed-port: 10801
-# redir-port: 9797
+port: 7892
+socks-port: 7891
+# mixed-port: 7890
+redir-port: 9797
 # tproxy-port: 9898
 mode: rule
 allow-lan: true
@@ -100,7 +100,8 @@ dns:
 proxies:
 proxy-groups:
   - name: 🕹
-    type: select
+    type: url-test
+    tolerance: 10
     proxies:
       - 🕹load-balance
       - ♻️ url-test
