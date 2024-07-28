@@ -86,7 +86,7 @@ dns:
     "+.sxyprn.com": "https://doh.pub/dns-query"
     "+.spankbang.com": "https://doh.pub/dns-query"
     "+.samfw.com": "https://doh.pub/dns-query"    
-    "rule-set:GoogleFCM,ir": 8.8.8.8
+    "rule-set:GoogleFCM,NSFW,ir": 8.8.8.8
     "GEOSITE:google": "8.8.8.8"
     "rule-set:ir,private_domain":
       - "https://120.53.53.53/dns-query"
@@ -1119,10 +1119,11 @@ rule-providers:
     
   NSFW:  
     type: http  
-    behavior: classical  
-    path: RuleSet/NSFW.yaml  
-    url: https://raw.githubusercontent.com/tanmoumou252/NSFW-website-rule-for-Clash/main/NSFW.yaml  
-    interval: 86400  
+    behavior: classical
+    url: https://raw.githubusercontent.com/tanmoumou252/NSFW-website-rule-for-Clash/main/NSFW.yaml
+    format: yaml
+    interval: 86400
+    path: ruleset/NSFW.yaml 
 
 
 rules:
@@ -1141,7 +1142,7 @@ rules:
   - RULE-SET,twitter_ip,📲
 
   - RULE-SET,LocalAreaNetwork,🎯
-  - RULE-SET,private,DIRECT,no-resolve
+  - RULE-SET,private,🎯,no-resolve
   - RULE-SET,apps,🎯
   - RULE-SET,UnBan,🎯
   - RULE-SET,ir,🎯
