@@ -116,9 +116,8 @@ proxy-groups:
   - name: 🕹load-balance
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
+    udp: false
     interval: 180
-    include-all: true
     tolerance: 10
     hidden: false
     proxies:
@@ -131,9 +130,8 @@ proxy-groups:
   - name: ♻️ url-test
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
+    udp: false
     interval: 180
-    include-all: true
     tolerance: 10
     hidden: false
     proxies:
@@ -149,9 +147,8 @@ proxy-groups:
   - name: 🚧 fallback
     type: fallback
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
+    udp: false
     interval: 180
-    include-all: true
     tolerance: 10
     hidden: false
     proxies:
@@ -170,7 +167,6 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: true
     interval: 180
-    include-all: true
     tolerance: 10
     hidden: false
     proxies:
@@ -357,6 +353,10 @@ proxy-groups:
     use:
       - provider1
       - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
   - name: 📢
     type: select
     hidden: false
@@ -455,7 +455,7 @@ proxy-groups:
   - name: 🇭🇰
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
+    udp: false
     interval: 300
     tolerance: 10
     filter: '🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港'
@@ -472,7 +472,7 @@ proxy-groups:
   - name: 🇯🇵
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
+    udp: false
     interval: 300
     tolerance: 10
     filter: '🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日'
@@ -489,7 +489,7 @@ proxy-groups:
   - name: 🇺🇲
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
+    udp: false
     interval: 300
     tolerance: 10
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
@@ -506,7 +506,7 @@ proxy-groups:
   - name: 🇨🇳
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
+    udp: false
     interval: 300
     tolerance: 10
     filter: "cn|TW"
@@ -523,7 +523,7 @@ proxy-groups:
   - name: 🇸🇬
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
+    udp: false
     interval: 300
     tolerance: 10
     filter: '🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]'
@@ -539,7 +539,7 @@ proxy-groups:
   - name: 🇰🇷
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
+    udp: false
     interval: 300
     tolerance: 10
     filter: '🇰🇷|KO?R|Korea|首尔|韩|韓'
