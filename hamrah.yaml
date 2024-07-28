@@ -956,10 +956,6 @@ rules :
   - RULE-SET,ProxyMedia,proxy
   - RULE-SET,Google1,google
   - RULE-SET,Google,google
-  - DOMAIN-SUFFIX,v2rayse.com,proxy
-  - DOMAIN-SUFFIX,cff.pw,proxy
-  - DOMAIN-SUFFIX,vpnse.org,proxy
-  - DOMAIN-SUFFIX,cfmem.com,proxy
   - RULE-SET,ProxyGFWlist,google
   - RULE-SET,ChinaDomain,proxy
   - RULE-SET,ChinaCompanyIp,proxy
@@ -971,26 +967,37 @@ rules :
   - RULE-SET,Domestic,🎯
   - RULE-SET,cloudflare,proxy
   - RULE-SET,ChinaDNS,🎯
-  - RULE-SET,AdGuardSDNSFilterDirect,🎯
+  - RULE-SET,AdGuardSDNSFilterDirect,🆎 AdBlock
   - RULE-SET,BlockHttpDNS,🆎 AdBlock
   - RULE-SET,AdGuardSDNSFilter,🆎 AdBlock
   - RULE-SET,Samsung,proxy
   - RULE-SET,SpeedTest,🎯
   - RULE-SET,DNS,🆎 AdBlock
   - RULE-SET,AWA,🆎 AdBlock
-  - DOMAIN-SUFFIX,googlesyndication.com,proxy
-  - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),🆎 AdBlock
-  - GEOSITE,category-ads-all,🆎 AdBlock
   - RULE-SET,block,🆎 AdBlock
+  - GEOSITE,category-ads-all,🆎 AdBlock
+  - GEOIP,CN,🎯
+  - GEOIP,ir,🎯
+  - GEOIP,cloudflare,proxy
+  - GEOIP,cloudfront,proxy
+  - GEOIP,facebook,Social
+  - GEOIP,google,google
+  - GEOIP,twitter,Social
+  - GEOIP,apple,apple
+  - GEOIP,private,🎯,no-resolve
+  - GEOIP,telegram,Social
+  - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),🆎 AdBlock
   - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),🆎 AdBlock
   - AND,((NETWORK,udp),(GEOSITE,youtube)),🆎 AdBlock
   - IP-CIDR,127.0.0.1/32,🆎 AdBlock,no-resolve
   - IP-CIDR,198.18.0.1/16,🆎 AdBlock,no-resolve
   - IP-CIDR,28.0.0.1/8,🆎 AdBlock,no-resolve
   - IP-CIDR6,::1/128,🆎 AdBlock,no-resolve
-  - GEOIP,CN,🎯
-  - GEOIP,ir,🎯
-  - GEOIP,private,🎯,no-resolve
+  - DOMAIN-SUFFIX,googlesyndication.com,proxy
+  - DOMAIN-SUFFIX,v2rayse.com,proxy
+  - DOMAIN-SUFFIX,cff.pw,proxy
+  - DOMAIN-SUFFIX,vpnse.org,proxy
+  - DOMAIN-SUFFIX,cfmem.com,proxy
   - DOMAIN-SUFFIX,v2rayse.com,proxy
   - DOMAIN-SUFFIX,cff.pw,proxy
   - DOMAIN-SUFFIX,vpnse.org,proxy
@@ -1030,4 +1037,5 @@ rules :
   - PROCESS-NAME,com.instathunder.android,Social
   - PROCESS-NAME,com.myinsta.android,Social
   - PROCESS-NAME,com.instagram.android,Social
+  - DST-PORT,80/8080/443/8443,🐝
   - MATCH,🐝
