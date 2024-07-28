@@ -424,7 +424,7 @@ proxy-groups:
       - ♻️ url-test
   - name: 🎯
     type: select
-    interface-name: tun0
+    interface-name: ""
     proxies:
       - DIRECT
       - 🕹 select
@@ -531,6 +531,8 @@ proxy-providers:
       interval: 300
       lazy: true
       url: https://fiber.google.com/speedtest/generate_204
+      override:
+      additional-prefix: "[provider1]"
 
   provider2:
     type: http
@@ -542,6 +544,8 @@ proxy-providers:
       interval: 300
       lazy: true
       url: https://fiber.google.com/speedtest/generate_204
+     override:
+      additional-prefix: "[provider2]"
 rule-providers:
   block:
     type: http
