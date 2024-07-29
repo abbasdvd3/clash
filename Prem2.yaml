@@ -11,7 +11,7 @@ proxy-groups:
 
   - name: url-test
     type: url-test
-    disable-udp: true
+    disable-udp: false
     url: https://shua.leyz.top/cws/
     interval: 300
     tolerance: 70
@@ -24,12 +24,13 @@ proxy-groups:
       - Subscription-4
       - Subscription-5
       - Subscription-6
+      - provider1
       - provider2
       - provider3
       - provider4
   - name: fallback
     type: fallback
-    disable-udp: true
+    disable-udp: false
     url: https://shua.leyz.top/cws/
     interval: 180
  #   tolerance: 70
@@ -43,12 +44,13 @@ proxy-groups:
       - Subscription-4
       - Subscription-5
       - Subscription-6
+      - provider1
       - provider2
       - provider3
       - provider4
   - name: 🇺🇸a-url-test
     type: url-test
-    disable-udp: true
+    disable-udp: false
     url: https://shua.leyz.top/cws/
     interval: 300
     tolerance: 50
@@ -62,40 +64,111 @@ proxy-groups:
       - Subscription-4
       - Subscription-5
       - Subscription-6
+      - provider1
       - provider2
       - provider3
       - provider4
   - name: 🇺🇸1
     type: url-test
-    disable-udp: true
+    disable-udp: false
     url: https://shua.leyz.top/cws/
+    filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港|🇦🇫|🇦🇽|🇦🇱|🇩🇿|🇦🇸|🇦🇩|🇦🇴|🇦🇮|🇧🇭|🇧🇸|🇦🇿|🇦🇹|🇦🇺|🇦🇼|🇦🇲|🇦🇷|🇦🇬|🇧🇩|🇧🇧|🇧🇪|🇧🇾|🇧🇯|🇧🇹|🇧🇴|🇰🇭|🇧🇮|🇧🇫|🇧🇬|🇧🇳|🇻🇬|🇧🇷|🇧🇼|🇧🇦|🇨🇲|🇨🇦|🇮🇨|🇨🇻|🇧🇶|🇰🇾|🇨🇫|🇹🇩|🇮🇴|🇨🇰|🇨🇬|🇰🇲|🇨🇨|🇨🇴|🇨🇽|🇨🇳|🇨🇱"
     interval: 500
     tolerance: 50
     lazy: true 
     hidden: false
     use: 
       - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - provider1
+      - provider2
+      - provider3
+      - provider4
   - name: 🇺🇸2
     type: url-test
-    disable-udp: true
+    disable-udp: false
     url: https://shua.leyz.top/cws/
+    filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日|🇩🇲|🇨🇮|🇩🇴|🇪🇨|🇭🇷|🇪🇬|🇸🇻|🇨🇼|🇨🇾|🇨🇿|🇩🇰|🇩🇯|🇸🇿|🇪🇪|🇬🇫|🇫🇷|🇪🇷|🇫🇮|🇫🇯|🇫🇴|🇫🇰|🇪🇺|🇭🇰|🇭🇳|🇮🇲|🇮🇱|🇮🇹|🇮🇸|🇮🇳|🇮🇪🇯🇴🎌🇱🇦🇱🇧|🇱🇸|🇱🇦|🇽🇰|🇰🇮|🇳🇫|🇳🇿|🇲🇵|🇷🇼|🇵🇱|🇸🇹|🇷🇼|🇷🇪|🇵🇷|🇵🇸|🇵🇬|🇵🇳|🇻🇨"
     interval: 500
     tolerance: 50
     lazy: true 
     hidden: false
     use: 
+      - Subscription-1
       - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - provider1
+      - provider2
+      - provider3
+      - provider4
   - name: 🇺🇸3
     type: url-test
-    disable-udp: true
+    disable-udp: false
     url: https://shua.leyz.top/cws/
+    filter: "cn|TW"
     interval: 500
     tolerance: 50
     lazy: true 
     hidden: false
     use: 
+      - Subscription-1
+      - Subscription-2
       - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - provider1
+      - provider2
+      - provider3
+      - provider4
   - name: 🇺🇸4
+    type: url-test
+    disable-udp: false
+    url: https://shua.leyz.top/cws/
+    filter: "🇸🇬|SG|Singapore|狮城|^新|^节北|^刷更|新|^节北|🇹🇬|🇹🇰|🇹🇼|🇻🇳|🇻🇪|🏴󠁧󠁢󠁥󠁮󠁧󠁿|🇬🇧|🇻🇦|🇿🇼|🇻🇮|🇺🇾|🇹🇨|🇺🇬|🇦🇪|🇹🇴|🇨🇭"
+    interval: 500
+    tolerance: 50
+    lazy: true 
+    hidden: false
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - provider1
+      - provider2
+      - provider3
+      - provider4
+  - name: 🇺🇸5
+    type: url-test
+    disable-udp: false
+    url: https://shua.leyz.top/cws/
+    filter: "🇰🇷|KO?R|Korea|首尔|韩|韓|🇮🇷"
+    interval: 500
+    tolerance: 50
+    lazy: true 
+    hidden: false
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+      - provider1
+      - provider2
+      - provider3
+      - provider4
+  - name: 🇺🇸6
     type: url-test
     disable-udp: false
     url: https://shua.leyz.top/cws/
@@ -104,27 +177,16 @@ proxy-groups:
     lazy: true 
     hidden: false
     use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
       - Subscription-4
-  - name: 🇺🇸5
-    type: url-test
-    disable-udp: true
-    url: https://shua.leyz.top/cws/
-    interval: 500
-    tolerance: 50
-    lazy: true 
-    hidden: false
-    use: 
       - Subscription-5
-  - name: 🇺🇸6
-    type: url-test
-    disable-udp: true
-    url: https://shua.leyz.top/cws/
-    interval: 500
-    tolerance: 50
-    lazy: true 
-    hidden: false
-    use: 
       - Subscription-6
+      - provider1
+      - provider2
+      - provider3
+      - provider4
   - name: 🎯
     type: select
     hidden: true
@@ -151,6 +213,7 @@ proxy-groups:
       - Subscription-4
       - Subscription-5
       - Subscription-6
+      - provider1
       - provider2
       - provider3
       - provider4
