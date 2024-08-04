@@ -11,7 +11,7 @@ redir-port: 9797
 # tproxy-port: 9898
 mode: rule
 allow-lan: true
-unified-delay: false
+unified-delay: true
 bind-address: '*'
 log-level: debug
 ipv6: true
@@ -129,7 +129,7 @@ proxy-groups:
   - name: 🕹load-balance
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: false
+    udp: true
     interval: 180
     tolerance: 10
     hidden: false
@@ -143,7 +143,7 @@ proxy-groups:
   - name: ♻️ url-test
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: false
+    udp: true
     interval: 180
     tolerance: 10
     hidden: false
@@ -175,7 +175,7 @@ proxy-groups:
   - name: 🚧 fallback
     type: fallback
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: false
+    udp: true
     interval: 180
     tolerance: 10
     hidden: false
