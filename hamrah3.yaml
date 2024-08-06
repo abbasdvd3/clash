@@ -75,12 +75,12 @@ tun:
 dns:
   cache-algorithm: arc
   enable: true
-  ipv6: true
+  ipv6: false
   ipv6-timeout: 300
   prefer-h3: true
   listen: 0.0.0.0:53
   enhanced-mode: fake-ip
-  fake-ip-range: 22.0.0.0/16
+  fake-ip-range: 255.0.128.1/20
   fake-ip-filter:
   - '*.lan'
   default-nameserver:
@@ -120,14 +120,8 @@ dns:
   - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true 
   - dhcp://en0 
   - quic://dns.adguard.com:784 
-  - '8.8.8.8#en0' 
   - https://doh.pub/dns-query
   - https://dns.alidns.com/dns-query
-  fallback:
-  - tcp://1.1.1.1
-  - https://1.1.1.2/dns-query
-  - https://1.0.0.2/dns-query
-  - https://9.9.9.9/dns-query
   proxy-server-nameserver:
   - https://dns.google/dns-query
   - tls://one.one.one.one
