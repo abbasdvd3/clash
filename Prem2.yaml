@@ -3,7 +3,10 @@ proxies:
 proxy-groups:
 
   - name: PRO
-    type: select
+    type: url-test
+    url: https://fiber.google.com/speedtest/generate_104
+    interval: 99
+    tolerance: 99
     proxies:
       - url-test
       - fallback
@@ -12,7 +15,7 @@ proxy-groups:
   - name: url-test
     type: url-test
     url: https://shua.leyz.top/cws/
-    interval: 300
+    interval: 99
     tolerance: 70
     use: 
       - Subscription-1
