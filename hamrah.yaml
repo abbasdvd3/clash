@@ -2585,21 +2585,33 @@ proxy-groups:
     include-all-proxies: true
 #    include-all-providers: true
     proxies: [🇭🇰, 🇯🇵, 🇺🇲, 🇰🇷, ]
-#proxy-providers: 
 
- # provider1:
- #   type: http
- #   url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/2.yaml" 
-   # path: hamrah/provider1.yaml
- #   proxy: proxy
-#    interval: 1200
-  #  udp: true
- #   health-check:
- #     enable: true
- #     interval: 300
-  #    url: http://speed.cloudflare.com/__down?bytes=20000000
-   #   lazy: true 
+proxy-providers:
+  Subscription-1:
+    type: http
+    url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml" 
+    path: hamrah/Subscription-1.yaml
+    proxy: Mismatch
+    interval: 600
+    udp: true
+    health-check:
+      enable: true
+      interval: 300
+      url: https://fiber.google.com/speedtest/generate_104
+      lazy: true 
 
+  Subscription-2:
+    type: http
+    url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml" 
+    path: hamrah/Subscription-2.yaml
+    proxy: Mismatch
+    interval: 600
+    udp: true
+    health-check:
+      enable: true
+      interval: 300
+      url: https://fiber.google.com/speedtest/generate_104
+      lazy: true 
 rule-providers:
   ir:
     type: http
