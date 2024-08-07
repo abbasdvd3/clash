@@ -14,7 +14,9 @@ proxy-groups:
     proxies:
       - url-test
       - fallback
-    use:
+    use: 
+      - Subscription-1
+      - Subscription-2
       - provider1
       - provider2
       - provider3
@@ -25,7 +27,9 @@ proxy-groups:
     interval: 99
     tolerance: 99
     proxies:
-    use:
+    use: 
+      - Subscription-1
+      - Subscription-2
       - provider1
       - provider2
       - provider3
@@ -35,7 +39,9 @@ proxy-groups:
     url: https://fiber.google.com/speedtest/generate_104
     interval: 199
     proxies:
-    use:
+    use: 
+      - Subscription-1
+      - Subscription-2
       - provider1
       - provider2
       - provider3
@@ -72,7 +78,9 @@ proxy-groups:
     url: https://downdetector.se/social-media/generate_204 # https://fiber.google.com/speedtest/generate_104
     icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/usa.svg
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
-    use:
+    use: 
+      - Subscription-1
+      - Subscription-2
       - provider1
       - provider2
       - provider3
@@ -123,7 +131,31 @@ proxy-providers:
       lazy: true
       url: https://fiber.google.com/speedtest/generate_104
 
+  Subscription-1:
+    type: http
+    url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml" 
+    path: providers6/Subscription-1.yaml
+    proxy: Mismatch
+    interval: 600
+    udp: true
+    health-check:
+      enable: true
+      interval: 300
+      url: https://fiber.google.com/speedtest/generate_104
+      lazy: true 
 
+  Subscription-2:
+    type: http
+    url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml" 
+    path: providers6/Subscription-2.yaml
+    proxy: Mismatch
+    interval: 600
+    udp: true
+    health-check:
+      enable: true
+      interval: 300
+      url: https://fiber.google.com/speedtest/generate_104
+      lazy: true 
       
 rule-providers:
   ir:
