@@ -137,8 +137,6 @@ dns:
   - https://dns.google/dns-query
   - tls://one.one.one.one
 
-proxies:
-
 
 proxies:
   - {"name":"🇺🇸US_0443 @WangCai_1_1","type":"ss","server":"142.202.49.74","port":443,"password":"pKEW8JPByTVTLtM","cipher":"aes-256-gcm"}
@@ -7456,9 +7454,9 @@ rule-providers:
     interval: 3600
     path: ruleset/LocalAreaNetwork.list   
 rules :
-  - RULE-SET,LocalAreaNetwork,🎯
-  - RULE-SET,social,Social
-  - RULE-SET,nsfw1,Social
+  - RULE-SET,LocalAreaNetwork,🎯,no-resolve
+  - RULE-SET,social,Social,no-resolve
+  - RULE-SET,nsfw1,Social,no-resolve
   - RULE-SET,category-ads-all,🆎 AdBlock
   - RULE-SET,GitHub,proxy
   - RULE-SET,apps,proxy
@@ -7466,10 +7464,10 @@ rules :
   - RULE-SET,malware,🆎 AdBlock
   - RULE-SET,phishing,🆎 AdBlock
   - RULE-SET,cryptominers,🆎 AdBlock
-  - RULE-SET,ir,🎯
-  - RULE-SET,ircidr,🎯
-  - RULE-SET,irasn,🎯
-  - RULE-SET,UnBan,Social
+  - RULE-SET,ir,🎯,no-resolve
+  - RULE-SET,ircidr,🎯,no-resolve
+  - RULE-SET,irasn,🎯,no-resolve
+  - RULE-SET,UnBan,Social,no-resolve
   - RULE-SET,BanAD,🆎 AdBlock
   - RULE-SET,BanProgramAD,🆎 AdBlock
   - RULE-SET,GoogleFCM,google
@@ -7478,18 +7476,18 @@ rules :
   - RULE-SET,OneDrive,microsoft
   - RULE-SET,Microsoft,microsoft
   - RULE-SET,Apple,apple
-  - RULE-SET,Telegram,Social
-  - RULE-SET,OpenAi,proxy
+  - RULE-SET,Telegram,Social,no-resolve
+  - RULE-SET,OpenAi,proxy,no-resolve
   - RULE-SET,YouTube,youtube
-  - RULE-SET,ProxyMedia,proxy
-  - RULE-SET,Google1,google
+  - RULE-SET,ProxyMedia,proxy,no-resolve
+  - RULE-SET,Google1,google,no-resolve
   - RULE-SET,Google,google
-  - RULE-SET,ProxyGFWlist,google
+  - RULE-SET,ProxyGFWlist,google,no-resolve
   - RULE-SET,ChinaDomain,proxy
   - RULE-SET,ChinaCompanyIp,proxy
   - RULE-SET,Download,proxy
-  - RULE-SET,GoogleCNProxyIP,google
-  - RULE-SET,gfw,Social
+  - RULE-SET,GoogleCNProxyIP,google,no-resolve
+  - RULE-SET,gfw,Social,no-resolve
   - RULE-SET,Adblock1,🆎 AdBlock
   - RULE-SET,DNS2,🆎 AdBlock
   - RULE-SET,Domestic,proxy
@@ -7504,14 +7502,14 @@ rules :
   - RULE-SET,AWA,🆎 AdBlock
   - RULE-SET,block,🆎 AdBlock
   - GEOSITE,category-ads-all,🆎 AdBlock
-  - GEOIP,CN,🎯
-  - GEOIP,ir,🎯
+  - GEOIP,CN,🎯,no-resolve
+  - GEOIP,ir,🎯,no-resolve
 #  - GEOIP,cloudflare,proxy
  # - GEOIP,cloudfront,proxy
-  - GEOIP,facebook,Social
-  - GEOIP,google,google
-  - GEOIP,twitter,Social
-  - GEOIP,telegram,Social
+  - GEOIP,facebook,Social,no-resolve
+  - GEOIP,google,google,no-resolve
+  - GEOIP,twitter,Social,no-resolve
+  - GEOIP,telegram,Social,no-resolve
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),🆎 AdBlock
   - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),🆎 AdBlock
   - AND,((NETWORK,udp),(GEOSITE,youtube)),🆎 AdBlock
@@ -7536,8 +7534,8 @@ rules :
   - PROCESS-NAME,com.sec.location.nsflp2,🆎 AdBlock
   - PROCESS-NAME,com.android.location.fused,🆎 AdBlock
   - IN-TYPE,inner,proxy
-  - PROCESS-NAME,org.telegram.messenger,Social
-  - PROCESS-NAME,com.tumblr,Social
+  - PROCESS-NAME,org.telegram.messenger,Social,no-resolve
+  - PROCESS-NAME,com.tumblr,Social,no-resolve
   - PROCESS-NAME,com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0,Social
   - PROCESS-NAME,com.tumblr/org.chromium.content.app.SandboxedProcessService0:0,Social
   - PROCESS-NAME,com.google.android.gms,Social
@@ -8078,12 +8076,12 @@ rules :
   - PROCESS-NAME,com.celzero.bravedns,proxy
   - PROCESS-NAME,com.sec.android.app.ocrservice,proxy
   - PROCESS-NAME,com.samsung.android.sdm.config,proxy
-  - PROCESS-NAME,sansunsen3.imagesearcher,proxy
+  - PROCESS-NAME,sansunsen3.imagesearcher,proxy,no-resolve
   - PROCESS-NAME,io.github.dovecoteescapee.byedpi,proxy
   - PROCESS-NAME,com.tube.client,proxy
   - PROCESS-NAME,com.google.android.syncadapters.contacts,proxy
-  - PROCESS-NAME,com.instander.android,proxy
-  - PROCESS-NAME,com.google.android.gm,proxy
+  - PROCESS-NAME,com.instander.android,proxy,no-resolve
+  - PROCESS-NAME,com.google.android.gm,proxy,no-resolve
   - PROCESS-NAME,com.jrummy.app.manager,proxy
   - DST-PORT,80/8080/443/8443,proxy
   - MATCH,🐝
