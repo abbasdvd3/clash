@@ -3,14 +3,19 @@ proxies:
 proxy-groups:
 
   - name: PRO
-    type: url-test
-    url: https://fiber.google.com/speedtest/generate_104
-    interval: 99
-    tolerance: 99
+    type: select
     proxies:
-      - url-test
       - fallback
+      - PRO
+      - url-test
+      - 🇺🇸a-url-test
+      - 🇺🇸1
+      - 🇺🇸2
       - 🇺🇸3
+      - 🇺🇸4
+    use: 
+      - Subscription-1
+      
 
   - name: url-test
     type: url-test
@@ -19,8 +24,7 @@ proxy-groups:
     tolerance: 99
     use: 
       - Subscription-1
-      - Subscription-2 
-      - Subscription-3
+
 
   - name: fallback
     type: fallback
@@ -29,8 +33,7 @@ proxy-groups:
     proxies:
     use: 
       - Subscription-1
-      - Subscription-2 
-      - Subscription-3
+
 
   - name: 🇺🇸a-url-test
     type: url-test
@@ -40,8 +43,7 @@ proxy-groups:
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
     use: 
       - Subscription-1
-      - Subscription-2 
-      - Subscription-3
+
 
   - name: 🇺🇸1
     type: url-test
@@ -51,8 +53,7 @@ proxy-groups:
     tolerance: 99
     use: 
       - Subscription-1
-      - Subscription-2 
-      - Subscription-3
+
 
   - name: 🇺🇸2
     type: url-test
@@ -62,8 +63,7 @@ proxy-groups:
     tolerance: 99
     use: 
       - Subscription-1
-      - Subscription-2 
-      - Subscription-3
+   
 
   - name: 🇺🇸3
     type: url-test
@@ -85,8 +85,7 @@ proxy-groups:
     tolerance: 99
     use: 
       - Subscription-1
-      - Subscription-2 
-      - Subscription-3
+   
 
   - name: 🎯
     type: select
@@ -103,11 +102,15 @@ proxy-groups:
     proxies:
       - PRO
       - fallback
+      - url-test
+      - 🇺🇸a-url-test
+      - 🇺🇸1
+      - 🇺🇸2
       - 🇺🇸3
+      - 🇺🇸4
     use: 
       - Subscription-1
-      - Subscription-2 
-      - Subscription-3
+    
 
 proxy-providers:
   Subscription-1:
@@ -122,29 +125,6 @@ proxy-providers:
       url: https://fiber.google.com/speedtest/generate_104
       lazy: true
       
-  Subscription-2:
-    type: http
-    url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml" 
-    path: Prem2/Subscription-2.yaml
-    interval: 600
-    udp: true
-    health-check:
-      enable: true
-      interval: 300
-      url: https://fiber.google.com/speedtest/generate_104
-      lazy: true 
-
-  Subscription-3:
-    type: http
-    url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml" 
-    path: Prem2/Subscription-3.yaml
-    interval: 600
-    udp: true
-    health-check:
-      enable: true
-      interval: 300
-      url: https://fiber.google.com/speedtest/generate_104
-      lazy: true 
 rule-providers:
   reject:
     type: http
