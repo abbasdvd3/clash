@@ -3,8 +3,10 @@
 proxies:
 
 proxy-groups:
-  - name: PROXY
-    type: select
+  - name: PRO
+    type: url-test
+    url: http://hi.bonds.id/ping
+    interval: 99
     proxies:
       - FALLBACK
       - LOAD-BALANCE
@@ -16,7 +18,7 @@ proxy-groups:
     strategy: consistent-hashing
     url: http://hi.bonds.id/ping
     interval: 99
-    udp: true
+#    udp: true
     proxies:
     use: 
       - provider1
@@ -25,7 +27,7 @@ proxy-groups:
     url: http://hi.bonds.id/ping
     interval: 99
     tolerance: 99
-    udp: true
+ #   udp: true
     proxies:
     use: 
       - provider1
@@ -33,7 +35,7 @@ proxy-groups:
     type: fallback
     url: http://hi.bonds.id/ping
     interval: 99
-    udp: true
+#    udp: true
     proxies:
     use: 
       - provider1
@@ -42,6 +44,15 @@ proxy-groups:
     proxies:
       - DIRECT
       - PROXY
+  - name: PROXY
+    type: select
+    proxies:
+      - PRO
+      - FALLBACK
+      - LOAD-BALANCE
+      - BEST-PING
+    use: 
+      - provider1
 proxy-providers:
   provider1:
     type: http
