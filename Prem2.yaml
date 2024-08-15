@@ -134,20 +134,6 @@ rule-providers:
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
     path: ruleset/reject.yaml
     interval: 86400
-  direct:
-    type: http
-    behavior: domain
-    format: yaml
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt
-    path: ruleset/direct.yaml
-    interval: 86400
-  private:
-    type: http
-    behavior: domain
-    format: yaml
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt
-    path: ruleset/private.yaml
-    interval: 86400
   gfw:
     type: http
     behavior: domain
@@ -261,7 +247,8 @@ rule-providers:
     path: ruleset/cryptominers.yaml
     interval: 86400
 rules:
-  - DOMAIN-SUFFIX,ir,DIRECT
+  - PROCESS-NAME,com.tomclaw.appsend,DIRECT
+  - DOMAIN-SUFFIX,ir,🎯
   - RULE-SET,gfw,PROXY
   - RULE-SET,social,PROXY
   - RULE-SET,nsfw1,PROXY
