@@ -264,36 +264,37 @@ rule-providers:
     path: ruleset/iran_ads.txt
     interval: 432000    
 rules:
+  - PROCESS-NAME,com.tomclaw.appsend,DIRECT
   - RULE-SET,private,IRAN,no-resolve
   - RULE-SET,iran_ads,REJECT
   - DOMAIN-SUFFIX,ir,IRAN,no-resolve
   - RULE-SET,iran_other,IRAN,no-resolve
-  - RULE-SET,social,PROXY
-  - RULE-SET,nsfw1,PROXY
+  - RULE-SET,social,PROXY,no-resolve
+  - RULE-SET,nsfw1,PROXY,no-resolve
   - RULE-SET,category-ads-all,REJECT
   - RULE-SET,apps,IRAN,no-resolve
   - RULE-SET,ads,REJECT
   - RULE-SET,malware,REJECT
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
-  - RULE-SET,GoogleFCM,PROXY
+  - RULE-SET,GoogleFCM,PROXY,no-resolve
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
   - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
-  - RULE-SET,GoogleCNProxyIP,PROXY
+  - RULE-SET,GoogleCNProxyIP,PROXY,no-resolve
   - RULE-SET,GoogleCN,PROXY
-  - RULE-SET,ProxyGFWlist,PROXY
-  - RULE-SET,UnBan,PROXY
-  - RULE-SET,gfw,PROXY
+  - RULE-SET,ProxyGFWlist,PROXY,no-resolve
+  - RULE-SET,UnBan,PROXY,no-resolve
+  - RULE-SET,gfw,PROXY,no-resolve
   - RULE-SET,BanAD,REJECT
   - RULE-SET,BanProgramAD,REJECT
   - RULE-SET,BanEasyList,REJECT
   - RULE-SET,BanEasyListChina,REJECT
   - RULE-SET,BanEasyPrivacy,REJECT
-  - RULE-SET,Apple,PROXY
+  - RULE-SET,Apple,PROXY,no-resolve
   - RULE-SET,IpinfoSpeedtest,IRAN,no-resolve
-  - RULE-SET,Telegram,PROXY
-  - RULE-SET,ProxyGFWlist,PROXY
-  - RULE-SET,Google,PROXY
+  - RULE-SET,Telegram,PROXY,no-resolve
+  - RULE-SET,ProxyGFWlist,PROXY,no-resolve
+  - RULE-SET,Google,PROXY,no-resolve
   - GEOIP,CN,IRAN,no-resolve
   - GEOIP,ir,IRAN,no-resolve
   - DOMAIN-KEYWORD,appteka.store,DIRECT
