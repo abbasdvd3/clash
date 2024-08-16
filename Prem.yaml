@@ -7,6 +7,7 @@ proxy-groups:
     type: url-test
     url: http://hi.bonds.id/ping
     interval: 99
+    tolerance: 3
     proxies:
       - FALLBACK
       - LOAD-BALANCE
@@ -22,15 +23,17 @@ proxy-groups:
     proxies:
     use: 
       - provider1
+      - provider2
   - name: BEST-PING
     type: url-test
     url: http://hi.bonds.id/ping
     interval: 99
-    tolerance: 99
+    tolerance: 9
  #   udp: true
     proxies:
     use: 
       - provider1
+      - provider2
   - name: FALLBACK
     type: fallback
     url: http://hi.bonds.id/ping
@@ -39,6 +42,7 @@ proxy-groups:
     proxies:
     use: 
       - provider1
+      - provider2
   - name: IRAN
     type: select
     proxies:
@@ -53,11 +57,22 @@ proxy-groups:
       - BEST-PING
     use: 
       - provider1
+      - provider2
 proxy-providers:
   provider1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/P1"    
     path: Prem/provider1.yaml
+    interval: 890
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
+provider2:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah"    
+    path: Prem/providerPh.yaml
     interval: 890
     health-check:
       enable: true
