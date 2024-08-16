@@ -25,6 +25,7 @@ proxy-groups:
 #    tolerance: 99
     use: 
       - Subscription-1
+      - provider1
 
 
   - name: fallback
@@ -34,6 +35,7 @@ proxy-groups:
     proxies:
     use: 
       - Subscription-1
+      - provider1
 
 
   - name: 🇺🇸a-url-test
@@ -44,6 +46,7 @@ proxy-groups:
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
     use: 
       - Subscription-1
+      - provider1
 
 
   - name: 🇺🇸1
@@ -54,6 +57,7 @@ proxy-groups:
  #   tolerance: 99
     use: 
       - Subscription-1
+      - provider1
 
 
   - name: 🇺🇸2
@@ -64,6 +68,7 @@ proxy-groups:
   #  tolerance: 99
     use: 
       - Subscription-1
+      - provider1
    
 
   - name: 🇺🇸3
@@ -86,6 +91,7 @@ proxy-groups:
  #   tolerance: 99
     use: 
       - Subscription-1
+      - provider1
    
 
   - name: 🎯
@@ -111,6 +117,7 @@ proxy-groups:
       - 🇺🇸4
     use: 
       - Subscription-1
+      - provider1
     
 
 proxy-providers:
@@ -125,7 +132,7 @@ proxy-providers:
       interval: 300
       url: https://fiber.google.com/speedtest/generate_104
       lazy: true
-provider1:
+  provider1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/P1"    
     path: Prem2/P1.yaml
