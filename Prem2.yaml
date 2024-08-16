@@ -116,7 +116,7 @@ proxy-groups:
 proxy-providers:
   Subscription-1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml" 
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah" 
     path: Prem2/Subscription-1.yaml
     interval: 1200
     udp: true
@@ -125,7 +125,16 @@ proxy-providers:
       interval: 300
       url: https://fiber.google.com/speedtest/generate_104
       lazy: true
-      
+provider1:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/P1"    
+    path: Prem2/P1.yaml
+    interval: 890
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
 rule-providers:
   reject:
     type: http
