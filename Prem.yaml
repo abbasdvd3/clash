@@ -4,14 +4,14 @@ proxies:
 
 proxy-groups:
   - name: PRO
-    type: url-test
-    url: http://hi.bonds.id/ping
-    interval: 99
-    tolerance: 3
+    type: select #url-test
+ #   url: http://hi.bonds.id/ping
+ #   interval: 99
+ #   tolerance: 3
     proxies:
-      - FALLBACK
-      - LOAD-BALANCE
       - BEST-PING
+      - LOAD-BALANCE
+      - FALLBACK
       
  
   - name: LOAD-BALANCE
