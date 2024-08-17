@@ -3,10 +3,9 @@ proxies:
 proxy-groups:
 
   - name: PRO
-    type: url-test
-    url: https://fiber.google.com/speedtest/generate_104
-    interval: 99
+    type: select
     proxies:
+      - url-test
       - fallback
       - url-test
       - 🇺🇸a-url-test
@@ -14,18 +13,21 @@ proxy-groups:
       - 🇺🇸2
       - 🇺🇸3
       - 🇺🇸4
-  # use: 
-    #  - Subscription-1
+    use: 
+      - provider1
+      - provider2
+      - provider3
       
 
   - name: url-test
     type: url-test
     url: https://fiber.google.com/speedtest/generate_104
     interval: 99
-#    tolerance: 99
+    tolerance: 99
     use: 
-      - Subscription-1
       - provider1
+      - provider2
+      - provider3
 
 
   - name: fallback
@@ -34,19 +36,21 @@ proxy-groups:
     interval: 99
     proxies:
     use: 
-      - Subscription-1
       - provider1
+      - provider2
+      - provider3
 
 
   - name: 🇺🇸a-url-test
     type: url-test
     url: https://fiber.google.com/speedtest/generate_104
     interval: 99
-#    tolerance: 99
+    tolerance: 99
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
     use: 
-      - Subscription-1
       - provider1
+      - provider2
+      - provider3
 
 
   - name: 🇺🇸1
@@ -54,21 +58,22 @@ proxy-groups:
     url: https://fiber.google.com/speedtest/generate_104
     filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港|🇦🇫|🇦🇽|🇦🇱|🇩🇿|🇦🇸|🇦🇩|🇦🇴|🇦🇮|🇧🇭|🇧🇸|🇦🇿|🇦🇹|🇦🇺|🇦🇼|🇦🇲|🇦🇷|🇦🇬|🇧🇩|🇧🇧|🇧🇪|🇧🇾|🇧🇯|🇧🇹|🇧🇴|🇰🇭|🇧🇮|🇧🇫|🇧🇬|🇧🇳|🇻🇬|🇧🇷|🇧🇼|🇧🇦|🇨🇲|🇨🇦|🇮🇨|🇨🇻|🇧🇶|🇰🇾|🇨🇫|🇹🇩|🇮🇴|🇨🇰|🇨🇬|🇰🇲|🇨🇨|🇨🇴|🇨🇽|🇨🇳|🇨🇱"
     interval: 99
- #   tolerance: 99
+    tolerance: 99
     use: 
-      - Subscription-1
       - provider1
-
+      - provider2
+      - provider3
 
   - name: 🇺🇸2
     type: url-test
     url: https://fiber.google.com/speedtest/generate_104
     filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日|🇩🇲|🇨🇮|🇩🇴|🇪🇨|🇭🇷|🇪🇬|🇸🇻|🇨🇼|🇨🇾|🇨🇿|🇩🇰|🇩🇯|🇸🇿|🇪🇪|🇬🇫|🇫🇷|🇪🇷|🇫🇮|🇫🇯|🇫🇴|🇫🇰|🇪🇺|🇭🇰|🇭🇳|🇮🇲|🇮🇱|🇮🇹|🇮🇸|🇮🇳|🇮🇪🇯🇴🎌🇱🇦🇱🇧|🇱🇸|🇱🇦|🇽🇰|🇰🇮|🇳🇫|🇳🇿|🇲🇵|🇷🇼|🇵🇱|🇸🇹|🇷🇼|🇷🇪|🇵🇷|🇵🇸|🇵🇬|🇵🇳|🇻🇨"
     interval: 99
-  #  tolerance: 99
+    tolerance: 99
     use: 
-      - Subscription-1
       - provider1
+      - provider2
+      - provider3
    
 
   - name: 🇺🇸3
@@ -76,7 +81,7 @@ proxy-groups:
     url: https://fiber.google.com/speedtest/generate_104
     # filter: "cn|TW"
     interval: 99
- #   tolerance: 99
+    tolerance: 99
     proxies:
       - 🇺🇸4
       - 🇺🇸2
@@ -88,10 +93,11 @@ proxy-groups:
     url: https://fiber.google.com/speedtest/generate_104
     filter: "🇸🇬|SG|Singapore|狮城|^新|^节北|^刷更|新|^节北|🇹🇬|🇹🇰|🇹🇼|🇻🇳|🇻🇪|🏴󠁧󠁢󠁥󠁮󠁧󠁿|🇬🇧|🇻🇦|🇿🇼|🇻🇮|🇺🇾|🇹🇨|🇺🇬|🇦🇪|🇹🇴|🇨🇭"
     interval: 99
- #   tolerance: 99
+    tolerance: 99
     use: 
-      - Subscription-1
       - provider1
+      - provider2
+      - provider3
    
 
   - name: 🎯
@@ -116,31 +122,38 @@ proxy-groups:
       - 🇺🇸3
       - 🇺🇸4
     use: 
-      - Subscription-1
       - provider1
+      - provider2
+      - provider3
     
 
 proxy-providers:
-  Subscription-1:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah" 
-    path: Prem2/Subscription-1.yaml
-    interval: 1200
-    udp: true
-    health-check:
-      enable: true
-      interval: 300
-      url: https://fiber.google.com/speedtest/generate_104
-      lazy: true
   provider1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/P1"    
-    path: Prem2/P1.yaml
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah" 
+    path: Prem2/p1.yaml
     interval: 890
     health-check:
       enable: true
       interval: 300
-      lazy: true
+      url: https://fiber.google.com/speedtest/generate_104
+  provider2:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/P1"    
+    path: Prem2/P2.yaml
+    interval: 890
+    health-check:
+      enable: true
+      interval: 300
+      url: https://fiber.google.com/speedtest/generate_204
+  provider3:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.all"  
+    path: Prem2/P3.yaml
+    interval: 890
+    health-check:
+      enable: true
+      interval: 300
       url: https://fiber.google.com/speedtest/generate_204
 rule-providers:
   reject:
@@ -224,14 +237,14 @@ rule-providers:
     type: http
     format: text
     behavior: domain
-    url: "https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_other.txt"
+    url: https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_other.txt
     path: ./ruleset/iran_other.txt
     interval: 432000
   iran_ads:
     type: http
     format: text
     behavior: domain
-    url: "https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_ads.txt"
+    url: https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_ads.txt
     path: ./ruleset/iran_ads.txt
     interval: 432000    
   ads:
@@ -264,22 +277,25 @@ rule-providers:
     interval: 86400
 rules:
   - PROCESS-NAME,com.tomclaw.appsend,DIRECT
-  - DOMAIN-SUFFIX,ir,🎯
-  - RULE-SET,gfw,PROXY
-  - RULE-SET,social,PROXY
-  - RULE-SET,nsfw1,PROXY
-  - DOMAIN,errlog.umeng.com,PROXY
-  - DOMAIN,msg.umeng.com,PROXY
-  - DOMAIN,msg.umengcloud.com,PROXY
-  - DOMAIN,tracking.miui.com,PROXY
-  - DOMAIN,app.adjust.com,PROXY
-  - DOMAIN,bdtj.tagtic.cn,PROXY
-  - DOMAIN,rewards.hypixel.net,PROXY
-  - DOMAIN-SUFFIX,koodomobile.com,PROXY
-  - DOMAIN-SUFFIX,koodomobile.ca,PROXY  
-  - GEOIP,CN,PROXY
-  - RULE-SET,telegramcidr,PROXY
-  - RULE-SET,gfw,PROXY
+  - PROCESS-NAME,ir.mci.ecareapp,🎯,no-resolve
+  - PROCESS-NAME,com.myirancell,🎯,no-resolve
+  - DOMAIN-SUFFIX,ir,🎯,no-resolve
+  - RULE-SET,gfw,PRO,no-resolve
+  - RULE-SET,social,PRO,no-resolve
+  - RULE-SET,nsfw1,PRO,no-resolve
+  - DOMAIN,errlog.umeng.com,PRO
+  - DOMAIN,msg.umeng.com,PRO
+  - DOMAIN,msg.umengcloud.com,PRO
+  - DOMAIN,tracking.miui.com,PRO
+  - DOMAIN,app.adjust.com,PRO
+  - DOMAIN,bdtj.tagtic.cn,PRO
+  - DOMAIN,rewards.hypixel.net,PRO
+  - DOMAIN-SUFFIX,koodomobile.com,PRO
+  - DOMAIN-SUFFIX,koodomobile.ca,PRO
+  - GEOIP,CN,🎯,no-resolve
+  - GEOIP,ir,🎯,no-resolve
+  - RULE-SET,telegramcidr,PRO,no-resolve
+  - RULE-SET,gfw,PRO,no-resolve
   - RULE-SET,iran_ads,🆎 AdBlock
   - RULE-SET,category-ads-all,🆎 AdBlock
   - RULE-SET,iran_other,🆎 AdBlock
@@ -293,594 +309,80 @@ rules:
   - RULE-SET,malware,🆎 AdBlock
   - RULE-SET,phishing,🆎 AdBlock
   - RULE-SET,cryptominers,🆎 AdBlock
-  - PROCESS-NAME,app.hiddifyWarp.com,PROXY
-  - PROCESS-NAME,com.facebook.flipper.sample,PROXY
-  - PROCESS-NAME,com.sanmer.mrepo,PROXY
-  - PROCESS-NAME,com.networkok.wind,PROXY
-  - PROCESS-NAME,com.net.x2.app,PROXY
-  - PROCESS-NAME,eu.faircode.xlua.pro,PROXY
-  - PROCESS-NAME,com.google.ar.core,PROXY
-  - PROCESS-NAME,com.samsung.android.mobileservice,PROXY
-  - PROCESS-NAME,de.resolution.yf_androie,PROXY
-  - PROCESS-NAME,com.pyshivam.geergit,PROXY
-  - PROCESS-NAME,tw.nekomimi.nekogram,PROXY
-  - PROCESS-NAME,lozn.hookui,PROXY
-  - PROCESS-NAME,com.bug.hookerx,PROXY
-  - PROCESS-NAME,com.sec.android.app.launcher,PROXY
-  - PROCESS-NAME,com.google.android.partnersetup,PROXY
-  - PROCESS-NAME,com.zi.zivpn,PROXY
-  - PROCESS-NAME,ua.polodarb.gmsflags,PROXY
-  - PROCESS-NAME,xyz.nextalone.nagram,PROXY
-  - PROCESS-NAME,com.progamervpn.freefire,PROXY
-  - PROCESS-NAME,com.xaitech.orange,PROXY
-  - PROCESS-NAME,Hook.JiuWu.Xp,PROXY
-  - PROCESS-NAME,com.dergoogler.mmrl,PROXY
-  - PROCESS-NAME,com.sollyu.xposed.hook.model,PROXY
-  - PROCESS-NAME,net.xnano.android.exifpro,PROXY
-  - PROCESS-NAME,com.farplace.qingzhuo,PROXY
-  - PROCESS-NAME,app.hiddify.comxxxxx,PROXY
-  - PROCESS-NAME,com.nebula.kar,PROXY
-  - PROCESS-NAME,github.tornaco.android.thanos,PROXY
-  - PROCESS-NAME,com.test.learnhook,PROXY
-  - PROCESS-NAME,com.little.simplevip,PROXY
-  - PROCESS-NAME,com.wb.clipboard.pro,PROXY
-  - PROCESS-NAME,com.knox.vpn.proxyhandler,PROXY
-  - PROCESS-NAME,com.jbzd.media.fmx,PROXY
-  - PROCESS-NAME,com.android.carrierdefaultapp,PROXY
-  - PROCESS-NAME,net.lab.flying,PROXY
-  - PROCESS-NAME,com.samsung.android.app.social,PROXY
-  - PROCESS-NAME,com.ycly.EEBBK.toolbox,PROXY
-  - PROCESS-NAME,com.apkcombo.app,PROXY
-  - PROCESS-NAME,com.samsung.android.svcagent,PROXY
-  - PROCESS-NAME,com.agefans.sp3,PROXY
-  - PROCESS-NAME,com.samsung.android.app.taskedge,PROXY
-  - PROCESS-NAME,art.pixai.pixai,PROXY
-  - PROCESS-NAME,com.aurora.store,PROXY
-  - PROCESS-NAME,free.vpn.unblock.proxy.rarevpn,PROXY
-  - PROCESS-NAME,io.github.pyoncord.app,PROXY
-  - PROCESS-NAME,com.samsung.android.calendar,PROXY
-  - PROCESS-NAME,com.aeroinsta.android,PROXY
-  - PROCESS-NAME,com.arcai.netcut,PROXY
-  - PROCESS-NAME,com.a25b.b998,PROXY
-  - PROCESS-NAME,com.keriomaker.smart,PROXY
-  - PROCESS-NAME,com.energysh.quickarte,PROXY
-  - PROCESS-NAME,com.wowull.Neribox,PROXY
-  - PROCESS-NAME,com.samsung.android.dqagent,PROXY
-  - PROCESS-NAME,com.photoroom.app,PROXY
-  - PROCESS-NAME,li.songe.gkd,PROXY
-  - PROCESS-NAME,com.v2ray.bizer,PROXY
-  - PROCESS-NAME,com.zengdq.peixunxposed,PROXY
-  - PROCESS-NAME,com.google.android.feedback,PROXY
-  - PROCESS-NAME,com.google.android.reborn,PROXY
-  - PROCESS-NAME,com.startfu.nadamail,PROXY
-  - PROCESS-NAME,jp.mydns.usagigoya.imagesearchviewer,PROXY
-  - PROCESS-NAME,in.co.pricealert.apps2sd,PROXY
-  - PROCESS-NAME,ai.generated.art.maker.image.picture.photo.generator.painting,PROXY
-  - PROCESS-NAME,com.google.android.webview,PROXY
-  - PROCESS-NAME,io.github.huskydg.magisk,PROXY
-  - PROCESS-NAME,beauty.makeup.cosmo.app,PROXY
-  - PROCESS-NAME,com.google.android.printservice.recommendation,PROXY
-  - PROCESS-NAME,com.instagold.android,PROXY
-  - PROCESS-NAME,com.samsung.android.app.appsedge,PROXY
-  - PROCESS-NAME,com.samsung.android.honeyboard,PROXY
-  - PROCESS-NAME,com.tjss.ardapp,PROXY
-  - PROCESS-NAME,com.samsung.android.lool,PROXY
-  - PROCESS-NAME,com.sec.mhs.smarttethering,PROXY
-  - PROCESS-NAME,com.moetor.moetor,PROXY
-  - PROCESS-NAME,com.balecc.ibale,PROXY
-  - PROCESS-NAME,delphi.Kisspeace.NsfwBox,PROXY
-  - PROCESS-NAME,com.hiya.star,PROXY
-  - PROCESS-NAME,com.samsung.android.mdx.kit,PROXY
-  - PROCESS-NAME,com.meitu.meiyancamera,PROXY
-  - PROCESS-NAME,com.samsung.android.networkdiagnostic,PROXY
-  - PROCESS-NAME,tech.docnet.docnetvpn,PROXY
-  - PROCESS-NAME,com.bothwing.imagesearch,PROXY
-  - PROCESS-NAME,com.android.managedprovisioning,PROXY
-  - PROCESS-NAME,com.marketunlocker.free,PROXY
-  - PROCESS-NAME,com.samsung.app.highlightplayer,PROXY
-  - PROCESS-NAME,com.at.a520435307094085,PROXY
-  - PROCESS-NAME,com.animegirlgenerator.aiartgenerator,PROXY
-  - PROCESS-NAME,com.rectfy.imageconverter,PROXY
-  - PROCESS-NAME,com.sec.imsservice,PROXY
-  - PROCESS-NAME,com.themselves.soulgen,PROXY
-  - PROCESS-NAME,ru.svolf.pcompiler,PROXY
-  - PROCESS-NAME,ml.qingsu.fuckview,PROXY
-  - PROCESS-NAME,ru.sxbuIDfx.pFSOyagrF,PROXY
-  - PROCESS-NAME,com.rhythm.hexise.inst.pro,PROXY
-  - PROCESS-NAME,myapp.ipdizhichaxun,PROXY
-  - PROCESS-NAME,com.airesearchgroup.promptai,PROXY
-  - PROCESS-NAME,ai.character.app,PROXY
-  - PROCESS-NAME,com.circular.pixels,PROXY
-  - PROCESS-NAME,com.sec.vsim.ericssonnsds.webapp,PROXY
-  - PROCESS-NAME,com.device.emulator.prp,PROXY
-  - PROCESS-NAME,com.sec.enterprise.knox.cloudmdm.smdms,PROXY
-  - PROCESS-NAME,top.fumiama.copymanga,PROXY
-  - PROCESS-NAME,tn.amin.keyboard_gpt,PROXY
-  - PROCESS-NAME,com.myhook.ct,PROXY
-  - PROCESS-NAME,com.android.proxyhandler,PROXY
-  - PROCESS-NAME,com.nxdxfg.GoldenVipHook,PROXY
-  - PROCESS-NAME,app.hiddify.comSS,PROXY
-  - PROCESS-NAME,com.axiel7.anihyou,PROXY
-  - PROCESS-NAME,org.redguest,PROXY
-  - PROCESS-NAME,com.desktopecho.pideploy,PROXY
-  - PROCESS-NAME,com.falemon.fastlemon,PROXY
-  - PROCESS-NAME,com.sec.android.app.samsungapps,PROXY
-  - PROCESS-NAME,com.picsart.studio,PROXY
-  - PROCESS-NAME,com.megabus.dinovpn,PROXY
-  - PROCESS-NAME,com.sec.android.diagmonagent,PROXY
-  - PROCESS-NAME,in.sunilpaulmathew.izzyondroid,PROXY
-  - PROCESS-NAME,com.jkjk6862.share,PROXY
-  - PROCESS-NAME,com.samsung.klmsagent,PROXY
-  - PROCESS-NAME,com.samsung.accessibility,PROXY
-  - PROCESS-NAME,fr.husi,PROXY
-  - PROCESS-NAME,org.swiftapps.swiftbackup,PROXY
-  - PROCESS-NAME,io.faceapp,PROXY
-  - PROCESS-NAME,nfg.multi_crack.android,PROXY
-  - PROCESS-NAME,com.pyshivam.gplaylicense,PROXY
-  - PROCESS-NAME,com.android.dynsystem,PROXY
-  - PROCESS-NAME,com.google.android.configupdater,PROXY
-  - PROCESS-NAME,com.squirrel,PROXY
-  - PROCESS-NAME,com.nebula.karing,PROXY
-  - PROCESS-NAME,vidma.video.editor.videomaker,PROXY
-  - PROCESS-NAME,com.samsung.android.themestore,PROXY
-  - PROCESS-NAME,com.unlock.vip,PROXY
-  - PROCESS-NAME,com.inspire.ai,PROXY
-  - PROCESS-NAME,com.sec.android.app.vepreload,PROXY
-  - PROCESS-NAME,com.twitter.plus,PROXY
-  - PROCESS-NAME,org.telegram.BifToGram,PROXY
-  - PROCESS-NAME,com.romanticai.chatgirlfriend,PROXY
-  - PROCESS-NAME,com.zhenxiang.superimage.pro,PROXY
-  - PROCESS-NAME,com.zoho.notebook,PROXY
-  - PROCESS-NAME,com.variable.apkhook,PROXY
-  - PROCESS-NAME,org.droidtr.deletegapps,PROXY
-  - PROCESS-NAME,com.sex.love,PROXY
-  - PROCESS-NAME,com.ddm.ethwork,PROXY
-  - PROCESS-NAME,com.alldown.pro,PROXY
-  - PROCESS-NAME,com.nebula.karinX,PROXY
-  - PROCESS-NAME,com.bstation.bbllbb,PROXY
-  - PROCESS-NAME,com.sec.android.app.clockpackage,PROXY
-  - PROCESS-NAME,com.lucivpn,PROXY
-  - PROCESS-NAME,sg.linkv.vandroid,PROXY
-  - PROCESS-NAME,vip.hxapp.speed,PROXY
-  - PROCESS-NAME,com.samsung.android.app.ledcoverdream,PROXY
-  - PROCESS-NAME,gov.anzong.androidnga,PROXY
-  - PROCESS-NAME,com.google.android.gsf,PROXY
-  - PROCESS-NAME,com.simo.fhook,PROXY
-  - PROCESS-NAME,dialog.box,PROXY
-  - PROCESS-NAME,com.intersection.outlinkvpn,PROXY
-  - PROCESS-NAME,com.samsung.android.app.contacts,PROXY
-  - PROCESS-NAME,io.nekohasekai.sfa,PROXY
-  - PROCESS-NAME,com.nebula.hub,PROXY
-  - PROCESS-NAME,com.android.statementservice,PROXY
-  - PROCESS-NAME,com.google.android.googlequicksearchbox,PROXY
-  - PROCESS-NAME,io.nekohasekai.sfb,PROXY
-  - PROCESS-NAME,io.github.appenv,PROXY
-  - PROCESS-NAME,com.squirrelvpn,PROXY
-  - PROCESS-NAME,com.samsung.android.app.galaxyfinder,PROXY
-  - PROCESS-NAME,com.v2ray.orange,PROXY
-  - PROCESS-NAME,com.tuanzi.hook,PROXY
-  - PROCESS-NAME,com.deniscerri.ytdl,PROXY
-  - PROCESS-NAME,com.yuday.up,PROXY
-  - PROCESS-NAME,com.v2cross.shadowshare,PROXY
-  - PROCESS-NAME,com.Free.Proxy,PROXY
-  - PROCESS-NAME,com.tidalab.v2board.clash.feitucloud,PROXY
-  - PROCESS-NAME,com.MahsaNet.MahsaNG,PROXY
-  - PROCESS-NAME,com.samsung.android.smartmirroring,PROXY
-  - PROCESS-NAME,com.mivik.getdex,PROXY
-  - PROCESS-NAME,com.network.proxy,PROXY
-  - PROCESS-NAME,com.evanhe.marketunlocker,PROXY
-  - PROCESS-NAME,com.apkpure.aegon,PROXY
-  - PROCESS-NAME,com.art.generator.ai.moe,PROXY
-  - PROCESS-NAME,com.sec.android.emergencylauncher,PROXY
-  - PROCESS-NAME,com.ai.avatar.face.portrait.app,PROXY
-  - PROCESS-NAME,com.osp.app.signin,PROXY
-  - PROCESS-NAME,com.samsung.android.app.cocktailbarservice,PROXY
-  - PROCESS-NAME,com.android.settings,PROXY
-  - PROCESS-NAME,com.web1n.permissiondog,PROXY
-  - PROCESS-NAME,jp.pxv.android,PROXY
-  - PROCESS-NAME,com.samsung.android.allshare.service.fileshare,PROXY
-  - PROCESS-NAME,com.zhenxi.hunter,PROXY
-  - PROCESS-NAME,com.samsung.storyservice,PROXY
-  - PROCESS-NAME,de.schildbach.wallet,PROXY
-  - PROCESS-NAME,zzzz.zzzz.youtubeadkiller,PROXY
-  - PROCESS-NAME,com.afkanerd.sw0b,PROXY
-  - PROCESS-NAME,com.leiting.lt10635,PROXY
-  - PROCESS-NAME,me.hd.hdtool2.alpha,PROXY
-  - PROCESS-NAME,com.google.android.setupwizard,PROXY
-  - PROCESS-NAME,com.samsung.android.messaging,PROXY
-  - PROCESS-NAME,wovow.youtubehelper,PROXY
-  - PROCESS-NAME,com.sec.android.app.music,PROXY
-  - PROCESS-NAME,com.instagram.android,PROXY
-  - PROCESS-NAME,io.github.muntashirakon.AppManager,PROXY
-  - PROCESS-NAME,com.vpn.lofun,PROXY
-  - PROCESS-NAME,com.flutter_rrm_app,PROXY
-  - PROCESS-NAME,com.dsxys.xpmk,PROXY
-  - PROCESS-NAME,com.ruanjianku.top,PROXY
-  - PROCESS-NAME,com.sec.android.app.safetyassurance,PROXY
-  - PROCESS-NAME,com.google.android.syncadapters.calendar,PROXY
-  - PROCESS-NAME,ai.art.generator.design,PROXY
-  - PROCESS-NAME,com.android.providers.calendar,PROXY
-  - PROCESS-NAME,com.dashboard.kotlin,PROXY
-  - PROCESS-NAME,io.nekohasekai.beta,PROXY
-  - PROCESS-NAME,com.samsung.android.app.soundpicker,PROXY
-  - PROCESS-NAME,imagine.ai.art.photo.image.generator,PROXY
-  - PROCESS-NAME,app.hiddify.commm,PROXY
-  - PROCESS-NAME,com.sec.android.widgetapp.samsungapps,PROXY
-  - PROCESS-NAME,org.adaway,PROXY
-  - PROCESS-NAME,com.mirfatif.permissionmanagerx.pro,PROXY
-  - PROCESS-NAME,com.scaleup.enlarge.photo.enhancer.image.ai,PROXY
-  - PROCESS-NAME,nfg.supported_apps.android,PROXY
-  - PROCESS-NAME,com.airbrush.video,PROXY
-  - PROCESS-NAME,com.ai.polyverse.spell,PROXY
-  - PROCESS-NAME,snapedit.app.remove,PROXY
-  - PROCESS-NAME,com.samsung.android.app.homestar,PROXY
-  - PROCESS-NAME,com.github.android,PROXY
-  - PROCESS-NAME,com.android.chrome,PROXY
-  - PROCESS-NAME,com.google.android.webview.dev,PROXY
-  - PROCESS-NAME,net.pro.playmods,PROXY
-  - PROCESS-NAME,video.editor.videomaker.effects.fx,PROXY
-  - PROCESS-NAME,com.rocket.internet.huawei,PROXY
-  - PROCESS-NAME,com.samsung.android.app.telephonyui,PROXY
-  - PROCESS-NAME,com.v2cross.foxo,PROXY
-  - PROCESS-NAME,com.javdb.javrocket,PROXY
-  - PROCESS-NAME,bin.mt.plus.canary,PROXY
-  - PROCESS-NAME,com.samsung.android.dialer,PROXY
-  - PROCESS-NAME,com.sec.factory,PROXY
-  - PROCESS-NAME,com.mikhaelyan.aivideo,PROXY
-  - PROCESS-NAME,com.didikee.gifparser,PROXY
-  - PROCESS-NAME,com.samsung.android.app.omcagent,PROXY
-  - PROCESS-NAME,app.revanced.manager.flutter,PROXY
-  - PROCESS-NAME,com.simo.tgramhooks,PROXY
-  - PROCESS-NAME,com.myinsta.android,PROXY
-  - PROCESS-NAME,com.sec.android.app.DataCreate,PROXY
-  - PROCESS-NAME,com.xuan.gui,PROXY
-  - PROCESS-NAME,com.instapro2.android,PROXY
-  - PROCESS-NAME,com.apple.android.music,PROXY
-  - PROCESS-NAME,com.android.providers.downloads,PROXY
-  - PROCESS-NAME,org.lsposed.SingleHook,PROXY
-  - PROCESS-NAME,com.adguard.android,PROXY
-  - PROCESS-NAME,io.nekohaseka,PROXY
-  - PROCESS-NAME,com.leiting.network,PROXY
-  - PROCESS-NAME,com.samsung.android.aircommandmanager,PROXY
-  - PROCESS-NAME,com.Yyge.JsHD,PROXY
-  - PROCESS-NAME,com.V7.net,PROXY
-  - PROCESS-NAME,com.sec.android.app.soundalive,PROXY
-  - PROCESS-NAME,com.maoxianqiu.sixpen,PROXY
-  - PROCESS-NAME,eu.thedarken.sdm,PROXY
-  - PROCESS-NAME,com.samsung.android.sdk.handwriting,PROXY
-  - PROCESS-NAME,com.rocket.hy,PROXY
-  - PROCESS-NAME,moe.matsuri.lite,PROXY
-  - PROCESS-NAME,com.droodstudio.aiart,PROXY
-  - PROCESS-NAME,com.alhs.bookHook,PROXY
-  - PROCESS-NAME,com.sec.android.app.myfiles,PROXY
-  - PROCESS-NAME,idm.internet.download.manager.plus,PROXY
-  - PROCESS-NAME,com.szwl.crossnet,PROXY
-  - PROCESS-NAME,com.samsung.android.scloud,PROXY
-  - PROCESS-NAME,com.UbiVPN.fmobiles,PROXY
-  - PROCESS-NAME,com.samsung.android.app.simplesharing,PROXY
-  - PROCESS-NAME,com.tumblr,PROXY
-  - PROCESS-NAME,com.samsung.safetyinformation,PROXY
-  - PROCESS-NAME,com.android.pacprocessor,PROXY
-  - PROCESS-NAME,com.dn.planet,PROXY
-  - PROCESS-NAME,ai.image.video.generator.magic.art,PROXY
-  - PROCESS-NAME,com.mohammadjv.kplus,PROXY
-  - PROCESS-NAME,io.github.pyoncord.manager,PROXY
-  - PROCESS-NAME,com.google.android.apps.restore,PROXY
-  - PROCESS-NAME,com.coolapk.market,PROXY
-  - PROCESS-NAME,com.yxer.packageinstalles,PROXY
-  - PROCESS-NAME,ceui.lisa.pixiv,PROXY
-  - PROCESS-NAME,com.github.aoxiang.dsb,PROXY
-  - PROCESS-NAME,com.giraffe,PROXY
-  - PROCESS-NAME,com.kibo.xunlian,PROXY
-  - PROCESS-NAME,com.follow.clash,PROXY
-  - PROCESS-NAME,com.sec.android.easyMover.Agent,PROXY
-  - PROCESS-NAME,com.lume.vinciart,PROXY
-  - PROCESS-NAME,com.samsung.android.SettingsReceiver,PROXY
-  - PROCESS-NAME,com.samsung.ucs.agent.boot,PROXY
-  - PROCESS-NAME,luren.king.tools,PROXY
-  - PROCESS-NAME,ru.tech.imageresizershrinker,PROXY
-  - PROCESS-NAME,com.android.nfc,PROXY
-  - PROCESS-NAME,com.shadog.accelerator,PROXY
-  - PROCESS-NAME,com.samsung.android.service.aircommand,PROXY
-  - PROCESS-NAME,com.lensa.app,PROXY
-  - PROCESS-NAME,com.vlink.vpn.android,PROXY
-  - PROCESS-NAME,demigos.com.mobilism,PROXY
-  - PROCESS-NAME,com.honeybee.newapp,PROXY
-  - PROCESS-NAME,com.discord,PROXY
-  - PROCESS-NAME,modder.hub.dexeditor,PROXY
-  - PROCESS-NAME,com.sec.app.RilErrorNotifier,PROXY
-  - PROCESS-NAME,com.prequel.app,PROXY
-  - PROCESS-NAME,com.fourksoft.genzart,PROXY
-  - PROCESS-NAME,com.wOnlyFanMOD_18123289,PROXY
-  - PROCESS-NAME,com.lerist.fakelocation,PROXY
-  - PROCESS-NAME,com.samsung.android.bbc.bbcagent,PROXY
-  - PROCESS-NAME,com.machiav3lli.fdroid.neo,PROXY
-  - PROCESS-NAME,com.pinterest,PROXY
-  - PROCESS-NAME,com.network.xf12816,PROXY
-  - PROCESS-NAME,com.dl.networkcheck,PROXY
-  - PROCESS-NAME,com.mynalabs.overdub,PROXY
-  - PROCESS-NAME,com.videofk.seal,PROXY
-  - PROCESS-NAME,balti.migrate.ng,PROXY
-  - PROCESS-NAME,com.facebook.katanb,PROXY
-  - PROCESS-NAME,com.produceintersection.heather,PROXY
-  - PROCESS-NAME,com.temporary.email.inboxes,PROXY
-  - PROCESS-NAME,com.looker.droidify.debug,PROXY
-  - PROCESS-NAME,com.sec.android.inputmethod,PROXY
-  - PROCESS-NAME,com.facebook.katana,PROXY
-  - PROCESS-NAME,com.machiav3lli.fdroid,PROXY
-  - PROCESS-NAME,com.richtech.spacevpn,PROXY
-  - PROCESS-NAME,com.crosserr.trojan,PROXY
-  - PROCESS-NAME,com.android.module,PROXY
-  - PROCESS-NAME,com.sec.android.mimage.photoretouching,PROXY
-  - PROCESS-NAME,com.samsung.android.app.smartcapture,PROXY
-  - PROCESS-NAME,com.samsung.android.net.wifi.wifiguider,PROXY
-  - PROCESS-NAME,com.gmail.heagoo,PROXY
-  - PROCESS-NAME,com.github.kr328.clash,PROXY
-  - PROCESS-NAME,com.cshlolss.vip,PROXY
-  - PROCESS-NAME,com.samsung.android.provider.filterprovider,PROXY
-  - PROCESS-NAME,com.superfast.rocket010,PROXY
-  - PROCESS-NAME,com.rocket.ee116bbc21c1baa,PROXY
-  - PROCESS-NAME,com.v2ray.ang,PROXY
-  - PROCESS-NAME,xyz.chz.clash,PROXY
-  - PROCESS-NAME,photoeditor.photoretouch.removeobjects.retouch,PROXY
-  - PROCESS-NAME,com.google.android.apps.translate,PROXY
-  - PROCESS-NAME,app.hiddiNEXT.com,PROXY
-  - PROCESS-NAME,com.xayah.databackup.alpha,PROXY
-  - PROCESS-NAME,me.sleep.vip,PROXY
-  - PROCESS-NAME,com.apkupdater.ci,PROXY
-  - PROCESS-NAME,com.bwnc.application,PROXY
-  - PROCESS-NAME,com.android.captiveportallogin,PROXY
-  - PROCESS-NAME,com.onetool.clx,PROXY
-  - PROCESS-NAME,com.sec.android.app.camera,PROXY
-  - PROCESS-NAME,tool.seagull.v,PROXY
-  - PROCESS-NAME,moe.cb4a,PROXY
-  - PROCESS-NAME,me.simpleHook,PROXY
-  - PROCESS-NAME,com.cshlolss.vipkill,PROXY
-  - PROCESS-NAME,com.sec.vsimservice,PROXY
-  - PROCESS-NAME,com.kxzkk.joker,PROXY
-  - PROCESS-NAME,com.samsung.android.themecenter,PROXY
-  - PROCESS-NAME,com.samsung.android.provider.stickerprovider,PROXY
-  - PROCESS-NAME,com.samsung.android.video,PROXY
-  - PROCESS-NAME,com.crosser.trojan.vpn,PROXY
-  - PROCESS-NAME,moe.nb4a,PROXY
-  - PROCESS-NAME,hj.log.alhs,PROXY
-  - PROCESS-NAME,bin.mt.vip.clone,PROXY
-  - PROCESS-NAME,com.bug.hookvip,PROXY
-  - PROCESS-NAME,com.caij.twiper,PROXY
-  - PROCESS-NAME,com.bera.whitehole,PROXY
-  - PROCESS-NAME,com.updateme,PROXY
-  - PROCESS-NAME,com.fat.vpn,PROXY
-  - PROCESS-NAME,rocket.service.super,PROXY
-  - PROCESS-NAME,com.kingitlimited.dnsspeedtest,PROXY
-  - PROCESS-NAME,com.app.fckrjk,PROXY
-  - PROCESS-NAME,com.aigc.ushow.ichat,PROXY
-  - PROCESS-NAME,akhil.alltrans,PROXY
-  - PROCESS-NAME,com.samsung.android.service.peoplestripe,PROXY
-  - PROCESS-NAME,app.hiddify.github.com,PROXY
-  - PROCESS-NAME,com.candycut.video.editor,PROXY
-  - PROCESS-NAME,com.samsung.android.app.notes,PROXY
-  - PROCESS-NAME,com.instafel.android,PROXY
-  - PROCESS-NAME,com.rong.xposed.fakelocation,PROXY
-  - PROCESS-NAME,com.sec.android.app.popupcalculator,PROXY
-  - PROCESS-NAME,ru.maximoff.apktool,PROXY
-  - PROCESS-NAME,com.magnet.zyds.pluginx,PROXY
-  - PROCESS-NAME,com.hcn.mm,PROXY
-  - PROCESS-NAME,android,PROXY
-  - PROCESS-NAME,com.google.android.gms,PROXY
-  - PROCESS-NAME,xyz.chz.bfm,PROXY
-  - PROCESS-NAME,com.samsung.android.allshare.service.mediashare,PROXY
-  - PROCESS-NAME,photoeditor.cutout.backgrounderaser,PROXY
-  - PROCESS-NAME,com.wangxutech.picwish,PROXY
-  - PROCESS-NAME,com.cdxdas.vpn.android,PROXY
-  - PROCESS-NAME,com.sec.unifiedwfc,PROXY
-  - PROCESS-NAME,com.xxf098.ssrray,PROXY
-  - PROCESS-NAME,io.acegate.fly.vpn,PROXY
-  - PROCESS-NAME,app.deepfaker.face_swap.ai_video_editor.gender_magic_face_merge_morph,PROXY
-  - PROCESS-NAME,cili.niao.search.bt.ci.li,PROXY
-  - PROCESS-NAME,com.v2ray.v2fly,PROXY
-  - PROCESS-NAME,com.bytejourney.and.spark,PROXY
-  - PROCESS-NAME,com.android.bluetooth,PROXY
-  - PROCESS-NAME,com.fox2code.mmm.debug,PROXY
-  - PROCESS-NAME,com.socialnmobile.dictapps.notepad.color.note,PROXY
-  - PROCESS-NAME,com.lemon.lvoverseas,PROXY
-  - PROCESS-NAME,vsin.t16_funny_photo,PROXY
-  - PROCESS-NAME,com.geek.vpn,PROXY
-  - PROCESS-NAME,com.samsung.crane,PROXY
-  - PROCESS-NAME,com.protecgames.htmleditor,PROXY
-  - PROCESS-NAME,com.google.android.apps.authenticator2,PROXY
-  - PROCESS-NAME,com.skms.android.agent,PROXY
-  - PROCESS-NAME,com.instathunder.android,PROXY
-  - PROCESS-NAME,com.fdbe4c.diandian,PROXY
-  - PROCESS-NAME,com.lezhi.meitubao,PROXY
-  - PROCESS-NAME,com.v2cross.proxy,PROXY
-  - PROCESS-NAME,com.crosser.crosserr,PROXY
-  - PROCESS-NAME,com.zer0.historyprice,PROXY
-  - PROCESS-NAME,com.sec.android.app.applinker,PROXY
-  - PROCESS-NAME,com.nft.creator.nftartmaker.crypto,PROXY
-  - PROCESS-NAME,com.leiting.lt100,PROXY
-  - PROCESS-NAME,com.samsung.android.app.clipboardedge,PROXY
-  - PROCESS-NAME,com.v2net.v2ray.vpn,PROXY
-  - PROCESS-NAME,app.hiddify.comS,PROXY
-  - PROCESS-NAME,com.termux,PROXY
-  - PROCESS-NAME,com.github.dyhkwong.sagernet,PROXY
-  - PROCESS-NAME,com.samsung.cmh,PROXY
-  - PROCESS-NAME,com.photovision.camera,PROXY
-  - PROCESS-NAME,app.getfreevpn,PROXY
-  - PROCESS-NAME,us.pixomatic.pixomatic,PROXY
-  - PROCESS-NAME,com.ARSC.Devices,PROXY
-  - PROCESS-NAME,moe.shizuku.privileged.api,PROXY
-  - PROCESS-NAME,com.broscr.iptvplayer,PROXY
-  - PROCESS-NAME,com.twitter.android,PROXY
-  - PROCESS-NAME,com.cilix.v4freedom,PROXY
-  - PROCESS-NAME,com.iudesk.android.photo.editor,PROXY
-  - PROCESS-NAME,com.freresmensah.imagesearch,PROXY
-  - PROCESS-NAME,com.samsung.android.smartcallprovider,PROXY
-  - PROCESS-NAME,dev.imranr.obtainium,PROXY
-  - PROCESS-NAME,dev.zwander.installwithoptions,PROXY
-  - PROCESS-NAME,com.CwaYiJui,PROXY
-  - PROCESS-NAME,com.cyberlink.vividai,PROXY
-  - PROCESS-NAME,net.imknown.android.forefrontinfo,PROXY
-  - PROCESS-NAME,com.xjs.ehviewer,PROXY
-  - PROCESS-NAME,com.zaneschepke.wireguardautotunnel,PROXY
-  - PROCESS-NAME,com.onion.one,PROXY
-  - PROCESS-NAME,com.zalexdev.stryker,PROXY
-  - PROCESS-NAME,com.kvadgroup.photostudio,PROXY
-  - PROCESS-NAME,com.dd.antss,PROXY
-  - PROCESS-NAME,com.kpkphlby12.videohl11,PROXY
-  - PROCESS-NAME,com.nebula.karingX,PROXY
-  - PROCESS-NAME,com.ai.profile,PROXY
-  - PROCESS-NAME,com.chrome.canary,PROXY
-  - PROCESS-NAME,com.instapro.android,PROXY
-  - PROCESS-NAME,com.ruet_cse_1503050.ragib.appbackup.pro,PROXY
-  - PROCESS-NAME,com.codeway.wonder,PROXY
-  - PROCESS-NAME,com.xt.retouchoversea,PROXY
-  - PROCESS-NAME,com.ddm.iptools,PROXY
-  - PROCESS-NAME,com.crazecoder.acg.wallpaper,PROXY
-  - PROCESS-NAME,com.svpn.freeshadownode,PROXY
-  - PROCESS-NAME,azul.vpn.android,PROXY
-  - PROCESS-NAME,com.samsung.android.knox.containeragent,PROXY
-  - PROCESS-NAME,com.network.xf12316,PROXY
-  - PROCESS-NAME,com.Android.FlexHook,PROXY
-  - PROCESS-NAME,com.ceco.q.gravitybox,PROXY
-  - PROCESS-NAME,com.samsung.android.rubin.app,PROXY
-  - PROCESS-NAME,com.opera.browser,PROXY
-  - PROCESS-NAME,top.webcat.app914538,PROXY
-  - PROCESS-NAME,app.suyouapp.app,PROXY
-  - PROCESS-NAME,com.sec.android.gallery3d,PROXY
-  - PROCESS-NAME,free.vpn.unlimited.fast,PROXY
-  - PROCESS-NAME,com.google.android.apps.turbo,PROXY
-  - PROCESS-NAME,com.tsng.applistdetector,PROXY
-  - PROCESS-NAME,com.chacha.igexperiments,PROXY
-  - PROCESS-NAME,com.anydesk.anydeskandroid,PROXY
-  - PROCESS-NAME,com.sec.android.app.ve.vebgm,PROXY
-  - PROCESS-NAME,com.merxury.blocker,PROXY
-  - PROCESS-NAME,com.donggua.proxy,PROXY
-  - PROCESS-NAME,com.bk.videotogif,PROXY
-  - PROCESS-NAME,com.samsung.android.sm.policy,PROXY
-  - PROCESS-NAME,com.samsung.android.knox.attestation,PROXY
-  - PROCESS-NAME,com.neo.kaf.art,PROXY
-  - PROCESS-NAME,com.android.phone,PROXY
-  - PROCESS-NAME,com.asus.imagesearch,PROXY
-  - PROCESS-NAME,com.clogica.videotogif,PROXY
-  - PROCESS-NAME,com.microsoft.emmx,PROXY
-  - PROCESS-NAME,com.samsung.android.bluelightfilter,PROXY
-  - PROCESS-NAME,to.blend.mobile_app,PROXY
-  - PROCESS-NAME,com.android.hotspot2,PROXY
-  - PROCESS-NAME,com.ailab.ai.image.generator.art.generator,PROXY
-  - PROCESS-NAME,com.hans.chipvpn,PROXY
-  - PROCESS-NAME,com.v2cross.shadowrocket,PROXY
-  - PROCESS-NAME,com.microsoft.bing,PROXY
-  - PROCESS-NAME,com.houvven.guise,PROXY
-  - PROCESS-NAME,bin.mt.plus,PROXY
-  - PROCESS-NAME,com.alhs.lovekw,PROXY
-  - PROCESS-NAME,com.cyberlink.photodirector,PROXY
-  - PROCESS-NAME,com.wangdao.wd_cutout,PROXY
-  - PROCESS-NAME,com.android.vendinf,PROXY
-  - PROCESS-NAME,com.picacomic.fregata,PROXY
-  - PROCESS-NAME,com.android.vending,PROXY
-  - PROCESS-NAME,com.samsung.android.dynamiclock,PROXY
-  - PROCESS-NAME,com.forestvpn.android,PROXY
-  - PROCESS-NAME,com.magicalstory.AppStore,PROXY
-  - PROCESS-NAME,com.v2cross.free.proxy,PROXY
-  - PROCESS-NAME,com.reidx.aiart.aiimagegenerator,PROXY
-  - PROCESS-NAME,me.iacn.biliroaming,PROXY
-  - PROCESS-NAME,com.samsung.memorysaver,PROXY
-  - PROCESS-NAME,com.samsung.android.videolist,PROXY
-  - PROCESS-NAME,be.mygod.vpnhotspot,PROXY
-  - PROCESS-NAME,com.tsng.guojiancebaod,PROXY
-  - PROCESS-NAME,app.hiddify.com,PROXY
-  - PROCESS-NAME,com.mt.mtxx.mtxx,PROXY
-  - PROCESS-NAME,com.samsung.android.samsungpositioning,PROXY
-  - PROCESS-NAME,com.technore.bdinject,PROXY
-  - PROCESS-NAME,com.close.hook.ads,PROXY
-  - PROCESS-NAME,app.to.sdcard.pro,PROXY
-  - PROCESS-NAME,com.huawei.hidisk,PROXY
-  - PROCESS-NAME,com.xrayvpn.duckvpn,PROXY
-  - PROCESS-NAME,com.samsung.android.timezone.updater,PROXY
-  - PROCESS-NAME,icu.nullptr.applistdetector,PROXY
-  - PROCESS-NAME,com.leiting.lt401,PROXY
-  - PROCESS-NAME,com.campmobile.snow,PROXY
-  - PROCESS-NAME,com.devcraft.aiphotoeditor,PROXY
-  - PROCESS-NAME,com.somebody.vipfucker,PROXY
-  - PROCESS-NAME,com.samsung.android.goodlock,PROXY
-  - PROCESS-NAME,com.gonext.automovetosdcard,PROXY
-  - PROCESS-NAME,com.kta.ai.moca,PROXY
-  - PROCESS-NAME,com.celzero.bravedns,PROXY
-  - PROCESS-NAME,com.sec.android.app.ocrservice,PROXY
-  - PROCESS-NAME,com.samsung.android.sdm.config,PROXY
-  - PROCESS-NAME,sansunsen3.imagesearcher,PROXY
-  - PROCESS-NAME,io.github.dovecoteescapee.byedpi,PROXY
-  - PROCESS-NAME,com.tube.client,PROXY
-  - PROCESS-NAME,com.google.android.syncadapters.contacts,PROXY
-  - PROCESS-NAME,com.instander.android,PROXY
-  - PROCESS-NAME,com.google.android.gm,PROXY
-  - PROCESS-NAME,com.jrummy.app.manager,PROXY
-  - DOMAIN-SUFFIX,cdninstagram.com,PROXY
-  - DOMAIN-SUFFIX,bookstagram.com,PROXY
-  - DOMAIN-SUFFIX,carstagram.com,PROXY
-  - DOMAIN-SUFFIX,cdninstagram.com,PROXY
-  - DOMAIN-SUFFIX,chickstagram.com,PROXY
-  - DOMAIN-SUFFIX,ig.me,PROXY
-  - DOMAIN-SUFFIX,igcdn.com,PROXY
-  - DOMAIN-SUFFIX,igsonar.com,PROXY
-  - DOMAIN-SUFFIX,igtv.com,PROXY
-  - DOMAIN-SUFFIX,imstagram.com,PROXY
-  - DOMAIN-SUFFIX,imtagram.com,PROXY
-  - DOMAIN-SUFFIX,instaadder.com,PROXY
-  - DOMAIN-SUFFIX,instachecker.com,PROXY
-  - DOMAIN-SUFFIX,instafallow.com,PROXY
-  - DOMAIN-SUFFIX,instafollower.com,PROXY
-  - DOMAIN-SUFFIX,instagainer.com,PROXY
-  - DOMAIN-SUFFIX,instagda.com,PROXY
-  - DOMAIN-SUFFIX,instagify.com,PROXY
-  - DOMAIN-SUFFIX,instagmania.com,PROXY
-  - DOMAIN-SUFFIX,instagor.com,PROXY
-  - DOMAIN-SUFFIX,instagram-brand.com,PROXY
-  - DOMAIN-SUFFIX,instagram-engineering.com,PROXY
-  - DOMAIN-SUFFIX,instagram-help.com,PROXY
-  - DOMAIN-SUFFIX,instagram-press.com,PROXY
-  - DOMAIN-SUFFIX,instagram-press.net,PROXY
-  - DOMAIN-SUFFIX,instagram.com,PROXY
-  - DOMAIN-SUFFIX,instagramci.com,PROXY
-  - DOMAIN-SUFFIX,instagramcn.com,PROXY
-  - DOMAIN-SUFFIX,instagramdi.com,PROXY
-  - DOMAIN-SUFFIX,instagramhashtags.net,PROXY
-  - DOMAIN-SUFFIX,instagramhilecim.com,PROXY
-  - DOMAIN-SUFFIX,instagramhilesi.org,PROXY
-  - DOMAIN-SUFFIX,instagramium.com,PROXY
-  - DOMAIN-SUFFIX,instagramizlenme.com,PROXY
-  - DOMAIN-SUFFIX,instagramkusu.com,PROXY
-  - DOMAIN-SUFFIX,instagramlogin.com,PROXY
-  - DOMAIN-SUFFIX,instagramm.com,PROXY
-  - DOMAIN-SUFFIX,instagramn.com,PROXY
-  - DOMAIN-SUFFIX,instagrampartners.com,PROXY
-  - DOMAIN-SUFFIX,instagramphoto.com,PROXY
-  - DOMAIN-SUFFIX,instagramq.com,PROXY
-  - DOMAIN-SUFFIX,instagramsepeti.com,PROXY
-  - DOMAIN-SUFFIX,instagramtakipcisatinal.net,PROXY
-  - DOMAIN-SUFFIX,instagramtakiphilesi.com,PROXY
-  - DOMAIN-SUFFIX,instagramtips.com,PROXY
-  - DOMAIN-SUFFIX,instagramtr.com,PROXY
-  - DOMAIN-SUFFIX,instagran.com,PROXY
-  - DOMAIN-SUFFIX,instagranm.com,PROXY
-  - DOMAIN-SUFFIX,instagrem.com,PROXY
-  - DOMAIN-SUFFIX,instagrm.com,PROXY
-  - DOMAIN-SUFFIX,instagtram.com,PROXY
-  - DOMAIN-SUFFIX,instagy.com,PROXY
-  - DOMAIN-SUFFIX,instamgram.com,PROXY
-  - DOMAIN-SUFFIX,instangram.com,PROXY
-  - DOMAIN-SUFFIX,instaplayer.net,PROXY
-  - DOMAIN-SUFFIX,instastyle.tv,PROXY
-  - DOMAIN-SUFFIX,instgram.com,PROXY
-  - DOMAIN-SUFFIX,intagram.com,PROXY
-  - DOMAIN-SUFFIX,intagrm.com,PROXY
-  - DOMAIN-SUFFIX,intgram.com,PROXY
-  - DOMAIN-SUFFIX,kingstagram.com,PROXY
-  - DOMAIN-SUFFIX,lnstagram-help.com,PROXY
-  - DOMAIN-SUFFIX,theinstagramhack.com,PROXY
-  - DOMAIN-SUFFIX,oninstagram.com,PROXY
-  - DOMAIN-SUFFIX,online-instagram.com,PROXY
-  - DOMAIN-SUFFIX,onlineinstagram.com,PROXY
-  - DOMAIN-SUFFIX,web-instagram.net,PROXY
-  - DOMAIN-SUFFIX,wwwinstagram.com,PROXY
+  - PROCESS-NAME,com.samsung.android.messaging,🆎 AdBlock
+  - PROCESS-NAME,com.samsung.android.app.telephonyui,🆎 AdBlock
+  - PROCESS-NAME,com.samsung.android.smartcallprovider,🆎 AdBlock
+  - PROCESS-NAME,com.samsung.android.intellivoiceservice,🆎 AdBlock
+  - PROCESS-NAME,com.android.settings,🆎 AdBlock
+  - PROCESS-NAME,com.sec.imsservice,🆎 AdBlock
+  - PROCESS-NAME,com.instander.android,PRO,no-resolve
+  - PROCESS-NAME,com.google.android.gm,PRO,no-resolve
+  - PROCESS-NAME,com.jrummy.app.manager,PRO,no-resolve
+  - DOMAIN-SUFFIX,cdninstagram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,bookstagram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,carstagram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,cdninstagram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,chickstagram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,ig.me,PRO,no-resolve
+  - DOMAIN-SUFFIX,igcdn.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,igsonar.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,igtv.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,imstagram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,imtagram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instaadder.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instachecker.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instafallow.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instafollower.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagainer.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagda.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagify.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagmania.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagor.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagram-brand.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagram-engineering.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagram-help.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagram-press.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagram-press.net,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramci.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramcn.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramdi.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramhashtags.net,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramhilecim.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramium.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramizlenme.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramkusu.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramlogin.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramm.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramn.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagrampartners.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramphoto.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramq.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramsepeti.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramtakipcisatinal.net,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramtakiphilesi.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramtips.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagramtr.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagran.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagranm.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagrem.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagrm.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagtram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagy.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instamgram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instangram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instaplayer.net,PRO,no-resolve
+  - DOMAIN-SUFFIX,instastyle.tv,PRO,no-resolve
+  - DOMAIN-SUFFIX,instgram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,intagram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,intagrm.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,intgram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,kingstagram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,lnstagram-help.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,theinstagramhack.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,oninstagram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,online-instagram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,onlineinstagram.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,web-instagram.net,PRO,no-resolve
+  - DOMAIN-SUFFIX,wwwinstagram.com,PRO,no-resolve
   - MATCH,PROXY
