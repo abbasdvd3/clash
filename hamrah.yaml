@@ -2,12 +2,15 @@
 port: 7892
 socks-port: 7891
 mixed-port: 7890
+redir-port: 7893
 mode: rule
 allow-lan: true
 unified-delay: false
 bind-address: '*'
 log-level: debug
-ipv6: true
+ipv6: false
+geodata-mode: true
+geodata-loader: memconservative
 geo-auto-update: true
 geo-update-interval: 24 
 external-controller: 0.0.0.0:9090 
@@ -22,14 +25,19 @@ geox-url:
   mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
   asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
 find-process-mode: strict
+enable-process: true
 profile:
   store-selected: true
   store-fake-ip: true
+  tracing: true
 interface-name: ""
 keep-alive-interval: 15 
-
+experimental:
+  quic-go-disable-gso: false
+  quic-go-disable-ecn: false
+  dialer-ip4p-convert: true
 sniffer:
-  enable: false
+  enable: true
   sniffing:
     - tls
     - http
@@ -45,6 +53,14 @@ sniffer:
     - 80
     - 443
     - 8000-9000
+
+
+tunnels:
+- network: [tcp, udp]
+  address: 127.0.0.1:6553
+  target: 8.8.8.8:53
+  proxy: proxy
+    
 tun:
   enable: true
   stack: MIXED
@@ -60,6 +76,7 @@ tun:
     - 127.0.0.1
   # interface-name: 
   auto-route: true 
+  auto-redir: true
   auto-detect-interface: true 
   mtu: 9000 
   strict_route: true 
@@ -73,16 +90,16 @@ tun:
 dns:
   cache-algorithm: arc
   enable: true
-  ipv6: true
+  ipv6: false
   ipv6-timeout: 300
   prefer-h3: true
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
-  fake-ip-range: 94.140.0.0/16
+  fake-ip-range: 198.18.0.0/16
   fake-ip-filter:
   - '*.lan'
   default-nameserver:
-  - 94.140.14.141
+  - 198.18.0.0
   nameserver-policy:
     www.baidu.com: 114.114.114.114
     www.instagram.com: [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
@@ -101,8 +118,187 @@ dns:
     "rule-set:GoogleFCM,ir,social,nsfw1": [223.5.5.5, https://dns.alidns.com/dns-query]
     GEOSITE:google: 8.8.8.8
   nameserver:
-  - 94.140.14.141
-
+  - 198.18.0.0
+  - dhcp://en0
+  - system
+  - dhcp://WLAN
+  - dhcp://wlan
+  - dhcp://system
+  - 192.168.1.1
+  - 217.218.155.155
+  - 217.218.127.127
+  fallback:
+  - dhcp://en0
+  - dhcp://WLAN
+  - dhcp://wlan
+  - 192.168.1.1
+  - https://max.rethinkdns.com/dns-query
+  - https://cloudflare-dns.com/dns-query
+  - https://dns.google/dns-query
+  - https://dns.alidns.com/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    ipcidr:
+      - 0.0.0.0/32
+      - 0.0.0.0/8
+      - 10.0.0.0/8
+      - 100.64.0.0/10
+      - 127.0.0.0/8
+      - 169.254.0.0/16
+      - 172.16.0.0/12
+      - 192.0.0.0/24
+      - 192.0.2.0/24
+      - 192.88.99.0/24
+      - 192.168.0.0/16
+      - 198.18.0.0/16
+      - 198.51.100.0/24
+      - 203.0.113.0/24
+      - 224.0.0.0/4
+      - 240.0.0.0/4
+      - 255.255.255.255/32
+      - ::1/128
+      - fc00::/7
+      - fe80::/10
+      - 39.102.194.95/32
+      - 182.43.124.6/32
+      - 101.35.177.86/32
+      - 116.89.243.8/32
+      - 119.28.87.227/32
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+      - 127.0.0.1/32
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+      - 127.0.0.1/32
+      - 39.102.194.95/32
+      - 182.43.124.6/32
+      - 101.35.177.86/32
+      - 116.89.243.8/32
+      - 119.28.87.227/32
+    domain:
+      - +.xincache.com
+      - www.gstatic.com
+      - +.ampproject.org
+      - +.appspot.com
+      - +.blogger.com
+      - +.google.com
+      - +.google.cn
+      - +.googleusercontent.com
+      - +.ggpht.com
+      - +.gmail.com
+      - +.gvt0.com
+      - +.gvt1.com
+      - +.gvt2.com
+      - +.gvt3.com
+      - +.youtu.be
+      - +.yt.be
+      - +.ytimg.com
+      - +.googlevideo.com
+      - +.youtube.com
+      - +.xn--ngstr-lra8j.com
+      - +.xn--flw351e.com
+      - +.xn--9kr7l.com
+      - +.xn--ggle-55da.com
+      - +.xn--gogl-0nd52e.com
+      - +.xn--gogl-1nd42e.com
+      - +.googleapis.com
+      - +.googleapis.cn
+      - +.gstatic.com
+      - +.gstatic.cn
+      - +.services.googleapis.cn
+      - +.services.googleapis.com
+      - +.connectivitycheck.gstatic.cn
+      - +.connectivitycheck.gstatic.com    
+      - +.google.com
+      - +.facebook.com
+      - +.youtube.com
+      - +.gvt1.com
+      - +.twitter.com
+      - +.bing.com       
+      - +.googleapis.com
+      - +.youtube.com
+      - +.appspot.com
+      - +.telegram.com
+      - +.facebook.com
+      - +.twitter.com
+      - +.blogger.com
+      - +.gmail.com
+      - +.gvt1.com
+      - +.xincache.com
+      - +.gstatic.com
+      - +.ampproject.org
+      - +.appspot.com
+      - +.blogger.com
+      - +.google.com
+      - +.google.cn
+      - +.googleusercontent.com
+      - +.ggpht.com
+      - +.gmail.com
+      - +.gvt0.com
+      - +.gvt1.com
+      - +.gvt2.com
+      - +.gvt3.com
+      - +.youtu.be
+      - +.yt.be
+      - +.ytimg.com
+      - +.googlevideo.com
+      - +.youtube.com
+      - +.xn--ngstr-lra8j.com
+      - +.xn--flw351e.com
+      - +.xn--9kr7l.com
+      - +.xn--ggle-55da.com
+      - +.xn--gogl-0nd52e.com
+      - +.xn--gogl-1nd42e.com
+      - +.googleapis.com
+      - +.googleapis.cn
+      - +.gstatic.com
+      - +.gstatic.cn
+      - +.services.googleapis.cn
+      - +.services.googleapis.com
+      - +.connectivitycheck.gstatic.cn
+      - +.connectivitycheck.gstatic.co
+      - +.google.com
+      - +.googleapis.com
+      - +.youtube.com
+      - +.appspot.com
+      - +.telegram.com
+      - +.facebook.com
+      - +.twitter.com
+      - +.blogger.com
+      - +.gmail.com
+      - +.gvt1.com
+      - +.facebook.com
+      - +.twitter.com
+      - +.google.com
+      - +.googleapis.com
+      - +.google.cn
+      - +.googleapis.cn
+      - +.xn--ngstr-lra8j.com
+      - +.googlevideo.com
+      - +.gvt1.com
+      - +.gmail.com
+      - +.youtube.com
+      - +.youtu.be
+      - +.gvt0.com
+      - +.gvt2.com
+      - +.gvt3.com
+      - +.gstatic.com
+      - +.265.com
+      - +.2mdn.net
+      - +.app-measurement.com
+      - +.c.admob.com
+      - +.clickserve.dartsearch.net
+      - +.crl.pki.goog
+      - +.doubleclick.net
+      - +.firebase-settings.crashlytics.com
+      - +.google-analytics.com
+      - +.googleadservices.com
+      - +.googleanalytics.com
+      - +.googleoptimize.com
+      - +.googlesyndication.com
+      - +.googletagmanager.com
+      - +.googletagservices.com
 proxies:
   - {"name":"🇺🇸_h.All_1","type":"vmess","server":"malaysia.com","port":2086,"cipher":"auto","uuid":"e9e3cc13-db48-4cc1-8c24-7626439a5339","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws"}
   - {"name":"🇺🇸_h.All_2","type":"vmess","server":"172.64.233.7","port":2086,"cipher":"auto","uuid":"e9e3cc13-db48-4cc1-8c24-7626439a5339","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws"}
@@ -3804,19 +4000,18 @@ proxies:
   - {"name":"🇺🇸_h.All_3699","type":"ss","server":"142.202.49.74","port":8118,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
   - {"name":"🇨🇳_h.All_3700","type":"ss","server":"twacq10.top","port":15375,"password":"NUeBvQHox0BmnHpu","cipher":"aes-128-gcm"}
 proxy-groups:
-  - name: proxy
+  - name: 🅿️🛜
     type: select
     hidden: false
+    dialer-proxy: 🐝
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
-    proxies: [PP, fallback, url-test, 🇺🇲]
+    proxies: [proxy, fallback, url-test, 🇺🇲]
     
-  - name: PP
-    type: url-test
-    tolerance: 5
-    lazy: true
-    hidden: false
-    url: https://www.youtube.com/generate_204
-    max-failed-times: 5
+  - name: proxy
+    type: select
+    include-all: true
+    include-all-proxies: true
+    include-all-providers: true
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
     proxies: [url-test, test, fallback]
 
@@ -3824,7 +4019,7 @@ proxy-groups:
     type: url-test
     tolerance: 5
     lazy: true
-    interval: 180
+    interval: 380
     #timeout: 200
     hidden: false
     url: https://www.youtube.com/generate_204
@@ -3839,46 +4034,46 @@ proxy-groups:
     type: select
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/google.svg
-    include-all: true
-    include-all-proxies: true
-    include-all-providers: true
-    proxies: [proxy, url-test, fallback, 🇺🇲, DIRECT]
+  #  include-all: true
+#    include-all-proxies: true
+#    include-all-providers: true
+    proxies: [🅿️🛜, url-test, fallback, 🇺🇲, DIRECT]
 
   - name: youtube
     type: select
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/youtube.svg
-    include-all: true
-    include-all-proxies: true
-    include-all-providers: true
-    proxies: [proxy, url-test, fallback, 🇺🇲]
+  #  include-all: true
+ #   include-all-proxies: true
+ #   include-all-providers: true
+    proxies: [🅿️🛜, url-test, fallback, 🇺🇲]
 
   - name: Social
     type: select
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/telegram.svg
-    include-all: true
-    include-all-proxies: true
-    include-all-providers: true
-    proxies: [proxy, url-test, fallback, 🇺🇲, DIRECT]
+#    include-all: true
+#    include-all-proxies: true
+#    include-all-providers: true
+    proxies: [🅿️🛜, url-test, fallback, 🇺🇲, DIRECT]
 
   - name: microsoft
     type: select
     hidden: true
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/microsoft.svg
-    include-all: true
-    include-all-proxies: true
-    include-all-providers: true
-    proxies: [proxy, url-test, fallback, 🇺🇲, DIRECT]
+#    include-all: true
+#    include-all-proxies: true
+#    include-all-providers: true
+    proxies: [🅿️🛜, url-test, fallback, 🇺🇲, DIRECT]
 
   - name: apple
     type: select
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/apple.svg
-    include-all: true
-    include-all-proxies: true
-    include-all-providers: true
-    proxies: [proxy, url-test, fallback, 🇺🇲, DIRECT]
+ #   include-all: true
+#    include-all-proxies: true
+#    include-all-providers: true
+    proxies: [🅿️🛜, url-test, fallback, 🇺🇲, DIRECT]
 
   - name: 🎯
     type: select
@@ -3913,7 +4108,7 @@ proxy-groups:
     include-all-proxies: true
     include-all-providers: true
     hidden: false
-    proxies: [proxy, url-test, fallback, 🇺🇲, DIRECT]
+    proxies: [🅿️🛜, url-test, fallback, 🇺🇲, DIRECT]
     
   - name: 🇺🇲
     type: url-test
@@ -3972,97 +4167,84 @@ proxy-providers:
 rule-providers:
   ir:
     type: http
-    format: yaml
     behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml
     path: ruleset/ir.yaml
     interval: 86400
   ads:
     type: http
-    format: yaml
     behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml
     path: ruleset/ads.yaml
     interval: 86400
   malware:
     type: http
-    format: yaml
     behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml
     path: ruleset/malware.yaml
     interval: 86400
   phishing:
     type: http
-    format: yaml
     behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml
     path: ruleset/phishing.yaml
     interval: 86400
   cryptominers:
     type: http
-    format: yaml
     behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml
     path: ruleset/cryptominers.yaml
     interval: 86400
   apps:
     type: http
-    format: yaml
     behavior: classical
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml"
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml
     path: ruleset/apps.yaml
     interval: 86400
   ircidr:
     type: http
-    format: yaml
     behavior: ipcidr
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml
     path: ruleset/ircidr.yaml
     interval: 86400
   private:
     type: http
-    format: yaml
     behavior: ipcidr
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml
     path: ruleset/private.yaml
     interval: 86400
   irasn:
     type: http
-    format: yaml
     behavior: classical
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml
     path: ruleset/irasn.yaml
     interval: 86400
   block:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
     path: ruleset/block.yaml
     interval: 86400
   AWA:
     type: http
     behavior: domain
-    format: yaml
     path: ruleset/AWAvenue-Ads-Rule-Clash.yaml
-    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+    url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
     interval: 86400
   Google:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/Google.list
-    format: text
     interval: 3600
     path: ruleset/Google.list
   IpinfoSpeedtest:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/IpinfoSpeedtest.list
-    format: text
     interval: 3600
     path: ruleset/IpinfoSpeedtest.list
   gfw:
     type: http
-    format: yaml
     behavior: domain
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
     path: ruleset/gfw.txt
@@ -4071,269 +4253,268 @@ rule-providers:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
-    format: text
     interval: 3600
     path: ruleset/UnBan.list
   BanAD:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
-    format: text
     interval: 3600
     path: ruleset/BanAD.list
   BanProgramAD:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
-    format: text
     interval: 3600
     path: ruleset/BanProgramAD.list
   BanEasyList:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list
-    format: text
     interval: 3600
     path: ruleset/BanEasyList.list
   BanEasyListChina:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
-    format: text
     interval: 3600
     path: ruleset/BanEasyListChina.list
   BanEasyPrivacy:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
-    format: text
     interval: 3600
     path: ruleset/BanEasyPrivacy.list    
   GoogleFCM:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
-    format: text
     interval: 3600
     path: ruleset/GoogleFCM.list
   GoogleCN:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
-    format: text
     interval: 3600
     path: ruleset/GoogleCN.list
   Bing:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list
-    format: text
     interval: 3600
     path: ruleset/Bing.list
   OneDrive:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list
-    format: text
     interval: 3600
     path: ruleset/OneDrive.list
   Microsoft:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
-    format: text
     interval: 3600
     path: ruleset/Microsoft.list
   Apple:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
-    format: text
     interval: 3600
     path: ruleset/Apple.list
   Telegram:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
-    format: text
     interval: 3600
     path: ruleset/Telegram.list
   OpenAi:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
-    format: text
     interval: 3600
     path: ruleset/OpenAi.list
   YouTube:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list
-    format: text
     interval: 3600
     path: ruleset/YouTube.list
   ProxyMedia:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
-    format: text
     interval: 3600
     path: ruleset/ProxyMedia.list
   ProxyGFWlist:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
-    format: text
     interval: 3600
     path: ruleset/ProxyGFWlist.list
   ChinaDomain:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
-    format: text
     interval: 3600
     path: ruleset/ChinaDomain.list
   ChinaCompanyIp:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
-    format: text
     interval: 3600
     path: ruleset/ChinaCompanyIp.list
   Download:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list
-    format: text
     interval: 3600
     path: ruleset/Download.list
   GoogleCNProxyIP:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
-    format: text
     interval: 3600
     path: ruleset/GoogleCNProxyIP.list
   DNS:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/DNS/DNS.yaml
-    format: text
     interval: 3600
     path: ruleset/DNS.yaml
   GitHub:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/GitHub/GitHub.yaml
-    format: text
     interval: 3600
     path: ruleset/GitHub.yaml
   AdGuardSDNSFilter:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/AdGuardSDNSFilter/AdGuardSDNSFilter_Domain.txt
-    format: text
     interval: 3600
     path: ruleset/AdGuardSDNSFilter.txt
   BlockHttpDNS:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/BlockHttpDNS/BlockHttpDNS.yaml
-    format: text
     interval: 3600
     path: ruleset/BlockHttpDNS
   AdGuardSDNSFilterDirect:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/AdGuardSDNSFilter/Direct/Direct.yaml
-    format: text
     interval: 3600
     path: ruleset/AdGuardS DNS Filter Direct.yaml
   Samsung:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Samsung/Samsung.yaml
-    format: text
     interval: 3600
     path: ruleset/Samsung.yaml
   ChinaDNS:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/ChinaDNS/ChinaDNS.yaml
-    format: text
     interval: 3600
     path: ruleset/ChinaDNS.yaml
   cloudflare:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geosite/cloudflare.list
-    format: text
     interval: 3600
     path: ruleset/cloudflare.list
   Domestic:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Domestic.list
-    format: text
     interval: 3600
     path: ruleset/Domestic.list
   Adblock1:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Adblock/Adblock.list
-    format: text
     interval: 3600
     path: ruleset/Adblock1.list
   DNS2:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Special/DNS.list
-    format: text
     interval: 3600
     path: ruleset/DNS2.list
   SpeedTest:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/SpeedTest.list
-    format: text
     interval: 3600
     path: ruleset/SpeedTest.list    
   category-ads-all:
     type: http
-    format: yaml
     behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.yaml"
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.yaml
     path: ruleset/category-ads-all.yaml
     interval: 86400
   nsfw1:
     type: http
-    format: yaml
     behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml
     path: ruleset/nsfw1.yaml
     interval: 86400
   social:
     type: http
-    format: yaml
     behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml
     path: ruleset/social.yaml
     interval: 86400
   Google1:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list
-    format: text
     interval: 3600
     path: ruleset/Google1.list    
   LocalAreaNetwork:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
-    format: text
     interval: 3600
     path: ruleset/LocalAreaNetwork.list   
 rules :
+  - DOMAIN,ad.com,🆎 AdBlock
+  - DOMAIN-SUFFIX,google.com,google
+  - DOMAIN-KEYWORD,google,google
+  - DOMAIN-REGEX,^abc.*com,proxy
+  - GEOSITE,youtube,youtube
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR6,2620:0:2d0:200::7/32,proxy
+  - IP-SUFFIX,8.8.8.8/24,PROXY
+  - IP-ASN,13335,🎯
+  - SRC-GEOIP,cn,🎯
+  - SRC-IP-ASN,9808,🎯
+  - SRC-IP-CIDR,192.168.1.201/32,🎯
+  - SRC-IP-SUFFIX,192.168.1.201/8,🎯
+  - DST-PORT,80,🎯
+  - SRC-PORT,7777,🎯
+  - IN-PORT,7890,proxy
+  - IN-TYPE,SOCKS/HTTP,proxy
+  - IN-USER,mihomo,proxy
+#  - IN-NAME,ss,proxy
+  - PROCESS-PATH,/usr/bin/wget,proxy
+  - PROCESS-PATH,C:\Program Files\Google\Chrome\Application\chrome.exe,proxy
+  - PROCESS-PATH-REGEX,.*bin/wget,proxy
+  - PROCESS-PATH-REGEX,(?i).*Application\\chrome.*,proxy
+  - PROCESS-NAME,curl,proxy
+  - PROCESS-NAME,chrome.exe,proxy
+  - PROCESS-NAME,com.termux,proxy
+  - PROCESS-NAME-REGEX,curl$,proxy
+  - PROCESS-NAME-REGEX,(?i)Telegram,proxy
+  - PROCESS-NAME-REGEX,.*telegram.*,proxy
+  - UID,1001,🎯
+  - NETWORK,udp,🎯
+  - DSCP,4,🎯
+#  - RULE-SET,providername,proxy
+  - AND,((DOMAIN,baidu.com),(NETWORK,UDP)),🎯
+  - OR,((NETWORK,UDP),(DOMAIN,baidu.com)),🆎 AdBlock
+  - NOT,((DOMAIN,baidu.com)),proxy
+#  - SUB-RULE,(NETWORK,tcp),sub-rule
   - RULE-SET,LocalAreaNetwork,🎯,no-resolve
   - PROCESS-NAME,com.tomclaw.appsend,DIRECT
   - PROCESS-NAME,ir.mci.ecareapp,🎯,no-resolve
@@ -4457,523 +4638,82 @@ rules :
   - PROCESS-NAME,com.instathunder.android,Social,no-resolve
   - PROCESS-NAME,com.myinsta.android,Social,no-resolve
   - PROCESS-NAME,com.instagram.android,Social,no-resolve
-  - PROCESS-NAME,app.hiddifyWarp.com,🎯,no-resolve
   - PROCESS-NAME,com.facebook.flipper.sample,Social,no-resolve
-  - PROCESS-NAME,com.sanmer.mrepo,🎯,no-resolve
-  - PROCESS-NAME,com.networkok.wind,proxy
-  - PROCESS-NAME,com.net.x2.app,proxy
-  - PROCESS-NAME,eu.faircode.xlua.pro,proxy
   - PROCESS-NAME,com.google.ar.core,proxy
   - PROCESS-NAME,com.samsung.android.mobileservice,🆎 AdBlock
-  - PROCESS-NAME,de.resolution.yf_androie,proxy
-  - PROCESS-NAME,com.pyshivam.geergit,proxy
-  - PROCESS-NAME,tw.nekomimi.nekogram,proxy
-  - PROCESS-NAME,lozn.hookui,proxy
-  - PROCESS-NAME,com.bug.hookerx,proxy
   - PROCESS-NAME,com.sec.android.app.launcher,🆎 AdBlock
   - PROCESS-NAME,com.google.android.partnersetup,proxy
-  - PROCESS-NAME,com.zi.zivpn,proxy
-  - PROCESS-NAME,ua.polodarb.gmsflags,proxy
-  - PROCESS-NAME,xyz.nextalone.nagram,proxy
-  - PROCESS-NAME,com.progamervpn.freefire,proxy
-  - PROCESS-NAME,com.xaitech.orange,proxy
-  - PROCESS-NAME,Hook.JiuWu.Xp,proxy
-  - PROCESS-NAME,com.dergoogler.mmrl,proxy
-  - PROCESS-NAME,com.sollyu.xposed.hook.model,proxy
-  - PROCESS-NAME,net.xnano.android.exifpro,proxy
-  - PROCESS-NAME,com.farplace.qingzhuo,proxy
-  - PROCESS-NAME,app.hiddify.comxxxxx,🎯,no-resolve
-  - PROCESS-NAME,com.nebula.kar,🎯,no-resolve
-  - PROCESS-NAME,github.tornaco.android.thanos,proxy
-  - PROCESS-NAME,com.test.learnhook,proxy
-  - PROCESS-NAME,com.little.simplevip,proxy
-  - PROCESS-NAME,com.wb.clipboard.pro,proxy
   - PROCESS-NAME,com.knox.vpn.proxyhandler,🆎 AdBlock
-  - PROCESS-NAME,com.jbzd.media.fmx,proxy
-  - PROCESS-NAME,com.android.carrierdefaultapp,proxy
-  - PROCESS-NAME,net.lab.flying,proxy
-  - PROCESS-NAME,com.samsung.android.app.social,proxy
-  - PROCESS-NAME,com.ycly.EEBBK.toolbox,proxy
-  - PROCESS-NAME,com.apkcombo.app,proxy
-  - PROCESS-NAME,com.samsung.android.svcagent,proxy
-  - PROCESS-NAME,com.agefans.sp3,proxy
-  - PROCESS-NAME,com.samsung.android.app.taskedge,proxy
-  - PROCESS-NAME,art.pixai.pixai,Social,no-resolve
-  - PROCESS-NAME,com.aurora.store,proxy
-  - PROCESS-NAME,free.vpn.unblock.proxy.rarevpn,proxy
-  - PROCESS-NAME,io.github.pyoncord.app,proxy
-  - PROCESS-NAME,com.samsung.android.calendar,proxy
-  - PROCESS-NAME,com.aeroinsta.android,Social,no-resolve
-  - PROCESS-NAME,com.arcai.netcut,proxy
-  - PROCESS-NAME,com.a25b.b998,proxy
-  - PROCESS-NAME,com.keriomaker.smart,🎯,no-resolve
   - PROCESS-NAME,com.energysh.quickarte,🆎 AdBlock
-  - PROCESS-NAME,com.wowull.Neribox,proxy
   - PROCESS-NAME,com.samsung.android.dqagent,🆎 AdBlock
-  - PROCESS-NAME,com.photoroom.app,proxy
-  - PROCESS-NAME,li.songe.gkd,proxy
-  - PROCESS-NAME,com.v2ray.bizer,proxy
-  - PROCESS-NAME,com.zengdq.peixunxposed,proxy
   - PROCESS-NAME,com.google.android.feedback,🆎 AdBlock
-  - PROCESS-NAME,com.google.android.reborn,proxy
-  - PROCESS-NAME,com.startfu.nadamail,proxy
-  - PROCESS-NAME,jp.mydns.usagigoya.imagesearchviewer,proxy
-  - PROCESS-NAME,in.co.pricealert.apps2sd,proxy
-  - PROCESS-NAME,ai.generated.art.maker.image.picture.photo.generator.painting,proxy
-  - PROCESS-NAME,com.google.android.webview,proxy
-  - PROCESS-NAME,io.github.huskydg.magisk,proxy
-  - PROCESS-NAME,beauty.makeup.cosmo.app,proxy
-  - PROCESS-NAME,com.google.android.printservice.recommendation,proxy
   - PROCESS-NAME,com.instagold.android,Social,no-resolve
   - PROCESS-NAME,com.samsung.android.app.appsedge,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.honeyboard,🆎 AdBlock
-  - PROCESS-NAME,com.tjss.ardapp,proxy
   - PROCESS-NAME,com.samsung.android.lool,🆎 AdBlock
   - PROCESS-NAME,com.sec.mhs.smarttethering,🆎 AdBlock
-  - PROCESS-NAME,com.moetor.moetor,proxy
-  - PROCESS-NAME,com.balecc.ibale,proxy
-  - PROCESS-NAME,delphi.Kisspeace.NsfwBox,proxy
-  - PROCESS-NAME,com.hiya.star,proxy
   - PROCESS-NAME,com.samsung.android.mdx.kit,🆎 AdBlock
-  - PROCESS-NAME,com.meitu.meiyancamera,proxy
   - PROCESS-NAME,com.samsung.android.networkdiagnostic,🆎 AdBlock
-  - PROCESS-NAME,tech.docnet.docnetvpn,proxy
-  - PROCESS-NAME,com.bothwing.imagesearch,proxy
-  - PROCESS-NAME,com.android.managedprovisioning,proxy
-  - PROCESS-NAME,com.marketunlocker.free,proxy
   - PROCESS-NAME,com.samsung.app.highlightplayer,🆎 AdBlock
-  - PROCESS-NAME,com.at.a520435307094085,proxy
-  - PROCESS-NAME,com.animegirlgenerator.aiartgenerator,proxy
-  - PROCESS-NAME,com.rectfy.imageconverter,proxy
   - PROCESS-NAME,com.sec.imsservice,🆎 AdBlock
   - PROCESS-NAME,com.themselves.soulgen,🆎 AdBlock
-  - PROCESS-NAME,ru.svolf.pcompiler,proxy
-  - PROCESS-NAME,ml.qingsu.fuckview,proxy
-  - PROCESS-NAME,ru.sxbuIDfx.pFSOyagrF,proxy
-  - PROCESS-NAME,com.rhythm.hexise.inst.pro,proxy
-  - PROCESS-NAME,myapp.ipdizhichaxun,proxy
-  - PROCESS-NAME,com.airesearchgroup.promptai,proxy
-  - PROCESS-NAME,ai.character.app,proxy
-  - PROCESS-NAME,com.circular.pixels,proxy
   - PROCESS-NAME,com.sec.vsim.ericssonnsds.webapp,🆎 AdBlock
-  - PROCESS-NAME,com.device.emulator.prp,proxy
   - PROCESS-NAME,com.sec.enterprise.knox.cloudmdm.smdms,🆎 AdBlock
-  - PROCESS-NAME,top.fumiama.copymanga,proxy
-  - PROCESS-NAME,tn.amin.keyboard_gpt,proxy
-  - PROCESS-NAME,com.myhook.ct,proxy
   - PROCESS-NAME,com.android.proxyhandler,🆎 AdBlock
-  - PROCESS-NAME,com.nxdxfg.GoldenVipHook,proxy
-  - PROCESS-NAME,app.hiddify.comSS,🎯,no-resolve
-  - PROCESS-NAME,com.axiel7.anihyou,proxy
-  - PROCESS-NAME,org.redguest,proxy
-  - PROCESS-NAME,com.desktopecho.pideploy,proxy
-  - PROCESS-NAME,com.falemon.fastlemon,proxy
   - PROCESS-NAME,com.sec.android.app.samsungapps,🆎 AdBlock
-  - PROCESS-NAME,com.picsart.studio,proxy
-  - PROCESS-NAME,com.megabus.dinovpn,proxy
   - PROCESS-NAME,com.sec.android.diagmonagent,🆎 AdBlock
-  - PROCESS-NAME,in.sunilpaulmathew.izzyondroid,proxy
-  - PROCESS-NAME,com.jkjk6862.share,proxy
   - PROCESS-NAME,com.samsung.klmsagent,🆎 AdBlock
   - PROCESS-NAME,com.samsung.accessibility,🆎 AdBlock
-  - PROCESS-NAME,fr.husi,proxy
-  - PROCESS-NAME,org.swiftapps.swiftbackup,proxy
-  - PROCESS-NAME,io.faceapp,proxy
-  - PROCESS-NAME,nfg.multi_crack.android,proxy
-  - PROCESS-NAME,com.pyshivam.gplaylicense,proxy
   - PROCESS-NAME,com.android.dynsystem,🆎 AdBlock
-  - PROCESS-NAME,com.google.android.configupdater,proxy
-  - PROCESS-NAME,com.squirrel,proxy
-  - PROCESS-NAME,com.nebula.karing,proxy
-  - PROCESS-NAME,vidma.video.editor.videomaker,proxy
   - PROCESS-NAME,com.samsung.android.themestore,🆎 AdBlock
-  - PROCESS-NAME,com.unlock.vip,proxy
-  - PROCESS-NAME,com.inspire.ai,proxy
   - PROCESS-NAME,com.sec.android.app.vepreload,🆎 AdBlock
-  - PROCESS-NAME,com.twitter.plus,Social,no-resolve
-  - PROCESS-NAME,org.telegram.BifToGram,Social,no-resolve
-  - PROCESS-NAME,com.romanticai.chatgirlfriend,proxy
-  - PROCESS-NAME,com.zhenxiang.superimage.pro,proxy
-  - PROCESS-NAME,com.zoho.notebook,proxy
-  - PROCESS-NAME,com.variable.apkhook,proxy
-  - PROCESS-NAME,org.droidtr.deletegapps,proxy
-  - PROCESS-NAME,com.sex.love,proxy
-  - PROCESS-NAME,com.ddm.ethwork,proxy
-  - PROCESS-NAME,com.alldown.pro,proxy
-  - PROCESS-NAME,com.nebula.karinX,proxy
-  - PROCESS-NAME,com.bstation.bbllbb,proxy
   - PROCESS-NAME,com.sec.android.app.clockpackage,🆎 AdBlock
-  - PROCESS-NAME,com.lucivpn,proxy
-  - PROCESS-NAME,sg.linkv.vandroid,proxy
-  - PROCESS-NAME,vip.hxapp.speed,proxy
   - PROCESS-NAME,com.samsung.android.app.ledcoverdream,🆎 AdBlock
-  - PROCESS-NAME,gov.anzong.androidnga,proxy
-  - PROCESS-NAME,com.google.android.gsf,proxy
-  - PROCESS-NAME,com.simo.fhook,proxy
-  - PROCESS-NAME,dialog.box,proxy
-  - PROCESS-NAME,com.intersection.outlinkvpn,proxy
-  - PROCESS-NAME,com.samsung.android.app.contacts,proxy
-  - PROCESS-NAME,io.nekohasekai.sfa,proxy
-  - PROCESS-NAME,com.nebula.hub,proxy
-  - PROCESS-NAME,com.android.statementservice,proxy
-  - PROCESS-NAME,com.google.android.googlequicksearchbox,proxy
-  - PROCESS-NAME,io.nekohasekai.sfb,proxy
-  - PROCESS-NAME,io.github.appenv,proxy
-  - PROCESS-NAME,com.squirrelvpn,proxy
   - PROCESS-NAME,com.samsung.android.app.galaxyfinder,🆎 AdBlock
-  - PROCESS-NAME,com.v2ray.orange,🎯,no-resolve
-  - PROCESS-NAME,com.tuanzi.hook,proxy
-  - PROCESS-NAME,com.deniscerri.ytdl,proxy
-  - PROCESS-NAME,com.yuday.up,proxy
-  - PROCESS-NAME,com.v2cross.shadowshare,🎯,no-resolve
-  - PROCESS-NAME,com.Free.Proxy,proxy
-  - PROCESS-NAME,com.tidalab.v2board.clash.feitucloud,proxy
-  - PROCESS-NAME,com.MahsaNet.MahsaNG,proxy
   - PROCESS-NAME,com.samsung.android.smartmirroring,🆎 AdBlock
-  - PROCESS-NAME,com.mivik.getdex,proxy
-  - PROCESS-NAME,com.network.proxy,proxy
-  - PROCESS-NAME,com.evanhe.marketunlocker,proxy
-  - PROCESS-NAME,com.apkpure.aegon,proxy
-  - PROCESS-NAME,com.art.generator.ai.moe,proxy
   - PROCESS-NAME,com.sec.android.emergencylauncher,🆎 AdBlock
-  - PROCESS-NAME,com.ai.avatar.face.portrait.app,proxy
-  - PROCESS-NAME,com.osp.app.signin,proxy
   - PROCESS-NAME,com.samsung.android.app.cocktailbarservice,🆎 AdBlock
-  - PROCESS-NAME,com.android.settings,proxy
-  - PROCESS-NAME,com.web1n.permissiondog,proxy
-  - PROCESS-NAME,jp.pxv.android,proxy
   - PROCESS-NAME,com.samsung.android.allshare.service.fileshare,🆎 AdBlock
-  - PROCESS-NAME,com.zhenxi.hunter,proxy
   - PROCESS-NAME,com.samsung.storyservice,🆎 AdBlock
-  - PROCESS-NAME,de.schildbach.wallet,proxy
-  - PROCESS-NAME,zzzz.zzzz.youtubeadkiller,proxy
-  - PROCESS-NAME,com.afkanerd.sw0b,proxy
-  - PROCESS-NAME,com.leiting.lt10635,proxy
-  - PROCESS-NAME,me.hd.hdtool2.alpha,proxy
-  - PROCESS-NAME,com.google.android.setupwizard,proxy
   - PROCESS-NAME,com.samsung.android.messaging,🆎 AdBlock
-  - PROCESS-NAME,wovow.youtubehelper,proxy
-  - PROCESS-NAME,com.sec.android.app.music,proxy
-  - PROCESS-NAME,com.instagram.android,proxy
-  - PROCESS-NAME,io.github.muntashirakon.AppManager,proxy
-  - PROCESS-NAME,com.vpn.lofun,proxy
-  - PROCESS-NAME,com.flutter_rrm_app,proxy
-  - PROCESS-NAME,com.dsxys.xpmk,proxy
-  - PROCESS-NAME,com.ruanjianku.top,proxy
   - PROCESS-NAME,com.sec.android.app.safetyassurance,🆎 AdBlock
-  - PROCESS-NAME,com.google.android.syncadapters.calendar,proxy
-  - PROCESS-NAME,ai.art.generator.design,proxy
-  - PROCESS-NAME,com.android.providers.calendar,proxy
-  - PROCESS-NAME,com.dashboard.kotlin,proxy
-  - PROCESS-NAME,io.nekohasekai.beta,proxy
   - PROCESS-NAME,com.samsung.android.app.soundpicker,🆎 AdBlock
-  - PROCESS-NAME,imagine.ai.art.photo.image.generator,proxy
-  - PROCESS-NAME,app.hiddify.commm,🎯,no-resolve
   - PROCESS-NAME,com.sec.android.widgetapp.samsungapps,🆎 AdBlock
-  - PROCESS-NAME,org.adaway,🎯,no-resolve
-  - PROCESS-NAME,com.mirfatif.permissionmanagerx.pro,proxy
-  - PROCESS-NAME,com.scaleup.enlarge.photo.enhancer.image.ai,proxy
-  - PROCESS-NAME,nfg.supported_apps.android,proxy
-  - PROCESS-NAME,com.airbrush.video,proxy
-  - PROCESS-NAME,com.ai.polyverse.spell,proxy
-  - PROCESS-NAME,snapedit.app.remove,proxy
   - PROCESS-NAME,com.samsung.android.app.homestar,🆎 AdBlock
-  - PROCESS-NAME,com.github.android,proxy
-  - PROCESS-NAME,com.android.chrome,proxy
-  - PROCESS-NAME,com.google.android.webview.dev,proxy
-  - PROCESS-NAME,net.pro.playmods,proxy
-  - PROCESS-NAME,video.editor.videomaker.effects.fx,proxy
-  - PROCESS-NAME,com.rocket.internet.huawei,proxy
   - PROCESS-NAME,com.samsung.android.app.telephonyui,🆎 AdBlock
-  - PROCESS-NAME,com.v2cross.foxo,🎯,no-resolve
-  - PROCESS-NAME,com.javdb.javrocket,proxy
-  - PROCESS-NAME,bin.mt.plus.canary,proxy
   - PROCESS-NAME,com.samsung.android.dialer,🆎 AdBlock
   - PROCESS-NAME,com.sec.factory,🆎 AdBlock
-  - PROCESS-NAME,com.mikhaelyan.aivideo,proxy
-  - PROCESS-NAME,com.didikee.gifparser,proxy
   - PROCESS-NAME,com.samsung.android.app.omcagent,🆎 AdBlock
-  - PROCESS-NAME,app.revanced.manager.flutter,proxy
-  - PROCESS-NAME,com.simo.tgramhooks,proxy
-  - PROCESS-NAME,com.myinsta.android,proxy
   - PROCESS-NAME,com.sec.android.app.DataCreate,🆎 AdBlock
-  - PROCESS-NAME,com.xuan.gui,proxy
-  - PROCESS-NAME,com.instapro2.android,proxy
-  - PROCESS-NAME,com.apple.android.music,proxy
-  - PROCESS-NAME,com.android.providers.downloads,proxy
-  - PROCESS-NAME,org.lsposed.SingleHook,proxy
-  - PROCESS-NAME,com.adguard.android,🎯,no-resolve
-  - PROCESS-NAME,io.nekohaseka,proxy
-  - PROCESS-NAME,com.leiting.network,proxy
   - PROCESS-NAME,com.samsung.android.aircommandmanager,🆎 AdBlock
-  - PROCESS-NAME,com.Yyge.JsHD,proxy
-  - PROCESS-NAME,com.V7.net,proxy
   - PROCESS-NAME,com.sec.android.app.soundalive,🆎 AdBlock
-  - PROCESS-NAME,com.maoxianqiu.sixpen,proxy
-  - PROCESS-NAME,eu.thedarken.sdm,proxy
   - PROCESS-NAME,com.samsung.android.sdk.handwriting,🆎 AdBlock
-  - PROCESS-NAME,com.rocket.hy,proxy
-  - PROCESS-NAME,moe.matsuri.lite,proxy
-  - PROCESS-NAME,com.droodstudio.aiart,proxy
-  - PROCESS-NAME,com.alhs.bookHook,proxy
-  - PROCESS-NAME,com.sec.android.app.myfiles,proxy
-  - PROCESS-NAME,idm.internet.download.manager.plus,proxy
-  - PROCESS-NAME,com.szwl.crossnet,proxy
-  - PROCESS-NAME,com.samsung.android.scloud,proxy
-  - PROCESS-NAME,com.UbiVPN.fmobiles,proxy
   - PROCESS-NAME,com.samsung.android.app.simplesharing,🆎 AdBlock
-  - PROCESS-NAME,com.tumblr,Social,no-resolve
   - PROCESS-NAME,com.samsung.safetyinformation,🆎 AdBlock
   - PROCESS-NAME,com.android.pacprocessor,🆎 AdBlock
-  - PROCESS-NAME,com.dn.planet,proxy
-  - PROCESS-NAME,ai.image.video.generator.magic.art,proxy
-  - PROCESS-NAME,com.mohammadjv.kplus,proxy
-  - PROCESS-NAME,io.github.pyoncord.manager,proxy
-  - PROCESS-NAME,com.google.android.apps.restore,proxy
-  - PROCESS-NAME,com.coolapk.market,proxy
-  - PROCESS-NAME,com.yxer.packageinstalles,proxy
-  - PROCESS-NAME,ceui.lisa.pixiv,proxy
-  - PROCESS-NAME,com.github.aoxiang.dsb,proxy
-  - PROCESS-NAME,com.giraffe,proxy
-  - PROCESS-NAME,com.kibo.xunlian,proxy
-  - PROCESS-NAME,com.follow.clash,proxy
   - PROCESS-NAME,com.sec.android.easyMover.Agent,🆎 AdBlock
-  - PROCESS-NAME,com.lume.vinciart,proxy
   - PROCESS-NAME,com.samsung.android.SettingsReceiver,🆎 AdBlock
   - PROCESS-NAME,com.samsung.ucs.agent.boot,🆎 AdBlock
-  - PROCESS-NAME,luren.king.tools,proxy
-  - PROCESS-NAME,ru.tech.imageresizershrinker,proxy
   - PROCESS-NAME,com.android.nfc,🆎 AdBlock
-  - PROCESS-NAME,com.shadog.accelerator,proxy
   - PROCESS-NAME,com.samsung.android.service.aircommand,🆎 AdBlock
-  - PROCESS-NAME,com.lensa.app,proxy
-  - PROCESS-NAME,com.vlink.vpn.android,proxy
-  - PROCESS-NAME,demigos.com.mobilism,proxy
-  - PROCESS-NAME,com.honeybee.newapp,proxy
-  - PROCESS-NAME,com.discord,proxy
-  - PROCESS-NAME,modder.hub.dexeditor,proxy
   - PROCESS-NAME,com.sec.app.RilErrorNotifier,🆎 AdBlock
-  - PROCESS-NAME,com.prequel.app,proxy
-  - PROCESS-NAME,com.fourksoft.genzart,proxy
-  - PROCESS-NAME,com.wOnlyFanMOD_18123289,proxy
-  - PROCESS-NAME,com.lerist.fakelocation,proxy
   - PROCESS-NAME,com.samsung.android.bbc.bbcagent,🆎 AdBlock
-  - PROCESS-NAME,com.machiav3lli.fdroid.neo,proxy
-  - PROCESS-NAME,com.pinterest,proxy
-  - PROCESS-NAME,com.network.xf12816,proxy
-  - PROCESS-NAME,com.dl.networkcheck,proxy
-  - PROCESS-NAME,com.mynalabs.overdub,proxy
-  - PROCESS-NAME,com.videofk.seal,proxy
-  - PROCESS-NAME,balti.migrate.ng,proxy
-  - PROCESS-NAME,com.facebook.katanb,proxy
-  - PROCESS-NAME,com.produceintersection.heather,proxy
-  - PROCESS-NAME,com.temporary.email.inboxes,proxy
-  - PROCESS-NAME,com.looker.droidify.debug,proxy
-  - PROCESS-NAME,com.sec.android.inputmethod,proxy
-  - PROCESS-NAME,com.facebook.katana,proxy
-  - PROCESS-NAME,com.machiav3lli.fdroid,proxy
-  - PROCESS-NAME,com.richtech.spacevpn,proxy
-  - PROCESS-NAME,com.crosserr.trojan,proxy
-  - PROCESS-NAME,com.android.module,proxy
-  - PROCESS-NAME,com.sec.android.mimage.photoretouching,proxy
-  - PROCESS-NAME,com.samsung.android.app.smartcapture,proxy
-  - PROCESS-NAME,com.samsung.android.net.wifi.wifiguider,proxy
-  - PROCESS-NAME,com.gmail.heagoo,proxy
-  - PROCESS-NAME,com.github.kr328.clash,proxy
-  - PROCESS-NAME,com.cshlolss.vip,proxy
   - PROCESS-NAME,com.samsung.android.provider.filterprovider,🆎 AdBlock
-  - PROCESS-NAME,com.superfast.rocket010,proxy
-  - PROCESS-NAME,com.rocket.ee116bbc21c1baa,proxy
-  - PROCESS-NAME,com.v2ray.ang,proxy
-  - PROCESS-NAME,xyz.chz.clash,proxy
-  - PROCESS-NAME,photoeditor.photoretouch.removeobjects.retouch,proxy
-  - PROCESS-NAME,com.google.android.apps.translate,proxy
-  - PROCESS-NAME,app.hiddiNEXT.com,🎯,no-resolve
-  - PROCESS-NAME,com.xayah.databackup.alpha,proxy
-  - PROCESS-NAME,me.sleep.vip,proxy
-  - PROCESS-NAME,com.apkupdater.ci,proxy
-  - PROCESS-NAME,com.bwnc.application,proxy
-  - PROCESS-NAME,com.android.captiveportallogin,proxy
-  - PROCESS-NAME,com.onetool.clx,proxy
-  - PROCESS-NAME,com.sec.android.app.camera,proxy
-  - PROCESS-NAME,tool.seagull.v,proxy
-  - PROCESS-NAME,moe.cb4a,proxy
-  - PROCESS-NAME,me.simpleHook,proxy
-  - PROCESS-NAME,com.cshlolss.vipkill,proxy
   - PROCESS-NAME,com.sec.vsimservice,🆎 AdBlock
-  - PROCESS-NAME,com.kxzkk.joker,proxy
-  - PROCESS-NAME,com.samsung.android.themecenter,proxy
   - PROCESS-NAME,com.samsung.android.provider.stickerprovider,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.video,proxy
-  - PROCESS-NAME,com.crosser.trojan.vpn,🎯,no-resolve
-  - PROCESS-NAME,moe.nb4a,proxy
-  - PROCESS-NAME,hj.log.alhs,proxy
-  - PROCESS-NAME,bin.mt.vip.clone,🎯,no-resolve
-  - PROCESS-NAME,com.bug.hookvip,🎯,no-resolve
-  - PROCESS-NAME,com.caij.twiper,proxy
-  - PROCESS-NAME,com.bera.whitehole,proxy
-  - PROCESS-NAME,com.updateme,proxy
-  - PROCESS-NAME,com.fat.vpn,proxy
-  - PROCESS-NAME,rocket.service.super,proxy
-  - PROCESS-NAME,com.kingitlimited.dnsspeedtest,proxy
-  - PROCESS-NAME,com.app.fckrjk,proxy
-  - PROCESS-NAME,com.aigc.ushow.ichat,proxy
-  - PROCESS-NAME,akhil.alltrans,proxy
-  - PROCESS-NAME,com.samsung.android.service.peoplestripe,proxy
-  - PROCESS-NAME,app.hiddify.github.com,proxy
-  - PROCESS-NAME,com.candycut.video.editor,proxy
-  - PROCESS-NAME,com.samsung.android.app.notes,proxy
-  - PROCESS-NAME,com.instafel.android,proxy
-  - PROCESS-NAME,com.rong.xposed.fakelocation,proxy
   - PROCESS-NAME,com.sec.android.app.popupcalculator,🆎 AdBlock
-  - PROCESS-NAME,ru.maximoff.apktool,proxy
-  - PROCESS-NAME,com.magnet.zyds.pluginx,proxy
-  - PROCESS-NAME,com.hcn.mm,proxy
-  - PROCESS-NAME,android,proxy
-  - PROCESS-NAME,com.google.android.gms,proxy
-  - PROCESS-NAME,xyz.chz.bfm,proxy
   - PROCESS-NAME,com.samsung.android.allshare.service.mediashare,🆎 AdBlock
-  - PROCESS-NAME,photoeditor.cutout.backgrounderaser,proxy
-  - PROCESS-NAME,com.wangxutech.picwish,proxy
-  - PROCESS-NAME,com.cdxdas.vpn.android,proxy
-  - PROCESS-NAME,com.sec.unifiedwfc,proxy
-  - PROCESS-NAME,com.xxf098.ssrray,proxy
-  - PROCESS-NAME,io.acegate.fly.vpn,proxy
-  - PROCESS-NAME,app.deepfaker.face_swap.ai_video_editor.gender_magic_face_merge_morph,proxy
-  - PROCESS-NAME,cili.niao.search.bt.ci.li,proxy
-  - PROCESS-NAME,com.v2ray.v2fly,proxy
-  - PROCESS-NAME,com.bytejourney.and.spark,proxy
   - PROCESS-NAME,com.android.bluetooth,🆎 AdBlock
-  - PROCESS-NAME,com.fox2code.mmm.debug,proxy
-  - PROCESS-NAME,com.socialnmobile.dictapps.notepad.color.note,proxy
-  - PROCESS-NAME,com.lemon.lvoverseas,proxy
-  - PROCESS-NAME,vsin.t16_funny_photo,proxy
-  - PROCESS-NAME,com.geek.vpn,proxy
   - PROCESS-NAME,com.samsung.crane,🆎 AdBlock
-  - PROCESS-NAME,com.protecgames.htmleditor,proxy
-  - PROCESS-NAME,com.google.android.apps.authenticator2,proxy
-  - PROCESS-NAME,com.skms.android.agent,proxy
-  - PROCESS-NAME,com.instathunder.android,proxy
-  - PROCESS-NAME,com.fdbe4c.diandian,proxy
-  - PROCESS-NAME,com.lezhi.meitubao,proxy
-  - PROCESS-NAME,com.v2cross.proxy,🎯,no-resolve
-  - PROCESS-NAME,com.crosser.crosserr,🎯,no-resolve
-  - PROCESS-NAME,com.zer0.historyprice,proxy
   - PROCESS-NAME,com.sec.android.app.applinker,🆎 AdBlock
-  - PROCESS-NAME,com.nft.creator.nftartmaker.crypto,proxy
-  - PROCESS-NAME,com.leiting.lt100,proxy
-  - PROCESS-NAME,com.samsung.android.app.clipboardedge,proxy
-  - PROCESS-NAME,com.v2net.v2ray.vpn,proxy
-  - PROCESS-NAME,app.hiddify.comS,🎯,no-resolve
-  - PROCESS-NAME,com.termux,🎯,no-resolve
-  - PROCESS-NAME,com.github.dyhkwong.sagernet,proxy
-  - PROCESS-NAME,com.samsung.cmh,proxy
-  - PROCESS-NAME,com.photovision.camera,proxy
-  - PROCESS-NAME,app.getfreevpn,proxy
-  - PROCESS-NAME,us.pixomatic.pixomatic,proxy
-  - PROCESS-NAME,com.ARSC.Devices,proxy
-  - PROCESS-NAME,moe.shizuku.privileged.api,proxy
-  - PROCESS-NAME,com.broscr.iptvplayer,proxy
-  - PROCESS-NAME,com.twitter.android,proxy
-  - PROCESS-NAME,com.cilix.v4freedom,proxy
-  - PROCESS-NAME,com.iudesk.android.photo.editor,proxy
-  - PROCESS-NAME,com.freresmensah.imagesearch,proxy
   - PROCESS-NAME,com.samsung.android.smartcallprovider,🆎 AdBlock
-  - PROCESS-NAME,dev.imranr.obtainium,proxy
-  - PROCESS-NAME,dev.zwander.installwithoptions,proxy
-  - PROCESS-NAME,com.CwaYiJui,proxy
-  - PROCESS-NAME,com.cyberlink.vividai,proxy
-  - PROCESS-NAME,net.imknown.android.forefrontinfo,proxy
-  - PROCESS-NAME,com.xjs.ehviewer,proxy
-  - PROCESS-NAME,com.zaneschepke.wireguardautotunnel,proxy
-  - PROCESS-NAME,com.onion.one,proxy
-  - PROCESS-NAME,com.zalexdev.stryker,proxy
-  - PROCESS-NAME,com.kvadgroup.photostudio,proxy
-  - PROCESS-NAME,com.dd.antss,proxy
-  - PROCESS-NAME,com.kpkphlby12.videohl11,proxy
-  - PROCESS-NAME,com.nebula.karingX,proxy
-  - PROCESS-NAME,com.ai.profile,proxy
-  - PROCESS-NAME,com.chrome.canary,proxy
-  - PROCESS-NAME,com.instapro.android,proxy
-  - PROCESS-NAME,com.ruet_cse_1503050.ragib.appbackup.pro,proxy
-  - PROCESS-NAME,com.codeway.wonder,proxy
-  - PROCESS-NAME,com.xt.retouchoversea,proxy
-  - PROCESS-NAME,com.ddm.iptools,proxy
-  - PROCESS-NAME,com.crazecoder.acg.wallpaper,proxy
-  - PROCESS-NAME,com.svpn.freeshadownode,proxy
-  - PROCESS-NAME,azul.vpn.android,proxy
-  - PROCESS-NAME,com.samsung.android.knox.containeragent,proxy
-  - PROCESS-NAME,com.network.xf12316,proxy
-  - PROCESS-NAME,com.Android.FlexHook,proxy
-  - PROCESS-NAME,com.ceco.q.gravitybox,proxy
   - PROCESS-NAME,com.samsung.android.rubin.app,🆎 AdBlock
-  - PROCESS-NAME,com.opera.browser,proxy
-  - PROCESS-NAME,top.webcat.app914538,proxy
-  - PROCESS-NAME,app.suyouapp.app,proxy
-  - PROCESS-NAME,com.sec.android.gallery3d,proxy
-  - PROCESS-NAME,free.vpn.unlimited.fast,proxy
-  - PROCESS-NAME,com.google.android.apps.turbo,proxy
-  - PROCESS-NAME,com.tsng.applistdetector,proxy
-  - PROCESS-NAME,com.chacha.igexperiments,proxy
-  - PROCESS-NAME,com.anydesk.anydeskandroid,proxy
-  - PROCESS-NAME,com.sec.android.app.ve.vebgm,proxy
-  - PROCESS-NAME,com.merxury.blocker,proxy
-  - PROCESS-NAME,com.donggua.proxy,proxy
-  - PROCESS-NAME,com.bk.videotogif,proxy
   - PROCESS-NAME,com.samsung.android.sm.policy,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.knox.attestation,🆎 AdBlock
-  - PROCESS-NAME,com.neo.kaf.art,proxy
   - PROCESS-NAME,com.android.phone,🆎 AdBlock
-  - PROCESS-NAME,com.asus.imagesearch,proxy
-  - PROCESS-NAME,com.clogica.videotogif,proxy
-  - PROCESS-NAME,com.microsoft.emmx,proxy
-  - PROCESS-NAME,com.samsung.android.bluelightfilter,proxy
-  - PROCESS-NAME,to.blend.mobile_app,proxy
-  - PROCESS-NAME,com.android.hotspot2,proxy
-  - PROCESS-NAME,com.ailab.ai.image.generator.art.generator,proxy
-  - PROCESS-NAME,com.hans.chipvpn,proxy
-  - PROCESS-NAME,com.v2cross.shadowrocket,proxy
-  - PROCESS-NAME,com.microsoft.bing,proxy
-  - PROCESS-NAME,com.houvven.guise,proxy
-  - PROCESS-NAME,bin.mt.plus,proxy
-  - PROCESS-NAME,com.alhs.lovekw,proxy
-  - PROCESS-NAME,com.cyberlink.photodirector,proxy
-  - PROCESS-NAME,com.wangdao.wd_cutout,proxy
-  - PROCESS-NAME,com.android.vendinf,proxy
-  - PROCESS-NAME,com.picacomic.fregata,proxy
-  - PROCESS-NAME,com.android.vending,proxy
-  - PROCESS-NAME,com.samsung.android.dynamiclock,proxy
-  - PROCESS-NAME,com.forestvpn.android,proxy
-  - PROCESS-NAME,com.magicalstory.AppStore,proxy
-  - PROCESS-NAME,com.v2cross.free.proxy,🎯,no-resolve
-  - PROCESS-NAME,com.reidx.aiart.aiimagegenerator,proxy
-  - PROCESS-NAME,me.iacn.biliroaming,proxy
-  - PROCESS-NAME,com.samsung.memorysaver,proxy
-  - PROCESS-NAME,com.samsung.android.videolist,proxy
-  - PROCESS-NAME,be.mygod.vpnhotspot,proxy
-  - PROCESS-NAME,com.tsng.guojiancebaod,proxy
-  - PROCESS-NAME,app.hiddify.com,🎯,no-resolve
-  - PROCESS-NAME,com.mt.mtxx.mtxx,proxy
   - PROCESS-NAME,com.samsung.android.samsungpositioning,🆎 AdBlock
-  - PROCESS-NAME,com.technore.bdinject,proxy
-  - PROCESS-NAME,com.close.hook.ads,proxy
-  - PROCESS-NAME,app.to.sdcard.pro,proxy
-  - PROCESS-NAME,com.huawei.hidisk,proxy
-  - PROCESS-NAME,com.xrayvpn.duckvpn,proxy
-  - PROCESS-NAME,com.samsung.android.timezone.updater,proxy
-  - PROCESS-NAME,icu.nullptr.applistdetector,proxy
-  - PROCESS-NAME,com.leiting.lt401,proxy
-  - PROCESS-NAME,com.campmobile.snow,proxy
-  - PROCESS-NAME,com.devcraft.aiphotoeditor,proxy
-  - PROCESS-NAME,com.somebody.vipfucker,proxy
-  - PROCESS-NAME,com.samsung.android.goodlock,proxy
-  - PROCESS-NAME,com.gonext.automovetosdcard,proxy
-  - PROCESS-NAME,com.kta.ai.moca,proxy
-  - PROCESS-NAME,com.celzero.bravedns,proxy
   - PROCESS-NAME,com.sec.android.app.ocrservice,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.sdm.config,🆎 AdBlock
-  - PROCESS-NAME,sansunsen3.imagesearcher,proxy,no-resolve
-  - PROCESS-NAME,io.github.dovecoteescapee.byedpi,proxy
   - PROCESS-NAME,com.tube.client,proxy
   - PROCESS-NAME,com.google.android.syncadapters.contacts,proxy
   - PROCESS-NAME,com.instander.android,proxy,no-resolve
