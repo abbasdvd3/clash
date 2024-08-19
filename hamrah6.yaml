@@ -7,17 +7,17 @@ Traffic consumption device: https://db2.laomoe.com/
 Current IP: https://api.leyz.top/ip/
 
 
-# port: 7892
-# socks-port: 7891
-# mixed-port: 7890
+port: 7892
+socks-port: 7891
+mixed-port: 7890
 allow-lan: true
 mode: Rule
 bind-address: "*"
-ipv6: true
+ipv6: false
 log-level: info
 find-process-mode: always
 enable-process: true
-unified-delay: true
+unified-delay: false
 keep-alive-interval: 15
 tcp-concurrent: true
 geodata-mode: true
@@ -39,10 +39,10 @@ experimental:
   ignore-resolve-fail: true
   sniff-tls-sni: true
   udp-fallback-match: true
-  quic-go-disable-gso: true
-  quic-go-disable-ecn: true
+  quic-go-disable-gso: false
+  quic-go-disable-ecn: false
 sniffer:
-  enable: false
+  enable: true
   sniff:
     HTTP:
       ports: [80, 8080-8880]
@@ -83,11 +83,6 @@ dns:
     - "*.lan"
     - "*.local"
   nameserver:
-    - 10.202.10.102
-    - 10.0.0.0
-    - 223.5.5.5
-    - 119.29.29.29
-    - 8.8.4.4
     - https://dns.alidns.com/dns-query
     - https://dns.cfiec.net/dns-query
     - https://doh.pub/dns-query
@@ -100,9 +95,6 @@ dns:
     - https://dns.google/dns-query
     - https://doh.dns.sb/dns-query
     - https://dns.twnic.tw/dns-query
-    - https://doh.opendns.com/dns-query
-    - https://all.dns.mullvad.net/dns-query
-    - https://dns.quad9.net/dns-query
   fallback-filter:
     ipcidr:
       - 0.0.0.0/32
@@ -126,7 +118,7 @@ proxy-groups:
   - name: Auto
     type: url-test
     interval: 300
-    tolerance: 100
+    tolerance: 10
     url: https://t1.geigei.gq
     use: 
       - Subscription-1
