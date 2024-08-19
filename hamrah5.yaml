@@ -56,8 +56,16 @@ dns:
 proxy-groups:
   - name: Mismatch
     type: select
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
     proxies:
       - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -71,7 +79,20 @@ proxy-groups:
       - Block
   - name: Auto
     type: url-test
- #   interval: 300
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
+  - name: Autofallback
+    type: fallback
+    interval: 180
     expected-status: 200/204
    # tolerance: 150
     url: http://www.gstatic.com/generate_204
@@ -82,7 +103,6 @@ proxy-groups:
       - Subscription-4
       - Subscription-5
       - Subscription-6
-
   - name: Geo-HK
     type: url-test
   #  interval: 300
@@ -224,8 +244,16 @@ proxy-groups:
   - name: Proxy
     type: select
     expected-status: 200/204
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
     proxies:
       - Auto
+      - Autofallback
       - Geo-HK
       - Geo-TW
       - Geo-SG
@@ -240,8 +268,16 @@ proxy-groups:
   - name: DNS-Proxy
     type: select
     expected-status: 200/204
+    use: 
+      - Subscription-1
+      - Subscription-2
+      - Subscription-3
+      - Subscription-4
+      - Subscription-5
+      - Subscription-6
     proxies: 
       - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -258,6 +294,8 @@ proxy-groups:
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -267,13 +305,13 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
 
   - name: Apple
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -290,6 +328,8 @@ proxy-groups:
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -306,6 +346,8 @@ proxy-groups:
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -322,6 +364,8 @@ proxy-groups:
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -338,6 +382,8 @@ proxy-groups:
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -354,6 +400,8 @@ proxy-groups:
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -370,6 +418,8 @@ proxy-groups:
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -386,6 +436,8 @@ proxy-groups:
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -402,6 +454,8 @@ proxy-groups:
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -418,6 +472,8 @@ proxy-groups:
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -433,6 +489,8 @@ proxy-groups:
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -449,6 +507,8 @@ proxy-groups:
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -465,6 +525,8 @@ proxy-groups:
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -481,6 +543,8 @@ proxy-groups:
     type: select
     expected-status: 200/204
     proxies:
+      - Proxy
+      - Autofallback
       - Auto
       - Geo-HK
       - Geo-TW
@@ -498,6 +562,8 @@ proxy-groups:
     proxies:
       - DIRECT
       - Block
+      - Proxy
+      - Autofallback
       - Auto
 
 
