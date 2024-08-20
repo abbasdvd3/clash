@@ -57,9 +57,9 @@ sniffer:
 
 tunnels:
 - network: [tcp, udp]
-  address: 127.0.0.1:6553
+  address: 127.0.0.1:7890
   target: 8.8.8.8:53
-  proxy: proxy
+  proxy: 🅿️🛜
     
 tun:
   enable: true
@@ -92,30 +92,32 @@ dns:
   enable: true
   ipv6: false
   ipv6-timeout: 300
-  prefer-h3: true
+  prefer-h3: false
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.0/16
   fake-ip-filter:
   - '*.lan'
   default-nameserver:
+  - 10.0.0.1
+  - 223.5.5.5
+  - 8.8.8.8
+  - 114.114.114.114
   - 198.18.0.0
   nameserver-policy:
-    www.baidu.com: 114.114.114.114
-    www.instagram.com: [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
-    +.internal.crop.com: 10.0.0.1
-    www.baidu.com,+.google.com: https://doh.pub/dns-query
-    "geosite:private,apple": https://dns.alidns.com/dns-query
-    "geosite:ir,private,apple":
-      - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
+    "www.baidu.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
+    "www.instagram.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
+    "+.internal.crop.com": [10.0.0.1, 114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
+    "www.baidu.com,+.google.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
+    "geosite:private,apple": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
+    "geosite:ir,private,apple": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
     "geosite:category-ads-all": rcode://success
-    "www.baidu.com,+.google.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
-    "+.pornhub.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
-    "+.sxyprn.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
-    "+.spankbang.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
-    "+.samfw.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]  
-    "rule-set:GoogleFCM,ir,social,nsfw1": [223.5.5.5, https://dns.alidns.com/dns-query]
+    "www.baidu.com,+.google.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
+    "+.pornhub.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
+    "+.sxyprn.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
+    "+.spankbang.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
+    "+.samfw.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
+    "rule-set:GoogleFCM,ir,ProxyGFWlist,social,nsfw1,Google,Google1,ProxyMedia,OpenAi,Telegram,Bing,OneDrive,Microsoft": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
     GEOSITE:google: 8.8.8.8
   nameserver:
   - 198.18.0.0
@@ -4059,7 +4061,7 @@ proxy-groups:
 
   - name: microsoft
     type: select
-    hidden: true
+    hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/microsoft.svg
 #    include-all: true
 #    include-all-proxies: true
@@ -4117,7 +4119,7 @@ proxy-groups:
     timeout: 20
     expected-status: 200/204
     hidden: false
-    url: https://www.youtube.com/generate_204 # https://fiber.google.com/speedtest/generate_104
+    url: https://www.youtube.com/generate_204
     max-failed-times: 3
     icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/usa.svg
     include-all: true
@@ -4130,7 +4132,7 @@ proxy-groups:
     type: url-test
     tolerance: 70
     lazy: true
-    interval: 180
+    interval: 300
     timeout: 20
     hidden: false
     url: https://www.youtube.com/generate_204
@@ -4144,9 +4146,7 @@ proxy-providers:
   Subscription-1:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml" 
-    path: hamrah/Subscription-1.yaml
     interval: 600
-    udp: true
     health-check:
       enable: true
       interval: 300
@@ -4156,9 +4156,7 @@ proxy-providers:
   Subscription-2:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml" 
-    path: hamrah/Subscription-2.yaml
     interval: 600
-    udp: true
     health-check:
       enable: true
       interval: 300
@@ -4169,66 +4167,55 @@ rule-providers:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml
-    path: ruleset/ir.yaml
     interval: 86400
   ads:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml
-    path: ruleset/ads.yaml
     interval: 86400
   malware:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml
-    path: ruleset/malware.yaml
     interval: 86400
   phishing:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml
-    path: ruleset/phishing.yaml
     interval: 86400
   cryptominers:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml
-    path: ruleset/cryptominers.yaml
     interval: 86400
   apps:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml
-    path: ruleset/apps.yaml
     interval: 86400
   ircidr:
     type: http
     behavior: ipcidr
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml
-    path: ruleset/ircidr.yaml
     interval: 86400
   private:
     type: http
     behavior: ipcidr
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml
-    path: ruleset/private.yaml
     interval: 86400
   irasn:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml
-    path: ruleset/irasn.yaml
     interval: 86400
   block:
     type: http
     behavior: domain
     url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
-    path: ruleset/block.yaml
     interval: 86400
   AWA:
     type: http
     behavior: domain
-    path: ruleset/AWAvenue-Ads-Rule-Clash.yaml
     url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
     interval: 86400
   Google:
@@ -4236,247 +4223,206 @@ rule-providers:
     behavior: classical
     url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/Google.list
     interval: 3600
-    path: ruleset/Google.list
   IpinfoSpeedtest:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/IpinfoSpeedtest.list
     interval: 3600
-    path: ruleset/IpinfoSpeedtest.list
   gfw:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
-    path: ruleset/gfw.txt
     interval: 86400
   UnBan:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
     interval: 3600
-    path: ruleset/UnBan.list
   BanAD:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
     interval: 3600
-    path: ruleset/BanAD.list
   BanProgramAD:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
     interval: 3600
-    path: ruleset/BanProgramAD.list
   BanEasyList:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list
     interval: 3600
-    path: ruleset/BanEasyList.list
   BanEasyListChina:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
     interval: 3600
-    path: ruleset/BanEasyListChina.list
   BanEasyPrivacy:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
-    interval: 3600
-    path: ruleset/BanEasyPrivacy.list    
+    interval: 3600  
   GoogleFCM:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
     interval: 3600
-    path: ruleset/GoogleFCM.list
   GoogleCN:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
     interval: 3600
-    path: ruleset/GoogleCN.list
   Bing:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list
     interval: 3600
-    path: ruleset/Bing.list
   OneDrive:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list
     interval: 3600
-    path: ruleset/OneDrive.list
   Microsoft:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
     interval: 3600
-    path: ruleset/Microsoft.list
   Apple:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
     interval: 3600
-    path: ruleset/Apple.list
   Telegram:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
     interval: 3600
-    path: ruleset/Telegram.list
   OpenAi:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
     interval: 3600
-    path: ruleset/OpenAi.list
   YouTube:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list
     interval: 3600
-    path: ruleset/YouTube.list
   ProxyMedia:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
     interval: 3600
-    path: ruleset/ProxyMedia.list
   ProxyGFWlist:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
     interval: 3600
-    path: ruleset/ProxyGFWlist.list
   ChinaDomain:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
     interval: 3600
-    path: ruleset/ChinaDomain.list
   ChinaCompanyIp:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
     interval: 3600
-    path: ruleset/ChinaCompanyIp.list
   Download:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list
     interval: 3600
-    path: ruleset/Download.list
   GoogleCNProxyIP:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
     interval: 3600
-    path: ruleset/GoogleCNProxyIP.list
   DNS:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/DNS/DNS.yaml
     interval: 3600
-    path: ruleset/DNS.yaml
   GitHub:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/GitHub/GitHub.yaml
     interval: 3600
-    path: ruleset/GitHub.yaml
   AdGuardSDNSFilter:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/AdGuardSDNSFilter/AdGuardSDNSFilter_Domain.txt
     interval: 3600
-    path: ruleset/AdGuardSDNSFilter.txt
   BlockHttpDNS:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/BlockHttpDNS/BlockHttpDNS.yaml
     interval: 3600
-    path: ruleset/BlockHttpDNS
   AdGuardSDNSFilterDirect:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/AdGuardSDNSFilter/Direct/Direct.yaml
     interval: 3600
-    path: ruleset/AdGuardS DNS Filter Direct.yaml
   Samsung:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Samsung/Samsung.yaml
     interval: 3600
-    path: ruleset/Samsung.yaml
   ChinaDNS:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/ChinaDNS/ChinaDNS.yaml
     interval: 3600
-    path: ruleset/ChinaDNS.yaml
   cloudflare:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geosite/cloudflare.list
     interval: 3600
-    path: ruleset/cloudflare.list
   Domestic:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Domestic.list
     interval: 3600
-    path: ruleset/Domestic.list
   Adblock1:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Adblock/Adblock.list
     interval: 3600
-    path: ruleset/Adblock1.list
   DNS2:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Special/DNS.list
     interval: 3600
-    path: ruleset/DNS2.list
   SpeedTest:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/SpeedTest.list
-    interval: 3600
-    path: ruleset/SpeedTest.list    
+    interval: 3600   
   category-ads-all:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.yaml
-    path: ruleset/category-ads-all.yaml
     interval: 86400
   nsfw1:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml
-    path: ruleset/nsfw1.yaml
     interval: 86400
   social:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml
-    path: ruleset/social.yaml
     interval: 86400
   Google1:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list
-    interval: 3600
-    path: ruleset/Google1.list    
+    interval: 3600   
   LocalAreaNetwork:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
-    interval: 3600
-    path: ruleset/LocalAreaNetwork.list   
+    interval: 3600 
 rules :
   - DOMAIN,ad.com,🆎 AdBlock
   - DOMAIN-SUFFIX,google.com,google
@@ -4491,10 +4437,10 @@ rules :
   - SRC-IP-ASN,9808,🎯
   - SRC-IP-CIDR,192.168.1.201/32,🎯
   - SRC-IP-SUFFIX,192.168.1.201/8,🎯
-  - DST-PORT,80,🎯
-  - SRC-PORT,7777,🎯
-  - IN-PORT,7890,proxy
-  - IN-TYPE,SOCKS/HTTP,proxy
+  - DST-PORT,80,🅿️🛜
+  - SRC-PORT,7777,🅿️🛜
+  - IN-PORT,7890,🅿️🛜
+  - IN-TYPE,SOCKS/HTTP,🅿️🛜
   - IN-USER,mihomo,proxy
 #  - IN-NAME,ss,proxy
   - PROCESS-PATH,/usr/bin/wget,proxy
@@ -4507,9 +4453,9 @@ rules :
   - PROCESS-NAME-REGEX,curl$,proxy
   - PROCESS-NAME-REGEX,(?i)Telegram,proxy
   - PROCESS-NAME-REGEX,.*telegram.*,proxy
-  - UID,1001,🎯
-  - NETWORK,udp,🎯
-  - DSCP,4,🎯
+#  - UID,1001,🎯
+  - NETWORK,udp,🅿️🛜
+  - DSCP,4,🅿️🛜
 #  - RULE-SET,providername,proxy
   - AND,((DOMAIN,baidu.com),(NETWORK,UDP)),🎯
   - OR,((NETWORK,UDP),(DOMAIN,baidu.com)),🆎 AdBlock
@@ -4529,7 +4475,7 @@ rules :
   - PROCESS-NAME,com.android.settings,🆎 AdBlock
   - PROCESS-NAME,com.sec.imsservice,🆎 AdBlock
   - RULE-SET,GitHub,proxy
-  - RULE-SET,apps,proxy
+  - RULE-SET,apps,🎯
   - RULE-SET,ads,🆎 AdBlock
   - RULE-SET,malware,🆎 AdBlock
   - RULE-SET,phishing,🆎 AdBlock
@@ -4553,12 +4499,12 @@ rules :
   - RULE-SET,Google1,google,no-resolve
   - RULE-SET,Google,google
   - RULE-SET,ProxyGFWlist,google,no-resolve
-  - RULE-SET,ChinaDomain,proxy
-  - RULE-SET,ChinaCompanyIp,proxy
-  - RULE-SET,Download,proxy
+  - RULE-SET,ChinaDomain,🎯
+  - RULE-SET,ChinaCompanyIp,🎯
+  - RULE-SET,Download,🎯
   - RULE-SET,GoogleCNProxyIP,google,no-resolve
   - RULE-SET,gfw,Social,no-resolve
-  - RULE-SET,Domestic,proxy
+  - RULE-SET,Domestic,🎯
   - RULE-SET,cloudflare,proxy
   - RULE-SET,Samsung,proxy
   - RULE-SET,SpeedTest,🎯
@@ -4570,7 +4516,7 @@ rules :
   - GEOIP,google,google,no-resolve
   - GEOIP,twitter,Social,no-resolve
   - GEOIP,telegram,Social,no-resolve
-  - DOMAIN-SUFFIX,googlesyndication.com,proxy
+  - DOMAIN-SUFFIX,googlesyndication.com,google
   - DOMAIN-SUFFIX,v2rayse.com,proxy
   - DOMAIN-SUFFIX,cff.pw,proxy
   - DOMAIN-SUFFIX,vpnse.org,proxy
@@ -4615,10 +4561,10 @@ rules :
   - PROCESS-NAME,com.tumblr,Social,no-resolve
   - PROCESS-NAME,com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0,Social
   - PROCESS-NAME,com.tumblr/org.chromium.content.app.SandboxedProcessService0:0,Social
-  - PROCESS-NAME,com.google.android.gms,Social
-  - PROCESS-NAME,com.google.android.webview,Social
-  - PROCESS-NAME,com.android.vending,Social
-  - PROCESS-NAME,com.google.android.gm,Social
+  - PROCESS-NAME,com.google.android.gms,google
+  - PROCESS-NAME,com.google.android.webview,google
+  - PROCESS-NAME,com.android.vending,google
+  - PROCESS-NAME,com.google.android.gm,google
   - PROCESS-NAME,com.picsart.studio,Social
   - PROCESS-NAME,com.tomclaw.appsend,Social
   - PROCESS-NAME,com.photoroom.app,Social
@@ -4639,7 +4585,7 @@ rules :
   - PROCESS-NAME,com.myinsta.android,Social,no-resolve
   - PROCESS-NAME,com.instagram.android,Social,no-resolve
   - PROCESS-NAME,com.facebook.flipper.sample,Social,no-resolve
-  - PROCESS-NAME,com.google.ar.core,proxy
+  - PROCESS-NAME,com.google.ar.core,google
   - PROCESS-NAME,com.samsung.android.mobileservice,🆎 AdBlock
   - PROCESS-NAME,com.sec.android.app.launcher,🆎 AdBlock
   - PROCESS-NAME,com.google.android.partnersetup,proxy
@@ -4715,10 +4661,10 @@ rules :
   - PROCESS-NAME,com.sec.android.app.ocrservice,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.sdm.config,🆎 AdBlock
   - PROCESS-NAME,com.tube.client,proxy
-  - PROCESS-NAME,com.google.android.syncadapters.contacts,proxy
-  - PROCESS-NAME,com.instander.android,proxy,no-resolve
-  - PROCESS-NAME,com.google.android.gm,proxy,no-resolve
-  - PROCESS-NAME,com.jrummy.app.manager,proxy
-  - DST-PORT,80/8080/443/8443,proxy
+  - PROCESS-NAME,com.google.android.syncadapters.contacts,google
+  - PROCESS-NAME,com.instander.android,google,no-resolve
+  - PROCESS-NAME,com.google.android.gm,google,no-resolve
+  - PROCESS-NAME,com.jrummy.app.manager,🅿️🛜
+  - DST-PORT,80/8080/443/8443,🅿️🛜
   - PROCESS-NAME,com.tomclaw.appsend,DIRECT
   - MATCH,🐝
