@@ -847,9 +847,9 @@ proxy-groups:
     include-all: true
     include-all-proxies: true
     include-all-providers: true
-    dialer-proxy: 🐝
+    dialer-proxy: url-test
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
-    proxies: [proxy, fallback, url-test, 🇺🇲]
+    proxies: [proxy, fallback, url-test, GLOBAL, America, DIRECT]
     
   - name: proxy
     type: select
@@ -857,7 +857,7 @@ proxy-groups:
     include-all-proxies: true
     include-all-providers: true
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
-    proxies: [url-test, test, fallback]
+    proxies: [url-test, fallback, url-test, GLOBAL, America]
 
   - name: url-test
     type: url-test
@@ -878,46 +878,46 @@ proxy-groups:
     type: select
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/google.svg
-  #  include-all: true
-#    include-all-proxies: true
-#    include-all-providers: true
-    proxies: [🅿️🛜, url-test, fallback, 🇺🇲, DIRECT]
+    include-all: true
+    include-all-proxies: true
+    include-all-providers: true
+    proxies: [🅿️🛜, url-test, fallback, GLOBAL, America, DIRECT]
 
   - name: youtube
     type: select
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/youtube.svg
-  #  include-all: true
- #   include-all-proxies: true
- #   include-all-providers: true
-    proxies: [🅿️🛜, url-test, fallback, 🇺🇲]
+    include-all: true
+    include-all-proxies: true
+    include-all-providers: true
+    proxies: [🅿️🛜, url-test, fallback, GLOBAL, America, DIRECT]
 
   - name: Social
     type: select
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/telegram.svg
-#    include-all: true
-#    include-all-proxies: true
-#    include-all-providers: true
-    proxies: [🅿️🛜, url-test, fallback, 🇺🇲, DIRECT]
+    include-all: true
+    include-all-proxies: true
+    include-all-providers: true
+    proxies: [🅿️🛜, url-test, fallback, GLOBAL, America, DIRECT]
 
   - name: microsoft
     type: select
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/microsoft.svg
-#    include-all: true
-#    include-all-proxies: true
-#    include-all-providers: true
-    proxies: [🅿️🛜, url-test, fallback, 🇺🇲, DIRECT]
+    include-all: true
+    include-all-proxies: true
+    include-all-providers: true
+    proxies: [🅿️🛜, url-test, fallback, GLOBAL, America, DIRECT]
 
   - name: apple
     type: select
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/apple.svg
- #   include-all: true
-#    include-all-proxies: true
-#    include-all-providers: true
-    proxies: [🅿️🛜, url-test, fallback, 🇺🇲, DIRECT]
+    include-all: true
+    include-all-proxies: true
+    include-all-providers: true
+    proxies: [🅿️🛜, url-test, fallback, GLOBAL, America, DIRECT]
 
   - name: 🎯
     type: select
@@ -952,9 +952,9 @@ proxy-groups:
     include-all-proxies: true
     include-all-providers: true
     hidden: false
-    proxies: [🅿️🛜, url-test, fallback, 🇺🇲, DIRECT]
+    proxies: [🅿️🛜, url-test, fallback, America, GLOBAL, DIRECT]
     
-  - name: 🇺🇲
+  - name: America
     type: url-test
     lazy: true
     tolerance: 150
@@ -970,19 +970,14 @@ proxy-groups:
     proxies: []
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
 
-  - name: test
-    type: url-test
-    tolerance: 70
-    lazy: true
-    interval: 300
-    timeout: 20
-    hidden: false
+  - name: GLOBAL
+    type: select
     url: https://www.youtube.com/generate_204
-    max-failed-times: 5
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
- #   include-all-proxies: true
-   # include-all-providers: true
-    proxies: [🇺🇲]
+    include-all: true
+    include-all-proxies: true
+    include-all-providers: true
+    proxies: []
 
 proxy-providers:
   Subscription-1:
