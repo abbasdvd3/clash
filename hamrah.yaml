@@ -844,15 +844,12 @@ proxy-groups:
   - name: 🅿️🛜
     type: select
     hidden: false
-    include-all: true
-    include-all-proxies: true
-    include-all-providers: true
+    dialer-proxy: url-test
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
     proxies: [proxy, fallback, url-test, GLOBAL, America, DIRECT]
     
   - name: proxy
     type: select
-    include-all: true
     include-all-proxies: true
     include-all-providers: true
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
@@ -863,10 +860,10 @@ proxy-groups:
     tolerance: 99
     lazy: true
     interval: 380
-    #timeout: 200
+    timeout: 20
     hidden: false
     url: https://www.youtube.com/generate_204
-    max-failed-times: 5
+    max-failed-times: 15
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
     include-all: true
     include-all-proxies: true
@@ -877,7 +874,6 @@ proxy-groups:
     type: select
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/google.svg
-    include-all: true
     include-all-proxies: true
     include-all-providers: true
     proxies: [🅿️🛜, url-test, fallback, GLOBAL, America, DIRECT]
@@ -886,7 +882,6 @@ proxy-groups:
     type: select
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/youtube.svg
-    include-all: true
     include-all-proxies: true
     include-all-providers: true
     proxies: [🅿️🛜, url-test, fallback, GLOBAL, America, DIRECT]
@@ -895,7 +890,6 @@ proxy-groups:
     type: select
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/telegram.svg
-    include-all: true
     include-all-proxies: true
     include-all-providers: true
     proxies: [🅿️🛜, url-test, fallback, GLOBAL, America, DIRECT]
@@ -904,7 +898,6 @@ proxy-groups:
     type: select
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/microsoft.svg
-    include-all: true
     include-all-proxies: true
     include-all-providers: true
     proxies: [🅿️🛜, url-test, fallback, GLOBAL, America, DIRECT]
@@ -913,7 +906,6 @@ proxy-groups:
     type: select
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/apple.svg
-    include-all: true
     include-all-proxies: true
     include-all-providers: true
     proxies: [🅿️🛜, url-test, fallback, GLOBAL, America, DIRECT]
@@ -928,12 +920,10 @@ proxy-groups:
     type: fallback
     lazy: true
     interval: 180
-   # timeout: 2000
     url: https://www.youtube.com/generate_204
-    max-failed-times: 3
+    max-failed-times: 10
     hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
-    include-all: true
     include-all-proxies: true
     include-all-providers: true
     proxies: []
@@ -947,7 +937,6 @@ proxy-groups:
   - name: 🐝
     type: select
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg
-    include-all: true
     include-all-proxies: true
     include-all-providers: true
     hidden: false
@@ -956,14 +945,13 @@ proxy-groups:
   - name: America
     type: url-test
     lazy: true
-    tolerance: 150
+    tolerance: 180
     timeout: 20
     expected-status: 200/204
     hidden: false
     url: https://www.youtube.com/generate_204
-    max-failed-times: 3
+    max-failed-times: 13
     icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/usa.svg
-    include-all: true
     include-all-proxies: true
     include-all-providers: true
     proxies: []
@@ -973,7 +961,6 @@ proxy-groups:
     type: select
     url: https://www.youtube.com/generate_204
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
-    include-all: true
     include-all-proxies: true
     include-all-providers: true
     proxies: []
