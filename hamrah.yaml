@@ -1,4 +1,7 @@
 # http://speed.cloudflare.com/__down?bytes=20000000
+listeners: 
+  - {"name":"http-in","type":"http","port":7890,"listen":"127.0.0.1","certificate":"","private-key":"","proxy":"🅿️🛜"}
+  - {"name":"socks-in","type":"socks","port":7891,"listen":"127.0.0.1","certificate":"","private-key":"","proxy":"🅿️🛜"}
 port: 7892
 socks-port: 7891
 mixed-port: 7890
@@ -116,7 +119,6 @@ dns:
     "+.sxyprn.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
     "+.spankbang.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
     "+.samfw.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
-    "rule-set:GoogleFCM,ir,ProxyGFWlist,social,nsfw1,Google,Google1,ProxyMedia,OpenAi,Telegram,Bing,OneDrive,Microsoft": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
     GEOSITE:google: 8.8.8.8
   nameserver:
   - 198.18.0.0
@@ -828,9 +830,9 @@ proxy-groups:
   - name: 🅿️🛜
     type: select
     hidden: false
-#    dialer-proxy: url-test
+    dialer-proxy: url-test
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
-    proxies: [proxy, fallback, url-test, select, America, DIRECT]
+    proxies: [proxy, fallback, url-test, select, America]
     
   - name: proxy
     type: select
@@ -842,12 +844,8 @@ proxy-groups:
   - name: url-test
     type: url-test
     tolerance: 99
-    lazy: true
-    interval: 380
-    timeout: 20
-    hidden: false
+    interval: 99
     url: https://www.youtube.com/generate_204
-    max-failed-times: 15
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
     include-all-proxies: true
     include-all-providers: true
@@ -901,11 +899,8 @@ proxy-groups:
 
   - name: fallback
     type: fallback
-    lazy: true
     interval: 180
     url: https://www.youtube.com/generate_204
-    max-failed-times: 10
-    hidden: false
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
     include-all-proxies: true
     include-all-providers: true
@@ -922,18 +917,13 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg
     include-all-proxies: true
     include-all-providers: true
-    hidden: false
     proxies: [🅿️🛜, url-test, fallback, America, select, DIRECT]
     
   - name: America
     type: url-test
     lazy: true
-    tolerance: 180
-    timeout: 20
-    expected-status: 200/204
-    hidden: false
+    tolerance: 1
     url: https://www.youtube.com/generate_204
-    max-failed-times: 13
     icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/usa.svg
     include-all-proxies: true
     include-all-providers: true
@@ -994,11 +984,6 @@ rule-providers:
     behavior: domain
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml
     interval: 86400
-  apps:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml
-    interval: 86400
   ircidr:
     type: http
     behavior: ipcidr
@@ -1024,26 +1009,6 @@ rule-providers:
     behavior: domain
     url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
     interval: 86400
-  Google:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/Google.list
-    interval: 3600
-  IpinfoSpeedtest:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/IpinfoSpeedtest.list
-    interval: 3600
-  gfw:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
-    interval: 86400
-  UnBan:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
-    interval: 3600
   BanAD:
     type: http
     behavior: classical
@@ -1069,81 +1034,6 @@ rule-providers:
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
     interval: 3600  
-  GoogleFCM:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
-    interval: 3600
-  GoogleCN:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
-    interval: 3600
-  Bing:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list
-    interval: 3600
-  OneDrive:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list
-    interval: 3600
-  Microsoft:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
-    interval: 3600
-  Apple:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
-    interval: 3600
-  Telegram:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
-    interval: 3600
-  OpenAi:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
-    interval: 3600
-  YouTube:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list
-    interval: 3600
-  ProxyMedia:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
-    interval: 3600
-  ProxyGFWlist:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
-    interval: 3600
-  ChinaDomain:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
-    interval: 3600
-  ChinaCompanyIp:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
-    interval: 3600
-  Download:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list
-    interval: 3600
-  GoogleCNProxyIP:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
-    interval: 3600
   DNS:
     type: http
     behavior: domain
@@ -1169,25 +1059,10 @@ rule-providers:
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/AdGuardSDNSFilter/Direct/Direct.yaml
     interval: 3600
-  Samsung:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Samsung/Samsung.yaml
-    interval: 3600
   ChinaDNS:
     type: http
     behavior: domain
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/ChinaDNS/ChinaDNS.yaml
-    interval: 3600
-  cloudflare:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geosite/cloudflare.list
-    interval: 3600
-  Domestic:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Domestic.list
     interval: 3600
   Adblock1:
     type: http
@@ -1199,11 +1074,6 @@ rule-providers:
     behavior: classical
     url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Special/DNS.list
     interval: 3600
-  SpeedTest:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/SpeedTest.list
-    interval: 3600   
   category-ads-all:
     type: http
     behavior: domain
@@ -1214,133 +1084,69 @@ rule-providers:
     behavior: domain
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml
     interval: 86400
-  social:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml
-    interval: 86400
-  Google1:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list
-    interval: 3600   
   LocalAreaNetwork:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
     interval: 3600 
 rules :
+  - DOMAIN-SUFFIX,v2rayse.com,🅿️🛜
+  - DOMAIN-SUFFIX,cff.pw,🅿️🛜
+  - DOMAIN-SUFFIX,vpnse.org,🅿️🛜
+  - DOMAIN-SUFFIX,cfmem.com,🅿️🛜
+  - DOMAIN-SUFFIX,v2rayse.com,🅿️🛜
+  - DOMAIN-SUFFIX,cff.pw,🅿️🛜
+  - DOMAIN-SUFFIX,vpnse.org,🅿️🛜
+  - DOMAIN-SUFFIX,cfmem.com,🅿️🛜
+  - DST-PORT,80/8080/443/8443,🅿️🛜
+  - IN-TYPE,inner,🅿️🛜
   - DOMAIN,ad.com,🆎 AdBlock
   - DOMAIN-SUFFIX,google.com,google
   - DOMAIN-KEYWORD,google,google
   - DOMAIN-REGEX,^abc.*com,proxy
   - GEOSITE,youtube,youtube
-  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR6,2620:0:2d0:200::7/32,proxy
-  - IP-SUFFIX,8.8.8.8/24,🅿️🛜
-#  - IP-ASN,13335,🎯
-#  - SRC-GEOIP,cn,🎯
-#  - SRC-IP-ASN,9808,🎯
-  - SRC-IP-CIDR,192.168.1.201/32,🎯
-  - SRC-IP-SUFFIX,192.168.1.201/8,🎯
-  - DST-PORT,80,🅿️🛜
-  - SRC-PORT,7777,🅿️🛜
-  - IN-PORT,7890,🅿️🛜
-  - IN-TYPE,SOCKS/HTTP,🅿️🛜
-  - IN-USER,mihomo,🅿️🛜
-#  - IN-NAME,ss,proxy
-  - PROCESS-PATH,/usr/bin/wget,🅿️🛜
-  - PROCESS-PATH,C:\Program Files\Google\Chrome\Application\chrome.exe,🅿️🛜
-  - PROCESS-PATH-REGEX,.*bin/wget,🅿️🛜
-  - PROCESS-PATH-REGEX,(?i).*Application\\chrome.*,🅿️🛜
-  - PROCESS-NAME,curl,🅿️🛜
-  - PROCESS-NAME,chrome.exe,🅿️🛜
-  - PROCESS-NAME,com.termux,🅿️🛜
-  - PROCESS-NAME-REGEX,curl$,🅿️🛜
-  - PROCESS-NAME-REGEX,(?i)Telegram,Social
-  - PROCESS-NAME-REGEX,.*telegram.*,Social
-#  - UID,1001,🎯
-#  - NETWORK,udp,🅿️🛜
-#  - DSCP,4,🅿️🛜
-#  - RULE-SET,providername,proxy
-  - AND,((DOMAIN,baidu.com),(NETWORK,UDP)),🎯
-  - OR,((NETWORK,UDP),(DOMAIN,baidu.com)),🆎 AdBlock
-  - NOT,((DOMAIN,baidu.com)),proxy
-#  - SUB-RULE,(NETWORK,tcp),sub-rule
+  - RULE-SET,UnBan,Social,no-resolve
   - RULE-SET,LocalAreaNetwork,🎯,no-resolve
-  - PROCESS-NAME,com.tomclaw.appsend,DIRECT
-  - PROCESS-NAME,ir.mci.ecareapp,🎯,no-resolve
-  - PROCESS-NAME,com.myirancell,🎯,no-resolve
-  - RULE-SET,social,Social,no-resolve
-  - RULE-SET,nsfw1,Social,no-resolve
-  - RULE-SET,category-ads-all,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.messaging,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.app.telephonyui,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.smartcallprovider,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.intellivoiceservice,🆎 AdBlock
-  - PROCESS-NAME,com.android.settings,🆎 AdBlock
-  - PROCESS-NAME,com.sec.imsservice,🆎 AdBlock
-  - RULE-SET,GitHub,🅿️🛜
-  - RULE-SET,apps,🎯
+  - RULE-SET,ir,🎯,no-resolve
+  - RULE-SET,ircidr,🎯,no-resolve
+  - RULE-SET,irasn,🎯,no-resolve
+  - RULE-SET,private,🎯
+  - RULE-SET,ChinaDomain,🎯
+  - RULE-SET,ChinaCompanyIp,🎯
+  - RULE-SET,Download,🎯
+  - RULE-SET,Domestic,🎯
+  - RULE-SET,SpeedTest,🎯
   - RULE-SET,ads,🆎 AdBlock
   - RULE-SET,malware,🆎 AdBlock
   - RULE-SET,phishing,🆎 AdBlock
   - RULE-SET,cryptominers,🆎 AdBlock
-  - RULE-SET,ir,🎯,no-resolve
-  - RULE-SET,ircidr,🎯,no-resolve
-  - RULE-SET,irasn,🎯,no-resolve
-  - RULE-SET,UnBan,Social,no-resolve
+
   - RULE-SET,BanAD,🆎 AdBlock
   - RULE-SET,BanProgramAD,🆎 AdBlock
-  - RULE-SET,GoogleFCM,google
-  - RULE-SET,GoogleCN,google
-  - RULE-SET,Bing,microsoft
-  - RULE-SET,OneDrive,microsoft
-  - RULE-SET,Microsoft,microsoft
-  - RULE-SET,Apple,apple
-  - RULE-SET,Telegram,Social,no-resolve
-  - RULE-SET,OpenAi,proxy,no-resolve
-  - RULE-SET,YouTube,youtube
-  - RULE-SET,ProxyMedia,proxy,no-resolve
-  - RULE-SET,Google1,google,no-resolve
-  - RULE-SET,Google,google
-  - RULE-SET,ProxyGFWlist,google,no-resolve
-  - RULE-SET,ChinaDomain,🎯
-  - RULE-SET,ChinaCompanyIp,🎯
-  - RULE-SET,Download,🎯
-  - RULE-SET,GoogleCNProxyIP,google,no-resolve
-  - RULE-SET,gfw,Social,no-resolve
-  - RULE-SET,Domestic,🎯
-  - RULE-SET,cloudflare,proxy
-  - RULE-SET,Samsung,proxy
-  - RULE-SET,SpeedTest,🎯
-  - GEOIP,CN,🎯,no-resolve
-  - GEOIP,ir,🎯,no-resolve
-#  - GEOIP,cloudflare,proxy
- # - GEOIP,cloudfront,proxy
-  - GEOIP,facebook,Social,no-resolve
-  - GEOIP,google,google,no-resolve
-  - GEOIP,twitter,Social,no-resolve
-  - GEOIP,telegram,Social,no-resolve
-  - DOMAIN-SUFFIX,googlesyndication.com,google
-  - DOMAIN-SUFFIX,v2rayse.com,🅿️🛜
-  - DOMAIN-SUFFIX,cff.pw,🅿️🛜
-  - DOMAIN-SUFFIX,vpnse.org,🅿️🛜
-  - DOMAIN-SUFFIX,cfmem.com,🅿️🛜
-  - DOMAIN-SUFFIX,v2rayse.com,🅿️🛜
-  - DOMAIN-SUFFIX,cff.pw,🅿️🛜
-  - DOMAIN-SUFFIX,vpnse.org,🅿️🛜
-  - DOMAIN-SUFFIX,cfmem.com,🅿️🛜
+  - RULE-SET,category-ads-all,🆎 AdBlock
   - RULE-SET,ChinaDNS,🆎 AdBlock
   - RULE-SET,DNS,🆎 AdBlock
   - RULE-SET,AWA,🆎 AdBlock
   - RULE-SET,block,🆎 AdBlock
-  - GEOSITE,category-ads-all,🆎 AdBlock
   - RULE-SET,Adblock1,🆎 AdBlock
   - RULE-SET,DNS2,🆎 AdBlock
   - RULE-SET,AdGuardSDNSFilterDirect,🆎 AdBlock
   - RULE-SET,BlockHttpDNS,🆎 AdBlock
   - RULE-SET,AdGuardSDNSFilter,🆎 AdBlock
+  
+  - GEOSITE,category-ads-all,🆎 AdBlock
+  - GEOIP,CN,🎯,no-resolve
+  - GEOIP,ir,🎯,no-resolve
+  - GEOIP,facebook,Social,no-resolve
+  - GEOIP,google,google,no-resolve
+  - GEOIP,twitter,Social,no-resolve
+  - GEOIP,telegram,Social,no-resolve
+  - DOMAIN-SUFFIX,googlesyndication.com,google
+  - SRC-IP-CIDR,192.168.1.201/32,🎯
+  - SRC-IP-SUFFIX,192.168.1.201/8,🎯
+  - AND,((DOMAIN,baidu.com),(NETWORK,UDP)),🎯
+  - OR,((NETWORK,UDP),(DOMAIN,baidu.com)),🆎 AdBlock
+  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🆎 AdBlock
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),🆎 AdBlock
   - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),🆎 AdBlock
   - AND,((NETWORK,udp),(GEOSITE,youtube)),🆎 AdBlock
@@ -1348,7 +1154,7 @@ rules :
   - IP-CIDR,198.18.0.1/16,🆎 AdBlock,no-resolve
   - IP-CIDR,28.0.0.1/8,🆎 AdBlock,no-resolve
   - IP-CIDR6,::1/128,🆎 AdBlock,no-resolve
-  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🆎 AdBlock
+
   - PROCESS-NAME,com.sec.location.nsflp2,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.location,🆎 AdBlock
   - PROCESS-NAME,com.android.localtransport,🆎 AdBlock
@@ -1361,37 +1167,12 @@ rules :
   - PROCESS-NAME,com.samsung.android.intellivoiceservice,🆎 AdBlock
   - PROCESS-NAME,com.android.settings,🆎 AdBlock
   - PROCESS-NAME,com.sec.imsservice,🆎 AdBlock
-  - PROCESS-NAME,com.tomclaw.appsend,DIRECT
-  - IN-TYPE,inner,🅿️🛜
-  - PROCESS-NAME,org.telegram.messenger,Social,no-resolve
-  - PROCESS-NAME,com.tumblr,Social,no-resolve
-  - PROCESS-NAME,com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0,Social
-  - PROCESS-NAME,com.tumblr/org.chromium.content.app.SandboxedProcessService0:0,Social
-  - PROCESS-NAME,com.google.android.gms,google
-  - PROCESS-NAME,com.google.android.webview,google
-  - PROCESS-NAME,com.android.vending,google
-  - PROCESS-NAME,com.google.android.gm,google
-  - PROCESS-NAME,com.picsart.studio,Social
-  - PROCESS-NAME,com.tomclaw.appsend,Social
-  - PROCESS-NAME,com.photoroom.app,Social
-  - PROCESS-NAME,com.frontrow.flow,Social
-  - PROCESS-NAME,com.xt.retouchoversea,Social
-  - PROCESS-NAME,com.prequel.app,Social
-  - PROCESS-NAME,com.circular.pixels,Social
-  - PROCESS-NAME,jp.pxv.android,Social,no-resolve
-  - PROCESS-NAME,com.facebook.katana,Social,no-resolve
-  - PROCESS-NAME,com.facebook.katanb,Social,no-resolve
-  - PROCESS-NAME,com.discord,Social
-  - PROCESS-NAME,com.pinterest,Social
-  - PROCESS-NAME,com.twitter.plus,Social,no-resolve
-  - PROCESS-NAME,com.twitter.android,Social,no-resolve
-  - PROCESS-NAME,com.aeroinsta.android,Social,no-resolve
-  - PROCESS-NAME,com.instagold.android,Social,no-resolve
-  - PROCESS-NAME,com.instathunder.android,Social,no-resolve
-  - PROCESS-NAME,com.myinsta.android,Social,no-resolve
-  - PROCESS-NAME,com.instagram.android,Social,no-resolve
-  - PROCESS-NAME,com.facebook.flipper.sample,Social,no-resolve
-  - PROCESS-NAME,com.google.ar.core,google
+  - PROCESS-NAME,com.samsung.android.messaging,🆎 AdBlock
+  - PROCESS-NAME,com.samsung.android.app.telephonyui,🆎 AdBlock
+  - PROCESS-NAME,com.samsung.android.smartcallprovider,🆎 AdBlock
+  - PROCESS-NAME,com.samsung.android.intellivoiceservice,🆎 AdBlock
+  - PROCESS-NAME,com.android.settings,🆎 AdBlock
+  - PROCESS-NAME,com.sec.imsservice,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.mobileservice,🆎 AdBlock
   - PROCESS-NAME,com.sec.android.app.launcher,🆎 AdBlock
   - PROCESS-NAME,com.google.android.partnersetup,proxy
@@ -1466,11 +1247,7 @@ rules :
   - PROCESS-NAME,com.samsung.android.samsungpositioning,🆎 AdBlock
   - PROCESS-NAME,com.sec.android.app.ocrservice,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.sdm.config,🆎 AdBlock
-  - PROCESS-NAME,com.tube.client,proxy
-  - PROCESS-NAME,com.google.android.syncadapters.contacts,google
-  - PROCESS-NAME,com.instander.android,google,no-resolve
-  - PROCESS-NAME,com.google.android.gm,google,no-resolve
-  - PROCESS-NAME,com.jrummy.app.manager,🅿️🛜
-  - DST-PORT,80/8080/443/8443,🅿️🛜
   - PROCESS-NAME,com.tomclaw.appsend,DIRECT
+  - PROCESS-NAME,ir.mci.ecareapp,🎯,no-resolve
+  - PROCESS-NAME,com.myirancell,🎯,no-resolve
   - MATCH,🐝
