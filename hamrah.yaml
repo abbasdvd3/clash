@@ -64,7 +64,7 @@ tunnels:
 - network: [tcp, udp]
   address: 127.0.0.1:7890
   target: 8.8.8.8:53
-  proxy: 🅿️🛜
+  proxy: 🐝
     
 tun:
   enable: true
@@ -77,7 +77,7 @@ tun:
     - tcp://any:53
     - tcp://8.8.8.8:53
     - tcp://8.8.4.4:53
-    - 192.18.0.0.1
+    - 192.18.0.1:53
     - 127.0.0.1
   # interface-name: 
   auto-route: true 
@@ -108,7 +108,7 @@ dns:
   - 223.5.5.5
   - 8.8.8.8
   - 114.114.114.114
-  - 198.18.0.0
+  - 198.18.0.1
   nameserver-policy:
     "www.baidu.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
     "www.instagram.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
@@ -121,9 +121,10 @@ dns:
     "+.sxyprn.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
     "+.spankbang.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
     "+.samfw.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
-    GEOSITE:google: 8.8.8.8
+    GEOSITE:google,github: 8.8.8.8
   nameserver:
-  - 198.18.0.0
+  - 198.18.0.1
+  - 223.6.6.6
   - dhcp://en0
   - system
   - dhcp://WLAN
@@ -836,7 +837,7 @@ proxy-groups:
     url: https://www.youtube.com/generate_204
     dialer-proxy: proxy
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
-    proxies: [proxy, fallback, url-test, select, America]
+    proxies: [proxy, fallback, url-test, select, America, Social, google, youtube, microsoft, apple]
     
   - name: proxy
     type: select
@@ -885,7 +886,7 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/microsoft.svg
     include-all-proxies: true
     include-all-providers: true
-    proxies: [🅿️🛜, url-test, fallback, select, America, DIRECT]
+    proxies: [proxy, url-test, fallback, select, America, DIRECT]
 
   - name: apple
     type: select
@@ -1094,16 +1095,16 @@ rule-providers:
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
     interval: 3600 
 rules :
-  - DOMAIN-SUFFIX,v2rayse.com,🅿️🛜
-  - DOMAIN-SUFFIX,cff.pw,🅿️🛜
-  - DOMAIN-SUFFIX,vpnse.org,🅿️🛜
-  - DOMAIN-SUFFIX,cfmem.com,🅿️🛜
-  - DOMAIN-SUFFIX,v2rayse.com,🅿️🛜
-  - DOMAIN-SUFFIX,cff.pw,🅿️🛜
-  - DOMAIN-SUFFIX,vpnse.org,🅿️🛜
-  - DOMAIN-SUFFIX,cfmem.com,🅿️🛜
-  - DST-PORT,80/8080/443/8443,🅿️🛜
-  - IN-TYPE,inner,🅿️🛜
+  - DOMAIN-SUFFIX,v2rayse.com,proxy
+  - DOMAIN-SUFFIX,cff.pw,proxy
+  - DOMAIN-SUFFIX,vpnse.org,proxy
+  - DOMAIN-SUFFIX,cfmem.com,proxy
+  - DOMAIN-SUFFIX,v2rayse.com,proxy
+  - DOMAIN-SUFFIX,cff.pw,proxy
+  - DOMAIN-SUFFIX,vpnse.org,proxy
+  - DOMAIN-SUFFIX,cfmem.com,proxy
+  - DST-PORT,80/8080/443/8443,proxy
+  - IN-TYPE,inner,proxy
   - DOMAIN,ad.com,🆎 AdBlock
   - DOMAIN-SUFFIX,google.com,google
   - DOMAIN-KEYWORD,google,google
