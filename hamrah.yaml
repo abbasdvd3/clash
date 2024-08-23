@@ -828,9 +828,11 @@ proxies:
   - {"name":"🇺🇸_US_irancell_685","type":"vmess","server":"cold-dawn-9246.fly.dev","port":443,"cipher":"auto","uuid":"ea4909ef-7ca6-4b46-bf2e-6c07896ef338","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/ea4909ef-7ca6-4b46-bf2e-6c07896ef338-vm"}}
 proxy-groups:
   - name: 🅿️🛜
-    type: select
-    hidden: false
-    dialer-proxy: url-test
+    type:url-test
+    tolerance: 99
+    interval: 99
+    url: https://www.youtube.com/generate_204
+    dialer-proxy: proxy
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
     proxies: [proxy, fallback, url-test, select, America]
     
