@@ -1,7 +1,5 @@
-
 proxies:
 proxy-groups:
-
   - name: PRO
     type: select
     proxies:
@@ -12,12 +10,6 @@ proxy-groups:
       - 🇺🇸2
       - 🇺🇸3
       - 🇺🇸4
-#    use: 
-   #   - provider1
-    #  - provider2
- #     - provider3
-      
-
   - name: url-test
     type: url-test
     url: http://speed.cloudflare.com/generate_204
@@ -27,8 +19,6 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
-
-
   - name: fallback
     type: fallback
     url: http://speed.cloudflare.com/generate_204
@@ -38,8 +28,6 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
-
-
   - name: 🇺🇸a-url-test
     type: url-test
     url: http://speed.cloudflare.com/generate_204
@@ -50,8 +38,6 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
-
-
   - name: 🇺🇸1
     type: url-test
     url: http://speed.cloudflare.com/generate_204
@@ -62,7 +48,6 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
-
   - name: 🇺🇸2
     type: url-test
     url: http://speed.cloudflare.com/generate_204
@@ -73,12 +58,9 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
-   
-
   - name: 🇺🇸3
     type: url-test
     url: http://speed.cloudflare.com/generate_204
-    # filter: "cn|TW"
     interval: 99
     tolerance: 99
     proxies:
@@ -86,7 +68,6 @@ proxy-groups:
       - 🇺🇸2
       - 🇺🇸1
       - 🇺🇸a-url-test
-
   - name: 🇺🇸4
     type: url-test
     url: http://speed.cloudflare.com/generate_204
@@ -97,18 +78,14 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
-   
-
   - name: 🎯
     type: select
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/bug.svg
     proxies: [DIRECT, url-test, fallback]
-    
   - name: 🆎 AdBlock
     type: select
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/block.svg
     proxies: [REJECT, DIRECT, PROXY, url-test, fallback]
-    
   - name: PROXY
     type: select
     proxies:
@@ -124,8 +101,6 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
-    
-
 proxy-providers:
   provider1:
     type: http
@@ -144,7 +119,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 300
-      url:http://speed.cloudflare.com/generate_204
+      url: http://speed.cloudflare.com/generate_204
   provider3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.all"  
