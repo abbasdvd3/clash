@@ -13,7 +13,7 @@ proxy-groups:
   - name: LOAD-BALANCE
     type: load-balance
     strategy: consistent-hashing
-    url: http://hi.bonds.id/ping
+    url: https://fiber.google.com/speedtest/generate_204
     interval: 99
 #    udp: true
     proxies:
@@ -22,7 +22,7 @@ proxy-groups:
       - provider2
   - name: BEST-PING
     type: url-test
-    url: http://hi.bonds.id/ping
+    url: https://fiber.google.com/speedtest/generate_204
     interval: 99
     tolerance: 9
  #   udp: true
@@ -32,7 +32,7 @@ proxy-groups:
       - provider2
   - name: FALLBACK
     type: fallback
-    url: http://hi.bonds.id/ping
+    url: https://fiber.google.com/speedtest/generate_204
     interval: 99
 #    udp: true
     proxies:
@@ -78,35 +78,30 @@ proxy-providers:
 rule-providers:
   ir:
     type: http
-    format: yaml
     behavior: domain
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml
     path: ruleset/ir.yaml
     interval: 86400
   ads:
     type: http
-    format: yaml
     behavior: domain
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml
     path: ruleset/ads.yaml
     interval: 86400
   ircidr:
     type: http
-    format: yaml
     behavior: ipcidr
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml
     path: ruleset/ircidr.yaml
     interval: 86400
   private:
     type: http
-    format: yaml
     behavior: ipcidr
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml
     path: ruleset/private.yaml
     interval: 86400
   category-ads-all:
     type: http
-    format: yaml
     behavior: domain
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.yaml
     path: ruleset/category-ads-all.yaml
