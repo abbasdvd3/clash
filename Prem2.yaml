@@ -142,12 +142,6 @@ rule-providers:
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
     path: ruleset/gfw.yaml
     interval: 86400
-  telegramcidr:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt
-    path: ruleset/telegramcidr.yaml
-    interval: 86400
   BanAD:
     type: http
     behavior: classical
@@ -160,24 +154,6 @@ rule-providers:
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
     interval: 3600
     path: ruleset/BanProgramAD.list
-  BanEasyList:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list
-    interval: 3600
-    path: ruleset/BanEasyList.list
-  BanEasyListChina:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
-    interval: 3600
-    path: ruleset/BanEasyListChina.list
-  BanEasyPrivacy:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
-    interval: 3600
-    path: ruleset/BanEasyPrivacy.list
   category-ads-all:
     type: http
     behavior: domain
@@ -196,18 +172,6 @@ rule-providers:
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml
     path: ruleset/social.yaml
     interval: 86400
-  iran_other:
-    type: http
-    behavior: domain
-    url: https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_other.txt
-    path: ruleset/iran_other.txt
-    interval: 432000
-  iran_ads:
-    type: http
-    behavior: domain
-    url: https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_ads.txt
-    path: ruleset/iran_ads.txt
-    interval: 432000    
   ads:
     type: http
     behavior: domain
@@ -251,17 +215,12 @@ rules:
   - DOMAIN-SUFFIX,koodomobile.ca,PRO
   - GEOIP,CN,🎯,no-resolve
   - GEOIP,ir,🎯,no-resolve
-  - RULE-SET,telegramcidr,PRO,no-resolve
   - RULE-SET,gfw,PRO,no-resolve
-  - RULE-SET,iran_ads,🆎 AdBlock
   - RULE-SET,category-ads-all,🆎 AdBlock
-  - RULE-SET,iran_other,🆎 AdBlock
+  - RULE-SET,iran_other,🎯,no-resolve
   - RULE-SET,BanAD,🆎 AdBlock
   - RULE-SET,BanProgramAD,🆎 AdBlock
-  - RULE-SET,BanEasyList,🆎 AdBlock
-  - RULE-SET,BanEasyListChina,🆎 AdBlock
   - RULE-SET,BanEasyPrivacy,🆎 AdBlock
-  - RULE-SET,iran_ads,🆎 AdBlock  
   - RULE-SET,ads,🆎 AdBlock
   - RULE-SET,malware,🆎 AdBlock
   - RULE-SET,phishing,🆎 AdBlock
