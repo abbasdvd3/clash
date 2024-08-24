@@ -142,18 +142,6 @@ rule-providers:
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
     path: ruleset/gfw.yaml
     interval: 86400
-  BanAD:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
-    interval: 3600
-    path: ruleset/BanAD.list
-  BanProgramAD:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
-    interval: 3600
-    path: ruleset/BanProgramAD.list
   category-ads-all:
     type: http
     behavior: domain
@@ -178,24 +166,6 @@ rule-providers:
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml
     path: ruleset/ads.yaml
     interval: 86400
-  malware:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml
-    path: ruleset/malware.yaml
-    interval: 86400
-  phishing:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml
-    path: ruleset/phishing.yaml
-    interval: 86400
-  cryptominers:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml
-    path: ruleset/cryptominers.yaml
-    interval: 86400
 rules:
   - PROCESS-NAME,com.tomclaw.appsend,DIRECT
   - PROCESS-NAME,ir.mci.ecareapp,🎯,no-resolve
@@ -218,13 +188,7 @@ rules:
   - RULE-SET,gfw,PRO,no-resolve
   - RULE-SET,category-ads-all,🆎 AdBlock
   - RULE-SET,iran_other,🎯,no-resolve
-  - RULE-SET,BanAD,🆎 AdBlock
-  - RULE-SET,BanProgramAD,🆎 AdBlock
-  - RULE-SET,BanEasyPrivacy,🆎 AdBlock
   - RULE-SET,ads,🆎 AdBlock
-  - RULE-SET,malware,🆎 AdBlock
-  - RULE-SET,phishing,🆎 AdBlock
-  - RULE-SET,cryptominers,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.messaging,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.app.telephonyui,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.smartcallprovider,🆎 AdBlock
