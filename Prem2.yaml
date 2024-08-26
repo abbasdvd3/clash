@@ -120,52 +120,18 @@ proxy-providers:
       enable: true
       interval: 300
       url: http://speed.cloudflare.com/generate_204
-rule-providers:
-  reject:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
-    path: ruleset/reject.yaml
-    interval: 86400
-  category-ads-all:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.yaml
-    path: ruleset/category-ads-all.yaml
-    interval: 86400
-  nsfw1:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml
-    path: ruleset/nsfw1.yaml
-    interval: 86400
-  social:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml
-    path: ruleset/social.yaml
-    interval: 86400
-  ads:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml
-    path: ruleset/ads.yaml
-    interval: 86400
+
 rules:
   - PROCESS-NAME,com.tomclaw.appsend,DIRECT
   - PROCESS-NAME,ir.mci.ecareapp,🎯,no-resolve
   - PROCESS-NAME,com.myirancell,🎯,no-resolve
   - DOMAIN-SUFFIX,ir,🎯,no-resolve
-  - RULE-SET,social,PROXY,no-resolve
-  - RULE-SET,nsfw1,PROXY,no-resolve
   - GEOIP,facebook,PROXY,no-resolve
   - GEOIP,google,PROXY,no-resolve
   - GEOIP,twitter,PROXY,no-resolve
   - GEOIP,telegram,PROXY,no-resolve
   - GEOIP,CN,🎯,no-resolve
   - GEOIP,ir,🎯,no-resolve
-  - RULE-SET,category-ads-all,🆎 AdBlock
-  - RULE-SET,ads,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.messaging,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.app.telephonyui,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.smartcallprovider,🆎 AdBlock
