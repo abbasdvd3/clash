@@ -1,7 +1,9 @@
 proxies:
 proxy-groups:
   - name: PRO
-    type: select
+    type: url-test
+    url: http://speed.cloudflare.com/generate_204
+    interval: 300
     proxies:
       - url-test
       - fallback
@@ -10,10 +12,6 @@ proxy-groups:
       - 🇺🇸2
       - 🇺🇸3
       - 🇺🇸4
-    use: 
-      - provider1
-      - provider2
-      - provider3
   - name: url-test
     type: url-test
     url: http://speed.cloudflare.com/generate_204
@@ -36,7 +34,7 @@ proxy-groups:
     type: url-test
     url: http://speed.cloudflare.com/generate_204
     interval: 300
-#    tolerance: 99
+    tolerance: 99
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
     use: 
       - provider1
@@ -47,7 +45,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/generate_204
     filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港|🇦🇫|🇦🇽|🇦🇱|🇩🇿|🇦🇸|🇦🇩|🇦🇴|🇦🇮|🇧🇭|🇧🇸|🇦🇿|🇦🇹|🇦🇺|🇦🇼|🇦🇲|🇦🇷|🇦🇬|🇧🇩|🇧🇧|🇧🇪|🇧🇾|🇧🇯|🇧🇹|🇧🇴|🇰🇭|🇧🇮|🇧🇫|🇧🇬|🇧🇳|🇻🇬|🇧🇷|🇧🇼|🇧🇦|🇨🇲|🇨🇦|🇮🇨|🇨🇻|🇧🇶|🇰🇾|🇨🇫|🇹🇩|🇮🇴|🇨🇰|🇨🇬|🇰🇲|🇨🇨|🇨🇴|🇨🇽|🇨🇳|🇨🇱"
     interval: 300
-#    tolerance: 99
+    tolerance: 99
     use: 
       - provider1
       - provider2
@@ -57,7 +55,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/generate_204
     filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日|🇩🇲|🇨🇮|🇩🇴|🇪🇨|🇭🇷|🇪🇬|🇸🇻|🇨🇼|🇨🇾|🇨🇿|🇩🇰|🇩🇯|🇸🇿|🇪🇪|🇬🇫|🇫🇷|🇪🇷|🇫🇮|🇫🇯|🇫🇴|🇫🇰|🇪🇺|🇭🇰|🇭🇳|🇮🇲|🇮🇱|🇮🇹|🇮🇸|🇮🇳|🇮🇪🇯🇴🎌🇱🇦🇱🇧|🇱🇸|🇱🇦|🇽🇰|🇰🇮|🇳🇫|🇳🇿|🇲🇵|🇷🇼|🇵🇱|🇸🇹|🇷🇼|🇷🇪|🇵🇷|🇵🇸|🇵🇬|🇵🇳|🇻🇨"
     interval: 300
-#    tolerance: 99
+    tolerance: 99
     use: 
       - provider1
       - provider2
@@ -66,7 +64,7 @@ proxy-groups:
     type: url-test
     url: http://speed.cloudflare.com/generate_204
     interval: 300
-#    tolerance: 99
+    tolerance: 9
     proxies:
       - 🇺🇸4
       - 🇺🇸2
@@ -77,7 +75,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/generate_204
     filter: "🇸🇬|SG|Singapore|狮城|^新|^节北|^刷更|新|^节北|🇹🇬|🇹🇰|🇹🇼|🇻🇳|🇻🇪|🏴󠁧󠁢󠁥󠁮󠁧󠁿|🇬🇧|🇻🇦|🇿🇼|🇻🇮|🇺🇾|🇹🇨|🇺🇬|🇦🇪|🇹🇴|🇨🇭"
     interval: 300
-#    tolerance: 99
+    tolerance: 99
     use: 
       - provider1
       - provider2
@@ -175,43 +173,46 @@ rules:
   - PROCESS-NAME,ir.mci.ecareapp,🎯,no-resolve
   - PROCESS-NAME,com.myirancell,🎯,no-resolve
   - DOMAIN-SUFFIX,ir,🎯,no-resolve
-  - RULE-SET,gfw,PRO,no-resolve
-  - RULE-SET,social,PRO,no-resolve
-  - RULE-SET,nsfw1,PRO,no-resolve
-  - DOMAIN,errlog.umeng.com,PRO
-  - DOMAIN,msg.umeng.com,PRO
-  - DOMAIN,msg.umengcloud.com,PRO
-  - DOMAIN,tracking.miui.com,PRO
-  - DOMAIN,app.adjust.com,PRO
-  - DOMAIN,bdtj.tagtic.cn,PRO
+  - RULE-SET,gfw,PROXY,no-resolve
+  - RULE-SET,social,PROXY,no-resolve
+  - RULE-SET,nsfw1,PROXY,no-resolve
+  - GEOIP,facebook,PROXY,no-resolve
+  - GEOIP,google,PROXY,no-resolve
+  - GEOIP,twitter,PROXY,no-resolve
+  - GEOIP,telegram,PROXY,no-resolve
+  - DOMAIN,errlog.umeng.com,PROXY
+  - DOMAIN,msg.umeng.com,PROXY
+  - DOMAIN,msg.umengcloud.com,PROXY
+  - DOMAIN,tracking.miui.com,PROXY
+  - DOMAIN,app.adjust.com,PROXY
+  - DOMAIN,bdtj.tagtic.cn,PROXY
   - DOMAIN,rewards.hypixel.net,PRO
   - DOMAIN-SUFFIX,koodomobile.com,PRO
   - DOMAIN-SUFFIX,koodomobile.ca,PRO
   - GEOIP,CN,🎯,no-resolve
   - GEOIP,ir,🎯,no-resolve
-  - RULE-SET,gfw,PRO,no-resolve
+  - RULE-SET,gfw,PROXY,no-resolve
   - RULE-SET,category-ads-all,🆎 AdBlock
   - RULE-SET,ads,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.messaging,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.app.telephonyui,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.smartcallprovider,🆎 AdBlock
   - PROCESS-NAME,com.samsung.android.intellivoiceservice,🆎 AdBlock
-  - PROCESS-NAME,com.android.settings,🆎 AdBlock
   - PROCESS-NAME,com.sec.imsservice,🆎 AdBlock
-  - PROCESS-NAME,com.instander.android,PRO,no-resolve
-  - PROCESS-NAME,com.google.android.gm,PRO,no-resolve
-  - PROCESS-NAME,com.jrummy.app.manager,PRO,no-resolve
-  - DOMAIN-SUFFIX,cdninstagram.com,PRO,no-resolve
-  - DOMAIN-SUFFIX,bookstagram.com,PRO,no-resolve
-  - DOMAIN-SUFFIX,carstagram.com,PRO,no-resolve
-  - DOMAIN-SUFFIX,cdninstagram.com,PRO,no-resolve
-  - DOMAIN-SUFFIX,chickstagram.com,PRO,no-resolve
-  - DOMAIN-SUFFIX,ig.me,PRO,no-resolve
-  - DOMAIN-SUFFIX,igcdn.com,PRO,no-resolve
-  - DOMAIN-SUFFIX,igsonar.com,PRO,no-resolve
-  - DOMAIN-SUFFIX,igtv.com,PRO,no-resolve
-  - DOMAIN-SUFFIX,imstagram.com,PRO,no-resolve
-  - DOMAIN-SUFFIX,imtagram.com,PRO,no-resolve
+  - PROCESS-NAME,com.instander.android,PROXY,no-resolve
+  - PROCESS-NAME,com.google.android.gm,PROXY,no-resolve
+  - PROCESS-NAME,com.jrummy.app.manager,PROXY,no-resolve
+  - DOMAIN-SUFFIX,cdninstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,bookstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,carstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,cdninstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,chickstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,ig.me,PROXY,no-resolve
+  - DOMAIN-SUFFIX,igcdn.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,igsonar.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,igtv.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,imstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,imtagram.com,PROXY,no-resolve
   - DOMAIN-SUFFIX,instaadder.com,PRO,no-resolve
   - DOMAIN-SUFFIX,instachecker.com,PRO,no-resolve
   - DOMAIN-SUFFIX,instafallow.com,PRO,no-resolve
@@ -219,8 +220,8 @@ rules:
   - DOMAIN-SUFFIX,instagainer.com,PRO,no-resolve
   - DOMAIN-SUFFIX,instagda.com,PRO,no-resolve
   - DOMAIN-SUFFIX,instagify.com,PRO,no-resolve
-  - DOMAIN-SUFFIX,instagmania.com,PRO,no-resolve
-  - DOMAIN-SUFFIX,instagor.com,PRO,no-resolve
+  - DOMAIN-SUFFIX,instagmania.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagor.com,PROXY,no-resolve
   - DOMAIN-SUFFIX,instagram-brand.com,PRO,no-resolve
   - DOMAIN-SUFFIX,instagram-engineering.com,PRO,no-resolve
   - DOMAIN-SUFFIX,instagram-help.com,PRO,no-resolve
