@@ -9,36 +9,40 @@ proxy-groups:
     use: 
       - provider1
       - provider2
+      - provider3
  
   - name: LOAD-BALANCE
     type: load-balance
     strategy: consistent-hashing
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 99
+    interval: 309
 #    udp: true
     proxies:
     use: 
       - provider1
       - provider2
+      - provider3
   - name: BEST-PING
     type: url-test
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 99
-    tolerance: 9
+    interval: 300
+#    tolerance: 9
  #   udp: true
     proxies:
     use: 
       - provider1
       - provider2
+      - provider3
   - name: FALLBACK
     type: fallback
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 99
+    interval: 180
 #    udp: true
     proxies:
     use: 
       - provider1
       - provider2
+      - provider3
   - name: IRAN
     type: select
     proxies:
@@ -54,6 +58,7 @@ proxy-groups:
     use: 
       - provider1
       - provider2
+      - provider3
 proxy-providers:
   provider1:
     type: http
@@ -69,6 +74,16 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah"    
     path: Prem/providerPh.yaml
+    interval: 890
+    health-check:
+      enable: true
+      interval: 300
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
+  provider3:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.all"    
+    path: Prem/providerPall.yaml
     interval: 890
     health-check:
       enable: true
