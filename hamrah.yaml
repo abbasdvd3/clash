@@ -10,7 +10,7 @@ mixed-port: 7890
 redir-port: 7893
 mode: rule
 allow-lan: true
-unified-delay: false
+unified-delay: true
 bind-address: '*'
 log-level: debug
 ipv6: false
@@ -98,23 +98,10 @@ dns:
   ipv6: false
   ipv6-timeout: 300
   prefer-h3: false
-  listen: 0.0.0.0:1053
+  listen: :1053
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.0/16
   fake-ip-filter:
   - '*.lan'
-  default-nameserver:
-  - 10.0.0.1:53
-  - 223.5.5.5:53
-  - 8.8.8.8:53
-  - 114.114.114.114:53
-  - 198.18.0.1:53
-  - 94.140.14.141:53
-  - 1.1.1.1:53
-  - 223.6.6.6:53
-  - 119.29.29.29:53
-  - 1.12.12.12:53
-  - 10.202.10.202:53
   nameserver-policy:
     "www.baidu.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
     "www.instagram.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
@@ -163,32 +150,7 @@ dns:
   - https://94.140.14.141/dns-query
   - https://dns-adguard.heinu.cf/dns-query
   - https://dns-adguard.heinu.ga/dns-query
-  fallback:
-  - dhcp://en0
-  - dhcp://WLAN
-  - dhcp://wlan
-  - 192.168.1.1
-  - https://max.rethinkdns.com/dns-query
-  - https://cloudflare-dns.com/dns-query
-  - https://dns.google/dns-query
-  - https://dns.alidns.com/dns-query
-  - udp://1.1.1.1:53
-  - https://1.1.1.2/dns-query
-  - https://1.0.0.2/dns-query
-  - https://9.9.9.9/dns-query
-  - udp://78.157.42.100:53
-  - udp://10.202.10.202:53
-  - udp://223.5.5.5:53
-  - https://223.5.5.5/dns-query
-  - udp://1.0.0.1
-  - udp://8.8.4.4
-  - https://cloudflare-dns.com/dns-query
-  - https://dns.google/dns-query
-  - https://doh.dns.sb/dns-query
-  - https://dns.twnic.tw/dns-query
-  - https://doh.opendns.com/dns-query
-  - https://all.dns.mullvad.net/dns-query
-  - https://dns.quad9.net/dns-query
+
   proxy-server-nameserver:
   - https://dns.google/dns-query
   - tls://one.one.one.one
