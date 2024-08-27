@@ -1,22 +1,23 @@
 proxies:
 proxy-groups:
   - name: PRO
-    type: url-test
-    url: http://speed.cloudflare.com/generate_204
-    interval: 300
+    type: select
     proxies:
       - url-test
       - fallback
       - 🇺🇸a-url-test
       - 🇺🇸1
       - 🇺🇸2
-    
       - 🇺🇸4
+    use: 
+      - provider1
+      - provider2
+      - provider3
   - name: url-test
     type: url-test
     url: http://speed.cloudflare.com/generate_204
     interval: 300
-    tolerance: 150
+    tolerance: 50
     use: 
       - provider1
       - provider2
