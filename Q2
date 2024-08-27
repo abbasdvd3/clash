@@ -53,18 +53,10 @@
         "server": "fakeip"
       },
       {
-        "rule_set": "geosite-category-ads-all",
-        "server": "block"
-      },
-      {
         "outbound": "any",
         "server": "tx",
         "disable_cache": true
-      },
-      {
-        "rule_set": "geosite-ir",
-        "server": "tx"
-      },   
+      },  
       {
         "clash_mode": "direct",
         "server": "tx"
@@ -3287,10 +3279,6 @@
         "outbound": "block"
       },
       {
-        "rule_set": "geosite-category-ads-all",
-        "outbound": "AdBlock"
-      },
-      {
         "clash_mode": "direct",
         "outbound": "direct"
       },
@@ -3322,14 +3310,6 @@
         "outbound": "direct"
       },
       {
-        "rule_set": "geoip-ir",
-        "outbound": "direct"
-      },
-      {
-        "rule_set": "geosite-ir",
-        "outbound": "direct"
-      },
-      {
         "inbound": [
           "tun",
           "mixed"
@@ -3337,28 +3317,6 @@
         "outbound": "loop"
       }
     ],
-    "rule_set": [
-      {
-        "tag": "geoip-ir",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/ir.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-ir",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-category-ads-all",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
-        "download_detour": "direct"
-      }
-    ]
+    "rule_set": []
   }
 }
