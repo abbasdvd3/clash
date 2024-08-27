@@ -196,6 +196,7 @@ proxy-groups:
 #    dialer-proxy: proxy
     icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/ir.png
     proxies: [proxy, fallback, url-test, select, America, Social, google, youtube, microsoft, apple]
+    
   - name: proxy
     type: select
     include-all-proxies: true
@@ -301,7 +302,7 @@ proxy-groups:
     type: url-test
     lazy: true
     interval: 300
-    tolerance: 0
+    tolerance: 50
     url: https://www.youtube.com/generate_204
     icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/usa.svg
     include-all-proxies: true
@@ -311,13 +312,13 @@ proxy-groups:
 
   - name: select
     type: url-test
-    tolerance: 150
-    interval: 500
+    tolerance: 50
+    interval: 300
     url: https://www.youtube.com/generate_204
     icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/iran.png
-    include-all-proxies: true
-    include-all-providers: true
-    proxies: []
+    proxies:
+    use:
+  - s    
 proxy-providers:
   h:
     type: http
