@@ -1,81 +1,19 @@
 {
-  "experimental": {
-    "clash_api": {
-      "external_controller": "",
-      "secret": ""
-    },
-    "debug": {
-      "max_threads": null,
-      "panic_on_fault": false
-    },
-    "cache_file": {
-      "enabled": false,
-      "path": "",
-      "store_fakeip": true
-    }
-  },
   "log": {
-    "disabled": false,
     "level": "info",
-    "output": "",
     "timestamp": true
   },
-  "ntp": {
-    "enabled": false,
-    "server": "time.windows.com",
-    "server_port": 123,
-    "interval": "12h",
-    "detour": "direct_out"
-  },
   "dns": {
-    "final": "dns_final_out",
-    "strategy": "prefer_ipv4",
-    "independent_cache": true,
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.20.0.0/15",
-      "inet6_range": "fc00::/18"
-    },
-    "rules": [
-      {
-        "domain": [
-          "SpeeDTeST.OrG"
-        ],
-        "server": "dns_outbound_out"
-      },
-      {
-        "domain_suffix": [
-          "ingest.sentry.io",
-          "karing.app",
-          "yacd.metacubex.one"
-        ],
-        "server": "dns_direct_out"
-      },
-      {
-        "domain_suffix": [
-          "speedtest.net"
-        ],
-        "server": "dns_fakeip_out"
-      },
-      {
-        "server": "dns_fakeip_out",
-        "inbound": [
-          "tun_in"
-        ],
-        "rewrite_ttl": 1,
-        "disable_cache": true
-      }
-    ],
     "servers": [
       {
         "tag": "dns_outbound_out",
-        "address": "tls://adblock.dns.mullvad.net",
+        "address": "local",
         "address_resolver": "dns_resolver_out",
         "detour": "direct_out"
       },
       {
         "tag": "dns_direct_out",
-        "address": "https://max.rethinkdns.com/sec",
+        "address": "local",
         "address_resolver": "dns_resolver_out",
         "detour": "direct_out"
       },
@@ -87,13 +25,13 @@
       },
       {
         "tag": "dns_final_out",
-        "address": "https://max.rethinkdns.com/1:EID-BwCB",
+        "address": "1.1.1.1",
         "address_resolver": "dns_resolver_out",
         "detour": "selector_out"
       },
       {
         "tag": "dns_resolver_out",
-        "address": "https://162.159.36.1/dns-query",
+        "address": "8.8.8.8",
         "detour": "direct_out"
       },
       {
@@ -109,13 +47,52 @@
         "tag": "dns_fakeip_out",
         "address": "fakeip"
       }
-    ]
+    ],
+    "rules": [
+      {
+        "domain": "SpeeDTeST.OrG",
+        "server": "dns_outbound_out"
+      },
+      {
+        "domain_suffix": [
+          "ingest.sentry.io",
+          "karing.app",
+          "yacd.metacubex.one"
+        ],
+        "server": "dns_direct_out"
+      },
+      {
+        "domain_suffix": "speedtest.net",
+        "server": "dns_fakeip_out"
+      },
+      {
+        "inbound": [
+          "tun_in"
+        ],
+        "server": "dns_fakeip_out",
+        "disable_cache": true,
+        "rewrite_ttl": 1
+      }
+    ],
+    "final": "dns_final_out",
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.20.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
+    "strategy": "prefer_ipv4",
+    "independent_cache": true
+  },
+  "ntp": {
+    "interval": "12h0m0s",
+    "server": "time.windows.com",
+    "server_port": 123,
+    "detour": "direct_out"
   },
   "inbounds": [
     {
       "type": "mixed",
       "tag": "mixed_in_direct",
-      "set_system_proxy": false,
       "listen": "127.0.0.1",
       "listen_port": 3065,
       "sniff": true,
@@ -124,7 +101,6 @@
     {
       "type": "mixed",
       "tag": "mixed_in_forword",
-      "set_system_proxy": false,
       "listen": "127.0.0.1",
       "listen_port": 7890,
       "sniff": true,
@@ -134,41 +110,26 @@
       "type": "tun",
       "tag": "tun_in",
       "interface_name": "Karing TUN Network Adapter",
-      "inet4_address": [
-        "10.20.0.1/30"
-      ],
-      "inet6_address": [
-        "fdfe:dcba:9876::1/126"
-      ],
       "mtu": 9000,
       "auto_route": true,
       "strict_route": true,
+      "udp_timeout": "5s",
       "stack": "mixed",
       "platform": {
         "http_proxy": {
           "enabled": true,
           "server": "127.0.0.1",
-          "server_port": 7891
+          "server_port": 7899
         }
       },
-      "include_package": null,
-      "exclude_package": null,
-      "udp_timeout": "5s",
       "sniff": true,
-      "sniff_override_destination": true
+      "sniff_override_destination": true,
+      "inet4_address": "10.20.0.1/30",
+      "inet6_address": "fdfe:dcba:9876::1/126"
     },
-    {
-      "tag": "loop-in",
-      "type": "mixed",
-      "listen": "127.0.0.1",
-      "listen_port": 7891,
-      "sniff": true,
-      "domain_strategy": "prefer_ipv4"
-    }
     {
       "type": "mixed",
       "tag": "mixed_in_rule",
-      "set_system_proxy": false,
       "listen": "127.0.0.1",
       "listen_port": 7899,
       "sniff": true,
@@ -179,11 +140,9 @@
     {
       "type": "selector",
       "tag": "selector_out",
-      "interrupt_exist_connections": false,
       "outbounds": [
         "urltest_out",
-         "loop",
-         "N2401678627 § 0",
+        "N2401678627 § 0",
         "N7702150338 § 1",
         "N8303635409 § 2",
         "N7204605727 § 3",
@@ -1094,10 +1053,6 @@
     {
       "type": "urltest",
       "tag": "urltest_out",
-      "url": "https://fiber.google.com/speedtest/generate_104",
-      "interval": "3m",
-      "interrupt_exist_connections": false,
-      "idle_timeout": "3m",
       "outbounds": [
         "N2401678627 § 0",
         "N7702150338 § 1",
@@ -1159,7 +1114,10 @@
         "M2828856947 § 57",
         "M2429292948 § 58",
         "M3030256548 § 59"
-      ]
+      ],
+      "url": "https://fiber.google.com/speedtest/generate_104",
+      "interval": "3m0s",
+      "idle_timeout": "3m0s"
     },
     {
       "type": "direct",
@@ -1171,29 +1129,64 @@
     },
     {
       "type": "dns",
-      "tag": "dns_out"
+      "tag": "dns-in"
     }
   ],
   "route": {
-    "final": "selector_out",
-    "find_process": true,
-    "auto_detect_interface": true,
     "rules": [
       {
-        "inbound": [
-          "mixed_in_direct"
+        "inbound": "mixed_in_direct",
+        "outbound": "direct_out"
+      },
+      {
+        "port": 53,
+        "outbound": "selector_out"
+      },
+      {
+        "network": "udp",
+        "port": 443,
+        "outbound": "block_out"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "direct_out"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "selector_out"
+      },
+      {
+        "domain": [
+          "clash.razord.top",
+          "yacd.metacubex.one",
+          "yacd.haishan.me",
+          "d.metacubex.one"
         ],
         "outbound": "direct_out"
       },
       {
+        "process_name": [
+          "Hiddify",
+          "Hiddify.exe",
+          "HiddifyCli",
+          "com.tomclaw.appsend",
+          "HiddifyCli.exe"
+        ],
+        "outbound": "direct_out"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct_out"
+      },
+      {
         "inbound": [
-          "mixed_in_forword"
+          "tun"
         ],
         "outbound": "selector_out"
       },
       {
-        "protocol": "dns",
-        "outbound": "dns_out"
+        "inbound": "mixed_in_forword",
+        "outbound": "selector_out"
       },
       {
         "domain_suffix": [
@@ -1204,12 +1197,26 @@
         "outbound": "direct_out"
       },
       {
-        "domain_suffix": [
-          "speedtest.net"
-        ],
+        "domain_suffix": "speedtest.net",
         "outbound": "selector_out"
       }
     ],
-    "rule_set": []
+    "final": "selector_out",
+    "find_process": true,
+    "auto_detect_interface": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "cache.db",
+      "cache_id": "my_profile2",
+      "store_fakeip": true
+    },
+    "clash_api": {
+      "external_ui": "dashboard",
+      "external_controller": "0.0.0.0:9090",
+      "external_ui_download_detour": "",
+      "default_mode": "rule"
+    }
   }
 }
