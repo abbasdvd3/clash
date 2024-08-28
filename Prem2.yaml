@@ -82,7 +82,7 @@ proxy-providers:
       url: http://speed.cloudflare.com/generate_204
   provider3:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.all"  
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/s"  
     path: Prem2/P3.yaml
     interval: 890
     health-check:
@@ -384,20 +384,22 @@ proxies:
   - {"name":"🇯🇵JP_f653 @WangCai_8\r","type":"trojan","server":"139.162.111.25","port":3306,"udp":true,"password":"f653ef08c54e21b3","sni":"TG.WangCai2","skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/gateway/connect","headers":{"host":"TG.WangCai_1"}}}
 proxy-groups:
   - name: 'PRO'
-    type: 'select'
+    type: 'url-test'
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 180
     proxies:
-      - '⚡️ Fastest'
       - '📶 First Available'
+      - '⚡️ Fastest'
       - '♻️ Load Balance'
   - name: '⚡️ Fastest'
     type: 'url-test'
-    tolerance: 5
+ #   tolerance: 5
     url: 'https://www.gstatic.com/generate_204'
     interval: 300
     use: 
-      - provider1
-      - provider2
-      - provider3
+      - 'provider1'
+      - 'provider2'
+      - 'provider3'
     proxies:
       - 节点日期：08-26
       - 美国【付费推荐：https://a0a.xyz】156
@@ -695,9 +697,9 @@ proxy-groups:
     url: 'https://www.gstatic.com/generate_204'
     interval: 180
     use: 
-      - provider1
-      - provider2
-      - provider3
+      - 'provider1'
+      - 'provider2'
+      - 'provider3'
     proxies:
       - 节点日期：08-26
       - 美国【付费推荐：https://a0a.xyz】156
@@ -997,9 +999,9 @@ proxy-groups:
     interval: 180
     strategy: 'consistent-hashing'
     use: 
-      - provider1
-      - provider2
-      - provider3
+      - 'provider1'
+      - 'provider2'
+      - 'provider3'
     proxies:
       - 节点日期：08-26
       - 美国【付费推荐：https://a0a.xyz】156
@@ -1295,9 +1297,9 @@ proxy-groups:
   - name: 'PROXY'
     type: 'select'
     use: 
-      - provider1
-      - provider2
-      - provider3
+      - 'provider1'
+      - 'provider2'
+      - 'provider3'
     proxies:
       - '⚡️ Fastest'
       - '📶 First Available'
@@ -1595,11 +1597,11 @@ proxy-groups:
       - "🇯🇵JP_dc2d @WangCai_8\r"
       - "🇯🇵JP_f653 @WangCai_8\r"
   - name: '🍎Ⓜ️'
-    type: select
+    type: 'select'
     use: 
-      - provider1
-      - provider2
-      - provider3
+      - 'provider1'
+      - 'provider2'
+      - 'provider3'
     proxies:
       - 'PRO'
       - 'PROXY'
@@ -1899,7 +1901,7 @@ proxy-groups:
       - "🇯🇵JP_dc2d @WangCai_8\r"
       - "🇯🇵JP_f653 @WangCai_8\r"
   - name: 'IRAN'
-    type: select
+    type: 'select'
     proxies:
       - 'DIRECT'
       - 'PROXY'
