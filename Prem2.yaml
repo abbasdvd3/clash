@@ -384,9 +384,11 @@ proxies:
   - {"name":"🇯🇵JP_f653 @WangCai_8\r","type":"trojan","server":"139.162.111.25","port":3306,"udp":true,"password":"f653ef08c54e21b3","sni":"TG.WangCai2","skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/gateway/connect","headers":{"host":"TG.WangCai_1"}}}
 proxy-groups:
   - name: 'PRO'
-    type: 'url-test'
-    url: 'https://www.gstatic.com/generate_204'
-    interval: 80
+    type: 'select'
+    use: 
+      - 'provider1'
+      - 'provider2'
+      - 'provider3'
     proxies:
       - '📶 First Available'
       - '⚡️ Fastest'
@@ -1968,6 +1970,7 @@ rule-providers:
     interval: 86400
 
 rules:
+  - DST-PORT,80/8080/443/8443,PROXY,no-resolve
   - DOMAIN-SUFFIX,acl4.ssr,IRAN
   - DOMAIN-SUFFIX,ip6-localhost,IRAN
   - DOMAIN-SUFFIX,ip6-loopback,IRAN
