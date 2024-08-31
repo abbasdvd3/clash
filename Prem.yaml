@@ -6,6 +6,7 @@ proxy-groups:
       - BEST-PING
       - LOAD-BALANCE
       - FALLBACK
+      - USA 🇺🇲
     use: 
       - provider1
       - provider2
@@ -15,7 +16,7 @@ proxy-groups:
     type: load-balance
     strategy: consistent-hashing
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 309
+    interval: 400
 #    udp: true
     proxies:
     use: 
@@ -43,6 +44,19 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
+  - name: USA 🇺🇲
+    type: url-test
+    url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: false
+    interval: 500
+    tolerance: 70
+    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
+    hidden: false
+    proxies:
+    use:
+      - provider1
+      - provider2
+      - provider3
   - name: IRAN
     type: select
     proxies:
@@ -52,6 +66,7 @@ proxy-groups:
     type: select
     proxies:
       - PRO
+      - USA 🇺🇲
       - FALLBACK
       - LOAD-BALANCE
       - BEST-PING
