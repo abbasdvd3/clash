@@ -16,7 +16,7 @@ proxy-groups:
     type: load-balance
     strategy: consistent-hashing
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 400
+    interval: 120
 #    udp: true
     proxies:
     use: 
@@ -26,9 +26,9 @@ proxy-groups:
   - name: BEST-PING
     type: url-test
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 300
-#    tolerance: 9
- #   udp: true
+    interval: 99
+    tolerance: 99
+    udp: true
     proxies:
     use: 
       - provider1
@@ -37,7 +37,7 @@ proxy-groups:
   - name: FALLBACK
     type: fallback
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 180
+    interval: 110
 #    udp: true
     proxies:
     use: 
