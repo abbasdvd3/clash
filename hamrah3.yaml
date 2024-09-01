@@ -18,7 +18,7 @@ lan-disallowed-ips:
   - 192.168.0.3/32
 geo-update-interval: 24 
 external-controller: 0.0.0.0:9090 
-external-ui: /dashboard
+external-ui: dashboard
 external-ui-name: xd
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 tcp-concurrent: true
@@ -31,7 +31,7 @@ geox-url:
   asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
 find-process-mode: always
 profile:
-  store-selected: false
+  store-selected: true
   store-fake-ip: true
 # interface-name: en0 
 keep-alive-interval: 15 
@@ -78,20 +78,12 @@ dns:
   ipv6: false
   ipv6-timeout: 300
   prefer-h3: true
-  listen: 0.0.0.0:53
+  listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
-  fake-ip-range: 255.0.128.1/20
   fake-ip-filter:
   - '*.lan'
   default-nameserver:
   - 223.5.5.5
-  - 10.202.10.202
-  - 10.0.0.0
-  - 119.29.29.29
-  - 114.114.114.114
-  - 8.8.8.8
-  - 1.12.12.12
-  - 1.1.1.1
   nameserver-policy:
     www.baidu.com: 114.114.114.114
     www.instagram.com: [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
@@ -110,18 +102,11 @@ dns:
     "rule-set:GoogleFCM,ir,social,nsfw1": [223.5.5.5, https://dns.alidns.com/dns-query]
     GEOSITE:google: 8.8.8.8
   nameserver:
-  - 78.157.42.100
-  - 10.202.10.102
-  - 114.114.114.114
-  - 8.8.8.8 
+  - 114.114.114.114:853
   - tls://223.5.5.5:853
-  - https://doh.pub/dns-query 
   - https://dns.alidns.com/dns-query#h3=true 
   - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true 
-  - dhcp://en0 
   - quic://dns.adguard.com:784 
-  - https://doh.pub/dns-query
-  - https://dns.alidns.com/dns-query
   proxy-server-nameserver:
   - https://dns.google/dns-query
   - tls://one.one.one.one
@@ -148,14 +133,14 @@ proxy-groups:
   - name: 🕹 select
     type: url-test
     url: https://fiber.google.com/speedtest/generate_104
-    expected-status: 100/104
+    expected-status: 200/204
     nodeGroupType: 0
   #  interval: 100
  #   tolerance: 50
     proxies:
       - ♻️ url-test
-    #  - 🚧 fallback
-    #  - ⚖️ load-balance
+      - 🚧 fallback
+      - ⚖️ load-balance
       - ✈️
       - 🇭🇰 
       - 🇨🇳 
@@ -166,7 +151,7 @@ proxy-groups:
   - name: ✈️
     type: url-test
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 300
+    interval: 100
     tolerance: 100
     expected-status: 200/204
     proxies:
@@ -179,7 +164,7 @@ proxy-groups:
     interval: 200
     expected-status: 200/204
 #    nodeGroupType: 0
-    tolerance: 150
+    tolerance: 100
     proxies:
     use:
       - provider1
@@ -200,10 +185,10 @@ proxy-groups:
   - name: ⚖️ load-balance
     type: url-test
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 500
+    interval: 100
     expected-status: 300/304
 #    nodeGroupType: 0
-    tolerance: 150
+    tolerance: 10
     proxies:
     use:
       - provider1
@@ -211,6 +196,8 @@ proxy-groups:
 
   - name: 📲
     type: select
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     expected-status: 200/204
     proxies:
       - 🕹 select
@@ -224,10 +211,12 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-      - DIRECT
+ 
   - name: 💬 OpenAi
     type: select
     expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     proxies:
       - 🕹 select
       - ✈️
@@ -240,10 +229,12 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-      - DIRECT
+  
   - name: 📹
     type: select
     expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     proxies:
       - 🕹 select
       - ✈️
@@ -256,10 +247,12 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-      - DIRECT
+     
   - name: 🎥
     type: select
     expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     proxies:
       - 🕹 select
       - ✈️
@@ -272,14 +265,16 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-      - DIRECT
+   
   - name: 📺
     type: select
     expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     proxies:
       - 🕹 select
       - ✈️
-      - DIRECT
+    
   - name: 📺2
     type: select
     expected-status: 200/204
@@ -289,6 +284,8 @@ proxy-groups:
   - name: 🌍
     type: select
     expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     proxies:
       - 🕹 select
       - ✈️
@@ -301,13 +298,14 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-      - DIRECT
+     
   - name: 🌏
     type: select
     expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     proxies:
       - 🕹 select
-      - DIRECT
       - 🇭🇰
       - 🇨🇳
       - 🇸🇬
@@ -316,9 +314,10 @@ proxy-groups:
   - name: 📢
     type: select
     expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     proxies:
       - 🕹 select
-      - DIRECT
       - ✈️
       - ♻️ url-test
       - 🚧 fallback
@@ -332,9 +331,10 @@ proxy-groups:
   - name: Ⓜ️1
     type: select
     expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     proxies:
       - 🕹 select
-      - DIRECT
       - ✈️
       - ♻️ url-test
       - 🚧 fallback
@@ -348,9 +348,10 @@ proxy-groups:
   - name: Ⓜ️2
     type: select
     expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     proxies:
       - 🕹 select
-      - DIRECT
       - ✈️
       - ♻️ url-test
       - 🚧 fallback
@@ -364,9 +365,10 @@ proxy-groups:
   - name: Ⓜ️3
     type: select
     expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     proxies:
       - 🕹 select
-      - DIRECT
       - ✈️
       - ♻️ url-test
       - 🚧 fallback
@@ -380,6 +382,8 @@ proxy-groups:
   - name: 🍎
     type: select
     expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     proxies:
       - 🕹 select
       - DIRECT
@@ -396,9 +400,10 @@ proxy-groups:
   - name: 🎮
     type: select
     expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     proxies:
       - 🕹 select
-      - DIRECT
       - ✈️
       - ♻️ url-test
       - 🚧 fallback
@@ -412,9 +417,10 @@ proxy-groups:
   - name: 🎶
     type: select
     expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     proxies:
       - 🕹 select
-      - DIRECT
       - ♻️ url-test
   - name: 🎯
     type: select
@@ -436,6 +442,8 @@ proxy-groups:
   - name: 🐟
     type: select
     expected-status: 200/204
+    url: https://fiber.google.com/speedtest/generate_204
+    interval: 100
     use:
       - provider1
       - provider2
@@ -452,12 +460,11 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-      - DIRECT
       
   - name: 🇭🇰
     type: url-test
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 300
+    interval: 180
     expected-status: 200/204
     filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
     proxies: 
@@ -467,7 +474,7 @@ proxy-groups:
   - name: 🇯🇵
     type: url-test
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 300
+    interval: 180
     expected-status: 200/204
     filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
     proxies: 
@@ -477,7 +484,7 @@ proxy-groups:
   - name: 🇺🇲
     type: url-test
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 300
+    interval: 180
     expected-status: 200/204
     proxies:
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
@@ -487,7 +494,7 @@ proxy-groups:
   - name: 🇨🇳
     type: url-test
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 300
+    interval: 180
     expected-status: 200/204
     filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
     proxies: 
@@ -497,7 +504,7 @@ proxy-groups:
   - name: 🇸🇬
     type: url-test
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 300
+    interval: 180
     expected-status: 200/204
     filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
     proxies: 
@@ -507,7 +514,7 @@ proxy-groups:
   - name: 🇰🇷
     type: url-test
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 300
+    interval: 180
     expected-status: 200/204
     filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
     proxies: 
@@ -522,7 +529,7 @@ proxy-providers:
     path: h3/provider1.yaml
     health-check:
       enable: true
-      interval: 300
+      interval: 30
       lazy: true
       url: https://fiber.google.com/speedtest/generate_204
       override:
@@ -535,7 +542,7 @@ proxy-providers:
     path: h3/provider2.yaml
     health-check:
       enable: true
-      interval: 300
+      interval: 30
       lazy: true
       url: https://fiber.google.com/speedtest/generate_204
       override:
@@ -893,11 +900,11 @@ rules:
   - RULE-SET,irasn,DIRECT
   - RULE-SET,nsfw1,🕹 select
   - RULE-SET,social,🕹 select
-  - RULE-SET,UnBan,🎯
+  - RULE-SET,UnBan,🕹 select
   - RULE-SET,BanAD,🛑
   - RULE-SET,BanProgramAD,🍃
   - RULE-SET,GoogleFCM,📢
-  - RULE-SET,GoogleCN,🎯
+  - RULE-SET,GoogleCN,📢
   - RULE-SET,SteamCN,🎯
   - RULE-SET,Bing,Ⓜ️1
   - RULE-SET,OneDrive,Ⓜ️2
@@ -935,7 +942,7 @@ rules:
   - RULE-SET,IpinfoSpeedtest,🎯
   - RULE-SET,Google,📢  
   - RULE-SET,AWA,🛑
-  - DOMAIN-SUFFIX,googlesyndication.com,🕹 select
+  - DOMAIN-SUFFIX,googlesyndication.com,📢
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),🛑
   - GEOSITE,category-ads-all,🛑
   - RULE-SET,block,🛑
