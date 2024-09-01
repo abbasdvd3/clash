@@ -107,7 +107,7 @@ proxy-groups:
 
   - name: 🕹
     type: url-test
-    tolerance: 10
+    tolerance: 70
     proxies:
       - 🕹load-balance
       - ♻️ url-test
@@ -119,12 +119,19 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
+      - 📹
+      - 🎥
+      - 📺
+      - 📺2
+      - 🌏
+      - 📢
+      - 🌏
   - name: 🕹load-balance
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: true
     interval: 180
-    tolerance: 10
+  #  tolerance: 10
     hidden: false
     proxies:
       - 🇭🇰 
@@ -133,12 +140,19 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
+      - 📹
+      - 🎥
+      - 📺
+      - 📺2
+      - 🌏
+      - 📢
+      - 🌏
   - name: ♻️ url-test
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: true
     interval: 180
-    tolerance: 10
+ #   tolerance: 10
     hidden: false
     proxies:
     use:
@@ -247,30 +261,13 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-      - DIRECT
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
-      - provider7
-      - provider8
-      - provider9
-      - provider10
-      - provider11
-      - provider12
-      - provider13
-      - provider14
-      - provider15
-      - provider16
-      - provider17
-      - provider18
-      - provider19
-      - provider20
-      - provider21
-      
+      - 📹
+      - 🎥
+      - 📺
+      - 📺2
+      - 🌏
+      - 📢
+      - 🌏
   - name: 💬 OpenAi
     type: select
     hidden: false
@@ -285,150 +282,67 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-      - DIRECT
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
-      - provider7
-      - provider8
-      - provider9
-      - provider10
-      - provider11
-      - provider12
-      - provider13
-      - provider14
-      - provider15
-      - provider16
-      - provider17
-      - provider18
-      - provider19
-      - provider20
-      - provider21
-      
+      - 📹
+      - 🎥
+      - 📺
+      - 📺2
+      - 🌏
+      - 📢
+      - 🌏
   - name: 📹
-    type: select
+    type: url-test
+    url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: true
+    interval: 180
+    tolerance: 10
     hidden: false
     proxies:
-      - 🕹
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
-      - DIRECT
     use:
       - provider1
       - provider2
       - provider3
       - provider4
-      - provider5
-      - provider6
-      - provider7
-      - provider8
-      - provider9
-      - provider10
-      - provider11
-      - provider12
-      - provider13
-      - provider14
-      - provider15
-      - provider16
-      - provider17
-      - provider18
-      - provider19
-      - provider20
-      - provider21
  
   - name: 🎥
-    type: select
+    type: url-test
+    url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: true
+    interval: 180
+    tolerance: 10
     hidden: false
     proxies:
-      - 🕹
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
-      - DIRECT
+    use:
+      - provider5
+      - provider6
+      - provider7
+      - provider8
+      - provider9
+      - provider10
       
   - name: 📺
-    type: select
+    type: url-test
+    url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: true
+    interval: 180
+    tolerance: 10
     hidden: false
     proxies:
-      - 🕹
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷
     use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
-      - provider7
-      - provider8
-      - provider9
-      - provider10
       - provider11
       - provider12
       - provider13
       - provider14
       - provider15
-      - provider16
-      - provider17
-      - provider18
-      - provider19
-      - provider20
-      - provider21
+
   - name: 📺2
-    type: select
+    type: url-test
+    url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: true
+    interval: 180
+    tolerance: 10
     hidden: false
     proxies:
-      - 🕹
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷
     use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
-      - provider7
-      - provider8
-      - provider9
-      - provider10
-      - provider11
-      - provider12
-      - provider13
-      - provider14
-      - provider15
       - provider16
       - provider17
       - provider18
@@ -450,44 +364,15 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-      - DIRECT
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
-      - provider7
-      - provider8
-      - provider9
-      - provider10
-      - provider11
-      - provider12
-      - provider13
-      - provider14
-      - provider15
-      - provider16
-      - provider17
-      - provider18
-      - provider19
-      - provider20
-      - provider21
       
   - name: 🌏
-    type: select
+    type: url-test
+    url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: false
+    interval: 300
+    tolerance: 80
     hidden: false
     proxies:
-      - 🕹
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷
     use:
       - provider1
       - provider2
@@ -500,42 +385,16 @@ proxy-groups:
       - provider9
       - provider10
       - provider11
-      - provider12
-      - provider13
-      - provider14
-      - provider15
-      - provider16
-      - provider17
-      - provider18
-      - provider19
-      - provider20
-      - provider21
+      
   - name: 📢
-    type: select
+    type: url-test
+    url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: false
+    interval: 300
+    tolerance: 80
     hidden: false
     proxies:
-      - 🕹
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
     use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
-      - provider7
-      - provider8
-      - provider9
-      - provider10
-      - provider11
       - provider12
       - provider13
       - provider14
@@ -625,7 +484,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 300
-    tolerance: 10
+    tolerance: 80
     filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港|🇦🇫|🇦🇽|🇦🇱|🇩🇿|🇦🇸|🇦🇩|🇦🇴|🇦🇮|🇧🇭|🇧🇸|🇦🇿|🇦🇹|🇦🇺|🇦🇼|🇦🇲|🇦🇷|🇦🇬|🇧🇩|🇧🇧|🇧🇪|🇧🇾|🇧🇯|🇧🇹|🇧🇴|🇰🇭|🇧🇮|🇧🇫|🇧🇬|🇧🇳|🇻🇬|🇧🇷|🇧🇼|🇧🇦|🇨🇲|🇨🇦|🇮🇨|🇨🇻|🇧🇶|🇰🇾|🇨🇫|🇹🇩|🇮🇴|🇨🇰|🇨🇬|🇰🇲|🇨🇨|🇨🇴|🇨🇽|🇨🇳|🇨🇱"
     hidden: false
     proxies: 
@@ -657,7 +516,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 300
-    tolerance: 10
+    tolerance: 80
     filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日|🇩🇲|🇨🇮|🇩🇴|🇪🇨|🇭🇷|🇪🇬|🇸🇻|🇨🇼|🇨🇾|🇨🇿|🇩🇰|🇩🇯|🇸🇿|🇪🇪|🇬🇫|🇫🇷|🇪🇷|🇫🇮|🇫🇯|🇫🇴|🇫🇰|🇪🇺|🇭🇰|🇭🇳|🇮🇲|🇮🇱|🇮🇹|🇮🇸|🇮🇳|🇮🇪🇯🇴🎌🇱🇦🇱🇧|🇱🇸|🇱🇦|🇽🇰|🇰🇮|🇳🇫|🇳🇿|🇲🇵|🇷🇼|🇵🇱|🇸🇹|🇷🇼|🇷🇪|🇵🇷|🇵🇸|🇵🇬|🇵🇳|🇻🇨"
     hidden: false
     proxies: 
@@ -689,7 +548,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 300
-    tolerance: 10
+    tolerance: 80
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     hidden: false
     proxies:
@@ -720,7 +579,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 300
-    tolerance: 10
+    tolerance: 80
     filter: "cn|TW"
     hidden: false
     proxies: 
@@ -752,7 +611,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 300
-    tolerance: 10
+    tolerance: 80
     filter: "🇸🇬|SG|Singapore|狮城|^新|^节北|^刷更|新|^节北|🇹🇬|🇹🇰|🇹🇼|🇻🇳|🇻🇪|🏴󠁧󠁢󠁥󠁮󠁧󠁿|🇬🇧|🇻🇦|🇿🇼|🇻🇮|🇺🇾|🇹🇨|🇺🇬|🇦🇪|🇹🇴|🇨🇭"
     hidden: false
     proxies: 
@@ -783,7 +642,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 300
-    tolerance: 10
+    tolerance: 80
     filter: "🇰🇷|KO?R|Korea|首尔|韩|韓|🇮🇷"
     hidden: false
     proxies: 
@@ -816,168 +675,168 @@ proxy-providers:
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Finland/config.txt   
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider1]"
+  #  override:
+  #    additional-prefix: "[provider1]"
 
   provider2:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Albania/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider2]"
+  #  override:
+     # additional-prefix: "[provider2]"
       
   provider3:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Ireland/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider3]"
+   # override:
+      # additional-prefix: "[provider3]"
       
   provider4:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Germany/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider4]"
+ #   override:
+   #   additional-prefix: "[provider4]"
       
   provider5:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Russia/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider5]"
+  #  override:
+   #   additional-prefix: "[provider5]"
       
   provider6:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/United%20Arab%20Emirates/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider6]"
+  #  override:
+   #   additional-prefix: "[provider6]"
 
   provider7:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Canada/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider7]"
+  #  override:
+   #   additional-prefix: "[provider7]"
 
   provider8:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/United%20States/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider8]"
+  #  override:
+  #    additional-prefix: "[provider8]"
       
   provider9:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Switzerland/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider9]"
+  #  override:
+  #    additional-prefix: "[provider9]"
       
   provider10:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Croatia/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider10]"
+   # override:
+   #   additional-prefix: "[provider10]"
       
   provider11:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Netherlands/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider11]"
+ #   override:
+   #   additional-prefix: "[provider11]"
       
   provider12:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Costa%20Rica/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider12]"
+  #  override:
+  #    additional-prefix: "[provider12]"
 
   provider13:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Austria/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider13]"
+   # override:
+   #   additional-prefix: "[provider13]"
       
   provider14:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Norway/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider14]"
+  #  override:
+ #     additional-prefix: "[provider14]"
       
   provider15:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/France/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider15]"
+ #   override:
+   #   additional-prefix: "[provider15]"
 
   provider16:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Poland/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider16]"
+ #   override:
+   #   additional-prefix: "[provider16]"
 
   provider17:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Iran/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider17]"
+  #  override:
+   #   additional-prefix: "[provider17]"
       
   provider18:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Turkey/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider18]"
+  #  override:
+  #    additional-prefix: "[provider18]"
       
   provider19:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Republic%20of%20Lithuania/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider19]"
+ #   override:
+   #   additional-prefix: "[provider19]"
       
   provider20:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Sweden/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider20]"
+  #  override:
+  #    additional-prefix: "[provider20]"
       
   provider21:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/United%20Kingdom/config.txt
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider21]"      
+ #   override:
+   #   additional-prefix: "[provider21]"      
 
 
 rules:
