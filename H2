@@ -126,62 +126,62 @@ RuleSet: &RuleSet {type: http, behavior: classical, interval: 3600, format: yaml
 # 策略组
 proxy-groups: 
   - {name: 游戏选择, type: select, include-all: true, filter: *FilterGame, proxies: [DIRECT, 全球选择]}
-  - {name: 全球选择, type: select, include-all: true, filter: *FilterAll}
-  - {name: 境外下载, type: select, include-all: true, filter: *FilterAll, proxies: [DIRECT]}
-  - {name: AI, type: select, include-all: true, filter: *FilterAll}
-  - {name: TikTok, type: select, include-all: true, filter: *FilterAll}
-  - {name: Telegram, type: select, proxies: [香港策略, 台湾策略, 日本策略, 韩国策略, 新国策略, 美国策略, 英国策略, 法国策略, 德国策略]}
-  - {name: App Store, type: select, proxies: [DIRECT, 香港策略, 台湾策略, 日本策略, 韩国策略, 新国策略, 美国策略, 英国策略, 法国策略, 德国策略]}
-  - {name: Apple ID, type: select, proxies: [DIRECT, 香港策略, 台湾策略, 日本策略, 韩国策略, 新国策略, 美国策略, 英国策略, 法国策略, 德国策略]}
-  - {name: TestFlight, type: select, proxies: [DIRECT, 香港策略, 台湾策略, 日本策略, 韩国策略, 新国策略, 美国策略, 英国策略, 法国策略, 德国策略]}
-  - {name: 1Password, type: select, proxies: [DIRECT, 香港策略, 台湾策略, 日本策略, 韩国策略, 新国策略, 美国策略, 英国策略, 法国策略, 德国策略]}
-  - {name: Microsoft, type: select, proxies: [DIRECT, 香港策略, 台湾策略, 日本策略, 韩国策略, 新国策略, 美国策略, 英国策略, 法国策略, 德国策略]}
-  - {name: Netflix, type: select, proxies: [香港策略, 台湾策略, 日本策略, 韩国策略, 新国策略, 美国策略, 英国策略, 法国策略, 德国策略]}
-  - {name: Emby, type: select, proxies: [DIRECT, 香港策略, 台湾策略, 日本策略, 韩国策略, 新国策略, 美国策略, 英国策略, 法国策略, 德国策略]}
-  - {name: 兜底策略, type: select, proxies: [香港策略, 台湾策略, 日本策略, 韩国策略, 新国策略, 美国策略, 英国策略, 法国策略, 德国策略, DIRECT]}
+  - {name: 全球选择, type: url-test, include-all: true, filter: *FilterAll}
+  - {name: 境外下载, type: select, include-all: true, filter: *FilterAll, proxies: [全球选择]}
+  - {name: AI, type: url-test, include-all: true, filter: *FilterAll}
+  - {name: TikTok, type: url-test, include-all: true, filter: *FilterAll}
+  - {name: Telegram, type: select, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: App Store, type: select, proxies: [DIRECT, Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Apple ID, type: select, proxies: [DIRECT, Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: TestFlight, type: select, proxies: [DIRECT, Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: 1Password, type: select, proxies: [DIRECT, Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Microsoft, type: select, proxies: [DIRECT, Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Netflix, type: select, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Emby, type: select, proxies: [DIRECT, Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: line, type: select, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German, DIRECT]}
 
-  - {name: 香港策略, type: select, proxies: [⏱香港时延优选策略组, 🚥香港故障转移策略组, 🎛香港负载均衡策略组]}
-  - {name: 台湾策略, type: select, proxies: [⏱台湾时延优选策略组, 🚥台湾故障转移策略组, 🎛台湾负载均衡策略组]}
-  - {name: 日本策略, type: select, proxies: [⏱日本时延优选策略组, 🚥日本故障转移策略组, 🎛日本负载均衡策略组]}
-  - {name: 韩国策略, type: select, proxies: [⏱韩国时延优选策略组, 🚥韩国故障转移策略组, 🎛韩国负载均衡策略组]}
-  - {name: 新国策略, type: select, proxies: [⏱新国时延优选策略组, 🚥新国故障转移策略组, 🎛新国负载均衡策略组]}
-  - {name: 美国策略, type: select, proxies: [⏱美国时延优选策略组, 🚥美国故障转移策略组, 🎛美国负载均衡策略组]}
-  - {name: 英国策略, type: select, proxies: [⏱英国时延优选策略组, 🚥英国故障转移策略组, 🎛英国负载均衡策略组]}
-  - {name: 法国策略, type: select, proxies: [⏱法国时延优选策略组, 🚥法国故障转移策略组, 🎛法国负载均衡策略组]}
-  - {name: 德国策略, type: select, proxies: [⏱德国时延优选策略组, 🚥德国故障转移策略组, 🎛德国负载均衡策略组]}
+  - {name: Hong Kong, type: select, proxies: [⏱Hong Kong, 🚥Hong Kong, 🎛Hong Kong]}
+  - {name: Taiwan, type: select, proxies: [⏱Taiwan, 🚥Taiwan, 🎛Taiwan]}
+  - {name: Japan, type: select, proxies: [⏱Japan, 🚥Japan, 🎛Japan]}
+  - {name: Korean, type: select, proxies: [⏱Korean, 🚥Korean, 🎛Korean]}
+  - {name: New country, type: select, proxies: [⏱New country, 🚥New country, 🎛New country]}
+  - {name: US, type: select, proxies: [⏱US, 🚥US, 🎛US]}
+  - {name: UK, type: select, proxies: [⏱UK, 🚥UK, 🎛UK]}
+  - {name: French, type: select, proxies: [⏱French, 🚥French, 🎛French]}
+  - {name: German, type: select, proxies: [⏱German, 🚥German, 🎛German]}
 
 # 时延优选策略组
-  - {name: ⏱香港时延优选策略组, <<: *UrlTest, filter: *FilterHK}
-  - {name: ⏱台湾时延优选策略组, <<: *UrlTest, filter: *FilterTW}
-  - {name: ⏱日本时延优选策略组, <<: *UrlTest, filter: *FilterJP}
-  - {name: ⏱韩国时延优选策略组, <<: *UrlTest, filter: *FilterKR}
-  - {name: ⏱新国时延优选策略组, <<: *UrlTest, filter: *FilterSG}
-  - {name: ⏱美国时延优选策略组, <<: *UrlTest, filter: *FilterUS}
-  - {name: ⏱英国时延优选策略组, <<: *UrlTest, filter: *FilterUK}
-  - {name: ⏱法国时延优选策略组, <<: *UrlTest, filter: *FilterFR}
-  - {name: ⏱德国时延优选策略组, <<: *UrlTest, filter: *FilterDE}
+  - {name: ⏱Hong Kong, <<: *UrlTest, filter: *FilterHK}
+  - {name: ⏱Taiwan, <<: *UrlTest, filter: *FilterTW}
+  - {name: ⏱Japan, <<: *UrlTest, filter: *FilterJP}
+  - {name: ⏱Korean, <<: *UrlTest, filter: *FilterKR}
+  - {name: ⏱New country, <<: *UrlTest, filter: *FilterSG}
+  - {name: ⏱US, <<: *UrlTest, filter: *FilterUS}
+  - {name: ⏱UK, <<: *UrlTest, filter: *FilterUK}
+  - {name: ⏱French, <<: *UrlTest, filter: *FilterFR}
+  - {name: ⏱German, <<: *UrlTest, filter: *FilterDE}
 
 # 故障转移策略组
-  - {name: 🚥香港故障转移策略组, <<: *FallBack, filter: *FilterHK}
-  - {name: 🚥台湾故障转移策略组, <<: *FallBack, filter: *FilterTW}
-  - {name: 🚥日本故障转移策略组, <<: *FallBack, filter: *FilterJP}
-  - {name: 🚥韩国故障转移策略组, <<: *FallBack, filter: *FilterKR}
-  - {name: 🚥新国故障转移策略组, <<: *FallBack, filter: *FilterSG}
-  - {name: 🚥美国故障转移策略组, <<: *FallBack, filter: *FilterUS}
-  - {name: 🚥英国故障转移策略组, <<: *FallBack, filter: *FilterUK}
-  - {name: 🚥法国故障转移策略组, <<: *FallBack, filter: *FilterFR}
-  - {name: 🚥德国故障转移策略组, <<: *FallBack, filter: *FilterDE}
+  - {name: 🚥Hong Kong, <<: *FallBack, filter: *FilterHK}
+  - {name: 🚥Taiwan, <<: *FallBack, filter: *FilterTW}
+  - {name: 🚥Japan, <<: *FallBack, filter: *FilterJP}
+  - {name: 🚥Korean, <<: *FallBack, filter: *FilterKR}
+  - {name: 🚥New country, <<: *FallBack, filter: *FilterSG}
+  - {name: 🚥US, <<: *FallBack, filter: *FilterUS}
+  - {name: 🚥UK, <<: *FallBack, filter: *FilterUK}
+  - {name: 🚥French, <<: *FallBack, filter: *FilterFR}
+  - {name: 🚥German, <<: *FallBack, filter: *FilterDE}
 
 # 负载均衡策略组
-  - {name: 🎛香港负载均衡策略组, <<: *LoadBalance, filter: *FilterHK}
-  - {name: 🎛台湾负载均衡策略组, <<: *LoadBalance, filter: *FilterTW}
-  - {name: 🎛日本负载均衡策略组, <<: *LoadBalance, filter: *FilterJP}
-  - {name: 🎛韩国负载均衡策略组, <<: *LoadBalance, filter: *FilterKR}
-  - {name: 🎛新国负载均衡策略组, <<: *LoadBalance, filter: *FilterSG}
-  - {name: 🎛美国负载均衡策略组, <<: *LoadBalance, filter: *FilterUS}
-  - {name: 🎛英国负载均衡策略组, <<: *LoadBalance, filter: *FilterUK}
-  - {name: 🎛法国负载均衡策略组, <<: *LoadBalance, filter: *FilterFR}
-  - {name: 🎛德国负载均衡策略组, <<: *LoadBalance, filter: *FilterDE}
+  - {name: 🎛Hong Kong, <<: *LoadBalance, filter: *FilterHK}
+  - {name: 🎛Taiwan, <<: *LoadBalance, filter: *FilterTW}
+  - {name: 🎛Japan, <<: *LoadBalance, filter: *FilterJP}
+  - {name: 🎛Korean, <<: *LoadBalance, filter: *FilterKR}
+  - {name: 🎛New country, <<: *LoadBalance, filter: *FilterSG}
+  - {name: 🎛US, <<: *LoadBalance, filter: *FilterUS}
+  - {name: 🎛UK, <<: *LoadBalance, filter: *FilterUK}
+  - {name: 🎛French, <<: *LoadBalance, filter: *FilterFR}
+  - {name: 🎛German, <<: *LoadBalance, filter: *FilterDE}
 
 # 订阅规则
 rule-providers:
@@ -299,12 +299,12 @@ rule-providers:
 rules:
   - RULE-SET, Lan, DIRECT
   - RULE-SET, Direct, DIRECT
-  - RULE-SET, Proxy, 兜底策略
+  - RULE-SET, Proxy, line
   - RULE-SET, ChinaDownloadCDN, DIRECT
   - RULE-SET, InternationalDownloadCDN, 境外下载
   - RULE-SET, AI, AI
   - RULE-SET, TikTok, TikTok
-  - RULE-SET, Steam, 兜底策略
+  - RULE-SET, Steam, line
   - RULE-SET, Game, 游戏选择
   - RULE-SET, Netflix, Netflix
   - RULE-SET, Emby, Emby
@@ -316,8 +316,8 @@ rules:
   - RULE-SET, AppStore, App Store
   - RULE-SET, 1Password, 1Password
   - RULE-SET, Microsoft, Microsoft
-  - RULE-SET, Google, 兜底策略
+  - RULE-SET, Google, line
   - RULE-SET, Telegram, Telegram
   - RULE-SET, ESET_China, DIRECT
   - GEOIP, CN, DIRECT
-  - MATCH, 兜底策略
+  - MATCH, line
