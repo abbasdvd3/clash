@@ -123,20 +123,20 @@ RuleSet: &RuleSet {type: http, behavior: classical, interval: 3600, format: yaml
 
 # 策略组
 proxy-groups: 
-  - {name: 游戏选择, type: select, include-all: true, filter: *FilterGame, proxies: [DIRECT, 全球选择]}
+  - {name: 游戏选择, type: select, include-all: true, filter: *FilterGame, proxies: [line, 全球选择]}
   - {name: 全球选择, type: url-test, include-all: true, filter: *FilterAll}
   - {name: 境外下载, type: select, include-all: true, filter: *FilterAll, proxies: [全球选择]}
   - {name: AI, type: url-test, include-all: true, filter: *FilterAll}
   - {name: TikTok, type: url-test, include-all: true, filter: *FilterAll}
   - {name: Telegram, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: App Store, type: select, proxies: [全球选择, Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: Apple ID, type: select, proxies: [全球选择, Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: TestFlight, type: select, proxies: [全球选择, Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: 1Password, type: select, proxies: [全球选择, Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: Microsoft, type: url-test, proxies: [全球选择, Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: Netflix, type: select, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: Emby, type: select, proxies: [全球选择, Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: line, type: select, proxies: [全球选择, Taiwan, Japan, Korean, New country, US, UK, French, German, Hong Kong]}
+  - {name: App Store, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Apple ID, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: TestFlight, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: 1Password, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Microsoft, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Netflix, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Emby, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: line, type: select, proxies: [Taiwan, Japan, Korean, New country, US, UK, French, German, Hong Kong]}
 
   - {name: Hong Kong, type: url-test, proxies: [⏱Hong Kong, 🚥Hong Kong, 🎛Hong Kong]}
   - {name: Taiwan, type: url-test, proxies: [⏱Taiwan, 🚥Taiwan, 🎛Taiwan]}
@@ -198,124 +198,11 @@ rule-providers:
     path: './RuleSet/Proxy.yaml'
     url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/Proxy.yaml'
 
-  ChinaDownloadCDN:
-    <<: *RuleSet
-    path: './RuleSet/ChinaDownloadCDN.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/ChinaDownloadCDN.yaml'
-
-  InternationalDownloadCDN:
-    <<: *RuleSet
-    path: './RuleSet/InternationalDownloadCDN.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/InternationalDownloadCDN.yaml'
-
-  AI:
-    <<: *RuleSet
-    path: './RuleSet/AI.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/AI.yaml'
-
-  TikTok:
-    <<: *RuleSet
-    path: './RuleSet/TikTok.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/TikTok.yaml'
-
-  Game:
-    <<: *RuleSet
-    path: './RuleSet/Game.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/Game.yaml'
-
-  1Password:
-    <<: *RuleSet
-    path: './RuleSet/1PasswordUS.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/1PasswordUS.yaml'
-
-  Steam:
-    <<: *RuleSet
-    path: './RuleSet/Steam.yaml'
-    url: 'https://gitlab.com/lodepuly/proxy_tool_resources/-/raw/master/rule/Clash/Steam/Steam.yaml'
-
-  Netflix:
-    <<: *RuleSet
-    path: './RuleSet/Netflix.yaml'
-    url: 'https://gitlab.com/lodepuly/proxy_tool_resources/-/raw/master/rule/Clash/Netflix/Netflix.yaml'
-
-  Emby:
-    <<: *RuleSet
-    path: './RuleSet/Emby.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/EmbyServer.yaml'
-
-  iCloudChina:
-    <<: *RuleSet
-    path: './RuleSet/iCloudChina.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/iCloudChina.yaml'
-
-  ApplePushNotificationService:
-    <<: *RuleSet
-    path: './RuleSet/ApplePushNotificationService.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/ApplePushNotificationService.yaml'
-
-  AppleSoftwareUpdates:
-    <<: *RuleSet
-    path: './RuleSet/AppleSoftwareUpdates.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/AppleSoftwareUpdates.yaml'
-
-  AppleID:
-    <<: *RuleSet
-    path: './RuleSet/AppleID.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/AppleID.yaml'
-
-  AppStore:
-    <<: *RuleSet
-    path: './RuleSet/AppStore.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/AppStore.yaml'
-
-  TestFlight:
-    <<: *RuleSet
-    path: './RuleSet/TestFlight.yaml'
-    url: 'https://gitlab.com/lodepuly/proxy_tool_resources/-/raw/master/rule/Clash/TestFlight/TestFlight.yaml'
-
-  Microsoft:
-    <<: *RuleSet
-    path: './RuleSet/Microsoft.yaml'
-    url: 'https://gitlab.com/lodepuly/proxy_tool_resources/-/raw/master/rule/Clash/Microsoft/Microsoft.yaml'
-
-  Google:
-    <<: *RuleSet
-    path: './RuleSet/Google.yaml'
-    url: 'https://gitlab.com/lodepuly/proxy_tool_resources/-/raw/master/rule/Clash/Google/Google.yaml'
-
-  Telegram:
-    <<: *RuleSet
-    path: './RuleSet/Telegram.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/Telegram.yaml'
-
-  ESET_China:
-    <<: *RuleSet
-    path: './RuleSet/ESET_China.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/ESET_China.yaml'
 
 # 规则指向
 rules:
   - RULE-SET, Lan, DIRECT
   - RULE-SET, Direct, DIRECT
   - RULE-SET, Proxy, line
-  - RULE-SET, ChinaDownloadCDN, DIRECT
-  - RULE-SET, InternationalDownloadCDN, 境外下载
-  - RULE-SET, AI, AI
-  - RULE-SET, TikTok, TikTok
-  - RULE-SET, Steam, line
-  - RULE-SET, Game, 游戏选择
-  - RULE-SET, Netflix, Netflix
-  - RULE-SET, Emby, Emby
-  - RULE-SET, TestFlight, TestFlight
-  - RULE-SET, iCloudChina, DIRECT
-  - RULE-SET, ApplePushNotificationService, DIRECT
-  - RULE-SET, AppleSoftwareUpdates, DIRECT
-  - RULE-SET, AppleID, Apple ID
-  - RULE-SET, AppStore, App Store
-  - RULE-SET, 1Password, 1Password
-  - RULE-SET, Microsoft, Microsoft
-  - RULE-SET, Google, line
-  - RULE-SET, Telegram, Telegram
-  - RULE-SET, ESET_China, DIRECT
   - GEOIP, CN, DIRECT
   - MATCH, line
