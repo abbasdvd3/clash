@@ -123,9 +123,9 @@ RuleSet: &RuleSet {type: http, behavior: classical, interval: 3600, format: yaml
 
 # 策略组
 proxy-groups: 
-  - {name: 游戏选择, type: select, include-all: true, filter: *FilterGame, proxies: [line, 全球选择]}
-  - {name: 全球选择, type: url-test, include-all: true, filter: *FilterAll}
-  - {name: 境外下载, type: select, include-all: true, filter: *FilterAll, proxies: [全球选择]}
+  - {name: auto, type: url-test, include-all: true, filter: *FilterGame, proxies: [line, select]}
+  - {name: url-test, type: url-test, include-all: true, filter: *FilterAll}
+  - {name: select, type: select, include-all: true, filter: *FilterAll, proxies: [url-test]}
   - {name: AI, type: url-test, include-all: true, filter: *FilterAll}
   - {name: TikTok, type: url-test, include-all: true, filter: *FilterAll}
   - {name: Telegram, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
@@ -203,6 +203,6 @@ rule-providers:
 rules:
   - RULE-SET, Lan, DIRECT
   - RULE-SET, Direct, DIRECT
-  - RULE-SET, Proxy, line
-  - GEOIP, CN, DIRECT
-  - MATCH, line
+  - RULE-SET, Proxy, auto
+  - GEOIP, ir, DIRECT
+  - MATCH, auto
