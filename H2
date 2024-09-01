@@ -11,8 +11,6 @@ tproxy-port: 7894
 # tproxy-port: 7891
 
 unified-delay: true
-geodata-mode: false
-geodata-loader: standard
 geo-auto-update: true
 geo-update-interval: 24
 tcp-concurrent: true
@@ -140,15 +138,15 @@ proxy-groups:
   - {name: Emby, type: select, proxies: [全球选择, Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
   - {name: line, type: select, proxies: [全球选择, Taiwan, Japan, Korean, New country, US, UK, French, German, Hong Kong]}
 
-  - {name: Hong Kong, type: select, proxies: [⏱Hong Kong, 🚥Hong Kong, 🎛Hong Kong]}
-  - {name: Taiwan, type: select, proxies: [⏱Taiwan, 🚥Taiwan, 🎛Taiwan]}
-  - {name: Japan, type: select, proxies: [⏱Japan, 🚥Japan, 🎛Japan]}
-  - {name: Korean, type: select, proxies: [⏱Korean, 🚥Korean, 🎛Korean]}
-  - {name: New country, type: select, proxies: [⏱New country, 🚥New country, 🎛New country]}
-  - {name: US, type: select, proxies: [⏱US, 🚥US, 🎛US]}
-  - {name: UK, type: select, proxies: [⏱UK, 🚥UK, 🎛UK]}
-  - {name: French, type: select, proxies: [⏱French, 🚥French, 🎛French]}
-  - {name: German, type: select, proxies: [⏱German, 🚥German, 🎛German]}
+  - {name: Hong Kong, type: url-test, proxies: [⏱Hong Kong, 🚥Hong Kong, 🎛Hong Kong]}
+  - {name: Taiwan, type: url-test, proxies: [⏱Taiwan, 🚥Taiwan, 🎛Taiwan]}
+  - {name: Japan, type: url-test, proxies: [⏱Japan, 🚥Japan, 🎛Japan]}
+  - {name: Korean, type: url-test, proxies: [⏱Korean, 🚥Korean, 🎛Korean]}
+  - {name: New country, type: url-test, proxies: [⏱New country, 🚥New country, 🎛New country]}
+  - {name: US, type: url-test, proxies: [⏱US, 🚥US, 🎛US]}
+  - {name: UK, type: url-test, proxies: [⏱UK, 🚥UK, 🎛UK]}
+  - {name: French, type: url-test, proxies: [⏱French, 🚥French, 🎛French]}
+  - {name: German, type: url-test, proxies: [⏱German, 🚥German, 🎛German]}
 
 # 时延优选策略组
   - {name: ⏱Hong Kong, <<: *UrlTest, filter: *FilterHK}
