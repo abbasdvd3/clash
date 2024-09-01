@@ -45,7 +45,7 @@ dns:
       "localhost.sec.qq.com",
       "localhost.work.weixin.qq.com"
     ]
-  default-nameserver: ["223.5.5.5", "114.114.114.114", "1.1.1.1", "8.8.8.8"]
+  default-nameserver: ["223.5.5.5:853", "114.114.114.114:853", "1.1.1.1:853", "8.8.8.8:853"]
   nameserver: *nameservers
   proxy-server-nameserver: *nameservers
   nameserver-policy:
@@ -56,13 +56,7 @@ dns:
 proxy-groups:
   - name: Mismatch
     type: select
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
+    use:
     proxies:
       - Proxy
       - Autofallback
@@ -75,39 +69,58 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+      - Netflix
+      - Apple
+      - iCloud
+      - MicrosoftCN
+      - PayPal
+      - Steam
+      - Game
+      - Facebook
+      - Twitter
+      - Telegram
+      - GlobalTV
+      - YouTube
+      - Spotify
+      - SpeedTest
+      - Download
   - name: Auto
     type: url-test
-    interval: 300
+    interval: 100
     expected-status: 200/204
-    tolerance: 50
+    tolerance: 99
     url: http://www.gstatic.com/generate_204
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
+    use:
+    proxies:
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
   - name: Autofallback
     type: fallback
-    interval: 180
+    interval: 160
     expected-status: 200/204
    # tolerance: 150
     url: http://www.gstatic.com/generate_204
-    use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
+    use:
+    proxies:
+      - Geo-HK
+      - Geo-TW
+      - Geo-SG
+      - Geo-JP
+      - Geo-US
+      - Geo-UK
+      - Geo-DE
+      - Geo-CN
   - name: Geo-HK
     type: url-test
-  #  interval: 300
+    interval: 100
     expected-status: 200/204
-#    tolerance: 50
+    tolerance: 99
     url: http://www.gstatic.com/generate_204
     filter: "HongKong|HK|香港"
     use: 
@@ -120,8 +133,8 @@ proxy-groups:
   - name: Geo-TW
     type: url-test
     expected-status: 200/204
-   # interval: 300
-  #  tolerance: 50
+    interval: 100
+    tolerance: 99
     url: http://www.gstatic.com/generate_204
     filter: "Taiwan|TW|台湾"
     use: 
@@ -134,8 +147,8 @@ proxy-groups:
 
   - name: Geo-SG
     type: url-test
-    # interval: 300
-  #  tolerance: 50
+    interval: 100
+    tolerance: 99
     expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "Singapore|SG|新加坡"
@@ -149,8 +162,8 @@ proxy-groups:
 
   - name: Geo-JP
     type: url-test
-    # interval: 300
-  #  tolerance: 50
+    interval: 100
+    tolerance: 99
     expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "Japan|JP|日本"
@@ -164,8 +177,8 @@ proxy-groups:
 
   - name: Geo-US
     type: url-test
-    # interval: 300
-  #  tolerance: 50
+    interval: 100
+    tolerance: 99
     expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "America|United States|US|美国"
@@ -179,8 +192,8 @@ proxy-groups:
 
   - name: Geo-UK
     type: url-test
-    # interval: 300
-  #  tolerance: 50
+    interval: 100
+    tolerance: 99
     expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "Britain|England|UK|英国"
@@ -195,8 +208,8 @@ proxy-groups:
 
   - name: Geo-DE
     type: url-test
-    # interval: 300
-  #  tolerance: 50
+    interval: 100
+    tolerance: 99
     expected-status: 200/204
     url: http://www.gstatic.com/generate_204
     filter: "Germany|Deutsch|DE|德国"
@@ -210,11 +223,11 @@ proxy-groups:
 
   - name: Geo-CN
     type: url-test
-    # interval: 300
-  #  tolerance: 50
+    interval: 100
+    tolerance: 99
     expected-status: 200/204
     url: http://www.gstatic.com/generate_204
-#    disable-dns: true
+    disable-dns: true
     filter: "China|CN|中国"
     use: 
       - Subscription-1
@@ -223,8 +236,8 @@ proxy-groups:
       - Subscription-4
       - Subscription-5
       - Subscription-6
-    proxies:
-      - DIRECT
+   
+     
 
   - name: Block
     type: select
@@ -245,12 +258,12 @@ proxy-groups:
     type: select
     expected-status: 200/204
     use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
+   #   - Subscription-1
+   #   - Subscription-2
+   #   - Subscription-3
+    #  - Subscription-4
+   #   - Subscription-5
+   #   - Subscription-6
     proxies:
       - Auto
       - Autofallback
@@ -262,19 +275,32 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+      - Netflix
+      - Apple
+      - iCloud
+      - MicrosoftCN
+      - PayPal
+      - Steam
+      - Game
+      - Facebook
+      - Twitter
+      - Telegram
+      - GlobalTV
+      - YouTube
+      - Spotify
+      - SpeedTest
+      - Download
 
   - name: DNS-Proxy
     type: select
     expected-status: 200/204
     use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
+   #   - Subscription-1
+   #   - Subscription-2
+   #   - Subscription-3
+  #    - Subscription-4
+  #    - Subscription-5
+  #    - Subscription-6
     proxies: 
       - Proxy
       - Autofallback
@@ -287,11 +313,28 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+      - Netflix
+      - Apple
+      - iCloud
+      - MicrosoftCN
+      - PayPal
+      - Steam
+      - Game
+      - Facebook
+      - Twitter
+      - Telegram
+      - GlobalTV
+      - YouTube
+      - Spotify
+      - SpeedTest
+      - Download
 
   - name: Netflix
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -307,7 +350,11 @@ proxy-groups:
       - Geo-CN
 
   - name: Apple
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -321,11 +368,14 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+    
 
   - name: iCloud
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -339,11 +389,14 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+  
 
   - name: MicrosoftCN
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -357,11 +410,14 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+      
 
   - name: PayPal
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -375,11 +431,14 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+    
 
   - name: Steam
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -393,11 +452,14 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+  
 
   - name: Game
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -411,11 +473,14 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+     
 
   - name: Facebook
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -429,11 +494,14 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+   
 
   - name: Twitter
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -447,11 +515,14 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+     
 
   - name: Telegram
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -465,11 +536,14 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+    
 
   - name: GlobalTV
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -483,10 +557,13 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+  
   - name: YouTube
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -500,11 +577,14 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+   
 
   - name: Spotify
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -518,11 +598,14 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+ 
 
   - name: SpeedTest
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -536,11 +619,14 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+  
 
   - name: Download
-    type: select
+    type: url-test
+    interval: 300
+    expected-status: 200/204
+    tolerance: 50
+    url: http://www.gstatic.com/generate_204
     expected-status: 200/204
     proxies:
       - Proxy
@@ -554,8 +640,7 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
+   
 
   - name: CN
     type: select
@@ -882,28 +967,28 @@ rule-providers:
     interval: 432000    
 rules:
   - RULE-SET,iran_ads,REJECT
-  - DOMAIN-SUFFIX,ir,DIRECT
-  - RULE-SET,iran_other,DIRECT
-  - RULE-SET,social,Proxy
-  - RULE-SET,nsfw1,Proxy
+  - DOMAIN-SUFFIX,ir,DIRECT,no-resolve
+  - RULE-SET,iran_other,DIRECT,no-resolve
+  - RULE-SET,social,Proxy,no-resolve
+  - RULE-SET,nsfw1,Proxy,no-resolve
 
-  - RULE-SET,OpenAi,DNS-Proxy
-  - RULE-SET,GoogleCNProxyIP,Mismatch
+  - RULE-SET,OpenAi,DNS-Proxy,no-resolve
+  - RULE-SET,GoogleCNProxyIP,Mismatch,no-resolve
   - RULE-SET,DNS,DIRECT
-  - RULE-SET,Telegram,Telegram
-  - RULE-SET,twitter,Twitter
-  - RULE-SET,facebook,Facebook
-  - RULE-SET,GitHub,DIRECT
-  - RULE-SET,bing,MicrosoftCN
-  - RULE-SET,microsoft,MicrosoftCN
+  - RULE-SET,Telegram,Telegram,no-resolve
+  - RULE-SET,twitter,Twitter,no-resolve
+  - RULE-SET,facebook,Facebook,no-resolve
+  - RULE-SET,GitHub,DIRECT,no-resolve
+  - RULE-SET,bing,MicrosoftCN,no-resolve
+  - RULE-SET,microsoft,MicrosoftCN,no-resolve
   - RULE-SET,AWA,REJECT
-  - RULE-SET,Google,Proxy
-  - RULE-SET,cloudflare,Proxy
-  - RULE-SET,iranserver,DIRECT
+  - RULE-SET,Google,Proxy,no-resolve
+  - RULE-SET,cloudflare,Proxy,no-resolve
+  - RULE-SET,iranserver,DIRECT,no-resolve
   - DOMAIN-SUFFIX,push.apple.com,DIRECT
   - DOMAIN-SUFFIX,jetbrains.com,DIRECT
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN,iosapps.itunes.apple.com,DIRECT
   - GEOIP,private,DIRECT,no-resolve
-  - GEOIP,ir,DIRECT
-  - MATCH,Mismatch
+  - GEOIP,ir,DIRECT,no-resolve
+  - MATCH,Mismatch,no-resolve
