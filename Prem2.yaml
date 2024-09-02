@@ -70,7 +70,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 3
-      url: http://speed.cloudflare.com/generate_204
+      url: https://www.pornhub.com/generate_204
   provider2:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/P1"    
@@ -79,7 +79,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 3
-      url: http://speed.cloudflare.com/generate_204
+      url: https://www.pornhub.com/generate_204
   provider3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.all"  
@@ -88,14 +88,14 @@ proxy-providers:
     health-check:
       enable: true
       interval: 3
-      url: http://speed.cloudflare.com/generate_204
+      url: https://www.pornhub.com/generate_204
 
 proxies:
 proxy-groups:
   - name: 'PRO'
     type: 'url-test'
     tolerance: 99
-    url: 'https://www.gstatic.com/generate_204'
+    url: 'https://www.pornhub.com/generate_204'
     interval: 99
   #  use: 
  #     - 'provider1'
@@ -110,7 +110,7 @@ proxy-groups:
   - name: '⚡️ Fastest'
     type: 'url-test'
     tolerance: 99
-    url: 'https://www.gstatic.com/generate_204'
+    url: 'https://www.pornhub.com/generate_204'
     interval: 150
     use: 
       - 'provider1'
@@ -119,7 +119,7 @@ proxy-groups:
     proxies:
   - name: '📶 First Available'
     type: 'fallback'
-    url: 'https://www.gstatic.com/generate_204'
+    url: 'https://www.pornhub.com/generate_204'
     interval: 160
     use: 
       - 'provider1'
@@ -129,7 +129,7 @@ proxy-groups:
 
   - name: '♻️ Load Balance'
     type: 'load-balance'
-    url: 'https://www.gstatic.com/generate_204'
+    url: 'https://www.pornhub.com/generate_204'
     interval: 170
     strategy: 'consistent-hashing'
     use: 
@@ -166,7 +166,7 @@ proxy-groups:
      
   - name: 'United'
     type: 'url-test'
-    url: 'http://speed.cloudflare.com/__down?bytes=20000000'
+    url: 'https://www.pornhub.com/generate_204'
     udp: false
     interval: 100
     tolerance: 100
@@ -192,60 +192,103 @@ rule-providers:
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
-    path: ./ruleset/ir.txt
+    path: ruleset/ir.txt
     interval: 86400
   ads:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.txt"
-    path: ./ruleset/ads.txt
+    path: ruleset/ads.txt
     interval: 86400
   malware:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt"
-    path: ./ruleset/malware.txt
+    path: ruleset/malware.txt
     interval: 86400
   phishing:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.txt"
-    path: ./ruleset/phishing.txt
+    path: ruleset/phishing.txt
     interval: 86400
   cryptominers:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.txt"
-    path: ./ruleset/cryptominers.txt
+    path: ruleset/cryptominers.txt
     interval: 86400
   apps:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.txt"
-    path: ./ruleset/apps.txt
+    path: ruleset/apps.txt
     interval: 86400
   ircidr:
     type: http
     format: text
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
-    path: ./ruleset/ircidr.txt
+    path: ruleset/ircidr.txt
     interval: 86400
   private:
     type: http
     format: text
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.txt"
-    path: ./ruleset/private.txt
+    path: ruleset/private.txt
     interval: 86400
-
+  reject:
+    type: http
+    behavior: domain
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: ruleset/reject.yaml
+    interval: 86400
+  google:
+    type: http
+    behavior: domain
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+    path: ruleset/google.yaml
+    interval: 86400
+  proxy:
+    type: http
+    behavior: domain
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: ruleset/proxy.yaml
+    interval: 86400
+  private:
+    type: http
+    behavior: domain
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ruleset/private.yaml
+    interval: 86400
+  gfw:
+    type: http
+    behavior: domain
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+    path: ruleset/gfw.yaml
+    interval: 86400
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    path: ruleset/telegramcidr.yaml
+    interval: 86400
 rules:
-#  - DST-PORT,80/8080/443/8443,PROXY
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - RULE-SET,private,DIRECT,no-resolve
+  - RULE-SET,reject,REJECT
+  - RULE-SET,google,PROXY,no-resolve
+  - RULE-SET,proxy,PROXY,no-resolve
+  - RULE-SET,telegramcidr,PROXY,no-resolve
+  - GEOIP,LAN,DIRECT,no-resolve
+  - RULE-SET,gfw,PROXY,no-resolve
   - DOMAIN-SUFFIX,acl4.ssr,IRAN
   - DOMAIN-SUFFIX,ip6-localhost,IRAN
   - DOMAIN-SUFFIX,ip6-loopback,IRAN
