@@ -2,8 +2,8 @@ proxies:
 proxy-groups:
   - name: PRO
     type: select
-    interval: 300
-    timeout: 3000
+    interval: 99
+    timeout: 90
     url: https://www.google.com/generate_204
     lazy: true
     proxies:
@@ -19,8 +19,8 @@ proxy-groups:
   - name: LOAD-BALANCE
     type: load-balance
     strategy: consistent-hashing
-    interval: 300
-    timeout: 3000
+    interval: 100
+    timeout: 300
     url: https://www.google.com/generate_204
     lazy: true
 #    udp: true
@@ -31,8 +31,8 @@ proxy-groups:
       - provider3
   - name: BEST-PING
     type: url-test
-    interval: 300
-    timeout: 3000
+    interval: 99
+    timeout: 3
     url: https://www.google.com/generate_204
     lazy: true
     tolerance: 99
@@ -44,8 +44,8 @@ proxy-groups:
       - provider3
   - name: FALLBACK
     type: fallback
-    interval: 300
-    timeout: 3000
+    interval: 120
+    timeout: 5
     url: https://www.google.com/generate_204
     lazy: true
 #    udp: true
@@ -56,12 +56,11 @@ proxy-groups:
       - provider3
   - name: USA 🇺🇲
     type: url-test
-    interval: 300
-    timeout: 3000
+    interval: 80
+    timeout: 30
     url: https://www.google.com/generate_204
     lazy: true
     udp: false
-    tolerance: 70
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     hidden: false
     proxies:
@@ -76,8 +75,8 @@ proxy-groups:
       - PROXY
   - name: PROXY
     type: select
-    interval: 300
-    timeout: 3000
+    interval: 1
+    timeout: 3
     url: https://www.google.com/generate_204
     lazy: true
     proxies:
@@ -95,30 +94,30 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/P1"    
     path: Prem/provider1.yaml
-    interval: 89
+    interval: 8
     health-check:
       enable: true
-      interval: 30
+      interval: 3
       lazy: true
       url: https://fiber.google.com/speedtest/generate_204
   provider2:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah"    
     path: Prem/providerPh.yaml
-    interval: 89
+    interval: 8
     health-check:
       enable: true
-      interval: 30
+      interval: 3
       lazy: true
       url: https://fiber.google.com/speedtest/generate_204
   provider3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.all"    
     path: Prem/providerPall.yaml
-    interval: 89
+    interval: 8
     health-check:
       enable: true
-      interval: 30
+      interval: 3
       lazy: true
       url: https://fiber.google.com/speedtest/generate_204
 rule-providers:
