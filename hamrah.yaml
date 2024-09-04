@@ -1,58 +1,10 @@
 # http://speed.cloudflare.com/__down?bytes=20000000
 
-listeners:
-- name: socks5-in-1
-  type: socks
-  port: 10808
-  listen: 0.0.0.0 
-    # rule: sub-rule-name1 
-  proxy: proxy 
-  udp: false 
-
-- name: http-in-1
-  type: http
-  port: 10809
-  listen: 0.0.0.0
-    # rule: sub-rule-name1 
-  proxy: proxy 
-  
-- name: mixed-in-1
-  type: mixed 
-  port: 10810
-  listen: 0.0.0.0
-  rule: sub-rule-name1 
-  proxy: proxy 
-  udp: false 
-
-- name: reidr-in-1
-  type: redir
-  port: 10811
-  listen: 0.0.0.0
-    # rule: sub-rule-name1
-    # proxy: proxy 
-
-- name: tproxy-in-1
-  type: tproxy
-  port: 10812
-  listen: 0.0.0.0
-    # rule: sub-rule-name1 
-    # proxy: proxy 
-    # udp: false 
-
-- name: tunnel-in-1
-  type: tunnel
-  port: 10816
-  listen: 0.0.0.0
-    # rule: sub-rule-name1 
-    # proxy: proxy 
-  network: [tcp, udp]
-  target: target.com
-
-
 port: 7892
 socks-port: 7891
 mixed-port: 7890
 redir-port: 7893
+tproxy-port: 7899
 mode: rule
 allow-lan: true
 unified-delay: false
