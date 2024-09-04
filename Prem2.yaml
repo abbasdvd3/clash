@@ -2126,20 +2126,20 @@ rules:
   - RULE-SET,malware,REJECT
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
-  - RULE-SET,ir,IRAN
-  - RULE-SET,ircidr,IRAN
+  - RULE-SET,ir,IRAN,no-resolve
+  - RULE-SET,ircidr,IRAN,no-resolve
   - GEOIP,facebook,PROXY,no-resolve
   - GEOIP,google,PROXY,no-resolve
   - GEOIP,twitter,PROXY,no-resolve
   - GEOIP,telegram,PROXY,no-resolve
  
   - GEOIP,ir,IRAN,no-resolve
-  - PROCESS-NAME,com.tomclaw.appsend,DIRECT
-  - DOMAIN-SUFFIX,appteka.store,DIRECT
-  - DOMAIN-SUFFIX,appteka.store/api,DIRECT
+  - PROCESS-NAME,com.tomclaw.appsend,IRAN
+  - DOMAIN-SUFFIX,appteka.store,IRAN
+  - DOMAIN-SUFFIX,appteka.store/api,IRAN
   - PROCESS-NAME,com.samsung.android.messaging,REJECT
   - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
   - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
   - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
   - PROCESS-NAME,com.sec.imsservice,REJECT
-  - MATCH,PROXY
+  - MATCH,PROXY,no-resolve
