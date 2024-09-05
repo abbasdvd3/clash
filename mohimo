@@ -1,7 +1,41 @@
 
 mixed-port: 7890
-external-ui: ui
-
+lan-allowed-ips:
+- 0.0.0.0/0
+- ::/0
+lan-disallowed-ips:
+- 192.168.0.3/32
+skip-auth-prefixes:
+- 127.0.0.1/8
+- ::1/128
+find-process-mode: strict
+keep-alive-interval: 30
+ipv6: true
+log-level: info
+allow-lan: true
+bind-address: "*"
+external-controller: 127.0.0.1:9090
+external-controller-unix: mihomo.sock
+external-ui: /dashboard
+external-ui-name: xd
+external-ui-url: "<https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip>" # Get from GitHub Pages branch
+profile:
+  store-selected: true
+  store-fake-ip: true
+unified-delay: true
+tcp-concurrent: true
+interface-name: en0
+global-client-fingerprint: chrome
+geodata-mode: true
+geodata-loader: standard
+global-ua: clash.meta
+geox-url:
+  geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
+  geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
+  mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
+  asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
+geo-auto-update: true
+geo-update-interval: 24
 sniffer:
   enable: true
   override-destination: false
@@ -22,8 +56,7 @@ tun:
   strict-route: false
   dns-hijack:
     - any:53
-
-
+    - tcp://any:53
 dns:
   enable: true
   listen: :1053
@@ -34,12 +67,27 @@ dns:
     - "*"
     - "+.lan"
     - "+.local"
-    - live-push.bilivideo.com
   default-nameserver:
     - https://223.5.5.5/dns-query
   nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
+  fallback:
+    - tls://8.8.4.4
+    - tls://1.1.1.1
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    geosite:
+      - social
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
 rule-providers:
   telegram:
     type: http
@@ -263,6 +311,7 @@ proxy-groups:
   - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+#   disable-udp: true
     name: PROXY
     type: select
     proxies:
@@ -277,6 +326,8 @@ proxy-groups:
     name: AUTO
     type: url-test
     interval: 300
+#    tolerance: 50
+#    lazy: true
   - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
     name: AIGC
     type: select
@@ -305,6 +356,8 @@ proxy-groups:
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)香港|Hong Kong|HK|🇭🇰
     name: HK AUTO
+#    tolerance: 50
+#    lazy: true
     type: url-test
     interval: 300
   - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
@@ -312,6 +365,8 @@ proxy-groups:
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)新加坡|Singapore|🇸🇬
     name: SG AUTO
+#    tolerance: 50
+#    lazy: true
     type: url-test
     interval: 300
   - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
@@ -326,6 +381,8 @@ proxy-groups:
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     filter: (?i)美国|USA|🇺🇸
     name: US AUTO
+#    tolerance: 50
+#    lazy: true
     type: url-test
     interval: 300
   - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
