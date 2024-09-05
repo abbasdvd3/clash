@@ -4,7 +4,12 @@ pr: &pr {type: select, proxies: [默认, 香港, 香港自动选择, 台湾, 台
 #这里是订阅更新和延迟测试相关的
 p: &p {type: http, interval: 3600, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}}
 ######### 锚点 end #######
-
+hosts:
+  '*.clash.dev': 127.0.0.1
+  'alpha.clash.dev': '::1'
+  test.com: [1.1.1.1, 2.2.2.2]
+  baidu.com: google.com
+  home.lan
 # url 里填写自己的订阅,名称不能重复
 proxy-providers:
   provider1:
@@ -36,10 +41,9 @@ dns:
     - "+.lan"
     - "+.local"
   default-nameserver:
-    - 223.5.5.5
-  nameserver:
     - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
+  nameserver:
+    - quic://dns.adguard.com:784
 
 proxies:
 - name: "直连"
