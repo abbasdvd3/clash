@@ -1,4 +1,35 @@
+proxy-providers:
+  provider1:
+    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/ShadowSocks-VIP"
+    type: http
+    interval: 86400
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204", interval: 300}
+    override:
+      additional-prefix: "[provider1]"
 
+  provider2:
+    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/WORKER-VIP"
+    type: http
+    interval: 86400
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+    override:
+      additional-prefix: "[provider2]"
+
+  provider3:
+    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/Fredom-VIP"
+    type: http
+    interval: 86400
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204", interval: 300}
+    override:
+      additional-prefix: "[provider3]"
+
+  provider4:
+    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/BackUp-VIP"
+    type: http
+    interval: 86400
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+    override:
+      additional-prefix: "[provider4]"
 mixed-port: 7890
 lan-allowed-ips:
 - 0.0.0.0/0
