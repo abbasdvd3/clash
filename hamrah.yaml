@@ -12,7 +12,6 @@ bind-address: '*'
 log-level: debug
 ipv6: false
 geodata-mode: true
-geodata-loader: memconservative
 geo-auto-update: true
 geo-update-interval: 24 
 external-controller: 127.0.0.1:9090 
@@ -39,7 +38,7 @@ experimental:
   quic-go-disable-ecn: false
   dialer-ip4p-convert: true
 sniffer:
-  enable: true
+  enable: false
   sniffing:
     - tls
     - http
@@ -59,7 +58,7 @@ sniffer:
 
 tunnels:
 - network: [tcp, udp]
-  address: 127.0.0.1:7890
+  address: 127.0.0.1:7880
   target: 8.8.8.8:53
   proxy: 🐝
     
@@ -113,14 +112,6 @@ dns:
     "+.samfw.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
     GEOSITE:google,github: 8.8.8.8
   nameserver:
-  - 198.18.0.1:53
-  - 223.6.6.6:53
-  - dhcp://en0:53
-  - system
-  - dhcp://WLAN
-  - dhcp://wlan
-  - dhcp://system
-  - 192.168.1.1:53
   - 217.218.155.155:53
   - 217.218.127.127:53
   - udp://78.157.42.100:53
