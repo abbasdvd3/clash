@@ -1,3 +1,9 @@
+content-disposition: attachment; filename="test.yaml"
+content-disposition: attachment;filename*=UTF-8''%E6%B5%8B%E8%AF%95%E8%AE%A2%E9%98%85
+
+subscription-userinfo: upload=1234; download=2234; total=1024000; expire=2218532293
+profile-update-interval: 24
+profile-web-page-url: https://example.com
 ######### 锚点 start #######
 # 策略组相关
 pr: &pr {type: select, proxies: [默认, 香港, 香港自动选择, 台湾, 台湾自动选择, 日本, 日本自动选择, 新加坡, 新加坡自动选择, 美国, 美国自动选择, 其它地区, 全部节点, 自动选择, 直连]}
@@ -33,15 +39,26 @@ dns:
   enable: true
   ipv6: true
   enhanced-mode: fake-ip
+  use-system-hosts: false
+  cache-algorithm: arc
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
     - "*"
     - "+.lan"
     - "+.local"
   default-nameserver:
-    - https://doh.pub/dns-query
+    - https://1.1.1.1/dns-query
+    - https://1.0.0.1/dns-query
+    - https://208.67.222.222/dns-query
+    - https://208.67.220.220/dns-query
+    - https://194.242.2.2/dns-query
+    - https://194.242.2.3/dns-query
   nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+    - https://doh.360.cn/dns-query
     - quic://dns.adguard.com:784
+    
 
 proxies:
 - name: "直连"
@@ -49,7 +66,7 @@ proxies:
   udp: true
 proxy-groups:
 - {name: 默认, type: select, proxies: [自动选择, 直连, 香港, 香港自动选择, 台湾, 台湾自动选择, 日本, 日本自动选择, 新加坡, 新加坡自动选择, 美国, 美国自动选择, 其它地区, 全部节点], icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Proxy.png"}
-- {name: Google, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Google_Search.png"}
+- {name: Google, <<: *pr, icon: "https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/porn-gifs-porn--Cumshot-3508190.gif%20(500%C3%97281).gif"}
 - {name: Apple, <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Apple.png}
 - {name: Telegram, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Telegram.png"}
 - {name: Twitter, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Twitter.png"}
