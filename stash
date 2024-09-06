@@ -2,34 +2,7 @@
 # subscription-userinfo: upload=1234; download=2234; total=1024000; expire=2218532293
 profile-update-interval: 24
 profile-web-page-url: 
-######### 锚点 start #######
-# 策略组相关
-pr: &pr {type: select, proxies: [默认, 香港, 香港自动选择, 台湾, 台湾自动选择, 日本, 日本自动选择, 新加坡, 新加坡自动选择, 美国, 美国自动选择, 其它地区, 全部节点, 自动选择, 直连]}
-#这里是订阅更新和延迟测试相关的
-p: &p {type: http, interval: 3600, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}}
-######### 锚点 end #######
-hosts:
-  '*.clash.dev': 127.0.0.1
-  'alpha.clash.dev': '::1'
-  
-# url 里填写自己的订阅,名称不能重复
-proxy-providers:
-  provider1:
-    <<: *p
-    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/WORKER-VIP"
-    path: "stash/provider1.yaml"
-  provider2:
-    <<: *p
-    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/Fredom-VIP"
-    path: "stash/provider2.yaml"
-  provider3:
-    <<: *p
-    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/ShadowSocks-VIP"
-    path: "stash/provider3.yaml"
-  provider4:
-    <<: *p
-    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/BackUp-VIP"
-    path: "stash/provider4.yaml"
+
 ipv6: true
 allow-lan: true
 mixed-port: 7890
@@ -59,129 +32,126 @@ dns:
     - https://doh.pub/dns-query
     - https://doh.360.cn/dns-query
     - quic://dns.adguard.com:784
-    
+hosts:
+  '*.clash.dev': 127.0.0.1
+  'alpha.clash.dev': '::1'
 
-proxies:
-- name: "直连"
-  type: direct
-  udp: true
-proxy-groups:
-- {name: 默认, type: select, proxies: [自动选择, 直连, 香港, 香港自动选择, 台湾, 台湾自动选择, 日本, 日本自动选择, 新加坡, 新加坡自动选择, 美国, 美国自动选择, 其它地区, 全部节点], icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Proxy.png"}
-- {name: Google, <<: *pr, icon: "https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/porn-gifs-porn--Cumshot-3508190.gif%20(500%C3%97281).gif"}
-- {name: Apple, <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Apple.png}
-- {name: Telegram, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Telegram.png"}
-- {name: Twitter, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Twitter.png"}
-- {name: ehentai, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Panda.png"}
-- {name: 哔哩哔哩, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/bilibili.png"}
-- {name: 哔哩东南亚, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/bilibili.png"}
-- {name: 巴哈姆特, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Bahamut.png"}
-- {name: YouTube, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/YouTube.png"}
-- {name: NETFLIX, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Netflix.png"}
-- {name: Spotify, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Spotify.png"}
-- {name: 国内, type: select, proxies: [直连, 默认, 香港, 香港自动选择, 台湾, 台湾自动选择, 日本, 日本自动选择, 新加坡, 新加坡自动选择, 美国, 美国自动选择, 其它地区, 全部节点, 自动选择], icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/China_Map.png"}
-- {name: 其他, <<: *pr, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png"}
-  #分隔,下面是地区分组
-- {name: 香港, type: select, include-all: true, filter: "(?i)港|hk|hongkong|hong kong", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/HK.png"}
-- {name: 台湾, type: select, include-all: true, filter: "(?i)台|tw|taiwan", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/TW.png"}
-- {name: 日本, type: select, include-all: true, filter: "(?i)日|jp|japan", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/JP.png"}
-- {name: 美国, type: select, include-all: true, filter: "(?i)美|us|unitedstates|united states", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/US.png"}
-- {name: 新加坡, type: select, include-all: true, filter: "(?i)(新|sg|singapore)", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/SG.png"}
-- {name: 其它地区, type: select, include-all: true, filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Available.png"}
-- {name: 自动选择, type: url-test, include-all: true, tolerance: 10, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Auto.png"}
-- {name: 全部节点, type: select, include-all: true, icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Global.png"}
+######### 锚点 start #######
+# 策略组相关
+pr: &pr {type: select, proxies: [默认, 香港, hok, 台湾, ta, 日本, ja, 新加坡, singapore, 美国, states, 其它地区, 全部节点, 自动选择, 直连]}
+#这里是订阅更新和延迟测试相关的
+p: &p {type: http, interval: 3600, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}}
+######### 锚点 end #######
 
-- {name: 香港自动选择,type: url-test, include-all: true, filter: "(?i) 港|hk|hongkong|hong kong", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/HK.png"}
-- {name: 台湾自动选择,type: url-test, include-all: true, filter: "(?i) 台|tw|taiwan", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/TW.png"}
-- {name: 日本自动选择,type: url-test, include-all: true, filter: "(?i) 日|jp|japan", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/JP.png"}
-- {name: 美国自动选择,type: url-test, include-all: true, filter: "(?i) 美|us|unitedstates|united states", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/US.png"}
-- {name: 新加坡自动选择,type: url-test, include-all: true, filter: "(?i)(新|sg|singapore)", icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/SG.png"}
+  
+# url 里填写自己的订阅,名称不能重复
+proxy-providers:
+  provider1:
+    <<: *p
+    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/WORKER-VIP"
+    path: "stash/provider1.yaml"
+  provider2:
+    <<: *p
+    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/Fredom-VIP"
+    path: "stash/provider2.yaml"
+  provider3:
+    <<: *p
+    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/ShadowSocks-VIP"
+    path: "stash/provider3.yaml"
+  provider4:
+    <<: *p
+    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/BackUp-VIP"
+    path: "stash/provider4.yaml"
+FilterHK: &FilterHK '^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
+FilterTW: &FilterTW '^(?=.*((?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
+FilterJP: &FilterJP '^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
+FilterKR: &FilterKR '^(?=.*((?i)🇰🇷|韩国|韓|首尔|(\b(KR|Korea)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
+FilterSG: &FilterSG '^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
+FilterUS: &FilterUS '^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
+FilterUK: &FilterUK '^(?=.*((?i)🇬🇧|英国|伦敦|(\b(UK|United Kingdom)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
+FilterFR: &FilterFR '^(?=.*((?i)🇫🇷|法国|(\b(FR|France)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
+FilterDE: &FilterDE '^(?=.*((?i)🇩🇪|德国|(\b(DE|Germany)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
+FilterGame: &FilterGame '^(?=.*((?i)游戏|🎮|(\b(GAME)\b)))(?!.*((?i)回国|校园)).*$'
+FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$'
+
+# 策略组参数锚点
+# 锚点 - 时延优选参数 [每 6 秒一次惰性健康检查，容差 20ms，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
+UrlTest: &UrlTest {type: url-test, interval: 99, tolerance: 20, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true}
+# 锚点 - 故障转移参数 [每 6 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
+FallBack: &FallBack {type: fallback, interval: 99, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true}
+# 锚点 - 负载均衡参数 [每 6 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
+LoadBalance: &LoadBalance {type: load-balance, interval: 99, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, strategy: consistent-hashing, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true}
+# 锚点 - 规则参数 [每小时更新一次订阅规则，更新规则时使用直连策略]
+RuleSet: &RuleSet {type: http, behavior: classical, interval: 3600, format: yaml, proxy: DIRECT}
+
+# 策略组
+proxy-groups: 
+  - {name: auto, type: url-test, include-all: true, filter: *FilterGame, proxies: [line, select]}
+  - {name: url-test, type: url-test, include-all: true, filter: *FilterAll}
+  - {name: select, type: select, include-all: true, filter: *FilterAll, proxies: [url-test]}
+  - {name: AI, type: url-test, include-all: true, filter: *FilterAll}
+  - {name: TikTok, type: url-test, include-all: true, filter: *FilterAll}
+  - {name: Telegram, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: App Store, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Apple ID, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: TestFlight, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: 1Password, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Microsoft, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Netflix, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Emby, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: line, type: select, proxies: [Taiwan, Japan, Korean, New country, US, UK, French, German, Hong Kong]}
+
+  - {name: Hong Kong, type: url-test, proxies: [⏱Hong Kong, 🚥Hong Kong, 🎛Hong Kong]}
+  - {name: Taiwan, type: url-test, proxies: [⏱Taiwan, 🚥Taiwan, 🎛Taiwan]}
+  - {name: Japan, type: url-test, proxies: [⏱Japan, 🚥Japan, 🎛Japan]}
+  - {name: Korean, type: url-test, proxies: [⏱Korean, 🚥Korean, 🎛Korean]}
+  - {name: New country, type: url-test, proxies: [⏱New country, 🚥New country, 🎛New country]}
+  - {name: US, type: url-test, proxies: [⏱US, 🚥US, 🎛US]}
+  - {name: UK, type: url-test, proxies: [⏱UK, 🚥UK, 🎛UK]}
+  - {name: French, type: url-test, proxies: [⏱French, 🚥French, 🎛French]}
+  - {name: German, type: url-test, proxies: [⏱German, 🚥German, 🎛German]}
+
+# 时延优选策略组
+  - {name: ⏱Hong Kong, <<: *UrlTest, filter: *FilterHK}
+  - {name: ⏱Taiwan, <<: *UrlTest, filter: *FilterTW}
+  - {name: ⏱Japan, <<: *UrlTest, filter: *FilterJP}
+  - {name: ⏱Korean, <<: *UrlTest, filter: *FilterKR}
+  - {name: ⏱New country, <<: *UrlTest, filter: *FilterSG}
+  - {name: ⏱US, <<: *UrlTest, filter: *FilterUS}
+  - {name: ⏱UK, <<: *UrlTest, filter: *FilterUK}
+  - {name: ⏱French, <<: *UrlTest, filter: *FilterFR}
+  - {name: ⏱German, <<: *UrlTest, filter: *FilterDE}
+
+# 故障转移策略组
+  - {name: 🚥Hong Kong, <<: *FallBack, filter: *FilterHK}
+  - {name: 🚥Taiwan, <<: *FallBack, filter: *FilterTW}
+  - {name: 🚥Japan, <<: *FallBack, filter: *FilterJP}
+  - {name: 🚥Korean, <<: *FallBack, filter: *FilterKR}
+  - {name: 🚥New country, <<: *FallBack, filter: *FilterSG}
+  - {name: 🚥US, <<: *FallBack, filter: *FilterUS}
+  - {name: 🚥UK, <<: *FallBack, filter: *FilterUK}
+  - {name: 🚥French, <<: *FallBack, filter: *FilterFR}
+  - {name: 🚥German, <<: *FallBack, filter: *FilterDE}
+
+  - {name: 🎛Hong Kong, <<: *LoadBalance, filter: *FilterHK}
+  - {name: 🎛Taiwan, <<: *LoadBalance, filter: *FilterTW}
+  - {name: 🎛Japan, <<: *LoadBalance, filter: *FilterJP}
+  - {name: 🎛Korean, <<: *LoadBalance, filter: *FilterKR}
+  - {name: 🎛New country, <<: *LoadBalance, filter: *FilterSG}
+  - {name: 🎛US, <<: *LoadBalance, filter: *FilterUS}
+  - {name: 🎛UK, <<: *LoadBalance, filter: *FilterUK}
+  - {name: 🎛French, <<: *LoadBalance, filter: *FilterFR}
+  - {name: 🎛German, <<: *LoadBalance, filter: *FilterDE}
+
+
+rule-providers:
+  Proxy:
+    <<: *RuleSet
+    path: './RuleSet/Proxy.yaml'
+    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/Proxy.yaml'
+
 
 rules:
-- GEOIP,lan,直连,no-resolve
-- RULE-SET,biliintl_domain,哔哩东南亚
-- RULE-SET,ehentai_domain,ehentai
-- RULE-SET,github_domain,其他
-- RULE-SET,twitter_domain,Twitter
-- RULE-SET,youtube_domain,YouTube
-- RULE-SET,google_domain,Google
-- RULE-SET,telegram_domain,Telegram
-- RULE-SET,netflix_domain,NETFLIX
-- RULE-SET,bilibili_domain,哔哩哔哩
-- RULE-SET,bahamut_domain,巴哈姆特
-- RULE-SET,spotify_domain,Spotify
-- RULE-SET,pixiv_domain,其他
-- RULE-SET,geolocation-!cn,其他
-
-- RULE-SET,google_ip,Google
-- RULE-SET,netflix_ip,NETFLIX
-- RULE-SET,telegram_ip,Telegram
-- RULE-SET,twitter_ip,Twitter
-- RULE-SET,cn_domain,国内
-- RULE-SET,cn_ip,国内
-- MATCH,其他
-
-rule-anchor:
-  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: text}
-  domain: &domain {type: http, interval: 86400, behavior: domain, format: text}
-rule-providers:
-  private:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.txt"
-  cn_domain:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
-  biliintl_domain:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.txt"
-  ehentai_domain:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.txt"
-  github_domain:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.list"
-  twitter_domain:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.list"
-  youtube_domain:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.list"
-  google_domain:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.list"
-  telegram_domain:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.list"
-  netflix_domain:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.list"
-  bilibili_domain:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.list"
-  bahamut_domain:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bahamut.list"
-  spotify_domain:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.list"
-  pixiv_domain:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pixiv.list"
-  geolocation-!cn:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.list"
-
-  cn_ip:
-    <<: *ip
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.list"
-  google_ip:
-    <<: *ip
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.list"
-  netflix_ip:
-    <<: *ip
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.list"
-  twitter_ip:
-    <<: *ip
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.list"
-  telegram_ip:
-    <<: *ip
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.list"
+  - RULE-SET, Proxy, auto
+  - GEOIP, ir, DIRECT
+  - MATCH, auto
