@@ -40,7 +40,7 @@ hosts:
 # 策略组相关
 pr: &pr {type: select, proxies: [默认, 香港, hok, 台湾, ta, 日本, ja, 新加坡, singapore, 美国, states, 其它地区, 全部节点, 自动选择, 直连]}
 #这里是订阅更新和延迟测试相关的
-p: &p {type: http, interval: 3600, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}}
+p: &p {type: http, interval: 360, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 3}}
 ######### 锚点 end #######
 
   
@@ -76,11 +76,11 @@ FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客�
 
 # 策略组参数锚点
 # 锚点 - 时延优选参数 [每 6 秒一次惰性健康检查，容差 20ms，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
-UrlTest: &UrlTest {type: url-test, interval: 99, tolerance: 20, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true}
+UrlTest: &UrlTest {type: url-test, interval: 99, tolerance: 99, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, timeout: 200, max-failed-times: 3, hidden: true, include-all: true}
 # 锚点 - 故障转移参数 [每 6 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
-FallBack: &FallBack {type: fallback, interval: 99, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true}
+FallBack: &FallBack {type: fallback, interval: 99, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, timeout: 200, max-failed-times: 3, hidden: true, include-all: true}
 # 锚点 - 负载均衡参数 [每 6 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
-LoadBalance: &LoadBalance {type: load-balance, interval: 99, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, strategy: consistent-hashing, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true}
+LoadBalance: &LoadBalance {type: load-balance, interval: 99, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, strategy: consistent-hashing, timeout: 200, max-failed-times: 3, hidden: true, include-all: true}
 # 锚点 - 规则参数 [每小时更新一次订阅规则，更新规则时使用直连策略]
 RuleSet: &RuleSet {type: http, behavior: classical, interval: 3600, format: yaml, proxy: DIRECT}
 
