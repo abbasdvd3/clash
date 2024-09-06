@@ -3,37 +3,37 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
     path: "mohimo/provider1.yaml"
     type: http
-    interval: 86400
-    health-check: {enable: true,url: "https://www.gstatic.com/generate_204", interval: 300}
-    override:
-      additional-prefix: "[provider1]"
+    interval: 80
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204", interval: 30}
+ #   override:
+  #    additional-prefix: "[provider1]"
 
   provider2:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/hamrah"
     path: "mohimo/provider2.yaml"
     type: http
-    interval: 86400
-    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
-    override:
-      additional-prefix: "[provider2]"
+    interval: 80
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 30}
+  #  override:
+#      additional-prefix: "[provider2]"
 
   provider3:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/i"
     path: "mohimo/provider3.yaml"
     type: http
-    interval: 86400
-    health-check: {enable: true,url: "https://www.gstatic.com/generate_204", interval: 300}
-    override:
-      additional-prefix: "[provider3]"
+    interval: 80
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204", interval: 30}
+ #   override:
+    #  additional-prefix: "[provider3]"
 
   provider4:
     url: "https://raw.githubusercontent.com/itsyebekhe/HiN-VPN/main/subscription/normal/mix"
     path: "mohimo/provider4.yaml"
     type: http
-    interval: 86400
-    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
-    override:
-      additional-prefix: "[provider4]"
+    interval: 80
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 30}
+  #  override:
+    #  additional-prefix: "[provider4]"
 mixed-port: 7890
 mode: global
 lan-allowed-ips:
@@ -357,7 +357,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/porn-gifs-porn--Cumshot-3508190.gif%20(500%C3%97281).gif
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-    disable-udp: true
+ #   disable-udp: true
     name: PROXY
     type: select
     proxies:
@@ -376,11 +376,13 @@ proxy-groups:
 #    lazy: true
   - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
     name: AIGC
-    type: select
+    type: url-test
+    interval: 300
     proxies:
       - SG AUTO
       - JP AUTO
       - US AUTO
+      - HK AUTO
   - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png
     name: Telegram
     type: select
@@ -445,6 +447,10 @@ proxy-groups:
 
 rules:
   - "RULE-SET,nsfw,PROXY"
+  - "DOMAIN-SUFFIX,pornhub.com,PROXY"
+  - "DOMAIN-SUFFIX,pornhubpremium.com,PROXY"
+  - "DOMAIN-SUFFIX,pornhub.com,Google"
+  - "DOMAIN-SUFFIX,pornhubpremium.com,Google"
   - "RULE-SET,social,PROXY"
   - "RULE-SET,google,Google"
   - "RULE-SET,github,PROXY"
