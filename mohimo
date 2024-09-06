@@ -31,6 +31,7 @@ proxy-providers:
     override:
       additional-prefix: "[provider4]"
 mixed-port: 7890
+mode: global
 lan-allowed-ips:
 - 0.0.0.0/0
 - ::/0
@@ -82,12 +83,12 @@ sniffer:
 tun:
   enable: true
   stack: mixed
-  auto-route: true
-  auto-detect-interface: true
-  strict-route: false
   dns-hijack:
-    - any:53
-    - tcp://any:53
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
 dns:
   enable: true
   listen: :1053
@@ -100,6 +101,8 @@ dns:
     - "+.local"
   default-nameserver:
     - https://223.5.5.5/dns-query
+    - https://120.53.53.53/dns-query
+https://dns.google/dns-query
   nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
@@ -342,7 +345,7 @@ proxy-groups:
   - icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/porn-gifs-porn--Cumshot-3508190.gif%20(500%C3%97281).gif
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-#   disable-udp: true
+    disable-udp: true
     name: PROXY
     type: select
     proxies:
