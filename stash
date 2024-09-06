@@ -48,20 +48,8 @@ p: &p {type: http, interval: 360, health-check: {enable: true, url: "https://www
 proxy-providers:
   provider1:
     <<: *p
-    url: "https://raw.githubusercontent.com/itsyebekhe/HiN-VPN/main/subscription/normal/mix"
-    path: "stash/provider1.yaml"
-  provider2:
-    <<: *p
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/i"
-    path: "stash/provider2.yaml"
-  provider3:
-    <<: *p
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/hamrah"
-    path: "stash/provider3.yaml"
-  provider4:
-    <<: *p
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
-    path: "stash/provider4.yaml"
+    path: "stash/provider1.yaml"
 FilterHK: &FilterHK '^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
 FilterTW: &FilterTW '^(?=.*((?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
 FilterJP: &FilterJP '^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
