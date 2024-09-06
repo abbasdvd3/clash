@@ -1,5 +1,5 @@
-content-disposition: attachment; filename="test.yaml"
-subscription-userinfo: upload=1234; download=2234; total=1024000; expire=2218532293
+# content-disposition: attachment; filename="stash.yaml"
+# subscription-userinfo: upload=1234; download=2234; total=1024000; expire=2218532293
 profile-update-interval: 24
 profile-web-page-url: 
 ######### 锚点 start #######
@@ -17,15 +17,19 @@ proxy-providers:
   provider1:
     <<: *p
     url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/WORKER-VIP"
+    path: "stash/provider1.yaml"
   provider2:
     <<: *p
     url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/Fredom-VIP"
+    path: "stash/provider2.yaml"
   provider3:
     <<: *p
     url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/ShadowSocks-VIP"
+    path: "stash/provider3.yaml"
   provider4:
     <<: *p
     url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/BackUp-VIP"
+    path: "stash/provider4.yaml"
 ipv6: true
 allow-lan: true
 mixed-port: 7890
@@ -39,7 +43,6 @@ dns:
   enhanced-mode: fake-ip
   use-system-hosts: false
   cache-algorithm: arc
-  fake-ip-range: 28.0.0.1/8
   fake-ip-filter:
     - "*"
     - "+.lan"
