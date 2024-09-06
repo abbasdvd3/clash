@@ -7,7 +7,7 @@ redir-port: 7893
 tproxy-port: 7899
 mode: rule
 allow-lan: true
-unified-delay: false
+unified-delay: true
 bind-address: '*'
 log-level: debug
 ipv6: false
@@ -90,7 +90,7 @@ tun:
   endpoint_independent_nat: true 
 dns:
   cache-algorithm: arc
-  enable: true
+  enable: false
   ipv6: false
   ipv6-timeout: 300
   prefer-h3: false
@@ -113,32 +113,15 @@ dns:
     GEOSITE:google,github: 8.8.8.8
   nameserver:
   - 217.218.155.155:53
-  - 217.218.127.127:53
   - udp://78.157.42.100:53
   - udp://10.202.10.102:53
-  - udp://114.114.114.114:53
   - udp://8.8.8.8:53
   - udp://223.5.5.5:53
-  - https://dns.alidns.com/dns-query#h3=true 
-  - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true
-  - udp://45.90.28.55:53
-  - udp://45.90.30.55:53
   - https://45.90.28.55/dns-query
   - 45.90.28.0:53
   - udp://45.90.30.0:53
   - https://anycast.dns.nextdns.io/dns-query
   - quic://dns-unfiltered.adguard.com:784
-  - tls://dns-unfiltered.adguard.com:853
-  - https://dns-unfiltered.adguard.com/dns-query
-  - udp://94.140.14.140:53
-  - udp://94.140.14.140:53
-  - https://94.140.14.140/dns-query
-  - 94.140.14.141:53
-  - udp://94.140.14.141:53
-  - https://94.140.14.141/dns-query
-  - https://dns-adguard.heinu.cf/dns-query
-  - https://dns-adguard.heinu.ga/dns-query
-
   proxy-server-nameserver:
   - https://dns.google/dns-query
   - tls://one.one.one.one
@@ -180,7 +163,10 @@ proxies:
 
 proxy-groups:
   - name: 🅿️🅱️
-    type: select
+    type: url-test
+    interval: 99
+    tolerance: 99
+    url: https://www.youtube.com/generate_204
 #    include-all-proxies: true
 #    include-all-providers: true
     dialer-proxy: proxy
