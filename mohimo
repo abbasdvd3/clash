@@ -48,7 +48,7 @@ geox-url:
 geo-auto-update: true
 geo-update-interval: 24
 sniffer:
-  enable: true
+  enable: false
   override-destination: false
   sniff:
     HTTP:
@@ -329,92 +329,99 @@ rule-providers:
     type: http
 
 proxy-groups:
-  - icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/porn-gifs-porn--Cumshot-3508190.gif%20(500%C3%97281).gif
-    include-all-providers: true
-    exclude-filter: (?i)|Traffic|Expire
-    disable-udp: true
-    name: PROXY
+  - name: PROXY
     type: select
+    icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/porn-gifs-porn--Cumshot-3508190.gif%20(500%C3%97281).gif
+#    include-all-providers: true
+    exclude-filter: Expire
+    disable-udp: true
     proxies:
       - AUTO
       - HK AUTO
       - SG AUTO
       - JP AUTO
       - US AUTO
-  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
-    include-all-providers: true
-    exclude-filter: (?i)GB|Traffic|Expire
-    name: AUTO
+    
+  - name: AUTO
     type: url-test
     interval: 300
-#    tolerance: 50
-#    lazy: true
-  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
-    name: AIGC
+    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
+    include-all-providers: true
+#    exclude-filter: (?i)GB|Traffic|Expire
+
+  - name: AIGC
     type: url-test
     interval: 300
-    include-all-providers: true
+    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
+#    include-all-providers: true
     proxies:
+      - AUTO
       - SG AUTO
       - JP AUTO
       - US AUTO
       - HK AUTO
-  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png
-    name: Telegram
+
+  - name: Telegram
     type: url-test
     interval: 300
-    include-all-providers: true
+    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png
+#    include-all-providers: true
     proxies:
+      - AUTO
       - HK AUTO
       - SG AUTO
       - JP AUTO
       - US AUTO
-  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
-    name: Google
+      
+  - name: Google
     type: url-test
     interval: 300
-    include-all-providers: true
+    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
+#    include-all-providers: true
     proxies:
+      - AUTO
       - HK AUTO
       - SG AUTO
       - JP AUTO
       - US AUTO
-  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
+      
+  - name: HK AUTO
+    type: url-test
+    interval: 300
+    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
     include-all-providers: true
     exclude-filter: (?i)GB|Traffic|Expire
     filter: (?i)香港|Hong Kong|HK|🇭🇰
-    name: HK AUTO
-#    tolerance: 50
-#    lazy: true
+    
+  - name: SG AUTO
     type: url-test
     interval: 300
-  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
+    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
     include-all-providers: true
     exclude-filter: (?i)GB|Traffic|Expire
     filter: (?i)新加坡|Singapore|🇸🇬
-    name: SG AUTO
-#    tolerance: 50
-#    lazy: true
+
+  - name: JP AUTO
     type: url-test
     interval: 300
-  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
+    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
     include-all-providers: true
     exclude-filter: (?i)GB|Traffic|Expire
     filter: (?i)日本|Japan|🇯🇵
-    name: JP AUTO
+    
+  - name: US AUTO
     type: url-test
     interval: 300
-  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
+    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
     include-all-providers: true
     exclude-filter: (?i)GB|Traffic|Expire
     filter: (?i)美国|USA|🇺🇸
-    name: US AUTO
-#    tolerance: 50
-#    lazy: true
-    type: url-test
-    interval: 300
-  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
-    include-all-providers: true
+    
+    
+  - name: select&GLOBAL
+    type: select
+    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+#    include-all-providers: true
     exclude-filter: (?i)GB|Traffic|Expire
     proxies:
       - AUTO
@@ -422,8 +429,7 @@ proxy-groups:
       - SG AUTO
       - JP AUTO
       - US AUTO
-    name: GLOBAL
-    type: select
+
 
 rules:
   - "RULE-SET,nsfw,PROXY"
