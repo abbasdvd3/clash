@@ -67,6 +67,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah" 
     path: Prem2/p1.yaml
     interval: 89
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 3
@@ -76,6 +77,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/P1"    
     path: Prem2/P2.yaml
     interval: 89
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 3
@@ -85,6 +87,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.all"  
     path: Prem2/P3.yaml
     interval: 89
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 3
@@ -1901,6 +1904,7 @@ proxy-groups:
       - 'United'
   - name: '⚡️ Fastest'
     type: 'url-test'
+    exclude-filter: Expire
     tolerance: 99
     url: 'https://www.pornhub.com/generate_204'
     interval: 50
@@ -3703,6 +3707,7 @@ proxy-groups:
       - 'provider3'
   - name: '📶 First Available'
     type: 'fallback'
+    exclude-filter: Expire
     url: 'https://www.pornhub.com/generate_204'
     interval: 160
     use: 
@@ -5504,6 +5509,7 @@ proxy-groups:
       - 🇸🇬SG_255 @WangCai_8_3
   - name: '♻️ Load Balance'
     type: 'load-balance'
+    exclude-filter: Expire
     url: 'https://www.pornhub.com/generate_204'
     interval: 170
     strategy: 'consistent-hashing'
@@ -7306,6 +7312,7 @@ proxy-groups:
       - 🇸🇬SG_255 @WangCai_8_3
   - name: 'PROXY'
     type: 'select'
+    exclude-filter: Expire
     use: 
       - 'provider1'
       - 'provider2'
@@ -9110,6 +9117,7 @@ proxy-groups:
       - 🇸🇬SG_255 @WangCai_8_3
   - name: '🍎Ⓜ️'
     type: 'select'
+    exclude-filter: Expire
     use: 
       - 'provider1'
       - 'provider2'
@@ -9123,6 +9131,7 @@ proxy-groups:
      
   - name: 'United'
     type: 'url-test'
+    exclude-filter: Expire
     url: 'https://www.pornhub.com/generate_204'
     udp: false
     interval: 100
