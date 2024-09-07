@@ -1796,6 +1796,7 @@ proxy-groups:
     type: url-test
     interval: 99
     timeout: 3
+    exclude-filter: Expire
     url: https://www.google.com/
     lazy: true
     tolerance: 99
@@ -1811,9 +1812,10 @@ proxy-groups:
     strategy: consistent-hashing
     interval: 100
     timeout: 300
+    exclude-filter: Expire
     url: https://www.google.com/
     lazy: true
-#    udp: true
+    udp: true
     proxies:
       - 🇯🇵JP_0 @WangCai_8_1
       - 🇯🇵JP_1 @WangCai_8_1
@@ -3615,6 +3617,7 @@ proxy-groups:
     type: url-test
     interval: 99
     timeout: 3
+    exclude-filter: Expire
     url: https://www.google.com/
     lazy: true
     tolerance: 99
@@ -5418,11 +5421,12 @@ proxy-groups:
       - provider3
   - name: FALLBACK
     type: fallback
+    exclude-filter: Expire
     interval: 120
     timeout: 5
     url: https://www.google.com/
     lazy: true
-#    udp: true
+    udp: true
     proxies:
       - 🇯🇵JP_0 @WangCai_8_1
       - 🇯🇵JP_1 @WangCai_8_1
@@ -7222,6 +7226,7 @@ proxy-groups:
       - provider3
   - name: USA 🇺🇲
     type: url-test
+    exclude-filter: Expire
     interval: 80
     timeout: 30
     url: https://www.google.com/
@@ -9033,7 +9038,8 @@ proxy-groups:
       - PROXY
   - name: PROXY
     type: select
-    interval: 1
+    exclude-filter: Expire
+    interval: 10
     timeout: 3
     url: https://www.google.com/
     lazy: true
@@ -10845,6 +10851,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/P1"    
     path: Prem/provider1.yaml
     interval: 8
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 3
@@ -10855,6 +10862,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah"    
     path: Prem/providerPh.yaml
     interval: 8
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 3
@@ -10865,6 +10873,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.all"    
     path: Prem/providerPall.yaml
     interval: 8
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 3
