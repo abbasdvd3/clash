@@ -166,6 +166,7 @@ proxy-groups:
     type: url-test
     interval: 99
     tolerance: 99
+    exclude-filter: Expire
     url: https://www.youtube.com/generate_204
 #    include-all-proxies: true
 #    include-all-providers: true
@@ -175,7 +176,7 @@ proxy-groups:
     
   - name: proxy
     type: select
-    exclude-filter: (?i)|Traffic|Expire
+    exclude-filter: Expire
     include-all-proxies: true
     include-all-providers: true
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
@@ -185,7 +186,7 @@ proxy-groups:
     type: url-test
     interval: 199
     tolerance: 99
-    exclude-filter: (?i)|Traffic|Expire
+    exclude-filter: Expire
     url: https://www.youtube.com/generate_204
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
     include-all-proxies: true
@@ -255,7 +256,7 @@ proxy-groups:
 
   - name: fallback
     type: fallback
-    exclude-filter: (?i)|Traffic|Expire
+    exclude-filter: Expire
     interval: 180
     url: https://www.youtube.com/generate_204
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
@@ -272,7 +273,7 @@ proxy-groups:
 
   - name: 🐝
     type: select
-    exclude-filter: (?i)|Traffic|Expire
+    exclude-filter: Traffic|Expire
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg
     include-all-proxies: true
     include-all-providers: true
@@ -283,7 +284,7 @@ proxy-groups:
     lazy: false
     interval: 99
     tolerance: 99
-    exclude-filter: (?i)|Traffic|Expire
+    exclude-filter: Expire
     url: https://www.youtube.com/generate_204
     icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/usa.svg
     include-all-proxies: true
@@ -295,7 +296,7 @@ proxy-groups:
     type: url-test
     tolerance: 90
     interval: 100
-    exclude-filter: (?i)|Traffic|Expire
+    exclude-filter: Expire
     include-all-proxies: true
     include-all-providers: true
     url: https://www.youtube.com/generate_204
@@ -308,6 +309,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/hamrah" # https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml 
     interval: 600
     path: H/h.yaml
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 300
@@ -318,6 +320,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/i" # https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml 
     interval: 600
     path: H/i.yaml
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 300
@@ -329,6 +332,7 @@ proxy-providers:
     url:  "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
     interval: 600
     path: H/s.yaml
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 300
