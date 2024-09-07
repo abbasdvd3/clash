@@ -175,6 +175,7 @@ proxy-groups:
     
   - name: proxy
     type: select
+    exclude-filter: (?i)|Traffic|Expire
     include-all-proxies: true
     include-all-providers: true
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
@@ -184,6 +185,7 @@ proxy-groups:
     type: url-test
     interval: 199
     tolerance: 99
+    exclude-filter: (?i)|Traffic|Expire
     url: https://www.youtube.com/generate_204
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
     include-all-proxies: true
@@ -253,6 +255,7 @@ proxy-groups:
 
   - name: fallback
     type: fallback
+    exclude-filter: (?i)|Traffic|Expire
     interval: 180
     url: https://www.youtube.com/generate_204
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
@@ -269,6 +272,7 @@ proxy-groups:
 
   - name: 🐝
     type: select
+    exclude-filter: (?i)|Traffic|Expire
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg
     include-all-proxies: true
     include-all-providers: true
@@ -279,6 +283,7 @@ proxy-groups:
     lazy: false
     interval: 99
     tolerance: 99
+    exclude-filter: (?i)|Traffic|Expire
     url: https://www.youtube.com/generate_204
     icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/usa.svg
     include-all-proxies: true
@@ -290,6 +295,7 @@ proxy-groups:
     type: url-test
     tolerance: 90
     interval: 100
+    exclude-filter: (?i)|Traffic|Expire
     include-all-proxies: true
     include-all-providers: true
     url: https://www.youtube.com/generate_204
@@ -320,7 +326,7 @@ proxy-providers:
 
   s:
     type: http
-    url:  "https://raw.githubusercontent.com/sarvari1378/SingBOX/main/SUB/WORKER-VIP"
+    url:  "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
     interval: 600
     path: H/s.yaml
     health-check:
