@@ -1811,11 +1811,9 @@ proxy-groups:
     type: load-balance
     strategy: consistent-hashing
     interval: 100
-    timeout: 300
+    timeout: 30
     exclude-filter: Expire
     url: https://www.google.com/
-    lazy: true
-    udp: true
     proxies:
       - 🇯🇵JP_0 @WangCai_8_1
       - 🇯🇵JP_1 @WangCai_8_1
@@ -3619,9 +3617,7 @@ proxy-groups:
     timeout: 3
     exclude-filter: Expire
     url: https://www.google.com/
-    lazy: true
     tolerance: 99
-    udp: true
     proxies:
       - 🇯🇵JP_0 @WangCai_8_1
       - 🇯🇵JP_1 @WangCai_8_1
@@ -5425,8 +5421,6 @@ proxy-groups:
     interval: 120
     timeout: 5
     url: https://www.google.com/
-    lazy: true
-    udp: true
     proxies:
       - 🇯🇵JP_0 @WangCai_8_1
       - 🇯🇵JP_1 @WangCai_8_1
@@ -7227,13 +7221,10 @@ proxy-groups:
   - name: USA 🇺🇲
     type: url-test
     exclude-filter: Expire
-    interval: 80
+    interval: 99
     timeout: 30
     url: https://www.google.com/
-    lazy: true
-    udp: false
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
-    hidden: false
     proxies:
       - 🇯🇵JP_0 @WangCai_8_1
       - 🇯🇵JP_1 @WangCai_8_1
@@ -9042,7 +9033,6 @@ proxy-groups:
     interval: 10
     timeout: 3
     url: https://www.google.com/
-    lazy: true
     proxies:
       - PRO
       - USA 🇺🇲
@@ -10854,7 +10844,7 @@ proxy-providers:
     exclude-filter: Expire
     health-check:
       enable: true
-      interval: 3
+      interval: 30
       lazy: true
       url: https://fiber.google.com/speedtest/generate_204
   provider2:
@@ -10865,7 +10855,7 @@ proxy-providers:
     exclude-filter: Expire
     health-check:
       enable: true
-      interval: 3
+      interval: 30
       lazy: true
       url: https://fiber.google.com/speedtest/generate_204
   provider3:
