@@ -10,10 +10,10 @@ redir-port: 7893
 tproxy-port: 7899
 mode: rule
 allow-lan: true
-unified-delay: true
+unified-delay: false
 bind-address: '*'
 log-level: debug
-ipv6: false
+ipv6: true
 geodata-mode: true
 geo-auto-update: true
 geo-update-interval: 24 
@@ -93,7 +93,7 @@ tun:
   endpoint_independent_nat: true 
 dns:
   cache-algorithm: arc
-  enable: false
+  enable: true
   ipv6: false
   ipv6-timeout: 300
   prefer-h3: false
@@ -129,7 +129,7 @@ dns:
   - https://dns.google/dns-query
   - tls://one.one.one.one
   fallback-filter:
-    geoip: false
+    geoip: true
     geoip-code: ir
     geosite:
   #  - gfw
