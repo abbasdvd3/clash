@@ -1,1068 +1,1324 @@
 {
   "log": {
-    "level": "warn",
-    "output": "box.log",
+    "level": "info",
     "timestamp": true
   },
-  "dns": {
-    "servers": [
-      {
-        "tag": "dns-remote",
-        "address": "udp://77.88.8.8",
-        "address_resolver": "dns-direct"
-      },
-      {
-        "tag": "dns-trick-direct",
-        "address": "https://sky.rethinkdns.com/",
-        "address_resolver": "dns-direct",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-direct",
-        "address": "1.1.1.1",
-        "address_resolver": "dns-local",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-local",
-        "address": "local",
-        "detour": "direct"
-      },
-      {
-        "tag": "dns-block",
-        "address": "rcode://success"
-      }
-    ],
-    "rules": [
-      {
-        "domain": "speedtest.org",
-        "server": "dns-direct"
-      }
-    ],
-    "final": "dns-remote"
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "",
+      "secret": "ID_lbjowb5d",
+      "external_ui_download_url": "",
+      "default_mode": "rule"
+    },
+    "cache_file": {
+      "enabled": true,
+      "store_fakeip": true
+    }
   },
   "inbounds": [
     {
+      "type": "mixed",
+      "listen": "::",
+      "listen_port": 20122,
+      "sniff": true,
+      "sniff_override_destination": true,
+      "domain_strategy": "ipv4_only",
+      "tcp_fast_open": true,
+      "tcp_multi_path": true,
+      "udp_fragment": true
+    },
+    {
+      "type": "http",
+      "listen": "::",
+      "listen_port": 7892,
+      "sniff": true,
+      "sniff_override_destination": true,
+      "domain_strategy": "ipv4_only",
+      "tcp_fast_open": true,
+      "tcp_multi_path": true,
+      "udp_fragment": true
+    },
+    {
+      "type": "socks",
+      "listen": "::",
+      "listen_port": 7890,
+      "sniff": true,
+      "sniff_override_destination": true,
+      "domain_strategy": "ipv4_only",
+      "tcp_fast_open": true,
+      "tcp_multi_path": true,
+      "udp_fragment": true
+    },
+    {
       "type": "tun",
-      "tag": "tun-in",
+      "inet4_address": "172.19.0.1/30",
       "mtu": 9000,
-      "inet4_address": "172.19.0.1/28",
       "auto_route": true,
       "strict_route": true,
       "endpoint_independent_nat": true,
-      "stack": "system",
+      "stack": "gvisor",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 20122
+        }
+      },
       "sniff": true,
-      "sniff_override_destination": true
-    },
-    {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "127.0.0.1",
-      "listen_port": 12334,
-      "sniff": true,
-      "sniff_override_destination": true
-    },
-    {
-      "type": "direct",
-      "tag": "dns-in",
-      "listen": "127.0.0.1",
-      "listen_port": 16450
+      "sniff_override_destination": true,
+      "domain_strategy": "ipv4_only"
     }
   ],
   "outbounds": [
     {
-      "type": "selector",
-      "tag": "select",
-      "outbounds": [
-        "auto",
-        "N2401678627 § 0",
-        "N2429292948 § 1",
-        "M7702150338 § 2",
-        "M1719900975 § 3",
-        "N5526985884 § 4",
-        "N1707418515 § 5",
-        "N2424256548 § 6",
-        "N7721987370 § 7",
-        "N5525236004 § 8",
-        "M3318426938 § 9",
-        "M5205596405 § 10",
-        "N6717896548 § 11",
-        "M1722982175 § 12",
-        "N8314058860 § 13",
-        "M8314058860 § 14",
-        "N6711774380 § 15",
-        "N5205596405 § 16",
-        "M8315896860 § 17",
-        "M6711774380 § 18",
-        "M6717896548 § 19",
-        "N5516745204 § 20",
-        "M8012540051 § 21",
-        "N8012540051 § 22",
-        "M8303635409 § 23",
-        "M2429292948 § 24",
-        "M7208281822 § 25",
-        "M2323429938 § 26",
-        "N2710215801 § 27",
-        "N8315896860 § 28",
-        "N3318426938 § 29",
-        "M3309426736 § 30",
-        "M7721987370 § 31",
-        "M7427777546 § 32",
-        "N7208281822 § 33",
-        "N2323429938 § 34",
-        "M5516745204 § 35",
-        "N7427777546 § 36",
-        "N7702150338 § 37",
-        "M5306088512 § 38",
-        "M5526985884 § 39",
-        "N2828856947 § 40",
-        "M2828856947 § 41",
-        "N5513231404 § 42",
-        "M5525236004 § 43",
-        "M2424256548 § 44",
-        "N1722982175 § 45",
-        "N5306088512 § 46",
-        "M3030256548 § 47",
-        "M2401678627 § 48",
-        "N7204605727 § 49",
-        "M5513231404 § 50",
-        "M1707418515 § 51",
-        "M2710215801 § 52",
-        "N1719900975 § 53",
-        "M7204605727 § 54",
-        "N3030256548 § 55",
-        "M7720151370 § 56",
-        "N3309426736 § 57",
-        "N8303635409 § 58",
-        "N7720151370 § 59"
-      ],
-      "default": "auto"
-    },
-    {
+      "tag": "🚀 Select",
       "type": "urltest",
-      "tag": "auto",
       "outbounds": [
-        "N2401678627 § 0",
-        "N2429292948 § 1",
-        "M7702150338 § 2",
-        "M1719900975 § 3",
-        "N5526985884 § 4",
-        "N1707418515 § 5",
-        "N2424256548 § 6",
-        "N7721987370 § 7",
-        "N5525236004 § 8",
-        "M3318426938 § 9",
-        "M5205596405 § 10",
-        "N6717896548 § 11",
-        "M1722982175 § 12",
-        "N8314058860 § 13",
-        "M8314058860 § 14",
-        "N6711774380 § 15",
-        "N5205596405 § 16",
-        "M8315896860 § 17",
-        "M6711774380 § 18",
-        "M6717896548 § 19",
-        "N5516745204 § 20",
-        "M8012540051 § 21",
-        "N8012540051 § 22",
-        "M8303635409 § 23",
-        "M2429292948 § 24",
-        "M7208281822 § 25",
-        "M2323429938 § 26",
-        "N2710215801 § 27",
-        "N8315896860 § 28",
-        "N3318426938 § 29",
-        "M3309426736 § 30",
-        "M7721987370 § 31",
-        "M7427777546 § 32",
-        "N7208281822 § 33",
-        "N2323429938 § 34",
-        "M5516745204 § 35",
-        "N7427777546 § 36",
-        "N7702150338 § 37",
-        "M5306088512 § 38",
-        "M5526985884 § 39",
-        "N2828856947 § 40",
-        "M2828856947 § 41",
-        "N5513231404 § 42",
-        "M5525236004 § 43",
-        "M2424256548 § 44",
-        "N1722982175 § 45",
-        "N5306088512 § 46",
-        "M3030256548 § 47",
-        "M2401678627 § 48",
-        "N7204605727 § 49",
-        "M5513231404 § 50",
-        "M1707418515 § 51",
-        "M2710215801 § 52",
-        "N1719900975 § 53",
-        "M7204605727 § 54",
-        "N3030256548 § 55",
-        "M7720151370 § 56",
-        "N3309426736 § 57",
-        "N8303635409 § 58",
-        "N7720151370 § 59"
+        "🎈 Auto Select",
+        "N7029566809 § 0",
+        "N3309426736 § 1",
+        "N3318426938 § 2",
+        "N8012540051 § 3",
+        "N7721987370 § 4",
+        "N7204605727 § 5",
+        "N1719900975 § 6",
+        "N1030114313 § 7",
+        "N1325994068 § 8",
+        "N1305499035 § 9",
+        "N5113538601 § 10",
+        "N2323429938 § 11",
+        "N5513231404 § 12",
+        "N3316240182 § 13",
+        "N8314058860 § 14",
+        "N4401347070 § 15",
+        "N7721759085 § 16",
+        "N5525236004 § 17",
+        "N2419981588 § 18",
+        "N6606522539 § 19",
+        "N9023145614 § 20",
+        "N6926598710 § 21",
+        "N5526985884 § 22",
+        "N6717896548 § 23",
+        "N2618739366 § 24",
+        "N2710215801 § 25",
+        "N3110898877 § 26",
+        "N5306088512 § 27",
+        "N1707418515 § 28",
+        "N1404449914 § 29",
+        "N2828856947 § 30",
+        "N1402353622 § 31",
+        "N2609757384 § 32",
+        "N1303470918 § 33",
+        "N6814293587 § 34",
+        "N6907952688 § 35",
+        "N9317899011 § 36",
+        "N2401678627 § 37",
+        "N7720151370 § 38",
+        "N8315896860 § 39",
+        "N5205596405 § 40",
+        "N7708909190 § 41",
+        "N1722982175 § 42",
+        "N9822109394 § 43",
+        "N2429292948 § 44",
+        "N1820648553 § 45",
+        "N7208281822 § 46",
+        "N6527590594 § 47",
+        "N5111772113 § 48",
+        "N5612986839 § 49",
+        "N6711774380 § 50",
+        "N3030256548 § 51",
+        "N8303635409 § 52",
+        "N4915212366 § 53",
+        "N7424404546 § 54",
+        "N5516745204 § 55",
+        "N2424256548 § 56",
+        "N3028298836 § 57",
+        "N7427777546 § 58",
+        "N7702150338 § 59"
       ],
-      "url": "http://connectivitycheck.gstatic.com/generate_204",
-      "interval": "10m0s",
-      "tolerance": 1,
-      "idle_timeout": "30m0s"
+      "url": "",
+      "interval": "300s",
+      "tolerance": 150
+    },
+    {
+      "tag": "🎈 Auto Select",
+      "type": "urltest",
+      "outbounds": [
+        "N7029566809 § 0",
+        "N3309426736 § 1",
+        "N3318426938 § 2",
+        "N8012540051 § 3",
+        "N7721987370 § 4",
+        "N7204605727 § 5",
+        "N1719900975 § 6",
+        "N1030114313 § 7",
+        "N1325994068 § 8",
+        "N1305499035 § 9",
+        "N5113538601 § 10",
+        "N2323429938 § 11",
+        "N5513231404 § 12",
+        "N3316240182 § 13",
+        "N8314058860 § 14",
+        "N4401347070 § 15",
+        "N7721759085 § 16",
+        "N5525236004 § 17",
+        "N2419981588 § 18",
+        "N6606522539 § 19",
+        "N9023145614 § 20",
+        "N6926598710 § 21",
+        "N5526985884 § 22",
+        "N6717896548 § 23",
+        "N2618739366 § 24",
+        "N2710215801 § 25",
+        "N3110898877 § 26",
+        "N5306088512 § 27",
+        "N1707418515 § 28",
+        "N1404449914 § 29",
+        "N2828856947 § 30",
+        "N1402353622 § 31",
+        "N2609757384 § 32",
+        "N1303470918 § 33",
+        "N6814293587 § 34",
+        "N6907952688 § 35",
+        "N9317899011 § 36",
+        "N2401678627 § 37",
+        "N7720151370 § 38",
+        "N8315896860 § 39",
+        "N5205596405 § 40",
+        "N7708909190 § 41",
+        "N1722982175 § 42",
+        "N9822109394 § 43",
+        "N2429292948 § 44",
+        "N1820648553 § 45",
+        "N7208281822 § 46",
+        "N6527590594 § 47",
+        "N5111772113 § 48",
+        "N5612986839 § 49",
+        "N6711774380 § 50",
+        "N3030256548 § 51",
+        "N8303635409 § 52",
+        "N4915212366 § 53",
+        "N7424404546 § 54",
+        "N5516745204 § 55",
+        "N2424256548 § 56",
+        "N3028298836 § 57",
+        "N7427777546 § 58",
+        "N7702150338 § 59"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "300s",
+      "tolerance": 150
+    },
+    {
+      "tag": "🎯 Direct",
+      "type": "selector",
+      "outbounds": [
+        "direct"
+      ]
+    },
+    {
+      "tag": "🛑 Block",
+      "type": "selector",
+      "outbounds": [
+        "block"
+      ]
+    },
+    {
+      "tag": "🐟 Fallback",
+      "type": "selector",
+      "outbounds": [
+        "🚀 Select",
+        "🎯 Direct"
+      ]
     },
     {
       "type": "vless",
-      "tag": "N2401678627 § 0",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N7029566809 § 0",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v29.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N3309426736 § 1",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V01.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v09.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N2429292948 § 1",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N3318426938 § 2",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "www.speedtest.net.whiteber.insistom.d6625996.v29.simansanat.ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v18.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M7702150338 § 2",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V02.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "M1719900975 § 3",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V19.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "N5526985884 § 4",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N8012540051 § 3",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "www.speedtest.net.whiteber.insistom.d6625996.v26.simansanat.ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v12.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N1707418515 § 5",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N7721987370 § 4",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V07.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v21.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N2424256548 § 6",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N7204605727 § 5",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V24.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v04.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N7721987370 § 7",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N1719900975 § 6",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V21.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v19.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N5525236004 § 8",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N1030114313 § 7",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v30.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N1325994068 § 8",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v25.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N1305499035 § 9",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v05.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N5113538601 § 10",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v13.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N2323429938 § 11",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V25.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v23.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M3318426938 § 9",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V18.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "M5205596405 § 10",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V05.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "N6717896548 § 11",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N5513231404 § 12",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V17.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v13.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M1722982175 § 12",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "tag": "N3316240182 § 13",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V22.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v16.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N8314058860 § 13",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N8314058860 § 14",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V14.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v14.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M8314058860 § 14",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "tag": "N4401347070 § 15",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V14.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v01.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N6711774380 § 15",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N7721759085 § 16",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v21.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N5525236004 § 17",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V11.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v25.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N5205596405 § 16",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N2419981588 § 18",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v19.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N6606522539 § 19",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v06.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N9023145614 § 20",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v23.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N6926598710 § 21",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v26.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N5526985884 § 22",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V05.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v26.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M8315896860 § 17",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V15.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "M6711774380 § 18",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V11.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "M6717896548 § 19",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V17.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "N5516745204 § 20",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N6717896548 § 23",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V16.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v17.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M8012540051 § 21",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "tag": "N2618739366 § 24",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V12.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v18.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N8012540051 § 22",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N2710215801 § 25",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V12.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v10.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M8303635409 § 23",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "tag": "N3110898877 § 26",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V03.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v10.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M2429292948 § 24",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "www.speedtest.net.whiteber.insistom.d6625996.v29.simansanat.ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "M7208281822 § 25",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V08.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "M2323429938 § 26",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V23.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "N2710215801 § 27",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N5306088512 § 27",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V10.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v06.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N8315896860 § 28",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N1707418515 § 28",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V15.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v07.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N3318426938 § 29",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N1404449914 § 29",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v04.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N2828856947 § 30",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V18.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v28.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M3309426736 § 30",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "tag": "N1402353622 § 31",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V09.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v02.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M7721987370 § 31",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "tag": "N2609757384 § 32",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V21.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v09.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M7427777546 § 32",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "tag": "N1303470918 § 33",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "www.speedtest.net.whiteber.insistom.d6625996.v27.simansanat.ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v03.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N7208281822 § 33",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N6814293587 § 34",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v14.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N6907952688 § 35",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v07.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N9317899011 § 36",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v17.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N2401678627 § 37",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V08.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v01.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N2323429938 § 34",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N7720151370 § 38",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V23.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v20.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M5516745204 § 35",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V16.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "N7427777546 § 36",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N8315896860 § 39",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "www.speedtest.net.whiteber.insistom.d6625996.v27.simansanat.ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v15.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N7702150338 § 37",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N5205596405 § 40",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V02.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v05.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M5306088512 § 38",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "tag": "N7708909190 § 41",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V06.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v08.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M5526985884 § 39",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "www.speedtest.net.whiteber.insistom.d6625996.v26.simansanat.ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "N2828856947 § 40",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N1722982175 § 42",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "www.speedtest.net.whiteber.insistom.d6625996.v28.simansanat.ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v22.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M2828856947 § 41",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "tag": "N9822109394 § 43",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "www.speedtest.net.whiteber.insistom.d6625996.v28.simansanat.ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v22.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N5513231404 § 42",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N2429292948 § 44",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V13.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v29.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M5525236004 § 43",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "tag": "N1820648553 § 45",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V25.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v20.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M2424256548 § 44",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V24.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "N1722982175 § 45",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N7208281822 § 46",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V22.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v08.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N5306088512 § 46",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N6527590594 § 47",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v27.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N5111772113 § 48",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v11.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N5612986839 § 49",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v12.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N6711774380 § 50",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V06.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v11.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M3030256548 § 47",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "www.speedtest.net.whiteber.insistom.d6625996.v30.simansanat.ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "M2401678627 § 48",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V25.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "N7204605727 § 49",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N3030256548 § 51",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V04.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v30.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M5513231404 § 50",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V13.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "M1707418515 § 51",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V07.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "M2710215801 § 52",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V10.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "N1719900975 § 53",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N8303635409 § 52",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V19.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v03.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M7204605727 § 54",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "tag": "N4915212366 § 53",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V04.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v15.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N3030256548 § 55",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N7424404546 § 54",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v24.com"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "N5516745204 § 55",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "www.speedtest.net.whiteber.insistom.d6625996.v30.simansanat.ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v16.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "M7720151370 § 56",
-      "server": "104.25.0.86",
-      "server_port": 8080,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V20.SiMansaNaT.Ir."
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "N3309426736 § 57",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N2424256548 § 56",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V09.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v24.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N8303635409 § 58",
-      "server": "SpeeDTeST.OrG",
-      "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "tag": "N3028298836 § 57",
+      "server": "SpeedTest.net",
+      "server_port": 443,
+      "uuid": "9e3456fa-bcce-44b6-b91e-22c324a2f12f",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V03.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v28.com"
         }
       },
       "packet_encoding": ""
     },
     {
       "type": "vless",
-      "tag": "N7720151370 § 59",
-      "server": "SpeeDTeST.OrG",
+      "tag": "N7427777546 § 58",
+      "server": "SpeedTest.net",
       "server_port": 80,
-      "uuid": "ad434f1b-7e0b-4077-8b6a-445ab65ff267",
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
       "transport": {
         "type": "ws",
         "headers": {
-          "Host": "WwW.SpeedTest.Net.WhiteBer.InsisTom.D6625996.V20.SiMansaNaT.Ir."
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v27.com"
         }
       },
       "packet_encoding": ""
     },
     {
-      "type": "dns",
-      "tag": "dns-out"
+      "type": "vless",
+      "tag": "N7702150338 § 59",
+      "server": "SpeedTest.net",
+      "server_port": 80,
+      "uuid": "349ece52-713d-4955-b8c7-5874b4906235",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v02.com"
+        }
+      },
+      "packet_encoding": ""
     },
     {
       "type": "direct",
       "tag": "direct"
     },
     {
-      "type": "direct",
-      "tag": "direct-fragment"
-    },
-    {
-      "type": "direct",
-      "tag": "bypass"
+      "type": "dns",
+      "tag": "dns-out"
     },
     {
       "type": "block",
@@ -1070,38 +1326,197 @@
     }
   ],
   "route": {
-    "rules": [
+    "rule_set": [
       {
-        "inbound": "dns-in",
-        "outbound": "dns-out"
+        "tag": "geosite-social",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-social.srs",
+        "download_detour": "direct"
       },
       {
+        "tag": "CATEGORY-ADS",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "GEOIP-IR",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "GEOSITE-IR",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "geosite-nsfw",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-nsfw.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "GEOSITE-CN",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "GEOLOCATION-!CN",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+        "download_detour": "direct"
+      }
+    ],
+    "rules": [
+      {
+        "rule_set": "geosite-social",
+        "outbound": "🚀 Select"
+      },
+      {
+        "protocol": "dns",
         "port": 53,
         "outbound": "dns-out"
       },
       {
-        "process_name": [
-          "Hiddify",
-          "Hiddify.exe",
-          "HiddifyCli",
-          "HiddifyCli.exe"
-        ],
-        "outbound": "bypass"
+        "network": "udp",
+        "port": 443,
+        "outbound": "🛑 Block"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "🎯 Direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "🚀 Select"
+      },
+      {
+        "rule_set": "CATEGORY-ADS",
+        "outbound": "🛑 Block"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "🎯 Direct"
+      },
+      {
+        "rule_set": "GEOIP-IR",
+        "outbound": "🎯 Direct"
+      },
+      {
+        "rule_set": "GEOSITE-IR",
+        "outbound": "🎯 Direct"
+      },
+      {
+        "rule_set": "geosite-nsfw",
+        "outbound": "🚀 Select"
       }
     ],
-    "rule_set": [],
-    "final": "select",
-    "auto_detect_interface": true,
-    "override_android_vpn": true
+    "final": "🐟 Fallback",
+    "auto_detect_interface": true
   },
-  "experimental": {
-    "cache_file": {
+  "dns": {
+    "servers": [
+      {
+        "tag": "remote-dns",
+        "address": "udp://8.8.8.8",
+        "address_resolver": "remote-resolver-dns",
+        "detour": "🚀 Select"
+      },
+      {
+        "tag": "local-dns",
+        "address": "https://223.5.5.5/dns-query",
+        "address_resolver": "resolver-dns",
+        "detour": "direct"
+      },
+      {
+        "tag": "resolver-dns",
+        "address": "223.5.5.5",
+        "detour": "direct"
+      },
+      {
+        "tag": "remote-resolver-dns",
+        "address": "8.8.8.8",
+        "detour": "🚀 Select"
+      },
+      {
+        "tag": "fakeip-dns",
+        "address": "fakeip"
+      },
+      {
+        "tag": "block",
+        "address": "rcode://success"
+      }
+    ],
+    "disable_cache": true,
+    "disable_expire": true,
+    "independent_cache": true,
+    "rules": [
+      {
+        "outbound": "any",
+        "disable_cache": true,
+        "server": "local-dns"
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "domain_suffix": [
+              ".lan",
+              ".localdomain",
+              ".example",
+              ".invalid",
+              ".localhost",
+              ".test",
+              ".local",
+              ".home.arpa",
+              ".msftconnecttest.com",
+              ".msftncsi.com"
+            ],
+            "invert": true
+          },
+          {
+            "query_type": [
+              "A",
+              "AAAA"
+            ]
+          }
+        ],
+        "server": "fakeip-dns"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "local-dns"
+      },
+      {
+        "clash_mode": "global",
+        "server": "remote-dns"
+      },
+      {
+        "rule_set": "GEOSITE-CN",
+        "server": "local-dns"
+      },
+      {
+        "rule_set": "GEOLOCATION-!CN",
+        "server": "remote-dns"
+      }
+    ],
+    "fakeip": {
       "enabled": true,
-      "path": "clash.db"
+      "inet4_range": "198.18.0.1/16",
+      "inet6_range": "fc00::/18"
     },
-    "clash_api": {
-      "external_controller": "127.0.0.1:9090",
-      "secret": ""
-    }
+    "final": "remote-dns",
+    "strategy": "ipv4_only"
   }
 }
