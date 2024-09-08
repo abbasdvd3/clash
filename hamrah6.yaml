@@ -1,10 +1,10 @@
-profile-title: base64:Ym94LUFiYmFzZHZkMTDwn5Om2YfZhdmHINqG24wg2K/YsdmI2LrZhw==
-profile-update-interval: 1
-subscription-userinfo: upload=7000000; download=500000; total=10737418240000000; expire=2546249531
-support-url: https://github.com/abbasdvd3
-profile-web-page-url: https://github.com/abbasdvd3
-Traffic consumption device: https://db2.laomoe.com/  
-Current IP: https://api.leyz.top/ip/
+# profile-title: base64:Ym94LUFiYmFzZHZkMTDwn5Om2YfZhdmHINqG24wg2K/YsdmI2LrZhw==
+# profile-update-interval: 1
+# subscription-userinfo: upload=7000000; download=500000; total=10737418240000000; expire=2546249531
+# support-url: https://github.com/abbasdvd3
+# profile-web-page-url: https://github.com/abbasdvd3
+# Traffic consumption device: https://db2.laomoe.com/  
+# Current IP: https://api.leyz.top/ip/
 
 
 port: 7892
@@ -17,7 +17,7 @@ ipv6: false
 log-level: info
 find-process-mode: always
 enable-process: true
-unified-delay: true
+unified-delay: false
 keep-alive-interval: 15
 tcp-concurrent: true
 geodata-mode: true
@@ -42,7 +42,7 @@ experimental:
   quic-go-disable-gso: false
   quic-go-disable-ecn: false
 sniffer:
-  enable: true
+  enable: false
   sniff:
     HTTP:
       ports: [80, 8080-8880]
@@ -104,7 +104,7 @@ dns:
 proxies:
 proxy-groups:
   - name: Proxy
-    type: select
+    type: url-test
     use: 
     proxies:
       - Proxy1
@@ -117,9 +117,7 @@ proxy-groups:
       - Auto
   - name: Auto
     type: url-test
-    interval: 180
-    tolerance: 50
-    url: https://t1.geigei.gq
+    exclude-filter: Expire
     use: 
       - Subscription-1
    #   - Subscription-2
@@ -131,18 +129,13 @@ proxy-groups:
       
   - name: fallback
     type: fallback
-    interval: 180
-  #  tolerance: 100
-    url: https://t1.geigei.gq
-   # filter: ""
+    exclude-filter: Expire
     proxies:
       - Geo-HK
       
   - name: Geo-HK
     type: fallback
-    interval: 180
-  #  tolerance: 100
-    url: https://t1.geigei.gq
+    exclude-filter: Expire
    # filter: ""
     use:
       - Subscription-1
@@ -155,18 +148,12 @@ proxy-groups:
       
   - name: Geo-TW
     type: url-test
-    interval: 180
-    tolerance: 50
-    url: https://t1.geigei.gq
     proxies:
       - Geo-SG
       - Geo-DE
 
   - name: Geo-DE
     type: url-test
-    interval: 180
-    tolerance: 50
-    url: https://t1.geigei.gq
     proxies: 
       - Geo-HK
       - Geo-SG
@@ -176,10 +163,8 @@ proxy-groups:
     
   - name: Geo-SG
     type: url-test
-    interval: 180
-    tolerance: 50
-    url: https://t1.geigei.gq
     filter: "HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国"
+    exclude-filter: Expire
     use: 
       - Subscription-1
     #  - Subscription-2
@@ -190,10 +175,8 @@ proxy-groups:
       - Subscription-7
   - name: Geo-JP
     type: url-test
-    interval: 180
-    tolerance: 50
-    url: https://t1.geigei.gq
     filter: "Japan|JP|日本"
+    exclude-filter: Expire
     use: 
       - Subscription-1
    #   - Subscription-2
@@ -204,10 +187,8 @@ proxy-groups:
       - Subscription-7
   - name: Geo-US
     type: url-test
-    interval: 180
-    tolerance: 50
-    url: https://t1.geigei.gq
     filter: "America|United States|US|美国"
+    exclude-filter: Expire
     use: 
       - Subscription-1
       - Subscription-2
@@ -219,10 +200,8 @@ proxy-groups:
       
   - name: Geo-CN
     type: url-test
-    interval: 180
-    tolerance: 50
-    url: https://t1.geigei.gq
     filter: "China|CN|中国"
+    exclude-filter: Expire
     use: 
       - Subscription-7
       - Subscription-6
@@ -242,7 +221,7 @@ proxy-groups:
       - Proxy
 
   - name: DNS-Proxy
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
@@ -254,11 +233,9 @@ proxy-groups:
       - Geo-US
       - Geo-DE
       - Geo-CN
-      - DIRECT
-      - Block
 
   - name: Netflix
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
@@ -276,28 +253,28 @@ proxy-groups:
       - DIRECT
 
   - name: Social
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
       - Auto
 
   - name: GlobalTV
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
       - Auto
 
   - name: YouTube
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
       - Auto
 
   - name: Spotify
-    type: select
+    type: url-test
     use: 
     proxies: 
       - Proxy
@@ -319,7 +296,8 @@ proxy-groups:
       - Proxy
   - name: Mismatch
     type: select
-    udp: true
+    exclude-filter: Expire
+#    udp: true
     use: 
       - Subscription-7
       - Subscription-6
@@ -342,7 +320,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/Clash.yaml" 
     path: providers6/Subscription-1.yaml
     interval: 600
-    udp: true
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 300
@@ -354,7 +332,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/master/providers/providers64" 
     path: providers6/Subscription-2.yaml
     interval: 600
-    udp: true
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 300
@@ -366,7 +344,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
     path: providers6/Subscription-3.yaml
     interval: 600
-    udp: true
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 300
@@ -378,7 +356,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml" 
     path: providers6/Subscription-4.yaml
     interval: 600
-    udp: true
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 300
@@ -390,7 +368,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/combine.yaml" 
     path: providers6/Subscription-5.yaml
     interval: 600
-    udp: true
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 300
@@ -402,7 +380,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml" 
     path: providers6/Subscription-6.yaml
     interval: 600
-    udp: true
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 300
@@ -414,7 +392,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/dongchengjie/airport/main/subs/merged/tested_within.yaml" 
     path: providers6/Subscription-7.yaml
     interval: 600
-    udp: true
+    exclude-filter: Expire
     health-check:
       enable: true
       interval: 300
