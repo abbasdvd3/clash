@@ -26094,8 +26094,16 @@
   "route": {
     "rules": [
       {
-        "inbound": "dns-in",
-        "outbound": "dns-out"
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "Direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "Global",
+        "outbound": "select"
       },
       {
         "port": 53,
