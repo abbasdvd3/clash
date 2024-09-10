@@ -97,22 +97,22 @@ dns:
   ipv6: false
   ipv6-timeout: 300
   prefer-h3: false
-  listen: :1053
+  listen: 127.0.0.1:1053
   enhanced-mode: fake-ip
   fake-ip-filter:
   - '*.lan'
   nameserver-policy:
-    "www.baidu.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
-    "www.instagram.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
-    "+.internal.crop.com": [10.0.0.1, 114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
-    "www.baidu.com,+.google.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
-    "geosite:private,apple": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
-    "geosite:private,apple": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
+    "www.baidu.com": [114.114.114.114, 223.5.5.5]
+    "www.instagram.com": [114.114.114.114, 223.5.5.5]
+    "+.internal.crop.com": [10.0.0.1, 114.114.114.114, 223.5.5.5]
+    "www.baidu.com,+.google.com": [114.114.114.114, 223.5.5.5]
+    "geosite:private,apple": [114.114.114.114, 223.5.5.5]
+    "geosite:private,apple": [114.114.114.114, 223.5.5.5]
     "geosite:category-ads-all": rcode://success
-    "+.pornhub.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
-    "+.sxyprn.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
-    "+.spankbang.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
-    "+.samfw.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query, tls://223.5.5.5:853]
+    "+.pornhub.com": [114.114.114.114, 223.5.5.5]
+    "+.sxyprn.com": [114.114.114.114, 223.5.5.5]
+    "+.spankbang.com": [114.114.114.114, 223.5.5.5]
+    "+.samfw.com": [114.114.114.114, 223.5.5.5]
     GEOSITE:google,github: 8.8.8.8
   nameserver:
   - 217.218.155.155:53
@@ -120,16 +120,11 @@ dns:
   - udp://10.202.10.102:53
   - udp://8.8.8.8:53
   - udp://223.5.5.5:53
-  - https://45.90.28.55/dns-query
-  - 45.90.28.0:53
-  - udp://45.90.30.0:53
-  - https://anycast.dns.nextdns.io/dns-query
-  - quic://dns-unfiltered.adguard.com:784
   proxy-server-nameserver:
   - https://dns.google/dns-query
   - tls://one.one.one.one
   fallback-filter:
-    geoip: true
+    geoip: false
     geoip-code: ir
     geosite:
   #  - gfw
