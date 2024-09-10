@@ -372,15 +372,14 @@ proxy-groups:
   - name: PROXY
     type: select
     icon: 
-    include-all-providers: true
+  #  include-all-providers: true
     exclude-filter: Expire
     disable-udp: true
     proxies:
       - AUTO
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
+      - AIGC
       - US AUTO
+
   - name: AUTO
     type: url-test
     interval: 300
@@ -389,16 +388,18 @@ proxy-groups:
     exclude-filter: Expire
     tolerance: 50
     lazy: true
+
   - name: AIGC
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
-    type: url-test
-    interval: 300
+    type: falback
+    interval: 180
     include-all-providers: true
     proxies:
       - SG AUTO
       - JP AUTO
       - US AUTO
       - HK AUTO
+
   - name: Telegram
     type: url-test
     interval: 300
@@ -479,25 +480,25 @@ rules:
   - "RULE-SET,social,PROXY"
   - "RULE-SET,google,Google"
   - "RULE-SET,github,PROXY"
-  - "RULE-SET,Category-ads-all,REJECT"
+#  - "RULE-SET,Category-ads-all,REJECT"
   - "RULE-SET,facebook,PROXY"
   - "RULE-SET,twitter,PROXY"
   - "RULE-SET,telegram,Telegram"
   - "RULE-SET,private,DIRECT,no-resolve"
   - "RULE-SET,apps,DIRECT"
-  - "RULE-SET,ads,REJECT"
-  - "RULE-SET,malware,REJECT"
-  - "RULE-SET,phishing,REJECT"
-  - "RULE-SET,cryptominers,REJECT"
+#  - "RULE-SET,ads,REJECT"
+#  - "RULE-SET,malware,REJECT"
+#  - "RULE-SET,phishing,REJECT"
+#  - "RULE-SET,cryptominers,REJECT"
   - "RULE-SET,ir,DIRECT"
   - "RULE-SET,ircidr,DIRECT"
   - "RULE-SET,irasn,DIRECT"
   - "RULE-SET,private1,DIRECT"
-  - "RULE-SET,bing,AIGC"
-  - "RULE-SET,copilot,AIGC"
-  - "RULE-SET,bard,AIGC"
-  - "RULE-SET,openai,AIGC"
-  - "RULE-SET,claude,AIGC"
+  - "RULE-SET,bing,PROXY"
+  - "RULE-SET,copilot,PROXY"
+  - "RULE-SET,bard,PROXY"
+  - "RULE-SET,openai,PROXY"
+  - "RULE-SET,claude,PROXY"
   - "RULE-SET,steam,PROXY"
   - "RULE-SET,telegram_domain,Telegram"
   - "RULE-SET,telegram_ip,Telegram"
