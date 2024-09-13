@@ -9,7 +9,7 @@ proxy-providers:
   #    additional-prefix: "[provider1]"
 
   provider2:
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/all"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/r"
     path: "mohimo/provider2.yaml"
     type: http
     interval: 80
@@ -395,59 +395,6 @@ proxy-groups:
     interval: 180
     include-all-providers: true
     proxies:
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-      - HK AUTO
-
-  - name: Telegram
-    type: url-test
-    interval: 300
-    include-all-providers: true
-    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png    
-    proxies:
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-  - name: Google
-    type: url-test
-    interval: 300
-    include-all-providers: true
-    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
-    proxies:
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
-      - US AUTO
-
-  - name: HK AUTO
-    tolerance: 50
-    lazy: true
-    type: url-test
-    interval: 300
-    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
-    include-all-providers: true
-    exclude-filter: Expire
-    filter: (?i)香港|Hong Kong|HK|🇭🇰
-    
-  - name: SG AUTO
-    tolerance: 50
-    lazy: true
-    type: url-test
-    interval: 300
-    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
-    include-all-providers: true
-    exclude-filter: Expire
-    filter: (?i)新加坡|Singapore|🇸🇬
-    
-  - name: JP AUTO
-    type: url-test
-    interval: 300
-    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
-    include-all-providers: true
-    exclude-filter: Expire
-    filter: (?i)日本|Japan|🇯🇵
     
   - name: US AUTO
     tolerance: 50
@@ -462,28 +409,27 @@ proxy-groups:
   - name: GLOBAL.select
     type: select
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
-    include-all-providers: true
+#    include-all-providers: true
     exclude-filter: Expire
     proxies:
       - AUTO
-      - HK AUTO
-      - SG AUTO
-      - JP AUTO
+      - AIGC
       - US AUTO
     
 rules:
+  - "IP-CIDR,10.10.0.0/16,PROXY"
   - "RULE-SET,nsfw,PROXY"
   - "DOMAIN-SUFFIX,pornhub.com,PROXY"
   - "DOMAIN-SUFFIX,pornhubpremium.com,PROXY"
-  - "DOMAIN-SUFFIX,pornhub.com,Google"
-  - "DOMAIN-SUFFIX,pornhubpremium.com,Google"
+  - "DOMAIN-SUFFIX,pornhub.com,PROXY"
+  - "DOMAIN-SUFFIX,pornhubpremium.com,PROXY"
   - "RULE-SET,social,PROXY"
-  - "RULE-SET,google,Google"
+  - "RULE-SET,google,PROXY"
   - "RULE-SET,github,PROXY"
 #  - "RULE-SET,Category-ads-all,REJECT"
   - "RULE-SET,facebook,PROXY"
   - "RULE-SET,twitter,PROXY"
-  - "RULE-SET,telegram,Telegram"
+  - "RULE-SET,telegram,PROXY"
   - "RULE-SET,private,DIRECT,no-resolve"
   - "RULE-SET,apps,DIRECT"
 #  - "RULE-SET,ads,REJECT"
@@ -500,10 +446,10 @@ rules:
   - "RULE-SET,openai,PROXY"
   - "RULE-SET,claude,PROXY"
   - "RULE-SET,steam,PROXY"
-  - "RULE-SET,telegram_domain,Telegram"
-  - "RULE-SET,telegram_ip,Telegram"
-  - "RULE-SET,google_domain,Google"
-  - "RULE-SET,google_ip,Google"
+  - "RULE-SET,telegram_domain,PROXY"
+  - "RULE-SET,telegram_ip,PROXY"
+  - "RULE-SET,google_domain,PROXY"
+  - "RULE-SET,google_ip,PROXY"
   - "RULE-SET,geolocation-!cn,PROXY"
   - "RULE-SET,cn_domain,DIRECT"
   - "RULE-SET,cn_ip,DIRECT"
