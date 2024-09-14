@@ -1,6 +1,15 @@
 proxies:
 
 proxy-groups:
+  - name: PING
+    type: url-test
+    interval: 99
+    timeout: 3
+    url: https://www.google.com/
+    lazy: true
+    tolerance: 99
+    proxies:
+      - BEST-PING
   - name: BEST-PING
     type: url-test
     interval: 99
@@ -8,7 +17,6 @@ proxy-groups:
     url: https://www.google.com/
     lazy: true
     tolerance: 99
-    udp: true
     proxies:
     use: 
       - provider1
@@ -19,9 +27,8 @@ proxy-groups:
     url: https://fiber.google.com/speedtest/generate_204
     lazy: true
     tolerance: 99
-    udp: true
     proxies:
-      - BEST-PING
+      - PING
 proxy-providers:
   provider1:
     type: http
