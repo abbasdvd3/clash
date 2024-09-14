@@ -5,28 +5,26 @@ proxy-groups:
     type: url-test
     interval: 99
     timeout: 3
-    url: https://www.google.com/
-    lazy: true
-    tolerance: 99
+    url: https://fiber.google.com/speedtest/generate_204
+    tolerance: 9
     proxies:
       - BEST-PING
   - name: BEST-PING
     type: url-test
     interval: 99
     timeout: 3
-    url: https://www.google.com/
-    lazy: true
+    url: https://fiber.google.com/speedtest/generate_204
     tolerance: 99
     proxies:
     use: 
       - provider1
+      - provider2
   - name: PROXY
     type: url-test
     interval: 99
     timeout: 3
     url: https://fiber.google.com/speedtest/generate_204
-    lazy: true
-    tolerance: 99
+    tolerance: 0
     proxies:
       - PING
 proxy-providers:
@@ -41,7 +39,17 @@ proxy-providers:
       interval: 30
       lazy: true
       url: https://fiber.google.com/speedtest/generate_204
-
+  provider2:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/P1"    
+    path: Prem/provider1.yaml
+    interval: 8
+    exclude-filter: Expire
+    health-check:
+      enable: true
+      interval: 30
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
 rule-providers:
   ir:
     type: http
