@@ -376,7 +376,7 @@ proxy-groups:
     exclude-filter: Expire
     disable-udp: true
     proxies:
-      - AUTO
+      - GLOBAL.select
       - AIGC
       - US AUTO
 
@@ -407,14 +407,15 @@ proxy-groups:
     filter: (?i)美国|USA|🇺🇸
     
   - name: GLOBAL.select
-    type: select
+    type: url-test
+    interval: 300
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 #    include-all-providers: true
     exclude-filter: Expire
     proxies:
       - AUTO
-      - AIGC
-      - US AUTO
+     # - AIGC
+    #  - US AUTO
     
 rules:
   - "IP-CIDR,10.10.0.0/16,PROXY"
