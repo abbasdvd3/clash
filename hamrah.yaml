@@ -57,13 +57,6 @@ sniffer:
     - 80
     - 443
     - 8000-9000
-
-
-tunnels:
-- network: [tcp, udp]
-  address: 127.0.0.1:7880
-  target: 8.8.8.8:53
-  proxy: 🐝
     
 #system # gvisor / lwip
 tun:
@@ -21980,67 +21973,6 @@ proxy-groups:
     include-all-providers: true
     proxies: []
 
-  - name: google
-    type: select
-    tolerance: 99
-    interval: 300
- #   url: https://www.youtube.com/generate_204
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/google.svg
-    include-all-proxies: true
-    include-all-providers: true
-    proxies: [🅿️🅱️, url-test, fallback, select, America]
-
-  - name: youtube
-    type: select
- #   tolerance: 99
-#    interval: 300
- #   url: https://www.youtube.com/generate_204
-    hidden: false
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/youtube.svg
-    include-all-proxies: true
-    include-all-providers: true
-    proxies: [🅿️🅱️, url-test, fallback, select, America]
-
-  - name: Social
-    type: select
- #   tolerance: 99
-#    interval: 300
- #   url: https://www.youtube.com/generate_204
-    hidden: false
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/telegram.svg
-    include-all-proxies: true
-    include-all-providers: true
-    proxies: [🅿️🅱️, url-test, fallback, select, America]
-
-  - name: microsoft
-    type: select
- #   tolerance: 99
-#    interval: 300
- #   url: https://www.youtube.com/generate_204
-    hidden: false
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/microsoft.svg
-    include-all-proxies: true
-    include-all-providers: true
-    proxies: [🅿️🅱️, url-test, fallback, select, America]
-
-  - name: apple
-    type: select
- #   tolerance: 99
-#    interval: 300
- #   url: https://www.youtube.com/generate_204
-    hidden: false
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/apple.svg
-   # include-all-proxies: true
-#    include-all-providers: true
-    proxies: [🅿️🅱️, url-test, fallback, select, America]
-
-  - name: 🎯
-    type: select
-    udp: false
-    hidden: false
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/bug.svg
-    proxies: [DIRECT, url-test, fallback]
-
   - name: fallback
     type: fallback
     exclude-filter: Expire
@@ -22051,12 +21983,12 @@ proxy-groups:
     include-all-providers: true
     proxies: []
 
-  - name: 🆎 AdBlock
+  - name: 🎯
     type: select
     udp: false
     hidden: false
-    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/block.svg
-    proxies: [REJECT, DIRECT, proxy, url-test, fallback]
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/bug.svg
+    proxies: [DIRECT, url-test, fallback]
 
   - name: 🐝
     type: select
@@ -22078,51 +22010,39 @@ proxy-groups:
     include-all-providers: true
     proxies: []
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
-
-  - name: select
-    type: url-test
-    tolerance: 50
-    interval: 300
-    exclude-filter: Expire
-    include-all-proxies: true
-    include-all-providers: true
-    url: http://www.gstatic.com/generate_204
-    icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/iran.png
-    proxies:
-#    use: [s]
 proxy-providers:
   h:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/hamrah" # https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml 
-    interval: 600
+    interval: 60
     path: H/h.yaml
     exclude-filter: Expire
     health-check:
       enable: true
-      interval: 300
+      interval: 30
       url: https://www.youtube.com/generate_204
       lazy: true 
   i:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/i" # https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml 
-    interval: 600
+    interval: 60
     path: H/i.yaml
     exclude-filter: Expire
     health-check:
       enable: true
-      interval: 300
+      interval: 30
       url: https://www.youtube.com/generate_204
       lazy: true 
 
   s:
     type: http
     url:  "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
-    interval: 600
+    interval: 60
     path: H/s.yaml
     exclude-filter: Expire
     health-check:
       enable: true
-      interval: 300
+      interval: 30
       url: https://www.youtube.com/generate_204
       lazy: true 
 rule-providers:
@@ -22328,8 +22248,8 @@ rules :
   - RULE-SET,ircidr,DIRECT
   - RULE-SET,irasn,DIRECT
   - RULE-SET,private,DIRECT,no-resolve
-  - RULE-SET,ads,REJECT
-  - RULE-SET,malware,REJECT
+ # - RULE-SET,ads,REJECT
+#  - RULE-SET,malware,REJECT
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
   
@@ -22341,9 +22261,9 @@ rules :
  # - RULE-SET,category-ads-all,REJECT
 #  - RULE-SET,ChinaDNS,REJECT
 #  - RULE-SET,DNS,REJECT
-#  - RULE-SET,AWA,REJECT
+  - RULE-SET,AWA,REJECT
 #  - RULE-SET,block,REJECT
-  - RULE-SET,Adblock1,REJECT
+#  - RULE-SET,Adblock1,REJECT
 #  - RULE-SET,DNS2,REJECT
 #  - RULE-SET,AdGuardSDNSFilterDirect,REJECT
 #  - RULE-SET,BlockHttpDNS,REJECT
@@ -22372,96 +22292,96 @@ rules :
   - IP-CIDR,10.10.0.0/32,proxy
   - IP-CIDR,10.20.0.0/32,proxy
 
-  - PROCESS-NAME,com.sec.location.nsflp2,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.location,🆎 AdBlock
-  - PROCESS-NAME,com.android.localtransport,🆎 AdBlock
-  - PROCESS-NAME,com.google.android.gms.location.history,🆎 AdBlock
-  - PROCESS-NAME,com.sec.location.nsflp2,🆎 AdBlock
-  - PROCESS-NAME,com.android.location.fused,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.messaging,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.app.telephonyui,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.smartcallprovider,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.intellivoiceservice,🆎 AdBlock
-  - PROCESS-NAME,com.android.settings,🆎 AdBlock
-  - PROCESS-NAME,com.sec.imsservice,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.messaging,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.app.telephonyui,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.smartcallprovider,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.intellivoiceservice,🆎 AdBlock
-  - PROCESS-NAME,com.android.settings,🆎 AdBlock
-  - PROCESS-NAME,com.sec.imsservice,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.mobileservice,🆎 AdBlock
-  - PROCESS-NAME,com.sec.android.app.launcher,🆎 AdBlock
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT
+  - PROCESS-NAME,com.samsung.android.location,REJECT
+  - PROCESS-NAME,com.android.localtransport,REJECT
+  - PROCESS-NAME,com.google.android.gms.location.history,REJECT
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT
+  - PROCESS-NAME,com.android.location.fused,REJECT
+  - PROCESS-NAME,com.samsung.android.messaging,REJECT
+  - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
+  - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
+  - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
+#  - PROCESS-NAME,com.android.settings,REJECT
+  - PROCESS-NAME,com.sec.imsservice,REJECT
+  - PROCESS-NAME,com.samsung.android.messaging,REJECT
+  - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
+  - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
+  - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
+#  - PROCESS-NAME,com.android.settings,REJECT
+  - PROCESS-NAME,com.sec.imsservice,REJECT
+  - PROCESS-NAME,com.samsung.android.mobileservice,REJECT
+  - PROCESS-NAME,com.sec.android.app.launcher,REJECT
   - PROCESS-NAME,com.google.android.partnersetup,proxy
-  - PROCESS-NAME,com.knox.vpn.proxyhandler,🆎 AdBlock
-  - PROCESS-NAME,com.energysh.quickarte,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.dqagent,🆎 AdBlock
-  - PROCESS-NAME,com.google.android.feedback,🆎 AdBlock
+  - PROCESS-NAME,com.knox.vpn.proxyhandler,REJECT
+  - PROCESS-NAME,com.energysh.quickarte,REJECT
+  - PROCESS-NAME,com.samsung.android.dqagent,REJECT
+  - PROCESS-NAME,com.google.android.feedback,REJECT
   - PROCESS-NAME,com.instagold.android,Social,no-resolve
-  - PROCESS-NAME,com.samsung.android.app.appsedge,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.honeyboard,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.lool,🆎 AdBlock
-  - PROCESS-NAME,com.sec.mhs.smarttethering,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.mdx.kit,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.networkdiagnostic,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.app.highlightplayer,🆎 AdBlock
-  - PROCESS-NAME,com.sec.imsservice,🆎 AdBlock
-  - PROCESS-NAME,com.themselves.soulgen,🆎 AdBlock
-  - PROCESS-NAME,com.sec.vsim.ericssonnsds.webapp,🆎 AdBlock
-  - PROCESS-NAME,com.sec.enterprise.knox.cloudmdm.smdms,🆎 AdBlock
-  - PROCESS-NAME,com.android.proxyhandler,🆎 AdBlock
-  - PROCESS-NAME,com.sec.android.app.samsungapps,🆎 AdBlock
-  - PROCESS-NAME,com.sec.android.diagmonagent,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.klmsagent,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.accessibility,🆎 AdBlock
-  - PROCESS-NAME,com.android.dynsystem,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.themestore,🆎 AdBlock
-  - PROCESS-NAME,com.sec.android.app.vepreload,🆎 AdBlock
-  - PROCESS-NAME,com.sec.android.app.clockpackage,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.app.ledcoverdream,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.app.galaxyfinder,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.smartmirroring,🆎 AdBlock
-  - PROCESS-NAME,com.sec.android.emergencylauncher,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.app.cocktailbarservice,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.allshare.service.fileshare,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.storyservice,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.messaging,🆎 AdBlock
-  - PROCESS-NAME,com.sec.android.app.safetyassurance,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.app.soundpicker,🆎 AdBlock
-  - PROCESS-NAME,com.sec.android.widgetapp.samsungapps,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.app.homestar,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.app.telephonyui,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.dialer,🆎 AdBlock
-  - PROCESS-NAME,com.sec.factory,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.app.omcagent,🆎 AdBlock
-  - PROCESS-NAME,com.sec.android.app.DataCreate,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.aircommandmanager,🆎 AdBlock
-  - PROCESS-NAME,com.sec.android.app.soundalive,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.sdk.handwriting,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.app.simplesharing,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.safetyinformation,🆎 AdBlock
-  - PROCESS-NAME,com.android.pacprocessor,🆎 AdBlock
-  - PROCESS-NAME,com.sec.android.easyMover.Agent,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.SettingsReceiver,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.ucs.agent.boot,🆎 AdBlock
-  - PROCESS-NAME,com.android.nfc,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.service.aircommand,🆎 AdBlock
-  - PROCESS-NAME,com.sec.app.RilErrorNotifier,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.bbc.bbcagent,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.provider.filterprovider,🆎 AdBlock
-  - PROCESS-NAME,com.sec.vsimservice,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.provider.stickerprovider,🆎 AdBlock
-  - PROCESS-NAME,com.sec.android.app.popupcalculator,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.allshare.service.mediashare,🆎 AdBlock
-  - PROCESS-NAME,com.android.bluetooth,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.crane,🆎 AdBlock
-  - PROCESS-NAME,com.sec.android.app.applinker,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.smartcallprovider,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.rubin.app,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.sm.policy,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.knox.attestation,🆎 AdBlock
-  - PROCESS-NAME,com.android.phone,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.samsungpositioning,🆎 AdBlock
-  - PROCESS-NAME,com.sec.android.app.ocrservice,🆎 AdBlock
-  - PROCESS-NAME,com.samsung.android.sdm.config,🆎 AdBlock
+  - PROCESS-NAME,com.samsung.android.app.appsedge,REJECT
+  - PROCESS-NAME,com.samsung.android.honeyboard,REJECT
+  - PROCESS-NAME,com.samsung.android.lool,REJECT
+  - PROCESS-NAME,com.sec.mhs.smarttethering,REJECT
+  - PROCESS-NAME,com.samsung.android.mdx.kit,REJECT
+  - PROCESS-NAME,com.samsung.android.networkdiagnostic,REJECT
+  - PROCESS-NAME,com.samsung.app.highlightplayer,REJECT
+  - PROCESS-NAME,com.sec.imsservice,REJECT
+  - PROCESS-NAME,com.themselves.soulgen,REJECT
+  - PROCESS-NAME,com.sec.vsim.ericssonnsds.webapp,REJECT
+  - PROCESS-NAME,com.sec.enterprise.knox.cloudmdm.smdms,REJECT
+  - PROCESS-NAME,com.android.proxyhandler,REJECT
+  - PROCESS-NAME,com.sec.android.app.samsungapps,REJECT
+  - PROCESS-NAME,com.sec.android.diagmonagent,REJECT
+  - PROCESS-NAME,com.samsung.klmsagent,REJECT
+  - PROCESS-NAME,com.samsung.accessibility,REJECT
+  - PROCESS-NAME,com.android.dynsystem,REJECT
+  - PROCESS-NAME,com.samsung.android.themestore,REJECT
+  - PROCESS-NAME,com.sec.android.app.vepreload,REJECT
+  - PROCESS-NAME,com.sec.android.app.clockpackage,REJECT
+  - PROCESS-NAME,com.samsung.android.app.ledcoverdream,REJECT
+  - PROCESS-NAME,com.samsung.android.app.galaxyfinder,REJECT
+  - PROCESS-NAME,com.samsung.android.smartmirroring,REJECT
+  - PROCESS-NAME,com.sec.android.emergencylauncher,REJECT
+  - PROCESS-NAME,com.samsung.android.app.cocktailbarservice,REJECT
+  - PROCESS-NAME,com.samsung.android.allshare.service.fileshare,REJECT
+  - PROCESS-NAME,com.samsung.storyservice,REJECT
+  - PROCESS-NAME,com.samsung.android.messaging,REJECT
+  - PROCESS-NAME,com.sec.android.app.safetyassurance,REJECT
+  - PROCESS-NAME,com.samsung.android.app.soundpicker,REJECT
+  - PROCESS-NAME,com.sec.android.widgetapp.samsungapps,REJECT
+  - PROCESS-NAME,com.samsung.android.app.homestar,REJECT
+  - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
+  - PROCESS-NAME,com.samsung.android.dialer,REJECT
+  - PROCESS-NAME,com.sec.factory,REJECT
+  - PROCESS-NAME,com.samsung.android.app.omcagent,REJECT
+  - PROCESS-NAME,com.sec.android.app.DataCreate,REJECT
+  - PROCESS-NAME,com.samsung.android.aircommandmanager,REJECT
+  - PROCESS-NAME,com.sec.android.app.soundalive,REJECT
+  - PROCESS-NAME,com.samsung.android.sdk.handwriting,REJECT
+  - PROCESS-NAME,com.samsung.android.app.simplesharing,REJECT
+  - PROCESS-NAME,com.samsung.safetyinformation,REJECT
+  - PROCESS-NAME,com.android.pacprocessor,REJECT
+  - PROCESS-NAME,com.sec.android.easyMover.Agent,REJECT
+  - PROCESS-NAME,com.samsung.android.SettingsReceiver,REJECT
+  - PROCESS-NAME,com.samsung.ucs.agent.boot,REJECT
+  - PROCESS-NAME,com.android.nfc,REJECT
+  - PROCESS-NAME,com.samsung.android.service.aircommand,REJECT
+  - PROCESS-NAME,com.sec.app.RilErrorNotifier,REJECT
+  - PROCESS-NAME,com.samsung.android.bbc.bbcagent,REJECT
+  - PROCESS-NAME,com.samsung.android.provider.filterprovider,REJECT
+  - PROCESS-NAME,com.sec.vsimservice,REJECT
+  - PROCESS-NAME,com.samsung.android.provider.stickerprovider,REJECT
+  - PROCESS-NAME,com.sec.android.app.popupcalculator,REJECT
+  - PROCESS-NAME,com.samsung.android.allshare.service.mediashare,REJECT
+  - PROCESS-NAME,com.android.bluetooth,REJECT
+  - PROCESS-NAME,com.samsung.crane,REJECT
+  - PROCESS-NAME,com.sec.android.app.applinker,REJECT
+  - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
+  - PROCESS-NAME,com.samsung.android.rubin.app,REJECT
+  - PROCESS-NAME,com.samsung.android.sm.policy,REJECT
+  - PROCESS-NAME,com.samsung.android.knox.attestation,REJECT
+  - PROCESS-NAME,com.android.phone,REJECT
+  - PROCESS-NAME,com.samsung.android.samsungpositioning,REJECT
+  - PROCESS-NAME,com.sec.android.app.ocrservice,REJECT
+  - PROCESS-NAME,com.samsung.android.sdm.config,REJECT
   - MATCH,🐝
