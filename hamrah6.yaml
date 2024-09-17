@@ -66,41 +66,6 @@ profile:
   store-selected: true
   tracing: true
 
-dns:
-  enable: true
-  listen: 0.0.0.0:1053
-  ipv6: true
-  default-nameserver:
-    - 10.202.10.202
-    - 78.157.42.100
-    - 223.5.5.5
-    - 119.29.29.29
-    - 1.1.1.1
-    - 8.8.8.8
-  enhanced-mode: fake-ip
-  fake-ip-filter:
-    - "*.lan"
-    - "*.local"
-  nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://dns.cfiec.net/dns-query
-    - https://doh.pub/dns-query
-    - https://dns.ipv6dns.com/dns-query
-    - https://rubyfish.cn/dns-query
-    - https://all.dns.mullvad.net/dns-query
-    - https://unfiltered.adguard-dns.com/dns-query
-  fallback:
-    - https://cloudflare-dns.com/dns-query
-    - https://dns.google/dns-query
-    - https://doh.dns.sb/dns-query
-    - https://dns.twnic.tw/dns-query
-  fallback-filter:
-    ipcidr:
-      - 0.0.0.0/32
-      - 100.64.0.0/10
-      - 127.0.0.0/8
-      - 240.0.0.0/4
-      - 255.255.255.255/32
 proxies:
 proxy-groups:
   - name: Proxy
@@ -813,22 +778,9 @@ rules:
   - GEOIP,private,DIRECT,no-resolve
   - RULE-SET,private,DIRECT,no-resolve
   - RULE-SET,apps,IR
-  - RULE-SET,ads,REJECT
-  - RULE-SET,malware,REJECT
-  - RULE-SET,phishing,REJECT
-  - RULE-SET,cryptominers,REJECT
-  - RULE-SET,ir,IR,no-resolve
-  - RULE-SET,ircidr,IR,no-resolve
-  - RULE-SET,irasn,IR,no-resolve
-  - RULE-SET,block,REJECT
-  - RULE-SET,AWA,REJECT
+
   - RULE-SET,IpinfoSpeedtest,SpeedTest
   - RULE-SET,UnBan,Proxy,no-resolve
-  - RULE-SET,BanAD,REJECT
-  - RULE-SET,BanProgramAD,REJECT
-  - RULE-SET,BanEasyList,REJECT
-  - RULE-SET,BanEasyListChina,REJECT
-  - RULE-SET,BanEasyPrivacy,REJECT
   - RULE-SET,GoogleFCM,Proxy,no-resolve
   - RULE-SET,GoogleCN,Proxy,no-resolve
   - RULE-SET,SteamCN,IR
@@ -850,25 +802,15 @@ rules:
   - RULE-SET,ChinaCompanyIp,IR
   - RULE-SET,Download,IR
   - RULE-SET,GoogleCNProxyIP,Proxy,no-resolve
-  - RULE-SET,DNS,REJECT
   - RULE-SET,GitHub,IR,no-resolve
-  - RULE-SET,AdGuardSDNSFilter,REJECT
-  - RULE-SET,BlockHttpDNS,REJECT
-  - RULE-SET,AdGuardSDNSFilterDirect,REJECT
-  - RULE-SET,Samsung,Proxy,no-resolve
-  - RULE-SET,ChinaDNS,REJECT
   - RULE-SET,cloudflare,Proxy,no-resolve
   - RULE-SET,Domestic,Proxy,no-resolve
-  - RULE-SET,Adblock1,REJECT
-  - RULE-SET,DNS2,REJECT
   - RULE-SET,SpeedTest,SpeedTest
-  - RULE-SET,category-ads-all,REJECT
   - RULE-SET,nsfw1,Social,no-resolve
   - RULE-SET,social,Social,no-resolve
   - RULE-SET,Google1,Proxy,no-resolve
   - RULE-SET,LocalAreaNetwork,DIRECT
   - RULE-SET,iran_other,IR,no-resolve
-  - RULE-SET,iran_ads,REJECT
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
   - DOMAIN-SUFFIX,v2rayse.com,Proxy
   - DOMAIN-SUFFIX,cff.pw,Proxy
@@ -876,7 +818,6 @@ rules:
   - DOMAIN-SUFFIX,cfmem.com,Proxy
   - DOMAIN-SUFFIX,googlesyndication.com,Proxy,no-resolve
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
-  - GEOSITE,category-ads-all,REJECT
   - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
   - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
   - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
