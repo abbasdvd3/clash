@@ -97,12 +97,15 @@ dns:
   enable: true
   listen: 0.0.0.0:53
   cache-algorithm: arc
+  respect-rules: true
   ipv6: false
   prefer-h3: false
   default-nameserver:
     - 223.5.5.5
     - 114.114.114.114
   nameserver:
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
     - 223.5.5.5
     - 114.114.114.114
     - 119.29.29.29
@@ -113,10 +116,16 @@ dns:
     - udp://8.8.8.8:53
     - udp://223.5.5.5:53
   proxy-server-nameserver:
+    - https://120.53.53.53/dns-query
+    - https://223.5.5.5/dns-query
     - https://dns.google/dns-query
     - tls://one.one.one.one
+  nameserver-policy:
+    "rule-set:ir,private":
+      - https://120.53.53.53/dns-query
+      - https://223.5.5.5/dns-query
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  fake-ip-range: 198.18.0.0/16
   fake-ip-filter:
     - "*.lan"
     - "*.localdomain"
@@ -127,7 +136,6 @@ dns:
     - "*.local"
     - "*.home.arpa"
     - "+.msftconnecttest.com"
-
 
 proxies:
   - name: AE-3.28.156.112-0613|1.312MB
