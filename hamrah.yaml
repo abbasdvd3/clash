@@ -75,7 +75,7 @@ tun:
     - 1.0.0.1
 dns:
   enable: true
-  listen: 0.0.0.0:53
+  listen: 0.0.0.0:1053
   cache-algorithm: arc
   respect-rules: true
   ipv6: false
@@ -55548,7 +55548,7 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     dialer-proxy: proxy
     icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/ir.png
-    proxies: [fallback, url-test]
+    proxies: [url-test, fallback]
     
   - name: proxy
     type: select
@@ -55560,8 +55560,6 @@ proxy-groups:
     
   - name: url-test
     type: url-test
-    interval: 300
-#    tolerance: 50
     exclude-filter: Expire
     url: http://www.gstatic.com/generate_204
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
@@ -55572,7 +55570,6 @@ proxy-groups:
   - name: fallback
     type: fallback
     exclude-filter: Expire
-    interval: 180
     url: http://www.gstatic.com/generate_204
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
     include-all-proxies: true
@@ -55596,9 +55593,6 @@ proxy-groups:
     
   - name: America
     type: url-test
-    lazy: true
-    interval: 50
-    tolerance: 300
     exclude-filter: Expire
     url: http://www.gstatic.com/generate_204
     icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/usa.svg
@@ -55832,7 +55826,7 @@ rules :
   - DOMAIN-SUFFIX,cff.pw,proxy
   - DOMAIN-SUFFIX,vpnse.org,proxy
   - DOMAIN-SUFFIX,cfmem.com,proxy
-  - DST-PORT,80/8080/443/8443,proxy,no-resolve
+  - DST-PORT,80/8080/443/8443,proxy
   - IN-TYPE,inner,proxy
   - DOMAIN,ad.com,REJECT
   - DOMAIN-SUFFIX,google.com,proxy
@@ -55904,80 +55898,4 @@ rules :
   - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
   - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
   - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
-#  - PROCESS-NAME,com.android.settings,REJECT
-  - PROCESS-NAME,com.sec.imsservice,REJECT
-  - PROCESS-NAME,com.samsung.android.mobileservice,REJECT
-  - PROCESS-NAME,com.sec.android.app.launcher,REJECT
-  - PROCESS-NAME,com.google.android.partnersetup,proxy
-  - PROCESS-NAME,com.knox.vpn.proxyhandler,REJECT
-  - PROCESS-NAME,com.energysh.quickarte,REJECT
-  - PROCESS-NAME,com.samsung.android.dqagent,REJECT
-  - PROCESS-NAME,com.google.android.feedback,REJECT
-  - PROCESS-NAME,com.instagold.android,proxy
-  - PROCESS-NAME,com.samsung.android.app.appsedge,REJECT
-  - PROCESS-NAME,com.samsung.android.honeyboard,REJECT
-  - PROCESS-NAME,com.samsung.android.lool,REJECT
-  - PROCESS-NAME,com.sec.mhs.smarttethering,REJECT
-  - PROCESS-NAME,com.samsung.android.mdx.kit,REJECT
-  - PROCESS-NAME,com.samsung.android.networkdiagnostic,REJECT
-  - PROCESS-NAME,com.samsung.app.highlightplayer,REJECT
-  - PROCESS-NAME,com.sec.imsservice,REJECT
-  - PROCESS-NAME,com.themselves.soulgen,REJECT
-  - PROCESS-NAME,com.sec.vsim.ericssonnsds.webapp,REJECT
-  - PROCESS-NAME,com.sec.enterprise.knox.cloudmdm.smdms,REJECT
-  - PROCESS-NAME,com.android.proxyhandler,REJECT
-  - PROCESS-NAME,com.sec.android.app.samsungapps,REJECT
-  - PROCESS-NAME,com.sec.android.diagmonagent,REJECT
-  - PROCESS-NAME,com.samsung.klmsagent,REJECT
-  - PROCESS-NAME,com.samsung.accessibility,REJECT
-  - PROCESS-NAME,com.android.dynsystem,REJECT
-  - PROCESS-NAME,com.samsung.android.themestore,REJECT
-  - PROCESS-NAME,com.sec.android.app.vepreload,REJECT
-  - PROCESS-NAME,com.sec.android.app.clockpackage,REJECT
-  - PROCESS-NAME,com.samsung.android.app.ledcoverdream,REJECT
-  - PROCESS-NAME,com.samsung.android.app.galaxyfinder,REJECT
-  - PROCESS-NAME,com.samsung.android.smartmirroring,REJECT
-  - PROCESS-NAME,com.sec.android.emergencylauncher,REJECT
-  - PROCESS-NAME,com.samsung.android.app.cocktailbarservice,REJECT
-  - PROCESS-NAME,com.samsung.android.allshare.service.fileshare,REJECT
-  - PROCESS-NAME,com.samsung.storyservice,REJECT
-  - PROCESS-NAME,com.samsung.android.messaging,REJECT
-  - PROCESS-NAME,com.sec.android.app.safetyassurance,REJECT
-  - PROCESS-NAME,com.samsung.android.app.soundpicker,REJECT
-  - PROCESS-NAME,com.sec.android.widgetapp.samsungapps,REJECT
-  - PROCESS-NAME,com.samsung.android.app.homestar,REJECT
-  - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
-  - PROCESS-NAME,com.samsung.android.dialer,REJECT
-  - PROCESS-NAME,com.sec.factory,REJECT
-  - PROCESS-NAME,com.samsung.android.app.omcagent,REJECT
-  - PROCESS-NAME,com.sec.android.app.DataCreate,REJECT
-  - PROCESS-NAME,com.samsung.android.aircommandmanager,REJECT
-  - PROCESS-NAME,com.sec.android.app.soundalive,REJECT
-  - PROCESS-NAME,com.samsung.android.sdk.handwriting,REJECT
-  - PROCESS-NAME,com.samsung.android.app.simplesharing,REJECT
-  - PROCESS-NAME,com.samsung.safetyinformation,REJECT
-  - PROCESS-NAME,com.android.pacprocessor,REJECT
-  - PROCESS-NAME,com.sec.android.easyMover.Agent,REJECT
-  - PROCESS-NAME,com.samsung.android.SettingsReceiver,REJECT
-  - PROCESS-NAME,com.samsung.ucs.agent.boot,REJECT
-  - PROCESS-NAME,com.android.nfc,REJECT
-  - PROCESS-NAME,com.samsung.android.service.aircommand,REJECT
-  - PROCESS-NAME,com.sec.app.RilErrorNotifier,REJECT
-  - PROCESS-NAME,com.samsung.android.bbc.bbcagent,REJECT
-  - PROCESS-NAME,com.samsung.android.provider.filterprovider,REJECT
-  - PROCESS-NAME,com.sec.vsimservice,REJECT
-  - PROCESS-NAME,com.samsung.android.provider.stickerprovider,REJECT
-  - PROCESS-NAME,com.sec.android.app.popupcalculator,REJECT
-  - PROCESS-NAME,com.samsung.android.allshare.service.mediashare,REJECT
-  - PROCESS-NAME,com.android.bluetooth,REJECT
-  - PROCESS-NAME,com.samsung.crane,REJECT
-  - PROCESS-NAME,com.sec.android.app.applinker,REJECT
-  - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
-  - PROCESS-NAME,com.samsung.android.rubin.app,REJECT
-  - PROCESS-NAME,com.samsung.android.sm.policy,REJECT
-  - PROCESS-NAME,com.samsung.android.knox.attestation,REJECT
-  - PROCESS-NAME,com.android.phone,REJECT
-  - PROCESS-NAME,com.samsung.android.samsungpositioning,REJECT
-  - PROCESS-NAME,com.sec.android.app.ocrservice,REJECT
-  - PROCESS-NAME,com.samsung.android.sdm.config,REJECT
   - MATCH,🐝
