@@ -55542,13 +55542,13 @@ proxies:
         host: a.ssll.gay
     uuid: d342d11e-d424-4583-b36e-524ab1f0afa4
 proxy-groups:
-  - name: 🅿️🅱️
-    type: url-test
-    exclude-filter: Expire
-    url: http://www.gstatic.com/generate_204
-    dialer-proxy: proxy
-    icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/ir.png
-    proxies: [url-test, fallback]
+#  - name: 🅿️🅱️
+ #   type: url-test
+ #   exclude-filter: Expire
+ #   url: http://www.gstatic.com/generate_204
+ #   dialer-proxy: proxy
+#    icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/ir.png
+#    proxies: [url-test, fallback]
     
   - name: proxy
     type: select
@@ -55561,7 +55561,9 @@ proxy-groups:
   - name: url-test
     type: url-test
     exclude-filter: Expire
-    url: http://www.gstatic.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
+    interval: '10'
+    tolerance: '150'
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
     include-all-proxies: true
     include-all-providers: true
@@ -55570,7 +55572,9 @@ proxy-groups:
   - name: fallback
     type: fallback
     exclude-filter: Expire
-    url: http://www.gstatic.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
+    interval: '10'
+    tolerance: '150'
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
     include-all-proxies: true
     include-all-providers: true
@@ -55583,7 +55587,7 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/bug.svg
     proxies: [DIRECT, url-test, fallback]
 
-  - name: 🐝
+  - name: FINAL
     type: select
     exclude-filter: Traffic|Expire
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg
@@ -55594,7 +55598,9 @@ proxy-groups:
   - name: America
     type: url-test
     exclude-filter: Expire
-    url: http://www.gstatic.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
+    interval: '10'
+    tolerance: '150'
     icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/usa.svg
     include-all-proxies: true
     include-all-providers: true
@@ -55604,37 +55610,37 @@ proxy-providers:
   h:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/hamrah" # https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml 
-    interval: 60
+    interval: 600
     path: H/h.yaml
     exclude-filter: Expire
     health-check:
       enable: true
       interval: 30
-      url: https://www.youtube.com/generate_204
-      lazy: true 
+      url: http://cp.cloudflare.com/generate_204
+
   i:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/i" # https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml 
-    interval: 60
+    interval: 600
     path: H/i.yaml
     exclude-filter: Expire
     health-check:
       enable: true
       interval: 30
-      url: https://www.youtube.com/generate_204
-      lazy: true 
+      url: http://cp.cloudflare.com/generate_204
+ 
 
   s:
     type: http
     url:  "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
-    interval: 60
+    interval: 600
     path: H/s.yaml
     exclude-filter: Expire
     health-check:
       enable: true
       interval: 30
-      url: https://www.youtube.com/generate_204
-      lazy: true 
+      url: http://cp.cloudflare.com/generate_204
+ 
 rule-providers:
   ir:
     type: http
@@ -55710,35 +55716,35 @@ rule-providers:
     type: http
     behavior: domain
     format: text
-    path: ruleset/BanAD.yaml
+    path: ruleset/BanAD.list
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
     interval: 3600
   BanProgramAD:
     type: http
     behavior: domain
     format: text
-    path: ruleset/BanProgramAD.yaml
+    path: ruleset/BanProgramAD.list
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
     interval: 3600
   BanEasyList:
     type: http
     behavior: domain
     format: text
-    path: ruleset/BanEasyList.yaml
+    path: ruleset/BanEasyList.list
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list
     interval: 3600
   BanEasyListChina:
     type: http
     behavior: domain
     format: text
-    path: ruleset/BanEasyListChina.yaml
+    path: ruleset/BanEasyListChina.list
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
     interval: 3600
   BanEasyPrivacy:
     type: http
     behavior: domain
     format: text
-    path: ruleset/BanEasyPrivacy.yaml
+    path: ruleset/BanEasyPrivacy.list
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
     interval: 3600  
   DNS:
@@ -55759,7 +55765,7 @@ rule-providers:
     type: http
     behavior: domain
     format: text
-    path: ruleset/AdGuardSDNSFilter.yaml
+    path: ruleset/AdGuardSDNSFilter.text
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/AdGuardSDNSFilter/AdGuardSDNSFilter_Domain.txt
     interval: 3600
   BlockHttpDNS:
@@ -55787,14 +55793,14 @@ rule-providers:
     type: http
     behavior: domain
     format: text
-    path: ruleset/Adblock1.yaml
+    path: ruleset/Adblock1.list
     url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Adblock/Adblock.list
     interval: 3600
   DNS2:
     type: http
     behavior: domain
     format: text
-    path: ruleset/DNS2.yaml
+    path: ruleset/DNS2.list
     url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/Special/DNS.list
     interval: 3600
   category-ads-all:
@@ -55817,7 +55823,15 @@ rule-providers:
     path: ruleset/LocalAreaNetwork.yaml
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
     interval: 3600 
+  LocalAreaNetwork:
+    type: http
+    behavior: domain
+    format: text
+    path: ruleset/geolocation-!cn.list
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.list
+    interval: 3600 
 rules :
+  - RULE-SET,geolocation-!cn,FINAL
   - DOMAIN-SUFFIX,v2rayse.com,proxy
   - DOMAIN-SUFFIX,cff.pw,proxy
   - DOMAIN-SUFFIX,vpnse.org,proxy
@@ -55826,13 +55840,13 @@ rules :
   - DOMAIN-SUFFIX,cff.pw,proxy
   - DOMAIN-SUFFIX,vpnse.org,proxy
   - DOMAIN-SUFFIX,cfmem.com,proxy
-  - DST-PORT,80/8080/443/8443,proxy
-  - IN-TYPE,inner,proxy
+  - DST-PORT,80/8080/443/8443,FINAL
+  - IN-TYPE,inner,FINAL
   - DOMAIN,ad.com,REJECT
-  - DOMAIN-SUFFIX,google.com,proxy
-  - DOMAIN-KEYWORD,google,proxy
-  - DOMAIN-REGEX,^abc.*com,proxy
-  - GEOSITE,youtube,proxy
+  - DOMAIN-SUFFIX,google.com,FINAL
+  - DOMAIN-KEYWORD,google,FINAL
+  - DOMAIN-REGEX,^abc.*com,FINAL
+  - GEOSITE,youtube,FINAL
   - RULE-SET,LocalAreaNetwork,DIRECT,no-resolve
   - RULE-SET,ir,DIRECT,no-resolve
   - RULE-SET,ircidr,DIRECT
@@ -55843,9 +55857,23 @@ rules :
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
   
-  - RULE-SET,nsfw1,proxy
+  - RULE-SET,nsfw1,FINAL
   
-  
+  - DOMAIN-SUFFIX,local,DIRECT
+  - DOMAIN-SUFFIX,ip6-localhost,DIRECT
+  - DOMAIN-SUFFIX,ip6-loopback,DIRECT
+  - DOMAIN-SUFFIX,lan,DIRECT
+  - DOMAIN-SUFFIX,localhost,DIRECT
+  - DOMAIN-SUFFIX,.ir,DIRECT
+  - DOMAIN-SUFFIX,ir,DIRECT
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - DOMAIN,yacd.metacubex.one,DIRECT
+  - DOMAIN,clash.metacubex.one,DIRECT
+  - GEOSITE,category-ir,DIRECT
+  - GEOSITE,category-ads-all,REJECT
+  - GEOIP,private,DIRECT,no-resolve 
+  - GEOIP,IR,DIRECT
 #  - RULE-SET,BanAD,REJECT
 #  - RULE-SET,BanProgramAD,REJECT
  # - RULE-SET,category-ads-all,REJECT
@@ -55862,11 +55890,11 @@ rules :
   - GEOSITE,category-ads-all,REJECT
   #- GEOIP,CN,DIRECT,no-resolve
   - GEOIP,ir,DIRECT,no-resolve
-  - GEOIP,facebook,proxy,no-resolve
-  - GEOIP,google,proxy
-  - GEOIP,twitter,proxy,no-resolve
-  - GEOIP,telegram,proxy,no-resolve
-  - DOMAIN-SUFFIX,googlesyndication.com,proxy
+  - GEOIP,facebook,FINAL,no-resolve
+  - GEOIP,google,FINAL
+  - GEOIP,twitter,FINAL,no-resolve
+  - GEOIP,telegram,FINAL,no-resolve
+  - DOMAIN-SUFFIX,googlesyndication.com,FINAL
   - SRC-IP-CIDR,192.168.1.201/32,DIRECT
   - SRC-IP-SUFFIX,192.168.1.201/8,DIRECT
   - AND,((DOMAIN,baidu.com),(NETWORK,UDP)),DIRECT
@@ -55879,9 +55907,9 @@ rules :
   - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
   - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
   - IP-CIDR6,::1/128,REJECT,no-resolve
-  - IP-CIDR,10.10.0.0/32,proxy
-  - IP-CIDR,10.20.0.0/32,proxy
-  - IP-CIDR,10.10.34.35,proxy
+  - IP-CIDR,10.10.0.0/32,FINAL
+  - IP-CIDR,10.20.0.0/32,FINAL
+  - IP-CIDR,10.10.34.35,FINAL
   - PROCESS-NAME,com.sec.location.nsflp2,REJECT
   - PROCESS-NAME,com.samsung.android.location,REJECT
   - PROCESS-NAME,com.android.localtransport,REJECT
@@ -55898,4 +55926,4 @@ rules :
   - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
   - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
   - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
-  - MATCH,🐝
+  - MATCH,FINAL
