@@ -1,5 +1,13 @@
 
-
+port: 7892
+socks-port: 7891
+mode: rule
+allow-lan: true
+unified-delay: true
+bind-address: '*'
+log-level: debug
+ipv6: true
+external-controller: 0.0.0.0:9090 
 proxies:
   - {"name":"defaultName_10\r","type":"ss","server":"44.243.122.201","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
   - {"name":"defaultName_16\r","type":"ss","server":"54.238.155.217","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
@@ -437,3 +445,17 @@ proxies:
   - {"name":"🇯🇵_iran_785\r","type":"trojan","server":"153.120.120.252","port":2053,"udp":true,"password":"96983eb4-c8f1-316e-ab00-500014ed3d8b","sni":"official.tokyometropolis.kherson.ua","skip-cert-verify":true,"network":"tcp"}
   - {"name":"❓ 未知_158\r","type":"ss","server":"34.208.60.66","port":443,"password":"amazonskr05","cipher":"aes-256-cfb"}
   - {"name":"❓ 未知_160\r","type":"ss","server":"138.2.56.185","port":61752,"password":"233blog.com","cipher":"aes-256-gcm"}
+proxy-groups:
+  - name: url-test
+    type: url-test
+ #   exclude-filter: Expire
+    url: http://cp.cloudflare.com/generate_204
+#    interval: '10'
+#    tolerance: '10'
+    icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
+    include-all-proxies: true
+    include-all-providers: true
+    proxies: []
+rules :
+
+  - MATCH,url-test
