@@ -78,15 +78,13 @@ tun:
     - "tcp://any:53"
     - "tcp://8.8.8.8:53"
     - "tcp://8.8.4.4:53"
-    - "192.18.0.1:53"
-    - "127.0.0.1"
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
 
 dns:
   enable: true
-  listen: :53
+  listen: :1053
   ipv6: true
   enhanced-mode: fake-ip
   fake-ip-filter:
@@ -153,14 +151,14 @@ rule-providers:
   telegram:
     type: http
     format: text
-    behavior: classical
+    behavior: classdomain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/telegram.txt"
     path: ruleset/telegram.txt
     interval: 86400
   twitter:
     type: http
     format: text
-    behavior: classical
+    behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/twitter.txt"
     path: ruleset/twitter.txt
     interval: 86400
@@ -174,7 +172,7 @@ rule-providers:
   github:
     type: http
     format: text
-    behavior: classical
+    behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/github.txt"
     path: ruleset/github.txt
     interval: 86400
@@ -370,10 +368,10 @@ rule-providers:
 
 proxy-groups:
   - name: PROXY
-    type: select
+    type: url-test
     icon: 
   #  include-all-providers: true
-    exclude-filter: Expire
+#    exclude-filter: Expire
     disable-udp: true
     proxies:
       - GLOBAL.select
@@ -382,40 +380,40 @@ proxy-groups:
 
   - name: AUTO
     type: url-test
-    interval: 300
+ #   interval: 300
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
     include-all-providers: true
-    exclude-filter: Expire
-    tolerance: 50
-    lazy: true
+#    exclude-filter: Expire
+ #   tolerance: 50
+  #  lazy: true
 
   - name: AIGC
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
     type: fallback
-    interval: 180
+ #   interval: 180
     include-all-providers: true
     proxies:
     
   - name: US AUTO
-    tolerance: 50
-    lazy: true
+#    tolerance: 50
+#    lazy: true
     type: url-test
-    interval: 300
+ #  interval: 300
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
     include-all-providers: true
-    exclude-filter: Expire
+ #   exclude-filter: Expire
     filter: (?i)美国|USA|🇺🇸
     
   - name: GLOBAL.select
-    type: url-test
+    type: select
     interval: 300
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 #    include-all-providers: true
-    exclude-filter: Expire
+#    exclude-filter: Expire
     proxies:
       - AUTO
-     # - AIGC
-    #  - US AUTO
+      - AIGC
+      - US AUTO
     
 rules:
   - "IP-CIDR,10.10.0.0/16,PROXY"
@@ -454,4 +452,4 @@ rules:
   - "RULE-SET,geolocation-!cn,PROXY"
   - "RULE-SET,cn_domain,PROXY"
   - "RULE-SET,cn_ip,PROXY"
-  - "MATCH,PROXY"
+  - "MATCH,GLOBAL.select"
