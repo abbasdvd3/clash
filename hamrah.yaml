@@ -55440,7 +55440,9 @@ proxy-groups:
 #    proxies: [url-test, fallback]
     
   - name: proxy
-    type: select
+    type: url-test
+ #   exclude-filter: Expire
+    url: http://cp.cloudflare.com/generate_204
  #   exclude-filter: Expire
  #   include-all-proxies: true
  #   include-all-providers: true
@@ -55503,7 +55505,7 @@ proxy-providers:
     exclude-filter: Expire
     health-check:
       enable: true
-      interval: 30
+      interval: 90
       url: http://cp.cloudflare.com/generate_204
 
   i:
@@ -55514,7 +55516,7 @@ proxy-providers:
     exclude-filter: Expire
     health-check:
       enable: true
-      interval: 30
+      interval: 90
       url: http://cp.cloudflare.com/generate_204
  
 
@@ -55526,7 +55528,7 @@ proxy-providers:
     exclude-filter: Expire
     health-check:
       enable: true
-      interval: 30
+      interval: 90
       url: http://cp.cloudflare.com/generate_204
  
 rule-providers:
