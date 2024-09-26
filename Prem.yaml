@@ -1,15 +1,16 @@
 
-
+port: 7892
+socks-port: 7891
 mixed-port: 7890
 allow-lan: true
 mode: rule
-ipv6: false
+ipv6: true
 log-level: info
 external-controller: 0.0.0.0:9090
 dns:
   enable: true
   listen: 0.0.0.0:1053
-  ipv6: false
+  ipv6: true
   default-nameserver:
     - 223.5.5.5
     - 114.114.114.114
@@ -26,19 +27,34 @@ dns:
     - "*.example"
     - "*.invalid"
     - "*.localhost"
-    - "*.test"
-    - "*.local"
-    - "*.home.arpa"
-    - router.asus.com
-    - localhost.sec.qq.com
-    - localhost.ptlogin2.qq.com
-    - +.msftconnecttest.com
+  fallback:
+   #- tls://8.8.4.4
+    - quic://a.passcloud.xyz:784#fallback us
+    - tls://8.8.4.4:853#fallback us
+    - tcp://1.1.1.1#fallback us
+    - https://1.1.1.1/dns-query#fallback us
+    - https://1.0.0.1/dns-query#fallback us
+    - tls://1dot1dot1dot1.cloudflare-dns.com#fallback us
+  fallback-filter:    
+    geoip: true 
+    geoip-code: ir
+    geosite:     
+      - ir
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
+      - '+.googleapis.+'  
 tun:
   enable: true
   stack: system
   auto-route: true
   auto-detect-interface: true
   dns-hijack:
+    - any:53
+    - tcp://any:53
     - 114.114.114.114
     - 180.76.76.76
     - 119.29.29.29
@@ -47,6 +63,39 @@ tun:
     - 8.8.4.4
     - 1.1.1.1
     - 1.0.0.1
+proxy-providers:
+  provider1:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml"    
+    interval: 360
+    path: p/provider1.yaml
+    health-check:
+      enable: true
+      interval: 30
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
+
+  provider3:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/a"    
+    interval: 360
+    path: p/provider3.yaml
+    health-check:
+      enable: true
+      interval: 30
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
+      
+  provider2:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.all"
+    interval: 360
+    path: p/provider2.yaml
+    health-check:
+      enable: true
+      interval: 30
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
 proxies:
   - name: 中国_CN_🇨🇳_1
     port: 15746
@@ -19031,6 +19080,7 @@ proxy-groups:
     interval: 99
     proxies:
       - ♻️
+      - fallback us
   - name: ♻️
     type: url-test
     url: http://www.gstatic.com/generate_204
@@ -21102,7 +21152,7 @@ proxy-groups:
     type: select
     proxies:
       - 🚀
-      - 🎯 DIRECT
+      - fallback us
       - ♻️
       - 中国_CN_🇨🇳_1
       - 中国_CN_🇨🇳_2
@@ -23121,6 +23171,18 @@ proxy-groups:
       - 中国_CN_🇨🇳_2015
       - 中国_CN_🇨🇳_2016
       - 中国_CN_🇨🇳_2017
+  - name: fallback us
+    type: url-test
+    url: http://speed.cloudflare.com/__down?bytes=20000000
+    udp: false
+    interval: 180
+    filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
+    hidden: true
+    proxies:
+    use:
+      - provider1
+      - provider2
+      - provider3
 rule-providers:
   ir:
     type: http
