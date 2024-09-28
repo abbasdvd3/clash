@@ -1,7 +1,203 @@
 
 
-# http://speed.cloudflare.com/__down?bytes=20000000
+port: 7890
+socks-port: 7891
+mixed-port: 7892
+redir-port: 9797
+tproxy-port: 9898
+external-controller: 127.0.0.1:9090 
+external-ui: /clash/dashboard
 
+ipv6: false
+allow-lan: true
+tcp-concurrent: true
+unified-delay: true
+geodata-mode: false
+geo-auto-update: false 
+geo-update-interval: 24 
+keep-alive-interval: 1800  
+mode: rule  #
+log-level: debug
+global-client-fingerprint: random # 
+geodata-loader: standard 
+find-process-mode: strict
+bind-address: '*'
+# host
+      
+hosts:
+  time.facebook.com: 17.253.84.125
+  time.android.com: 17.253.84.125
+  '*.mihomo.dev': 127.0.0.1
+  '.dev': 127.0.0.1
+  'alpha.mihomo.dev': '::1'
+  test.com: [1.1.1.1, 2.2.2.2]
+  home.lan: lan 
+
+# tls:
+  # certificate: string # 
+  # private-key: string # 
+
+dns:   
+  cache-algorithm: arc # 
+  enable: true  # 
+  listen: 0.0.0.0:1053
+  use-hosts: true
+  ipv6: true
+  ipv6-timeout: 300  
+  prefer-h3: true  
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '*'
+    - '+.lan'
+    - '+.local'
+    - '+.leigod.com'
+    - '+.vivox.com'
+    - '+.stun.+'
+    - '.n.n.srv.nintendo.net'
+    - '+.stun.playstation.net'
+    - 'xbox.*.*.microsoft.com'
+    - '*.*.xboxlive.com'
+    - 'lens.l.google.com'
+    - '*.mcdn.bilivideo.cn'
+    - 'localhost.ptlogin2.qq.com'
+    - WORKGROUP
+  nameserver:    
+    - quic://dns.adguard.com:784#FINAL 
+    - https://1.1.1.1/dns-query#PROXY
+    - https://1.0.0.1/dns-query#PROXY
+    - tls://223.5.5.5:853##FINAL
+    - https://doh.pub/dns-query##FINAL
+    - https://dns.alidns.com/dns-query#PROXY
+    - https://mozilla.cloudflare-dns.com/dns-query#PROXY
+    - dhcp://en0#FINAL # dns from dhcp #测试
+    - tls://dns.google:853
+    - tls://8.8.8.8:853
+    - tls://8.8.4.4:853
+    - tls://dns.alidns.com
+    - tls://223.5.5.5
+    - tls://223.6.6.6
+    - tls://dot.pub
+    - tls://1.12.12.12
+    - tls://120.53.53.53
+    - https://dns.google/dns-query
+    - https://8.8.8.8/dns-query
+    - https://8.8.4.4/dns-query
+    - https://dns.alidns.com/dns-query
+    - https://223.5.5.5/dns-query
+    - https://223.6.6.6/dns-query
+    - https://doh.pub/dns-query
+    - https://1.12.12.12/dns-query
+    - https://120.53.53.53/dns-query
+    - 'tls://8.8.4.4#PROXY'
+    - 'tls://1.0.0.1#PROXY'
+    - 'tls://[2001:4860:4860::8844]#PROXY'
+    - 'tls://[2606:4700:4700::1001]#PROXY'
+  default-nameserver: 
+    - tls://1.12.12.12:853
+    - tls://223.5.5.5:853
+    - https://223.5.5.5/dns-query 
+    - tcp://119.29.29.29
+    - tcp://223.6.6.6 
+    - system 
+  nameserver-policy:
+    "geosite:ir,private":
+      - https://223.5.5.5/dns-query
+      - https://doh.pub/dns-query
+      - https://doh.360.cn/dns-query
+      - tls://223.5.5.5
+      - tls://dot.pub
+    "rule-set:ir,private,nsfw1":
+      - https://223.5.5.5/dns-query
+      - https://doh.pub/dns-query
+      - https://doh.360.cn/dns-query
+      - tls://223.5.5.5
+      - tls://dot.pub         
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query
+    - https://doh.pub/dns-query
+    - https://doh.360.cn/dns-query
+    - tls://223.5.5.5
+    - tls://dot.pub     
+  fallback:
+   #- tls://8.8.4.4
+    - quic://a.passcloud.xyz:784#FINAL
+    - tls://8.8.4.4:853#PROXY
+    - tcp://1.1.1.1#PROXY
+    - https://1.1.1.1/dns-query#PROXY
+    - https://1.0.0.1/dns-query#PROXY
+    - tls://1dot1dot1dot1.cloudflare-dns.com#FINAL
+  fallback-filter:    
+    geoip: true 
+    geoip-code: ir
+    geosite:      
+      - ir
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
+      - '+.googleapis.+'     
+      
+tun:    
+  enable: true
+  device: utun # gvisor/mixed
+  mtu: 9000 
+  stack: system 
+  dns-hijack:
+    - any:53  
+    - tcp://any:53
+    - 114.114.114.114
+    - 180.76.76.76
+    - 119.29.29.29
+    - 223.5.5.5
+    - 8.8.8.8
+    - 8.8.4.4
+    - 1.1.1.1
+    - 1.0.0.1
+  auto-route: true 
+  auto-detect-interface: true  
+  inet4-route-address: 
+    - 0.0.0.0/1
+    - 128.0.0.0/1
+  inet6-route-address: 
+    - "::/1"
+    - "8000::/1"
+   # strict-route: true 
+  include_android_user:
+    - 0
+    
+
+sniffer:                
+  enable: true                    
+  force-dns-mapping: false
+  parse-pure-ip: false          
+  override-destination: false      
+  sniff:   
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [ 443 ]
+    HTTP: 
+      ports: [80, 8080-8880]
+      override-destination: true 
+  force-domain:
+    - google.com
+    - +.v2ex.com
+  skip-domain:
+    - Mijia Cloud
+    - +.apple.com
+  sniffing:
+    - tls
+    - http
+  port-whitelist:
+    - "80"
+    - "443"
+  
+profile:
+  store-selected: true
+  store-fake-ip: true
 proxies:
   - name: US_🇺🇸_1
     port: 44300
