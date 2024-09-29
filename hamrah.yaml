@@ -68,12 +68,12 @@ dns:
     - WORKGROUP
   nameserver:    
     - quic://dns.adguard.com:784#FINAL 
-    - https://1.1.1.1/dns-query#PROXY
-    - https://1.0.0.1/dns-query#PROXY
+    - https://1.1.1.1/dns-query#FINAL
+    - https://1.0.0.1/dns-query#FINAL
     - tls://223.5.5.5:853##FINAL
-    - https://doh.pub/dns-query##FINAL
-    - https://dns.alidns.com/dns-query#PROXY
-    - https://mozilla.cloudflare-dns.com/dns-query#PROXY
+    - https://doh.pub/dns-query#FINAL
+    - https://dns.alidns.com/dns-query#FINAL
+    - https://mozilla.cloudflare-dns.com/dns-query#FINAL
     - dhcp://en0#FINAL # dns from dhcp #测试
     - tls://dns.google:853
     - tls://8.8.8.8:853
@@ -93,10 +93,10 @@ dns:
     - https://doh.pub/dns-query
     - https://1.12.12.12/dns-query
     - https://120.53.53.53/dns-query
-    - 'tls://8.8.4.4#PROXY'
-    - 'tls://1.0.0.1#PROXY'
-    - 'tls://[2001:4860:4860::8844]#PROXY'
-    - 'tls://[2606:4700:4700::1001]#PROXY'
+    - 'tls://8.8.4.4#FINAL'
+    - 'tls://1.0.0.1#FINAL'
+    - 'tls://[2001:4860:4860::8844]#FINAL'
+    - 'tls://[2606:4700:4700::1001]#FINAL'
   default-nameserver: 
     - tls://1.12.12.12:853
     - tls://223.5.5.5:853
@@ -55640,21 +55640,21 @@ proxy-groups:
 #    proxies: [url-test, fallback]
     
   - name: proxy
-    type: url-test
- #   exclude-filter: Expire
+    type: select
+    exclude-filter: Traffic|Expire
     url: http://cp.cloudflare.com/generate_204
- #   exclude-filter: Expire
- #   include-all-proxies: true
- #   include-all-providers: true
+    exclude-filter: Expire
+    include-all-proxies: true
+    include-all-providers: true
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
     proxies: [url-test, fallback, America]
     
   - name: url-test
     type: url-test
- #   exclude-filter: Expire
+    exclude-filter: Traffic|Expire
     url: http://cp.cloudflare.com/generate_204
 #    interval: '10'
-#    tolerance: '10'
+    tolerance: '100'
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
     include-all-proxies: true
     include-all-providers: true
@@ -55662,7 +55662,7 @@ proxy-groups:
 
   - name: fallback
     type: fallback
- #   exclude-filter: Expire
+    exclude-filter: Traffic|Expire
     url: http://cp.cloudflare.com/generate_204
 #    interval: '10'
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
@@ -55679,18 +55679,18 @@ proxy-groups:
 
   - name: FINAL
     type: select
- #   exclude-filter: Traffic|Expire
+    exclude-filter: Traffic|Expire
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg
- #   include-all-proxies: true
- #   include-all-providers: true
+    include-all-proxies: true
+    include-all-providers: true
     proxies: [proxy, url-test, fallback, America, DIRECT]
     
   - name: America
     type: url-test
-#    exclude-filter: Expire
+    exclude-filter: Traffic|Expire
     url: http://cp.cloudflare.com/generate_204
 #    interval: '10'
-#    tolerance: '150'
+    tolerance: '100'
     icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/usa.svg
     include-all-proxies: true
     include-all-providers: true
