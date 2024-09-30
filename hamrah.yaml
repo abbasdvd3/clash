@@ -15,7 +15,7 @@ geox-url:
 ipv6: false
 allow-lan: true
 tcp-concurrent: true
-unified-delay: true
+unified-delay: false
 geodata-mode: true
 geo-auto-update: false 
 geo-update-interval: 24 
@@ -205,7 +205,7 @@ profile:
 proxies:
 proxy-groups:
   - name: 🅿️🅱️
-    type: url-test
+    type: select
     exclude-filter: Expire
  #   url: http://www.gstatic.com/generate_204
  #   dialer-proxy: proxy
@@ -213,7 +213,7 @@ proxy-groups:
     proxies: [proxy, url-test, fallback]
     
   - name: proxy
-    type: url-test
+    type: select
     exclude-filter: Traffic|Expire
     url: http://cp.cloudflare.com/generate_204
     include-all-proxies: true
@@ -226,7 +226,7 @@ proxy-groups:
     exclude-filter: Traffic|Expire
     url: http://cp.cloudflare.com/generate_204
     interval: '300'
-    tolerance: '150'
+    tolerance: '50'
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
     include-all-proxies: true
     include-all-providers: true
@@ -254,15 +254,15 @@ proxy-groups:
     exclude-filter: Traffic|Expire
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg
    # include-all-proxies: true
-  #  include-all-providers: true
+    include-all-providers: true
     proxies: [🅿️🅱️, url-test, fallback, America, DIRECT]
     
   - name: America
     type: url-test
     exclude-filter: Traffic|Expire
     url: http://cp.cloudflare.com/generate_204
-#    interval: '10'
-    tolerance: '100'
+    interval: '300'
+    tolerance: '50'
     icon: https://raw.githubusercontent.com/abbasdvd3/clash/main/rule_provider/usa.svg
     include-all-proxies: true
     include-all-providers: true
