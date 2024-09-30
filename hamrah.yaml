@@ -54,18 +54,6 @@ dns:
   fake-ip-filter:
     - '*'
     - '+.lan'
-    - '+.local'
-    - '+.leigod.com'
-    - '+.vivox.com'
-    - '+.stun.+'
-    - '.n.n.srv.nintendo.net'
-    - '+.stun.playstation.net'
-    - 'xbox.*.*.microsoft.com'
-    - '*.*.xboxlive.com'
-    - 'lens.l.google.com'
-    - '*.mcdn.bilivideo.cn'
-    - 'localhost.ptlogin2.qq.com'
-    - WORKGROUP
   nameserver:    
     - quic://dns.adguard.com:784#FINAL 
     - https://1.1.1.1/dns-query#FINAL
@@ -174,7 +162,7 @@ tun:
     
 
 sniffer:                
-  enable: true                    
+  enable: false                
   force-dns-mapping: false
   parse-pure-ip: false          
   override-destination: false      
@@ -208,8 +196,8 @@ proxy-groups:
     type: select
     exclude-filter: Traffic|Expire
     url: http://cp.cloudflare.com/generate_204
-    include-all-proxies: true
-    include-all-providers: true
+  #  include-all-proxies: true
+  #  include-all-providers: true
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg
     proxies: [url-test, fallback, America]
     
