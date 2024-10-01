@@ -55,72 +55,28 @@ dns:
     - '*'
     - '+.lan'
   nameserver:    
-    - quic://dns.adguard.com:784#FINAL 
-    - https://1.1.1.1/dns-query#FINAL
-    - https://1.0.0.1/dns-query#FINAL
-    - tls://223.5.5.5:853##FINAL
-    - https://doh.pub/dns-query#FINAL
-    - https://dns.alidns.com/dns-query#FINAL
-    - https://mozilla.cloudflare-dns.com/dns-query#FINAL
-    - dhcp://en0#FINAL # dns from dhcp #测试
-    - tls://dns.google:853
-    - tls://8.8.8.8:853
-    - tls://8.8.4.4:853
-    - tls://dns.alidns.com
     - tls://223.5.5.5
-    - tls://223.6.6.6
     - tls://dot.pub
-    - tls://1.12.12.12
-    - tls://120.53.53.53
-    - https://dns.google/dns-query
-    - https://8.8.8.8/dns-query
-    - https://8.8.4.4/dns-query
-    - https://dns.alidns.com/dns-query
-    - https://223.5.5.5/dns-query
-    - https://223.6.6.6/dns-query
-    - https://doh.pub/dns-query
-    - https://1.12.12.12/dns-query
-    - https://120.53.53.53/dns-query
-    - 'tls://8.8.4.4#FINAL'
-    - 'tls://1.0.0.1#FINAL'
-    - 'tls://[2001:4860:4860::8844]#FINAL'
-    - 'tls://[2606:4700:4700::1001]#FINAL'
+    - tls://[2001:4860:4860::8844]#FINAL
+    - tls://[2606:4700:4700::1001]#FINAL
   default-nameserver: 
-    - tls://1.12.12.12:853
-    - tls://223.5.5.5:853
-    - https://223.5.5.5/dns-query 
-    - tcp://119.29.29.29
-    - tcp://223.6.6.6 
-    - system 
+    - tls://223.5.5.5
+    - tls://dot.pub
   nameserver-policy:
     "geosite:ir,private":
-      - https://223.5.5.5/dns-query
-      - https://doh.pub/dns-query
-      - https://doh.360.cn/dns-query
       - tls://223.5.5.5
       - tls://dot.pub
     "rule-set:ir,private,nsfw1":
-      - https://223.5.5.5/dns-query
-      - https://doh.pub/dns-query
-      - https://doh.360.cn/dns-query
       - tls://223.5.5.5
       - tls://dot.pub         
   proxy-server-nameserver:
-    - https://223.5.5.5/dns-query
-    - https://doh.pub/dns-query
-    - https://doh.360.cn/dns-query
     - tls://223.5.5.5
     - tls://dot.pub     
   fallback:
-   #- tls://8.8.4.4
     - quic://a.passcloud.xyz:784#FINAL
     - tls://8.8.4.4:853#PROXY
-    - tcp://1.1.1.1#PROXY
-    - https://1.1.1.1/dns-query#PROXY
-    - https://1.0.0.1/dns-query#PROXY
-    - tls://1dot1dot1dot1.cloudflare-dns.com#FINAL
   fallback-filter:    
-    geoip: false 
+    geoip: true
     geoip-code: ir
     geosite:      
       - ir
@@ -156,7 +112,7 @@ tun:
   inet6-route-address: 
     - "::/1"
     - "8000::/1"
-   # strict-route: true 
+  strict-route: true 
   include_android_user:
     - 0
     
@@ -194,7 +150,7 @@ proxies:
 proxy-groups:
   - name: proxy
     type: select
-    exclude-filter: Traffic|Expire
+ #   exclude-filter: Traffic|Expire
     url: http://cp.cloudflare.com/generate_204
   #  include-all-proxies: true
   #  include-all-providers: true
@@ -203,7 +159,7 @@ proxy-groups:
     
   - name: url-test
     type: url-test
-    exclude-filter: Traffic|Expire
+ #   exclude-filter: Traffic|Expire
     url: http://cp.cloudflare.com/generate_204
     interval: '300'
     tolerance: '50'
@@ -214,7 +170,7 @@ proxy-groups:
 
   - name: fallback
     type: fallback
-    exclude-filter: Traffic|Expire
+ #   exclude-filter: Traffic|Expire
     url: http://cp.cloudflare.com/generate_204
     interval: '180'
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
@@ -231,7 +187,7 @@ proxy-groups:
 
   - name: FINAL
     type: select
-    exclude-filter: Traffic|Expire
+#    exclude-filter: Traffic|Expire
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg
    # include-all-proxies: true
     include-all-providers: true
@@ -239,7 +195,7 @@ proxy-groups:
     
   - name: America
     type: url-test
-    exclude-filter: Traffic|Expire
+#    exclude-filter: Traffic|Expire
     url: http://cp.cloudflare.com/generate_204
     interval: '300'
     tolerance: '50'
