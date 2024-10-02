@@ -16,7 +16,7 @@ proxies:
 proxy-groups:
   - name: 🚀
     type: select
-    disable-udp: true
+    disable-udp: false
     proxies:
       - ♻️
       - United
@@ -24,7 +24,7 @@ proxy-groups:
   - name: United
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    disable-udp: true
+    disable-udp: false
     interval: 300
     tolerance: 80
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
@@ -36,7 +36,7 @@ proxy-groups:
   - name: ♻️
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    disable-udp: true
+    disable-udp: false
     interval: 300
     tolerance: 80
     hidden: true
@@ -46,6 +46,7 @@ proxy-groups:
  
   - name: 🎯 DIRECT
     type: select
+    disable-udp: false
     proxies:
       - DIRECT
       - 🚀
@@ -65,6 +66,7 @@ proxy-groups:
       
   - name: FINAL
     type: select
+    disable-udp: false
     use:
       - provider1
     proxies:
