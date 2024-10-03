@@ -131,7 +131,7 @@ dns:
 proxies:
 proxy-groups:
   - name: 🕹 select
-    type: url-test
+    type: select
     url: https://fiber.google.com/speedtest/generate_104
     expected-status: 200/204
     nodeGroupType: 0
@@ -532,8 +532,8 @@ proxy-providers:
       interval: 30
       lazy: true
       url: https://fiber.google.com/speedtest/generate_204
-      override:
-      additional-prefix: "[provider1]"
+ #     override:
+#      additional-prefix: "[provider1]"
 
   provider2:
     type: http
@@ -545,8 +545,8 @@ proxy-providers:
       interval: 30
       lazy: true
       url: https://fiber.google.com/speedtest/generate_204
-      override:
-      additional-prefix: "[provider2]"
+   #   override:
+   #   additional-prefix: "[provider2]"
 rule-providers:
   block:
     type: http
