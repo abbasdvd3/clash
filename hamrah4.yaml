@@ -117,7 +117,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 180
-    tolerance: 10
+#    tolerance: 10
     hidden: false
     proxies:
       - 🇭🇰 
@@ -131,7 +131,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 180
-    tolerance: 10
+#   tolerance: 10
     hidden: false
     proxies:
     use:
@@ -148,7 +148,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 180
-    tolerance: 10
+ #   tolerance: 10
     hidden: false
     proxies:
     use:
@@ -166,7 +166,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: true
     interval: 180
-    tolerance: 10
+#    tolerance: 10
     hidden: false
     proxies:
     use:
@@ -454,7 +454,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 300
-    tolerance: 10
+ #   tolerance: 10
     filter: '🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港'
     hidden: false
     proxies: 
@@ -471,7 +471,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 300
-    tolerance: 10
+ #   tolerance: 10
     filter: '🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日'
     hidden: false
     proxies: 
@@ -488,7 +488,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 300
-    tolerance: 10
+ #   tolerance: 10
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
     hidden: false
     proxies:
@@ -505,7 +505,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 300
-    tolerance: 10
+ #   tolerance: 10
     filter: "cn|TW"
     hidden: false
     proxies: 
@@ -522,7 +522,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 300
-    tolerance: 10
+  #  tolerance: 10
     filter: '🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]'
     hidden: false
     proxies: 
@@ -538,7 +538,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
     interval: 300
-    tolerance: 10
+ #   tolerance: 10
     filter: '🇰🇷|KO?R|Korea|首尔|韩|韓'
     hidden: false
     proxies: 
@@ -574,52 +574,49 @@ proxy-providers:
     url: https://raw.githubusercontent.com/tbbatbb/Proxy/master/dist/clash.config.yaml
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider1]"
+#    override:
+#      additional-prefix: "[provider1]"
 
   provider2:
     type: http
     url: https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/all
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider2]"
+ #   override:
+ #     additional-prefix: "[provider2]"
       
   provider3:
     type: http
     url: https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip    
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider3]"
+#    override:
+ #     additional-prefix: "[provider3]"
       
   provider4:
     type: http
     url: https://cdn.jsdelivr.net/gh/yebekhe/TVC@main/subscriptions/meta/mix    
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider4]"
+#    override:
+ #     additional-prefix: "[provider4]"
       
   provider5:
     type: http
     url: https://cdn.jsdelivr.net/gh/mahdibland/V2RayAggregator@master/sub/sub_merge_yaml.yml
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider5]"
+ #   override:
+  #    additional-prefix: "[provider5]"
       
   provider6:
     type: http
 #    url: "http://haohaoxiong.myqnapcloud.com:12580/clash/proxies"    
     interval: 86400
     health-check: {enable: true,url: "http://speed.cloudflare.com/__down?bytes=20000000",interval: 300}
-    override:
-      additional-prefix: "[provider6]"
+#    override:
+#      additional-prefix: "[provider6]"
 
-
-
-      
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: yaml}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: yaml}
