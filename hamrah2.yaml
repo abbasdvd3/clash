@@ -95,21 +95,6 @@ proxy-groups:
   - name: 🕹 select
     type: select
     proxies:
-      - 🕹
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
-
-  - name: 🕹
-    type: url-test
-    tolerance: 99
-    proxies:
-      - 🕹load-balance
       - ♻️ url-test
       - 🚧 fallback
       - ⚖️ load-balance
@@ -119,34 +104,7 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-      - 📹
-      - 🎥
-      - 📺
-      - 📺2
-      - 🌏
-      - 📢
-      - 🌏
-  - name: 🕹load-balance
-    type: url-test
-    url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
-    interval: 180
-  #  tolerance: 10
-    hidden: false
-    proxies:
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
-      - 📹
-      - 🎥
-      - 📺
-      - 📺2
-      - 🌏
-      - 📢
-      - 🌏
+
   - name: ♻️ url-test
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
@@ -241,223 +199,7 @@ proxy-groups:
       - provider19
       - provider20
       - provider21
-  - name: 📡 IP
-    type: select
-    proxies:
-      - DIRECT
-      - 🕹 select
-      
-  - name: 📲
-    type: select
-    hidden: false
-    proxies:
-      - 🕹
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
-      - 📹
-      - 🎥
-      - 📺
-      - 📺2
-      - 🌏
-      - 📢
-      - 🌏
-  - name: 💬 OpenAi
-    type: select
-    hidden: false
-    proxies:
-      - 🕹
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
-      - 📹
-      - 🎥
-      - 📺
-      - 📺2
-      - 🌏
-      - 📢
-      - 🌏
-  - name: 📹
-    type: url-test
-    url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
-    interval: 180
-#    tolerance: 10
-    hidden: false
-    proxies:
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
- 
-  - name: 🎥
-    type: url-test
-    url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
-    interval: 180
- #   tolerance: 10
-    hidden: false
-    proxies:
-    use:
-      - provider5
-      - provider6
-      - provider7
-      - provider8
-      - provider9
-      - provider10
-      
-  - name: 📺
-    type: url-test
-    url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
-    interval: 180
- #   tolerance: 10
-    hidden: false
-    proxies:
-    use:
-      - provider11
-      - provider12
-      - provider13
-      - provider14
-      - provider15
 
-  - name: 📺2
-    type: url-test
-    url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
-    interval: 180
-  #  tolerance: 10
-    hidden: false
-    proxies:
-    use:
-      - provider16
-      - provider17
-      - provider18
-      - provider19
-      - provider20
-      - provider21
-      
-  - name: 🌍
-    type: select
-    hidden: false
-    proxies:
-      - 🕹
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
-      
-  - name: 🌏
-    type: url-test
-    url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: false
-    interval: 180
-#    tolerance: 80
-    hidden: false
-    proxies:
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
-      - provider7
-      - provider8
-      - provider9
-      - provider10
-      - provider11
-      
-  - name: 📢
-    type: url-test
-    url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: false
-    interval: 180
-#    tolerance: 80
-    hidden: false
-    proxies:
-    use:
-      - provider12
-      - provider13
-      - provider14
-      - provider15
-      - provider16
-      - provider17
-      - provider18
-      - provider19
-      - provider20
-      - provider21
-      
-  - name: Ⓜ️
-    type: select
-    hidden: false
-    proxies:
-      - 🕹
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
-      
-  - name: 🍎
-    type: select
-    hidden: false
-    proxies:
-      - 🕹
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
-      - DIRECT
-  - name: 🎮
-    type: select
-    hidden: false
-    proxies:
-      - 🕹
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-      - 🇭🇰 
-      - 🇨🇳 
-      - 🇸🇬 
-      - 🇺🇲 
-      - 🇯🇵 
-      - 🇰🇷 
-      
-  - name: 🎶
-    type: select
-    hidden: false
-    proxies:
-      - 🕹
-      - ♻️ url-test
-      
   - name: 🎯
     type: select
     proxies:
@@ -668,7 +410,35 @@ proxy-groups:
       - provider19
       - provider20
       - provider21
-
+      
+  - name: 🕹
+    type: select
+    use:
+      - provider1
+      - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
+      - provider7
+      - provider8
+      - provider9
+      - provider10
+      - provider11
+      - provider12
+      - provider13
+      - provider14
+      - provider15
+      - provider16
+      - provider17
+      - provider18
+      - provider19
+      - provider20
+      - provider21
+    proxies:
+      - 🕹 select
+      - 🚧 fallback
+      - ⚖️ load-balance
 proxy-providers:
   provider1:
     type: http
@@ -841,11 +611,11 @@ proxy-providers:
 
 rules:
   - DST-PORT,80/8080/443/8443,🕹 select,no-resolve
-  - GEOIP,google,📢,no-resolve
+  - GEOIP,google,🕹,no-resolve
   - GEOIP,private,DIRECT,no-resolve
-  - GEOIP,facebook,📲,no-resolve
-  - GEOIP,twitter,📲,no-resolve
-  - GEOIP,telegram,📲,no-resolve
+  - GEOIP,facebook,🕹,no-resolve
+  - GEOIP,twitter,🕹,no-resolve
+  - GEOIP,telegram,🕹,no-resolve
   - DOMAIN-SUFFIX,v2rayse.com,🕹 select
   - DOMAIN-SUFFIX,cff.pw,🕹 select
   - DOMAIN-SUFFIX,vpnse.org,🕹 select
@@ -867,4 +637,4 @@ rules:
   - IP-CIDR6,::1/128,REJECT,no-resolve
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑
   - IN-TYPE,inner,🕹 select
-  - MATCH,🕹 select
+  - MATCH,🕹
