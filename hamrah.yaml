@@ -75,19 +75,8 @@ dns:
   fallback:
     - quic://a.passcloud.xyz:784#FINAL
     - tls://8.8.4.4:853#PROXY
-  fallback-filter:    
-    geoip: true
-    geoip-code: ir
-    geosite:      
-      - ir
-    ipcidr:
-      - 240.0.0.0/4
-    domain:
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
-      - '+.googleapis.+'     
-      
+
+
 tun:    
   enable: true
   device: utun # gvisor/mixed
@@ -161,8 +150,8 @@ proxy-groups:
     type: url-test
  #   exclude-filter: Traffic|Expire
     url: http://cp.cloudflare.com/generate_204
- #   interval: '300'
-#    tolerance: '50'
+    interval: '30'
+    tolerance: '50'
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg
     include-all-proxies: true
     include-all-providers: true
@@ -172,7 +161,7 @@ proxy-groups:
     type: fallback
  #   exclude-filter: Traffic|Expire
     url: http://cp.cloudflare.com/generate_204
- #   interval: '180'
+    interval: '80'
     icon: https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/link.svg
     include-all-proxies: true
     include-all-providers: true
