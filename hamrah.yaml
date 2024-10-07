@@ -1,14 +1,6 @@
 
 mixed-port: 7890
 redir-port: 9797
-external-controller: 127.0.0.1:9090 
-external-ui: ui
-external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
-geox-url:
-  geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
-  geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
-  mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
-  asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
 ipv6: false
 allow-lan: true
 tcp-concurrent: true
@@ -23,8 +15,15 @@ global-client-fingerprint: random #
 geodata-loader: standard 
 find-process-mode: strict
 bind-address: '*'
-# host
-      
+external-controller: 127.0.0.1:9090 
+external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+geox-url:
+  geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
+  geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
+  mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
+  asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
+
 hosts:
   time.facebook.com: 17.253.84.125
   time.android.com: 17.253.84.125
@@ -33,10 +32,6 @@ hosts:
   'alpha.mihomo.dev': '::1'
   test.com: [1.1.1.1, 2.2.2.2]
 
-
-# tls:
-  # certificate: string # 
-  # private-key: string # 
 
 dns:   
   cache-algorithm: arc
@@ -141,7 +136,7 @@ profile:
   store-fake-ip: true
 
 proxies:
-  - name: "directš¤”"
+  - name: "dir"
     type: direct
     udp: true
   - name: "DNS_Hijack"
@@ -155,7 +150,7 @@ proxy-groups:
       - "URL-TESTPRO"
       - "FALLBACKPRO"
       - "DNS_Hijack"
-      - "directš¤”"
+      - "dir"
       
   - name: "URL-TESTPRO"
     type: url-test
@@ -265,10 +260,10 @@ rules:
   - DST-PORT,80/8080/443/8443,PROXY
   - RULE-SET,AWA,REJECT
   - RULE-SET,nsfw1,PROXY
-  - RULE-SET,ir,directš¤,no-resolve
-  - RULE-SET,ircidr,directš¤
-  - RULE-SET,irasn,directš¤
-  - RULE-SET,private,directš¤,no-resolve
+  - RULE-SET,ir,dir,no-resolve
+  - RULE-SET,ircidr,dir
+  - RULE-SET,irasn,dir
+  - RULE-SET,private,dir,no-resolve
   - DOMAIN-SUFFIX,googlesyndication.com,PROXY
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
   - GEOSITE,category-ads-all,REJECT
@@ -298,7 +293,7 @@ rules:
   - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
   - GEOIP,telegram,PROXY
   - GEOSITE,telegram,PROXY
-  - GEOIP,ir,directš¤,no-resolve
+  - GEOIP,ir,dir,no-resolve
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,PROXY
   - DST-PORT,53,DNS_Hijack
