@@ -54,7 +54,6 @@ dns:
     - tls://223.5.5.5
     - tls://dot.pub
     - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
     - tls://[2001:4860:4860::8844]#FINAL
@@ -64,8 +63,6 @@ dns:
     - 120.53.53.53
     - 180.76.76.76
     - 119.29.29.29
-    - 8.8.8.8
-    - 8.8.4.4
     - 1.1.1.1
     - 1.0.0.1
   nameserver-policy:
@@ -82,7 +79,6 @@ dns:
     - https://223.5.5.5/dns-query    
   fallback:
     - quic://a.passcloud.xyz:784#PROXY
-    - tls://8.8.4.4:853#PROXY
   fallback-filter:
     geoip: false
     ipcidr:
@@ -101,8 +97,6 @@ tun:
     - 180.76.76.76
     - 119.29.29.29
     - 223.5.5.5
-    - 8.8.8.8
-    - 8.8.4.4
     - 1.1.1.1
     - 1.0.0.1
   auto-route: true 
@@ -142,11 +136,7 @@ profile:
   store-fake-ip: true
 
 proxies:
-  - name: "dir"
-    type: direct
-    udp: true
-  - name: "DNS_Hijack"
-    type: dns
+
 proxy-groups:
   - name: "PROXY"
     type: select
@@ -155,9 +145,6 @@ proxy-groups:
     proxies:
       - "URL-TESTPRO"
       - "FALLBACKPRO"
-      - "DNS_Hijack"
-      - "dir"
-      
   - name: "URL-TESTPRO"
     type: url-test
     proxies:
@@ -174,7 +161,7 @@ proxy-groups:
       - "provide"
       - "provide2"
     proxies:
-      - "DNS_Hijack"
+
       
   - name: "URL-TEST"
     type: url-test
@@ -182,7 +169,7 @@ proxy-groups:
       - "provide"
       - "provide2"
     proxies:
-      - "DNS_Hijack"
+
  
 proxy-providers:
   "provide":
@@ -266,15 +253,15 @@ rules:
   - DST-PORT,80/8080/443/8443,PROXY
   - RULE-SET,AWA,REJECT
   - RULE-SET,nsfw1,PROXY
-  - RULE-SET,ir,dir,no-resolve
-  - RULE-SET,ircidr,dir
-  - RULE-SET,irasn,dir
-  - RULE-SET,private,dir,no-resolve
+  - RULE-SET,ir,DIRECT,no-resolve
+  - RULE-SET,ircidr,DIRECT
+  - RULE-SET,irasn,DIRECT
+  - RULE-SET,private,PROXY,no-resolve
   - DOMAIN-SUFFIX,googlesyndication.com,PROXY
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
   - GEOSITE,category-ads-all,REJECT
-  - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),dir
-  - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),DIRECT
+  - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),PROXY
+  - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),PROXY
   - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
   - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
   - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
@@ -299,8 +286,8 @@ rules:
   - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
   - GEOIP,telegram,PROXY
   - GEOSITE,telegram,PROXY
-  - GEOIP,ir,dir,no-resolve
+  - GEOIP,ir,DIRECT,no-resolve
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,PROXY
-  - DST-PORT,53,DNS_Hijack
+ # - DST-PORT,53,DNS_Hijack
   - MATCH,PROXY
