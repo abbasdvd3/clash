@@ -23,14 +23,6 @@ geox-url:
   mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
   asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
 
-hosts:
-  time.facebook.com: 17.253.84.125
-  time.android.com: 17.253.84.125
-  '*.mihomo.dev': 127.0.0.1
-  '.dev': 127.0.0.1
-  'alpha.mihomo.dev': '::1'
-  test.com: [1.1.1.1, 2.2.2.2]
-
 
 dns:   
   cache-algorithm: arc
@@ -106,7 +98,7 @@ tun:
     
 
 sniffer:                
-  enable: true                
+  enable: false                
   force-dns-mapping: false
   parse-pure-ip: false          
   override-destination: false      
@@ -139,24 +131,20 @@ proxies:
 
 proxy-groups:
   - name: "PROXY"
-    type: select
+    type: url-test
     use:
  #     - "provide"
     proxies:
-      - "URL-TESTPRO"
-      - "FALLBACKPRO"
-  - name: "URL-TESTPRO"
-    type: url-test
-    proxies:
       - "URL-TEST"
-      
-  - name: "FALLBACKPRO"
-    type: fallback
-    proxies:
       - "FALLBACK"
+
       
   - name: "FALLBACK"
     type: fallback
+    exclude-filter: 'ctb|Expire'
+    url: http://www.gstatic.com/generate_204
+    interval: 180
+  #  tolerance: 50
     use:
       - "provide"
       - "provide2"
@@ -165,6 +153,10 @@ proxy-groups:
       
   - name: "URL-TEST"
     type: url-test
+    exclude-filter: 'ctb|Expire'
+    url: http://www.gstatic.com/generate_204
+ #   interval: 300
+    tolerance: 90
     use:
       - "provide"
       - "provide2"
@@ -175,7 +167,7 @@ proxy-providers:
   "provide":
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/i"
-    interval: 360
+    interval: 3600
     path: ./provide/provide.yaml
     # filter: 'xxx' # Supports regular expressions to filter by node name
     exclude-filter: 'ctb|Expire' # Supports regular expressions to exclude based on node name
@@ -188,7 +180,7 @@ proxy-providers:
   "provide2":
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
-    interval: 360
+    interval: 3600
     path: ./provide/provide2.yaml
     # filter: 'xxx' # Supports regular expressions to filter by node name
     exclude-filter: 'ctb|Expire' # Supports regular expressions to exclude based on node name
