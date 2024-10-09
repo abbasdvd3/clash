@@ -10,7 +10,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 30
-      url: http://speed.cloudflare.com/__down?bytes=20000000    
+      url: https://speed.cloudflare.com/__down?bytes=20000000    
 proxies:
 
 proxy-groups:
@@ -19,11 +19,10 @@ proxy-groups:
     disable-udp: true
     proxies:
       - ♻️
-      - United
       
   - name: United
     type: fallback
-    url: http://speed.cloudflare.com/__down?bytes=20000000
+    url: https://speed.cloudflare.com/__down?bytes=20000000
     disable-udp: true
     interval: 99
     tolerance: 80
@@ -35,7 +34,7 @@ proxy-groups:
       
   - name: ♻️
     type: url-test
-    url: http://speed.cloudflare.com/__down?bytes=20000000
+    url: https://speed.cloudflare.com/__down?bytes=20000000
     disable-udp: true
     interval: 99
     tolerance: 80
