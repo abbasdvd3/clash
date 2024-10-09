@@ -94,9 +94,18 @@ rule-providers:
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.yaml
     path: ruleset/category-ads-all.yaml
     interval: 86400
-
+  geolocation-!cn:
+    type: http
+    behavior: domain
+    format: text
+    path: ruleset/geolocation-!cn.list
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.list
+    interval: 3600
 rules:
-
+  - GEOIP,telegram,FINAL
+  - GEOIP,google,FINAL
+  - GEOIP,facebook,FINAL
+  - RULE-SET,geolocation-!cn,FINAL
   - GEOIP,CN,🎯 DIRECT
   - DOMAIN-SUFFIX,fast.com,🎯 DIRECT
   - DOMAIN-SUFFIX,speedtest.net,🎯 DIRECT
