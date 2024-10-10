@@ -8,7 +8,7 @@ geodata-mode: true
 geo-auto-update: false 
 geo-update-interval: 24 
 keep-alive-interval: 1800  
-# mode: rule  
+mode: global 
 log-level: debug
 global-client-fingerprint: random # 
 geodata-loader: standard 
@@ -160,7 +160,13 @@ proxy-groups:
     tolerance: 90
     proxies:
 
- 
+  - name: "global"
+    type: select
+    use:
+ #     - "provide"
+    proxies:
+      - "URL-TEST"
+      - "FALLBACK"
 proxy-providers:
   "provide":
     type: http
@@ -280,4 +286,4 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,PROXY
  # - DST-PORT,53,DNS_Hijack
-  - MATCH,PROXY
+  - MATCH,global
