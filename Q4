@@ -1816,31 +1816,23 @@
     },
     {
       "type": "direct",
-      "tag": "direct_out"
+      "tag": "➜ Direct"
     },
     {
-      "type": "block",
-      "tag": "block_out"
+      "type": "direct",
+      "tag": "direct"
     },
     {
       "type": "dns",
-      "tag": "dns_out"
+      "tag": "dns-out"
+    },
+    {
+      "type": "block",
+      "tag": "block"
     }
   ],
   "route": {
-    "rules": [
-      {
-        "inbound": "mixed_in_direct",
-        "outbound": "direct_out"
-      },
-      {
-        "inbound": "mixed_in_proxy",
-        "outbound": "urltest_out"
-      },
-      {
-        "protocol": "dns",
-        "outbound": "dns_out"
-      },
+    "rule_set": [
       {
         "type": "remote",
         "format": "binary",
@@ -2985,6 +2977,14 @@
     ],
     "rules": [
       {
+        "inbound": "mixed_in_direct",
+        "outbound": "direct_out"
+      },
+      {
+        "inbound": "mixed_in_proxy",
+        "outbound": "urltest_out"
+      },
+      {
         "protocol": "dns",
         "outbound": "dns-out"
       },
@@ -3024,83 +3024,83 @@
           "xn--fiqs8s",
           "xn--fiq228c"
         ],
-        "outbound": "direct"
+        "outbound": "direct_out"
       },
       {
         "ip_is_private": true,
-        "outbound": "direct"
+        "outbound": "direct_out"
       },
       {
         "clash_mode": "Direct",
-        "outbound": "direct"
+        "outbound": "direct_out"
       },
       {
         "clash_mode": "Global",
-        "outbound": "Proxy"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": "geosite-netflix",
-        "outbound": "Netflix"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": "geoip-netflix",
-        "outbound": "Netflix"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": "geosite-youtube",
-        "outbound": "Youtube"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": "geosite-telegram",
-        "outbound": "Telegram"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": "geoip-telegram",
-        "outbound": "Telegram"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": "geosite-category-media",
-        "outbound": "Category-media"
+        "outbound": "direct_out"
       },
       {
         "rule_set": "geosite-openai",
-        "outbound": "Openai"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": "geosite-speedtest",
-        "outbound": "Speedtest"
+        "outbound": "direct_out"
       },
       {
         "rule_set": "geosite-github",
-        "outbound": "Github"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": "geosite-jetbrains",
-        "outbound": "Jetbrains"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": "geosite-spotify",
-        "outbound": "Spotify"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": "geosite-cloudflare",
-        "outbound": "Cloudflare"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": "geoip-cloudflare",
-        "outbound": "Cloudflare"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": "geosite-google",
-        "outbound": "Google"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": "geosite-pornpros",
-        "outbound": "Pornpros"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": "geosite-xhamster",
-        "outbound": "Xhamster"
+        "outbound": "urltest_out"
       },
       {
         "rule_set": [
@@ -3122,7 +3122,7 @@
           "geoip-ir",
           "geosite-ziroom"
         ],
-        "outbound": "direct"
+        "outbound": "direct_out"
       }
     ],
     "auto_detect_interface": true,
