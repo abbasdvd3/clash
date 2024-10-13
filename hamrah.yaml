@@ -255,7 +255,7 @@ rules:
   - RULE-SET,private,PROXY,no-resolve
   - DOMAIN-SUFFIX,googlesyndication.com,PROXY
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
-  - GEOSITE,category-ads-all,REJECT
+  - geosite,category-ads-all,REJECT
   - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),PROXY
   - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),PROXY
   - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
@@ -280,7 +280,7 @@ rules:
   - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
   - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
   - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
-  - GEOIP,ir,DIRECT
+  - geoip,ir,DIRECT
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,PROXY
  # - DST-PORT,53,DNS_Hijack
