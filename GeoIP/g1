@@ -1,0 +1,433 @@
+mode: rule
+ipv6: true
+mixed-port: 7890
+allow-lan: true
+log-level: debug
+interface-name: Ethernet 2
+port: 7891
+socks-port: 7892
+secret: ""
+external-controller: 127.0.0.1:9090
+external-ui: ui
+keep-alive-interval: 30
+find-process-mode: always
+external-controller-tls: 0.0.0.0:9091
+external-ui-name: xd
+external-ui-url: https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip
+unified-delay: true
+tcp-concurrent: true
+authentication: []
+skip-auth-prefixes:
+  - 127.0.0.1/8
+  - ::1/128
+tls:
+  certificate: ""
+  private-key: ""
+global-client-fingerprint: random
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
+geodata-loader: standard
+geosite-matcher: succinct
+geox-url:
+  geoip: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
+  geosite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
+  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
+  asn: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
+global-ua: chrome
+profile:
+  store-selected: true
+  store-fake-ip: true
+lan-allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+lan-disallowed-ips: []
+tun:
+  enable: true
+  stack: Mixed
+  auto-route: false
+  route-address:
+    - 0.0.0.0/1
+    - 128.0.0.0/1
+    - ::/1
+    - 8000::/1
+  auto-detect-interface: true
+  dns-hijack:
+    - 114.114.114.114
+    - 180.76.76.76
+    - 119.29.29.29
+    - 223.5.5.5
+    - 8.8.8.8
+    - 8.8.4.4
+    - 1.1.1.1
+    - 1.0.0.1
+    - 9.9.9.9
+    - 210.2.4.8
+    - 52.80.52.52
+    - 94.140.14.140
+    - 78.157.42.100
+  device: utun_clash
+  mtu: 1500
+  strict-route: true
+  endpoint-independent-nat: false
+dns:
+  enable: true
+  listen: 127.0.0.1:1066
+  ipv6: false
+  use-hosts: true
+  use-system-hosts: true
+  default-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 202.141.176.99
+    - 9.9.9.9
+    - 210.2.4.8
+  nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 119.29.29.29
+    - 180.76.76.76
+    - 114.114.115.115
+    - 9.9.9.9
+    - 210.2.4.8
+    - 52.80.52.52
+    - 94.140.14.140
+    - 78.157.42.100
+  proxy-server-nameserver:
+    - tls://dot.pub:853
+    - tls://1.12.12.12:853
+  nameserver-policy:
+    google.com:
+      - 114.114.114.114
+      - 9.9.9.9
+    telegram.com:
+      - 9.9.9.9
+      - 149.112.112.112
+  enhanced-mode: fake-ip
+  fake-ip-range: 216.146.35.35/16  #198.18.0.1/16
+  fake-ip-filter-mode: whitelist
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - router.asus.com
+    - localhost.sec.qq.com
+    - localhost.ptlogin2.qq.com
+    - +.msftconnecttest.com
+  fallback:
+    - https://dns.quad9.net/dns-query
+    - tls://1.0.0.1:853
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    geosite: []
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+    domain:
+      - +.google.com
+      - +.facebook.com
+      - +.youtube.com
+      - +.github.com
+      - +.twitter.com
+      - +.google.cn
+      - +.googleapis.cn
+      - +.googleapis.com
+  prefer-h3: true
+hosts: {}
+proxy-providers:
+  ID_vrsqke34:
+    type: http
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip
+    path: ../subscribes/ID_eqlxfunu.yaml
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  ID_iqzy4x8l:
+    type: http
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/pp1.yaml
+    path: ../subscribes/ID_iqzy4x8l.yaml
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  ID_3s2bjnro:
+    type: http
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/r
+    path: ../subscribes/ID_a86fcynr.yaml
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  ID_lavwj78l:
+    type: http
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/v
+    path: ../subscribes/ID_y31ku9a7.yaml
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+rule-providers:
+  category-cas@ads:
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-cas@ads.list
+    behavior: domain
+    path: ../rulesets/geosite_category-cas@ads.yaml
+    format: yaml
+  category-ads:
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads.list
+    behavior: domain
+    path: ../rulesets/geosite_category-ads.yaml
+    format: yaml
+  category-ads-all:
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all.list
+    behavior: domain
+    path: ../rulesets/geosite_category-ads-all.yaml
+    format: yaml
+  category-ads-all@ads:
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all@ads.list
+    behavior: domain
+    path: ../rulesets/geosite_category-ads-all@ads.yaml
+    format: yaml
+  google@ads:
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google@ads.list
+    behavior: domain
+    path: ../rulesets/geosite_google@ads.yaml
+    format: yaml
+  google-ads@ads:
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-ads@ads.list
+    behavior: domain
+    path: ../rulesets/geosite_google-ads@ads.yaml
+    format: yaml
+  private:
+    type: http
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml
+    behavior: classical
+    format: yaml
+    proxy: DIRECT
+  category-education-ir:
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/education-ir.list
+    behavior: domain
+    path: ../rulesets/geosite_category-education-ir.yaml
+    format: yaml
+  category-bourse-ir:
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-bourse-ir.yaml
+    behavior: domain
+    path: ../rulesets/geosite_category-bourse-ir.yaml
+    format: yaml
+  category-bank-ir:
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-bank-ir.yaml
+    behavior: domain
+    path: ../rulesets/geosite_category-bank-ir.yaml
+    format: yaml
+  apkmirror:
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apkmirror.yaml
+    behavior: domain
+    path: ../rulesets/geosite_apkmirror.yaml
+    format: yaml
+  category-ads-ir:
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-ir.mrs
+    behavior: domain
+    path: ../rulesets/geosite_category-ads-ir.mrs
+    format: mrs
+  category-ai-chat-!cn@ads:
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-chat-!cn@ads.yaml
+    behavior: domain
+    path: ../rulesets/geosite_category-ai-chat-!cn@ads.yaml
+    format: yaml
+  geolocation-!cn:
+    type: http
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.list
+    behavior: domain
+    format: text
+    proxy: DIRECT
+  AWA:
+    type: http
+    url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
+    behavior: domain
+    format: yaml
+    proxy: DIRECT
+  nsfw1:
+    type: http
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml
+    behavior: domain
+    format: yaml
+    proxy: DIRECT
+  ir:
+    type: http
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml
+    behavior: domain
+    format: yaml
+    proxy: DIRECT
+  ircidr:
+    type: http
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml
+    behavior: classical
+    format: yaml
+    proxy: DIRECT
+  irasn:
+    type: http
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml
+    behavior: classical
+    format: yaml
+    proxy: DIRECT
+proxies:
+  - name: 🎶
+    type: http
+    server: 127.0.0.1
+    port: "15200"
+    
+  - name: DNS-hajack
+    type: dns
+
+  - name: DIRECT1
+    type: direct
+    udp: true
+#    server: 127.0.0.1
+#    port: "10178"
+    
+proxy-groups:
+  - name: 🎶🎶
+    type: select
+    proxies:
+      - DIRECT
+      - 🎶
+      - DNS-hajack
+      - DIRECT1
+      
+  - name: PROXY
+    type: url-test
+    filter: ""
+    exclude-filter: ctb|Expire
+    hidden: false
+    icon: "https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg"
+    proxies:
+      - URL-TEST
+      - FALLBACK
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 90
+    lazy: true
+    disable-udp: true
+    
+  - name: FALLBACK
+    type: fallback
+    filter: ""
+    exclude-filter: ctb|Expire
+    hidden: false
+    icon: "https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/adjust.svg"
+    use:
+      - ID_vrsqke34
+      - ID_iqzy4x8l
+      - ID_3s2bjnro
+      - ID_lavwj78l
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: true
+    disable-udp: true
+    
+  - name: URL-TEST
+    type: url-test
+    filter: ""
+    exclude-filter: ctb|Expire
+    hidden: false
+    icon: "https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/speed.svg"
+    use:
+      - ID_vrsqke34
+      - ID_iqzy4x8l
+      - ID_3s2bjnro
+      - ID_lavwj78l
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 90
+    lazy: true
+    disable-udp: true
+    
+  - name: global
+    type: select
+    filter: ""
+    exclude-filter: ""
+    hidden: false
+    icon: "https://fastly.jsdelivr.net/gh/dongchengjie/metaST@main/metaST/Resources/icons/fish.svg"
+    proxies:
+      - URL-TEST
+      - FALLBACK
+      - PROXY
+      - DIRECT
+      - 🎶
+      - DNS-hajack
+      - DIRECT1
+    disable-udp: true
+rules:
+  - PROCESS-NAME,cloudmusic.exe,🎶🎶
+  - RULE-SET,category-cas@ads,REJECT
+  - RULE-SET,category-ads,REJECT
+  - RULE-SET,category-ads-all,REJECT
+  - RULE-SET,category-ads-all@ads,REJECT
+  - RULE-SET,google@ads,REJECT
+  - RULE-SET,google-ads@ads,REJECT
+  - RULE-SET,private,DIRECT,no-resolve
+  - RULE-SET,private,DIRECT,no-resolve
+  - RULE-SET,category-education-ir,DIRECT
+  - RULE-SET,category-bourse-ir,🎶🎶
+  - RULE-SET,category-bourse-ir,🎶🎶
+  - RULE-SET,category-bank-ir,🎶🎶
+  - RULE-SET,category-bank-ir,🎶🎶
+  - RULE-SET,apkmirror,PROXY
+  - RULE-SET,apkmirror,PROXY
+  - RULE-SET,category-ads-ir,REJECT
+  - RULE-SET,category-ads-ir,REJECT
+  - RULE-SET,category-ai-chat-!cn@ads,REJECT
+  - RULE-SET,geolocation-!cn,PROXY
+  - DST-PORT,80/8080/443/8443,PROXY
+  - RULE-SET,AWA,REJECT
+  - RULE-SET,nsfw1,PROXY
+  - RULE-SET,ir,DIRECT,no-resolve
+  - RULE-SET,ircidr,🎶🎶
+  - RULE-SET,irasn,🎶🎶
+  - RULE-SET,private,🎶🎶,no-resolve
+  - DOMAIN-SUFFIX,googlesyndication.com,PROXY
+  - GEOSITE,category-ads-all,REJECT
+  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
+  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
+  - IP-CIDR6,::1/128,REJECT,no-resolve
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT
+  - PROCESS-NAME,com.samsung.android.location,REJECT
+  - PROCESS-NAME,com.android.localtransport,REJECT
+  - PROCESS-NAME,com.google.android.gms.location.history,REJECT
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT
+  - PROCESS-NAME,com.android.location.fused,REJECT
+  - PROCESS-NAME,com.samsung.android.messaging,REJECT
+  - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
+  - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
+  - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
+  - PROCESS-NAME,com.sec.imsservice,REJECT
+  - PROCESS-NAME,com.samsung.android.messaging,REJECT
+  - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
+  - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
+  - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
+  - GEOIP,telegram,PROXY
+  - GEOSITE,telegram,PROXY
+  - IN-TYPE,inner,PROXY
+  - MATCH,global
