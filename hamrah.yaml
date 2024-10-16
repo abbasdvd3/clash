@@ -29,7 +29,7 @@ dns:
   enable: true
   listen: 0.0.0.0:1053
   use-hosts: true
-  ipv6: true
+  ipv6: false
   ipv6-timeout: 300  
   prefer-h3: true  
   enhanced-mode: fake-ip
@@ -71,6 +71,8 @@ dns:
     - https://223.5.5.5/dns-query    
   fallback:
     - quic://a.passcloud.xyz:784#PROXY
+    - tls://223.5.5.5
+    - tls://dot.pub
   fallback-filter:
     geoip: false
     ipcidr:
@@ -80,15 +82,16 @@ dns:
 
 tun:    
   enable: true
-  device: utun # gvisor/mixed
+  device: utun
   mtu: 9000 
   stack: mixed
   dns-hijack:
     - any:53  
     - tcp://any:53
+    - 223.5.5.5
+    - 120.53.53.53
     - 180.76.76.76
     - 119.29.29.29
-    - 223.5.5.5
     - 1.1.1.1
     - 1.0.0.1
   auto-route: true 
@@ -128,54 +131,65 @@ profile:
   store-fake-ip: true
 
 proxies:
-
+  - name: "ایران"
+    type: "direct"
+    udp: "true"
+    
+  - name: "dns"
+    type: "dns"
+    udp: "false"
+    
+  - name: "http"
+    type: "http"
+    server: "127.0.0.1"
+    port: "1500"
+    udp: "true"
+    
 proxy-groups:
   - name: "PROXY"
-    type: url-test
+    type: "url-test"
+    udp: "false"
     use:
  #     - "provide"
     proxies:
       - "URL-TEST"
       - "FALLBACK"
-
       
   - name: "FALLBACK"
-    type: fallback
+    type: "fallback"
     exclude-filter: 'ctb|Expire'
     include-all-proxies: true
     include-all-providers: true
-    url: https://www.gstatic.com/generate_204
-    interval: 180
-  #  tolerance: 50
+    url: "https://www.gstatic.com/generate_204"
     proxies:
-
-      
+  
   - name: "URL-TEST"
-    type: url-test
+    type: "url-test"
     exclude-filter: 'ctb|Expire'
     include-all-proxies: true
     include-all-providers: true
-    url: https://www.gstatic.com/generate_204
- #   interval: 300
-    tolerance: 90
+    url: "https://www.gstatic.com/generate_204"
     proxies:
 
-  - name: "globalA"
+  - name: "FINAL"
     type: select
     use:
- #     - "provide"
+      - "provide"
     proxies:
+      - "PROXY"
       - "URL-TEST"
       - "FALLBACK"
+      - "http"
+      - "dns"
+      - "ایران"
+      
 proxy-providers:
   "provide":
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
     interval: 3600
     path: ./provide/provide.yaml
-    # filter: 'xxx' # Supports regular expressions to filter by node name
-    exclude-filter: 'ctb|Expire' # Supports regular expressions to exclude based on node name
-    # exclude-type: 'ss|http' # Does not support regular expressions, separated by '|', excluded by node type
+    exclude-filter: 'ctb|Expire' 
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -185,9 +199,7 @@ proxy-providers:
     url: "https://cdn.jsdelivr.net/gh/cry0ice/genode@main/public/all.txt"
     interval: 3600
     path: ./provide/provide1.yaml
-    # filter: 'xxx' # Supports regular expressions to filter by node name
-    exclude-filter: 'ctb|Expire' # Supports regular expressions to exclude based on node name
-    # exclude-type: 'ss|http' # Does not support regular expressions, separated by '|', excluded by node type
+    exclude-filter: 'ctb|Expire' 
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -245,19 +257,19 @@ rule-providers:
     
     
 rules:
-  - RULE-SET,geolocation-!cn,PROXY
-  - DST-PORT,80/8080/443/8443,PROXY
+  - RULE-SET,geolocation-!cn,FINAL
+  - DST-PORT,80/8080/443/8443,FINAL
   - RULE-SET,AWA,REJECT
-  - RULE-SET,nsfw1,PROXY
-  - RULE-SET,ir,DIRECT,no-resolve
-  - RULE-SET,ircidr,DIRECT
-  - RULE-SET,irasn,DIRECT
-  - RULE-SET,private,PROXY,no-resolve
-  - DOMAIN-SUFFIX,googlesyndication.com,PROXY
+  - RULE-SET,nsfw1,FINAL
+  - RULE-SET,ir,ایران,no-resolve
+  - RULE-SET,ircidr,ایران
+  - RULE-SET,irasn,ایران
+  - RULE-SET,private,ایران,no-resolve
+  - DOMAIN-SUFFIX,googlesyndication.com,FINAL
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
   - geosite,category-ads-all,REJECT
-  - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),PROXY
-  - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),PROXY
+  - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),FINAL
+  - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),FINAL
   - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
   - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
   - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
@@ -280,8 +292,8 @@ rules:
   - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
   - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
   - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
-  - geoip,ir,DIRECT
+  - geoip,ir,ایران
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
-  - IN-TYPE,inner,PROXY
- # - DST-PORT,53,DNS_Hijack
+  - IN-TYPE,inner,FINAL
+  - DST-PORT,53,dns
   - MATCH,globalA
