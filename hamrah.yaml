@@ -157,6 +157,7 @@ proxy-groups:
       
   - name: "FALLBACK"
     type: "fallback"
+    interval: 180
     exclude-filter: 'ctb|Expire'
  #   include-all-proxies: true
     include-all-providers: true
@@ -165,6 +166,8 @@ proxy-groups:
   
   - name: "URL-TEST"
     type: "url-test"
+    interval: 180
+    tolerance: 100
     exclude-filter: 'ctb|Expire'
 #    include-all-proxies: true
     include-all-providers: true
@@ -187,23 +190,23 @@ proxy-providers:
   "provide":
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
-    interval: 3600
-    path: ./provide/provide.yaml
+    interval: 360
+    path: provide.yaml
     exclude-filter: 'ctb|Expire' 
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 360
+      interval: 36
   "provide1":
     type: http
     url: "https://cdn.jsdelivr.net/gh/cry0ice/genode@main/public/all.txt"
-    interval: 3600
-    path: ./provide/provide1.yaml
+    interval: 360
+    path: provide1.yaml
     exclude-filter: 'ctb|Expire' 
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-      interval: 360
+      interval: 36
 
 rule-providers:
   ir:
@@ -212,48 +215,48 @@ rule-providers:
     format: yaml
     path: ruleset/ir.yaml
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml
-    interval: 86400
+    interval: 864
   ircidr:
     type: http
     behavior: classical
     format: yaml
     path: ruleset/ircidr.yaml
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml
-    interval: 86400
+    interval: 864
   private:
     type: http
     behavior: classical
     format: yaml
     path: ruleset/private.yaml
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml
-    interval: 86400
+    interval: 864
   irasn:
     type: http
     behavior: classical
     format: yaml
     path: ruleset/irasn.yaml
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml
-    interval: 86400
+    interval: 864
   AWA:
     type: http
     behavior: domain
     format: yaml
     path: ruleset/AWA.yaml
     url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
-    interval: 86400
+    interval: 864
   nsfw1:
     type: http
     behavior: domain
     path: ruleset/nsfw1.yaml
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml
-    interval: 86400
+    interval: 864
   geolocation-!cn:
     type: http
     behavior: domain
     format: text
     path: ruleset/geolocation-!cn.list
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.list
-    interval: 3600    
+    interval: 360
     
     
 rules:
