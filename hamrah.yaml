@@ -148,7 +148,7 @@ proxies:
 proxy-groups:
   - name: "PROXY"
     type: "url-test"
-    udp: "false"
+    udp: "true"
     use:
  #     - "provide"
     proxies:
@@ -167,7 +167,7 @@ proxy-groups:
   - name: "URL-TEST"
     type: "url-test"
     interval: 180
-    tolerance: 100
+#    tolerance: 100
     exclude-filter: 'ctb|Expire'
 #    include-all-proxies: true
     include-all-providers: true
@@ -176,8 +176,9 @@ proxy-groups:
 
   - name: "FINAL"
     type: select
+    include-all-providers: true
     use:
-      - "provide"
+   #   - "provide"
     proxies:
       - "PROXY"
       - "URL-TEST"
@@ -207,6 +208,26 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 36
+  "provide2":
+    type: http
+    url: "https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/clash.yml"
+    interval: 360
+    path: provide2.yaml
+    exclude-filter: 'ctb|Expire' 
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 36
+  "provide3":
+    type: http
+    url: "https://raw.githubusercontent.com/itsyebekhe/vpnfail/refs/heads/main/subscription/base64"
+    interval: 360
+    path: provide3.yaml
+    exclude-filter: 'ctb|Expire' 
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 36
 
 rule-providers:
   ir:
@@ -225,7 +246,7 @@ rule-providers:
     interval: 864
   private:
     type: http
-    behavior: classical
+    behavior: ipcidr
     format: yaml
     path: ruleset/private.yaml
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml
