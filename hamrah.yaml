@@ -228,7 +228,16 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 36
-
+  "provide4":
+    type: http
+    url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
+    interval: 360
+    path: provide4.yaml
+    exclude-filter: 'ctb|Expire' 
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 36
 rule-providers:
   ir:
     type: http
@@ -246,7 +255,7 @@ rule-providers:
     interval: 864
   private:
     type: http
-    behavior: ipcidr
+    behavior: classical
     format: yaml
     path: ruleset/private.yaml
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml
