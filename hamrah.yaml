@@ -148,6 +148,8 @@ proxies:
 proxy-groups:
   - name: "PROXY"
     type: "url-test"
+    interval: 180
+    tolerance: 60
     udp: "true"
     use:
  #     - "provide"
@@ -200,7 +202,7 @@ proxy-providers:
       interval: 36
   "provide1":
     type: http
-    url: "https://cdn.jsdelivr.net/gh/cry0ice/genode@main/public/all.txt"
+    url: "https://raw.githubusercontent.com/ndsphonemy/proxy-sub/main/lt-sub-all.txt" # https://raw.githubusercontent.com/cry0ice/genode@main/public/all.txt
     interval: 360
     path: provide1.yaml
     exclude-filter: 'ctb|Expire' 
@@ -220,7 +222,7 @@ proxy-providers:
       interval: 36
   "provide3":
     type: http
-    url: "https://raw.githubusercontent.com/itsyebekhe/vpnfail/refs/heads/main/subscription/base64"
+    url: "https://raw.githubusercontent.com/ndsphonemy/proxy-sub/main/speed.txt" # https://raw.githubusercontent.com/itsyebekhe/vpnfail/refs/heads/main/subscription/base64
     interval: 360
     path: provide3.yaml
     exclude-filter: 'ctb|Expire' 
