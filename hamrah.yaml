@@ -290,7 +290,13 @@ rule-providers:
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.list
     interval: 360
     
-    
+  adblock:
+    type: http
+    behavior: domain
+    format: text
+    path: ruleset/geolocation-!cn.list
+    url: https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_V2ray/main/adblock_reject_domain.txt
+    interval: 360    
 rules:
   - RULE-SET,geolocation-!cn,FINAL
   - DST-PORT,80/8080/443/8443,FINAL
@@ -299,6 +305,7 @@ rules:
   - RULE-SET,ir,ایران,no-resolve
   - RULE-SET,ircidr,ایران
   - RULE-SET,irasn,ایران
+  - RULE-SET,adblock,REJECT
   - RULE-SET,private,ایران,no-resolve
   - DOMAIN-SUFFIX,googlesyndication.com,FINAL
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
