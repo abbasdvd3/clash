@@ -148,6 +148,7 @@ proxies:
 proxy-groups:
   - name: "PROXY"
     type: "url-test"
+    url: "https://lab.skk.moe/test-204"
     interval: 180
     tolerance: 60
     udp: "true"
@@ -160,25 +161,26 @@ proxy-groups:
   - name: "FALLBACK"
     type: "fallback"
     interval: 180
-    exclude-filter: 'ctb|Expire'
+    exclude: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
  #   include-all-proxies: true
     include-all-providers: true
-    url: "https://www.gstatic.com/generate_204"
+    url: "https://lab.skk.moe/test-204"
     proxies:
   
   - name: "URL-TEST"
     type: "url-test"
     interval: 180
 #    tolerance: 100
-    exclude-filter: 'ctb|Expire'
+    exclude: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
 #    include-all-proxies: true
     include-all-providers: true
-    url: "https://www.gstatic.com/generate_204"
+    url: "https://lab.skk.moe/test-204"
     proxies:
 
   - name: "FINAL"
     type: select
-    include-all-providers: true
+ #   include-all-providers: true
+    exclude: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     use:
    #   - "provide"
     proxies:
@@ -195,111 +197,122 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
     interval: 360
     path: provide.yaml
-    exclude-filter: 'ctb|Expire' 
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅' 
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: "https://lab.skk.moe/test-204"
       interval: 36
   "provide1":
     type: http
-    url: "https://raw.githubusercontent.com/ndsphonemy/proxy-sub/main/lt-sub-all.txt" # https://raw.githubusercontent.com/cry0ice/genode@main/public/all.txt
+    url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/yudou66.yaml" # https://raw.githubusercontent.com/ndsphonemy/proxy-sub/main/lt-sub-all.txt # https://raw.githubusercontent.com/cry0ice/genode@main/public/all.txt
     interval: 360
     path: provide1.yaml
-    exclude-filter: 'ctb|Expire' 
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: "https://lab.skk.moe/test-204"
       interval: 36
   "provide2":
     type: http
     url: "https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/clash.yml"
     interval: 360
     path: provide2.yaml
-    exclude-filter: 'ctb|Expire' 
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅' 
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: "https://lab.skk.moe/test-204"
       interval: 36
   "provide3":
     type: http
-    url: "https://raw.githubusercontent.com/ndsphonemy/proxy-sub/main/speed.txt" # https://raw.githubusercontent.com/itsyebekhe/vpnfail/refs/heads/main/subscription/base64
+    url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/freenode.yaml"  # https://raw.githubusercontent.com/ndsphonemy/proxy-sub/main/speed.txt # https://raw.githubusercontent.com/itsyebekhe/vpnfail/refs/heads/main/subscription/base64
     interval: 360
     path: provide3.yaml
-    exclude-filter: 'ctb|Expire' 
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅' 
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: "https://lab.skk.moe/test-204"
       interval: 36
   "provide4":
     type: http
     url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
     interval: 360
     path: provide4.yaml
-    exclude-filter: 'ctb|Expire' 
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: "https://lab.skk.moe/test-204"
       interval: 36
-rule-providers:
-  ir:
+  "provide5":
     type: http
-    behavior: domain
-    format: yaml
-    path: ruleset/ir.yaml
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml
-    interval: 864
-  ircidr:
-    type: http
-    behavior: classical
-    format: yaml
-    path: ruleset/ircidr.yaml
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml
-    interval: 864
-  private:
-    type: http
-    behavior: classical
-    format: yaml
-    path: ruleset/private.yaml
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml
-    interval: 864
-  irasn:
-    type: http
-    behavior: classical
-    format: yaml
-    path: ruleset/irasn.yaml
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml
-    interval: 864
-  AWA:
-    type: http
-    behavior: domain
-    format: yaml
-    path: ruleset/AWA.yaml
-    url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
-    interval: 864
-  nsfw1:
-    type: http
-    behavior: domain
-    path: ruleset/nsfw1.yaml
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml
-    interval: 864
-  geolocation-!cn:
-    type: http
-    behavior: domain
-    format: text
-    path: ruleset/geolocation-!cn.list
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.list
+    url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/ndnode.yaml"
     interval: 360
-    
-  adblock:
+    path: provide5.yaml
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+    health-check:
+      enable: true
+      url: "https://lab.skk.moe/test-204"
+      interval: 36
+  "provide6":
     type: http
+    url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodefree.yaml"
+    interval: 360
+    path: provide6.yaml
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+    health-check:
+      enable: true
+      url: "https://lab.skk.moe/test-204"
+      interval: 36
+  "provide7":
+    type: http
+    url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/v2rayshare.yaml"
+    interval: 360
+    path: provide7.yaml
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+    health-check:
+      enable: true
+      url: "https://lab.skk.moe/test-204"
+      interval: 36
+
+
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: yaml}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: yaml}     
+rule-providers:
+  iranserver:
     behavior: domain
-    format: text
-    path: ruleset/geolocation-!cn.list
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/iranserver.yaml
+  ir:
+    behavior: domain
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml
+  ircidr:
+    behavior: ip
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml
+  private:
+    behavior: ip
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml
+  irasn:
+    behavior: ip
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml
+  AWA:
+    behavior: domain
+    url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
+  nsfw1:
+    behavior: domain
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml
+  geolocation-!cn:
+    behavior: domain
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.list
+  adblock:
+    behavior: domain
     url: https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_V2ray/main/adblock_reject_domain.txt
-    interval: 360    
+  social:
+    behavior: domain
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml
 rules:
+  - RULE-SET,social,FINAL
   - RULE-SET,geolocation-!cn,FINAL
   - DST-PORT,80/8080/443/8443,FINAL
+  - RULE-SET,iranserver,ایران
   - RULE-SET,AWA,REJECT
   - RULE-SET,nsfw1,FINAL
   - RULE-SET,ir,ایران,no-resolve
@@ -335,6 +348,8 @@ rules:
   - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
   - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
   - geoip,ir,ایران
+  - geoip,private,ایران
+  - geosite,private,ایران
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,FINAL
   - DST-PORT,53,dns
