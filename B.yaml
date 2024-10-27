@@ -1,0 +1,603 @@
+content-disposition: attachment; filename*=UTF-8''%E5%90%8D%E7%A7%B0
+profile-update-interval: 24
+profile-web-page-url: https://mihomo.party
+subscription-userinfo: upload=1638257504; download=13418441583; total=1073839341568; expire=1791390742
+port: 7891
+socks-port: 7892
+mixed-port: 7890
+redir-port: 9797
+bind-address: "*"
+lan-allowed-ips:
+- 0.0.0.0/0
+- ::/0
+lan-disallowed-ips:
+- 192.168.0.3/32
+skip-auth-prefixes:
+- 127.0.0.1/8
+- ::1/128
+ipv6: true
+allow-lan: true
+tcp-concurrent: true
+unified-delay: false
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24 
+keep-alive-interval: 15
+keep-alive-idle: 15
+disable-keep-alive: false
+global-ua: clash.meta
+etag-support: true
+interface-name: ""
+# mode: global 
+log-level: debug
+global-client-fingerprint: random # 
+geodata-loader: standard 
+find-process-mode: always
+external-controller-cors:
+allow-origins:
+allow-private-network: true
+external-controller-unix: mihomo.sock
+external-controller-pipe: \\.\pipe\mihomo
+external-controller-tls: 127.0.0.1:9443
+external-controller: 127.0.0.1:9090 
+external-ui: /path/to/ui/folder
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+external-ui-name: xd
+geox-url:
+  geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
+  geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
+  mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
+  asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
+  
+linters:
+  disable-all: true
+  enable:
+    - gofumpt
+    - govet
+    - gci
+    - staticcheck
+
+linters-settings:
+  gci:
+    sections:
+      - standard
+      - prefix(github.com/metacubex/mihomo)
+      - default
+  staticcheck:
+    go: '1.19'
+    
+    
+experimental:
+  quic-go-disable-gso: false
+  quic-go-disable-ecn: false
+  dialer-ip4p-convert: false
+  
+tunnels:
+- tcp/udp,127.0.0.1:6553,8.8.8.8:53,FINAL
+listeners:
+  - name: socks5-in-1
+    type: socks
+    port: 10808
+    #listen: 0.0.0.0 
+    # rule: sub-rule-name1 
+    # proxy: proxy 
+    # udp: false 
+  - name: http-in-1
+    type: http
+    port: 10809
+    listen: 0.0.0.0
+    # rule: sub-rule-name1 
+    # proxy: proxy 
+  - name: mixed-in-1
+    type: mixed 
+    port: 10810
+    listen: 0.0.0.0
+    # rule: sub-rule-name1 
+    # proxy: proxy 
+    # udp: false #
+  - name: reidr-in-1
+    type: redir
+    port: 10811
+    listen: 0.0.0.0
+    
+dns:   
+  cache-algorithm: arc
+  enable: true
+  listen: 0.0.0.0:1053
+  use-hosts: true
+  use-system-hosts: true
+  ipv6: true
+  ipv6-timeout: 300  
+  prefer-h3: true  
+  enhanced-mode: fake-ip
+  respect-rules: true
+  fake-ip-range: 28.0.0.1/8
+  
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - '*'
+    - '+.lan'
+  nameserver:    
+    - '223.5.5.5'
+    - '114.114.114.114'
+    - '119.29.29.29'
+    - '180.76.76.76'
+    - 'tls://223.5.5.5'
+    - 'tls://dot.pub'
+    - 'https://dns.cloudflare.com/dns-query'
+    - 'https://doh.pub/dns-query'
+    - 'https://dns.alidns.com/dns-query'
+    - 'https://dns.cloudflare.com/dns-query#skip-cert-verify=true'
+    - 'tls://[2001:4860:4860::8844]#FINAL'
+    - 'tls://[2606:4700:4700::1001]#FINAL'
+    - 'https://8.8.8.8/dns-query#ecs=1.1.1.1/24'
+    - 'https://dns.cloudflare.com/dns-query#h3=true'
+    - 'https://8.8.8.8/dns-query#ecs=1.1.1.1/24&ecs-override=true'
+  default-nameserver: 
+    - '223.5.5.5'
+    - '120.53.53.53'
+    - '180.76.76.76'
+    - '119.29.29.29'
+    - '1.1.1.1'
+    - '1.0.0.1'
+  nameserver-policy:
+    "www.google.com": '114.114.114.114'
+    "geosite:category-ads-all": rcode://success
+    "rule-set:adblock": rcode://success
+    "geosite:category-ads-all": rcode://format_error
+    "geosite:category-ads-all": rcode://server_failure
+    "geosite:category-ads-all": rcode://not_implemented
+    "geosite:category-ads-all": rcode://refused
+    "rule-set:geolocation-!cn":
+      - 'quic://223.5.5.5'
+      - 'quic://223.6.6.6'
+    "geosite:ir,private":
+      - 'tls://223.5.5.5'
+      - 'tls://dot.pub'
+      - 'https://doh.pub/dns-query'
+      - 'https://dns.alidns.com/dns-query'
+    "rule-set:ir,private,nsfw1,social":
+      - 'tls://223.5.5.5'
+      - 'tls://dot.pub'
+      - 'https://doh.pub/dns-query'
+      - 'https://dns.alidns.com/dns-query'
+  proxy-server-nameserver:
+    - 'tls://223.5.5.5'
+    - 'tls://dot.pub'
+    - 'https://120.53.53.53/dns-query'
+    - 'https://223.5.5.5/dns-query'
+  fallback:
+    - 'tls://8.8.4.4'
+    - 'tls://1.1.1.1'
+    - 'quic://a.passcloud.xyz:784#PROXY'
+    - 'https://8.8.8.8/dns-query'
+    - 'tls://223.5.5.5'
+    - 'tls://dot.pub'
+  fallback-filter:
+    geoip: false
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+
+hosts:
+  '*.clash.dev': 127.0.0.1
+  'alpha.clash.dev': '::1'
+  test.com: [1.1.1.1, 2.2.2.2]
+  baidu.com: google.com
+tun:    
+  enable: true
+  device: utun
+  mtu: 9000
+  interface-name: ""
+  stack: mixed
+  strict-route: true
+  gso: true
+  gso-max-size: 65536
+  udp-timeout: 300
+  iproute2-table-index: 2022
+  iproute2-rule-index: 9000
+  endpoint-independent-nat: false
+  dns-hijack:
+    - any:53  
+    - tcp://any:53
+    - 223.5.5.5
+    - 120.53.53.53
+    - 180.76.76.76
+    - 119.29.29.29
+    - 1.1.1.1
+    - 1.0.0.1
+  auto-route: true 
+  auto-redirect: true
+  auto-detect-interface: true
+  inet4-route-address:
+  - 0.0.0.0/1
+  - 128.0.0.0/1
+  inet6-route-address:
+  - "::/1"
+  - "8000::/1"
+  inet4-route-exclude-address:
+  - 192.168.0.0/16
+  inet6-route-exclude-address:
+  - fc00::/7
+
+sniffer:                
+  enable: false                
+  force-dns-mapping: false
+  parse-pure-ip: false          
+  override-destination: false      
+  sniff:   
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [ 443 ]
+    HTTP: 
+      ports: [80, 8080-8880]
+      override-destination: true 
+  force-domain:
+    - google.com
+    - +.v2ex.com
+  skip-domain:
+    - Mijia Cloud
+    - +.apple.com
+  skip-src-address:
+    - 192.168.0.3/32
+  skip-dst-address:
+    - 192.168.0.3/32
+  sniffing:
+    - tls
+    - http
+  port-whitelist:
+    - "80"
+    - "443"
+  
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+proxies:
+  - name: "ایران"
+    type: "direct"
+    udp: "true"
+    ip-version: "ipv4"
+    interface-name: ""
+    routing-mark: 1234
+    
+  - name: "dns"
+    type: "dns"
+    udp: "false"
+    
+  - name: "http"
+    type: "http"
+    server: "127.0.0.1"
+    port: "1500"
+    udp: "true"
+    
+proxy-groups:
+  - name: "PROXY"
+    type: "url-test"
+    url: "https://lab.skk.moe/test-204"
+    interval: 180
+    tolerance: 60
+    lazy: true
+    timeout: 5000
+    max-failed-times: 5
+    disable-udp: true
+    interface-name: ""
+    routing-mark: 11451
+   # include-all: false
+   # include-all-proxies: false
+   # include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+   # exclude-type: "Shadowsocks|Http"
+    expected-status: 204
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Google_Search.png
+    proxies:
+      - "URL-TEST"
+      - "FALLBACK"
+      
+  - name: "FALLBACK"
+    type: "fallback"
+    interval: 180
+    url: "https://lab.skk.moe/test-204"
+    lazy: true
+    timeout: 5000
+    max-failed-times: 5
+    disable-udp: true
+    interface-name: ""
+    routing-mark: 11451
+    include-all: false
+    include-all-proxies: false
+    include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+   # exclude-type: "Shadowsocks|Http"
+    expected-status: 204
+    hidden: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/YouTube.png
+    proxies:
+  
+  - name: "URL-TEST"
+    type: "url-test"
+    interval: 180
+    tolerance: 100
+    exclude: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+    url: "https://lab.skk.moe/test-204"
+    lazy: true
+    timeout: 5000
+    max-failed-times: 5
+    disable-udp: true
+    interface-name: ""
+    routing-mark: 11451
+    include-all: false
+    include-all-proxies: false
+    include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+   # exclude-type: "Shadowsocks|Http"
+    expected-status: 204
+    hidden: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Panda.png
+    proxies:
+
+  - name: "FINAL"
+    type: "select"
+    lazy: true
+    timeout: 5000
+    max-failed-times: 5
+    disable-udp: true
+    interface-name: ""
+    routing-mark: 11451
+    include-all: false
+    include-all-proxies: false
+    include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+   # exclude-type: "Shadowsocks|Http"
+    expected-status: 204
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png
+    proxies:
+      - "PROXY"
+      - "URL-TEST"
+      - "FALLBACK"
+      - "http"
+      - "dns"
+      - "ایران"
+      
+proxy-providers:
+  "provide":
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
+    interval: 360
+    path: provide.yaml
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅' 
+    health-check:
+      enable: true
+      url: "https://lab.skk.moe/test-204"
+      interval: 36
+  "provide1":
+    type: http
+    url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/yudou66.yaml" # https://raw.githubusercontent.com/ndsphonemy/proxy-sub/main/lt-sub-all.txt # https://raw.githubusercontent.com/cry0ice/genode@main/public/all.txt
+    interval: 360
+    path: provide1.yaml
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+    health-check:
+      enable: true
+      url: "https://lab.skk.moe/test-204"
+      interval: 36
+  "provide2":
+    type: http
+    url: "https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/clash.yml"
+    interval: 360
+    path: provide2.yaml
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅' 
+    health-check:
+      enable: true
+      url: "https://lab.skk.moe/test-204"
+      interval: 36
+  "provide3":
+    type: http
+    url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/freenode.yaml"  # https://raw.githubusercontent.com/ndsphonemy/proxy-sub/main/speed.txt # https://raw.githubusercontent.com/itsyebekhe/vpnfail/refs/heads/main/subscription/base64
+    interval: 360
+    path: provide3.yaml
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅' 
+    health-check:
+      enable: true
+      url: "https://lab.skk.moe/test-204"
+      interval: 36
+  "provide4":
+    type: http
+    url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
+    interval: 360
+    path: provide4.yaml
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+    health-check:
+      enable: true
+      url: "https://lab.skk.moe/test-204"
+      interval: 36
+  "provide5":
+    type: http
+    url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/ndnode.yaml"
+    interval: 360
+    path: provide5.yaml
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+    health-check:
+      enable: true
+      url: "https://lab.skk.moe/test-204"
+      interval: 36
+  "provide6":
+    type: http
+    url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodefree.yaml"
+    interval: 360
+    path: provide6.yaml
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+    health-check:
+      enable: true
+      url: "https://lab.skk.moe/test-204"
+      interval: 36
+  "provide7":
+    type: http
+    url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/v2rayshare.yaml"
+    interval: 360
+    path: provide7.yaml
+    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+    health-check:
+      enable: true
+      url: "https://lab.skk.moe/test-204"
+      interval: 36
+
+
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: classical, format: text}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: yaml}     
+rule-providers:
+  iranserver:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/iranserver.yaml"
+  ir:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
+  ircidr:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
+  private:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
+  irasn:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
+  AWA:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+  nsfw1:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
+  geolocation-!cn:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.list"
+  adblock:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_V2ray/main/adblock_reject_domain.txt"
+  social:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
+  private1:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.list"
+  github_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.list"
+  twitter_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.list"
+  youtube_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.list"
+  google_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.list"
+  telegram_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.list"
+  netflix_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.list"
+  spotify_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.list"
+  pixiv_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pixiv.list"
+  cn_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.list"
+  google_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.list"
+  netflix_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.list"
+  twitter_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.list"
+  telegram_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.list"
+
+    
+rules:
+  - GEOIP,lan,ایران,no-resolve
+  - RULE-SET,github_domain,FINAL
+  - GEOIP,telegram,PROXY
+  - RULE-SET,twitter_domain,FINAL
+  - RULE-SET,youtube_domain,FINAL
+  - RULE-SET,google_domain,FINAL
+  - RULE-SET,telegram_domain,FINAL
+  - RULE-SET,netflix_domain,FINAL
+  - RULE-SET,spotify_domain,FINAL
+  - RULE-SET,pixiv_domain,FINAL
+  - RULE-SET,google_ip,FINAL
+  - RULE-SET,netflix_ip,FINAL
+  - RULE-SET,telegram_ip,FINAL
+  - RULE-SET,twitter_ip,FINAL
+  - RULE-SET,cn_ip,ایران
+  - RULE-SET,private1,ایران,no-resolve
+  - RULE-SET,social,FINAL
+  - RULE-SET,geolocation-!cn,FINAL
+  - DST-PORT,80/8080/443/8443,FINAL
+  - RULE-SET,iranserver,ایران
+  - RULE-SET,AWA,REJECT
+  - RULE-SET,nsfw1,FINAL
+  - RULE-SET,ir,ایران,no-resolve
+  - RULE-SET,ircidr,ایران
+  - RULE-SET,irasn,ایران
+  - RULE-SET,adblock,REJECT
+  - GEOSITE,category-ads-all,REJECT
+  - RULE-SET,private,ایران,no-resolve
+  - DOMAIN-SUFFIX,googlesyndication.com,FINAL
+  - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
+  - geosite,category-ads-all,REJECT
+  - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),FINAL
+  - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),FINAL
+  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
+  - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
+  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
+  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
+  - IP-CIDR6,::1/128,REJECT,no-resolve
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT
+  - PROCESS-NAME,com.samsung.android.location,REJECT
+  - PROCESS-NAME,com.android.localtransport,REJECT
+  - PROCESS-NAME,com.google.android.gms.location.history,REJECT
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT
+  - PROCESS-NAME,com.android.location.fused,REJECT
+  - PROCESS-NAME,com.samsung.android.messaging,REJECT
+  - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
+  - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
+  - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
+#  - PROCESS-NAME,com.android.settings,REJECT
+  - PROCESS-NAME,com.sec.imsservice,REJECT
+  - PROCESS-NAME,com.samsung.android.messaging,REJECT
+  - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
+  - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
+  - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
+  - geoip,ir,ایران
+  - geoip,private,ایران
+  - geosite,private,ایران
+  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
+  - IN-TYPE,inner,FINAL
+  - DST-PORT,53,dns
+  - IP-ASN,1,PROXY
+  - DOMAIN-SUFFIX,baidu.com,ایران
+  - DOMAIN-KEYWORD,google,PROXY
+  - IP-CIDR,1.1.1.1/32,PROXY
+  - IP-CIDR6,2409::/64,ایران
+  - SUB-RULE,(OR,((NETWORK,TCP),(NETWORK,UDP))),sub-rule-name1
+  - SUB-RULE,(AND,((NETWORK,UDP))),sub-rule-name2
+sub-rules:
+  sub-rule-name1:
+    - DOMAIN,google.com,FINAL
+    - DOMAIN,baidu.com,ایران
+    - MATCH,FINAL
+  sub-rule-name2:
+    - IP-CIDR,1.1.1.1/32,REJECT
+    - IP-CIDR,8.8.8.8/32,FINAL
+    - DOMAIN,dns.alidns.com,REJECT
