@@ -1,90 +1,180 @@
+port: 7891
+socks-port: 7892
 mixed-port: 7890
 redir-port: 9797
+bind-address: "*"
+lan-allowed-ips:
+- 0.0.0.0/0
+- ::/0
+lan-disallowed-ips:
+- 192.168.0.3/32
+skip-auth-prefixes:
+- 127.0.0.1/8
+- ::1/128
 ipv6: true
 allow-lan: true
 tcp-concurrent: true
-unified-delay: true
+unified-delay: false
 geodata-mode: true
 geo-auto-update: true
 geo-update-interval: 24 
-keep-alive-interval: 1800  
+keep-alive-interval: 15
+keep-alive-idle: 15
+disable-keep-alive: false
+global-ua: clash.meta
+etag-support: true
+interface-name: ""
 # mode: global 
 log-level: debug
 global-client-fingerprint: random # 
 geodata-loader: standard 
-find-process-mode: strict
-bind-address: '*'
+find-process-mode: always
+external-controller-cors:
+allow-origins:
+allow-private-network: true
+external-controller-unix: mihomo.sock
+external-controller-pipe: \\.\pipe\mihomo
+external-controller-tls: 127.0.0.1:9443
 external-controller: 127.0.0.1:9090 
-external-ui: ui
+external-ui: /path/to/ui/folder
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+external-ui-name: xd
 geox-url:
   geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
   geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
   mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
   asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
 
-
+experimental:
+  quic-go-disable-gso: false
+  quic-go-disable-ecn: false
+  dialer-ip4p-convert: false
+  
+tunnels:
+- tcp/udp,127.0.0.1:6553,8.8.8.8:53,FINAL
+listeners:
+  - name: socks5-in-1
+    type: socks
+    port: 10808
+    #listen: 0.0.0.0 
+    # rule: sub-rule-name1 
+    # proxy: proxy 
+    # udp: false 
+  - name: http-in-1
+    type: http
+    port: 10809
+    listen: 0.0.0.0
+    # rule: sub-rule-name1 
+    # proxy: proxy 
+  - name: mixed-in-1
+    type: mixed 
+    port: 10810
+    listen: 0.0.0.0
+    # rule: sub-rule-name1 
+    # proxy: proxy 
+    # udp: false #
+  - name: reidr-in-1
+    type: redir
+    port: 10811
+    listen: 0.0.0.0
+    
 dns:   
   cache-algorithm: arc
   enable: true
   listen: 0.0.0.0:1053
   use-hosts: true
-  ipv6: false
+  use-system-hosts: true
+  ipv6: true
   ipv6-timeout: 300  
   prefer-h3: true  
   enhanced-mode: fake-ip
   respect-rules: true
-  fake-ip-range: 198.18.0.0/16
+  fake-ip-range: 28.0.0.1/8
+  
+  fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - '*'
     - '+.lan'
   nameserver:    
-    - 223.5.5.5
-    - 114.114.114.114
-    - 119.29.29.29     
-    - 180.76.76.76
-    - tls://223.5.5.5
-    - tls://dot.pub
-    - https://dns.cloudflare.com/dns-query
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-    - tls://[2001:4860:4860::8844]#FINAL
-    - tls://[2606:4700:4700::1001]#FINAL
+    - '223.5.5.5'
+    - '114.114.114.114'
+    - '119.29.29.29'
+    - '180.76.76.76'
+    - 'tls://223.5.5.5'
+    - 'tls://dot.pub'
+    - 'https://dns.cloudflare.com/dns-query'
+    - 'https://doh.pub/dns-query'
+    - 'https://dns.alidns.com/dns-query'
+    - 'https://dns.cloudflare.com/dns-query#skip-cert-verify=true'
+    - 'tls://[2001:4860:4860::8844]#FINAL'
+    - 'tls://[2606:4700:4700::1001]#FINAL'
+    - 'https://8.8.8.8/dns-query#ecs=1.1.1.1/24'
+    - 'https://dns.cloudflare.com/dns-query#h3=true'
+    - 'https://8.8.8.8/dns-query#ecs=1.1.1.1/24&ecs-override=true'
   default-nameserver: 
-    - 223.5.5.5
-    - 120.53.53.53
-    - 180.76.76.76
-    - 119.29.29.29
-    - 1.1.1.1
-    - 1.0.0.1
+    - '223.5.5.5'
+    - '120.53.53.53'
+    - '180.76.76.76'
+    - '119.29.29.29'
+    - '1.1.1.1'
+    - '1.0.0.1'
   nameserver-policy:
+    "www.google.com": '114.114.114.114'
+    "geosite:category-ads-all": rcode://success
+    "rule-set:adblock": rcode://success
+    "geosite:category-ads-all": rcode://format_error
+    "geosite:category-ads-all": rcode://server_failure
+    "geosite:category-ads-all": rcode://not_implemented
+    "geosite:category-ads-all": rcode://refused
+    "rule-set:geolocation-!cn":
+      - 'quic://223.5.5.5'
+      - 'quic://223.6.6.6'
     "geosite:ir,private":
-      - tls://223.5.5.5
-      - tls://dot.pub
-    "rule-set:ir,private,nsfw1":
-      - tls://223.5.5.5
-      - tls://dot.pub         
+      - 'tls://223.5.5.5'
+      - 'tls://dot.pub'
+      - 'https://doh.pub/dns-query'
+      - 'https://dns.alidns.com/dns-query'
+    "rule-set:ir,private,nsfw1,social":
+      - 'tls://223.5.5.5'
+      - 'tls://dot.pub'
+      - 'https://doh.pub/dns-query'
+      - 'https://dns.alidns.com/dns-query'
   proxy-server-nameserver:
-    - tls://223.5.5.5
-    - tls://dot.pub 
-    - https://120.53.53.53/dns-query
-    - https://223.5.5.5/dns-query    
+    - 'tls://223.5.5.5'
+    - 'tls://dot.pub'
+    - 'https://120.53.53.53/dns-query'
+    - 'https://223.5.5.5/dns-query'
   fallback:
-    - quic://a.passcloud.xyz:784#PROXY
-    - tls://223.5.5.5
-    - tls://dot.pub
+    - 'tls://8.8.4.4'
+    - 'tls://1.1.1.1'
+    - 'quic://a.passcloud.xyz:784#PROXY'
+    - 'https://8.8.8.8/dns-query'
+    - 'tls://223.5.5.5'
+    - 'tls://dot.pub'
   fallback-filter:
     geoip: false
     ipcidr:
       - 240.0.0.0/4
       - 0.0.0.0/32
 
-
+hosts:
+  '*.clash.dev': 127.0.0.1
+  'alpha.clash.dev': '::1'
+  test.com: [1.1.1.1, 2.2.2.2]
+  baidu.com: google.com
 tun:    
   enable: true
   device: utun
-  mtu: 9000 
+  mtu: 9000
+  interface-name: ""
   stack: mixed
+  strict-route: true
+  gso: true
+  gso-max-size: 65536
+  udp-timeout: 300
+  iproute2-table-index: 2022
+  iproute2-rule-index: 9000
+  endpoint-independent-nat: false
   dns-hijack:
     - any:53  
     - tcp://any:53
@@ -96,9 +186,17 @@ tun:
     - 1.0.0.1
   auto-route: true 
   auto-redirect: true
-  auto-detect-interface: true  
-
-    
+  auto-detect-interface: true
+  inet4-route-address:
+  - 0.0.0.0/1
+  - 128.0.0.0/1
+  inet6-route-address:
+  - "::/1"
+  - "8000::/1"
+  inet4-route-exclude-address:
+  - 192.168.0.0/16
+  inet6-route-exclude-address:
+  - fc00::/7
 
 sniffer:                
   enable: false                
@@ -119,6 +217,10 @@ sniffer:
   skip-domain:
     - Mijia Cloud
     - +.apple.com
+  skip-src-address:
+    - 192.168.0.3/32
+  skip-dst-address:
+    - 192.168.0.3/32
   sniffing:
     - tls
     - http
@@ -166,8 +268,8 @@ proxy-groups:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
     expected-status: 204
-    hidden: true
-    icon: xxx
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Google_Search.png
     proxies:
       - "URL-TEST"
       - "FALLBACK"
@@ -189,7 +291,7 @@ proxy-groups:
    # exclude-type: "Shadowsocks|Http"
     expected-status: 204
     hidden: true
-    icon: xxx
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/YouTube.png
     proxies:
   
   - name: "URL-TEST"
@@ -211,7 +313,7 @@ proxy-groups:
    # exclude-type: "Shadowsocks|Http"
     expected-status: 204
     hidden: true
-    icon: xxx
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Panda.png
     proxies:
 
   - name: "FINAL"
@@ -228,8 +330,8 @@ proxy-groups:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
     expected-status: 204
-    hidden: true
-    icon: xxx
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png
     proxies:
       - "PROXY"
       - "URL-TEST"
@@ -397,9 +499,12 @@ rule-providers:
   telegram_ip:
     <<: *ip
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.list"
+
+    
 rules:
   - GEOIP,lan,ایران,no-resolve
   - RULE-SET,github_domain,FINAL
+  - GEOIP,telegram,PROXY
   - RULE-SET,twitter_domain,FINAL
   - RULE-SET,youtube_domain,FINAL
   - RULE-SET,google_domain,FINAL
@@ -423,6 +528,7 @@ rules:
   - RULE-SET,ircidr,ایران
   - RULE-SET,irasn,ایران
   - RULE-SET,adblock,REJECT
+  - GEOSITE,category-ads-all,REJECT
   - RULE-SET,private,ایران,no-resolve
   - DOMAIN-SUFFIX,googlesyndication.com,FINAL
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
@@ -457,4 +563,19 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,FINAL
   - DST-PORT,53,dns
-  - MATCH,FINAL
+  - IP-ASN,1,PROXY
+  - DOMAIN-SUFFIX,baidu.com,ایران
+  - DOMAIN-KEYWORD,google,PROXY
+  - IP-CIDR,1.1.1.1/32,PROXY
+  - IP-CIDR6,2409::/64,ایران
+  - SUB-RULE,(OR,((NETWORK,TCP),(NETWORK,UDP))),sub-rule-name1
+  - SUB-RULE,(AND,((NETWORK,UDP))),sub-rule-name2
+sub-rules:
+  sub-rule-name1:
+    - DOMAIN,google.com,FINAL
+    - DOMAIN,baidu.com,ایران
+    - MATCH,FINAL
+  sub-rule-name2:
+    - IP-CIDR,1.1.1.1/32,REJECT
+    - IP-CIDR,8.8.8.8/32,FINAL
+    - DOMAIN,dns.alidns.com,REJECT
