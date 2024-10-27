@@ -134,6 +134,9 @@ proxies:
   - name: "ایران"
     type: "direct"
     udp: "true"
+    ip-version: "ipv4"
+    interface-name: eth0
+    routing-mark: 1234
     
   - name: "dns"
     type: "dns"
@@ -151,9 +154,20 @@ proxy-groups:
     url: "https://lab.skk.moe/test-204"
     interval: 180
     tolerance: 60
-    udp: "true"
-    use:
- #     - "provide"
+    lazy: true
+    timeout: 5000
+    max-failed-times: 5
+    disable-udp: true
+    interface-name: en0
+    routing-mark: 11451
+   # include-all: false
+   # include-all-proxies: false
+   # include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+   # exclude-type: "Shadowsocks|Http"
+    expected-status: 204
+    hidden: true
+    icon: xxx
     proxies:
       - "URL-TEST"
       - "FALLBACK"
@@ -161,28 +175,61 @@ proxy-groups:
   - name: "FALLBACK"
     type: "fallback"
     interval: 180
-    exclude: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
- #   include-all-proxies: true
-    include-all-providers: true
     url: "https://lab.skk.moe/test-204"
+    lazy: true
+    timeout: 5000
+    max-failed-times: 5
+    disable-udp: true
+    interface-name: en0
+    routing-mark: 11451
+    include-all: false
+    include-all-proxies: false
+    include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+   # exclude-type: "Shadowsocks|Http"
+    expected-status: 204
+    hidden: true
+    icon: xxx
     proxies:
   
   - name: "URL-TEST"
     type: "url-test"
     interval: 180
-#    tolerance: 100
+    tolerance: 100
     exclude: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
-#    include-all-proxies: true
-    include-all-providers: true
     url: "https://lab.skk.moe/test-204"
+    lazy: true
+    timeout: 5000
+    max-failed-times: 5
+    disable-udp: true
+    interface-name: en0
+    routing-mark: 11451
+    include-all: false
+    include-all-proxies: false
+    include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+   # exclude-type: "Shadowsocks|Http"
+    expected-status: 204
+    hidden: true
+    icon: xxx
     proxies:
 
   - name: "FINAL"
     type: "select"
- #   include-all-providers: true
-    exclude: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
-    use:
-   #   - "provide"
+    lazy: true
+    timeout: 5000
+    max-failed-times: 5
+    disable-udp: true
+    interface-name: en0
+    routing-mark: 11451
+    include-all: false
+    include-all-proxies: false
+    include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+   # exclude-type: "Shadowsocks|Http"
+    expected-status: 204
+    hidden: true
+    icon: xxx
     proxies:
       - "PROXY"
       - "URL-TEST"
@@ -279,36 +326,93 @@ rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: yaml}     
 rule-providers:
   iranserver:
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/iranserver.yaml
+    <<: *domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/iranserver.yaml"
   ir:
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml
+    <<: *domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
   ircidr:
-    behavior: ip
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml
+    <<: *ip
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
   private:
-    behavior: ip
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml
+    <<: *ip
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
   irasn:
-    behavior: ip
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml
+    <<: *ip
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
   AWA:
-    behavior: domain
-    url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
+    <<: *domain
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
   nsfw1:
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml
+    <<: *domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
   geolocation-!cn:
-    behavior: domain
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.list
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.list"
   adblock:
-    behavior: domain
-    url: https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_V2ray/main/adblock_reject_domain.txt
+    <<: *domain
+    url: "https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_V2ray/main/adblock_reject_domain.txt"
   social:
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml
+    <<: *domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
+  private:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.list"
+  github_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.list"
+  twitter_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.list"
+  youtube_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.list"
+  google_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.list"
+  telegram_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.list"
+  netflix_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.list"
+  spotify_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.list"
+  pixiv_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pixiv.list"
+  cn_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.list"
+  google_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.list"
+  netflix_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.list"
+  twitter_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.list"
+  telegram_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.list"
 rules:
+  - GEOIP,lan,ایران,no-resolve
+  - RULE-SET,github_domain,FINAL
+  - RULE-SET,twitter_domain,FINAL
+  - RULE-SET,youtube_domain,FINAL
+  - RULE-SET,google_domain,FINAL
+  - RULE-SET,telegram_domain,FINAL
+  - RULE-SET,netflix_domain,FINAL
+  - RULE-SET,spotify_domain,FINAL
+  - RULE-SET,pixiv_domain,FINAL
+  - RULE-SET,google_ip,FINAL
+  - RULE-SET,netflix_ip,FINAL
+  - RULE-SET,telegram_ip,FINAL
+  - RULE-SET,twitter_ip,FINAL
+  - RULE-SET,cn_domain,ایران
+  - RULE-SET,cn_ip,ایران
   - RULE-SET,social,FINAL
   - RULE-SET,geolocation-!cn,FINAL
   - DST-PORT,80/8080/443/8443,FINAL
