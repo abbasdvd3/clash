@@ -165,7 +165,6 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/pp1.yaml" 
     path: Prem2/p1.yaml
     interval: 89
-  #  exclude-filter: Expire
     health-check:
       enable: true
       interval: 30
@@ -175,7 +174,6 @@ proxy-providers:
     url: "https://v2rayclashx.github.io/uploads/2024/10/3-20241025.yaml" 
     path: Prem2/p2.yaml
     interval: 89
-  #  exclude-filter: Expire
     health-check:
       enable: true
       interval: 30
@@ -185,7 +183,6 @@ proxy-providers:
     url: "https://v2rayclashx.github.io/uploads/2024/10/2-20241025.yaml" 
     path: Prem2/p3.yaml
     interval: 89
-  #  exclude-filter: Expire
     health-check:
       enable: true
       interval: 30
@@ -195,7 +192,6 @@ proxy-providers:
     url: "https://v2rayclashx.github.io/uploads/2024/10/1-20241025.yaml" 
     path: Prem2/p4.yaml
     interval: 89
-  #  exclude-filter: Expire
     health-check:
       enable: true
       interval: 30
@@ -205,17 +201,15 @@ proxy-providers:
     url: "https://v2rayclashx.github.io/uploads/2024/10/0-20241025.yaml" 
     path: Prem2/p5.yaml
     interval: 89
-  #  exclude-filter: Expire
     health-check:
       enable: true
       interval: 30
       url: https://www.gstatic.com/generate_204
 proxies:
-
 proxy-groups:
   - name: 🚀
     type: select
-#    disable-udp: false
+    disable-udp: false
     use:
       - provider1
       - 2
@@ -224,13 +218,12 @@ proxy-groups:
       - 5
     proxies:
       - ♻️
-      
   - name: United
     type: fallback
     url: https://www.gstatic.com/generate_204
- #   disable-udp: false
+    disable-udp: false
     interval: 300
- #   tolerance: 80
+    tolerance: 80
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     hidden: false
     proxies:
@@ -244,7 +237,7 @@ proxy-groups:
   - name: ♻️
     type: url-test
     url: https://www.gstatic.com/generate_204
-#    disable-udp: false
+    disable-udp: false
     interval: 300
     tolerance: 80
     hidden: true
@@ -254,19 +247,17 @@ proxy-groups:
       - 3
       - 4
       - 5
-    proxies:
- 
+    proxies: 
   - name: 🎯 DIRECT
     type: select
- #   disable-udp: false
+    disable-udp: false
     proxies:
       - DIRECT
       - 🚀
-      - ♻️
-      
+      - ♻️      
   - name: FINAL
     type: select
- #   disable-udp: false
+    disable-udp: false
     use:
       - provider1
       - 2
@@ -276,8 +267,7 @@ proxy-groups:
     proxies:
       - 🚀
       - United
-      - ♻️
- 
+      - ♻️ 
 rule-providers:
   ir:
     type: http
