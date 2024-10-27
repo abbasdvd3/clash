@@ -322,7 +322,7 @@ proxy-providers:
 
 
 rule-anchor:
-  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: yaml}
+  ip: &ip {type: http, interval: 86400, behavior: classical, format: text}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: yaml}     
 rule-providers:
   iranserver:
@@ -411,7 +411,6 @@ rules:
   - RULE-SET,netflix_ip,FINAL
   - RULE-SET,telegram_ip,FINAL
   - RULE-SET,twitter_ip,FINAL
-  - RULE-SET,cn_domain,ایران
   - RULE-SET,cn_ip,ایران
   - RULE-SET,private1,ایران,no-resolve
   - RULE-SET,social,FINAL
