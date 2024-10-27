@@ -170,6 +170,46 @@ proxy-providers:
       enable: true
       interval: 30
       url: https://www.gstatic.com/generate_204
+  2:
+    type: http
+    url: "https://v2rayclashx.github.io/uploads/2024/10/3-20241025.yaml" 
+    path: Prem2/p2.yaml
+    interval: 89
+  #  exclude-filter: Expire
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.gstatic.com/generate_204  
+  3:
+    type: http
+    url: "https://v2rayclashx.github.io/uploads/2024/10/2-20241025.yaml" 
+    path: Prem2/p3.yaml
+    interval: 89
+  #  exclude-filter: Expire
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.gstatic.com/generate_204      
+  4:
+    type: http
+    url: "https://v2rayclashx.github.io/uploads/2024/10/1-20241025.yaml" 
+    path: Prem2/p4.yaml
+    interval: 89
+  #  exclude-filter: Expire
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.gstatic.com/generate_204      
+  5:
+    type: http
+    url: "https://v2rayclashx.github.io/uploads/2024/10/0-20241025.yaml" 
+    path: Prem2/p5.yaml
+    interval: 89
+  #  exclude-filter: Expire
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.gstatic.com/generate_204
 proxies:
 
 proxy-groups:
@@ -178,6 +218,10 @@ proxy-groups:
 #    disable-udp: false
     use:
       - provider1
+      - 2
+      - 3
+      - 4
+      - 5
     proxies:
       - ♻️
       
@@ -192,6 +236,10 @@ proxy-groups:
     proxies:
     use:
       - provider1
+      - 2
+      - 3
+      - 4
+      - 5
       
   - name: ♻️
     type: url-test
@@ -202,6 +250,10 @@ proxy-groups:
     hidden: true
     use:
       - provider1
+      - 2
+      - 3
+      - 4
+      - 5
     proxies:
  
   - name: 🎯 DIRECT
@@ -217,6 +269,10 @@ proxy-groups:
  #   disable-udp: false
     use:
       - provider1
+      - 2
+      - 3
+      - 4
+      - 5
     proxies:
       - 🚀
       - United
