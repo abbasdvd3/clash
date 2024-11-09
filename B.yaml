@@ -70,7 +70,7 @@ linters-settings:
 experimental:
   quic-go-disable-gso: false
   quic-go-disable-ecn: false
-  dialer-ip4p-convert: false
+  dialer-ip4p-convert: true
   
 tunnels:
 - tcp/udp,127.0.0.1:6553,8.8.8.8:53,FINAL
@@ -221,7 +221,7 @@ tun:
   - fc00::/7
 
 sniffer:                
-  enable: false                
+  enable: true              
   force-dns-mapping: false
   parse-pure-ip: false          
   override-destination: false      
@@ -264,17 +264,17 @@ proxies:
     
   - name: "dns"
     type: "dns"
-    udp: "false"
+
     
   - name: "http"
     type: "http"
     server: "127.0.0.1"
-    port: "1500"
+    port: "10808"
     udp: "true"
     
 proxy-groups:
   - name: "PROXY"
-    type: "url-test"
+    type: "select"
     url: "https://lab.skk.moe/test-204"
     interval: 180
     tolerance: 60
@@ -284,10 +284,10 @@ proxy-groups:
     disable-udp: true
     interface-name: ""
     routing-mark: 11451
-   # include-all: false
-   # include-all-proxies: false
-   # include-all-providers: true
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    include-all: false
+    include-all-proxies: false
+    include-all-providers: true
+ #   exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
     expected-status: 204
     hidden: false
@@ -306,10 +306,10 @@ proxy-groups:
     disable-udp: true
     interface-name: ""
     routing-mark: 11451
-    include-all: false
-    include-all-proxies: false
+    include-all: true
+    include-all-proxies: true
     include-all-providers: true
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+#    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
     expected-status: 204
     hidden: false
@@ -328,10 +328,10 @@ proxy-groups:
     disable-udp: true
     interface-name: ""
     routing-mark: 11451
-    include-all: false
-    include-all-proxies: false
+    include-all: true
+    include-all-proxies: true
     include-all-providers: true
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+ #   exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
     expected-status: 204
     hidden: false
@@ -348,8 +348,8 @@ proxy-groups:
     routing-mark: 11451
     include-all: false
     include-all-proxies: false
-    include-all-providers: true
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+#    include-all-providers: true
+ #   exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
     expected-status: 204
     hidden: false
@@ -368,7 +368,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
     interval: 360
     path: provide.yaml
-    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅' 
+  #  exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅' 
     health-check:
       enable: true
       url: "https://lab.skk.moe/test-204"
@@ -378,7 +378,7 @@ proxy-providers:
     url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/yudou66.yaml" # https://raw.githubusercontent.com/ndsphonemy/proxy-sub/main/lt-sub-all.txt # https://raw.githubusercontent.com/cry0ice/genode@main/public/all.txt
     interval: 360
     path: provide1.yaml
-    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+ #   exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     health-check:
       enable: true
       url: "https://lab.skk.moe/test-204"
@@ -388,7 +388,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/clash.yml"
     interval: 360
     path: provide2.yaml
-    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅' 
+#    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅' 
     health-check:
       enable: true
       url: "https://lab.skk.moe/test-204"
@@ -398,7 +398,7 @@ proxy-providers:
     url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/freenode.yaml"  # https://raw.githubusercontent.com/ndsphonemy/proxy-sub/main/speed.txt # https://raw.githubusercontent.com/itsyebekhe/vpnfail/refs/heads/main/subscription/base64
     interval: 360
     path: provide3.yaml
-    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅' 
+ #   exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅' 
     health-check:
       enable: true
       url: "https://lab.skk.moe/test-204"
@@ -408,7 +408,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
     interval: 360
     path: provide4.yaml
-    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+#    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     health-check:
       enable: true
       url: "https://lab.skk.moe/test-204"
@@ -418,7 +418,7 @@ proxy-providers:
     url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/ndnode.yaml"
     interval: 360
     path: provide5.yaml
-    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+#    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     health-check:
       enable: true
       url: "https://lab.skk.moe/test-204"
@@ -428,7 +428,7 @@ proxy-providers:
     url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodefree.yaml"
     interval: 360
     path: provide6.yaml
-    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+#    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     health-check:
       enable: true
       url: "https://lab.skk.moe/test-204"
@@ -438,7 +438,7 @@ proxy-providers:
     url: "https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/v2rayshare.yaml"
     interval: 360
     path: provide7.yaml
-    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+#    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     health-check:
       enable: true
       url: "https://lab.skk.moe/test-204"
@@ -448,7 +448,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/r"
     interval: 360
     path: provide8.yaml
-    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+#    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     health-check:
       enable: true
       url: "https://lab.skk.moe/test-204"
