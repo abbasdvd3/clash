@@ -15,7 +15,7 @@ ipv6: true
 allow-lan: true
 tcp-concurrent: true
 unified-delay: false
-geodata-mode: true
+geodata-mode: false
 geo-auto-update: true
 geo-update-interval: 24 
 keep-alive-interval: 15
@@ -199,10 +199,10 @@ tun:
   - fc00::/7
 
 sniffer:                
-  enable: false                
-  force-dns-mapping: false
-  parse-pure-ip: false          
-  override-destination: false      
+  enable: true                
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
   sniff:   
     TLS:
       ports: [443, 8443]
@@ -247,7 +247,7 @@ proxies:
   - name: "http"
     type: "http"
     server: "127.0.0.1"
-    port: "1500"
+    port: "10809"
     udp: "true"
     
 proxy-groups:
@@ -542,7 +542,6 @@ rules:
   - RULE-SET,private,ایران,no-resolve
   - DOMAIN-SUFFIX,googlesyndication.com,FINAL
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
-  - geosite,category-ads-all,REJECT
   - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),FINAL
   - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),FINAL
   - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
