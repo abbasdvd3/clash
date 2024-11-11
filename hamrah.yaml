@@ -252,17 +252,17 @@ proxies:
     
 proxy-groups:
   - name: "PROXY"
-    type: "url-test"
+    type: "select"
     url: "https://lab.skk.moe/test-204"
     interval: 180
     tolerance: 60
     lazy: true
     timeout: 5000
     max-failed-times: 5
-    disable-udp: true
+    disable-udp: false
     interface-name: ""
     routing-mark: 11451
-   # include-all: false
+    include-all: true
    # include-all-proxies: false
    # include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
@@ -279,9 +279,9 @@ proxy-groups:
     interval: 180
     url: "https://lab.skk.moe/test-204"
     lazy: true
-    timeout: 5000
+    timeout: 500
     max-failed-times: 5
-    disable-udp: true
+    disable-udp: false
     interface-name: ""
     routing-mark: 11451
     include-all: false
@@ -301,9 +301,9 @@ proxy-groups:
     exclude: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     url: "https://lab.skk.moe/test-204"
     lazy: true
-    timeout: 5000
+    timeout: 500
     max-failed-times: 5
-    disable-udp: true
+    disable-udp: false
     interface-name: ""
     routing-mark: 11451
     include-all: false
@@ -319,9 +319,9 @@ proxy-groups:
   - name: "FINAL"
     type: "select"
     lazy: true
-    timeout: 5000
+    timeout: 500
     max-failed-times: 5
-    disable-udp: true
+    disable-udp: false
     interface-name: ""
     routing-mark: 11451
     include-all: false
