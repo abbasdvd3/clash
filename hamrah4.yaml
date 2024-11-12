@@ -60,7 +60,7 @@ tun:
   
 dns:
   enable: true
-  ipv6: true
+  ipv6: false
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-filter:
@@ -73,28 +73,20 @@ dns:
   proxy-server-nameserver:
     - "https://120.53.53.53/dns-query"
     - "https://223.5.5.5/dns-query"
-  nameserver-policy:
-    "www.baidu.com": "114.114.114.114"
-    +.internal.crop.com: 10.0.0.1
-    "www.baidu.com,+.google.com": "https://doh.pub/dns-query"
-    "geosite:private,apple": "https://dns.alidns.com/dns-query"
-    "geosite:ir,private,apple":
-      - "https://doh.pub/dns-query"
-      - "https://dns.alidns.com/dns-query"
-    "geosite:category-ads-all": rcode://success
-    "www.baidu.com,+.google.com": ["223.5.5.5", "https://dns.alidns.com/dns-query"]
-    "+.pornhub.com": "https://doh.pub/dns-query"
-    "+.sxyprn.com": "https://doh.pub/dns-query"
-    "+.spankbang.com": "https://doh.pub/dns-query"
-    "+.samfw.com": "https://doh.pub/dns-query"    
-    "rule-set:GoogleFCM,NSFW,ir": 8.8.8.8
-    "GEOSITE:google": "8.8.8.8"
-    "rule-set:ir,private_domain":
-      - "https://120.53.53.53/dns-query"
-      - "https://223.5.5.5/dns-query"
-    "rule-set:geolocation-!cn":
-      - "https://dns.cloudflare.com/dns-query"
-      - "https://dns.google/dns-query"
+    - "https://doh.pub/dns-query"
+    - "https://dns.alidns.com/dns-query"
+    - "https://doh.pub/dns-query"
+    - "https://dns.alidns.com/dns-query"
+    - "223.5.5.5"
+    - "https://dns.alidns.com/dns-query"
+    - "https://doh.pub/dns-query"
+    - "https://doh.pub/dns-query"
+    - "https://doh.pub/dns-query"
+    - "https://doh.pub/dns-query"    
+    - "https://120.53.53.53/dns-query"
+    - "https://223.5.5.5/dns-query"
+    - "https://dns.cloudflare.com/dns-query"
+    - "https://dns.google/dns-query"
   
 
 proxies:
