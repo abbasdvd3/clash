@@ -91,13 +91,13 @@ dns:
     +.internal.crop.com": [10.0.0.1, 114.114.114.114]
     "www.baidu.com,+.google.com": https://doh.pub/dns-query
     "geosite:private,apple": https://dns.alidns.com/dns-query
-    "geosite:nsfw1,social": [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
+    "rule-set:nsfw1,social": [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
     "geosite:category-ads-all": rcode://success
     "www.baidu.com,+.google.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
-    "+.pornhub.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
-    "+.sxyprn.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
-    "+.spankbang.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
-    "+.samfw.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]  
+    "www.pornhub.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "www.sxyprn.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "www.spankbang.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+    "www.samfw.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]  
     "rule-set:GoogleFCM,ir,social,nsfw1": [223.5.5.5, https://dns.alidns.com/dns-query]
   nameserver:
   - 114.114.114.114:853
@@ -111,8 +111,6 @@ dns:
   fallback-filter:
     geoip: true
     geoip-code: ir
-    geosite:
-  #  - gfw
     ipcidr:
     - 240.0.0.0/4
     - 0.0.0.0/32
