@@ -70,6 +70,9 @@ proxies:
 proxy-groups:
   - name: Proxy
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    lazy: true
     use: 
     proxies:
       - Proxy1
@@ -77,15 +80,21 @@ proxy-groups:
       - Geo-US
   - name: Proxy1
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    lazy: true
     use: 
     proxies:
       - Auto
   - name: Auto
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    lazy: true
     exclude-filter: Expire
     use: 
       - Subscription-1
-   #   - Subscription-2
+      - Subscription-2
       - Subscription-3
       - Subscription-4
       - Subscription-5
@@ -94,17 +103,23 @@ proxy-groups:
       
   - name: fallback
     type: fallback
+    url: http://www.gstatic.com/generate_204
+    interval: 180
+    lazy: true
     exclude-filter: Expire
     proxies:
       - Geo-HK
       
   - name: Geo-HK
     type: fallback
+    url: http://www.gstatic.com/generate_204
+    interval: 180
+    lazy: true
     exclude-filter: Expire
    # filter: ""
     use:
       - Subscription-1
-   #   - Subscription-2
+      - Subscription-2
       - Subscription-3
       - Subscription-4
       - Subscription-5
@@ -113,12 +128,18 @@ proxy-groups:
       
   - name: Geo-TW
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    lazy: true
     proxies:
       - Geo-SG
       - Geo-DE
 
   - name: Geo-DE
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    lazy: true
     proxies: 
       - Geo-HK
       - Geo-SG
@@ -128,11 +149,14 @@ proxy-groups:
     
   - name: Geo-SG
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    lazy: true
     filter: "HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国"
     exclude-filter: Expire
     use: 
       - Subscription-1
-    #  - Subscription-2
+      - Subscription-2
       - Subscription-3
       - Subscription-4
       - Subscription-5
@@ -140,11 +164,14 @@ proxy-groups:
       - Subscription-7
   - name: Geo-JP
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    lazy: true
     filter: "Japan|JP|日本"
     exclude-filter: Expire
     use: 
       - Subscription-1
-   #   - Subscription-2
+      - Subscription-2
       - Subscription-3
       - Subscription-4
       - Subscription-5
@@ -152,6 +179,9 @@ proxy-groups:
       - Subscription-7
   - name: Geo-US
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    lazy: true
     filter: "America|United States|US|美国"
     exclude-filter: Expire
     use: 
@@ -165,6 +195,9 @@ proxy-groups:
       
   - name: Geo-CN
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    lazy: true
     filter: "China|CN|中国"
     exclude-filter: Expire
     use: 
@@ -173,7 +206,7 @@ proxy-groups:
       - Subscription-5
       - Subscription-4
       - Subscription-3
-  #    - Subscription-2
+      - Subscription-2
       - Subscription-1
     proxies:
 
@@ -187,6 +220,9 @@ proxy-groups:
 
   - name: DNS-Proxy
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    lazy: true
     use: 
     proxies: 
       - Proxy
@@ -201,6 +237,9 @@ proxy-groups:
 
   - name: Netflix
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    lazy: true
     use: 
     proxies: 
       - Proxy
@@ -226,6 +265,9 @@ proxy-groups:
 
   - name: GlobalTV
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    lazy: true
     use: 
     proxies: 
       - Proxy
@@ -240,6 +282,9 @@ proxy-groups:
 
   - name: Spotify
     type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    lazy: true
     use: 
     proxies: 
       - Proxy
@@ -261,7 +306,6 @@ proxy-groups:
       - Proxy
   - name: Mismatch
     type: select
-    exclude-filter: Expire
 #    udp: true
     use: 
       - Subscription-7
@@ -269,7 +313,7 @@ proxy-groups:
       - Subscription-5
       - Subscription-4
       - Subscription-3
-   #   - Subscription-2
+      - Subscription-2
       - Subscription-1
     proxies: 
       - Proxy
@@ -294,7 +338,7 @@ proxy-providers:
 
   Subscription-2:
     type: http
-    url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/master/providers/providers64" 
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip" 
     path: providers6/Subscription-2.yaml
     interval: 600
   #  exclude-filter: Expire
