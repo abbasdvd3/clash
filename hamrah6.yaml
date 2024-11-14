@@ -11,7 +11,7 @@ port: 7892
 socks-port: 7891
 mixed-port: 7890
 allow-lan: true
-mode: Rule
+# mode: Rule
 bind-address: "*"
 ipv6: false
 log-level: info
@@ -304,17 +304,10 @@ proxy-groups:
     proxies: 
       - DIRECT
       - Proxy
-  - name: Mismatch
+  - name: global
     type: select
-#    udp: true
+    udp: true
     use: 
-      - Subscription-7
-      - Subscription-6
-      - Subscription-5
-      - Subscription-4
-      - Subscription-3
-      - Subscription-2
-      - Subscription-1
     proxies: 
       - Proxy
       - Geo-DE
@@ -824,9 +817,9 @@ rules:
   - RULE-SET,apps,IR
 
   - RULE-SET,IpinfoSpeedtest,SpeedTest
-  - RULE-SET,UnBan,Proxy,no-resolve
-  - RULE-SET,GoogleFCM,Proxy,no-resolve
-  - RULE-SET,GoogleCN,Proxy,no-resolve
+  - RULE-SET,UnBan,global,no-resolve
+  - RULE-SET,GoogleFCM,global,no-resolve
+  - RULE-SET,GoogleCN,global,no-resolve
   - RULE-SET,SteamCN,IR
   - RULE-SET,Bing,Microsoft
   - RULE-SET,OneDrive,Microsoft
@@ -840,27 +833,27 @@ rules:
   - RULE-SET,BilibiliHMT,DIRECT
   - RULE-SET,Bilibili,DIRECT
   - RULE-SET,ChinaMedia,DIRECT
-  - RULE-SET,ProxyMedia,Social,no-resolve
-  - RULE-SET,ProxyGFWlist,Social,no-resolve
+  - RULE-SET,globalMedia,Social,no-resolve
+  - RULE-SET,globalGFWlist,Social,no-resolve
   - RULE-SET,ChinaDomain,IR
   - RULE-SET,ChinaCompanyIp,IR
   - RULE-SET,Download,IR
-  - RULE-SET,GoogleCNProxyIP,Proxy,no-resolve
+  - RULE-SET,GoogleCNProxyIP,global,no-resolve
   - RULE-SET,GitHub,IR,no-resolve
-  - RULE-SET,cloudflare,Proxy,no-resolve
-  - RULE-SET,Domestic,Proxy,no-resolve
+  - RULE-SET,cloudflare,global,no-resolve
+  - RULE-SET,Domestic,global,no-resolve
   - RULE-SET,SpeedTest,SpeedTest
   - RULE-SET,nsfw1,Social,no-resolve
   - RULE-SET,social,Social,no-resolve
-  - RULE-SET,Google1,Proxy,no-resolve
+  - RULE-SET,Google1,global,no-resolve
   - RULE-SET,LocalAreaNetwork,DIRECT
   - RULE-SET,iran_other,IR,no-resolve
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
-  - DOMAIN-SUFFIX,v2rayse.com,Proxy
-  - DOMAIN-SUFFIX,cff.pw,Proxy
-  - DOMAIN-SUFFIX,vpnse.org,Proxy
-  - DOMAIN-SUFFIX,cfmem.com,Proxy
-  - DOMAIN-SUFFIX,googlesyndication.com,Proxy,no-resolve
+  - DOMAIN-SUFFIX,v2rayse.com,global
+  - DOMAIN-SUFFIX,cff.pw,global
+  - DOMAIN-SUFFIX,vpnse.org,global
+  - DOMAIN-SUFFIX,cfmem.com,global
+  - DOMAIN-SUFFIX,googlesyndication.com,global,no-resolve
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
   - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
   - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
@@ -875,34 +868,34 @@ rules:
   - PROCESS-NAME,com.google.android.gms.location.history,REJECT
   - PROCESS-NAME,com.sec.location.nsflp2,REJECT
   - PROCESS-NAME,com.android.location.fused,REJECT
-  - PROCESS-NAME,org.telegram.messenger,Proxy,no-resolve
-  - PROCESS-NAME,com.tumblr,Proxy,no-resolve
-  - PROCESS-NAME,com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0,Proxy,no-resolve
-  - PROCESS-NAME,com.tumblr/org.chromium.content.app.SandboxedProcessService0:0,Proxy,no-resolve
-  - PROCESS-NAME,com.google.android.gms,Proxy,no-resolve
-  - PROCESS-NAME,com.google.android.webview,Proxy,no-resolve
-  - PROCESS-NAME,com.android.vending,Proxy,no-resolve
-  - PROCESS-NAME,com.google.android.gm,Proxy,no-resolve
-  - PROCESS-NAME,com.picsart.studio,Proxy,no-resolve
-  - PROCESS-NAME,com.tomclaw.appsend,Proxy,no-resolve
-  - PROCESS-NAME,com.photoroom.app,Proxy,no-resolve
-  - PROCESS-NAME,com.frontrow.flow,Proxy,no-resolve
-  - PROCESS-NAME,com.xt.retouchoversea,Proxy,no-resolve
-  - PROCESS-NAME,com.prequel.app,Proxy,no-resolve
-  - PROCESS-NAME,com.circular.pixels,Proxy,no-resolve
-  - PROCESS-NAME,jp.pxv.android,Proxy,no-resolve
-  - PROCESS-NAME,com.facebook.katana,Proxy,no-resolve
-  - PROCESS-NAME,com.facebook.katanb,Proxy,no-resolve
-  - PROCESS-NAME,com.discord,Proxy,no-resolve
-  - PROCESS-NAME,com.twitter.plus,Proxy,no-resolve
-  - PROCESS-NAME,com.twitter.android,Proxy,no-resolve
-  - PROCESS-NAME,com.aeroinsta.android,Proxy,no-resolve
-  - PROCESS-NAME,com.instagold.android,Proxy,no-resolve
-  - PROCESS-NAME,com.instathunder.android,Proxy,no-resolve
-  - PROCESS-NAME,com.myinsta.android,Proxy,no-resolve
-  - PROCESS-NAME,com.instagram.android,Proxy,no-resolve
-  - DST-PORT,80/8080/443/8443,Proxy,no-resolve
+  - PROCESS-NAME,org.telegram.messenger,global,no-resolve
+  - PROCESS-NAME,com.tumblr,global,no-resolve
+  - PROCESS-NAME,com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0,global,no-resolve
+  - PROCESS-NAME,com.tumblr/org.chromium.content.app.SandboxedProcessService0:0,global,no-resolve
+  - PROCESS-NAME,com.google.android.gms,global,no-resolve
+  - PROCESS-NAME,com.google.android.webview,global,no-resolve
+  - PROCESS-NAME,com.android.vending,global,no-resolve
+  - PROCESS-NAME,com.google.android.gm,global,no-resolve
+  - PROCESS-NAME,com.picsart.studio,global,no-resolve
+  - PROCESS-NAME,com.tomclaw.appsend,global,no-resolve
+  - PROCESS-NAME,com.photoroom.app,global,no-resolve
+  - PROCESS-NAME,com.frontrow.flow,global,no-resolve
+  - PROCESS-NAME,com.xt.retouchoversea,global,no-resolve
+  - PROCESS-NAME,com.prequel.app,global,no-resolve
+  - PROCESS-NAME,com.circular.pixels,global,no-resolve
+  - PROCESS-NAME,jp.pxv.android,global,no-resolve
+  - PROCESS-NAME,com.facebook.katana,global,no-resolve
+  - PROCESS-NAME,com.facebook.katanb,global,no-resolve
+  - PROCESS-NAME,com.discord,global,no-resolve
+  - PROCESS-NAME,com.twitter.plus,global,no-resolve
+  - PROCESS-NAME,com.twitter.android,global,no-resolve
+  - PROCESS-NAME,com.aeroinsta.android,global,no-resolve
+  - PROCESS-NAME,com.instagold.android,global,no-resolve
+  - PROCESS-NAME,com.instathunder.android,global,no-resolve
+  - PROCESS-NAME,com.myinsta.android,global,no-resolve
+  - PROCESS-NAME,com.instagram.android,global,no-resolve
+  - DST-PORT,80/8080/443/8443,global,no-resolve
   - PROCESS-NAME,com.tomclaw.appsend,DIRECT
   - DOMAIN-SUFFIX,appteka.store,DIRECT
   - DOMAIN-SUFFIX,appteka.store/api,DIRECT
-  - MATCH,Mismatch
+  - MATCH,global
