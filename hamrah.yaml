@@ -2913,7 +2913,7 @@ proxy-providers:
       interval: 36
   "provide6":
     type: http
-    url: "https://raw.githubusercontent.com/Misaka-blog/chromego_merge/main/sub/merged_proxies_new.yaml"
+    url: "https://ghp.ci/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt"
     interval: 360
     path: provide6.yaml
 #    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
@@ -2933,7 +2933,17 @@ proxy-providers:
       enable: true
       url: "https://www.google.com/favicon.ico"
       interval: 36
-
+  "provide8":
+    type: http
+    url: "https://proxy.v2gh.com/https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub"
+    interval: 360
+    path: provide8.yaml
+#    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
+    proxies: DIRECT
+    health-check:
+      enable: true
+      url: "https://www.google.com/favicon.ico"
+      interval: 36
 
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: classical, format: text}
@@ -3022,7 +3032,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.list"
   ir_domain:
     <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ir.srs"
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ir.yaml"
 rules:
   - GEOIP,lan,ایران,no-resolve
   - RULE-SET,github_domain,FINAL
