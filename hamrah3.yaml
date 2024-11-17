@@ -127,12 +127,12 @@ dns:
 proxies:
 proxy-groups:
   - name: 🕹 select
-    type: url-test
+    type: fallback
     url: https://fiber.google.com/speedtest/generate_104
     expected-status: 200/204
     nodeGroupType: 0
-  #  interval: 100
- #   tolerance: 50
+    interval: 100
+#    tolerance: 50
     proxies:
       - ♻️ url-test
       - 🚧 fallback
@@ -145,21 +145,22 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
   - name: ✈️
-    type: url-test
+    type: fallback
     url: https://fiber.google.com/speedtest/generate_204
     interval: 100
     tolerance: 100
+    include-all-providers: true
     expected-status: 200/204
     proxies:
     use:
-      - provider1
-      - provider2
+
   - name: ♻️ url-test
-    type: url-test
+    type: fallback
     url: https://fiber.google.com/speedtest/generate_204
     interval: 200
+    include-all-providers: true
     expected-status: 200/204
-#    nodeGroupType: 0
+    nodeGroupType: 0
     tolerance: 100
     proxies:
     use:
@@ -169,8 +170,9 @@ proxy-groups:
     type: fallback
     url: https://fiber.google.com/speedtest/generate_204
     interval: 200
+    include-all-providers: true
     expected-status: 200/204
-#    nodeGroupType: 0
+    nodeGroupType: 0
     proxies:
       - 🇭🇰 
       - 🇨🇳 
@@ -179,16 +181,16 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
   - name: ⚖️ load-balance
-    type: url-test
+    type: fallback
     url: https://fiber.google.com/speedtest/generate_204
     interval: 100
     expected-status: 300/304
-#    nodeGroupType: 0
+    include-all-providers: true
+    nodeGroupType: 0
     tolerance: 10
     proxies:
     use:
-      - provider1
-      - provider2
+
 
   - name: 📲
     type: select
@@ -441,9 +443,6 @@ proxy-groups:
     url: https://fiber.google.com/speedtest/generate_204
     interval: 100
     use:
-      - provider1
-      - provider2
-      
     proxies:
       - 🕹 select
       - ✈️
@@ -458,69 +457,70 @@ proxy-groups:
       - 🇰🇷 
       
   - name: 🇭🇰
-    type: url-test
+    type: fallback
     url: https://fiber.google.com/speedtest/generate_204
     interval: 180
+    include-all-providers: true
     expected-status: 200/204
     filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
     proxies: 
     use:
-      - provider1
-      - provider2
+
   - name: 🇯🇵
-    type: url-test
+    type: fallback
     url: https://fiber.google.com/speedtest/generate_204
     interval: 180
+    include-all-providers: true
     expected-status: 200/204
     filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
     proxies: 
     use:
-      - provider1
-      - provider2
+
   - name: 🇺🇲
-    type: url-test
+    type: fallback
     url: https://fiber.google.com/speedtest/generate_204
     interval: 180
+    include-all-providers: true
     expected-status: 200/204
     proxies:
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     use:
-      - provider1
-      - provider2
+
   - name: 🇨🇳
-    type: url-test
+    type: fallback
     url: https://fiber.google.com/speedtest/generate_204
     interval: 180
+    include-all-providers: true
     expected-status: 200/204
     filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
     proxies: 
     use:
-      - provider1
-      - provider2
+
   - name: 🇸🇬
-    type: url-test
+    type: fallback
     url: https://fiber.google.com/speedtest/generate_204
     interval: 180
+    include-all-providers: true
     expected-status: 200/204
     filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
     proxies: 
     use:
-      - provider1
-      - provider2
+
   - name: 🇰🇷
-    type: url-test
+    type: fallback
     url: https://fiber.google.com/speedtest/generate_204
     interval: 180
+    include-all-providers: true
     expected-status: 200/204
     filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
     proxies: 
     use:
-      - provider1
-      - provider2
+
+      
 proxy-providers:
   provider1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml"    
+    url: "https://raw.githubusercontent.com/Misaka-blog/chromego_merge/main/sub/merged_proxies_new.yaml"    
     interval: 3600
     path: h3/provider1.yaml
     health-check:
@@ -536,6 +536,131 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
     interval: 3600
     path: h3/provider2.yaml
+    health-check:
+      enable: true
+      interval: 30
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
+   #   override:
+   #   additional-prefix: "[provider2]"
+  provider3:
+    type: http
+    url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/hysteria"    
+    interval: 3600
+    path: h3/provider3.yaml
+    health-check:
+      enable: true
+      interval: 30
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
+ #     override:
+#      additional-prefix: "[provider1]"
+
+  provider4:
+    type: http
+    url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/vless"
+    interval: 3600
+    path: h3/provider4.yaml
+    health-check:
+      enable: true
+      interval: 30
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
+   #   override:
+   #   additional-prefix: "[provider2]"
+  provider5:
+    type: http
+    url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/shadowsocks"    
+    interval: 3600
+    path: h3/provider5.yaml
+    health-check:
+      enable: true
+      interval: 30
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
+ #     override:
+#      additional-prefix: "[provider1]"
+
+  provider6:
+    type: http
+    url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
+    interval: 3600
+    path: h3/provider6.yaml
+    health-check:
+      enable: true
+      interval: 30
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
+   #   override:
+   #   additional-prefix: "[provider2]"
+  provider7:
+    type: http
+    url: "https://raw.githubusercontent.com/Vauth/node/main/Main"    
+    interval: 3600
+    path: h3/provider7.yaml
+    health-check:
+      enable: true
+      interval: 30
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
+ #     override:
+#      additional-prefix: "[provider1]"
+
+  provider8:
+    type: http
+    url: "https://raw.githubusercontent.com/WilliamStar007/ClashX-V2Ray-TopFreeProxy/main/combine/clash.config.yaml"
+    interval: 3600
+    path: h3/provider8.yaml
+    health-check:
+      enable: true
+      interval: 30
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
+   #   override:
+   #   additional-prefix: "[provider2]"
+  provider9:
+    type: http
+    url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_base64_Sub.txt"    
+    interval: 3600
+    path: h3/provider9.yaml
+    health-check:
+      enable: true
+      interval: 30
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
+ #     override:
+#      additional-prefix: "[provider1]"
+
+  provider10:
+    type: http
+    url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml"
+    interval: 3600
+    path: h3/provider10.yaml
+    health-check:
+      enable: true
+      interval: 30
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
+   #   override:
+   #   additional-prefix: "[provider2]"
+  provider11:
+    type: http
+    url: "https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt"    
+    interval: 3600
+    path: h3/provider11.yaml
+    health-check:
+      enable: true
+      interval: 30
+      lazy: true
+      url: https://fiber.google.com/speedtest/generate_204
+ #     override:
+#      additional-prefix: "[provider1]"
+
+  provider12:
+    type: http
+    url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml"
+    interval: 3600
+    path: h3/provider12.yaml
     health-check:
       enable: true
       interval: 30
