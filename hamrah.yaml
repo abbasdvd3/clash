@@ -2778,31 +2778,6 @@ proxies:
 
     
 proxy-groups:
-  - name: "PROXY"
-    type: "select"
-    url: "https://www.google.com/favicon.ico"
-    interval: 180
-    tolerance: 60
-    lazy: true
-    timeout: 5000
-    max-failed-times: 5
-    disable-udp: false
-    interface-name: ""
-    routing-mark: 11451
-#    include-all: true
-   # include-all-proxies: false
-   # include-all-providers: true
-#    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-   # exclude-type: "Shadowsocks|Http"
-    expected-status: 204
-    hidden: false
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Google_Search.png
-    proxies:
-      - "URL-TEST"
-      - "FALLBACK"
-      - "http"
-      - "dns"
-      - "ایران"
   - name: "FALLBACK"
     type: "fallback"
     interval: 180
@@ -2810,7 +2785,7 @@ proxy-groups:
     lazy: true
     timeout: 500
     max-failed-times: 5
-    disable-udp: false
+    disable-udp: true
     interface-name: ""
     routing-mark: 11451
     include-all: false
@@ -2826,13 +2801,13 @@ proxy-groups:
   - name: "URL-TEST"
     type: "url-test"
     interval: 180
-    tolerance: 100
+ #   tolerance: 100
     exclude: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     url: "https://www.google.com/favicon.ico"
     lazy: true
     timeout: 500
     max-failed-times: 5
-    disable-udp: false
+    disable-udp: true
     interface-name: ""
     routing-mark: 11451
     include-all: false
@@ -3051,7 +3026,7 @@ rule-providers:
 rules:
   - GEOIP,lan,ایران,no-resolve
   - RULE-SET,github_domain,FINAL
-  - GEOIP,telegram,PROXY
+  - GEOIP,telegram,FINAL
   - RULE-SET,twitter_domain,FINAL
   - RULE-SET,youtube_domain,FINAL
   - RULE-SET,google_domain,FINAL
@@ -3109,10 +3084,10 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,FINAL
   - DST-PORT,53,dns
-  - IP-ASN,1,PROXY
+  - IP-ASN,1,FINAL
   - DOMAIN-SUFFIX,baidu.com,ایران
-  - DOMAIN-KEYWORD,google,PROXY
-  - IP-CIDR,1.1.1.1/32,PROXY
+  - DOMAIN-KEYWORD,google,FINAL
+  - IP-CIDR,1.1.1.1/32,FINAL
   - IP-CIDR6,2409::/64,ایران
   - SUB-RULE,(OR,((NETWORK,TCP),(NETWORK,UDP))),sub-rule-name1
   - SUB-RULE,(AND,((NETWORK,UDP))),sub-rule-name2
