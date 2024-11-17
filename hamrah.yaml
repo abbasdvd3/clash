@@ -33,12 +33,12 @@ external-controller-cors:
 allow-origins:
 allow-private-network: true
 external-controller-unix: mihomo.sock
-external-controller-pipe: \\.\pipe\mihomo
+external-controller-pipe: pipe\mihomo
 external-controller-tls: 127.0.0.1:9443
 external-controller: 127.0.0.1:9090 
-external-ui: /path/to/ui/folder
+external-ui: path/ui
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
-external-ui-name: xd
+external-ui-name:
 geox-url:
   geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
   geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
@@ -174,16 +174,16 @@ tun:
   udp-timeout: 300
   iproute2-table-index: 2022
   iproute2-rule-index: 9000
-  endpoint-independent-nat: false
+  endpoint-independent-nat: true
   dns-hijack:
     - any:53  
     - tcp://any:53
-    - 223.5.5.5
-    - 120.53.53.53
-    - 180.76.76.76
-    - 119.29.29.29
-    - 1.1.1.1
-    - 1.0.0.1
+    - 223.5.5.5:53
+    - 120.53.53.53:53
+    - 180.76.76.76:53
+    - 119.29.29.29:53
+    - 1.1.1.1:53
+    - 1.0.0.1:53
   auto-route: true 
   auto-redirect: true
   auto-detect-interface: true
