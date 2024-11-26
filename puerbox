@@ -103,10 +103,19 @@
   "outbounds": [
     {
       "type": "selector",
+       "tag": "social",
+       "outbounds": [
+        "GOOGLE 🇮🇩",
+        "Auto"
+        ]
+     },
+    {
+      "type": "selector",
       "tag": "@twnesss",
       "providers": "@tw",
       "outbounds": [
         "Auto",
+        "GOOGLE 🇮🇩",
         "🇮🇸_m1",
         "🇷🇺_m2",
         "🇸🇪_m3",
@@ -1706,6 +1715,11 @@
         "🇺🇸_m1597"
       ],
       "default": "Auto"
+    },
+    {
+        "type": "urltest",
+        "tag": "GOOGLE 🇮🇩",
+        "providers": "@tw"
     },
     {
       "type": "shadowsocks",
@@ -16824,7 +16838,7 @@
     "rules": [
       {
         "clash_mode": "Global",
-        "outbound": "@twnesss"
+        "outbound": "social"
       },
       {
         "clash_mode": "Direct",
@@ -16852,7 +16866,7 @@
       },
       {
         "rule_set": "geosite-geolocation-!cn",
-        "outbound": "@twnesss"
+        "outbound": "social"
       }
     ],
     "rule_set": [
@@ -16889,7 +16903,10 @@
         "update_interval": "1d"
       }
     ],
-    "final": "@twnesss",
+    "final": "social",
+    "concurrent_dial": true,
+    "find_process": true,
+    "override_android_vpn": false,
     "auto_detect_interface": true
   },
   "experimental": {
