@@ -29,7 +29,7 @@ log-level: debug
 global-client-fingerprint: random # 
 geodata-loader: standard 
 find-process-mode: always
-external-controller-cors: 0.0.0.0:9092
+external-controller-cors:
 allow-origins:
 allow-private-network: true
 external-controller-unix: /mihomo.sock
@@ -82,8 +82,8 @@ dns:
   cache-algorithm: arc
   enable: true
   listen: 0.0.0.0:1053
-  use-hosts: true
-  use-system-hosts: true
+  use-hosts: false
+  use-system-hosts: false
   ipv6: false
   ipv6-timeout: 300  
   prefer-h3: true  
@@ -164,7 +164,7 @@ hosts:
 tun:    
   enable: true
   device: 'utun'
-  mtu: '1500'
+  mtu: 1500
   interface-name: ""
   stack: 'mixed'
   strict-route: false
