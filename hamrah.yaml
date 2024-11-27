@@ -11,10 +11,10 @@ lan-disallowed-ips:
 skip-auth-prefixes:
 - 127.0.0.1/8
 - ::1/128
-ipv6: false
+ipv6: true
 allow-lan: true
 tcp-concurrent: true
-unified-delay: true
+unified-delay: false
 geodata-mode: true
 geo-auto-update: true
 geo-update-interval: 24 
@@ -29,16 +29,16 @@ log-level: debug
 global-client-fingerprint: random # 
 geodata-loader: standard 
 find-process-mode: always
-external-controller-cors:
+external-controller-cors: 0.0.0.0:9092
 allow-origins:
 allow-private-network: true
-external-controller-unix: mihomo.sock
-external-controller-pipe: pipe\mihomo
-external-controller-tls: 127.0.0.1:9443
-external-controller: 127.0.0.1:9090 
-external-ui: path/ui
+external-controller-unix: /mihomo.sock
+external-controller-pipe: /pipe/mihomo
+external-controller-tls: 0.0.0.0:9491
+external-controller: 0.0.0.0:9090
+external-ui: /ui
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
-external-ui-name:
+external-ui-name: /dashboard
 geox-url:
   geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
   geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
@@ -48,7 +48,7 @@ geox-url:
 experimental:
   quic-go-disable-gso: false
   quic-go-disable-ecn: false
-  dialer-ip4p-convert: false
+  dialer-ip4p-convert: true
   
 tunnels:
 - tcp/udp,127.0.0.1:6553,8.8.8.8:53,FINAL
@@ -120,12 +120,12 @@ dns:
     - '1.0.0.1'
   nameserver-policy:
     "www.google.com": '114.114.114.114'
-    "geosite:category-ads-all": rcode://success
-    "rule-set:adblock": rcode://success
-    "geosite:category-ads-all": rcode://format_error
-    "geosite:category-ads-all": rcode://server_failure
-    "geosite:category-ads-all": rcode://not_implemented
-    "geosite:category-ads-all": rcode://refused
+    "geosite:category-ads-all": 'rcode://success'
+    "rule-set:private_domain,private_ip": '114.114.114.114'
+    "geosite:category-ads-all": 'rcode://format_error'
+    "geosite:category-ads-all": 'rcode://server_failure'
+    "geosite:category-ads-all": 'rcode://not_implemented'
+    "geosite:category-ads-all": 'rcode://refused'
     "rule-set:geolocation-!cn":
       - 'quic://223.5.5.5'
       - 'quic://223.6.6.6'
@@ -154,55 +154,54 @@ dns:
   fallback-filter:
     geoip: false
     ipcidr:
-      - 240.0.0.0/4
-      - 0.0.0.0/32
+      - '240.0.0.0/4'
+      - '0.0.0.0/32'
 
 hosts:
   '*.clash.dev': 127.0.0.1
   'alpha.clash.dev': '::1'
-  test.com: [1.1.1.1, 2.2.2.2]
-  baidu.com: google.com
+
 tun:    
   enable: true
-  device: utun
-  mtu: 9000
+  device: 'utun'
+  mtu: '1500'
   interface-name: ""
-  stack: mixed
-  strict-route: true
-  gso: true
+  stack: 'mixed'
+  strict-route: false
+  gso: false
   gso-max-size: 65536
   udp-timeout: 300
   iproute2-table-index: 2022
   iproute2-rule-index: 9000
-  endpoint-independent-nat: true
+  endpoint-independent-nat: false
   dns-hijack:
     - any:53  
     - tcp://any:53
-    - 223.5.5.5:53
-    - 120.53.53.53:53
-    - 180.76.76.76:53
-    - 119.29.29.29:53
-    - 1.1.1.1:53
-    - 1.0.0.1:53
-  auto-route: true 
+    - tcp://223.5.5.5:53
+    - tcp://120.53.53.53:53
+    - tcp://180.76.76.76:53
+    - tcp://119.29.29.29:53
+    - tcp://1.1.1.1:53
+    - tcp://1.0.0.1:53
+  auto-route: false
   auto-redirect: true
   auto-detect-interface: true
   inet4-route-address:
-  - 0.0.0.0/1
-  - 128.0.0.0/1
+  - "0.0.0.0/1"
+  - "128.0.0.0/1"
   inet6-route-address:
   - "::/1"
   - "8000::/1"
   inet4-route-exclude-address:
-  - 192.168.0.0/16
+  - "192.168.0.0/16"
   inet6-route-exclude-address:
-  - fc00::/7
+  - "fc00::/7"
 
 sniffer:                
   enable: true                
-  force-dns-mapping: true
-  parse-pure-ip: true
-  override-destination: true
+  force-dns-mapping: false
+  parse-pure-ip: false
+  override-destination: false
   sniff:   
     TLS:
       ports: [443, 8443]
@@ -212,18 +211,18 @@ sniffer:
       ports: [80, 8080-8880]
       override-destination: true 
   force-domain:
-    - google.com
-    - +.v2ex.com
+    - "google.com"
+    - "+.v2ex.com"
   skip-domain:
-    - Mijia Cloud
-    - +.apple.com
+    - "Mijia Cloud"
+    - "+.apple.com"
   skip-src-address:
-    - 192.168.0.3/32
+    - "192.168.0.3/32"
   skip-dst-address:
-    - 192.168.0.3/32
+    - "192.168.0.3/32"
   sniffing:
-    - tls
-    - http
+    - "tls"
+    - "http"
   port-whitelist:
     - "80"
     - "443"
@@ -231,8 +230,6 @@ sniffer:
 profile:
   store-selected: true
   store-fake-ip: true
-
-
 
 
 proxies:
