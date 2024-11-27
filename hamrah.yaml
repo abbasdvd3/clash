@@ -673,22 +673,32 @@ proxies:
   - {"name":"XX_436","type":"vmess","server":"socks5tobefree.ydns.eu","port":33026,"cipher":"auto","uuid":"e00f5c12-09e3-490c-b702-29155b6dcc50","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/dangerzone"}}
   - {"name":"XX_437","type":"ss","server":"45.87.175.157","port":8080,"password":"cvII85TrW6n0OGyfpHVS1u","cipher":"chacha20-ietf-poly1305"}
   - {"name":"XX_438","type":"ss","server":"45.87.175.157","port":8080,"password":"4a2rfixophdjffa8KVA4Aa","cipher":"chacha20-ietf-poly1305"}
-  - name: "ایران"
-    type: "direct"
-    udp: "true"
-    ip-version: "ipv4"
-    interface-name: ""
-    routing-mark: 1234
-    
-  - name: "dns"
-    type: "dns"
-    
-  - name: "http"
-    type: "socks5"
-    server: "127.0.0.1"
-    port: 443
+  - {"name":"DNS","type":"DNS"}
+  - {"name":"IRAN","type":"direct","server":"127.0.0.1","port":,"10811","udp":"true"}
+  - {"name":"socks5","type":"socks5","server":"127.0.0.1","port":,"10808"}
 
 proxy-groups:
+  - name: "PROXY"
+    type: "select"
+    lazy: true
+    timeout: 500
+    max-failed-times: 5
+    disable-udp: true
+    interface-name: ""
+    routing-mark: 11451
+#    include-all: true
+ #   include-all-proxies: true
+#    include-all-providers: true
+#    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+   # exclude-type: "Shadowsocks|Http"
+    expected-status: 204
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png
+    proxies:
+ #     - "PROXY"
+      - "URL-TEST"
+      - "FALLBACK"
+      
   - name: "FALLBACK"
     type: "fallback"
     interval: 180
@@ -699,8 +709,8 @@ proxy-groups:
     disable-udp: true
     interface-name: ""
     routing-mark: 11451
-    include-all: false
-    include-all-proxies: false
+    include-all: true
+    include-all-proxies: true
     include-all-providers: true
 #    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
@@ -721,8 +731,8 @@ proxy-groups:
     disable-udp: true
     interface-name: ""
     routing-mark: 11451
-    include-all: false
-    include-all-proxies: false
+    include-all: true
+    include-all-proxies: true
     include-all-providers: true
 #    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
@@ -739,8 +749,8 @@ proxy-groups:
     disable-udp: true
     interface-name: ""
     routing-mark: 11451
- #   include-all: false
- #   include-all-proxies: false
+    include-all: true
+    include-all-proxies: true
 #    include-all-providers: true
 #    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
@@ -751,9 +761,6 @@ proxy-groups:
  #     - "PROXY"
       - "URL-TEST"
       - "FALLBACK"
-      - "http"
-      - "dns"
-      - "ایران"
       
 proxy-providers:
   "provide":
@@ -1185,8 +1192,8 @@ rule-providers:
     interval: 432000  
 rules:
   - RULE-SET,iran_ads,REJECT
-  - DOMAIN-SUFFIX,ir,ایران,no-resolve
-  - RULE-SET,iran_other,ایران,no-resolve
+  - DOMAIN-SUFFIX,ir,IRAN,no-resolve
+  - RULE-SET,iran_other,IRAN,no-resolve
   - RULE-SET,UnBan,FINAL,no-resolve
   - RULE-SET,OpenAi,FINAL,no-resolve
   - RULE-SET,GoogleCNProxyIP,FINAL,no-resolve
@@ -1200,7 +1207,7 @@ rules:
   - RULE-SET,Google,FINAL,no-resolve
 
 
-  - GEOIP,lan,ایران,no-resolve
+  - GEOIP,lan,IRAN,no-resolve
   - RULE-SET,github_domain,FINAL
   - GEOIP,telegram,FINAL
   - RULE-SET,twitter_domain,FINAL
@@ -1214,20 +1221,20 @@ rules:
   - RULE-SET,netflix_ip,FINAL
   - RULE-SET,telegram_ip,FINAL
   - RULE-SET,twitter_ip,FINAL
-  - RULE-SET,cn_ip,ایران
-  - RULE-SET,private1,ایران,no-resolve
+  - RULE-SET,cn_ip,IRAN
+  - RULE-SET,private1,IRAN,no-resolve
   - RULE-SET,social,FINAL
   - RULE-SET,geolocation-!cn,FINAL
   - DST-PORT,80/8080/443/8443,FINAL
-  - RULE-SET,iranserver,ایران
+  - RULE-SET,iranserver,IRAN
   - RULE-SET,AWA,REJECT
   - RULE-SET,nsfw1,FINAL
-  - RULE-SET,ir,ایران,no-resolve
-  - RULE-SET,ircidr,ایران
-  - RULE-SET,irasn,ایران
+  - RULE-SET,ir,IRAN,no-resolve
+  - RULE-SET,ircidr,IRAN
+  - RULE-SET,irasn,IRAN
   - RULE-SET,adblock,REJECT
   - GEOSITE,category-ads-all,REJECT
-  - RULE-SET,private,ایران,no-resolve
+  - RULE-SET,private,IRAN,no-resolve
   - DOMAIN-SUFFIX,googlesyndication.com,FINAL
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
   - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),FINAL
@@ -1254,23 +1261,23 @@ rules:
   - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
   - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
   - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
-  - geoip,ir,ایران
-  - geoip,private,ایران
-  - geosite,private,ایران
+  - geoip,ir,IRAN
+  - geoip,private,IRAN
+  - geosite,private,IRAN
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,FINAL
-  - DST-PORT,53,dns
+  - DST-PORT,53,PROXY
   - IP-ASN,1,FINAL
-  - DOMAIN-SUFFIX,baidu.com,ایران
+  - DOMAIN-SUFFIX,baidu.com,IRAN
   - DOMAIN-KEYWORD,google,FINAL
   - IP-CIDR,1.1.1.1/32,FINAL
-  - IP-CIDR6,2409::/64,ایران
+  - IP-CIDR6,2409::/64,IRAN
   - SUB-RULE,(OR,((NETWORK,TCP),(NETWORK,UDP))),sub-rule-name1
   - SUB-RULE,(AND,((NETWORK,UDP))),sub-rule-name2
 sub-rules:
   sub-rule-name1:
     - DOMAIN,google.com,FINAL
-    - DOMAIN,baidu.com,ایران
+    - DOMAIN,baidu.com,IRAN
     - MATCH,FINAL
   sub-rule-name2:
     - IP-CIDR,1.1.1.1/32,REJECT
