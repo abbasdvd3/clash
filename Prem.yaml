@@ -172,30 +172,39 @@ proxy-providers:
     
 proxies:
 proxy-groups:
-  - name: 🚀
+  - name: FINAL
     type: select
-    disable-udp: false
+    disable-udp: true
     use:
       - provider1
     proxies:
       - ♻️
       - United
-  - name: United
+      - fallback
+  - name: fallback
     type: fallback
     url: https://www.gstatic.com/generate_200
-    disable-udp: true
-    interval: 300
+    disable-udp: false
+    interval: 180
     tolerance: 80
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     hidden: false
     proxies:
     use:
       - provider1
-      
+  - name: United
+    type: url-test
+    url: https://www.gstatic.com/generate_200
+    disable-udp: false
+    interval: 80
+    tolerance: 80
+    hidden: false
+    use:
+      - provider1
   - name: ♻️
     type: url-test
     url: https://www.gstatic.com/generate_200
-    disable-udp: true
+    disable-udp: false
     interval: 300
     tolerance: 80
     hidden: false
@@ -209,15 +218,8 @@ proxy-groups:
       - DIRECT
       - 🚀
       - ♻️      
-  - name: FINAL
-    type: select
-    disable-udp: true
-    use:
-      - provider1
-    proxies:
-      - 🚀
-      - United
-      - ♻️ 
+
+
 rule-providers:
   ir:
     type: http
