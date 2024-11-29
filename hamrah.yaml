@@ -11,8 +11,8 @@ lan-disallowed-ips:
 skip-auth-prefixes:
 - 127.0.0.1/8
 - ::1/128
-ipv6: true
-allow-lan: true
+ipv6: false
+allow-lan: false
 tcp-concurrent: true
 unified-delay: false
 geodata-mode: true
@@ -48,7 +48,7 @@ geox-url:
 experimental:
   quic-go-disable-gso: false
   quic-go-disable-ecn: false
-  dialer-ip4p-convert: true
+  dialer-ip4p-convert: false
   
 tunnels:
 - tcp/udp,127.0.0.1:6553,8.8.8.8:53,FINAL
@@ -167,7 +167,7 @@ tun:
   mtu: 1500
   interface-name: ""
   stack: 'mixed'
-  strict-route: false
+  strict-route: true
   gso: false
   gso-max-size: 65536
   udp-timeout: 300
@@ -675,17 +675,17 @@ proxies:
   - {"name":"socks5","type":"socks5","server":"127.0.0.1","port":"10808"}
 
 proxy-groups:
-  - name: "PROXY"
+  - name: "FINAL"
     type: "select"
     lazy: true
     timeout: 500
-    max-failed-times: 5
+    max-failed-times: 8
     disable-udp: true
     interface-name: ""
     routing-mark: 11451
-#    include-all: true
- #   include-all-proxies: true
-#    include-all-providers: true
+    include-all: true
+    include-all-proxies: true
+    include-all-providers: true
 #    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
     expected-status: 204
@@ -701,8 +701,8 @@ proxy-groups:
     interval: 180
     url: "https://www.google.com/favicon.ico"
     lazy: true
-    timeout: 500
-    max-failed-times: 5
+    timeout: 50
+    max-failed-times: 15
     disable-udp: true
     interface-name: ""
     routing-mark: 11451
@@ -738,26 +738,6 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Panda.png
     proxies:
 
-  - name: "FINAL"
-    type: "select"
-    lazy: true
-    timeout: 500
-    max-failed-times: 5
-    disable-udp: true
-    interface-name: ""
-    routing-mark: 11451
-    include-all: true
-    include-all-proxies: true
-#    include-all-providers: true
-#    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-   # exclude-type: "Shadowsocks|Http"
-    expected-status: 204
-    hidden: false
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png
-    proxies:
- #     - "PROXY"
-      - "URL-TEST"
-      - "FALLBACK"
       
 proxy-providers:
   "provide":
@@ -1191,19 +1171,17 @@ rules:
   - RULE-SET,iran_ads,REJECT
   - DOMAIN-SUFFIX,ir,IRAN,no-resolve
   - RULE-SET,iran_other,IRAN,no-resolve
-  - RULE-SET,UnBan,FINAL,no-resolve
-  - RULE-SET,OpenAi,FINAL,no-resolve
-  - RULE-SET,GoogleCNProxyIP,FINAL,no-resolve
+  - RULE-SET,UnBan,FINAL
+  - RULE-SET,OpenAi,FINAL
+  - RULE-SET,GoogleCNProxyIP,FINAL
   - RULE-SET,DNS,REJECT
-  - RULE-SET,Telegram,FINAL,no-resolve
-  - RULE-SET,twitter,FINAL,no-resolve
-  - RULE-SET,facebook,FINAL,no-resolve
-  - RULE-SET,GitHub,FINAL,no-resolve
-  - RULE-SET,bing,FINAL,no-resolve
-  - RULE-SET,microsoft,FINAL,no-resolve
-  - RULE-SET,Google,FINAL,no-resolve
-
-
+  - RULE-SET,Telegram,FINAL
+  - RULE-SET,twitter,FINAL
+  - RULE-SET,facebook,FINAL
+  - RULE-SET,GitHub,FINAL
+  - RULE-SET,bing,FINAL
+  - RULE-SET,microsoft,FINAL
+  - RULE-SET,Google,FINAL
   - GEOIP,lan,IRAN,no-resolve
   - RULE-SET,github_domain,FINAL
   - GEOIP,telegram,FINAL
@@ -1263,20 +1241,18 @@ rules:
   - geosite,private,IRAN
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,FINAL
-  - DST-PORT,53,PROXY
+  - DST-PORT,53,FINAL
   - IP-ASN,1,FINAL
   - DOMAIN-SUFFIX,baidu.com,IRAN
   - DOMAIN-KEYWORD,google,FINAL
   - IP-CIDR,1.1.1.1/32,FINAL
   - IP-CIDR6,2409::/64,IRAN
-  - SUB-RULE,(OR,((NETWORK,TCP),(NETWORK,UDP))),sub-rule-name1
-  - SUB-RULE,(AND,((NETWORK,UDP))),sub-rule-name2
-sub-rules:
-  sub-rule-name1:
-    - DOMAIN,google.com,FINAL
-    - DOMAIN,baidu.com,IRAN
-    - MATCH,FINAL
-  sub-rule-name2:
-    - IP-CIDR,1.1.1.1/32,REJECT
-    - IP-CIDR,8.8.8.8/32,FINAL
-    - DOMAIN,dns.alidns.com,REJECT
+  - IP-CIDR,1.1.1.1/32,REJECT
+  - IP-CIDR,8.8.8.8/32,FINAL
+  - DOMAIN,dns.alidns.com,REJECT
+  - AND,,(OR,((NETWORK,TCP),(NETWORK,UDP))),FINAL
+  - AND,,(AND,((NETWORK,UDP))),FINAL
+  - DOMAIN,google.com,FINAL
+  - DOMAIN,baidu.com,IRAN
+  - MATCH,FINAL
+
