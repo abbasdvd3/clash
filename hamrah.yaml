@@ -30,8 +30,9 @@ global-client-fingerprint: random #
 geodata-loader: standard 
 find-process-mode: always
 external-controller-cors:
-allow-origins:
-allow-private-network: true
+  allow-private-network: true
+  allow-origins:
+  - '*'
 external-controller-unix: /mihomo.sock
 external-controller-pipe: /pipe/mihomo
 external-controller-tls: 0.0.0.0:9491
@@ -122,10 +123,6 @@ dns:
     "www.google.com": '114.114.114.114'
     "geosite:category-ads-all": 'rcode://success'
     "rule-set:ProxyGFWlist,ProxyMedia": '114.114.114.114'
-    "geosite:category-ads-all": 'rcode://format_error'
-    "geosite:category-ads-all": 'rcode://server_failure'
-    "geosite:category-ads-all": 'rcode://not_implemented'
-    "geosite:category-ads-all": 'rcode://refused'
     "rule-set:geolocation-!cn":
       - 'quic://223.5.5.5'
       - 'quic://223.6.6.6'
@@ -134,7 +131,7 @@ dns:
       - 'tls://dot.pub'
       - 'https://doh.pub/dns-query'
       - 'https://dns.alidns.com/dns-query'
-    "rule-set:ir,private,nsfw1,social":
+    "rule-set:ir,private,nsfw1":
       - 'tls://223.5.5.5'
       - 'tls://dot.pub'
       - 'https://doh.pub/dns-query'
@@ -230,8 +227,6 @@ sniffer:
 profile:
   store-selected: true
   store-fake-ip: true
-
-
 proxies:
   - {"name":"XX_1","type":"vmess","server":"142.0.134.243","port":45017,"cipher":"auto","uuid":"418048af-a293-4b99-9b0c-98ca3580dd24","alterId":64,"tls":false,"skip-cert-verify":true,"network":"tcp"}
   - {"name":"XX_2","type":"vmess","server":"107.148.207.249","port":48712,"cipher":"auto","uuid":"418048af-a293-4b99-9b0c-98ca3580dd24","alterId":64,"tls":false,"skip-cert-verify":true,"network":"tcp"}
@@ -1130,7 +1125,7 @@ rule-providers:
   ircidr:
     type: http
     format: text
-    behavior: ipcidr
+    behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
     path: ./ruleset/ircidr.txt
     interval: 86400
@@ -1150,101 +1145,92 @@ rule-providers:
     interval: 86400
 
 rules :
-  - RULE-SET,private,IRAN,no-resolve
-  - RULE-SET,apps,IRAN
-  - RULE-SET,ads,REJECT
-  - RULE-SET,malware,REJECT
-  - RULE-SET,phishing,REJECT
-  - RULE-SET,cryptominers,REJECT
-  - RULE-SET,ir,IRAN
-  - RULE-SET,ircidr,IRAN
-  - RULE-SET,irasn,IRAN
-  - RULE-SET,LocalAreaNetwork,IRAN
-  - RULE-SET,UnBan,IRAN
-  - RULE-SET,BanAD,REJECT
-  - RULE-SET,BanProgramAD,REJECT
-  - RULE-SET,BanEasyList,REJECT
-  - RULE-SET,BanEasyListChina,REJECT
-  - RULE-SET,BanEasyPrivacy,REJECT
-  - RULE-SET,GoogleFCM,FINAL
-  - RULE-SET,GoogleCN,IRAN
-  - RULE-SET,SteamCN,IRAN
-  - RULE-SET,Bing,FINAL
-  - RULE-SET,OneDrive,FINAL
-  - RULE-SET,Microsoft,FINAL
-  - RULE-SET,Apple,FINAL
-  - RULE-SET,Telegram,FINAL
-  - RULE-SET,OpenAi,FINAL
-  - RULE-SET,YouTube,FINAL
-  - RULE-SET,Netflix,FINAL
-  - RULE-SET,ChinaMedia,FINAL
-  - RULE-SET,ProxyMedia,FINAL
-# 长风网站，自动注入
-  - DOMAIN-SUFFIX,v2rayse.com,FINAL
-  - DOMAIN-SUFFIX,cff.pw,FINAL
-  - DOMAIN-SUFFIX,vpnse.org,FINAL
-  - DOMAIN-SUFFIX,cfmem.com,FINAL
-  - RULE-SET,ProxyGFWlist,FINAL
-  - RULE-SET,ChinaDomain,IRAN
-  - RULE-SET,ChinaCompanyIp,IRAN
-  - RULE-SET,Download,IRAN
-  - RULE-SET,iran_ads,REJECT
-  - DOMAIN-SUFFIX,ir,IRAN,no-resolve
-  - RULE-SET,iran_other,IRAN,no-resolve
-  - RULE-SET,DNS,IRAN
-  - GEOIP,lan,IRAN,no-resolve
-  - GEOIP,telegram,FINAL
-  - RULE-SET,social,FINAL
-  - RULE-SET,geolocation-!cn,FINAL
-  - DST-PORT,80/8080/443/8443,FINAL
-  - RULE-SET,iranserver,IRAN
-  - RULE-SET,AWA,REJECT
-  - RULE-SET,nsfw1,FINAL
-  - RULE-SET,adblock,REJECT
-  - GEOSITE,category-ads-all,REJECT
-  - DOMAIN-SUFFIX,googlesyndication.com,FINAL
-  - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
-  - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),FINAL
-  - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),FINAL
-  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
-  - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
-  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
-  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
-  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
-  - IP-CIDR6,::1/128,REJECT,no-resolve
-  - PROCESS-NAME,com.sec.location.nsflp2,REJECT
-  - PROCESS-NAME,com.samsung.android.location,REJECT
-  - PROCESS-NAME,com.android.localtransport,REJECT
-  - PROCESS-NAME,com.google.android.gms.location.history,REJECT
-  - PROCESS-NAME,com.sec.location.nsflp2,REJECT
-  - PROCESS-NAME,com.android.location.fused,REJECT
-  - PROCESS-NAME,com.samsung.android.messaging,REJECT
-  - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
-  - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
-  - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
-#  - PROCESS-NAME,com.android.settings,REJECT
-  - PROCESS-NAME,com.sec.imsservice,REJECT
-  - PROCESS-NAME,com.samsung.android.messaging,REJECT
-  - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
-  - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
-  - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
-  - geoip,ir,IRAN
-  - geoip,private,IRAN
-  - geosite,private,IRAN
-  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
-  - IN-TYPE,inner,FINAL
-  - DST-PORT,53,FINAL
-  - IP-ASN,1,FINAL
-  - DOMAIN-SUFFIX,baidu.com,IRAN
-  - DOMAIN-KEYWORD,google,FINAL
-  - IP-CIDR,1.1.1.1/32,FINAL
-  - IP-CIDR6,2409::/64,IRAN
-  - IP-CIDR,1.1.1.1/32,REJECT
-  - IP-CIDR,8.8.8.8/32,FINAL
-  - DOMAIN,dns.alidns.com,REJECT
-  - AND,,(OR,((NETWORK,TCP),(NETWORK,UDP))),FINAL
-  - AND,,(AND,((NETWORK,UDP))),FINAL
-  - DOMAIN,google.com,FINAL
-  - DOMAIN,baidu.com,IRAN
-  - MATCH,FINAL
+- RULE-SET,private,IRAN,no-resolve
+- RULE-SET,apps,IRAN
+- RULE-SET,ads,REJECT
+- RULE-SET,malware,REJECT
+- RULE-SET,phishing,REJECT
+- RULE-SET,cryptominers,REJECT
+- RULE-SET,ir,IRAN
+- RULE-SET,ircidr,IRAN
+- RULE-SET,irasn,IRAN
+- RULE-SET,LocalAreaNetwork,IRAN
+- RULE-SET,UnBan,IRAN
+- RULE-SET,BanAD,REJECT
+- RULE-SET,BanProgramAD,REJECT
+- RULE-SET,BanEasyList,REJECT
+- RULE-SET,BanEasyListChina,REJECT
+- RULE-SET,BanEasyPrivacy,REJECT
+- RULE-SET,GoogleFCM,FINAL
+- RULE-SET,GoogleCN,IRAN
+- RULE-SET,SteamCN,IRAN
+- RULE-SET,Bing,FINAL
+- RULE-SET,OneDrive,FINAL
+- RULE-SET,Microsoft,FINAL
+- RULE-SET,Apple,FINAL
+- RULE-SET,Telegram,FINAL
+- RULE-SET,OpenAi,FINAL
+- RULE-SET,YouTube,FINAL
+- RULE-SET,ChinaMedia,FINAL
+- RULE-SET,ProxyMedia,FINAL
+- DOMAIN-SUFFIX,v2rayse.com,FINAL
+- DOMAIN-SUFFIX,cff.pw,FINAL
+- DOMAIN-SUFFIX,vpnse.org,FINAL
+- DOMAIN-SUFFIX,cfmem.com,FINAL
+- RULE-SET,ProxyGFWlist,FINAL
+- RULE-SET,ChinaDomain,IRAN
+- RULE-SET,ChinaCompanyIp,IRAN
+- RULE-SET,Download,IRAN
+- RULE-SET,iran_ads,REJECT
+- DOMAIN-SUFFIX,ir,IRAN,no-resolve
+- RULE-SET,iran_other,IRAN,no-resolve
+- RULE-SET,DNS,IRAN
+- RULE-SET,AWA,REJECT
+- RULE-SET,geolocation-!cn,FINAL
+- DST-PORT,80/8080/443/8443,FINAL
+- RULE-SET,nsfw1,FINAL
+- RULE-SET,adblock,REJECT
+- DOMAIN-SUFFIX,googlesyndication.com,FINAL
+- AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
+- AND,((NETWORK,TCP),(DST-PORT,5228-5230)),FINAL
+- AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),FINAL
+- AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
+- AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
+- IP-CIDR,127.0.0.1/32,REJECT,no-resolve
+- IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+- IP-CIDR,28.0.0.1/8,REJECT,no-resolve
+- IP-CIDR6,::1/128,REJECT,no-resolve
+- PROCESS-NAME,com.sec.location.nsflp2,REJECT
+- PROCESS-NAME,com.samsung.android.location,REJECT
+- PROCESS-NAME,com.android.localtransport,REJECT
+- PROCESS-NAME,com.google.android.gms.location.history,REJECT
+- PROCESS-NAME,com.sec.location.nsflp2,REJECT
+- PROCESS-NAME,com.android.location.fused,REJECT
+- PROCESS-NAME,com.samsung.android.messaging,REJECT
+- PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
+- PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
+- PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
+#- PROCESS-NAME,com.android.settings,REJECT
+- PROCESS-NAME,com.sec.imsservice,REJECT
+- PROCESS-NAME,com.samsung.android.messaging,REJECT
+- PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
+- PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
+- PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
+- geoip,private,IRAN
+- AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
+- IN-TYPE,inner,FINAL
+- DST-PORT,53,FINAL
+- IP-ASN,1,FINAL
+- DOMAIN-SUFFIX,baidu.com,IRAN
+- DOMAIN-KEYWORD,google,FINAL
+- IP-CIDR,1.1.1.1/32,FINAL
+- IP-CIDR6,2409::/64,IRAN
+- IP-CIDR,1.1.1.1/32,REJECT
+- IP-CIDR,8.8.8.8/32,FINAL
+- DOMAIN,dns.alidns.com,REJECT
+- AND,,(OR,((NETWORK,TCP),(NETWORK,UDP))),FINAL
+- AND,,(AND,((NETWORK,UDP))),FINAL
+- DOMAIN,google.com,FINAL
+- DOMAIN,baidu.com,IRAN
+- MATCH,FINAL
 
