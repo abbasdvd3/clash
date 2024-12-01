@@ -121,7 +121,7 @@ dns:
   nameserver-policy:
     "www.google.com": '114.114.114.114'
     "geosite:category-ads-all": 'rcode://success'
-    "rule-set:private_domain,private_ip": '114.114.114.114'
+    "rule-set:ProxyGFWlist,ProxyMedia": '114.114.114.114'
     "geosite:category-ads-all": 'rcode://format_error'
     "geosite:category-ads-all": 'rcode://server_failure'
     "geosite:category-ads-all": 'rcode://not_implemented'
@@ -129,7 +129,7 @@ dns:
     "rule-set:geolocation-!cn":
       - 'quic://223.5.5.5'
       - 'quic://223.6.6.6'
-    "rule-set:google_domain,irasn":
+    "rule-set:GoogleFCM,irasn":
       - 'tls://223.5.5.5'
       - 'tls://dot.pub'
       - 'https://doh.pub/dns-query'
@@ -683,9 +683,9 @@ proxy-groups:
     disable-udp: true
     interface-name: ""
     routing-mark: 11451
-    include-all: true
-    include-all-proxies: true
-    include-all-providers: true
+ #   include-all: true
+#    include-all-proxies: true
+  #  include-all-providers: true
 #    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
     expected-status: 204
@@ -698,7 +698,7 @@ proxy-groups:
       
   - name: "FALLBACK"
     type: "fallback"
-    interval: 180
+#    interval: 180
     url: "https://www.google.com/favicon.ico"
     lazy: true
     timeout: 50
@@ -709,7 +709,7 @@ proxy-groups:
     include-all: true
     include-all-proxies: true
     include-all-providers: true
-#    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
     expected-status: 204
     hidden: false
@@ -718,7 +718,7 @@ proxy-groups:
   
   - name: "URL-TEST"
     type: "url-test"
-    interval: 180
+  #  interval: 180
  #   tolerance: 100
     exclude: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     url: "https://www.google.com/favicon.ico"
@@ -731,7 +731,7 @@ proxy-groups:
     include-all: true
     include-all-proxies: true
     include-all-providers: true
-#    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
     expected-status: 204
     hidden: false
@@ -842,30 +842,181 @@ proxy-providers:
 
 
 rule-providers:
-  iranserver:
+  LocalAreaNetwork:
     type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/iranserver.txt
-  ir:
-    type: http
-    interval: 86400
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt
-  ircidr:
-    type: http
-    interval: 86400
     behavior: classical
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt
-  private:
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/LocalAreaNetwork.list
+  UnBan:
     type: http
-    interval: 86400
     behavior: classical
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.txt
-  irasn:
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/UnBan.list
+  BanAD:
     type: http
-    interval: 86400
     behavior: classical
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.txt
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanAD.list
+  BanProgramAD:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanProgramAD.list
+  BanEasyList:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanEasyList.list
+  BanEasyListChina:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanEasyListChina.list
+  BanEasyPrivacy:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanEasyPrivacy.list
+  GoogleFCM:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/GoogleFCM.list
+  GoogleCN:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/GoogleCN.list
+  SteamCN:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/SteamCN.list
+  Bing:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/Bing.list
+  OneDrive:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/OneDrive.list
+  Microsoft:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/Microsoft.list
+  Apple:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/Apple.list
+  Telegram:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/Telegram.list
+  OpenAi:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/OpenAi.list
+  YouTube:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/YouTube.list
+  BilibiliHMT:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BilibiliHMT.list
+  Bilibili:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bilibili.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/Bilibili.list
+  ChinaMedia:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/ChinaMedia.list
+  ProxyMedia:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/ProxyMedia.list
+  ProxyGFWlist:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/ProxyGFWlist.list
+  ChinaDomain:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/ChinaDomain.list
+  ChinaCompanyIp:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/ChinaCompanyIp.list
+  Download:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/Download.list
   AWA:
     type: http
     interval: 86400
@@ -886,131 +1037,6 @@ rule-providers:
     interval: 86400
     behavior: domain
     url: https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_V2ray/main/adblock_reject_domain.txt
-  social:
-    type: http
-    interval: 86400
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.list
-  private1:
-    type: http
-    interval: 86400
-    behavior: domain
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.list
-  github_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.list
-  twitter_domain:
-    type: http
-    interval: 86400 
-    behavior: domain
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.list
-  youtube_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.list
-  google_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.list
-  telegram_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.list
-  netflix_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.list
-  spotify_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.list
-  pixiv_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pixiv.list
-  cn_ip:
-    type: http
-    interval: 86400
-    behavior: classical
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.list
-  google_ip:
-    type: http
-    interval: 86400
-    behavior: classical
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.list
-  netflix_ip:
-    type: http
-    interval: 86400
-    behavior: classical
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.list
-  twitter_ip:
-    type: http
-    interval: 86400
-    behavior: classical
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.list
-  telegram_ip:
-    type: http
-    interval: 86400
-    behavior: classical
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.list
-  private_ip:
-    type: http
-    interval: 86400
-    behavior: classical
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.list
-  ir_ip:
-    type: http
-    interval: 86400
-    behavior: classical
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/ir.mrs.list
-  private_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.list
-  ir_domain:
-    type: http
-    interval: 86400
-    behavior: domain
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ir.txt
-  ads:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.txt
-    path: ruleset/ads.yaml
-    interval: 86400
-  malware:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt
-    path: ruleset/malware.yaml
-    interval: 86400
-  phishing:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.txt
-    path: ruleset/phishing.yaml
-    interval: 86400
-  cryptominers:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.txt
-    path: ruleset/cryptominers.yaml
-    interval: 86400
-  apps:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.txt
-    path: ruleset/apps.yaml
-    interval: 86400
   block:
     type: http
     behavior: domain
@@ -1023,24 +1049,6 @@ rule-providers:
     url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/facebook.txt
     path: ruleset/facebook.yaml
     interval: 86400
-  twitter:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/twitter.txt
-    path: ruleset/twitter.yaml
-    interval: 86400
-  microsoft:
-    type: http
-    behavior: domain
-    url: https://github.com/bootmortis/Chocolate4U/Iran-clash-rules/releases/download/microsoft.txt
-    path: ruleset/microsoft.yaml
-    interval: 86400
-  Google:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/Google.list
-    interval: 3600
-    path: ruleset/Google.list
   IpinfoSpeedtest:
     type: http
     behavior: classical
@@ -1053,96 +1061,6 @@ rule-providers:
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
     path: ruleset/gfw.txt
     interval: 86400
-  UnBan:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
-    interval: 3600
-    path: ruleset/UnBan.list
-  BanAD:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
-    interval: 3600
-    path: ruleset/BanAD.list
-  BanProgramAD:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
-    interval: 3600
-    path: ruleset/BanProgramAD.list
-  BanEasyList:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list
-    interval: 3600
-    path: ruleset/BanEasyList.list
-  BanEasyListChina:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
-    interval: 3600
-    path: ruleset/BanEasyListChina.list
-  BanEasyPrivacy:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
-    interval: 3600
-    path: ruleset/BanEasyPrivacy.list    
-  GoogleFCM:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
-    interval: 3600
-    path: ruleset/GoogleFCM.list
-  GoogleCN:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
-    interval: 3600
-    path: ruleset/GoogleCN.list
-  bing:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list
-    interval: 3600
-    path: ruleset/Bing.list
-  OneDrive:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list
-    interval: 3600
-    path: ruleset/OneDrive.list
-  Microsoft:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
-    interval: 3600
-    path: ruleset/Microsoft.list
-  Apple:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
-    interval: 3600
-    path: ruleset/Apple.list
-  Telegram:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
-    interval: 3600
-    path: ruleset/Telegram.list
-  OpenAi:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
-    interval: 3600
-    path: ruleset/OpenAi.list
-  GoogleCNProxyIP:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
-    interval: 3600
-    path: ruleset/GoogleCNProxyIP.list
   DNS:
     type: http
     behavior: domain
@@ -1166,50 +1084,124 @@ rule-providers:
     behavior: domain
     url: https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules_ads.txt
     path: ruleset/iran_ads.txt
-    interval: 432000  
-rules:
+    interval: 432000
+  ir:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
+    path: ./ruleset/ir.txt
+    interval: 86400
+  ads:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.txt"
+    path: ./ruleset/ads.txt
+    interval: 86400
+  malware:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt"
+    path: ./ruleset/malware.txt
+    interval: 86400
+  phishing:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.txt"
+    path: ./ruleset/phishing.txt
+    interval: 86400
+  cryptominers:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.txt"
+    path: ./ruleset/cryptominers.txt
+    interval: 86400
+  apps:
+    type: http
+    format: text
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.txt"
+    path: ./ruleset/apps.txt
+    interval: 86400
+  ircidr:
+    type: http
+    format: text
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
+    path: ./ruleset/ircidr.txt
+    interval: 86400
+  private:
+    type: http
+    format: text
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.txt"
+    path: ./ruleset/private.txt
+    interval: 86400
+  irasn:
+    type: http
+    format: text
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.txt"
+    path: ./ruleset/irasn.txt
+    interval: 86400
+
+rules :
+  - RULE-SET,private,IRAN,no-resolve
+  - RULE-SET,apps,IRAN
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,ir,IRAN
+  - RULE-SET,ircidr,IRAN
+  - RULE-SET,irasn,IRAN
+  - RULE-SET,LocalAreaNetwork,IRAN
+  - RULE-SET,UnBan,IRAN
+  - RULE-SET,BanAD,REJECT
+  - RULE-SET,BanProgramAD,REJECT
+  - RULE-SET,BanEasyList,REJECT
+  - RULE-SET,BanEasyListChina,REJECT
+  - RULE-SET,BanEasyPrivacy,REJECT
+  - RULE-SET,GoogleFCM,FINAL
+  - RULE-SET,GoogleCN,IRAN
+  - RULE-SET,SteamCN,IRAN
+  - RULE-SET,Bing,FINAL
+  - RULE-SET,OneDrive,FINAL
+  - RULE-SET,Microsoft,FINAL
+  - RULE-SET,Apple,FINAL
+  - RULE-SET,Telegram,FINAL
+  - RULE-SET,OpenAi,FINAL
+  - RULE-SET,YouTube,FINAL
+  - RULE-SET,Netflix,FINAL
+  - RULE-SET,ChinaMedia,FINAL
+  - RULE-SET,ProxyMedia,FINAL
+# 长风网站，自动注入
+  - DOMAIN-SUFFIX,v2rayse.com,FINAL
+  - DOMAIN-SUFFIX,cff.pw,FINAL
+  - DOMAIN-SUFFIX,vpnse.org,FINAL
+  - DOMAIN-SUFFIX,cfmem.com,FINAL
+  - RULE-SET,ProxyGFWlist,FINAL
+  - RULE-SET,ChinaDomain,IRAN
+  - RULE-SET,ChinaCompanyIp,IRAN
+  - RULE-SET,Download,IRAN
   - RULE-SET,iran_ads,REJECT
   - DOMAIN-SUFFIX,ir,IRAN,no-resolve
   - RULE-SET,iran_other,IRAN,no-resolve
-  - RULE-SET,UnBan,FINAL
-  - RULE-SET,OpenAi,FINAL
-  - RULE-SET,GoogleCNProxyIP,FINAL
-  - RULE-SET,DNS,REJECT
-  - RULE-SET,Telegram,FINAL
-  - RULE-SET,twitter,FINAL
-  - RULE-SET,facebook,FINAL
-  - RULE-SET,GitHub,FINAL
-  - RULE-SET,bing,FINAL
-  - RULE-SET,microsoft,FINAL
-  - RULE-SET,Google,FINAL
+  - RULE-SET,DNS,IRAN
   - GEOIP,lan,IRAN,no-resolve
-  - RULE-SET,github_domain,FINAL
   - GEOIP,telegram,FINAL
-  - RULE-SET,twitter_domain,FINAL
-  - RULE-SET,youtube_domain,FINAL
-  - RULE-SET,google_domain,FINAL
-  - RULE-SET,telegram_domain,FINAL
-  - RULE-SET,netflix_domain,FINAL
-  - RULE-SET,spotify_domain,FINAL
-  - RULE-SET,pixiv_domain,FINAL
-  - RULE-SET,google_ip,FINAL
-  - RULE-SET,netflix_ip,FINAL
-  - RULE-SET,telegram_ip,FINAL
-  - RULE-SET,twitter_ip,FINAL
-  - RULE-SET,cn_ip,IRAN
-  - RULE-SET,private1,IRAN,no-resolve
   - RULE-SET,social,FINAL
   - RULE-SET,geolocation-!cn,FINAL
   - DST-PORT,80/8080/443/8443,FINAL
   - RULE-SET,iranserver,IRAN
   - RULE-SET,AWA,REJECT
   - RULE-SET,nsfw1,FINAL
-  - RULE-SET,ir,IRAN,no-resolve
-  - RULE-SET,ircidr,IRAN
-  - RULE-SET,irasn,IRAN
   - RULE-SET,adblock,REJECT
   - GEOSITE,category-ads-all,REJECT
-  - RULE-SET,private,IRAN,no-resolve
   - DOMAIN-SUFFIX,googlesyndication.com,FINAL
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
   - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),FINAL
