@@ -141,7 +141,6 @@ dns:
     - 'tls://dot.pub'
     - 'https://120.53.53.53/dns-query'
     - 'https://223.5.5.5/dns-query'
-  fallback:
     - 'tls://8.8.4.4'
     - 'tls://1.1.1.1'
     - 'quic://a.passcloud.xyz:784#PROXY'
@@ -183,16 +182,7 @@ tun:
   auto-route: false
   auto-redirect: true
   auto-detect-interface: true
-  inet4-route-address:
-  - "0.0.0.0/1"
-  - "128.0.0.0/1"
-  inet6-route-address:
-  - "::/1"
-  - "8000::/1"
-  inet4-route-exclude-address:
-  - "192.168.0.0/16"
-  inet6-route-exclude-address:
-  - "fc00::/7"
+
 
 sniffer:
   enable: true
@@ -209,7 +199,6 @@ sniffer:
       ports: []
   skip-domain:
     - "rule-set:private"
-    - "rule-set:fakeip-filter"
     - "+.push.apple.com"
     - "*.cdn.net"
     - "*.akamai.net"
