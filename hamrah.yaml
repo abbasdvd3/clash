@@ -194,35 +194,37 @@ tun:
   inet6-route-exclude-address:
   - "fc00::/7"
 
-sniffer:                
-  enable: true                
-  force-dns-mapping: false
+sniffer:
+  enable: true
+  force-dns-mapping: true
   parse-pure-ip: false
-  override-destination: false
-  sniff:   
+  override-destination: true
+  sniff:
+    HTTP:
+      ports: [80, 443]
+      override-destination: true
     TLS:
-      ports: [443, 8443]
+      ports: [443]
     QUIC:
-      ports: [ 443 ]
-    HTTP: 
-      ports: [80, 8080-8880]
-      override-destination: true 
-  force-domain:
-    - "google.com"
-    - "+.v2ex.com"
+      ports: []
   skip-domain:
+    - "rule-set:private"
+    - "rule-set:fakeip-filter"
+    - "+.push.apple.com"
+    - "*.cdn.net"
+    - "*.akamai.net"
+    - "*.amazonaws.com"
     - "Mijia Cloud"
-    - "+.apple.com"
   skip-src-address:
     - "192.168.0.3/32"
+    - "10.0.0.0/8"
+    - "172.16.0.0/12"
+    - "fc00::/7"
   skip-dst-address:
     - "192.168.0.3/32"
-  sniffing:
-    - "tls"
-    - "http"
-  port-whitelist:
-    - "80"
-    - "443"
+    - "10.0.0.0/8"
+    - "172.16.0.0/12"
+    - "fc00::/7"
   
 profile:
   store-selected: true
