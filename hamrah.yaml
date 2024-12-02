@@ -667,7 +667,6 @@ proxies:
   - {"name":"XX_438","type":"ss","server":"45.87.175.157","port":8080,"password":"4a2rfixophdjffa8KVA4Aa","cipher":"chacha20-ietf-poly1305"}
   - {"name":"DNS","type":"dns"}
   - {"name":"IRAN","type":"direct","server":"127.0.0.1","port":"10811","udp":"true"}
-  - {"name":"socks5","type":"socks5","server":"127.0.0.1","port":"10808"}
 
 proxy-groups:
   - name: "FINAL"
@@ -697,7 +696,7 @@ proxy-groups:
   - name: "FALLBACK"
     type: "fallback"
     interval: 180
-    url: "https://www.google.com/favicon.ico"
+    url: http://www.gstatic.com/generate_204
     lazy: true
     timeout: 50
     max-failed-times: 15
@@ -708,7 +707,7 @@ proxy-groups:
     include-all-proxies: true
     include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-   # exclude-type: "Shadowsocks|Http"
+    exclude-type: "dns|direct"
     expected-status: 204
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/YouTube.png
@@ -719,7 +718,7 @@ proxy-groups:
     interval: 180
  #   tolerance: 100
     exclude: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
-    url: "https://www.google.com/favicon.ico"
+    url: http://www.gstatic.com/generate_204
     lazy: true
     timeout: 500
     max-failed-times: 5
@@ -730,7 +729,7 @@ proxy-groups:
     include-all-proxies: true
     include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-   # exclude-type: "Shadowsocks|Http"
+    exclude-type: "dns|direct"
     expected-status: 204
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Panda.png
