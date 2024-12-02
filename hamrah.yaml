@@ -671,7 +671,10 @@ proxies:
 
 proxy-groups:
   - name: "FINAL"
-    type: "select"
+    type: "load-balance"
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
     lazy: true
     timeout: 500
     max-failed-times: 8
@@ -693,7 +696,7 @@ proxy-groups:
       
   - name: "FALLBACK"
     type: "fallback"
-#    interval: 180
+    interval: 180
     url: "https://www.google.com/favicon.ico"
     lazy: true
     timeout: 50
@@ -713,7 +716,7 @@ proxy-groups:
   
   - name: "URL-TEST"
     type: "url-test"
-  #  interval: 180
+    interval: 180
  #   tolerance: 100
     exclude: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     url: "https://www.google.com/favicon.ico"
