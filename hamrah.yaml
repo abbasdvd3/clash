@@ -11,8 +11,8 @@ lan-disallowed-ips:
 skip-auth-prefixes:
 - 127.0.0.1/8
 - ::1/128
-ipv6: true
-allow-lan: true
+ipv6: false
+allow-lan: false
 tcp-concurrent: true
 unified-delay: false
 geodata-mode: true
@@ -90,7 +90,7 @@ dns:
   prefer-h3: true  
   enhanced-mode: fake-ip
   respect-rules: true
-  fake-ip-range: 28.0.0.1/8
+  fake-ip-range: 28.0.0.0/8
   
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
@@ -122,7 +122,11 @@ dns:
   nameserver-policy:
     "www.google.com": '114.114.114.114'
     "geosite:category-ads-all": 'rcode://success'
-    "rule-set:ProxyGFWlist,ProxyMedia": '114.114.114.114'
+    "rule-set:ProxyGFWlist,ProxyMedia": 
+      - 'tls://223.5.5.5'
+      - 'tls://dot.pub'
+      - 'https://doh.pub/dns-query'
+      - 'https://dns.alidns.com/dns-query'
     "rule-set:geolocation-!cn":
       - 'quic://223.5.5.5'
       - 'quic://223.6.6.6'
@@ -163,7 +167,7 @@ tun:
   mtu: 1500
   interface-name: ""
   stack: 'mixed'
-  strict-route: true
+  strict-route: false
   gso: false
   gso-max-size: 65536
   udp-timeout: 300
@@ -179,7 +183,7 @@ tun:
     - tcp://119.29.29.29:53
     - tcp://1.1.1.1:53
     - tcp://1.0.0.1:53
-  auto-route: false
+  auto-route: true
   auto-redirect: true
   auto-detect-interface: true
 
@@ -661,22 +665,16 @@ proxies:
 
 proxy-groups:
   - name: "FINAL"
-    type: "load-balance"
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    type: "select"
     lazy: true
     timeout: 500
     max-failed-times: 8
     disable-udp: true
-    interface-name: ""
-    routing-mark: 11451
  #   include-all: true
 #    include-all-proxies: true
   #  include-all-providers: true
 #    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
-    expected-status: 204
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png
     proxies:
