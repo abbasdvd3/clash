@@ -369,7 +369,7 @@ rule-providers:
 
 proxy-groups:
   - name: PROXY
-    type: url-test
+    type: select
     icon: 
   #  include-all-providers: true
 #    exclude-filter: Expire
@@ -381,23 +381,23 @@ proxy-groups:
 
   - name: AUTO
     type: url-test
- #   interval: 300
+    interval: 300
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
     include-all-providers: true
 #    exclude-filter: Expire
- #   tolerance: 50
-  #  lazy: true
+    tolerance: 50
+    lazy: true
 
   - name: AIGC
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
     type: fallback
- #   interval: 180
+    interval: 180
     include-all-providers: true
     proxies:
     
   - name: US AUTO
-#    tolerance: 50
-#    lazy: true
+    tolerance: 50
+    lazy: true
     type: url-test
  #  interval: 300
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
