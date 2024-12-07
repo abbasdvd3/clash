@@ -85,7 +85,7 @@ tun:
 
 dns:
   enable: true
-  listen: :1053
+  listen: 0.0.0.0:1053
   ipv6: true
   enhanced-mode: fake-ip
   fake-ip-filter:
@@ -368,6 +368,17 @@ rule-providers:
     type: http
 
 proxy-groups:
+  - name: GLOBAL
+    type: select
+    interval: 300
+    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+    include-all-providers: true
+#    exclude-filter: Expire
+    proxies:
+      - PROXY
+      - AUTO
+      - AIGC
+      - US AUTO
   - name: PROXY
     type: select
     icon: 
@@ -405,32 +416,22 @@ proxy-groups:
  #   exclude-filter: Expire
     filter: (?i)美国|USA|🇺🇸
     
-  - name: GLOBAL
-    type: select
-    interval: 300
-    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
-#    include-all-providers: true
-#    exclude-filter: Expire
-    proxies:
-      - PROXY
-      - AUTO
-      - AIGC
-      - US AUTO
+
     
 rules:
-  - "IP-CIDR,10.10.0.0/16,PROXY"
-  - "RULE-SET,nsfw,PROXY"
-  - "DOMAIN-SUFFIX,pornhub.com,PROXY"
-  - "DOMAIN-SUFFIX,pornhubpremium.com,PROXY"
-  - "DOMAIN-SUFFIX,pornhub.com,PROXY"
-  - "DOMAIN-SUFFIX,pornhubpremium.com,PROXY"
-  - "RULE-SET,social,PROXY"
-  - "RULE-SET,google,PROXY"
-  - "RULE-SET,github,PROXY"
+  - "IP-CIDR,10.10.0.0/16,DIRECT"
+  - "RULE-SET,nsfw,GLOBAL"
+  - "DOMAIN-SUFFIX,pornhub.com,GLOBAL"
+  - "DOMAIN-SUFFIX,pornhubpremium.com,GLOBAL"
+  - "DOMAIN-SUFFIX,pornhub.com,GLOBAL"
+  - "DOMAIN-SUFFIX,pornhubpremium.com,GLOBAL"
+  - "RULE-SET,social,GLOBAL"
+  - "RULE-SET,google,GLOBAL"
+  - "RULE-SET,github,GLOBAL"
 #  - "RULE-SET,Category-ads-all,REJECT"
-  - "RULE-SET,facebook,PROXY"
-  - "RULE-SET,twitter,PROXY"
-  - "RULE-SET,telegram,PROXY"
+  - "RULE-SET,facebook,GLOBAL"
+  - "RULE-SET,twitter,GLOBAL"
+  - "RULE-SET,telegram,GLOBAL"
   - "RULE-SET,private,DIRECT,no-resolve"
   - "RULE-SET,apps,DIRECT"
 #  - "RULE-SET,ads,REJECT"
@@ -441,17 +442,17 @@ rules:
   - "RULE-SET,ircidr,DIRECT"
   - "RULE-SET,irasn,DIRECT"
   - "RULE-SET,private1,DIRECT"
-  - "RULE-SET,bing,PROXY"
-  - "RULE-SET,copilot,PROXY"
-  - "RULE-SET,bard,PROXY"
-  - "RULE-SET,openai,PROXY"
-  - "RULE-SET,claude,PROXY"
-  - "RULE-SET,steam,PROXY"
-  - "RULE-SET,telegram_domain,PROXY"
-  - "RULE-SET,telegram_ip,PROXY"
+  - "RULE-SET,bing,GLOBAL"
+  - "RULE-SET,copilot,GLOBAL"
+  - "RULE-SET,bard,GLOBAL"
+  - "RULE-SET,openai,GLOBAL"
+  - "RULE-SET,claude,GLOBAL"
+  - "RULE-SET,steam,GLOBAL"
+  - "RULE-SET,telegram_domain,GLOBAL"
+  - "RULE-SET,telegram_ip,GLOBAL"
   - "RULE-SET,google_domain,PROXY"
-  - "RULE-SET,google_ip,PROXY"
-  - "RULE-SET,geolocation-!cn,PROXY"
-  - "RULE-SET,cn_domain,PROXY"
-  - "RULE-SET,cn_ip,PROXY"
+  - "RULE-SET,google_ip,GLOBAL"
+  - "RULE-SET,geolocation-!cn,GLOBAL"
+  - "RULE-SET,cn_domain,GLOBAL"
+  - "RULE-SET,cn_ip,GLOBAL"
   - "MATCH,GLOBAL"
