@@ -30,19 +30,19 @@ skip-auth-prefixes:
 find-process-mode: always
 keep-alive-interval: 30
 ipv6: true
-log-level: info
+log-level: debug
 allow-lan: true
 bind-address: "*"
 external-controller: 127.0.0.1:9090
 external-controller-unix: mihomo.sock
-external-ui: /dashboard
+external-ui: ./dashboard
 external-ui-name: xd
 external-ui-url: https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip
 profile:
   store-selected: true
   store-fake-ip: true
 
-unified-delay: false
+unified-delay: true
 tcp-concurrent: true
 interface-name: ""
 global-client-fingerprint: chrome
@@ -396,7 +396,7 @@ proxy-groups:
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
     include-all-providers: true
 #    exclude-filter: Expire
-    tolerance: 50
+#    tolerance: 50
     lazy: true
 
   - name: AIGC
@@ -407,17 +407,16 @@ proxy-groups:
     proxies:
     
   - name: US AUTO
-    tolerance: 50
-    lazy: true
     type: url-test
- #  interval: 300
+#    tolerance: 50
+    lazy: true
+    interval: 300
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
     include-all-providers: true
  #   exclude-filter: Expire
     filter: (?i)美国|USA|🇺🇸
     
 
-    
 rules:
   - "IP-CIDR,10.10.0.0/16,DIRECT"
   - "RULE-SET,nsfw,GLOBAL"
