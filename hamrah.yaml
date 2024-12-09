@@ -3609,7 +3609,7 @@ proxy-groups:
   - name: "FINAL"
     type: "select"
     lazy: true
-    timeout: 500
+    timeout: 5
     max-failed-times: 8
     disable-udp: true
  #   include-all: true
@@ -3620,17 +3620,17 @@ proxy-groups:
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png
     proxies:
- #     - "PROXY"
       - "URL-TEST"
       - "FALLBACK"
-      
+      - "DNS"
+      - "IRAN"
   - name: "FALLBACK"
     type: "fallback"
     interval: 180
     url: http://www.gstatic.com/generate_204
     lazy: true
-    timeout: 50
-    max-failed-times: 15
+    timeout: 5
+    max-failed-times: 4
     disable-udp: true
     interface-name: ""
     routing-mark: 11451
@@ -3638,21 +3638,21 @@ proxy-groups:
     include-all-proxies: true
     include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    exclude-type: "dns|direct"
+    exclude-type: "direct"
     expected-status: 204
-    hidden: false
+    hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/YouTube.png
     proxies:
   
   - name: "URL-TEST"
     type: "url-test"
-    interval: 180
+    interval: 100
  #   tolerance: 100
     exclude: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     url: http://www.gstatic.com/generate_204
     lazy: true
-    timeout: 500
-    max-failed-times: 5
+    timeout: 5
+    max-failed-times: 2
     disable-udp: true
     interface-name: ""
     routing-mark: 11451
@@ -3660,9 +3660,9 @@ proxy-groups:
     include-all-proxies: true
     include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    exclude-type: "dns|direct"
+    exclude-type: "direct"
     expected-status: 204
-    hidden: false
+    hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Panda.png
     proxies:
 
