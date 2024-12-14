@@ -15972,9 +15972,9 @@ proxy-groups:
   - name: PROXY
     type: select
     icon: 
-    include-all-proxies: true
-    exclude-filter: Expire
-    disable-udp: true
+  #  include-all-proxies: true
+  #  exclude-filter: Expire
+    disable-udp: false
     proxies:
       - AUTO
       - AIGC
@@ -15984,15 +15984,16 @@ proxy-groups:
     interval: 300
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
     include-all-proxies: true
-    exclude-filter: Expire
-  #  tolerance: 50
-    lazy: true
+  #  exclude-filter: Expire
+    tolerance: 50
+    lazy: false
 
   - name: AIGC
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
     type: fallback
     interval: 180
     include-all-proxies: true
+    lazy: false
     proxies:
     
 rules:
