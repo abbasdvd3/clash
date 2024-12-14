@@ -12,11 +12,11 @@ skip-auth-prefixes:
 - 127.0.0.1/8
 - ::1/128
 ipv6: false
-allow-lan: false
+allow-lan: true
 tcp-concurrent: true
 unified-delay: false
-geodata-mode: true
-geo-auto-update: true
+geodata-mode: false
+geo-auto-update: false
 geo-update-interval: 24 
 keep-alive-interval: 15
 keep-alive-idle: 15
@@ -27,7 +27,7 @@ interface-name: ""
 mode: rule
 log-level: debug
 global-client-fingerprint: random # 
-geodata-loader: standard 
+geodata-loader: memconservative
 find-process-mode: always
 external-controller-cors:
   allow-private-network: true
@@ -153,10 +153,15 @@ dns:
     - 'tls://dot.pub'
   fallback-filter:
     geoip: true
+    geoip-code: ir
     ipcidr:
       - '240.0.0.0/4'
       - '0.0.0.0/32'
-
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
+      - '+.googleapis.+' 
 hosts:
   '*.clash.dev': 127.0.0.1
   'alpha.clash.dev': '::1'
@@ -665,7 +670,7 @@ rules :
 - RULE-SET,iran_ads,REJECT
 - DOMAIN-SUFFIX,ir,IRAN,no-resolve
 - RULE-SET,iran_other,IRAN,no-resolve
-#- RULE-SET,DNS,REJECT
+- RULE-SET,DNS,IRAN
 - RULE-SET,AWA,REJECT
 - RULE-SET,geolocation-!cn,FINAL
 - RULE-SET,nsfw1,FINAL
