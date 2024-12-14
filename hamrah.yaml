@@ -239,7 +239,7 @@ proxies:
 proxy-groups:
   - name: "FINAL"
     type: "select"
-    disable-udp: false
+    disable-udp: true
  #   include-all: true
 #    include-all-proxies: true
   #  include-all-providers: true
@@ -250,22 +250,20 @@ proxy-groups:
     proxies:
       - "URL-TEST"
       - "FALLBACK"
-      - "DNS"
-      - "IRAN"
+
   - name: "FALLBACK"
     type: "fallback"
     interval: 180
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     lazy: false
     timeout: 5
     max-failed-times: 4
-    disable-udp: false
+    disable-udp: true
  #   interface-name: ""
 #    routing-mark: 11451
   #  include-all: true
 #    include-all-proxies: true
     include-all-providers: true
- #   exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     expected-status: 204
     hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/YouTube.png
@@ -274,13 +272,12 @@ proxy-groups:
   - name: "URL-TEST"
     type: "url-test"
     interval: 300
-    tolerance: 150
-#    exclude: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
-    url: http://www.gstatic.com/generate_204
+#    tolerance: 150
+    url: https://www.gstatic.com/generate_204
     lazy: false
     timeout: 5
-    max-failed-times: 0
-    disable-udp: false
+    max-failed-times: 3
+    disable-udp: true
 #    interface-name: ""
 #    routing-mark: 11451
  #   include-all: true
@@ -292,19 +289,27 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Panda.png
     proxies:
 
+  - name: "اتصال ایران"
+    type: "select"
+    disable-udp: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png
+    proxies:
+      - "IRAN"  
+      - "DNS"
       
 proxy-providers:
   "providew":
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/x"
-    interval: 360
+    interval: 1
     path: ham/providew.yaml
 #    exclude-filter: 'ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅'
     proxies: DIRECT
     health-check:
       enable: true
-      url: "https://www.google.com/favicon.ico"
-      interval: 36
+      url: "https://www.google.com"
+      interval: 1
 
 rule-providers:
   LocalAreaNetwork:
@@ -312,7 +317,7 @@ rule-providers:
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list"
     format: text
-    interval: 3600
+    interval: 36
     path: ruleset/LocalAreaNetwork.list
   UnBan:
     type: http
