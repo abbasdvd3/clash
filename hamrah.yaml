@@ -51,34 +51,7 @@ experimental:
   quic-go-disable-ecn: false
   dialer-ip4p-convert: false
   
-tunnels:
-- tcp/udp,127.0.0.1:6553,8.8.8.8:53,FINAL
-listeners:
-  - name: socks5-in-1
-    type: socks
-    port: 10808
-    listen: 0.0.0.0 
-    # rule: sub-rule-name1 
-    proxy: FINAL
-    udp: false 
-  - name: http-in-1
-    type: http
-    port: 10809
-    listen: 0.0.0.0
-    # rule: sub-rule-name1 
-    proxy: FINAL
-  - name: mixed-in-1
-    type: mixed 
-    port: 10810
-    listen: 0.0.0.0
-    # rule: sub-rule-name1 
-    proxy: FINAL
-    udp: false 
-  - name: reidr-in-1
-    type: redir
-    port: 10811
-    listen: 0.0.0.0
-    
+
 dns:   
   cache-algorithm: arc
   enable: true
