@@ -3,7 +3,7 @@ socks-port: 7891
 mixed-port: 7890
 mode: rule
 allow-lan: true
-unified-delay: false
+unified-delay: true
 bind-address: '*'
 log-level: debug
 ipv6: true
@@ -36,7 +36,7 @@ profile:
 # interface-name: en0 
 keep-alive-interval: 15 
 sniffer:
-  enable: false
+  enable: true
   sniffing:
     - tls
     - http
@@ -75,7 +75,7 @@ tun:
 dns:
   cache-algorithm: arc
   enable: true
-  ipv6: false
+  ipv6: true
   ipv6-timeout: 300
   prefer-h3: true
   listen: 0.0.0.0:1053
@@ -84,6 +84,7 @@ dns:
   - '*.lan'
   default-nameserver:
   - 223.5.5.5
+  - 114.114.114.114:853
   nameserver-policy:
     "www.google.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
     "www.baidu.com": [114.114.114.114, 223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
@@ -100,7 +101,6 @@ dns:
     "www.samfw.com": [223.5.5.5, https://dns.alidns.com/dns-query, https://doh.pub/dns-query]  
     "rule-set:GoogleFCM,ir,social,nsfw1": [223.5.5.5, https://dns.alidns.com/dns-query]
   nameserver:
-  - 114.114.114.114:853
   - tls://223.5.5.5:853
   - https://dns.alidns.com/dns-query#h3=true 
   - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true 
@@ -131,7 +131,7 @@ proxy-groups:
     url: https://fiber.google.com/speedtest/generate_104
     expected-status: 200/204
     nodeGroupType: 0
-    interval: 100
+    interval: 180
 #    tolerance: 50
     proxies:
       - ♻️ url-test
@@ -147,7 +147,7 @@ proxy-groups:
   - name: ✈️
     type: fallback
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 100
+    interval: 580
     tolerance: 100
     include-all-providers: true
     expected-status: 200/204
@@ -157,7 +157,7 @@ proxy-groups:
   - name: ♻️ url-test
     type: fallback
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 200
+    interval: 400
     include-all-providers: true
     expected-status: 200/204
     nodeGroupType: 0
@@ -169,7 +169,7 @@ proxy-groups:
   - name: 🚧 fallback
     type: fallback
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 200
+    interval: 500
     include-all-providers: true
     expected-status: 200/204
     nodeGroupType: 0
@@ -183,7 +183,7 @@ proxy-groups:
   - name: ⚖️ load-balance
     type: fallback
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 100
+    interval: 500
     expected-status: 300/304
     include-all-providers: true
     nodeGroupType: 0
