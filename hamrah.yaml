@@ -1,6 +1,6 @@
-# port: 7891
-# socks-port: 7892
-# mixed-port: 7890
+port: 7891
+socks-port: 7892
+mixed-port: 7890
 # redir-port: 9797
 bind-address: "*"
 lan-allowed-ips:
@@ -238,8 +238,9 @@ proxies:
 
 proxy-groups:
   - name: "FINAL"
-    type: "select"
-    disable-udp: true
+    type: "url-test"
+#  interval: 300
+#    tolerance: 150
  #   include-all: true
 #    include-all-proxies: true
   #  include-all-providers: true
@@ -253,11 +254,6 @@ proxy-groups:
 
   - name: "FALLBACK"
     type: "fallback"
-    interval: 180
-    url: https://www.gstatic.com/generate_204
-    lazy: false
-    timeout: 5
-    max-failed-times: 4
     disable-udp: true
  #   interface-name: ""
 #    routing-mark: 11451
