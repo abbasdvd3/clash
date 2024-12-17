@@ -14,7 +14,7 @@ skip-auth-prefixes:
 ipv6: false
 allow-lan: true
 tcp-concurrent: true
-unified-delay: false
+unified-delay: true
 geodata-mode: false
 geo-auto-update: false
 geo-update-interval: 24 
@@ -125,7 +125,7 @@ dns:
     - 'tls://223.5.5.5'
     - 'tls://dot.pub'
   fallback-filter:
-    geoip: true
+    geoip: false
     geoip-code: ir
     ipcidr:
       - '240.0.0.0/4'
@@ -144,8 +144,8 @@ tun:
   device: 'utun'
   mtu: 1500
   interface-name: ""
-  stack: 'mixed'
-  strict-route: true
+  stack: 'system'
+  strict-route: false
   gso: true
   gso-max-size: 65536
   udp-timeout: 300
@@ -155,12 +155,12 @@ tun:
   dns-hijack:
     - any:53  
     - tcp://any:53
-    - tcp://223.5.5.5:53
-    - tcp://120.53.53.53:53
-    - tcp://180.76.76.76:53
-    - tcp://119.29.29.29:53
-    - tcp://1.1.1.1:53
-    - tcp://1.0.0.1:53
+    - 223.5.5.5:53
+    - 120.53.53.53:53
+    - 180.76.76.76:53
+    - 119.29.29.29:53
+    - 1.1.1.1:53
+    - 1.0.0.1:53
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
@@ -216,7 +216,7 @@ proxy-groups:
 #    tolerance: 150
  #   include-all: true
 #    include-all-proxies: true
-    include-all-providers: true
+#    include-all-providers: true
 #    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
    # exclude-type: "Shadowsocks|Http"
     hidden: false
