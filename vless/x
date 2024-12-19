@@ -1,4 +1,34 @@
-
+port: 7891
+socks-port: 7892
+mixed-port: 7890
+redir-port: 9797
+bind-address: "*"
+lan-allowed-ips:
+- 0.0.0.0/0
+- ::/0
+lan-disallowed-ips:
+- 192.168.0.3/32
+skip-auth-prefixes:
+- 127.0.0.1/8
+- ::1/128
+ipv6: false
+allow-lan: false
+tcp-concurrent: true
+unified-delay: false
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24 
+keep-alive-interval: 15
+keep-alive-idle: 15
+disable-keep-alive: false
+global-ua: clash.meta
+etag-support: true
+interface-name: ""
+mode: rule
+log-level: debug
+global-client-fingerprint: random # 
+geodata-loader: standard 
+find-process-mode: always
 proxies:
   - name: "6299"
     port: 2376
@@ -30832,5 +30862,5 @@ rules :
 - GeoIP,ir,DIRECT
 - GeoIP,cn,DIRECT
 - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
-- IN-TYPE,inner,GLOBAL
-- MATCH,GLOBAL
+- IN-TYPE,inner,FALLBACK
+- MATCH,FALLBACK
