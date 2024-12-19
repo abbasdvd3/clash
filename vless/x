@@ -11,11 +11,11 @@ lan-disallowed-ips:
 skip-auth-prefixes:
 - 127.0.0.1/8
 - ::1/128
-ipv6: false
-allow-lan: false
+ipv6: true
+allow-lan: true
 tcp-concurrent: true
-unified-delay: false
-geodata-mode: true
+unified-delay: true
+geodata-mode: false
 geo-auto-update: true
 geo-update-interval: 24 
 keep-alive-interval: 15
@@ -24,10 +24,10 @@ disable-keep-alive: false
 global-ua: clash.meta
 etag-support: true
 interface-name: ""
-mode: rule
+mode: GLOBAL
 log-level: debug
 global-client-fingerprint: random # 
-geodata-loader: standard 
+# geodata-loader: standard 
 find-process-mode: always
 proxies:
   - name: "6299"
@@ -30822,8 +30822,8 @@ proxies:
     password: faBAoD54k87UJG7
     cipher: aes-256-gcm
 proxy-groups:
-  - name: "GLOBAL"
-    type: "url-test"
+  - name: "🚩GLOBAL🚩"
+    type: "fallback"
     interval: 100
     tolerance: 100
     url: http://www.gstatic.com/generate_204
@@ -30838,7 +30838,7 @@ proxy-groups:
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Panda.png
     proxies:
-  - name: "FALLBACK"
+  - name: "🚩FALLBACK🚩"
     type: "fallback"
     interval: 180
     url: http://www.gstatic.com/generate_204
@@ -30852,7 +30852,7 @@ proxy-groups:
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/YouTube.png
     proxies:
-      - "GLOBAL"
+      - "🚩GLOBAL🚩"
 rules :
 - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
 - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
@@ -30862,5 +30862,5 @@ rules :
 - GeoIP,ir,DIRECT
 - GeoIP,cn,DIRECT
 - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
-- IN-TYPE,inner,FALLBACK
-- MATCH,FALLBACK
+- IN-TYPE,inner,🚩FALLBACK🚩
+- MATCH,🚩FALLBACK🚩
