@@ -3,32 +3,14 @@
 # mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
-
-# rule 规则匹配
-# global 全局代理(需要在GLOBAL策略组选择代理/策略)
-# direct 全局直连
-# 此项拥有默认值，默认为规则模式
 mode: rule
 allow-lan: true
-# unified-delay: true
+unified-delay: true
 bind-address: '*'
-
-# silent 静默，不输出
-# error 仅输出发生错误至无法使用的日志
-# warning 输出发生错误但不影响运行的日志，以及 error 级别内容
-# info 输出一般运行的内容，以及 error 和 warning 级别的日志
-# debug 尽可能的输出运行中所有的信息
 log-level: silent
 ipv6: false
-
-# 更改geoip使用文件,mmdb或者dat,true为dat
 # geodata-mode: true
-
-# 可选的加载模式如下
-# standard：标准加载器
-# memconservative：专为内存受限(小内存)设备优化的加载器(默认值)
 # geodata-loader: memconservative
-
 external-controller: 0.0.0.0:9090 
 # secret: "123456"
 external-ui: /dashboard
@@ -51,17 +33,13 @@ external-ui: /dashboard
   # geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
   # geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
 
-# 控制是否让 Clash 去匹配进程
-# always 开启，强制匹配所有进程
-# strict 默认，由 Clash 判断是否开启
+# strict 
 # off 不匹配进程，推荐在路由器上使用此模式
 # find-process-mode: strict
 
 profile:
   store-selected: true
-  # 储存 API 对策略组的选择，以供下次启动时使用
   store-fake-ip: false
-  # 储存 fakeip 映射表，域名再次发生连接时，使用原有映射地址
 
 # sniffer:                           #【Meta专属】sniffer域名嗅探器
   # enable: false                    # 嗅探器开关
@@ -105,25 +83,14 @@ tun:
 
 dns:
   enable: true
-  # 可选值 true/false
-  # 是否解析 IPV6, 如为 false, 则回应 AAAA 的空解析
   ipv6: true
-
-  # 可选值 true/false
-  # 是否开启 DOH 的 http/3
   # prefer-h3: false
-
-  # 默认 dns, 用于解析 DNS 服务器 的域名
-  # 必须为 ip, 可为加密 dns
   default-nameserver:
     # - 114.114.114.114
     - 8.8.8.8
-    # cloudflare
     - 1.1.1.1
     # - tls://223.5.5.5:853
     # - https://223.5.5.5/dns-query
-
-  # dns 服务监听
   listen: 0.0.0.0:1053
   use-hosts: true
 
@@ -212,8 +179,9 @@ proxy-groups:
     type: select
     use:
     proxies:
-      - "FALLBACK"
+      
       - "URL-TEST"
+      - "FALLBACK"
 
   - name: "FALLBACK"
     type: fallback
