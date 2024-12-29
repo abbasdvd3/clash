@@ -53,13 +53,47 @@ sniffer:
       ports: [443, 8443]
   skip-domain:
     - "Mijia Cloud"
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  ipv6: false
+  default-nameserver:
+    - 114.114.114.114:53
+    - 180.76.76.76:53
+    - 119.29.29.29:53
+    - 223.5.5.5:53
+    - 8.8.8.8:53
+    - 8.8.4.4:53
+    - 1.1.1.1:53
+    - 1.0.0.1:53
+  nameserver:
+    - 114.114.114.114
+    - 180.76.76.76:53
+    - 119.29.29.29:53
+    - 223.5.5.5:53
+    - 8.8.8.8:53
+    - 8.8.4.4:53
+    - 1.1.1.1:53
+    - 1.0.0.1:53
+  enhanced-mode: fake-ip
+  fake-ip-range: 100.10.0.0/16
+  fake-ip-filter:
+    - "*.lan"
+
 tun:
   enable: true
-  stack: mixed
-  dns-hijack:
-    - 'any:53'
+  stack: system
   auto-route: true
   auto-detect-interface: true
+  dns-hijack:
+    - 114.114.114.114
+    - 180.76.76.76
+    - 119.29.29.29
+    - 223.5.5.5
+    - 8.8.8.8
+    - 8.8.4.4
+    - 1.1.1.1
+    - 1.0.0.1
 
 profile:
   store-fake-ip: true
@@ -69,29 +103,18 @@ profile:
 proxies:
 proxy-groups:
   - name: Proxy
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    lazy: true
-    use: 
-    proxies:
-      - Proxy1
-      - fallback
-      - Geo-US
-  - name: Proxy1
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    lazy: true
+    type: select
     use: 
     proxies:
       - Auto
+      - fallback
+      - Geo-US
+
   - name: Auto
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
     lazy: true
-    exclude-filter: Expire
     use: 
       - Subscription-1
       - Subscription-2
@@ -106,17 +129,6 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: 180
     lazy: true
-    exclude-filter: Expire
-    proxies:
-      - Geo-HK
-      
-  - name: Geo-HK
-    type: fallback
-    url: http://www.gstatic.com/generate_204
-    interval: 180
-    lazy: true
-    exclude-filter: Expire
-   # filter: ""
     use:
       - Subscription-1
       - Subscription-2
@@ -126,34 +138,12 @@ proxy-groups:
       - Subscription-6
       - Subscription-7
       
-  - name: Geo-TW
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    lazy: true
-    proxies:
-      - Geo-SG
-      - Geo-DE
-
-  - name: Geo-DE
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    lazy: true
-    proxies: 
-      - Geo-HK
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-CN
-    
   - name: Geo-SG
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
     lazy: true
     filter: "HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国"
-    exclude-filter: Expire
     use: 
       - Subscription-1
       - Subscription-2
@@ -162,13 +152,13 @@ proxy-groups:
       - Subscription-5
       - Subscription-6
       - Subscription-7
+      
   - name: Geo-JP
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
     lazy: true
     filter: "Japan|JP|日本"
-    exclude-filter: Expire
     use: 
       - Subscription-1
       - Subscription-2
@@ -177,13 +167,13 @@ proxy-groups:
       - Subscription-5
       - Subscription-6
       - Subscription-7
+      
   - name: Geo-US
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
     lazy: true
     filter: "America|United States|US|美国"
-    exclude-filter: Expire
     use: 
       - Subscription-1
       - Subscription-2
@@ -199,7 +189,6 @@ proxy-groups:
     interval: 300
     lazy: true
     filter: "China|CN|中国"
-    exclude-filter: Expire
     use: 
       - Subscription-7
       - Subscription-6
@@ -208,94 +197,20 @@ proxy-groups:
       - Subscription-3
       - Subscription-2
       - Subscription-1
-    proxies:
-
-  - name: Block
-    type: select
-    use: 
-    proxies:
-      - REJECT
-      - DIRECT
-      - Proxy
-
-  - name: DNS-Proxy
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    lazy: true
-    use: 
-    proxies: 
-      - Proxy
-      - Auto
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-DE
-      - Geo-CN
-
-  - name: Netflix
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    lazy: true
-    use: 
-    proxies: 
-      - Proxy
-  - name: Apple
-    type: select
-    use: 
-    proxies: 
-      - Proxy
-      - DIRECT
-  - name: Microsoft
-    type: select
-    use: 
-    proxies: 
-      - Proxy
-      - DIRECT
-
+ 
   - name: Social
     type: url-test
     use: 
+      - Subscription-7
+      - Subscription-6
+      - Subscription-5
+      - Subscription-4
+      - Subscription-3
+      - Subscription-2
+      - Subscription-1
     proxies: 
       - Proxy
       - Auto
-
-  - name: GlobalTV
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    lazy: true
-    use: 
-    proxies: 
-      - Proxy
-      - Auto
-
-  - name: YouTube
-    type: url-test
-    use: 
-    proxies: 
-      - Proxy
-      - Auto
-
-  - name: Spotify
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    lazy: true
-    use: 
-    proxies: 
-      - Proxy
-      - Auto
-
-  - name: SpeedTest
-    type: select
-    use: 
-    proxies: 
-      - Proxy
-      - DIRECT
 
   - name: IR
     type: select
@@ -310,11 +225,8 @@ proxy-groups:
     use: 
     proxies: 
       - Proxy
-      - Geo-DE
       - Auto
-      - Geo-TW
       - fallback
-      - Geo-SG
 
 proxy-providers:
   Subscription-1:
@@ -332,7 +244,7 @@ proxy-providers:
 
   Subscription-2:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip" 
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/x" 
     path: providers6/Subscription-2.yaml
     proxies: DIRECT
     interval: 600
@@ -823,44 +735,44 @@ rules:
   - RULE-SET,private,DIRECT,no-resolve
   - RULE-SET,apps,IR
 
-  - RULE-SET,IpinfoSpeedtest,SpeedTest
-  - RULE-SET,UnBan,global,no-resolve
-  - RULE-SET,GoogleFCM,global,no-resolve
-  - RULE-SET,GoogleCN,global,no-resolve
-  - RULE-SET,SteamCN,IR
-  - RULE-SET,Bing,Microsoft
-  - RULE-SET,OneDrive,Microsoft
-  - RULE-SET,Microsoft,Microsoft
-  - RULE-SET,Apple,Apple
-  - RULE-SET,Telegram,Social,no-resolve
-  - RULE-SET,OpenAi,Social,no-resolve
-  - RULE-SET,Steam,Netflix,no-resolve
-  - RULE-SET,YouTube,YouTube,no-resolve
-  - RULE-SET,Netflix,Netflix,no-resolve
+  - RULE-SET,IpinfoSpeedtest,Proxy
+  - RULE-SET,UnBan,Proxy,no-resolve
+  - RULE-SET,GoogleFCM,Proxy,no-resolve
+  - RULE-SET,GoogleCN,Proxy,no-resolve
+  - RULE-SET,SteamCN,Proxy
+  - RULE-SET,Bing,Proxy
+  - RULE-SET,OneDrive,Proxy
+  - RULE-SET,Microsoft,Proxy
+  - RULE-SET,Apple,Proxy
+  - RULE-SET,Telegram,Proxy,no-resolve
+  - RULE-SET,OpenAi,Proxy,no-resolve
+  - RULE-SET,Steam,Proxy,no-resolve
+  - RULE-SET,YouTube,Proxy,no-resolve
+  - RULE-SET,Netflix,Proxy,no-resolve
   - RULE-SET,BilibiliHMT,DIRECT
   - RULE-SET,Bilibili,DIRECT
   - RULE-SET,ChinaMedia,DIRECT
-  - RULE-SET,ProxyMedia,Social,no-resolve
-  - RULE-SET,ProxyGFWlist,Social,no-resolve
+  - RULE-SET,ProxyMedia,Proxy,no-resolve
+  - RULE-SET,ProxyGFWlist,Proxy,no-resolve
   - RULE-SET,ChinaDomain,IR
   - RULE-SET,ChinaCompanyIp,IR
   - RULE-SET,Download,IR
-  - RULE-SET,GoogleCNProxyIP,global,no-resolve
+  - RULE-SET,GoogleCNProxyIP,Proxy,no-resolve
   - RULE-SET,GitHub,IR,no-resolve
-  - RULE-SET,cloudflare,global,no-resolve
-  - RULE-SET,Domestic,global,no-resolve
-  - RULE-SET,SpeedTest,SpeedTest
-  - RULE-SET,nsfw1,Social,no-resolve
-  - RULE-SET,social,Social,no-resolve
-  - RULE-SET,Google1,global,no-resolve
+  - RULE-SET,cloudflare,Proxy,no-resolve
+  - RULE-SET,Domestic,Proxy,no-resolve
+  - RULE-SET,SpeedTest,Proxy
+  - RULE-SET,nsfw1,Proxy,no-resolve
+  - RULE-SET,social,Proxy,no-resolve
+  - RULE-SET,Google1,Proxy,no-resolve
   - RULE-SET,LocalAreaNetwork,DIRECT
   - RULE-SET,iran_other,IR,no-resolve
   - DOMAIN-SUFFIX,msftconnecttest.com,DIRECT
-  - DOMAIN-SUFFIX,v2rayse.com,global
-  - DOMAIN-SUFFIX,cff.pw,global
+  - DOMAIN-SUFFIX,v2rayse.com,Proxy
+  - DOMAIN-SUFFIX,cff.pw,Proxy
   - DOMAIN-SUFFIX,vpnse.org,global
   - DOMAIN-SUFFIX,cfmem.com,global
-  - DOMAIN-SUFFIX,googlesyndication.com,global,no-resolve
+  - DOMAIN-SUFFIX,googlesyndication.com,Proxy,no-resolve
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
   - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
   - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
@@ -901,7 +813,7 @@ rules:
   - PROCESS-NAME,com.instathunder.android,global,no-resolve
   - PROCESS-NAME,com.myinsta.android,global,no-resolve
   - PROCESS-NAME,com.instagram.android,global,no-resolve
-  - DST-PORT,80/8080/443/8443,global,no-resolve
+  - DST-PORT,80/8080/443/8443,Proxy,no-resolve
   - PROCESS-NAME,com.tomclaw.appsend,DIRECT
   - DOMAIN-SUFFIX,appteka.store,DIRECT
   - DOMAIN-SUFFIX,appteka.store/api,DIRECT
