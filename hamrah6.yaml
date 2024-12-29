@@ -101,6 +101,11 @@ profile:
   tracing: true
 
 proxies:
+  - name: IRAN
+    type: direct
+    server: 0.0.0.0
+    port: 10811
+    udp: false
 proxy-groups:
   - name: Proxy
     type: select
@@ -217,7 +222,7 @@ proxy-groups:
     disable-dns: true
     use: 
     proxies: 
-      - DIRECT
+      - IRAN
       - Proxy
   - name: global
     type: select
@@ -731,8 +736,8 @@ rule-providers:
     interval: 432000
 rules:
   - GEOIP,IR,IR
-  - GEOIP,private,DIRECT,no-resolve
-  - RULE-SET,private,DIRECT,no-resolve
+  - GEOIP,private,IR,no-resolve
+  - RULE-SET,private,IR,no-resolve
   - RULE-SET,apps,IR
 
   - RULE-SET,IpinfoSpeedtest,Proxy
@@ -749,9 +754,9 @@ rules:
   - RULE-SET,Steam,Proxy,no-resolve
   - RULE-SET,YouTube,Proxy,no-resolve
   - RULE-SET,Netflix,Proxy,no-resolve
-  - RULE-SET,BilibiliHMT,DIRECT
-  - RULE-SET,Bilibili,DIRECT
-  - RULE-SET,ChinaMedia,DIRECT
+  - RULE-SET,BilibiliHMT,IR
+  - RULE-SET,Bilibili,IR
+  - RULE-SET,ChinaMedia,IR
   - RULE-SET,ProxyMedia,Proxy,no-resolve
   - RULE-SET,ProxyGFWlist,Proxy,no-resolve
   - RULE-SET,ChinaDomain,IR
