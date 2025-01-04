@@ -1,8 +1,8 @@
 dns:
   enable: true
-  ipv6: false
+  ipv6: true
   enhanced-mode: fake-ip
-  fake-ip-range: 216.146.35.35/16
+  fake-ip-range: 28.0.0.0/8
   fake-ip-filter:
     - "*.lan"
     - "*.local"
@@ -26,7 +26,7 @@ dns:
     - tls://dns.google:853
     - https://8.8.4.4/dns-query
   fallback-filter:
-    geoip: true
+    geoip: false
     geoip-code: ir
     ipcidr:
       - 240.0.0.0/4
@@ -83,7 +83,7 @@ proxy-groups:
     type: fallback
     url: https://www.google.com/
     disable-udp: true
-    interval: 180
+    interval: 99
  #   filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     hidden: false
     proxies:
