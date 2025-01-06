@@ -17594,7 +17594,7 @@ proxy-groups:
   - name: "URL-TEST"
     type: url-test
     url: http://www.gstatic.com/generate_204
- #   interval: 99
+    interval: 99
     tolerance: 50
     include-all: true
     use:
@@ -17606,8 +17606,6 @@ rules:
   - DOMAIN-SUFFIX,googlesyndication.com,PROXY
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
   - GEOSITE,category-ads-all,REJECT
-  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
-  - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
   - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
   - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
   - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
