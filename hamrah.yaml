@@ -17586,16 +17586,17 @@ proxy-groups:
   - name: "FALLBACK"
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 99
+#   interval: 99
     include-all: true
     use:
 #      - "provide"
 
   - name: "URL-TEST"
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 99
-    tolerance: 50
+    type: load-balance
+    url: http://clients3.google.com/generate_204
+    interval: "180"
+    disable-udp: true
+    strategy: consistent-hashing  
     include-all: true
     use:
   #    - "provide"
