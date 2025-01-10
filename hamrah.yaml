@@ -5,7 +5,7 @@ redir-port: 9797
 tproxy-port: 9898
 mode: rule
 allow-lan: true
-unified-delay: false
+unified-delay: true
 bind-address: '*'
 log-level: silent
 ipv6: true
@@ -32030,6 +32030,7 @@ proxies:
 proxy-groups:
   - name: "PROXY"
     type: select
+    include-all: true
     use:
    #   - "provide"
     proxies:
