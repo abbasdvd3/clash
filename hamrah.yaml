@@ -1,8 +1,8 @@
-# port: 7890
-# socks-port: 7891
-# mixed-port: 7890
-# redir-port: 9797
-# tproxy-port: 9898
+port: 7890
+socks-port: 7891
+mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
 mode: rule
 allow-lan: true
 unified-delay: false
@@ -20,6 +20,134 @@ find-process-mode: strict
 profile:
   store-selected: true
   store-fake-ip: false
+pr: &pr {type: http,interval: 259200,exclude-filter: 官网|套餐|剩余|重置|以下|禁止|境外|境内|校园|TG|群|换|区,header: {User-Agent: ["mihomo/clash.meta/clash-verge"]}, health-check: {enable: true, url: https://www.gstatic.com/generate_204, interval: 600, lazy: true}}
+
+use: &use {use: [Warp+,白嫖,白嫖1,白嫖2,白嫖3,白嫖4,白嫖5,白嫖6,白嫖7,白嫖8,白嫖9,白嫖10,白嫖11,白嫖12,白嫖13,白嫖14,白嫖15,白嫖16,白嫖17,白嫖18,白嫖19,白嫖20,白嫖21,白嫖22,白嫖23]}
+proxy-providers:
+  Warp+:
+    url: "https://neko-warp.nloli.xyz"
+    path: ./Warp+.yaml
+    <<: *pr
+
+  白嫖:
+    url: "https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml"
+    path: ./白嫖.yaml
+    <<: *pr
+
+  白嫖1:
+    url: "https://raw.githubusercontent.com/changfengoss/pub/main/data/2024_08_10/PpoEAg.yaml"
+    path: ./白嫖1.yaml
+    <<: *pr
+
+  白嫖2:
+    url: "http://172.245.30.41/clash.yaml"
+    path: ./白嫖2.yaml
+    <<: *pr
+
+  白嫖3:
+    url: "https://fastly.jsdelivr.net/gh/freenodes/freenodes@main/ClashPremiumFree.yaml"
+    path: ./白嫖3.yaml
+    <<: *pr
+
+  白嫖4:
+    url: "https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml"
+    path: ./白嫖4.yaml
+    <<: *pr
+
+  白嫖5:
+    url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/security/tls"
+    path: ./白嫖5.yaml
+    <<: *pr
+
+  白嫖6:
+    url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
+    path: ./白嫖6.yaml
+    <<: *pr
+
+  白嫖7:
+    url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
+    path: ./白嫖7.yaml
+    <<: *pr
+
+  白嫖8:
+    url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
+    path: ./白嫖8.yaml
+    <<: *pr
+    
+  白嫖9:
+    url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
+    path: ./白嫖9.yaml
+    <<: *pr
+
+  白嫖10:
+    url: "https://www.xrayvip.com/free.yaml"
+    path: ./白嫖10.yaml
+    <<: *pr
+
+  白嫖11:
+    url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
+    path: ./白嫖11.yaml
+    <<: *pr
+
+  白嫖12:
+    url: "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
+    path: ./白嫖12.yaml
+    <<: *pr
+
+  白嫖13:
+    url: "https://raw.githubusercontent.com/vxiaov/free_proxies/main/clash/clash.provider.yaml"
+    path: ./白嫖13.yaml
+    <<: *pr
+
+  白嫖14:
+    url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
+    path: ./白嫖14.yaml
+    <<: *pr
+
+  白嫖15:
+    url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
+    path: ./白嫖15.yaml
+    <<: *pr
+
+  白嫖16:
+    url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
+    path: ./白嫖16.yaml
+    <<: *pr
+
+  白嫖17:
+    url: "https://gist.githubusercontent.com/freeorgworld/128c0e7260148f61f8708c9566aed5ab/raw/publicvless.yaml"
+    path: ./白嫖17.yaml
+    <<: *pr
+
+  白嫖18:
+    url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-1.yaml"
+    path: ./白嫖18.yaml
+    <<: *pr
+
+  白嫖19:
+    url: "https://raw.githubusercontent.com/Flikify/getNode/main/clash.yaml"
+    path: ./白嫖19.yaml
+    <<: *pr
+
+  白嫖20:
+    url: "https://fs.v2rayse.com/share/20240915/wuvsfrbi3q.yaml"
+    path: ./白嫖20.yaml
+    <<: *pr
+
+  白嫖21:
+    url: "https://raw.gitmirror.com/sun9426/sun9426.github.io/main/subscribe/Clash.yaml"
+    path: ./白嫖21.yaml
+    <<: *pr
+
+  白嫖22:
+    url: "https://github.com/freebaipiao/freebaipiao/blob/main/GfwserveClash.yaml"
+    path: ./白嫖22.yaml
+    <<: *pr
+
+  白嫖23:
+    url: "https://tt.vg/iMfJI"
+    path: ./白嫖23.yaml
+    <<: *pr
 
 
 
@@ -14688,8 +14816,9 @@ proxy-groups:
   - name: AUTO
     type: url-test
     url: https://1.1.1.1
-    interval: 10
-    tolerance: 1500
+    include-all-providers: true
+    interval: 180
+    tolerance: 3500
     proxies:
       - 🇧🇭_BH_巴林_hamrah_3605_1
       - 🇦🇫_AF_阿富汗_hamrah_1507_2
@@ -16566,20 +16695,20 @@ rules:
   - DOMAIN-SUFFIX,lan,IRAN
   - DOMAIN-SUFFIX,local,IRAN
   - DOMAIN-SUFFIX,localhost,IRAN
-  - IP-CIDR,0.0.0.0/8,IRAN,no-resolve
-  - IP-CIDR,10.0.0.0/8,IRAN,no-resolve
-  - IP-CIDR,100.64.0.0/10,IRAN,no-resolve
-  - IP-CIDR,127.0.0.0/8,IRAN,no-resolve
-  - IP-CIDR,172.16.0.0/12,IRAN,no-resolve
-  - IP-CIDR,192.168.0.0/16,IRAN,no-resolve
-  - IP-CIDR,198.18.0.0/16,IRAN,no-resolve
-  - IP-CIDR,224.0.0.0/4,IRAN,no-resolve
-  - IP-CIDR6,::1/128,IRAN,no-resolve
-  - IP-CIDR6,fc00::/7,IRAN,no-resolve
-  - IP-CIDR6,fe80::/10,IRAN,no-resolve
-  - IP-CIDR6,fd00::/8,IRAN,no-resolve
+  - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,REJECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,REJECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,REJECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,REJECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,REJECT,no-resolve
+  - IP-CIDR,198.18.0.0/16,REJECT,no-resolve
+  - IP-CIDR,224.0.0.0/4,REJECT,no-resolve
+  - IP-CIDR6,::1/128,REJECT,no-resolve
+  - IP-CIDR6,fc00::/7,REJECT,no-resolve
+  - IP-CIDR6,fe80::/10,REJECT,no-resolve
+  - IP-CIDR6,fd00::/8,REJECT,no-resolve
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,PROXY
-  - GEOIP,CN,IRAN
-  - GEOIP,IR,IRAN
+  - GEOIP,cn,PROXY
+  - GEOIP,IR,PROXY
   - MATCH,PROXY
