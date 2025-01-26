@@ -20,7 +20,16 @@ proxy-providers:
       enable: true
       interval: 30
       url: https://www.pornhub.com/generate_204
-
+  provider3:
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/itxve/fetch-clash-node/node/merge.yaml"    
+    path: Prem2/P3.yaml
+    interval: 89
+ #   exclude-filter: Expire
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.pornhub.com/generate_204
 
 proxy-groups:
   - name: 'PRO'
@@ -37,12 +46,12 @@ proxy-groups:
     type: 'url-test'
     tolerance: 99
     url: 'https://www.pornhub.com/generate_204'
-    interval: 50
+ #   interval: 50
     proxies:
     use: 
       - 'provider1'
       - 'provider2'
-     
+      - 'provider3'
   - name: '📶 First Available'
     type: 'fallback'
     url: 'https://www.pornhub.com/generate_204'
@@ -50,7 +59,7 @@ proxy-groups:
     use: 
       - 'provider1'
       - 'provider2'
-      
+      - 'provider3'
     proxies:
   - name: '♻️ Load Balance'
     type: 'load-balance'
@@ -60,14 +69,14 @@ proxy-groups:
     use: 
       - 'provider1'
       - 'provider2'
-      
+      - 'provider3'
     proxies:
   - name: 'PROXY'
     type: 'select'
     use: 
       - 'provider1'
       - 'provider2'
-      
+      - 'provider3'
     proxies:
       - 'PRO'
       - '⚡️ Fastest'
@@ -93,7 +102,7 @@ proxy-groups:
     use: 
       - 'provider1'
       - 'provider2'
-   
+      - 'provider3'
   - name: 'IRAN'
     type: 'select'
     proxies:
@@ -206,18 +215,18 @@ rules:
   - DOMAIN-SUFFIX,lan,IRAN
   - DOMAIN-SUFFIX,local,IRAN
   - DOMAIN-SUFFIX,localhost,IRAN
-  - IP-CIDR,0.0.0.0/8,IRAN,no-resolve
-  - IP-CIDR,10.0.0.0/8,IRAN,no-resolve
-  - IP-CIDR,100.64.0.0/10,IRAN,no-resolve
-  - IP-CIDR,127.0.0.0/8,IRAN,no-resolve
-  - IP-CIDR,172.16.0.0/12,IRAN,no-resolve
-  - IP-CIDR,192.168.0.0/16,IRAN,no-resolve
+  - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,REJECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,REJECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,REJECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,REJECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,REJECT,no-resolve
   - IP-CIDR,198.18.0.0/16,IRAN,no-resolve
-  - IP-CIDR,224.0.0.0/4,IRAN,no-resolve
-  - IP-CIDR6,::1/128,IRAN,no-resolve
-  - IP-CIDR6,fc00::/7,IRAN,no-resolve
-  - IP-CIDR6,fe80::/10,IRAN,no-resolve
-  - IP-CIDR6,fd00::/8,IRAN,no-resolve
+  - IP-CIDR,224.0.0.0/4,REJECT,no-resolve
+  - IP-CIDR6,::1/128,REJECT,no-resolve
+  - IP-CIDR6,fc00::/7,REJECT,no-resolve
+  - IP-CIDR6,fe80::/10,REJECT,no-resolve
+  - IP-CIDR6,fd00::/8,REJECT,no-resolve
   - DOMAIN,instant.arubanetworks.com,IRAN
   - DOMAIN,setmeup.arubanetworks.com,IRAN
   - DOMAIN,router.asus.com,IRAN
