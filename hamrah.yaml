@@ -1,401 +1,5 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-port: 7890
-socks-port: 7891
+port: 7891
+socks-port: 7892
 mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
@@ -416,12 +20,43 @@ find-process-mode: strict
 profile:
   store-selected: true
   store-fake-ip: false
-pr: &pr {type: http,interval: 259200,exclude-filter: 官网|套餐|剩余|重置|以下|禁止|境外|境内|校园|TG|群|换|区,header: {User-Agent: ["mihomo/clash.meta/clash-verge"]}, health-check: {enable: true, url: https://www.gstatic.com/generate_204, interval: 600, lazy: true}}
+pr: &pr {type: http,interval: 25,exclude-filter: 官网|套餐|剩余|重置|以下|禁止|境外|境内|校园|TG|群|换|区,header: {User-Agent: ["mihomo/clash.meta/clash-verge"]}, health-check: {enable: true, url: https://www.gstatic.com/generate_204, interval: 60, lazy: true}}
 
 use: &use {use: [Warp+,白嫖,白嫖1,白嫖2,白嫖3,白嫖4,白嫖5,白嫖6,白嫖7,白嫖8,白嫖9,白嫖10,白嫖11,白嫖12,白嫖13,白嫖14,白嫖15,白嫖16,白嫖17,白嫖18,白嫖19,白嫖20,白嫖21,白嫖22,白嫖23]}
 proxy-providers:
+  守候网络:
+    <<: *pr
+    proxy: 自动选择
+    path: ./proxy_provider/守候网络.yaml
+    url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/sub64"
+    override:
+        additional-prefix: 守候网络| 
+
+  OuO:
+    <<: *pr
+    proxy: 自动选择
+    path: ./proxy_provider/OuO.yaml
+    url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
+    override:
+        additional-prefix: OuO|
+
+  Coffee:
+    <<: *pr
+    path: ./proxy_provider/Coffee.yaml
+    proxy: 自动选择
+    url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/providers/providers64"
+    override:
+        additional-prefix: Coffee|
+  
+  Linkeless:
+    <<: *pr
+    path: ./proxy_provider/Linkeless.yaml
+    proxy: 自动选择
+    url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/tuic"
+    override:
+        additional-prefix: Linkeless|
   Warp+:
-    url: "https://neko-warp.nloli.xyz"
+    url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/mixed"
     path: ./Warp+.yaml
     <<: *pr
 
@@ -441,7 +76,7 @@ proxy-providers:
     <<: *pr
 
   白嫖3:
-    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/Fredom-VIP"
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/master/nodes/merged.txt"
     path: ./白嫖3.yaml
     <<: *pr
 
@@ -516,12 +151,12 @@ proxy-providers:
     <<: *pr
 
   白嫖18:
-    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/ShadowSocks-VIP"
+    url: "https://clash.221207.xyz/pubclashyaml"
     path: ./白嫖18.yaml
     <<: *pr
 
   白嫖19:
-    url: "https://raw.githubusercontent.com/Flikify/getNode/main/clash.yaml"
+    url: "https://qiaomenzhuanfx.netlify.app/"
     path: ./白嫖19.yaml
     <<: *pr
 
@@ -536,7 +171,7 @@ proxy-providers:
     <<: *pr
 
   白嫖22:
-    url: "https://github.com/freebaipiao/freebaipiao/blob/main/GfwserveClash.yaml" # https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/Fredom-VIP
+    url: "https://raw.githubusercontent.com/freebaipiao/freebaipiao/refs/heads/main/GfwserveClash.yaml" # https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/Fredom-VIP
     path: ./白嫖22.yaml
     <<: *pr
 
@@ -544,6 +179,7 @@ proxy-providers:
     url: "https://tt.vg/iMfJI"
     path: ./白嫖23.yaml
     <<: *pr
+
 
 
 
@@ -14936,7 +14572,7 @@ proxy-groups:
     include-all-proxies: true
     include-all-providers: true
   #  interval: 180
-    tolerance: 3500
+    tolerance: 3
     proxies:
  
 rules:
