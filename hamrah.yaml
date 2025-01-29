@@ -9,10 +9,9 @@ unified-delay: false
 bind-address: '*'
 log-level: silent
 ipv6: true
-geodata-mode: true
+geodata-mode: false
 geodata-loader: memconservative
-external-controller: 0.0.0.0:9090 
-# secret: "123456"
+external-controller: 127.0.0.1:9090 
 external-ui: /dashboard
 # tcp-concurrent: false
 find-process-mode: strict
@@ -20,137 +19,123 @@ find-process-mode: strict
 profile:
   store-selected: true
   store-fake-ip: false
-pr: &pr {type: http,interval: 25,exclude-filter: 官网|套餐|剩余|重置|以下|禁止|境外|境内|校园|TG|群|换|区,header: {User-Agent: ["mihomo/clash.meta/clash-verge"]}, health-check: {enable: true, url: https://www.gstatic.com/generate_204, interval: 60, lazy: true}}
 
-use: &use {use: [Warp+,白嫖,白嫖1,白嫖2,白嫖3,白嫖4,白嫖5,白嫖6,白嫖7,白嫖8,白嫖9,白嫖10,白嫖11,白嫖12,白嫖13,白嫖14,白嫖15,白嫖16,白嫖17,白嫖18,白嫖19,白嫖20,白嫖21,白嫖22,白嫖23]}
 proxy-providers:
   守候网络:
-    <<: *pr
-    proxy: 自动选择
+    type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/sub64"
-    override:
-        additional-prefix: 守候网络| 
 
   OuO:
-    <<: *pr
-    proxy: 自动选择
+    type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
-    override:
-        additional-prefix: OuO|
 
   Coffee:
-    <<: *pr
-    proxy: 自动选择
+    type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/providers/providers64"
-    override:
-        additional-prefix: Coffee|
   
   Linkeless:
-    <<: *pr
-    proxy: 自动选择
+    type: http
     url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/tuic"
-    override:
-        additional-prefix: Linkeless|
+
   Warp+:
     url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/mixed"
-    <<: *pr
+    type: http
 
   白嫖:
     url: "https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml"
-    <<: *pr
+    type: http
 
   白嫖1:
     url: "https://raw.githubusercontent.com/changfengoss/pub/main/data/2024_08_10/PpoEAg.yaml"
-    <<: *pr
+    type: http
 
   白嫖2:
     url: "http://172.245.30.41/clash.yaml"
-    <<: *pr
+    type: http
 
   白嫖3:
     url: "https://raw.githubusercontent.com/Barabama/FreeNodes/master/nodes/merged.txt"
-    <<: *pr
+    type: http
 
   白嫖4:
     url: "https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml"
-    <<: *pr
+    type: http
 
   白嫖5:
     url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/FREEIRAN-VIP"
-    <<: *pr
+    type: http
 
   白嫖6:
     url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
-    <<: *pr
+    type: http
 
   白嫖7:
     url: "https://github.com/sarvari1378/SingBOX/raw/refs/heads/main/SUB/WORKER-VIP"
-    <<: *pr
+    type: http
 
   白嫖8:
     url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
-    <<: *pr
+    type: http
     
   白嫖9:
     url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
-    <<: *pr
+    type: http
 
   白嫖10:
     url: "https://www.xrayvip.com/free.yaml"
-    <<: *pr
+    type: http
 
   白嫖11:
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
-    <<: *pr
+    type: http
 
   白嫖12:
     url: "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
-    <<: *pr
+    type: http
 
   白嫖13:
     url: "https://raw.githubusercontent.com/vxiaov/free_proxies/main/clash/clash.provider.yaml"
-    <<: *pr
+    type: http
 
   白嫖14:
     url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
-    <<: *pr
+    type: http
 
   白嫖15:
     url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
-    path: ./白嫖15.yaml
-    <<: *pr
+    type: http
 
   白嫖16:
     url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
-    <<: *pr
+    type: http
 
   白嫖17:
     url: "https://gist.githubusercontent.com/freeorgworld/128c0e7260148f61f8708c9566aed5ab/raw/publicvless.yaml"
-    <<: *pr
+    type: http
 
   白嫖18:
     url: "https://clash.221207.xyz/pubclashyaml"
-    <<: *pr
+    type: http
 
   白嫖19:
     url: "https://qiaomenzhuanfx.netlify.app/"
-    <<: *pr
+    type: http
 
   白嫖20:
     url: "https://fs.v2rayse.com/share/20240915/wuvsfrbi3q.yaml"
-    <<: *pr
+    type: http
 
   白嫖21:
     url: "https://raw.gitmirror.com/sun9426/sun9426.github.io/main/subscribe/Clash.yaml"
-    <<: *pr
+    type: http
 
   白嫖22:
     url: "https://raw.githubusercontent.com/freebaipiao/freebaipiao/refs/heads/main/GfwserveClash.yaml" # https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/Fredom-VIP
-    <<: *pr
+    type: http
 
   白嫖23:
     url: "https://tt.vg/iMfJI"
-    <<: *pr
+    type: http
 
 
 
