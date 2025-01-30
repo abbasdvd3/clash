@@ -3,23 +3,43 @@ socks-port: 7892
 mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
+lan-allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+lan-disallowed-ips:
+  - 192.168.0.3/32
 mode: rule
+skip-auth-prefixes:
+  - 127.0.0.1/8
+  - ::1/128
 allow-lan: true
 unified-delay: false
-bind-address: '*'
+bind-address: "*"
 log-level: silent
 ipv6: true
-geodata-mode: false
+geodata-mode: true
 geodata-loader: memconservative
-external-controller: 127.0.0.1:9090 
+external-controller: 127.0.0.1:9090
+disable-keep-alive: false
 external-ui: /dashboard
-# tcp-concurrent: false
+tcp-concurrent: false
 find-process-mode: strict
+external-controller-cors: 127.0.0.1:9099
+allow-origins:
 
+allow-private-network: true
+external-controller-unix: mihomo.sock
+external-controller-pipe: \\.\pipe\mihomo
+external-ui-url: "<https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip>" # Get from GitHub Pages branch
 profile:
   store-selected: true
-  store-fake-ip: false
-
+  store-fake-ip: true
+global-client-fingerprint: chrome
+etag-support: true
+experimental:
+  quic-go-disable-gso: false
+  quic-go-disable-ecn: false
+  dialer-ip4p-convert: false
 proxy-providers:
   守候网络:
     type: http
@@ -32,7 +52,7 @@ proxy-providers:
   Coffee:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/providers/providers64"
-  
+
   Linkeless:
     type: http
     url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/tuic"
@@ -76,7 +96,7 @@ proxy-providers:
   白嫖8:
     url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
     type: http
-    
+
   白嫖9:
     url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
     type: http
@@ -137,10 +157,6 @@ proxy-providers:
     url: "https://tt.vg/iMfJI"
     type: http
 
-
-
-
-
 dns:
   enable: true
   ipv6: true
@@ -159,7 +175,7 @@ dns:
     - 1.1.1.1:53
     - 1.0.0.1:53
   fake-ip-filter:
-    - '*.lan'
+    - "*.lan"
   nameserver:
     - 114.114.114.114
     - 8.8.8.8
@@ -232,7 +248,7 @@ proxies:
     port: 9797
     server: 127.0.0.1
     type: direct
-    udp: false
+    udp: true
   - name: DNS
     type: dns
   - name: United+States_1
@@ -14528,10 +14544,10 @@ proxy-groups:
     exclude-filter: IRAN|DNS
     include-all-proxies: true
     include-all-providers: true
-  #  interval: 180
+    #  interval: 180
     tolerance: 3
     proxies:
- 
+
 rules:
   - DST-PORT,53,DNS
   - DOMAIN-SUFFIX,acl4.ssr,IRAN
@@ -14552,8 +14568,17 @@ rules:
   - IP-CIDR6,fc00::/7,REJECT,no-resolve
   - IP-CIDR6,fe80::/10,REJECT,no-resolve
   - IP-CIDR6,fd00::/8,REJECT,no-resolve
+  - IP-CIDR,1.1.1.1/32,REJECT
+  - IP-CIDR,8.8.8.8/32,REJECT
+  - DOMAIN,dns.alidns.com,REJECT
+  - IP-CIDR,114.114.114.114/32,REJECT
+  - IP-CIDR,180.76.76.76/32,REJECT
+  - IP-CIDR,223.5.5.5/32,REJECT
+  - IP-CIDR,94.140.14.140/32,REJECT
+  - IP-CIDR,94.140.14.141/32,REJECT
+  - IP-CIDR,223.6.6.6/32,REJECT
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,PROXY
-  - GEOIP,cn,IRAN
-  - GEOIP,IR,IRAN
+  - GEOIP,cn,DNS
+  - GEOIP,IR,DNS
   - MATCH,PROXY
