@@ -14531,7 +14531,7 @@ proxies:
     password: 2158f727-fb4e-483c-925f-7cc1a20cb7a2
     skip-cert-verify: true
 proxy-groups:
-  - name: PROXY
+  - name: PROXY🥇
     type: select
     proxies:
       - AUTO
@@ -14543,10 +14543,20 @@ proxy-groups:
     exclude-filter: IRAN|DNS
     include-all-proxies: true
     include-all-providers: true
-    #  interval: 180
-    tolerance: 3
+    interval: 180
+ #   tolerance: 3
     proxies:
-
+    
+  - name: FIRST 🥇
+    type: select
+    include-all-proxies: true
+    include-all-providers: true
+    proxies:
+      - PROXY🥇
+      - AUTO
+      - IRAN
+      - DNS
+  
 rules:
   - DST-PORT,53,DNS
   - DOMAIN-SUFFIX,acl4.ssr,IRAN
@@ -14580,4 +14590,4 @@ rules:
   - IN-TYPE,inner,PROXY
   - GEOIP,cn,DNS
   - GEOIP,IR,DNS
-  - MATCH,PROXY
+  - MATCH,FIRST 🥇
