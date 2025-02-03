@@ -19,9 +19,10 @@ log-level: silent
 ipv6: true
 geodata-mode: true
 geodata-loader: memconservative
-external-controller: 127.0.0.1:9090
 disable-keep-alive: false
-external-ui: /dashboard
+external-controller: 0.0.0.0:9090
+external-ui: ui
+external-ui-url: 'https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip'
 tcp-concurrent: true
 find-process-mode: strict
 allow-origins:
@@ -29,7 +30,6 @@ allow-origins:
 allow-private-network: true
 external-controller-unix: mihomo.sock
 external-controller-pipe: \\.\pipe\mihomo
-external-ui-url: "<https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip>" # Get from GitHub Pages branch
 profile:
   store-selected: true
   store-fake-ip: true
@@ -309,17 +309,29 @@ proxy-groups:
     icon: https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Windows_11.png
     proxies:
       - 🥇AUTO🥇
+      - 🥇FALLBACK🥇
 
   - name: 🥇AUTO🥇
     type: url-test
     url: https://1.1.1.1
     icon: https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
-    exclude-filter: IRAN|DNS
+    exclude-filter: IRAN|DNS|DIRECT
     include-all-proxies: true
     include-all-providers: true
     interval: 180
-    tolerance: 3000
+  #  tolerance: 3000
     proxies:
+    
+  - name: 🥇FALLBACK🥇
+    type: fallback
+    url: https://1.1.1.1
+    icon: https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    exclude-filter: IRAN|DNS|DIRECT
+    include-all-proxies: true
+    include-all-providers: true
+    interval: 180
+  #  tolerance: 3000
+    proxies:   
     
   - name: 🥇IRAN🥇
     type: select
@@ -338,6 +350,7 @@ proxy-groups:
     proxies:
       - 🥇PROXY🥇
       - 🥇AUTO🥇
+      - 🥇FALLBACK🥇
 
   
 rules:
