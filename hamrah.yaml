@@ -333,11 +333,16 @@ proxies:
 proxy-groups:
   - name: 🥇PROXY🥇
     type: select
-    icon: https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Windows_11.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png
     proxies:
       - 🥇AUTO🥇
       - 🥇FALLBACK🥇
-
+      - 🥇🇭🇰🥇
+      - 🥇🇨🇳🥇
+      - 🥇🇸🇬🥇
+      - 🥇🇺🇲🥇
+      - 🥇🇯🇵🥇
+      - 🥇🇰🇷🥇
   - name: 🥇AUTO🥇
     type: url-test
     url: cp.cloudflare.com
@@ -345,6 +350,7 @@ proxy-groups:
     exclude-filter: IRAN|DNS|DIRECT
 #    include-all-proxies: true
     include-all-providers: true
+    expected-status: 200/204
    # interval: 100
     tolerance: 500
     proxies:
@@ -353,10 +359,11 @@ proxy-groups:
   - name: 🥇FALLBACK🥇
     type: fallback
     url: cp.cloudflare.com
-    icon: https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Twitter.png
     exclude-filter: IRAN|DNS|DIRECT
  #   include-all-proxies: true
     include-all-providers: true
+    expected-status: 200/204
     interval: 180
  #   tolerance: 5000
     proxies:   
@@ -376,12 +383,83 @@ proxy-groups:
     icon: https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Final.png
 #    include-all-proxies: true
     include-all-providers: true
+    expected-status: 200/204
     use:
     proxies:
       - 🥇PROXY🥇
       - 🥇IRAN🥇
       - 🥇FALLBACK🥇
+      - 🥇🇭🇰🥇
+      - 🥇🇨🇳🥇
+      - 🥇🇸🇬🥇
+      - 🥇🇺🇲🥇
+      - 🥇🇯🇵🥇
+      - 🥇🇰🇷🥇
+  - name: 🇭🇰
+    type: fallback
+    url: cp.cloudflare.com
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Hong_Kong.png
+    interval: 180
+    include-all-providers: true
+    expected-status: 200/204
+    filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
+    proxies: 
+    use:
 
+  - name: 🇯🇵
+    type: fallback
+    url: cp.cloudflare.com
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Japan.png
+    interval: 180
+    include-all-providers: true
+    expected-status: 200/204
+    filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
+    proxies: 
+    use:
+
+  - name: 🇺🇲
+    type: fallback
+    url: cp.cloudflare.com
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/United_States.png
+    interval: 180
+    include-all-providers: true
+    expected-status: 200/204
+    proxies:
+    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
+    use:
+
+  - name: 🇨🇳
+    type: fallback
+    url: cp.cloudflare.com
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Domestic.png
+    interval: 180
+    include-all-providers: true
+    expected-status: 200/204
+    filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
+    proxies: 
+    use:
+
+  - name: 🇸🇬
+    type: fallback
+    url: cp.cloudflare.com
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Singapore.png
+    interval: 180
+    include-all-providers: true
+    expected-status: 200/204
+    filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
+    proxies: 
+    use:
+
+  - name: 🇰🇷
+    type: fallback
+    url: cp.cloudflare.com
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Korea.png
+    interval: 180
+    include-all-providers: true
+    expected-status: 200/204
+    filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
+    proxies: 
+    use:
 rule-providers:
   gf:
     type: http
@@ -398,6 +476,10 @@ rule-providers:
     path: ruleset/blocked.yaml
     interval: 86400  
 rules:
+  - AND,((NETWORK,TCP)),🥇PROXY🥇
+  - AND,((NETWORK,UDP)),🥇PROXY🥇
+  - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT
+  - OR,((RULE-SET,ADS),(RULE-SET,ADS-PRO)),REJECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
   - DOMAIN,yacd.metacubex.one,DIRECT
