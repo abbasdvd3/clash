@@ -395,7 +395,7 @@ proxy-groups:
       - 🥇🇺🇲🥇
       - 🥇🇯🇵🥇
       - 🥇🇰🇷🥇
-  - name: 🥇🇭🇰🥇
+  - name: 🇭🇰
     type: fallback
     url: cp.cloudflare.com
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Hong_Kong.png
@@ -406,7 +406,7 @@ proxy-groups:
     proxies: 
     use:
 
-  - name: 🥇🇯🇵🥇
+  - name: 🇯🇵
     type: fallback
     url: cp.cloudflare.com
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Japan.png
@@ -417,7 +417,7 @@ proxy-groups:
     proxies: 
     use:
 
-  - name: 🥇🇺🇲🥇
+  - name: 🇺🇲
     type: fallback
     url: cp.cloudflare.com
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/United_States.png
@@ -428,7 +428,7 @@ proxy-groups:
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     use:
 
-  - name: 🥇🇨🇳🥇
+  - name: 🇨🇳
     type: fallback
     url: cp.cloudflare.com
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Domestic.png
@@ -439,7 +439,7 @@ proxy-groups:
     proxies: 
     use:
 
-  - name: 🥇🇸🇬🥇
+  - name: 🇸🇬
     type: fallback
     url: cp.cloudflare.com
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Singapore.png
@@ -450,7 +450,7 @@ proxy-groups:
     proxies: 
     use:
 
-  - name: 🥇🇰🇷🥇
+  - name: 🇰🇷
     type: fallback
     url: cp.cloudflare.com
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Korea.png
@@ -474,7 +474,21 @@ rule-providers:
     behavior: classical
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/rule_provider/unblocked.yaml"
     path: ruleset/blocked.yaml
-    interval: 86400  
+    interval: 86400
+  ADS:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Project-META/rules-mrs/basic/reject.mrs"
+    path: ruleset/reject.mrs
+    format: mrs
+    interval: 86400
+  ADS-PRO:
+    type: http
+    behavior: domain
+    url: "https://adrules.top/adrules_domainset.txt"
+    path: ruleset/adrules_domainset.txt
+    format: text
+    interval: 86400
 rules:
   - AND,((NETWORK,TCP)),🥇PROXY🥇
   - AND,((NETWORK,UDP)),🥇PROXY🥇
