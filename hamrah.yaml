@@ -85,120 +85,121 @@ sniffer:
     - "80"
     - "443"
     - 8000-9999
+    
 proxy-providers:
-  A:
+  A1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x"
 
-  B:
+  B2:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
 
-  C:
+  C3:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/reality_clash.yaml" # https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/providers/providers64
 
-  D:
+  D4:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml"
 
-  E:
+  E5:
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml" # https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/mixed"
     type: http
 
-  F:
+  F6:
     url: "https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml"
     type: http
 
-  G:
+  G7:
     url: "https://raw.githubusercontent.com/changfengoss/pub/main/data/2024_08_10/PpoEAg.yaml"
     type: http
 
-  H:
+  H8:
     url: "http://172.245.30.41/clash.yaml"
     type: http
 
-  I:
+  I9:
     url: "https://raw.githubusercontent.com/Barabama/FreeNodes/master/nodes/merged.txt"
     type: http
 
-  J:
+  J10:
     url: "https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml"
     type: http
 
-  K:
+  K11:
     url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/FREEIRAN-VIP"
     type: http
 
-  L:
+  L12:
     url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
     type: http
 
-  M:
+  M13:
     url: "https://github.com/sarvari1378/SingBOX/raw/refs/heads/main/SUB/WORKER-VIP"
     type: http
 
-  N:
+  N14:
     url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
     type: http
 
-  O:
+  O15:
     url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
     type: http
 
-  P:
+  P16:
     url: "https://www.xrayvip.com/free.yaml"
     type: http
 
-  Q:
+  Q17:
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
     type: http
 
-  R:
+  R18:
     url: "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
     type: http
 
-  S:
+  S19:
     url: "https://raw.githubusercontent.com/vxiaov/free_proxies/main/clash/clash.provider.yaml"
     type: http
 
-  T:
+  T19:
     url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
     type: http
 
-  U:
+  U20:
     url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
     type: http
 
-  V:
+  V21:
     url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
     type: http
 
-  W:
+  W22:
     url: "https://gist.githubusercontent.com/freeorgworld/128c0e7260148f61f8708c9566aed5ab/raw/publicvless.yaml"
     type: http
 
-  X:
+  X23:
     url: "https://clash.221207.xyz/pubclashyaml"
     type: http
 
-  Y:
+  Y24:
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml"
     type: http
 
-  Z:
+  Z25:
     url: "https://fs.v2rayse.com/share/20240915/wuvsfrbi3q.yaml"
     type: http
 
-  AA:
+  AA26:
     url: "https://raw.gitmirror.com/sun9426/sun9426.github.io/main/subscribe/Clash.yaml"
     type: http
 
-  AB:
+  AB27:
     url: "https://raw.githubusercontent.com/freebaipiao/freebaipiao/refs/heads/main/GfwserveClash.yaml" # https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/Fredom-VIP
     type: http
 
-  AC:
+  AC28:
     url: "https://tt.vg/iMfJI"
     type: http
 
@@ -342,23 +343,25 @@ proxy-groups:
     url: cp.cloudflare.com
     icon: https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     exclude-filter: IRAN|DNS|DIRECT
-    include-all-proxies: true
+#    include-all-proxies: true
     include-all-providers: true
    # interval: 100
     tolerance: 500
     proxies:
-    
+    use:
+
   - name: 🥇FALLBACK🥇
     type: fallback
     url: cp.cloudflare.com
     icon: https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     exclude-filter: IRAN|DNS|DIRECT
-    include-all-proxies: true
+ #   include-all-proxies: true
     include-all-providers: true
     interval: 180
  #   tolerance: 5000
     proxies:   
-    
+    use:
+
   - name: 🥇IRAN🥇
     type: select
     icon: https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Rocket.png
@@ -366,16 +369,17 @@ proxy-groups:
       - ☄️IRAN☄️
       - 🥇PROXY🥇
       - 🥇AUTO🥇
-      - 🥇DNS🥇    
+      - 🥇DNS🥇
       
   - name: 🥇FIRST🥇
     type: select
     icon: https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Final.png
-    include-all-proxies: true
+#    include-all-proxies: true
     include-all-providers: true
+    use:
     proxies:
       - 🥇PROXY🥇
-      - 🥇AUTO🥇
+      - 🥇IRAN🥇
       - 🥇FALLBACK🥇
 
 rule-providers:
