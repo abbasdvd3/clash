@@ -349,7 +349,6 @@ proxy-groups:
     type: url-test
     url: cp.cloudflare.com
     icon: https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
-    exclude-filter: IRAN|DNS|DIRECT
 #    include-all-proxies: true
     include-all-providers: true
     expected-status: 200/204
@@ -362,7 +361,6 @@ proxy-groups:
     type: fallback
     url: cp.cloudflare.com
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Twitter.png
-    exclude-filter: IRAN|DNS|DIRECT
  #   include-all-proxies: true
     include-all-providers: true
     expected-status: 200/204
@@ -492,16 +490,16 @@ rule-providers:
     format: text
     interval: 86400
 rules:
-  - AND,((NETWORK,TCP)),🥇PROXY🥇
-  - AND,((NETWORK,UDP)),🥇PROXY🥇
+  - AND,((NETWORK,TCP)),🥇FIRST🥇
+  - AND,((NETWORK,UDP)),🥇FIRST🥇
   - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT
   - OR,((RULE-SET,ADS),(RULE-SET,ADS-PRO)),REJECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
   - DOMAIN,yacd.metacubex.one,DIRECT
   - DOMAIN,metacubexd.pages.dev,DIRECT
-  - RULE-SET,gf,🥇PROXY🥇
-  - RULE-SET,blocked,🥇PROXY🥇
+  - RULE-SET,gf,🥇FIRST🥇
+  - RULE-SET,blocked,🥇FIRST🥇
   - DST-PORT,53,🥇DNS🥇
   - DOMAIN-SUFFIX,acl4.ssr,🥇IRAN🥇
   - DOMAIN-SUFFIX,ip6-localhost,🥇IRAN🥇
