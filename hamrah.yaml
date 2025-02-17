@@ -1,6 +1,10 @@
 mode: rule
 ipv6: true
 mixed-port: 7890
+redir-port: 7892
+tproxy-port: 7895
+port: 7891
+socks-port: 7892
 allow-lan: true
 log-level: silent
 interface-name: ""
@@ -174,10 +178,10 @@ dns:
       - +.facebook.com
       - +.youtube.com
   prefer-h3: true
-hosts:
-  google.com:
-    - 223.5.5.5
-    - 114.114.114.114
+#hosts:
+#  google.com:
+#- 223.5.5.5
+#    - 114.114.114.114
 
 proxy-providers:
   A1:
@@ -188,7 +192,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  B2:
+  A2:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
     interval: 300
@@ -196,7 +200,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  C3:
+  A3:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/reality_clash.yaml" #https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/providers/providers64
     interval: 300
@@ -204,7 +208,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  D4:
+  A4:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml"
     interval: 300
@@ -212,7 +216,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  E5:
+  A5:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml" # https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/mixed"
     interval: 300
@@ -220,7 +224,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  F6:
+  A6:
     type: http
     url: "https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml"
     interval: 300
@@ -229,7 +233,7 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 300
 
-  G7:
+  A7:
     type: http
     url: "https://raw.githubusercontent.com/changfengoss/pub/main/data/2024_08_10/PpoEAg.yaml"
     interval: 300
@@ -237,7 +241,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  H8:
+  A8:
     type: http
     url: "http://172.245.30.41/clash.yaml"
     interval: 300
@@ -245,7 +249,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  I9:
+  A9:
     type: http
     url: "https://raw.githubusercontent.com/Barabama/FreeNodes/master/nodes/merged.txt"
     interval: 300
@@ -253,7 +257,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  J10:
+  A10:
     type: http
     url: "https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml"
     interval: 300
@@ -261,7 +265,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  K11:
+  A11:
     type: http
     url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/FREEIRAN-VIP"
     interval: 300
@@ -269,7 +273,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  L12:
+  A12:
     type: http
     url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
     interval: 300
@@ -277,7 +281,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  M13:
+  A13:
     type: http
     url: "https://github.com/sarvari1378/SingBOX/raw/refs/heads/main/SUB/WORKER-VIP"
     interval: 300
@@ -285,7 +289,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  N14:
+  A14:
     type: http
     url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
     interval: 300
@@ -293,7 +297,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  O15:
+  A15:
     type: http
     url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
     interval: 300
@@ -301,7 +305,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  P16:
+  A16:
     type: http
     url: "https://www.xrayvip.com/free.yaml"
     interval: 300
@@ -309,7 +313,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  Q17:
+  A17:
     type: http
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
     interval: 300
@@ -317,7 +321,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  R18:
+  A18:
     type: http
     url: "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
     interval: 300
@@ -325,7 +329,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  S19:
+  A19:
     type: http
     url: "https://raw.githubusercontent.com/vxiaov/free_proxies/main/clash/clash.provider.yaml"
     interval: 300
@@ -333,7 +337,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  T19:
+  A19:
     type: http
     url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
     interval: 300
@@ -341,7 +345,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  U20:
+  A20:
     type: http
     url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
     interval: 300
@@ -349,7 +353,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  V21:
+  A21:
     type: http
     url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
     interval: 300
@@ -357,7 +361,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  W22:
+  A22:
     type: http
     url: "https://gist.githubusercontent.com/freeorgworld/128c0e7260148f61f8708c9566aed5ab/raw/publicvless.yaml"
     interval: 300
@@ -365,7 +369,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  X23:
+  A23:
     type: http
     url: "https://clash.221207.xyz/pubclashyaml"
     interval: 300
@@ -373,7 +377,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  Y24:
+  A24:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml"
     interval: 300
@@ -381,7 +385,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  Z25:
+  A25:
     type: http
     url: "https://fs.v2rayse.com/share/20240915/wuvsfrbi3q.yaml"
     interval: 300
@@ -389,7 +393,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  AA26:
+  A26:
     type: http
     url: "https://raw.gitmirror.com/sun9426/sun9426.github.io/main/subscribe/Clash.yaml"
     interval: 300
@@ -397,7 +401,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  AB27:
+  A27:
     type: http
     url: "https://raw.githubusercontent.com/freebaipiao/freebaipiao/refs/heads/main/GfwserveClash.yaml" # https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/Fredom-VIP
     interval: 300
@@ -405,9 +409,114 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-  AC28:
+  A28:
     type: http
     url: "https://tt.vg/iMfJI"
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  AA1:
+    type: http
+    url: "https://hithisissajedsarvariandthisismine.wivica7662.workers.dev/31ff2d15-10b8-4a0d-a0fc-1035efd11852?sub"
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  AA2:
+    type: http
+    url: "https://curlyrecipe32fdcurlyrecipe32fd.jadah89407.workers.dev/6aed19e8-0bd2-4e7b-80a4-a2896d4b06c5?sub"
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  AA3:
+    type: http
+    url: "https://springdream7ee8springdream7ee8.doripoc806.workers.dev/6c7359b3-df51-4559-b0fb-0a1315370d88?sub" #https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/providers/providers64
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  AA4:
+    type: http
+    url: "https://roughseae883roughseae883.xovekey820.workers.dev/b26c4279-1dd3-4773-9ef8-745364f6a005?sub"
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  AA5:
+    type: http
+    url: "https://sajedsarvariissheethere.novehe5557.workers.dev/db67d15c-75a9-4d63-a654-5e52fd44dd6e?sub" # https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/mixed"
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  AA6:
+    type: http
+    url: "https://whitesunsetd548efffvhkknktvjiyovop7p7.hosela7814.workers.dev/1765c809-8706-475f-b2d1-027c76c2728b?sub"
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+
+  AA7:
+    type: http
+    url: "https://qwnsodlfmhjsainsomaismsindflenso.deyat25348.workers.dev/ec1e67fa-e455-482a-b1b4-4bb9099aada6?sub"
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  AA8:
+    type: http
+    url: "https://softheart28b2softheart28b2.niwama5394.workers.dev/d5329a95-3296-4121-a3c6-75cd9d012c78?sub"
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  AA9:
+    type: http
+    url: "https://sparklingsounde401sparklingsounde401.gekesap313.workers.dev/0f8e09f1-bc28-4ee9-80d8-466f97ed2646?sub"
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  AA10:
+    type: http
+    url: "https://darkunion0accdarkunion0acc.kisokek833.workers.dev/9b04d90d-5244-4564-9810-63833454e06e?sub"
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  AA11:
+    type: http
+    url: "https://tinyblockb973tinyblockb973.hisobe3650.workers.dev/604653f5-acab-46e6-9804-d3b18f12891b?sub"
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  AA12:
+    type: http
+    url: "https://littledawn28fclittledawn28fc.tecasog687.workers.dev/191ca22b-5ae9-4837-9cf0-3f0a6adfbfc6?sub"
+    interval: 300
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+  AA13:
+    type: http
+    url: "https://holywave9100holywave9100.kofesej552.workers.dev/7123c53b-6d01-4165-be63-1af47a790181?sub"
     interval: 300
     health-check:
       enable: true
@@ -475,7 +584,7 @@ proxy-groups:
 
     url: https://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 150
+    tolerance: 15000
     lazy: true
     disable-udp: true
   - name: 🎯 Direct
