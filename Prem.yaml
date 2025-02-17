@@ -60,13 +60,22 @@ proxy-providers:
   provider1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/pp1.yaml"
-    path: Prem2/p1.yaml
+    path: Prem/p1.yaml
     interval: 89
     health-check:
       enable: true
       interval: 30
       url: https://www.google.com/
-  
+  provider2:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah" 
+    path: Prem/p12.yaml
+    interval: 89
+#    exclude-filter: Expire
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.google.com/  
     
 proxies:
 proxy-groups:
@@ -94,7 +103,7 @@ proxy-groups:
     url: https://www.google.com/
     disable-udp: true
     interval: 99
-#    tolerance: 80
+    tolerance: 8000
     hidden: false
     use:
       - provider1
@@ -103,6 +112,7 @@ proxy-groups:
     url: https://www.google.com/
     disable-udp: true
     interval: 99
+    tolerance: 800
     hidden: false
     use:
       - provider1
