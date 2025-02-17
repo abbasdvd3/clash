@@ -66,14 +66,59 @@
   },
   "outbound_providers": [
     {
-           "tag": "@tw",
-           "type": "remote",
-            "download_url": "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/D",
-            "download_interval": "24h",
-            "download_ua": "singbox",
-            "download_detour": "direct",
-            "path": "foo.json",
-            "healthcheck_interval": "1h0m0s"
+      "type": "remote",
+      "path": "./订阅代理集合2.yaml",
+      "tag": "订阅节点 2",
+      "download_url": "http://172.245.30.41/clash.yaml",
+      "download_ua": "clash",
+      "download_interval": "24h0m0s",
+      "enable_healthcheck": true,
+      "healthcheck_url": "https://www.gstatic.com/generate_204",
+      "healthcheck_interval": "10m0s"
+    },
+    {
+      "type": "remote",
+      "path": "./订阅代理集合3.yaml",
+      "tag": "订阅节点 3",
+      "download_url": "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/D",
+      "download_ua": "sing-box",
+      "download_interval": "24h0m0s",
+      "enable_healthcheck": true,
+      "healthcheck_url": "https://www.gstatic.com/generate_204",
+      "healthcheck_interval": "10m0s"
+    },
+    {
+      "type": "remote",
+      "path": "./订阅代理集合4.yaml",
+      "tag": "订阅节点 4",
+      "download_url": "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x",
+      "download_ua": "clash",
+      "download_interval": "24h0m0s",
+      "enable_healthcheck": true,
+      "healthcheck_url": "https://www.gstatic.com/generate_204",
+      "healthcheck_interval": "10m0s"
+    },
+    {
+      "type": "remote",
+      "path": "./本地代理集合-免费.yaml",
+      "tag": "本地节点 2",
+      "download_url": "https://clash.221207.xyz/pubclashyaml",
+      "download_ua": "clash",
+      "download_interval": "24h0m0s",
+      "enable_healthcheck": true,
+      "healthcheck_url": "https://www.gstatic.com/generate_204",
+      "healthcheck_interval": "10m0s"
+    },
+    {
+      "type": "remote",
+      "path": "./本地代理集合-实时.yaml",
+      "tag": "本地节点 3",
+      "download_url": "https://www.xrayvip.com/free.yaml",
+      "download_ua": "clash",
+      "download_interval": "24h0m0s",
+      "enable_healthcheck": true,
+      "healthcheck_url": "https://www.gstatic.com/generate_204",
+      "healthcheck_interval": "10m0s"
     }
   ],
   "inbounds": [
@@ -112,7 +157,7 @@
     {
       "type": "selector",
       "tag": "@twnesss",
-      "providers": "@tw",
+      "use_all_providers": true
       "outbounds": [
         "Auto",
         "GOOGLE 🇮🇩",
@@ -1719,7 +1764,7 @@
     {
         "type": "urltest",
         "tag": "GOOGLE 🇮🇩",
-        "providers": "@tw"
+        "use_all_providers": true
     },
     {
       "type": "shadowsocks",
