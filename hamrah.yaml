@@ -26,7 +26,7 @@ tls:
   certificate: ""
   private-key: ""
 global-client-fingerprint: random
-geodata-mode: true
+geodata-mode: false
 geo-auto-update: false
 geo-update-interval: 24
 geodata-loader: standard
@@ -69,7 +69,7 @@ tun:
   strict-route: true
   endpoint-independent-nat: true
 sniffer:
-  enable: true
+  enable: false
   force-dns-mapping: true
   parse-pure-ip: true
   override-destination: true
@@ -118,8 +118,8 @@ dns:
   enable: true
   listen: 0.0.0.0:1053
   ipv6: true
-  use-hosts: true
-  use-system-hosts: true
+  use-hosts: false
+  use-system-hosts: false
   default-nameserver:
     - 223.5.5.5
     - 114.114.114.114
@@ -166,7 +166,7 @@ dns:
     - tls://1.1.1.1
     - tls://223.5.5.5
   fallback-filter:
-    geoip: true
+    geoip: false
     geoip-code: ir
     geosite: []
     ipcidr:
@@ -570,7 +570,7 @@ proxy-groups:
       - 🎈 Auto
       - 🐟 Fallback
       - 🇺🇲 Fallback
-    disable-udp: true
+    disable-udp: false
   - name: 🎈 Auto
     type: url-test
     include-all-providers: true
@@ -581,10 +581,10 @@ proxy-groups:
     use:
 
     url: https://www.gstatic.com/generate_204
-    interval: 300
+    interval: 30
     tolerance: 15000
     lazy: true
-    disable-udp: true
+    disable-udp: false
   - name: 🎯 Direct
     type: select
     filter: ""
@@ -617,9 +617,9 @@ proxy-groups:
     use:
 
     url: https://www.gstatic.com/generate_204
-    interval: 300
+    interval: 30
     lazy: true
-    disable-udp: true
+    disable-udp: false
   - name: 🇺🇲 Fallback
     type: fallback
     include-all-providers: true
@@ -630,9 +630,9 @@ proxy-groups:
     use:
 
     url: https://www.gstatic.com/generate_204
-    interval: 300
+    interval: 30
     lazy: true
-    disable-udp: true    
+    disable-udp: false
 rules:
   - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
   - IP-CIDR,10.0.0.0/8,REJECT,no-resolve
