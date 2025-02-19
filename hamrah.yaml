@@ -561,7 +561,7 @@ proxies:
 
 proxy-groups:
   - name: 🚀 Select
-    type: select
+    type: url-test
     filter: ""
     exclude-filter: ""
     hidden: false
@@ -570,7 +570,7 @@ proxy-groups:
       - 🎈 Auto
       - 🐟 Fallback
       - 🇺🇲 Fallback
-    disable-udp: false
+    disable-udp: true
   - name: 🎈 Auto
     type: url-test
     include-all-providers: true
@@ -579,12 +579,11 @@ proxy-groups:
     hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
     use:
-
     url: https://www.gstatic.com/generate_204
     interval: 30
-    tolerance: 15000
+    tolerance: 1500
     lazy: true
-    disable-udp: false
+    disable-udp: true
   - name: 🎯 Direct
     type: select
     filter: ""
@@ -605,7 +604,7 @@ proxy-groups:
     proxies:
       - REJECT
       - DIRECT
-      - PASS
+      - 🚀 Select
     disable-udp: false
   - name: 🐟 Fallback
     type: fallback
@@ -619,7 +618,7 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 30
     lazy: true
-    disable-udp: false
+    disable-udp: true
   - name: 🇺🇲 Fallback
     type: fallback
     include-all-providers: true
@@ -628,11 +627,21 @@ proxy-groups:
     hidden: false
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/United_States.png"
     use:
-
     url: https://www.gstatic.com/generate_204
     interval: 30
     lazy: true
-    disable-udp: false
+    disable-udp: true
+    
+  - name: PROXY
+    type: select
+    include-all-providers: true
+    filter: ""
+    exclude-filter: ""
+    hidden: false
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png"
+    proxies:
+      - 🚀 Select
+      - 🐟 Fallback
 rules:
   - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
   - IP-CIDR,10.0.0.0/8,REJECT,no-resolve
@@ -662,5 +671,5 @@ rules:
   - RULE-SET,GEOIP-CN,🎯 Direct,no-resolve
   - RULE-SET,GEOSITE-Private,🎯 Direct
   - RULE-SET,GEOSITE-CN,🎯 Direct
-  - RULE-SET,geolocation-!cn,🚀 Select
-  - MATCH,🚀 Select
+  - RULE-SET,geolocation-!cn,PROXY
+  - MATCH,PROXY
