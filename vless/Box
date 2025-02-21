@@ -1,0 +1,1175 @@
+{
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns_block",
+        "address": "rcode://success"
+      },
+      {
+        "tag": "dns_direct",
+        "address": [
+          "https://1.12.12.12/dns-query",
+          "https://223.5.5.5/dns-query",
+          "[2400:3200::1]",
+          "[2400:3200:baba::1]",
+          "[2402:4e00::]"
+        ],
+        "detour": "DIRECT"
+      },
+      {
+        "tag": "dns_proxy",
+        "address": [
+          "h3://94.140.14.14/dns-query",
+          "h3://94.140.15.15/dns-query",
+          "h3://1.0.0.2/dns-query",
+          "h3://[2606:4700:4700::1112]/dns-query",
+          "h3://[2606:4700:4700::1002]/dns-query"
+        ]
+      },
+      {
+        "tag": "dns_fakeip",
+        "address": "fakeip"
+      }
+    ],
+    "rules": [
+      {
+        "domain": [
+          "ghproxy.com",
+          "cdn.jsdelivr.net",
+          "testingcf.jsdelivr.net"
+        ],
+        "server": "dns_direct"
+      },
+      {
+        "outbound": "any",
+        "server": "dns_direct",
+        "disable_cache": true
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "clash_mode": "Direct",
+        "server": "dns_direct"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "clash_mode": "Global",
+        "server": "dns_proxy"
+      },
+      {
+        "rule_set": "geosite_category-ads-all",
+        "server": "dns_block"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "rule_set": "geosite_geolocation-!cn",
+        "server": "dns_fakeip",
+        "rewrite_ttl": 0
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "rule_set": "geosite-ir",
+        "server": "dns_direct"
+      },
+      {
+        "fallback_rules": [
+          {
+            "rule_set": "geoip_ir",
+            "server": "dns_direct"
+          },
+          {
+            "match_all": true,
+            "server": "dns_fakeip",
+            "rewrite_ttl": 0
+          }
+        ],
+        "server": "dns_proxy",
+        "allow_fallthrough": true
+      }
+    ],
+    "final": "dns_direct",
+    "reverse_mapping": true,
+    "mapping_override": true,
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18",
+      "exclude_rule": {
+        "rule_set": [
+          "geoip_cn",
+          "geoip_private",
+          "geosite_private",
+          "geoip_ir",
+          "geosite-ir"
+        ]
+      }
+    },
+    "strategy": "prefer_ipv4",
+    "independent_cache": true,
+    "lazy_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 1081,
+      "sniff": true
+    },
+    {
+      "type": "tun",
+      "mtu": 9000,
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "system",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 1081
+        }
+      },
+      "sniff": true,
+     "inet4_address": "172.19.0.1/30"
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "🤢",
+      "outbounds": [
+       "👂👂",
+       "بازی",
+        "اتومات",
+        "اپلود",
+        "🐇",
+        "🦊",
+        "REJECT",
+        "ایران"
+      ]
+    },
+    {
+      "type": "urltest",
+      "tag": "اتومات",
+      "outbounds": [
+        "هنگ کنگ",
+        "تایوان",
+        "ژاپن",
+        "کره جنوبی",
+        "سنگاپور",
+        "امریکا",
+        "انگلیس",
+        "فرانسه",
+        "المان",
+        "روسیه"
+      ],
+      "url": "https://www.google.com/generate_204",
+      "tolerance": 50
+    },
+    {
+      "type": "selector",
+      "tag": "اپلود",
+      "outbounds": [
+       "👂👂",
+       "بازی",
+        "هنگ کنگ",
+        "تایوان",
+        "ژاپن",
+        "کره جنوبی",
+        "سنگاپور",
+        "امریکا",
+        "انگلیس",
+        "فرانسه",
+        "المان",
+        "روسیه"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "🐇",
+      "use_all_providers": true
+    },
+    {
+      "type": "selector",
+      "tag": "🦊",
+      "use_all_providers": true
+    },
+    {
+      "type": "selector",
+      "tag": "تبلیغ",
+      "outbounds": [
+        "REJECT",
+        "ایران"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "🍃 应用净化",
+      "outbounds": [
+        "REJECT",
+        "ایران"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "هوش مصنوعی",
+      "outbounds": [
+        "🤢",
+        "اتومات",
+        "اپلود",
+        "🐇",
+        "🦊"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "گوگل",
+      "outbounds": [
+        "ایران",
+        "🤢",
+        "اتومات",
+        "🐇",
+        "🦊"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "اتصالات",
+      "outbounds": [
+       "👂👂",
+       "بازی",
+        "اتومات",
+        "ایران",
+        "هنگ کنگ",
+        "تایوان",
+        "ژاپن",
+        "کره جنوبی",
+        "سنگاپور",
+        "امریکا",
+        "انگلیس",
+        "فرانسه",
+        "المان",
+        "روسیه",
+        "🐇",
+        "🦊"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "رسانه",
+      "outbounds": [
+        "🤢",
+        "اتومات",
+        "هنگ کنگ",
+        "تایوان",
+        "ژاپن",
+        "کره جنوبی",
+        "سنگاپور",
+        "امریکا",
+        "انگلیس",
+        "فرانسه",
+        "المان",
+        "روسیه",
+        "🐇",
+        "🦊"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "🎒🎒",
+      "outbounds": [
+        "🤢",
+        "اتومات",
+        "هنگ کنگ",
+        "تایوان",
+        "ژاپن",
+        "کره جنوبی",
+        "سنگاپور",
+        "امریکا",
+        "انگلیس",
+        "فرانسه",
+        "المان",
+        "روسیه",
+        "🐇",
+        "🦊"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "خدمات",
+      "outbounds": [
+        "🤢",
+        "اتومات",
+        "هنگ کنگ",
+        "تایوان",
+        "ژاپن",
+        "کره جنوبی",
+        "سنگاپور",
+        "امریکا",
+        "انگلیس",
+        "فرانسه",
+        "المان",
+        "روسیه",
+        "🐇",
+        "🦊"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "سوشال مدیا",
+      "outbounds": [
+        "🤢",
+        "اتومات",
+        "هنگ کنگ",
+        "تایوان",
+        "ژاپن",
+        "کره جنوبی",
+        "سنگاپور",
+        "امریکا",
+        "انگلیس",
+        "فرانسه",
+        "المان",
+        "روسیه",
+        "🐇",
+        "🦊",
+        "ایران"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "رسانه داخلی",
+      "outbounds": [
+        "ایران",
+        "🤢",
+        "اتومات",
+        "هنگ کنگ",
+        "تایوان",
+        "ژاپن",
+        "کره جنوبی",
+        "سنگاپور",
+        "امریکا",
+        "انگلیس",
+        "فرانسه",
+        "المان",
+        "روسیه",
+        "🐇",
+        "🦊"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "سرچ",
+      "outbounds": [
+        "🤢",
+        "اتومات",
+        "هنگ کنگ",
+        "تایوان",
+        "ژاپن",
+        "کره جنوبی",
+        "سنگاپور",
+        "امریکا",
+        "انگلیس",
+        "فرانسه",
+        "المان",
+        "روسیه",
+        "🐇",
+        "🦊",
+        "ایران"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "پایان",
+      "outbounds": [
+        "🤢",
+        "اتومات",
+        "اپلود",
+        "🐇",
+        "🦊",
+        "ایران"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "ایران",
+      "outbounds": "DIRECT"
+    },
+    {
+      "type": "block",
+      "tag": "REJECT"
+    },
+    {
+      "type": "direct",
+      "tag": "DIRECT"
+    },
+    {
+      "type": "selector",
+      "tag": "GLOBAL",
+      "outbounds": [
+       "🤢",
+        "DIRECT",
+        "REJECT",
+        "هنگ کنگ",
+        "تایوان",
+        "ژاپن",
+        "کره جنوبی",
+        "سنگاپور",
+        "امریکا",
+        "انگلیس",
+        "فرانسه",
+        "المان",
+        "روسیه",
+        "🐇",
+        "🦊",
+        "ایران"
+      ]
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "urltest",
+      "tag": "هنگ کنگ",
+      "use_all_providers": true,
+      "includes": "(?i)🇭🇰|HK|Hong Kong|香港|港",
+      "excludes": "(?i)剩余|流量|回国|校园|游戏|GAME",
+      "url": "https://www.google.com/generate_204",
+      "tolerance": 50
+    },
+    {
+      "type": "urltest",
+      "tag": "تایوان",
+      "use_all_providers": true,
+      "includes": "(?i)🇹🇼|TW|Taiwan|台湾|台",
+      "excludes": "(?i)剩余|流量|回国|校园|游戏|GAME",
+      "url": "https://www.google.com/generate_204",
+      "tolerance": 50
+    },
+    {
+      "type": "urltest",
+      "tag": "ژاپن",
+      "use_all_providers": true,
+      "includes": "(?i)🇯🇵|JP|Japan|Tokyo|日本|日|川日|东京|大阪|泉日|埼玉|沪日|深日",
+      "excludes": "(?i)剩余|流量|回国|校园|游戏|GAME",
+      "url": "https://www.google.com/generate_204",
+      "tolerance": 50
+    },
+    {
+      "type": "urltest",
+      "tag": "کره جنوبی",
+      "use_all_providers": true,
+      "includes": "(?i)🇰🇷|KR|KOR|Korea|韩国|韩|韓|首尔",
+      "excludes": "(?i)剩余|流量|回国|校园|游戏|GAME",
+      "url": "https://www.google.com/generate_204",
+      "tolerance": 50
+    },
+    {
+      "type": "urltest",
+      "tag": "سنگاپور",
+      "use_all_providers": true,
+      "includes": "(?i)🇸🇬|SG|Singapore|新加坡|坡|狮城|狮",
+      "excludes": "(?i)剩余|流量|回国|校园|游戏|GAME",
+      "url": "https://www.google.com/generate_204",
+      "tolerance": 50
+    },
+    {
+      "type": "urltest",
+      "tag": "امریکا",
+      "use_all_providers": true,
+      "includes": "(?i)🇺🇸|US|USA|United States|American|美国|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥",
+      "excludes": "(?i)剩余|流量|回国|校园|游戏|GAME",
+      "url": "https://www.google.com/generate_204",
+      "tolerance": 50
+    },
+    {
+      "type": "urltest",
+      "tag": "انگلیس",
+      "use_all_providers": true,
+      "includes": "(?i)🇬🇧|GB|UK|Britain|United Kingdom",
+      "excludes": "(?i)剩余|流量|回国|校园|游戏|GAME",
+      "url": "https://www.google.com/generate_204",
+      "tolerance": 50
+    },
+    {
+      "type": "urltest",
+      "tag": "فرانسه",
+      "use_all_providers": true,
+      "includes": "(?i)🇫🇷|FR|FRA|France|Paris|法国|法|巴黎",
+      "excludes": "(?i)剩余|流量|回国|校园|游戏|GAME",
+      "url": "https://www.google.com/generate_204",
+      "tolerance": 50
+    },
+    {
+      "type": "urltest",
+      "tag": "المان",
+      "use_all_providers": true,
+      "includes": "(?i)🇩🇪|DE|Germany|德国|德|汉堡",
+      "excludes": "(?i)剩余|流量|回国|校园|游戏|GAME",
+      "url": "https://www.google.com/generate_204",
+      "tolerance": 50
+    },
+    {
+      "type": "urltest",
+      "tag": "روسیه",
+      "use_all_providers": true,
+      "includes": "(?i)🇷🇺|RU|Russian|Moscow|俄罗斯|俄|莫斯科",
+      "excludes": "(?i)剩余|流量|回国|校园|游戏|GAME",
+      "url": "https://www.google.com/generate_204",
+      "tolerance": 50
+    },
+    {
+      "type": "urltest",
+      "tag": "بازی",
+      "use_all_providers": true,
+      "includes": "(?i)游戏|GAME",
+      "excludes": "(?i)剩余|流量|回国|校园|游戏|GAME",
+      "url": "https://www.google.com/generate_204",
+      "tolerance": 150
+    },
+    {
+      "type": "urltest",
+      "tag": "👂👂",
+      "use_all_providers": true,
+      "excludes": "(?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|剩余流量|流量剩余|流量到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author",
+      "url": "https://www.google.com/generate_204",
+      "tolerance": 250
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "protocol": "dns",
+        "outbound": "dns-out"
+      },
+      {
+        "clash_mode": "Direct",
+        "outbound": "DIRECT"
+      },
+      {
+        "clash_mode": "Global",
+        "outbound": "GLOBAL"
+      },
+      {
+        "rule_set": "geosite_googlefcm",
+        "outbound": "گوگل"
+      },
+      {
+        "network": "tcp",
+        "domain_keyword": [
+          "extshort.weixin.qq.com",
+          "long.weixin.qq.com"
+        ],
+        "port": [
+          80,
+          8080,
+          443
+        ],
+        "outbound": "اتصالات"
+      },
+      {
+        "domain_keyword": "short.weixin.qq.com",
+        "outbound": "ایران"
+      },
+      {
+        "port": 443,
+        "process_name": "com.microsoft.office.outlook",
+        "outbound": "سوشال مدیا"
+      },
+      {
+        "rule_set": "geoip_private",
+        "skip_resolve": true,
+        "outbound": "ایران"
+      },
+      {
+        "rule_set": "geosite_private",
+        "outbound": "ایران"
+      },
+      {
+        "rule_set": [
+          "geosite_category-ads-all",
+          "geosite-instagram-ads",
+          "AWAvenue-Ads-Rule",
+          "geosite-adblockplus"
+        ],
+        "outbound": "تبلیغ"
+      },
+      {
+        "domain_suffix": [
+          "adfstat.yandex.ru",
+          "appmetrica.yandex.ru",
+          "getsentry.com",
+          "sentry-cdn.com"
+        ],
+        "outbound": "تبلیغ"
+      },
+      {
+        "domain_suffix": [
+          "xcz.im",
+          "ads.fmdisk.com",
+          "ads.feemoo.com",
+          "ads.google.com",
+          "afd.l.google.com",
+          "mobileads.google.com"
+        ],
+        "outbound": "تبلیغ"
+      },
+      {
+        "domain_keyword": [
+          "googleads",
+          "umeng"
+        ],
+        "outbound": "تبلیغ"
+      },
+      {
+        "domain_suffix": [
+          "o33249.ingest.sentry.io",
+          "openaicom.imgix.net"
+        ],
+        "outbound": "REJECT"
+      },
+      {
+        "process_name": "com.tencent.mm",
+        "outbound": "ایران"
+      },
+      {
+        "rule_set": [
+          "geosite_coolapk",
+          "geosite-category-travel-ir",
+          "geosite-category-tech-ir",
+          "geosite-category-social-media-ir",
+          "geosite-category-shopping-ir",
+          "geosite-category-scholar-ir"
+        ],
+        "outbound": "ایران"
+      },
+      {
+        "rule_set": [
+          "geosite_tracker",
+          "geosite_category-public-tracker"
+        ],
+        "outbound": "ایران"
+      },
+      {
+        "rule_set": "geosite_openai",
+        "outbound": "هوش مصنوعی"
+      },
+      {
+        "rule_set": "geoip_netflix",
+        "skip_resolve": true,
+        "outbound": "رسانه"
+      },
+      {
+        "rule_set": "geosite_netflix",
+        "outbound": "رسانه"
+      },
+      {
+        "rule_set": "geosite_tiktok",
+        "outbound": "🎒🎒"
+      },
+      {
+        "rule_set": "geosite_youtube",
+        "outbound": "سرچ"
+      },
+      {
+        "rule_set": "geoip_google",
+        "skip_resolve": true,
+        "outbound": "سوشال مدیا"
+      },
+      {
+        "rule_set": "geosite_google",
+        "outbound": "سوشال مدیا"
+      },
+      {
+        "rule_set": "geoip_telegram",
+        "skip_resolve": true,
+        "outbound": "سوشال مدیا"
+      },
+      {
+        "rule_set": "geosite_telegram",
+        "outbound": "سوشال مدیا"
+      },
+      {
+        "rule_set": "geoip_twitter",
+        "skip_resolve": true,
+        "outbound": "سوشال مدیا"
+      },
+      {
+        "rule_set": "geosite_twitter",
+        "outbound": "سوشال مدیا"
+      },
+      {
+        "rule_set": [
+          "geosite-nsfw",
+          "geosite_facebook",
+          "geosite-social",
+          "geosite_github",
+          "geosite_pixiv"
+        ],
+        "outbound": "سوشال مدیا"
+      },
+      {
+        "rule_set": [
+          "geosite_apple-cn",
+          "geosite_bing",
+          "geosite_microsoft@cn",
+          "geosite_google-cn",
+          "geosite_onedrive",
+          "geosite_category-companies@cn",
+          "geosite_category-ntp"
+        ],
+        "outbound": "خدمات"
+      },
+      {
+        "rule_set": "geoip_cn",
+        "skip_resolve": true,
+        "outbound": "ایران"
+      },
+      {
+        "rule_set": "geosite-ir",
+        "outbound": "ایران"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geosite_category-ads-all",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_geolocation-!cn",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_private",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip_cn",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip_private",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/private.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_apple-cn",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/apple-cn.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-nsfw",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-nsfw.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-social",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-social.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_bing",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bing.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip_ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/ir.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_category-companies@cn",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-companies@cn.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_category-netdisk-cn",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-netdisk-cn.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_category-ntp",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ntp.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_category-public-tracker",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-public-tracker.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-adblockplus",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/adblockplus.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_coolapk",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/coolapk.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "AWAvenue-Ads-Rule",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_facebook",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/facebook.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_github",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/github.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_google",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/google.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_google-cn",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/google-cn.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_googlefcm",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/googlefcm.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-ziroom",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/ziroom.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-instagram-ads",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/instagram-ads.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_microsoft@cn",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/microsoft@cn.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_netflix",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/netflix.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_onedrive",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/onedrive.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_openai",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/openai.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_pixiv",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/pixiv.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-scholar-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-scholar-ir.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-shopping-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-shopping-ir.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-social-media-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-social-media-ir.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-tech-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-tech-ir.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-travel-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-travel-ir.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_telegram",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/telegram.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-payment-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-payment-ir.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_tiktok",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/tiktok.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_tracker",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/tracker.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_twitter",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/twitter.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-media-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-media-ir.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-news-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-news-ir.srs",
+        "download_detour": "ایران",
+        "update_interval": "480h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite_youtube",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/youtube.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-speedtest",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/speedtest.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip_google",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/google.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip_netflix",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/netflix.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip_telegram",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/telegram.srs",
+        "download_detour": "ایران"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip_twitter",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/twitter.srs",
+        "download_detour": "ایران"
+      }
+    ],
+    "final": "پایان",
+    "auto_detect_interface": true,
+    "override_android_vpn": true,
+    "concurrent_dial": true
+  },
+  "outbound_providers": [
+    {
+      "type": "remote",
+      "path": "./P1.yaml",
+      "tag": "‌P1",
+      "download_url": "http://172.245.30.41/clash.yaml",
+      "download_ua": "clash",
+      "download_interval": "24h0m0s",
+      "enable_healthcheck": true,
+      "healthcheck_url": "https://www.gstatic.com/generate_204",
+      "healthcheck_interval": "10m0s"
+    },
+    {
+      "type": "remote",
+      "path": "./P2.yaml",
+      "tag": "P2",
+      "download_url": "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/D",
+      "download_ua": "sing-box",
+      "download_interval": "24h0m0s",
+      "enable_healthcheck": true,
+      "healthcheck_url": "https://www.gstatic.com/generate_204",
+      "healthcheck_interval": "10m0s"
+    },
+    {
+      "type": "remote",
+      "path": "./‌P3.yaml",
+      "tag": "‌P3",
+      "download_url": "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x",
+      "download_ua": "clash",
+      "download_interval": "24h0m0s",
+      "enable_healthcheck": true,
+      "healthcheck_url": "https://www.gstatic.com/generate_204",
+      "healthcheck_interval": "10m0s"
+    },
+    {
+      "type": "remote",
+      "path": "./P4.yaml",
+      "tag": "P4",
+      "download_url": "https://clash.221207.xyz/pubclashyaml",
+      "download_ua": "clash",
+      "download_interval": "24h0m0s",
+      "enable_healthcheck": true,
+      "healthcheck_url": "https://www.gstatic.com/generate_204",
+      "healthcheck_interval": "10m0s"
+    },
+    {
+      "type": "remote",
+      "path": "./‌P5.yaml",
+      "tag": "P5",
+      "download_url": "https://www.xrayvip.com/free.yaml",
+      "download_ua": "clash",
+      "download_interval": "24h0m0s",
+      "enable_healthcheck": true,
+      "healthcheck_url": "https://www.gstatic.com/generate_204",
+      "healthcheck_interval": "10m0s"
+    }
+  ],
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "cache.db"
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "ui",
+      "external_ui_download_url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+      "default_mode": "Rule"
+    }
+  }
+}
