@@ -1,4 +1,3 @@
-
 port: 7892
 socks-port: 7891
 mixed-port: 7890
@@ -10,27 +9,23 @@ geo-update-interval: 24
 tcp-concurrent: true
 find-process-mode: strict
 global-client-fingerprint: chrome
-
 allow-lan: true
 mode: rule
 log-level: info
 ipv6: true
 udp: true
-
-external-controller: 127.0.0.1:0
-# external-ui: ui
-# external-ui-url: 'https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip'
-
+external-controller: 127.0.0.1:9090
+external-controller-tls: 127.0.0.1:9093
+external-ui-name: xd
+external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 geox-url:
   geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
   geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
   mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
   asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
-
 profile:
   store-selected: true
   store-fake-ip: true
-
 sniffer:
   enable: true
   force-dns-mapping: true
@@ -46,10 +41,8 @@ sniffer:
       ports: [443, 8443]
   force-domain:
     - +.v2ex.com
-
   skip-domain:
     - Mijia Cloud
-
 tun:
   enable: true
   stack: system
@@ -57,7 +50,6 @@ tun:
     - any:53
   auto-route: true
   auto-detect-interface: true
-
 dns:
   enable: true
   listen: 0.0.0.0:1053
@@ -79,26 +71,19 @@ proxy-providers:
     url: 'https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt'
     <<: *NodeParam
     path: 'proxy_provider/H1.yaml'
-    override:
-      additional-prefix: "[H1] " 
-  H2:
+  H1u:
     url: 'https://chromego-sub.netlify.app/sub/merged_proxies_new.yaml'
     <<: *NodeParam
-    path: 'proxy_provider/H2.yaml
-    override:
-      additional-prefix: "[H2] " 
-  H3:
+    path: 'proxy_provider/H1u.yaml'
+  Hq1:
     url: 'https://raw.githubusercontent.com/skywrt/v2ray-configs/main/All_Configs_Sub.txt'
     <<: *NodeParam
-    path: 'proxy_provider/H3.yaml'
-    override:
-      additional-prefix: "[H3] " 
-  H4:
+    path: 'proxy_provider/Hq1.yaml'
+  HA1:
     url: 'https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml'
     <<: *NodeParam
-    path: 'proxy_provider/H4.yaml'
-    override:
-      additional-prefix: "[H4] " 
+    path: 'proxy_provider/HA1.yaml'
+    
 
 FilterHK: &FilterHK '^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
 FilterTW: &FilterTW '^(?=.*((?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
@@ -180,7 +165,6 @@ rule-providers:
     url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/Proxy.yaml'
 
 
-# 规则指向
 rules:
   - RULE-SET, Proxy, auto
   - GEOIP, ir, DIRECT
