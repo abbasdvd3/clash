@@ -1,7 +1,4 @@
-# mihomo 配置
-# 日期：2024-05-21 00:38:30
-# 配置作者：https://t.me/iKeLee
-# 适用版本：所有使用 mihomo 核心的程序
+
 port: 7892
 socks-port: 7891
 mixed-port: 7890
@@ -76,37 +73,33 @@ dns:
   nameserver:
     - https://223.5.5.5/dns-query#h3=true
     - https://223.6.6.6/dns-query#h3=true
-
-# 锚点 - 节点订阅的参数 [每小时更新一次订阅节点，每 6 秒一次健康检查]
 NodeParam: &NodeParam {type: http, interval: 3600, health-check: {enable: true, url: 'http://cp.cloudflare.com', interval: 60}}
-
-# 锚点 - 节点订阅
 proxy-providers: 
-  机场名称1:
+  H1:
     url: 'https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt'
     <<: *NodeParam
-    path: 'proxy_provider/机场名称1.yaml'
-#    override:
- #     additional-prefix: "[机场名称1] " # 为订阅节点添加机场名称前缀
-  机场名称2:
+    path: 'proxy_provider/H1.yaml'
+    override:
+      additional-prefix: "[H1] " 
+  H2:
     url: 'https://chromego-sub.netlify.app/sub/merged_proxies_new.yaml'
     <<: *NodeParam
-    path: 'proxy_provider/机场名称2.yaml
-  #  override:
-  #    additional-prefix: "[机场名称2] " # 为订阅节点添加机场名称前缀
-  机场名称3:
+    path: 'proxy_provider/H2.yaml
+    override:
+      additional-prefix: "[H2] " 
+  H3:
     url: 'https://raw.githubusercontent.com/skywrt/v2ray-configs/main/All_Configs_Sub.txt'
     <<: *NodeParam
-    path: 'proxy_provider/机场名称3.yaml'
-#    override:
- #     additional-prefix: "[机场名称1] " # 为订阅节点添加机场名称前缀
-  机场名称4:
+    path: 'proxy_provider/H3.yaml'
+    override:
+      additional-prefix: "[H3] " 
+  H4:
     url: 'https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml'
     <<: *NodeParam
-    path: 'proxy_provider/机场名称4.yaml'
-  #  override:
-  #    additional-prefix: "[机场名称2] " # 为订阅节点添加机场名称前缀
-# 锚点 - 节点筛选组
+    path: 'proxy_provider/H4.yaml'
+    override:
+      additional-prefix: "[H4] " 
+
 FilterHK: &FilterHK '^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
 FilterTW: &FilterTW '^(?=.*((?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
 FilterJP: &FilterJP '^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
@@ -119,17 +112,11 @@ FilterDE: &FilterDE '^(?=.*((?i)🇩🇪|德国|(\b(DE|Germany)\b)))(?!.*((?i)�
 FilterGame: &FilterGame '^(?=.*((?i)游戏|🎮|(\b(GAME)\b)))(?!.*((?i)回国|校园)).*$'
 FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$'
 
-# 策略组参数锚点
-# 锚点 - 时延优选参数 [每 6 秒一次惰性健康检查，容差 20ms，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
 UrlTest: &UrlTest {type: url-test, interval: 99, tolerance: 20, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true}
-# 锚点 - 故障转移参数 [每 6 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
 FallBack: &FallBack {type: fallback, interval: 99, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true}
-# 锚点 - 负载均衡参数 [每 6 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
 LoadBalance: &LoadBalance {type: load-balance, interval: 99, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, strategy: consistent-hashing, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true}
-# 锚点 - 规则参数 [每小时更新一次订阅规则，更新规则时使用直连策略]
 RuleSet: &RuleSet {type: http, behavior: classical, interval: 3600, format: yaml, proxy: DIRECT}
 
-# 策略组
 proxy-groups: 
   - {name: auto, type: url-test, include-all: true, icon: https://raw.githubusercontent.com/clash-verge-rev/icon-hub/main/genshin-impact/1.png, filter: *FilterGame, proxies: [line, select]}
   - {name: url-test, type: url-test, include-all: true, icon: https://raw.githubusercontent.com/clash-verge-rev/icon-hub/main/genshin-impact/2.png, filter: *FilterAll}
@@ -156,7 +143,6 @@ proxy-groups:
   - {name: French, type: url-test, proxies: [⏱French, 🚥French, 🎛French]}
   - {name: German, type: url-test, proxies: [⏱German, 🚥German, 🎛German]}
 
-# 时延优选策略组
   - {name: ⏱Hong Kong, <<: *UrlTest, filter: *FilterHK}
   - {name: ⏱Taiwan, <<: *UrlTest, filter: *FilterTW}
   - {name: ⏱Japan, <<: *UrlTest, filter: *FilterJP}
@@ -167,7 +153,6 @@ proxy-groups:
   - {name: ⏱French, <<: *UrlTest, filter: *FilterFR}
   - {name: ⏱German, <<: *UrlTest, filter: *FilterDE}
 
-# 故障转移策略组
   - {name: 🚥Hong Kong, <<: *FallBack, filter: *FilterHK}
   - {name: 🚥Taiwan, <<: *FallBack, filter: *FilterTW}
   - {name: 🚥Japan, <<: *FallBack, filter: *FilterJP}
@@ -178,7 +163,6 @@ proxy-groups:
   - {name: 🚥French, <<: *FallBack, filter: *FilterFR}
   - {name: 🚥German, <<: *FallBack, filter: *FilterDE}
 
-# 负载均衡策略组
   - {name: 🎛Hong Kong, <<: *LoadBalance, filter: *FilterHK}
   - {name: 🎛Taiwan, <<: *LoadBalance, filter: *FilterTW}
   - {name: 🎛Japan, <<: *LoadBalance, filter: *FilterJP}
@@ -189,7 +173,6 @@ proxy-groups:
   - {name: 🎛French, <<: *LoadBalance, filter: *FilterFR}
   - {name: 🎛German, <<: *LoadBalance, filter: *FilterDE}
 
-# 订阅规则
 rule-providers:
   Proxy:
     <<: *RuleSet
