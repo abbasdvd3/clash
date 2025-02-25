@@ -2,7 +2,7 @@ dns:
   enable: true
   ipv6: true
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.0/8
+  fake-ip-range: 100.0.0.0/8
   fake-ip-filter:
     - "*.lan"
     - "*.local"
@@ -26,7 +26,7 @@ dns:
     - tls://dns.google:853
     - https://8.8.4.4/dns-query
   fallback-filter:
-    geoip: false
+    geoip: true
     geoip-code: ir
     ipcidr:
       - 240.0.0.0/4
@@ -57,26 +57,85 @@ tun:
     - 1.1.1.1
     - 1.0.0.1
 proxy-providers:
-  provider1:
+  provider8:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/pp1.yaml"
-    path: Prem/p1.yaml
+    url: "http://141.147.161.50:12580/clash/proxies"
+    path: Prem/p8.yaml
     interval: 89
     health-check:
       enable: true
       interval: 30
-      url: https://www.google.com/
-  provider2:
+      url: https://www.pornhub.com/generate_204
+  provider7:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah" 
-    path: Prem/p12.yaml
+    url: "http://150.230.195.209:12580/clash/proxies" 
+    path: Prem/p7.yaml
     interval: 89
 #    exclude-filter: Expire
     health-check:
       enable: true
       interval: 30
-      url: https://www.google.com/  
-    
+      url: https://www.pornhub.com/generate_204
+  provider1:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah" 
+    path: Prem2/p1.yaml
+    interval: 89
+#    exclude-filter: Expire
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.pornhub.com/generate_204
+  provider2:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/pp1.yaml"    
+    path: Prem2/P2.yaml
+    interval: 89
+ #   exclude-filter: Expire
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.pornhub.com/generate_204
+  provider3:
+    type: http
+    url: "https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1225clash.yml"    
+    path: Prem2/P3.yaml
+    interval: 89
+ #   exclude-filter: Expire
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.pornhub.com/generate_204
+  provider4:
+    type: http
+    url: "https://raw.githubusercontent.com/vveg26/get_proxy/main/dist/clash.config.yaml" 
+    path: Prem2/p4.yaml
+    interval: 89
+#    exclude-filter: Expire
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.pornhub.com/generate_204
+  provider5:
+    type: http
+    url: "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"    
+    path: Prem2/P5.yaml
+    interval: 89
+ #   exclude-filter: Expire
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.pornhub.com/generate_204
+  provider6:
+    type: http
+    url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"    
+    path: Prem2/P6.yaml
+    interval: 89
+ #   exclude-filter: Expire
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.pornhub.com/generate_204    
 proxies:
 proxy-groups:
   - name: FINAL
@@ -85,8 +144,9 @@ proxy-groups:
     use:
  #     - provider1
     proxies:
-      - ♻️
-      - United
+      - url-test
+      - United+url-test
+      - United+fallback
       - fallback
   - name: fallback
     type: fallback
@@ -99,7 +159,47 @@ proxy-groups:
     use:
       - provider1
       - provider2
-  - name: United
+      - provider3
+      - provider4
+      - provider5
+      - provider6
+      - provider7
+      - provider8
+  - name: United+url-test
+    type: url-test
+    url: https://www.google.com/
+    disable-udp: true
+    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
+    interval: 99
+    tolerance: 8000
+    hidden: false
+    use:
+      - provider1
+      - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
+      - provider7
+      - provider8
+  - name: United+fallback
+    type: fallback
+    url: https://www.google.com/
+    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
+    disable-udp: true
+    interval: 99
+    tolerance: 800
+    hidden: false
+    use:
+      - provider1
+      - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
+      - provider7
+      - provider8
+  - name: url-test
     type: url-test
     url: https://www.google.com/
     disable-udp: true
@@ -109,16 +209,12 @@ proxy-groups:
     use:
       - provider1
       - provider2
-  - name: ♻️
-    type: url-test
-    url: https://www.google.com/
-    disable-udp: true
-    interval: 99
-    tolerance: 800
-    hidden: false
-    use:
-      - provider1
-      - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
+      - provider7
+      - provider8
     proxies: 
   - name: 🎯 DIRECT
     type: select
@@ -126,8 +222,23 @@ proxy-groups:
     proxies:
       - DIRECT
       - ♻️      
-
-
+  - name: FINAL
+    type: select
+    disable-udp: true
+    proxies:
+      - url-test
+      - United+url-test
+      - United+fallback
+      - fallback     
+    use:
+      - provider1
+      - provider2
+      - provider3
+      - provider4
+      - provider5
+      - provider6
+      - provider7
+      - provider8
 rule-providers:
   ir:
     type: http
@@ -167,24 +278,24 @@ rule-providers:
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.list
     interval: 3600
 rules:
-  - GEOIP,telegram,FINAL
-  - GEOIP,google,FINAL
-  - GEOIP,facebook,FINAL
-  - RULE-SET,geolocation-!cn,FINAL
+  - GEOIP,telegram,PROXY
+  - GEOIP,google,PROXY
+  - GEOIP,facebook,PROXY
+  - RULE-SET,geolocation-!cn,PROXY
   - GEOIP,CN,🎯 DIRECT
   - DOMAIN-SUFFIX,fast.com,🎯 DIRECT
   - DOMAIN-SUFFIX,speedtest.net,🎯 DIRECT
   - PROCESS-NAME,com.tomclaw.appsend,DIRECT
   - DOMAIN-SUFFIX,appteka.store,DIRECT
   - DOMAIN-SUFFIX,appteka.store/api,DIRECT
-  - RULE-SET,private,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,ir,DIRECT,no-resolve
-  - RULE-SET,ir,DIRECT,no-resolve
-  - RULE-SET,ircidr,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,FINAL
-  - DOMAIN-SUFFIX,services.googleapis.cn,FINAL
-  - DOMAIN-SUFFIX,apkpure.com,FINAL
-  - GEOIP,ir,DIRECT,no-resolve
-  - GEOIP,private,DIRECT,no-resolve
+  - RULE-SET,private,🎯 DIRECT,no-resolve
+  - DOMAIN-SUFFIX,ir,🎯 DIRECT,no-resolve
+  - RULE-SET,ir,🎯 DIRECT,no-resolve
+  - RULE-SET,ircidr,🎯 DIRECT,no-resolve
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
+  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
+  - DOMAIN-SUFFIX,apkpure.com,PROXY
+  - GEOIP,ir,🎯 DIRECT,no-resolve
+  - GEOIP,private,🎯 DIRECT,no-resolve
   - DOMAIN-KEYWORD,appteka.store,🎯 DIRECT
-  - MATCH,FINAL
+  - MATCH,PROXY
