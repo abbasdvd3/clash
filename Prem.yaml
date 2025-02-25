@@ -7,24 +7,24 @@ dns:
     - "*.lan"
     - "*.local"
   default-nameserver:
-    - 114.114.114.114
-    - 9.9.9.9
-    - 223.6.6.6
-    - 180.76.76.76
-    - 119.28.28.28
+    - 114.114.114.114#PROXY
+    - 9.9.9.9#PROXY
+    - 223.6.6.6#PROXY
+    - 180.76.76.76#PROXY
+    - 119.28.28.28#PROXY
   nameserver:
-    - tls://dot.pub:853
-    - tls://1.12.12.12:853
-    - tls://120.53.53.53:853
-    - https://doh.pub/dns-query
-    - 1.1.1.1
-    - 77.88.8.1
-    - 77.88.8.8
+    - tls://dot.pub:853#PROXY
+    - tls://1.12.12.12:853#PROXY
+    - tls://120.53.53.53:853#PROXY
+    - https://doh.pub/dns-query#PROXY
+    - 1.1.1.1#PROXY
+    - 77.88.8.1#PROXY
+    - 77.88.8.8#PROXY
   fallback:
-    - https://dns.quad9.net/dns-query
-    - https://dns9.quad9.net/dns-query
-    - tls://dns.google:853
-    - https://8.8.4.4/dns-query
+    - https://dns.quad9.net/dns-query#PROXY
+    - https://dns9.quad9.net/dns-query#PROXY
+    - tls://dns.google:853#PROXY
+    - https://8.8.4.4/dns-query#PROXY
   fallback-filter:
     geoip: true
     geoip-code: ir
@@ -222,7 +222,7 @@ proxy-groups:
     proxies:
       - DIRECT
       - ♻️      
-  - name: FINAL
+  - name: PROXY
     type: select
     disable-udp: true
     proxies:
