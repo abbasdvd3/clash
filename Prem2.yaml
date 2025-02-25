@@ -246,7 +246,145 @@ rule-providers:
     url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
     path: ruleset/telegramcidr.yaml
     interval: 86400
+  UnBan:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
+    format: text
+    interval: 3600
+    path: ruleset/UnBan.list
+  BanAD:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+    format: text
+    interval: 3600
+    path: ruleset/BanAD.list
+  BanProgramAD:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
+    format: text
+    interval: 3600
+    path: ruleset/BanProgramAD.list
+  BanEasyList:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list
+    format: text
+    interval: 3600
+    path: ruleset/BanEasyList.list
+  BanEasyListChina:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
+    format: text
+    interval: 3600
+    path: ruleset/BanEasyListChina.list
+  BanEasyPrivacy:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
+    format: text
+    interval: 3600
+    path: ruleset/BanEasyPrivacy.list
+  GoogleFCM:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
+    format: text
+    interval: 3600
+    path: ruleset/GoogleFCM.list
+  GoogleCN:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
+    format: text
+    interval: 3600
+    path: ruleset/GoogleCN.list
+  Bing:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list
+    format: text
+    interval: 3600
+    path: ruleset/Bing.list
+  Microsoft:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
+    format: text
+    interval: 3600
+    path: ruleset/Microsoft.list
+  Apple:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
+    format: text
+    interval: 3600
+    path: ruleset/Apple.list
+  Telegram:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
+    format: text
+    interval: 3600
+    path: ruleset/Telegram.list
+  OpenAi:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
+    format: text
+    interval: 3600
+    path: ruleset/OpenAi.list
+  ProxyGFWlist:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
+    format: text
+    interval: 3600
+    path: ruleset/ProxyGFWlist.list
+  ChinaDomain:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
+    format: text
+    interval: 3600
+    path: ruleset/ChinaDomain.list
+  ChinaCompanyIp:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
+    format: text
+    interval: 3600
+    path: ruleset/ChinaCompanyIp.list
+
 rules:
+
+  - RULE-SET,UnBan,PROXY
+  - RULE-SET,BanAD,REJECT
+  - RULE-SET,BanProgramAD,REJECT
+  - RULE-SET,BanEasyList,REJECT
+  - RULE-SET,BanEasyListChina,REJECT
+  - RULE-SET,BanEasyPrivacy,PROXY
+  - RULE-SET,GoogleFCM,PROXY
+  - RULE-SET,GoogleCN,PROXY
+
+  - RULE-SET,Bing,PROXY
+  - RULE-SET,Microsoft,PROXY
+  - RULE-SET,Apple,PROXY
+  - RULE-SET,Telegram,PROXY
+  - RULE-SET,OpenAi,PROXY
+  - DOMAIN-SUFFIX,v2rayse.com,PROXY
+  - DOMAIN-SUFFIX,cff.pw,PROXY
+  - DOMAIN-SUFFIX,vpnse.org,PROXY
+  - DOMAIN-SUFFIX,cfmem.com,PROXY
+  - RULE-SET,ProxyGFWlist,PROXY
+  - RULE-SET,ChinaDomain,IRAN
+  - RULE-SET,ChinaCompanyIp,IRAN
+
+  - GEOIP,CN,IRAN
+
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
   - RULE-SET,private,DIRECT,no-resolve
