@@ -321,6 +321,14 @@ rule-providers:
     interval: 3600
     path: ruleset/BanEasyPrivacy.list
 rules:
+  - GEOIP,facebook,PROXY
+  - GEOIP,google,PROXY
+  - GEOIP,twitter,PROXY
+  - GEOIP,telegram,PROXY
+  - PROCESS-NAME,fs_v2.exe,DIRECT
+  - PROCESS-NAME,Swapface.exe,DIRECT
+  - PROCESS-NAME,conhost.exe,DIRECT
+  - DOMAIN-SUFFIX,swapface.org,DIRECT
   - RULE-SET,UnBan,PROXY
   - RULE-SET,BanAD,REJECT
   - RULE-SET,BanProgramAD,REJECT
