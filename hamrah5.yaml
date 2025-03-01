@@ -69,6 +69,7 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
+      
   - name: Auto
     type: url-test
     interval: 100
@@ -85,6 +86,7 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
+      
   - name: Autofallback
     type: fallback
     interval: 160
@@ -101,6 +103,7 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
+      
   - name: Geo-HK
     type: url-test
     interval: 100
@@ -190,7 +193,6 @@ proxy-groups:
       - Subscription-5
       - Subscription-6
  
-
   - name: Geo-DE
     type: url-test
     interval: 100
@@ -222,8 +224,6 @@ proxy-groups:
       - Subscription-5
       - Subscription-6
    
-     
-
   - name: Block
     type: select
     expected-status: 200/204
@@ -260,7 +260,6 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-
 
   - name: DNS-Proxy
     type: select
@@ -321,7 +320,6 @@ proxy-groups:
       - Geo-DE
       - Geo-CN
     
-
   - name: iCloud
     type: url-test
     interval: 300
@@ -340,7 +338,6 @@ proxy-groups:
       - Geo-DE
       - Geo-CN
   
-
   - name: MicrosoftCN
     type: url-test
     interval: 300
@@ -359,7 +356,6 @@ proxy-groups:
       - Geo-DE
       - Geo-CN
       
-
   - name: PayPal
     type: url-test
     interval: 300
@@ -378,7 +374,6 @@ proxy-groups:
       - Geo-DE
       - Geo-CN
     
-
   - name: Steam
     type: url-test
     interval: 300
@@ -397,7 +392,6 @@ proxy-groups:
       - Geo-DE
       - Geo-CN
   
-
   - name: Game
     type: url-test
     interval: 300
@@ -416,7 +410,6 @@ proxy-groups:
       - Geo-DE
       - Geo-CN
      
-
   - name: Facebook
     type: url-test
     interval: 300
@@ -435,7 +428,6 @@ proxy-groups:
       - Geo-DE
       - Geo-CN
    
-
   - name: Twitter
     type: url-test
     interval: 300
@@ -454,7 +446,6 @@ proxy-groups:
       - Geo-DE
       - Geo-CN
      
-
   - name: Telegram
     type: url-test
     interval: 300
@@ -473,7 +464,6 @@ proxy-groups:
       - Geo-DE
       - Geo-CN
     
-
   - name: GlobalTV
     type: url-test
     interval: 300
@@ -510,7 +500,6 @@ proxy-groups:
       - Geo-DE
       - Geo-CN
    
-
   - name: Spotify
     type: url-test
     interval: 300
@@ -529,7 +518,6 @@ proxy-groups:
       - Geo-DE
       - Geo-CN
  
-
   - name: SpeedTest
     type: url-test
     interval: 300
@@ -548,7 +536,6 @@ proxy-groups:
       - Geo-DE
       - Geo-CN
   
-
   - name: Download
     type: url-test
     interval: 300
@@ -567,7 +554,6 @@ proxy-groups:
       - Geo-DE
       - Geo-CN
    
-
   - name: CN
     type: select
     proxies:
@@ -585,7 +571,6 @@ proxy-providers:
     proxies: DIRECT
     interval: 600
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
-      lazy: false 
 
   Subscription-2:
     type: http
@@ -593,8 +578,7 @@ proxy-providers:
     path: providers5/Subscription-2.yaml
     proxies: DIRECT
     interval: 600
-   health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
-      lazy: false 
+    health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
 
   Subscription-3:
     type: http
@@ -603,7 +587,6 @@ proxy-providers:
     proxies: DIRECT
     interval: 600
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
-      lazy: false 
 
   Subscription-4:
     type: http
@@ -612,7 +595,6 @@ proxy-providers:
     proxies: DIRECT
     interval: 600
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
-      lazy: false 
 
   Subscription-5:
     type: http
@@ -621,7 +603,6 @@ proxy-providers:
     proxies: DIRECT
     interval: 600
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
-      lazy: false 
 
   Subscription-6:
     type: http
@@ -630,7 +611,7 @@ proxy-providers:
     proxies: DIRECT
     interval: 600
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
-      lazy: false 
+
 rule-providers:
   ir:
     type: http
