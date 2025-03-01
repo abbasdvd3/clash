@@ -140,8 +140,10 @@ proxy-providers:
 proxies:
 proxy-groups:
   - name: FINAL
-    type: select
-    disable-udp: true
+    type: url-test
+    url: https://www.google.com/
+    tolerance: 800
+    disable-udp: false
     use:
  #     - provider1
     proxies:
@@ -152,7 +154,7 @@ proxy-groups:
   - name: fallback
     type: fallback
     url: https://www.google.com/
-    disable-udp: true
+    disable-udp: false
     interval: 99
  #   filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     hidden: false
@@ -169,10 +171,10 @@ proxy-groups:
   - name: United+url-test
     type: url-test
     url: https://www.google.com/
-    disable-udp: true
+    disable-udp: false
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     interval: 99
-    tolerance: 8000
+    tolerance: 80
     hidden: false
     use:
       - provider1
@@ -187,9 +189,8 @@ proxy-groups:
     type: fallback
     url: https://www.google.com/
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
-    disable-udp: true
+    disable-udp: false
     interval: 99
-    tolerance: 800
     hidden: false
     use:
       - provider1
@@ -203,9 +204,8 @@ proxy-groups:
   - name: url-test
     type: url-test
     url: https://www.google.com/
-    disable-udp: true
+    disable-udp: false
     interval: 99
-    tolerance: 8000
     hidden: false
     use:
       - provider1
@@ -225,7 +225,7 @@ proxy-groups:
       - FINAL      
   - name: PROXY
     type: select
-    disable-udp: true
+    disable-udp: false
     proxies:
       - FINAL
       - United+url-test
