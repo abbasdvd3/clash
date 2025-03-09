@@ -113,11 +113,12 @@ UrlTest: &UrlTest {type: url-test, interval: 99, tolerance: 20, lazy: true, url:
 FallBack: &FallBack {type: fallback, interval: 99, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true}
 LoadBalance: &LoadBalance {type: load-balance, interval: 99, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, strategy: consistent-hashing, timeout: 2000, max-failed-times: 3, hidden: true, include-all: true}
 RuleSet: &RuleSet {type: http, behavior: classical, interval: 3600, format: yaml, proxy: DIRECT}
+# https://raw.githubusercontent.com/clash-verge-rev/icon-hub/main/genshin-impact/1.png
 
 proxy-groups: 
-  - {name: auto, type: url-test, include-all: true, icon: https://raw.githubusercontent.com/clash-verge-rev/icon-hub/main/genshin-impact/1.png, filter: *FilterGame, proxies: [line, select]}
+  - {name: auto, type: url-test, include-all: true, icon: https://raw.githubusercontent.com/abbasdvd3/allwinner-tools/refs/heads/master/daily_build/0.gif, filter: *FilterGame, proxies: [url-test, select]}
   - {name: url-test, type: url-test, include-all: true, icon: https://raw.githubusercontent.com/clash-verge-rev/icon-hub/main/genshin-impact/2.png, filter: *FilterAll}
-  - {name: select, type: select, include-all: true, icon: https://raw.githubusercontent.com/clash-verge-rev/icon-hub/main/genshin-impact/3.png, filter: *FilterAll, proxies: [url-test]}
+  - {name: select, type: select, include-all: true, icon: https://raw.githubusercontent.com/clash-verge-rev/icon-hub/main/genshin-impact/3.png, proxies: []}
   - {name: AI, type: url-test, include-all: true, icon: https://raw.githubusercontent.com/clash-verge-rev/icon-hub/main/genshin-impact/4.png, filter: *FilterAll}
   - {name: TikTok, type: url-test, include-all: true, icon: https://raw.githubusercontent.com/clash-verge-rev/icon-hub/main/genshin-impact/5.png, filter: *FilterAll}
   - {name: Telegram, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
