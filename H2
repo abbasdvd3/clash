@@ -69,7 +69,7 @@ dns:
 NodeParam: &NodeParam {type: http, interval: 3600, health-check: {enable: true, url: 'http://cp.cloudflare.com', interval: 60}}
 proxy-providers: 
   H1:
-    url: 'https://www.nameless13.com/sub?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Facymz%2FAutoVPN%2Frefs%2Fheads%2Fmain%2Fdata%2FV2.txt&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online_Full_NoAuto.ini&emoji=true&list=false&xudp=false&udp=false&tfo=false&expand=true&scv=false&fdn=false&new_name=true'
+    url: 'https://cdn.jsdelivr.net/gh/itxve/fetch-clash-node/node/NodeShare.yaml'
     <<: *NodeParam
     path: 'proxy_provider/H1.yaml'
   H1u:
@@ -83,8 +83,19 @@ proxy-providers:
   HA1:
     url: 'https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml'
     <<: *NodeParam
-    path: 'proxy_provider/HA1.yaml'
-    
+    path: 'proxy_provider/HA1.yaml'    
+  H1u5:
+    url: 'https://cdn.jsdelivr.net/gh/itxve/fetch-clash-node/node/NodeFree.yaml'
+    <<: *NodeParam
+    path: 'proxy_provider/H1u5.yaml'
+  Hq15:
+    url: 'https://cdn.jsdelivr.net/gh/itxve/fetch-clash-node/node/merge.yaml'
+    <<: *NodeParam
+    path: 'proxy_provider/Hq15.yaml'
+  HA155:
+    url: 'https://cdn.jsdelivr.net/gh/itxve/fetch-clash-node/node/ClashNode.yaml'
+    <<: *NodeParam
+    path: 'proxy_provider/HA155.yaml'
 
 FilterHK: &FilterHK '^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
 FilterTW: &FilterTW '^(?=.*((?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
