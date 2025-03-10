@@ -13,7 +13,7 @@ allow-lan: true
 mode: rule
 log-level: info
 ipv6: true
-udp: true
+udp: false
 external-controller: 127.0.0.1:9090
 external-controller-tls: 127.0.0.1:9093
 external-ui-name: xd
@@ -59,6 +59,7 @@ dns:
   fake-ip-filter:
     - "*"
     - +.lan
+    - +.cp.cloudflare.com
   default-nameserver:
     - 223.5.5.5
     - 223.6.6.6
