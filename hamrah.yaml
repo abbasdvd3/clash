@@ -69,7 +69,7 @@ tun:
   strict-route: true
   endpoint-independent-nat: true
 sniffer:
-  enable: false
+  enable: true
   force-dns-mapping: true
   parse-pure-ip: true
   override-destination: true
@@ -118,8 +118,8 @@ dns:
   enable: true
   listen: 0.0.0.0:1053
   ipv6: true
-  use-hosts: false
-  use-system-hosts: false
+  use-hosts: true
+  use-system-hosts: true
   default-nameserver:
     - 223.5.5.5
     - 114.114.114.114
@@ -136,15 +136,15 @@ dns:
     - https://120.53.53.53/dns-query
     - https://223.5.5.5/dns-query
   nameserver-policy:
-    "*.google.com":
+    "WWW.google.com":
       - 114.114.114.114
       - quic://223.5.5.5
       - https://doh.pub/dns-query
-    "*.instagram.com":
+    "WWW.instagram.com":
       - 114.114.114.114
       - quic://223.5.5.5
       - https://doh.pub/dns-query
-    "*.pornhub.com":
+    "WWW.pornhub.com":
       - 114.114.114.114
       - quic://223.5.5.5
       - https://doh.pub/dns-query
@@ -161,6 +161,7 @@ dns:
     - "*.local"
     - "*.home.arpa"
     - "*.msftconnecttest.com"
+    - "*.networkcheck.kde.org"
     - "*.msftncsi.com"
   fallback:
     - tls://1.1.1.1
@@ -186,340 +187,298 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A1]"
   A2:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A2]"
   A3:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/reality_clash.yaml" #https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/providers/providers64
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A3]"
   A4:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A4]"
   A5:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml" # https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/mixed"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A5]"
   A6:
     type: http
     url: "https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A6]"
 
   A7:
     type: http
     url: "https://raw.githubusercontent.com/changfengoss/pub/main/data/2024_08_10/PpoEAg.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A7]"
   A8:
     type: http
     url: "http://172.245.30.41/clash.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A8]"
   A9:
     type: http
     url: "https://raw.githubusercontent.com/Barabama/FreeNodes/master/nodes/merged.txt"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A9]"
   A10:
     type: http
     url: "https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A10]"
   A11:
     type: http
     url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/FREEIRAN-VIP"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A11]"
   A12:
     type: http
     url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A12]"
   A13:
     type: http
     url: "https://github.com/sarvari1378/SingBOX/raw/refs/heads/main/SUB/WORKER-VIP"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A13]"
   A14:
     type: http
     url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A14]"
   A15:
     type: http
     url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A15]"
   A16:
     type: http
     url: "https://www.xrayvip.com/free.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A16]"
   A17:
     type: http
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A17]"
   A18:
     type: http
     url: "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A18]"
   A19:
     type: http
     url: "https://raw.githubusercontent.com/vxiaov/free_proxies/main/clash/clash.provider.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  A119:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A19]"
+  A20:
     type: http
     url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  A20:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A20]"
+  A21:
     type: http
     url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  A21:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A21]"
+  A22:
     type: http
     url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  A22:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A22]"
+  A23:
     type: http
     url: "https://gist.githubusercontent.com/freeorgworld/128c0e7260148f61f8708c9566aed5ab/raw/publicvless.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  A23:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A23]"
+  A24:
     type: http
     url: "https://clash.221207.xyz/pubclashyaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  A24:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A24]"
+  A25:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  A25:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A25]"
+  A26:
     type: http
     url: "https://fs.v2rayse.com/share/20240915/wuvsfrbi3q.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  A26:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A26]"
+  A27:
     type: http
     url: "https://raw.gitmirror.com/sun9426/sun9426.github.io/main/subscribe/Clash.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  A27:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A27]"
+  A28:
     type: http
     url: "https://raw.githubusercontent.com/freebaipiao/freebaipiao/refs/heads/main/GfwserveClash.yaml" # https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/Fredom-VIP
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  A28:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A28]"
+  A29:
     type: http
     url: "https://tt.vg/iMfJI"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  AA1:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A29]"
+  A30:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/ss_clash.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  AA2:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A30]"
+  A31:
     type: http
     url: "https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/refs/heads/main/sub.txt"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  AA3:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A31]"
+  A32:
     type: http
     url: "https://raw.githubusercontent.com/dongchengjie/airport/main/subs/merged/tested_within.yaml" #https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/providers/providers64
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  AA4:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A32]"
+  A33:
     type: http
     url: "https://roughseae883roughseae883.xovekey820.workers.dev/b26c4279-1dd3-4773-9ef8-745364f6a005?sub"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  AA5:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A33]"
+  A34:
     type: http
     url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/mixed" # "
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  AA6:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A34]"
+  A35:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/refs/heads/main/reality_clash.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A35]"
 
-  AA7:
+  A36:
     type: http
     url: "https://raw.githubusercontent.com/Huibq/TrojanLinks/refs/heads/master/links/vmess"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  AA8:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A36]"
+  A37:
     type: http
     url: "https://raw.githubusercontent.com/Huibq/TrojanLinks/refs/heads/master/links/ssr"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  AA9:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A37]"
+  A38:
     type: http
     url: "https://raw.githubusercontent.com/WilliamStar007/ClashX-V2Ray-TopFreeProxy/main/combine/clashsub.txt"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  AA10:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A38]"
+  A39:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/providers/providers"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  AA11:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A39]"
+  A40:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  AA12:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A40]"
+  A41:
     type: http
     url: "https://raw.githubusercontent.com/skywrt/v2ray-configs/main/All_Configs_Sub.txt"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
-  AA13:
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A41]"
+  A42:
     type: http
     url: "https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt"
     interval: 300
-    health-check:
-      enable: true
-      url: "https://networkcheck.kde.org/"
-      interval: 300
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    override:
+      additional-prefix: "[A42]"
 rule-providers:
   category-ads-all:
     type: http
@@ -564,6 +523,8 @@ proxy-groups:
     type: url-test
     url: "https://networkcheck.kde.org/"
     filter: ""
+    interval: 300
+    tolerance: 50000
     exclude-filter: ""
     hidden: false
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png"
@@ -581,7 +542,7 @@ proxy-groups:
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
     use:
     url: "https://networkcheck.kde.org/"
-    interval: 30
+    interval: 300
     tolerance: 1500
     lazy: true
     disable-udp: true
@@ -617,7 +578,7 @@ proxy-groups:
     use:
 
     url: "https://networkcheck.kde.org/"
-    interval: 30
+    interval: 180
     lazy: true
     disable-udp: true
   - name: 🇺🇲 Fallback
@@ -629,7 +590,7 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/United_States.png"
     use:
     url: "https://networkcheck.kde.org/"
-    interval: 30
+    interval: 180
     lazy: true
     disable-udp: true
     
