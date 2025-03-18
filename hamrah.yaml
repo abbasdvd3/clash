@@ -157,8 +157,26 @@ dns:
       - https://dns.cloudflare.com/dns-query
       - https://doh.pub/dns-query
       - https://dns.cloudflare.com/dns-query#skip-cert-verify=true
+    "RULE-SET,geolocation-!cn,GoogleFCM,GoogleCNProxyIP,YouTube,GoogleCN,Google,Bing,OneDrive,Microsoft,Apple,Telegram,OpenAi,ChinaMedia,ProxyMedia,ProxyGFWlist":
+      - 223.5.5.5
+      - 114.114.114.114
+      - 119.29.29.29
+      - 180.76.76.76
+      - https://223.5.5.5/dns-query
+      - https://dns.cloudflare.com/dns-query
+      - https://doh.pub/dns-query
+      - https://dns.cloudflare.com/dns-query#skip-cert-verify=true
+    "RULE-SET,GEOIP-CN,GEOSITE-CN,LocalAreaNetwork,ChinaCompanyIp,ChinaDomain,GEOSITE-Private":
+      - 223.5.5.5
+      - 114.114.114.114
+      - 119.29.29.29
+      - 180.76.76.76
+      - https://223.5.5.5/dns-query
+      - https://dns.cloudflare.com/dns-query
+      - https://doh.pub/dns-query
+      - https://dns.cloudflare.com/dns-query#skip-cert-verify=true
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.0/8
+  fake-ip-range: 28.0.0.1/8
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "*.lan"
@@ -755,7 +773,7 @@ proxy-groups:
       - 🎈 Auto
       - 🐟 Fallback
       - 🇺🇲 Fallback
-    disable-udp: true
+    disable-udp: false
   - name: 🎈 Auto
     type: url-test
     include-all-providers: true
@@ -768,7 +786,7 @@ proxy-groups:
     interval: 300
     tolerance: 1500
     lazy: true
-    disable-udp: true
+    disable-udp: false
   - name: 🎯 Direct
     type: select
     filter: ""
@@ -779,7 +797,7 @@ proxy-groups:
       - DIRECT
       - REJECT
       - 🚀 Select
-    disable-udp: true
+    disable-udp: false
   - name: 🛑 Reject
     type: select
     filter: ""
@@ -803,7 +821,7 @@ proxy-groups:
     url: "https://networkcheck.kde.org/"
     interval: 180
     lazy: true
-    disable-udp: true
+    disable-udp: false
   - name: 🇺🇲 Fallback
     type: fallback
     include-all-providers: true
@@ -815,11 +833,12 @@ proxy-groups:
     url: "https://networkcheck.kde.org/"
     interval: 180
     lazy: true
-    disable-udp: true
+    disable-udp: false
     
   - name: PROXY
     type: select
     include-all-providers: true
+    disable-udp: false
     filter: ""
     exclude-filter: ""
     hidden: false
@@ -858,14 +877,14 @@ rules:
   - RULE-SET,GEOSITE-CN,🎯 Direct
   - RULE-SET,geolocation-!cn,PROXY
   - RULE-SET,LocalAreaNetwork,🎯 Direct
-  - RULE-SET,UnBan,🎯 Direct
+  - RULE-SET,UnBan,PROXY
   - RULE-SET,BanAD,🛑 Reject
   - RULE-SET,BanProgramAD,🛑 Reject
   - RULE-SET,GoogleFCM,PROXY
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
   - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
   - RULE-SET,GoogleCNProxyIP,PROXY
-  - RULE-SET,GoogleCN,🎯 Direct
+  - RULE-SET,GoogleCN,PROXY
   - RULE-SET,YouTube,PROXY
   - RULE-SET,Google,PROXY
   - RULE-SET,Bing,PROXY
