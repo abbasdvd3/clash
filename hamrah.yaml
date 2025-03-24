@@ -437,12 +437,10 @@ proxies:
 
 proxy-groups:
   - name: 🚀 Select
-    type: select
-    use:
-      - A1
-      - A2
-      - A3
-      - A4
+    type: url-test
+    url: "https://networkcheck.kde.org/"
+    tolerance: 5000
+    lazy: false
     hidden: false
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png"
     proxies:
@@ -464,7 +462,7 @@ proxy-groups:
     url: "https://networkcheck.kde.org/"
     interval: 300
     tolerance: 5000
-    lazy: true
+    lazy: false
     disable-udp: false
   - name: 🎯 Direct
     type: select
@@ -502,7 +500,7 @@ proxy-groups:
       - A4
     url: "https://networkcheck.kde.org/"
     interval: 180
-    lazy: true
+    lazy: false
     disable-udp: false
   - name: 🇺🇲 Fallback
     type: fallback
@@ -518,12 +516,13 @@ proxy-groups:
       - A4
     url: "https://networkcheck.kde.org/"
     interval: 180
-    lazy: true
+    lazy: false
     disable-udp: false
     
   - name: PROXY
     type: select
     disable-udp: false
+    lazy: false
     filter: ""
     exclude-filter: ""
     hidden: false
@@ -589,6 +588,7 @@ rules:
   - DOMAIN-SUFFIX,cff.pw,PROXY
   - DOMAIN-SUFFIX,vpnse.org,PROXY
   - DOMAIN-SUFFIX,cfmem.com,PROXY
+  - DOMAIN-SUFFIX,networkcheck.kde.org,🎯 Direct
   - RULE-SET,ProxyGFWlist,PROXY
   - RULE-SET,ChinaDomain,🎯 Direct
   - RULE-SET,ChinaCompanyIp,🎯 Direct
