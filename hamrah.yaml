@@ -682,17 +682,17 @@ rules:
 #  - IP-CIDR,94.140.14.141/32,REJECT
 #  - IP-CIDR,223.6.6.6/32,REJECT
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑 Reject
-  - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
-  - RULE-SET,category-ads-all,🛑 Reject
+ # - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
+#  - RULE-SET,category-ads-all,🛑 Reject
   - RULE-SET,GEOIP-Private,🎯 Direct,no-resolve
   - RULE-SET,GEOIP-CN,🎯 Direct,no-resolve
   - RULE-SET,GEOSITE-Private,🎯 Direct,no-resolve
-  - RULE-SET,GEOSITE-CN,🎯 Direct
+  - RULE-SET,GEOSITE-CN,🎯 Direct,no-resolve
   - RULE-SET,geolocation-!cn,PROXY
-  - RULE-SET,LocalAreaNetwork,🎯 Direct
+  - RULE-SET,LocalAreaNetwork,🎯 Direct,no-resolve
   - RULE-SET,UnBan,PROXY
-  - RULE-SET,BanAD,🛑 Reject
-  - RULE-SET,BanProgramAD,🛑 Reject
+#  - RULE-SET,BanAD,🛑 Reject
+#  - RULE-SET,BanProgramAD,🛑 Reject
   - RULE-SET,GoogleFCM,PROXY
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
   - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
