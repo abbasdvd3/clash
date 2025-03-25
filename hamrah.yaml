@@ -125,26 +125,80 @@ dns:
     - 114.114.114.114
     - 119.29.29.29
     - 180.76.76.76
+    - 9.9.9.10
+    - 94.140.14.140:853
+    - 94.140.14.140
+    - 94.140.14.141:784
+    - 94.140.14.141:853
+    - 94.140.14.141
   nameserver:
     - https://223.5.5.5/dns-query
     - https://dns.cloudflare.com/dns-query
     - https://doh.pub/dns-query
     - https://dns.cloudflare.com/dns-query#skip-cert-verify=true
+    - https://8.8.8.8/dns-query
+    - tls://45.90.28.0:853
+    - tls://45.90.30.0:853
+    - https://45.90.28.0/dns-query
+    - https://45.90.30.0/dns-query
+    - https://anycast.dns.nextdns.io/dns-query
+    - quic://dns-unfiltered.adguard.com:784
+    - tls://dns-unfiltered.adguard.com:853
+    - https://dns-unfiltered.adguard.com/dns-query
+    - quic://94.140.14.140:784
+    - tls://94.140.14.140:853
+    - https://94.140.14.140/dns-query
+    - quic://94.140.14.141:784
+    - tls://94.140.14.141:853
+    - https://94.140.14.141/dns-query
+    - quic://[2a10:50c0::1:ff]:784
+    - tls://[2a10:50c0::1:ff]:853
+    - https://[2a10:50c0::1:ff]/dns-query
+    - quic://[2a10:50c0::2:ff]:784
+    - tls://[2a10:50c0::2:ff]:853
+    - https://[2a10:50c0::2:ff]/dns-query
+    - https://dns-adguard.heinu.cf/dns-query
+    - https://dns-adguard.heinu.ga/dns-query
   proxy-server-nameserver:
     - tls://223.5.5.5
     - tls://dot.pub
     - https://120.53.53.53/dns-query
     - https://223.5.5.5/dns-query
+    - https://9.9.9.10/dns-query
+    - https://dns.ipv6dns.com/dns-query
+    - tls://221.228.217.28:853
+    - https://221.228.217.28/dns-query
+    - tls://111.7.223.98:853
+    - https://111.7.223.98/dns-query
+    - tls://122.194.14.149:853
+    - https://122.194.14.149/dns-query
+    - tls://dns.alidns.com:853
+    - https://dns.alidns.com/dns-query
+    - tls://223.5.5.5:853
+    - https://223.5.5.5/dns-query
+    - tls://223.6.6.6:853
+    - https://223.6.6.6/dns-queryh3=true
+    - tls://dot.360.cn:853
+    - https://doh.360.cn/dns-query
+    - tls://dns.pub:853
+    - https://dns.pub/dns-query
+    - tls://120.53.53.53:853
+    - tls://1.12.12.12:853
+    - https://120.53.53.53/dns-query
+    - https://1.12.12.12/dns-query
+    - https://doh.360.cn/dns-query
+    - tls://dot.360.cn:853
+    - tls://dns.tuna.tsinghua.edu.cn:8853
   nameserver-policy:
-    "WWW.google.com":
+    "www.google.com":
       - 114.114.114.114
       - quic://223.5.5.5
       - https://doh.pub/dns-query
-    "WWW.instagram.com":
+    "www.instagram.com":
       - 114.114.114.114
       - quic://223.5.5.5
       - https://doh.pub/dns-query
-    "WWW.pornhub.com":
+    "www.pornhub.com":
       - 114.114.114.114
       - quic://223.5.5.5
       - https://doh.pub/dns-query
@@ -193,16 +247,92 @@ dns:
   fallback:
     - tls://1.1.1.1
     - tls://223.5.5.5
+    - tls://8.8.4.4
+    - tls://8.8.8.8:853
+    - https://8.8.8.8/dns-query
+    - tls://8.8.4.4:853
+    - https://8.8.4.4/dns-query
+    - tls://[2001:4860:4860::8844]:853
+    - https://[2001:4860:4860::8844]/dns-query
+    - tls://[2001:4860:4860::8888]:853
+    - https://[2001:4860:4860::8888]/dns-query
+    - https://dns-google.heinu.cf/dns-query
+    - https://dns-google.heinu.ga/dns-query
+    - tls://dns-nosec.quad9.net:853
+    - tls://dns10.quad9.net:853
+    - https://dns10.quad9.net:5053/dns-query
+    - https://dns10.quad9.net/dns-query
+    - tls://dns12.quad9.net:853
+    - https://dns12.quad9.net:5053/dns-query
+    - https://dns12.quad9.net/dns-query
   fallback-filter:
     geoip: true
     geoip-code: ir
-    geosite: []
+    geosite: 
+      - ir
     ipcidr:
       - 240.0.0.0/4
+      - 0.0.0.0/8
+      - 10.0.0.0/8
+      - 100.64.0.0/10
+      - 127.0.0.0/8
+      - 169.254.0.0/16
+      - 172.16.0.0/12
+      - 192.0.0.0/24
+      - 192.0.2.0/24
+      - 192.88.99.0/24
+      - 192.168.0.0/16
+      - 198.18.0.0/16
+      - 198.51.100.0/24
+      - 203.0.113.0/24
+      - 224.0.0.0/4
+      - 240.0.0.0/4
+      - 255.255.255.255/32
+      - ::1/128
+      - fc00::/7
+      - fe80::/10
+      - 39.102.194.95/32
+      - 182.43.124.6/32
+      - 101.35.177.86/32
+      - 116.89.243.8/32
+      - 119.28.87.227/32
     domain:
       - +.google.com
       - +.facebook.com
       - +.youtube.com
+     - +.xincache.com
+     - www.gstatic.com
+     - +.ampproject.org
+     - +.appspot.com
+     - +.blogger.com
+     - +.google.com
+     - +.google.cn
+     - +.googleusercontent.com
+     - +.ggpht.com
+     - +.gmail.com
+     - +.gvt0.com
+     - +.gvt1.com
+     - +.gvt2.com
+     - +.gvt3.com
+     - +.youtu.be
+     - +.yt.be
+     - +.ytimg.com
+     - +.googlevideo.com
+     - +.youtube.com
+     - +.xn--ngstr-lra8j.com
+     - +.xn--flw351e.com
+     - +.xn--9kr7l.com
+     - +.xn--ggle-55da.com
+     - +.xn--gogl-0nd52e.com
+     - +.xn--gogl-1nd42e.com
+     - +.googleapis.com
+     - +.googleapis.cn
+     - +.gstatic.com
+     - +.gstatic.cn
+     - +.services.googleapis.cn
+     - +.services.googleapis.com
+     - +.connectivitycheck.gstatic.cn
+     - +.connectivitycheck.gstatic.com
   prefer-h3: true
 #hosts:
 #  google.com:
@@ -588,4 +718,5 @@ rules:
   - RULE-SET,ChinaCompanyIp,PROXY
   - RULE-SET,Download,PROXY
   - GEOIP,ir,🎯 Direct,no-resolve
+  - IN-TYPE,inner,PROXY
   - MATCH,PROXY
