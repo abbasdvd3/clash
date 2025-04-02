@@ -522,14 +522,17 @@ proxies:
 proxy-groups:
   - name: 🚀 Select
     type: select
-    lazy: false
+    lazy: true
+    expected-status: 200/302/400-503
+    timeout: 5000
+    max-failed-times: 5
     hidden: false
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png"
     proxies:
       - 🎈 Auto
       - 🐟 Fallback
-      - 🇺🇲 Fallback
-    disable-udp: false
+      - 🇺🇲 load-balance
+    disable-udp: true
   - name: 🎈 Auto
     type: url-test
     filter: ""
@@ -545,8 +548,11 @@ proxy-groups:
     url: "https://networkcheck.kde.org/"
     interval: 300
     tolerance: 5000
-    lazy: false
-    disable-udp: false
+    lazy: true
+    expected-status: 200/302/400-503
+    timeout: 5000
+    max-failed-times: 5
+    disable-udp: true
   - name: 🎯 Direct
     type: select
     filter: ""
@@ -556,7 +562,7 @@ proxy-groups:
     proxies:
       - IRAN
       - 🚀 Select
-    disable-udp: false
+    disable-udp: true
   - name: 🛑 Reject
     type: select
     filter: ""
@@ -567,7 +573,7 @@ proxy-groups:
       - REJECT
       - DIRECT
       - 🚀 Select
-    disable-udp: false
+    disable-udp: true
   - name: 🐟 Fallback
     type: fallback
     include-all-providers: true
@@ -582,11 +588,15 @@ proxy-groups:
       - A4
       - A5
     url: "https://networkcheck.kde.org/"
-    interval: 180
-    lazy: false
-    disable-udp: false
-  - name: 🇺🇲 Fallback
-    type: fallback
+    interval: 300
+    lazy: true
+    expected-status: 200/302/400-503
+    timeout: 5000
+    max-failed-times: 5
+    disable-udp: true
+  - name: 🇺🇲 load-balance
+    type: load-balance
+    strategy: consistent-hashing
     include-all-providers: true
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     exclude-filter: ""
@@ -599,14 +609,19 @@ proxy-groups:
       - A4
       - A5
     url: "https://networkcheck.kde.org/"
-    interval: 180
-    lazy: false
-    disable-udp: false
+    interval: 300
+    lazy: true
+    expected-status: 200/302/400-503
+    timeout: 5000
+    max-failed-times: 5
+    disable-udp: true
     
   - name: PROXY
     type: select
-    disable-udp: false
-    lazy: false
+    disable-udp: true
+    lazy: true
+    timeout: 5000
+    max-failed-times: 5
     filter: ""
     exclude-filter: ""
     hidden: false
