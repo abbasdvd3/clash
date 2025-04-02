@@ -1,5 +1,5 @@
 mode: rule
-ipv6: true
+ipv6: false
 mixed-port: 7890
 redir-port: 7892
 tproxy-port: 7895
@@ -9,11 +9,11 @@ allow-lan: true
 log-level: silent
 interface-name: ""
 secret: 
-external-controller: 127.0.0.1:9090
+external-controller: 0.0.0.0:9090
 external-ui: ui
 keep-alive-interval: 30
-find-process-mode: always
-external-controller-tls: 127.0.0.1:9093
+find-process-mode: strict
+external-controller-tls: 0.0.0.0:9091
 external-ui-name: xd
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 unified-delay: false
@@ -67,53 +67,8 @@ tun:
   device: utun_clash
   mtu: 9000
   strict-route: true
-  endpoint-independent-nat: true
-sniffer:
-  enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
-  override-destination: true
-  sniff: 
-    HTTP: 
-      ports: [80, 8080-8880]
-      override-destination: true
-    TLS:
-      ports: [443, 5228, 8443]
-    QUIC:
-      ports: [443, 5228, 8443]
-  force-domain:
-    - +.v2ex.com
-    - mtalk.google.com
-    - alt1-mtalk.google.com
-    - alt2-mtalk.google.com
-    - alt3-mtalk.google.com
-    - alt4-mtalk.google.com
-    - alt5-mtalk.google.com
-    - alt6-mtalk.google.com
-    - alt7-mtalk.google.com
-    - alt8-mtalk.google.com
-    - dl.google.com
-    - dl.l.google.com
-    - '+.weixin.qq.com'
-    - '+.rc.sunlogin.net'
-    - '+.coolapk.com'
-    - '+.douban.com'
-    - '+.dianping.com'
-    - '+.meituan.com'
-    - '+.meituan.net'
-    - '+.xiaohongshu.com'
-    - '+.xhscdn.com'
-  skip-domain:
-    - Mijia Cloud
-    - dlg.io.mi.com
-    - +.apple.com
-  sniffing:
-    - tls
-    - http
-  port-whitelist:
-    - "80"
-    - "443"
-    - 8000-9999
+  endpoint-independent-nat: false
+  
 dns:
   enable: true
   listen: 0.0.0.0:1053
@@ -230,7 +185,7 @@ dns:
       - https://doh.pub/dns-query
       - https://dns.cloudflare.com/dns-query#skip-cert-verify=true
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.1/8
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - "*.lan"
@@ -558,9 +513,7 @@ proxies:
     type: dns
 proxy-groups:
   - name: 🚀 Select
-    type: url-test
-    url: "https://networkcheck.kde.org/"
-    tolerance: 5000
+    type: select
     lazy: false
     hidden: false
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png"
@@ -653,6 +606,7 @@ proxy-groups:
     proxies:
       - 🚀 Select
       - 🐟 Fallback
+      - DNS
     use:
       - A1
       - A2
@@ -684,39 +638,39 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑 Reject
  # - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
 #  - RULE-SET,category-ads-all,🛑 Reject
-  - RULE-SET,GEOIP-Private,🎯 Direct,no-resolve
-  - RULE-SET,GEOIP-CN,🎯 Direct,no-resolve
-  - RULE-SET,GEOSITE-Private,🎯 Direct,no-resolve
-  - RULE-SET,GEOSITE-CN,🎯 Direct,no-resolve
-  - RULE-SET,geolocation-!cn,PROXY
+  - RULE-SET,GEOIP-Private,IRAN,no-resolve
+  - RULE-SET,GEOIP-CN,IRAN,no-resolve
+  - RULE-SET,GEOSITE-Private,IRAN,no-resolve
+  - RULE-SET,GEOSITE-CN,IRAN,no-resolve
+  - RULE-SET,geolocation-!cn,🚀 Select
   - RULE-SET,LocalAreaNetwork,🎯 Direct,no-resolve
   - RULE-SET,UnBan,PROXY
 #  - RULE-SET,BanAD,🛑 Reject
 #  - RULE-SET,BanProgramAD,🛑 Reject
-  - RULE-SET,GoogleFCM,PROXY
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
-  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
-  - RULE-SET,GoogleCNProxyIP,PROXY
-  - RULE-SET,GoogleCN,PROXY
-  - RULE-SET,YouTube,PROXY
-  - RULE-SET,Google,PROXY
-  - RULE-SET,Bing,PROXY
-  - RULE-SET,OneDrive,PROXY
-  - RULE-SET,Microsoft,PROXY
-  - RULE-SET,Apple,PROXY
-  - RULE-SET,Telegram,PROXY
-  - RULE-SET,OpenAi,PROXY
-  - RULE-SET,ChinaMedia,PROXY
-  - RULE-SET,ProxyMedia,PROXY
-  - DOMAIN-SUFFIX,v2rayse.com,PROXY
-  - DOMAIN-SUFFIX,cff.pw,PROXY
+  - RULE-SET,GoogleFCM,🚀 Select
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🚀 Select
+  - DOMAIN-SUFFIX,services.googleapis.cn,🚀 Select
+  - RULE-SET,GoogleCNProxyIP,🚀 Select
+  - RULE-SET,GoogleCN,🚀 Select
+  - RULE-SET,YouTube,🚀 Select
+  - RULE-SET,Google,🚀 Select
+  - RULE-SET,Bing,🚀 Select
+  - RULE-SET,OneDrive,🚀 Select
+  - RULE-SET,Microsoft,🚀 Select
+  - RULE-SET,Apple,🚀 Select
+  - RULE-SET,Telegram,🚀 Select
+  - RULE-SET,OpenAi,🚀 Select
+  - RULE-SET,ChinaMedia,🚀 Select
+  - RULE-SET,ProxyMedia,🚀 Select
+  - DOMAIN-SUFFIX,v2rayse.com,🚀 Select
+  - DOMAIN-SUFFIX,cff.pw,🚀 Select
   - DOMAIN-SUFFIX,vpnse.org,PROXY
   - DOMAIN-SUFFIX,cfmem.com,PROXY
   - DOMAIN-SUFFIX,networkcheck.kde.org,🎯 Direct
-  - RULE-SET,ProxyGFWlist,PROXY
-  - RULE-SET,ChinaDomain,PROXY
-  - RULE-SET,ChinaCompanyIp,PROXY
-  - RULE-SET,Download,PROXY
-  - GEOIP,ir,🎯 Direct,no-resolve
+  - RULE-SET,ProxyGFWlist,🚀 Select
+  - RULE-SET,ChinaDomain,🚀 Select
+  - RULE-SET,ChinaCompanyIp,🚀 Select
+  - RULE-SET,Download,IRAN
+  - GEOIP,ir,IRAN,no-resolve
   - IN-TYPE,inner,PROXY
   - MATCH,PROXY
