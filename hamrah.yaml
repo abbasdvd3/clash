@@ -98,7 +98,8 @@ hosts:
   'alpha.clash.dev': '::1'
   test.com: [1.1.1.1, 2.2.2.2]
   baidu.com: google.com
-
+  google.com: 225.5.5.5
+  
 proxy-providers:
   A1:
     type: http
@@ -311,19 +312,7 @@ proxies:
   - name: "DNS"
     type: dns
 proxy-groups:
-  - name: 🚀 Select
-    type: select
-    lazy: true
-    expected-status: 200/302/400-503
-    timeout: 5000
-    max-failed-times: 5
-    hidden: false
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png"
-    proxies:
-      - 🎈 Auto
-      - 🐟 Fallback
-      - 🇺🇲 load-balance
-    disable-udp: true
+
   - name: 🎈 Auto
     type: url-test
     filter: ""
@@ -335,13 +324,12 @@ proxy-groups:
       - A2
       - A3
       - A4
-   
     url: "https://networkcheck.kde.org/"
-    interval: 300
+    interval: 30
     tolerance: 5000
     lazy: true
     expected-status: 200/302/400-503
-    timeout: 5000
+    timeout: 500
     max-failed-times: 5
     disable-udp: true
   - name: 🎯 Direct
@@ -365,48 +353,6 @@ proxy-groups:
       - DIRECT
       - 🚀 Select
     disable-udp: true
-  - name: 🐟 Fallback
-    type: fallback
-    include-all-providers: true
-    filter: ""
-    exclude-filter: ""
-    hidden: false
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Twitter.png"
-    use:
-      - A1
-      - A2
-      - A3
-      - A4
-    
-    url: "https://networkcheck.kde.org/"
-    interval: 300
-    lazy: true
-    expected-status: 200/302/400-503
-    timeout: 5000
-    max-failed-times: 5
-    disable-udp: true
-  - name: 🇺🇲 load-balance
-    type: load-balance
-    strategy: consistent-hashing
-    include-all-providers: true
-    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
-    exclude-filter: ""
-    hidden: false
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/United_States.png"
-    use:
-      - A1
-      - A2
-      - A3
-      - A4
-   
-    url: "https://networkcheck.kde.org/"
-    interval: 300
-    lazy: true
-    expected-status: 200/302/400-503
-    timeout: 5000
-    max-failed-times: 5
-    disable-udp: true
-    
   - name: PROXY
     type: select
     disable-udp: true
@@ -418,8 +364,8 @@ proxy-groups:
     hidden: false
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png"
     proxies:
-      - 🚀 Select
-      - 🐟 Fallback
+      - 🎈 Auto
+      - 🎯 Direct
       - DNS
     use:
       - A1
@@ -428,63 +374,54 @@ proxy-groups:
       - A4
   
 rules:
-#  - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
-#  - IP-CIDR,10.0.0.0/8,REJECT,no-resolve
-#  - IP-CIDR,100.64.0.0/10,REJECT,no-resolve
-#  - IP-CIDR,127.0.0.0/8,REJECT,no-resolve
-#  - IP-CIDR,172.16.0.0/12,REJECT,no-resolve
-#  - IP-CIDR,192.168.0.0/16,REJECT,no-resolve
-#  - IP-CIDR,198.18.0.0/16,REJECT,no-resolve
-#  - IP-CIDR,224.0.0.0/4,REJECT,no-resolve
-#  - IP-CIDR6,::1/128,REJECT,no-resolve
-#  - IP-CIDR6,fc00::/7,REJECT,no-resolve
-#  - IP-CIDR6,fe80::/10,REJECT,no-resolve
-#  - IP-CIDR6,fd00::/8,REJECT,no-resolve
-#  - IP-CIDR,1.1.1.1/32,REJECT
-#  - IP-CIDR,8.8.8.8/32,REJECT
-#  - DOMAIN,dns.alidns.com,REJECT
- # - IP-CIDR,114.114.114.114/32,REJECT
-#  - IP-CIDR,180.76.76.76/32,REJECT
-#  - IP-CIDR,223.5.5.5/32,REJECT
-#  - IP-CIDR,94.140.14.140/32,REJECT
-#  - IP-CIDR,94.140.14.141/32,REJECT
-#  - IP-CIDR,223.6.6.6/32,REJECT
+  - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,REJECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,REJECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,REJECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,REJECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,REJECT,no-resolve
+  - IP-CIDR,198.18.0.0/16,REJECT,no-resolve
+  - IP-CIDR,224.0.0.0/4,REJECT,no-resolve
+  - IP-CIDR6,::1/128,REJECT,no-resolve
+  - IP-CIDR6,fc00::/7,REJECT,no-resolve
+  - IP-CIDR6,fe80::/10,REJECT,no-resolve
+  - IP-CIDR6,fd00::/8,REJECT,no-resolve
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑 Reject
- # - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
-#  - RULE-SET,category-ads-all,🛑 Reject
+  - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
+  - RULE-SET,category-ads-all,🛑 Reject
   - RULE-SET,GEOIP-Private,IRAN,no-resolve
   - RULE-SET,GEOIP-CN,IRAN,no-resolve
   - RULE-SET,GEOSITE-Private,IRAN,no-resolve
   - RULE-SET,GEOSITE-CN,IRAN,no-resolve
-  - RULE-SET,geolocation-!cn,🚀 Select
-  - RULE-SET,LocalAreaNetwork,🎯 Direct,no-resolve
+  - RULE-SET,geolocation-!cn,PROXY
+  - RULE-SET,LocalAreaNetwork,IRAN,no-resolve
   - RULE-SET,UnBan,PROXY
   - DOMAIN-SUFFIX,google.com,PROXY
-#  - RULE-SET,BanAD,🛑 Reject
-#  - RULE-SET,BanProgramAD,🛑 Reject
-  - RULE-SET,GoogleFCM,🚀 Select
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🚀 Select
-  - DOMAIN-SUFFIX,services.googleapis.cn,🚀 Select
-  - RULE-SET,GoogleCNProxyIP,🚀 Select
-  - RULE-SET,GoogleCN,🚀 Select
-  - RULE-SET,YouTube,🚀 Select
-  - RULE-SET,Google,🚀 Select
-  - RULE-SET,Bing,🚀 Select
-  - RULE-SET,OneDrive,🚀 Select
-  - RULE-SET,Microsoft,🚀 Select
-  - RULE-SET,Apple,🚀 Select
-  - RULE-SET,Telegram,🚀 Select
-  - RULE-SET,OpenAi,🚀 Select
-  - RULE-SET,ChinaMedia,🚀 Select
-  - RULE-SET,ProxyMedia,🚀 Select
-  - DOMAIN-SUFFIX,v2rayse.com,🚀 Select
-  - DOMAIN-SUFFIX,cff.pw,🚀 Select
+  - RULE-SET,BanAD,🛑 Reject
+  - RULE-SET,BanProgramAD,🛑 Reject
+  - RULE-SET,GoogleFCM,PROXY
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
+  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
+  - RULE-SET,GoogleCNProxyIP,PROXY
+  - RULE-SET,GoogleCN,PROXY
+  - RULE-SET,YouTube,PROXY
+  - RULE-SET,Google,PROXY
+  - RULE-SET,Bing,PROXY
+  - RULE-SET,OneDrive,PROXY
+  - RULE-SET,Microsoft,PROXY
+  - RULE-SET,Apple,PROXY
+  - RULE-SET,Telegram,PROXY
+  - RULE-SET,OpenAi,PROXY
+  - RULE-SET,ChinaMedia,PROXY
+  - RULE-SET,ProxyMedia,PROXY
+  - DOMAIN-SUFFIX,v2rayse.com,PROXY
+  - DOMAIN-SUFFIX,cff.pw,PROXY
   - DOMAIN-SUFFIX,vpnse.org,PROXY
   - DOMAIN-SUFFIX,cfmem.com,PROXY
-  - DOMAIN-SUFFIX,networkcheck.kde.org,🎯 Direct
-  - RULE-SET,ProxyGFWlist,🚀 Select
-  - RULE-SET,ChinaDomain,🚀 Select
-  - RULE-SET,ChinaCompanyIp,🚀 Select
+  - DOMAIN-SUFFIX,networkcheck.kde.org,IRAN
+  - RULE-SET,ProxyGFWlist,PROXY
+  - RULE-SET,ChinaDomain,PROXY
+  - RULE-SET,ChinaCompanyIp,PROXY
   - RULE-SET,Download,IRAN
   - GEOIP,ir,IRAN,no-resolve
   - IN-TYPE,inner,PROXY
