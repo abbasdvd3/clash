@@ -81,6 +81,15 @@ dns:
     "geosite:ir,private":
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
+    "ruleset:geolocation-!cn,OpenAi,ProxyMedia,ProxyGFWlist":
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+    - 114.114.114.114
+    - 180.76.76.76
+    - 119.29.29.29
+    - 223.5.5.5
+    - 1.1.1.1
+    - 9.9.9.9
   fallback-filter:
     geoip: true
     geoip-code: ir
@@ -98,7 +107,7 @@ hosts:
   'alpha.clash.dev': '::1'
   test.com: [1.1.1.1, 2.2.2.2]
   baidu.com: google.com
-  google.com: 225.5.5.5
+  google.com: 225.5.5.5, 9.9.9.9
   
 proxy-providers:
   A1:
@@ -292,7 +301,7 @@ rule-providers:
 
   GEOSITE-CN:
     type: http
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/ir.mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ir.mrs
     behavior: domain
     format: mrs
 
@@ -325,8 +334,8 @@ proxy-groups:
       - A3
       - A4
     url: "https://networkcheck.kde.org/"
-    interval: 30
-    tolerance: 5000
+    interval: 3
+    tolerance: 50000
     lazy: true
     expected-status: 200/302/400-503
     timeout: 500
@@ -357,7 +366,7 @@ proxy-groups:
     type: select
     disable-udp: true
     lazy: true
-    timeout: 5000
+    timeout: 50000
     max-failed-times: 5
     filter: ""
     exclude-filter: ""
@@ -389,12 +398,12 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑 Reject
   - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
   - RULE-SET,category-ads-all,🛑 Reject
-  - RULE-SET,GEOIP-Private,IRAN,no-resolve
-  - RULE-SET,GEOIP-CN,IRAN,no-resolve
-  - RULE-SET,GEOSITE-Private,IRAN,no-resolve
-  - RULE-SET,GEOSITE-CN,IRAN,no-resolve
+  - RULE-SET,GEOIP-Private,🎯 Direct,no-resolve
+  - RULE-SET,GEOIP-CN,🎯 Direct,no-resolve
+  - RULE-SET,GEOSITE-Private,🎯 Direct,no-resolve
+  - RULE-SET,GEOSITE-CN,🎯 Direct,no-resolve
   - RULE-SET,geolocation-!cn,PROXY
-  - RULE-SET,LocalAreaNetwork,IRAN,no-resolve
+  - RULE-SET,LocalAreaNetwork,🎯 Direct,no-resolve
   - RULE-SET,UnBan,PROXY
   - DOMAIN-SUFFIX,google.com,PROXY
   - RULE-SET,BanAD,🛑 Reject
@@ -422,7 +431,7 @@ rules:
   - RULE-SET,ProxyGFWlist,PROXY
   - RULE-SET,ChinaDomain,PROXY
   - RULE-SET,ChinaCompanyIp,PROXY
-  - RULE-SET,Download,IRAN
-  - GEOIP,ir,IRAN,no-resolve
+  - RULE-SET,Download,🎯 Direct
+  - GEOIP,ir,🎯 Direct,no-resolve
   - IN-TYPE,inner,PROXY
   - MATCH,PROXY
