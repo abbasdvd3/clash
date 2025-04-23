@@ -320,7 +320,14 @@ proxies:
   - name: "DNS"
     type: dns
 proxy-groups:
-
+  - name: Auto
+    type: url-test
+    filter: ""
+    exclude-filter: ""
+    hidden: false
+    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+    proxies:
+      - 🎈 Auto
   - name: 🎈 Auto
     type: url-test
     filter: ""
@@ -336,8 +343,8 @@ proxy-groups:
     interval: 3
     tolerance: 50000
     lazy: true
-    expected-status: 200/302/400-503
-    timeout: 500
+    expected-status: 200
+    timeout: 50
     max-failed-times: 5
     disable-udp: true
   - name: 🎯 Direct
@@ -372,7 +379,7 @@ proxy-groups:
     hidden: false
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png"
     proxies:
-      - 🎈 Auto
+      - Auto
       - 🎯 Direct
       - DNS
     use:
