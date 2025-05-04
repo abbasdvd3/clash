@@ -58,13 +58,9 @@ tun:
   auto-detect-interface: true
   dns-hijack:
     - any:53
-    - 114.114.114.114
-    - 180.76.76.76
-    - 119.29.29.29
-    - 223.5.5.5
-    - 1.1.1.1
+    - tcp://any:53
   device: utun_clash
-  mtu: 9000
+  mtu: 1500
   strict-route: true
   endpoint-independent-nat: false
   
@@ -75,17 +71,20 @@ dns:
   fallback:
     - https://8.8.8.8/dns-query
   direct-nameserver:
-    - 9.9.9.9
+    - dhcp://system
   nameserver-policy:
     "geosite:ir,private":
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
+    - https://8.8.8.8/dns-query
+    - https://1.1.1.1/dns-query
+    - https://9.9.9.9/dns-query
     "ruleset:geolocation-!cn,OpenAi,ProxyMedia,ProxyGFWlist":
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
-    - 223.5.5.5
-    - 1.1.1.1
-    - 9.9.9.9
+    - https://8.8.8.8/dns-query
+    - https://1.1.1.1/dns-query
+    - https://9.9.9.9/dns-query
   fallback-filter:
     geoip: true
     geoip-code: ir
@@ -108,34 +107,42 @@ hosts:
 proxy-providers:
   A1:
     type: http
+    dialer-proxy: Auto
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x"
-    interval: 86300
-    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    interval: 86
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 30}
     override:
-      additional-prefix: "[A1]"
+      skip-cert-verify: true
+      udp: true
   A2:
     type: http
+    dialer-proxy: Auto
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
-    interval: 86300
-    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    interval: 86
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 30}
     override:
-      additional-prefix: "[A2]"
+      skip-cert-verify: true
+      udp: true
 
   A3:
     type: http
+    dialer-proxy: Auto
     url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/FREEIRAN-VIP"
-    interval: 86300
-    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    interval: 86
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 30}
     override:
-      additional-prefix: "[A3]"
+      skip-cert-verify: true
+      udp: true
 
   A4:
     type: http
+    dialer-proxy: Auto
     url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
-    interval: 86300
-    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 300}
+    interval: 86
+    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 30}
     override:
-      additional-prefix: "[A4]"
+      skip-cert-verify: true
+      udp: true
 
 
 rule-providers:
@@ -436,3 +443,30 @@ rules:
   - GEOIP,ir,🎯 Direct,no-resolve
   - IN-TYPE,inner,PROXY
   - MATCH,PROXY
+  
+listeners:
+  - name: socks5-in-1
+    type: socks
+    port: 10808 
+
+  - name: http-in-1
+    type: http
+    port: 10809 
+    listen: 0.0.0.0
+
+
+  - name: mixed-in-1
+    type: mixed 
+    port: 10810 
+    listen: 0.0.0.0
+
+
+  - name: reidr-in-1
+    type: redir
+    port: 10811
+    listen: 0.0.0.0
+
+  - name: tproxy-in-1
+    type: tproxy
+    port: 10812 
+    listen: 0.0.0.0
