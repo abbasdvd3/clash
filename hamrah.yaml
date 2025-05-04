@@ -71,9 +71,9 @@ dns:
   fallback:
     - https://8.8.8.8/dns-query
   direct-nameserver:
-    - dhcp://system
+    - system
   nameserver-policy:
-    "geosite:ir,private":
+    "RULE-SET:GEOIP-CN,GEOSITE-CN,Google,GEOIP-Private,GEOSITE-Private":
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
     - https://8.8.8.8/dns-query
@@ -391,6 +391,18 @@ proxy-groups:
       - A4
   
 rules:
+  - PROCESS-NAME,chrome.exe,PROXY
+  - PROCESS-NAME,com.termux,PROXY
+  - PROCESS-NAME,com.chrome,PROXY
+  - PROCESS-NAME-REGEX,curl$,PROXY
+  - PROCESS-NAME-REGEX,(?i)Telegram,PROXY
+  - PROCESS-NAME-REGEX,.*telegram.*,PROXY
+  
+  - NETWORK,udp,🎯 Direct
+  - DST-PORT,80,🎯 Direct
+  - SRC-PORT,7777,🎯 Direct
+  - IN-PORT,7890,PROXY
+  - IN-TYPE,SOCKS/HTTP,PROXY
   - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
   - IP-CIDR,10.0.0.0/8,REJECT,no-resolve
   - IP-CIDR,100.64.0.0/10,REJECT,no-resolve
