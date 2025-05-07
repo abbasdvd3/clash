@@ -60,7 +60,9 @@ tun:
   mtu: 1500
   strict-route: true
   endpoint-independent-nat: false
-  
+  experimental:
+   sniff-tls-sni: true
+   udp-fallback-match: true
 dns:
   enable: true
   cache-algorithm: arc
@@ -72,7 +74,10 @@ dns:
   ipv6: false
   default-nameserver:
     - 9.9.9.9
+    - 8.8.4.4
+    - 1.1.1.1
   enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - '*.lan'
@@ -94,7 +99,7 @@ dns:
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
-    - dhcp://system
+ #   - dhcp://system
   fallback:
     - tls://8.8.4.4
     - tls://1.1.1.1
