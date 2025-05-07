@@ -1,16 +1,13 @@
 mode: rule
-ipv6: false
-mixed-port: 7890
+ipv6: true
 redir-port: 7892
 tproxy-port: 7895
-port: 7891
-socks-port: 7892
 allow-lan: true
 log-level: silent
 interface-name: ""
 secret: 
 external-controller: 0.0.0.0:9090
-external-ui: ui
+external-ui: ./dashboard
 keep-alive-interval: 30
 find-process-mode: strict
 external-controller-tls: 0.0.0.0:9091
@@ -64,12 +61,21 @@ tun:
   strict-route: true
   endpoint-independent-nat: false
   
-https://shadowmere.xyz/api/b64sub/
 dns:
-  nameserver:
-    - https://doh.pub/dns-query
-  fallback:
-    - https://8.8.8.8/dns-query
+  enable: true
+  cache-algorithm: arc
+  prefer-h3: false
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: false
+  listen: 0.0.0.0:1053
+  ipv6: false
+  default-nameserver:
+    - 9.9.9.9
+  enhanced-mode: fake-ip
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - '*.lan'
   direct-nameserver:
     - system
   nameserver-policy:
@@ -85,6 +91,15 @@ dns:
     - https://8.8.8.8/dns-query
     - https://1.1.1.1/dns-query
     - https://9.9.9.9/dns-query
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+    - dhcp://system
+  fallback:
+    - tls://8.8.4.4
+    - tls://1.1.1.1
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
   fallback-filter:
     geoip: true
     geoip-code: ir
@@ -107,39 +122,240 @@ hosts:
 proxy-providers:
   A1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x"
+    url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
     interval: 86
-    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 30}
+    proxy: DIRECT
+    size-limit: 0
+    header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 50
+#      lazy: true
+#      expected-status: 204
     override:
-      skip-cert-verify: true
+      tfo: false
+      mptcp: false
       udp: true
+      udp-over-tcp: true
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      interface-name: tailscale0
+      routing-mark: 233
+      ip-version: ipv4-prefer
+      additional-prefix: "A1 prefix |"
+      additional-suffix: "| A1 suffix"
+#    filter: "(?i)港|hk|hongkong|hong kong"
+#    exclude-filter: "xxx"
+#    exclude-type: "ss|http"
+    
   A2:
     type: http
-    url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
+    url: "https://shadowmere.xyz/api/b64sub/"
     interval: 86
-    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 30}
+    proxy: DIRECT
+    size-limit: 0
+    header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 50
+#      lazy: true
+#      expected-status: 204
     override:
-      skip-cert-verify: true
+      tfo: false
+      mptcp: false
       udp: true
+      udp-over-tcp: true
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      interface-name: tailscale0
+      routing-mark: 233
+      ip-version: ipv4-prefer
+      additional-prefix: "A2 prefix |"
+      additional-suffix: "| A2 suffix"
+#    filter: "(?i)港|hk|hongkong|hong kong"
+#    exclude-filter: "xxx"
+#    exclude-type: "ss|http"
 
   A3:
     type: http
-    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/FREEIRAN-VIP"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x"
     interval: 86
-    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 30}
+    proxy: DIRECT
+    size-limit: 0
+    header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 50
+#      lazy: true
+#      expected-status: 204
     override:
-      skip-cert-verify: true
+      tfo: false
+      mptcp: false
       udp: true
-
+      udp-over-tcp: true
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      interface-name: tailscale0
+      routing-mark: 233
+      ip-version: ipv4-prefer
+      additional-prefix: "A3 prefix |"
+      additional-suffix: "| A3 suffix"
+#    filter: "(?i)港|hk|hongkong|hong kong"
+#    exclude-filter: "xxx"
+#    exclude-type: "ss|http"
+    
   A4:
     type: http
-    url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
+    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/FREEIRAN-VIP"
     interval: 86
-    health-check: {enable: true,url: "https://networkcheck.kde.org/",interval: 30}
+    proxy: DIRECT
+    size-limit: 0
+    header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 50
+#      lazy: true
+#      expected-status: 204
     override:
-      skip-cert-verify: true
+      tfo: false
+      mptcp: false
       udp: true
+      udp-over-tcp: true
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      interface-name: tailscale0
+      routing-mark: 233
+      ip-version: ipv4-prefer
+      additional-prefix: "A4 prefix |"
+      additional-suffix: "| A4 suffix"
+#    filter: "(?i)港|hk|hongkong|hong kong"
+#    exclude-filter: "xxx"
+#    exclude-type: "ss|http"
 
+  A5:
+    type: http
+    url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_iOS.txt#(AzadNet.t.me)"
+    interval: 86
+    proxy: DIRECT
+    size-limit: 0
+    header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 50
+#      lazy: true
+#      expected-status: 204
+    override:
+      tfo: false
+      mptcp: false
+      udp: true
+      udp-over-tcp: true
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      interface-name: tailscale0
+      routing-mark: 233
+      ip-version: ipv4-prefer
+      additional-prefix: "A5 prefix |"
+      additional-suffix: "| A5 suffix"
+#    filter: "(?i)港|hk|hongkong|hong kong"
+#    exclude-filter: "xxx"
+#    exclude-type: "ss|http"
+    
+  A6:
+    type: http
+    url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
+    interval: 86
+    proxy: DIRECT
+    size-limit: 0
+    header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 50
+#      lazy: true
+#      expected-status: 204
+    override:
+      tfo: false
+      mptcp: false
+      udp: true
+      udp-over-tcp: true
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      interface-name: tailscale0
+      routing-mark: 233
+      ip-version: ipv4-prefer
+      additional-prefix: "A6 prefix |"
+      additional-suffix: "| A6 suffix"
+#    filter: "(?i)港|hk|hongkong|hong kong"
+#    exclude-filter: "xxx"
+#    exclude-type: "ss|http"
+  A7:
+    type: http
+    url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_iOS.txt#(AzadNet.t.me)"
+    interval: 86
+    proxy: DIRECT
+    size-limit: 0
+    header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 50
+#      lazy: true
+#      expected-status: 204
+    override:
+      tfo: false
+      mptcp: false
+      udp: true
+      udp-over-tcp: true
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      interface-name: tailscale0
+      routing-mark: 233
+      ip-version: ipv4-prefer
+      additional-prefix: "A7 prefix |"
+      additional-suffix: "| A7 suffix"
+#    filter: "(?i)港|hk|hongkong|hong kong"
+#    exclude-filter: "xxx"
+#    exclude-type: "ss|http"
 
 rule-providers:
   LocalAreaNetwork:
@@ -320,14 +536,15 @@ proxies:
   - name: "DNS"
     type: dns
 proxy-groups:
-  - name: Auto
-    type: url-test
+  - name: PROXY
+    type: select
     filter: ""
     exclude-filter: ""
     hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
     proxies:
       - 🎈 Auto
+      
   - name: 🎈 Auto
     type: url-test
     filter: ""
@@ -339,12 +556,14 @@ proxy-groups:
       - A2
       - A3
       - A4
+      - A5
+      - A6
+      - A7
     url: "https://networkcheck.kde.org/"
-    lazy: true
-    expected-status: 200
     timeout: 5
     max-failed-times: 5
     disable-udp: true
+    
   - name: 🎯 Direct
     type: select
     filter: ""
@@ -355,6 +574,7 @@ proxy-groups:
       - IRAN
       - 🎈 Auto
     disable-udp: true
+    
   - name: 🛑 Reject
     type: select
     filter: ""
@@ -366,25 +586,6 @@ proxy-groups:
       - DIRECT
       - PROXY
     disable-udp: true
-  - name: PROXY
-    type: select
-    disable-udp: true
-    lazy: true
-    timeout: 50
-    max-failed-times: 5
-    filter: ""
-    exclude-filter: ""
-    hidden: false
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png"
-    proxies:
-      - Auto
-      - 🎯 Direct
-      - DNS
-    use:
-      - A1
-      - A2
-      - A3
-      - A4
   
 rules:
   - PROCESS-NAME,chrome.exe,PROXY
@@ -394,8 +595,8 @@ rules:
   - PROCESS-NAME-REGEX,(?i)Telegram,PROXY
   - PROCESS-NAME-REGEX,.*telegram.*,PROXY
   
-  - NETWORK,udp,PROXY
-  - DST-PORT,80,PROXY
+  - NETWORK,udp,IRAN
+  - DST-PORT,80,DNS
   - SRC-PORT,7777,PROXY
   - IN-PORT,7890,PROXY
   - IN-TYPE,SOCKS/HTTP,PROXY
@@ -462,12 +663,10 @@ listeners:
     port: 10809 
     listen: 0.0.0.0
 
-
   - name: mixed-in-1
     type: mixed 
     port: 10810 
     listen: 0.0.0.0
-
 
   - name: reidr-in-1
     type: redir
@@ -479,514 +678,4 @@ listeners:
     port: 10812 
     listen: 0.0.0.0
 
-
-# port: 7891
-# socks-port: 7892
-mode: rule
-ipv6: true
-# mixed-port: 7890
-redir-port: 7892
-tproxy-port: 7895
-
-allow-lan: true
-log-level: silent
-interface-name: ""
-secret: 
-external-controller: 0.0.0.0:9090
-external-ui: ui
-keep-alive-interval: 30
-find-process-mode: strict
-external-controller-tls: 0.0.0.0:9091
-external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
-unified-delay: false
-tcp-concurrent: true
-authentication: []
-skip-auth-prefixes:
-  - 127.0.0.1/8
-  - ::1/128
-tls:
-  certificate: ""
-  private-key: ""
-global-client-fingerprint: random
-geodata-mode: true
-geo-auto-update: false
-geo-update-interval: 24
-geodata-loader: memconservative
-global-ua: clash.meta
-etag-support: true
-geox-url:
-  geoip: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
-  geosite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
-  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
-  asn: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
-allow-private-network: true
-external-controller-unix: mihomo.sock
-external-controller-pipe: pipe\mihomo
-profile:
-  store-selected: true
-  store-fake-ip: true
-lan-allowed-ips:
-  - 0.0.0.0/0
-  - ::/0
-lan-disallowed-ips: []
-tun:
-  enable: true
-  stack: Mixed
-  auto-route: true
-  route-address:
-    - 0.0.0.0/1
-    - 128.0.0.0/1
-    - ::/1
-    - 8000::/1
-  auto-detect-interface: true
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  device: utun_clash
-  mtu: 1500
-  strict-route: true
-  endpoint-independent-nat: false
-  
-dns:
-  enable: true
-  cache-algorithm: arc
-  prefer-h3: false
-  use-hosts: true
-  use-system-hosts: true
-  respect-rules: false
-  listen: 0.0.0.0:1053
-  ipv6: false
-  default-nameserver:
-    - 9.9.9.9
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter-mode: blacklist
-  fake-ip-filter:
-    - '*.lan'
-  nameserver-policy:
-    '+.arpa': '10.0.0.1'
-    'rule-set:Google,ProxyGFWlist,ProxyMedia,OpenAi,Telegram,Bing,GoogleCNProxyIP':
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-    - dhcp://system
-  fallback:
-    - tls://8.8.4.4
-    - tls://1.1.1.1
-  proxy-server-nameserver:
-    - https://doh.pub/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: ir
-    geosite:
-      - nsfw
-    ipcidr:
-      - 240.0.0.0/4
-    domain:
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
       
-hosts:
-  '*.clash.dev': 127.0.0.1
-  'alpha.clash.dev': '::1'
-  test.com: [1.1.1.1, 2.2.2.2]
-  baidu.com: google.com
-  google.com: 225.5.5.5, 9.9.9.9
-  
-proxy-providers:
-  A1:
-    type: http
-    url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
-    interval: 86
-    proxy: DIRECT
-    size-limit: 0
-    header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      timeout: 50
-#      lazy: true
-#      expected-status: 204
-    override:
-      tfo: false
-      mptcp: false
-      udp: true
-      udp-over-tcp: true
-      down: "50 Mbps"
-      up: "10 Mbps"
-      skip-cert-verify: true
-      interface-name: tailscale0
-      routing-mark: 233
-      ip-version: ipv4-prefer
-      additional-prefix: "A1 prefix |"
-      additional-suffix: "| A1 suffix"
-#    filter: "(?i)港|hk|hongkong|hong kong"
-#    exclude-filter: "xxx"
-#    exclude-type: "ss|http"
-    
-
-
-  A2:
-    type: http
-    url: "https://shadowmere.xyz/api/b64sub/"
-    interval: 86
-    proxy: DIRECT
-    size-limit: 0
-    header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      timeout: 50
-#      lazy: true
-#      expected-status: 204
-    override:
-      tfo: false
-      mptcp: false
-      udp: true
-      udp-over-tcp: true
-      down: "50 Mbps"
-      up: "10 Mbps"
-      skip-cert-verify: true
-      interface-name: tailscale0
-      routing-mark: 233
-      ip-version: ipv4-prefer
-      additional-prefix: "A2 prefix |"
-      additional-suffix: "| A2 suffix"
-#    filter: "(?i)港|hk|hongkong|hong kong"
-#    exclude-filter: "xxx"
-#    exclude-type: "ss|http"
-rule-providers:
-  LocalAreaNetwork:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
-    format: text
-
-  UnBan:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
-    format: text
-
-  BanAD:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
-    format: text
-
-  BanProgramAD:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
-    format: text
-
-  GoogleFCM:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
-    format: text
-
-  GoogleCNProxyIP:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
-    format: text
-
-  GoogleCN:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list
-    format: text
-
-  YouTube:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list
-    format: text
-
-  Google:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list
-    format: text
-
-  Bing:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list
-    format: text
-
-  OneDrive:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list
-    format: text
-
-  Microsoft:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
-    format: text
-
-  Apple:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
-    format: text
-
-  Telegram:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
-    format: text
-
-  OpenAi:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
-    format: text
-
-  Netflix:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Netflix.list
-    format: text
-
-  ChinaMedia:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list
-    format: text
-
-  ProxyMedia:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
-    format: text
-
-  ProxyGFWlist:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
-    format: text
-
-  ChinaDomain:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
-    format: text
-
-  ChinaCompanyIp:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
-    format: text
-    
-  Download:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list
-    format: text
-
-  category-ads-all:
-    type: http
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.yaml
-    behavior: domain
-    format: yaml
-
-  GEOIP-Private:
-    type: http
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.yaml
-    behavior: classical
-    format: yaml
-
-  GEOIP-CN:
-    type: http
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/ir.yaml
-    behavior: classical
-    format: yaml
-
-  GEOSITE-Private:
-    type: http
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.yaml
-    behavior: domain
-    format: yaml
-
-  GEOSITE-CN:
-    type: http
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ir.yaml
-    behavior: domain
-    format: yaml
-
-  geolocation-!cn:
-    type: http
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.yaml
-    behavior: domain
-    format: yaml
-
-proxies:
-  - name: "IRAN"
-    type: direct
-    udp: false
-    ip-version: ipv4
-    interface-name: eth0
-    routing-mark: 1234
-  - name: "DNS"
-    type: dns
-proxy-groups:
-  - name: PROXY
-    type: select
-    disable-udp: true
-    timeout: 50
-    max-failed-times: 5
-    filter: ""
-    exclude-filter: ""
-    hidden: false
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Global.png"
-    proxies:
-      - 🎈 Auto
-      - 🎯 Direct
-      - DNS
-    use:
- #     - A1
-
-  - name: 🎈 Auto
-    type: url-test
-    filter: ""
-    exclude-filter: ""
-    hidden: false
-    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
-    use:
-      - A1
-      - A2
-
-    url: "https://networkcheck.kde.org/"
-    timeout: 5
-    max-failed-times: 5
-    disable-udp: true
-  - name: 🎯 Direct
-    type: select
-    filter: ""
-    exclude-filter: ""
-    hidden: false
-    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Rocket.png"
-    proxies:
-      - IRAN
-      - 🎈 Auto
-    disable-udp: true
-  - name: 🛑 Reject
-    type: select
-    filter: ""
-    exclude-filter: ""
-    hidden: false
-    icon: ""
-    proxies:
-      - REJECT
-      - DIRECT
-      - PROXY
-    disable-udp: true
-
-  
-rules:
-  - PROCESS-NAME,chrome.exe,🎈 Auto
-  - PROCESS-NAME,com.termux,🎈 Auto
-  - PROCESS-NAME,com.chrome,🎈 Auto
-  - PROCESS-NAME-REGEX,curl$,🎈 Auto
-  - PROCESS-NAME-REGEX,(?i)Telegram,🎈 Auto
-  - PROCESS-NAME-REGEX,.*telegram.*,🎈 Auto
-  
-  - NETWORK,udp,IRAN
-  - DST-PORT,80,DNS
-  - SRC-PORT,7777,IRAN
-  - IN-PORT,7890,🎈 Auto
-  - IN-TYPE,SOCKS/HTTP,🎈 Auto
-  - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
-  - IP-CIDR,10.0.0.0/8,REJECT,no-resolve
-  - IP-CIDR,100.64.0.0/10,REJECT,no-resolve
-  - IP-CIDR,127.0.0.0/8,REJECT,no-resolve
-  - IP-CIDR,172.16.0.0/12,REJECT,no-resolve
-  - IP-CIDR,192.168.0.0/16,REJECT,no-resolve
-  - IP-CIDR,198.18.0.0/16,REJECT,no-resolve
-  - IP-CIDR,224.0.0.0/4,REJECT,no-resolve
-  - IP-CIDR6,::1/128,REJECT,no-resolve
-  - IP-CIDR6,fc00::/7,REJECT,no-resolve
-  - IP-CIDR6,fe80::/10,REJECT,no-resolve
-  - IP-CIDR6,fd00::/8,REJECT,no-resolve
-  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑 Reject
-  - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
-  - RULE-SET,category-ads-all,🛑 Reject
-  - RULE-SET,GEOIP-Private,IRAN,no-resolve
-  - RULE-SET,GEOIP-CN,IRAN,no-resolve
-  - RULE-SET,GEOSITE-Private,IRAN,no-resolve
-  - RULE-SET,GEOSITE-CN,IRAN,no-resolve
-  - RULE-SET,geolocation-!cn,🎈 Auto
-  - RULE-SET,LocalAreaNetwork,IRAN,no-resolve
-  - RULE-SET,UnBan,🎈 Auto
-  - DOMAIN-SUFFIX,google.com,🎈 Auto
-  - RULE-SET,BanAD,🛑 Reject
-  - RULE-SET,BanProgramAD,🛑 Reject
-  - RULE-SET,GoogleFCM,🎈 Auto
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🎈 Auto
-  - DOMAIN-SUFFIX,services.googleapis.cn,🎈 Auto
-  - RULE-SET,GoogleCNProxyIP,🎈 Auto
-  - RULE-SET,GoogleCN,🎈 Auto
-  - RULE-SET,YouTube,🎈 Auto
-  - RULE-SET,Google,🎈 Auto
-  - RULE-SET,Bing,🎈 Auto
-  - RULE-SET,OneDrive,🎈 Auto
-  - RULE-SET,Microsoft,🎈 Auto
-  - RULE-SET,Apple,🎈 Auto
-  - RULE-SET,Telegram,🎈 Auto
-  - RULE-SET,OpenAi,🎈 Auto
-  - RULE-SET,ChinaMedia,🎈 Auto
-  - RULE-SET,ProxyMedia,🎈 Auto
-  - DOMAIN-SUFFIX,v2rayse.com,🎈 Auto
-  - DOMAIN-SUFFIX,cff.pw,🎈 Auto
-  - DOMAIN-SUFFIX,vpnse.org,🎈 Auto
-  - DOMAIN-SUFFIX,cfmem.com,🎈 Auto
-  - DOMAIN-SUFFIX,networkcheck.kde.org,IRAN
-  - RULE-SET,ProxyGFWlist,🎈 Auto
-  - RULE-SET,ChinaDomain,🎈 Auto
-  - RULE-SET,ChinaCompanyIp,🎈 Auto
-  - RULE-SET,Download,IRAN
-  - GEOIP,ir,IRAN,no-resolve
-  - IN-TYPE,inner,🎈 Auto
-  - MATCH,IRAN
-  
-listeners:
-  - name: socks5-in-1
-    type: socks
-    port: 10808 
-
-  - name: http-in-1
-    type: http
-    port: 10809 
-    listen: 0.0.0.0
-
-
-  - name: mixed-in-1
-    type: mixed 
-    port: 10810 
-    listen: 0.0.0.0
-
-
-  - name: reidr-in-1
-    type: redir
-    port: 10811
-    listen: 0.0.0.0
-
-  - name: tproxy-in-1
-    type: tproxy
-    port: 10812 
-    listen: 0.0.0.0
