@@ -8,7 +8,7 @@ port: 7892
 socks-port: 7891
 mixed-port: 7890
 redir-port: 9797
-# tproxy-port: 9898
+tproxy-port: 9898
 mode: rule
 allow-lan: true
 unified-delay: false
@@ -60,25 +60,48 @@ tun:
   
 dns:
   enable: true
-  ipv6: false
-  respect-rules: true
+  cache-algorithm: arc
+  prefer-h3: false
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: false
+  listen: 0.0.0.0:1053
+  ipv6: true
+  default-nameserver:
+    - "127.0.0.1:53"
+    - "223.5.5.5"
+    - "223.6.6.6"
   enhanced-mode: fake-ip
   fake-ip-filter:
     - "*"
     - "+.lan"
     - "+.local"
   nameserver:
+    - "127.0.0.1:53"
     - "https://120.53.53.53/dns-query"
     - "https://223.5.5.5/dns-query"
   proxy-server-nameserver:
     - "https://120.53.53.53/dns-query"
     - "https://223.5.5.5/dns-query"
+    - "https://doh.pub/dns-query"
+    - "https://cloudflare-dns.com/dns-query"
+    - "https://dns.alidns.com/dns-query"
+    - "https://dns.quad9.net/dns-query"
+    - "https://doh.pub/dns-query"
+    - "https://dns.alidns.com/dns-query"
+  direct-nameserver:
+    - "127.0.0.1:53"
+    - "223.5.5.5"
+    - "223.6.6.6"
+    - "114.114.114.114"
+    - "119.29.29.29"
+  direct-nameserver-follow-policy: false
   nameserver-policy:
     "www.baidu.com": "114.114.114.114"
     +.internal.crop.com: 10.0.0.1
     "www.baidu.com,+.google.com": "https://doh.pub/dns-query"
     "geosite:private,apple": "https://dns.alidns.com/dns-query"
-    "geosite:category-ads-all": rcode://success
+    "geosite:category-ads-all": "rcode://success"
     "www.baidu.com,www.google.com": ["223.5.5.5", "https://dns.alidns.com/dns-query"]
     "www.instagram.com": ["223.5.5.5", "https://dns.alidns.com/dns-query", "https://dns.alidns.com/dns-query", "https://doh.pub/dns-query"]
     "www.pornhub.com": "https://doh.pub/dns-query"
@@ -102,32 +125,11 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
-      - provider7
-      - provider8
-      - provider9
-      - provider10
-      - provider11
-      - provider12
-      - provider13
-      - provider14
-      - provider15
-      - provider16
-      - provider17
-      - provider18
-      - provider19
-      - provider20
-      - provider21
+
   - name: ♻️ url-test
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
+    udp: false
     interval: 180
  #   tolerance: 10
     hidden: false
@@ -159,7 +161,7 @@ proxy-groups:
   - name: 🚧 fallback
     type: fallback
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: true
+    udp: false
     interval: 180
 #    tolerance: 10
     hidden: false
