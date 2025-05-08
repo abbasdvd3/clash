@@ -9,29 +9,47 @@ socks-port: 7891
 mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
-mode: rule
 allow-lan: true
-unified-delay: false
-bind-address: '*'
-log-level: debug
-ipv6: false
-geo-auto-update: true
-geo-update-interval: 24 
-external-controller: 0.0.0.0:9090 
-external-ui: /dashboard
-external-ui-name: xd
-external-ui-url: https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
-tcp-concurrent: true
-global-client-fingerprint: chrome
-geox-url:
-  geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
-  geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
-  mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
-  asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
+log-level: silent
+interface-name: ""
+secret: 
+external-controller: 0.0.0.0:9090
+external-ui: ./dashboard
+keep-alive-interval: 30
 find-process-mode: strict
+external-controller-tls: 0.0.0.0:9091
+external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+unified-delay: false
+tcp-concurrent: true
+authentication: []
+skip-auth-prefixes:
+  - 127.0.0.1/8
+  - ::1/128
+tls:
+  certificate: ""
+  private-key: ""
+global-client-fingerprint: random
+geodata-mode: true
+geo-auto-update: false
+geo-update-interval: 24
+geodata-loader: memconservative
+global-ua: clash.meta
+etag-support: true
+geox-url:
+  geoip: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
+  geosite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
+  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
+  asn: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
+allow-private-network: true
+external-controller-unix: mihomo.sock
+external-controller-pipe: pipe\mihomo
 profile:
   store-selected: true
   store-fake-ip: true
+lan-allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+lan-disallowed-ips: []
 # interface-name: en0 
 keep-alive-interval: 15 
 sniffer:
