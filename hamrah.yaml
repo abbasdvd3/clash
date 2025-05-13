@@ -1,7 +1,7 @@
 mode: rule
-ipv6: true
-redir-port: 7892
-tproxy-port: 7895
+ipv6: false
+# redir-port: 7892
+# tproxy-port: 7895
 allow-lan: true
 log-level: silent
 interface-name: ""
@@ -60,9 +60,17 @@ tun:
   mtu: 1500
   strict-route: true
   endpoint-independent-nat: false
-  experimental:
-   sniff-tls-sni: true
-   udp-fallback-match: true
+  
+experimental:
+  http-headers:
+    request:
+      - name: "User-Agent"
+        value: "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36"
+      - name: "Accept-Language"
+        value: "en-US,en;q=0.9"
+  sniff-tls-sni: false
+  udp-fallback-match: false
+
 dns:
   enable: true
   cache-algorithm: arc
@@ -73,6 +81,9 @@ dns:
   listen: 0.0.0.0:1053
   ipv6: false
   default-nameserver:
+    - 223.5.5.5
+    - 223.6.6.6
+    - 114.114.114.114
     - 9.9.9.9
     - 8.8.4.4
     - 1.1.1.1
@@ -81,8 +92,6 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - '*.lan'
-  direct-nameserver:
-    - system
   nameserver-policy:
     "RULE-SET:GEOSITE-CN,Google,GEOSITE-Private":
     - https://doh.pub/dns-query
@@ -98,13 +107,25 @@ dns:
     - https://9.9.9.9/dns-query
   nameserver:
     - https://doh.pub/dns-query
+    - https://cloudflare-dns.com/dns-query
     - https://dns.alidns.com/dns-query
- #   - dhcp://system
+    - https://dns.quad9.net/dns-query
+    - dhcp://system
   fallback:
     - tls://8.8.4.4
     - tls://1.1.1.1
+    - tls://dns.quad9.net
+    - https://cloudflare-dns.com/dns-query
+    - 114.114.114.114
   proxy-server-nameserver:
     - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  direct-nameserver:
+    - 223.5.5.5
+    - 223.6.6.6
+    - 114.114.114.114
+    - 119.29.29.29
+  direct-nameserver-follow-policy: false
   fallback-filter:
     geoip: true
     geoip-code: ir
@@ -117,250 +138,209 @@ dns:
       - '+.facebook.com'
       - '+.youtube.com'
  
-hosts:
-  '*.clash.dev': 127.0.0.1
-  'alpha.clash.dev': '::1'
-  test.com: [1.1.1.1, 2.2.2.2]
-  baidu.com: google.com
-  google.com: 225.5.5.5, 9.9.9.9
+#hosts:
+#  '*.clash.dev': 127.0.0.1
+#  'alpha.clash.dev': '::1'
+#  test.com: [1.1.1.1, 2.2.2.2]
+#  baidu.com: google.com
+#  google.com: 225.5.5.5, 9.9.9.9
   
 proxy-providers:
   A1:
     type: http
     url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
-    interval: 86
-    proxy: DIRECT
-    size-limit: 0
-    header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
+    interval: 86400
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 50
-#      lazy: true
-#      expected-status: 204
+      lazy: true
+      expected-status: 100
     override:
-      tfo: false
-      mptcp: false
-      udp: true
-      udp-over-tcp: true
-      down: "50 Mbps"
-      up: "10 Mbps"
-      skip-cert-verify: true
-      interface-name: tailscale0
-      routing-mark: 233
-      ip-version: ipv4-prefer
       additional-prefix: "A1 prefix |"
       additional-suffix: "| A1 suffix"
-#    filter: "(?i)港|hk|hongkong|hong kong"
-#    exclude-filter: "xxx"
-#    exclude-type: "ss|http"
     
   A2:
     type: http
     url: "https://shadowmere.xyz/api/b64sub/"
-    interval: 86
-    proxy: DIRECT
-    size-limit: 0
-    header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
+    interval: 86400
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 50
-#      lazy: true
-#      expected-status: 204
+      lazy: true
+      expected-status: 100
     override:
-      tfo: false
-      mptcp: false
-      udp: true
-      udp-over-tcp: true
-      down: "50 Mbps"
-      up: "10 Mbps"
-      skip-cert-verify: true
-      interface-name: tailscale0
-      routing-mark: 233
-      ip-version: ipv4-prefer
       additional-prefix: "A2 prefix |"
       additional-suffix: "| A2 suffix"
-#    filter: "(?i)港|hk|hongkong|hong kong"
-#    exclude-filter: "xxx"
-#    exclude-type: "ss|http"
 
   A3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x"
-    interval: 86
-    proxy: DIRECT
-    size-limit: 0
-    header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
+    interval: 86400
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 50
-#      lazy: true
-#      expected-status: 204
+      lazy: true
+      expected-status: 100
     override:
-      tfo: false
-      mptcp: false
-      udp: true
-      udp-over-tcp: true
-      down: "50 Mbps"
-      up: "10 Mbps"
-      skip-cert-verify: true
-      interface-name: tailscale0
-      routing-mark: 233
-      ip-version: ipv4-prefer
       additional-prefix: "A3 prefix |"
       additional-suffix: "| A3 suffix"
-#    filter: "(?i)港|hk|hongkong|hong kong"
-#    exclude-filter: "xxx"
-#    exclude-type: "ss|http"
     
   A4:
     type: http
     url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/FREEIRAN-VIP"
-    interval: 86
-    proxy: DIRECT
-    size-limit: 0
-    header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
+    interval: 86400
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 50
-#      lazy: true
-#      expected-status: 204
+      lazy: true
+      expected-status: 100
     override:
-      tfo: false
-      mptcp: false
-      udp: true
-      udp-over-tcp: true
-      down: "50 Mbps"
-      up: "10 Mbps"
-      skip-cert-verify: true
-      interface-name: tailscale0
-      routing-mark: 233
-      ip-version: ipv4-prefer
       additional-prefix: "A4 prefix |"
       additional-suffix: "| A4 suffix"
-#    filter: "(?i)港|hk|hongkong|hong kong"
-#    exclude-filter: "xxx"
-#    exclude-type: "ss|http"
 
   A5:
     type: http
     url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_iOS.txt#(AzadNet.t.me)"
-    interval: 86
-    proxy: DIRECT
-    size-limit: 0
-    header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
+    interval: 86400
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 50
-#      lazy: true
-#      expected-status: 204
+      lazy: true
+      expected-status: 100
     override:
-      tfo: false
-      mptcp: false
-      udp: true
-      udp-over-tcp: true
-      down: "50 Mbps"
-      up: "10 Mbps"
-      skip-cert-verify: true
-      interface-name: tailscale0
-      routing-mark: 233
-      ip-version: ipv4-prefer
       additional-prefix: "A5 prefix |"
       additional-suffix: "| A5 suffix"
-#    filter: "(?i)港|hk|hongkong|hong kong"
-#    exclude-filter: "xxx"
-#    exclude-type: "ss|http"
     
   A6:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
-    interval: 86
-    proxy: DIRECT
-    size-limit: 0
-    header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
+    interval: 86400
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 50
-#      lazy: true
-#      expected-status: 204
+      lazy: true
+      expected-status: 100
     override:
-      tfo: false
-      mptcp: false
-      udp: true
-      udp-over-tcp: true
-      down: "50 Mbps"
-      up: "10 Mbps"
-      skip-cert-verify: true
-      interface-name: tailscale0
-      routing-mark: 233
-      ip-version: ipv4-prefer
       additional-prefix: "A6 prefix |"
       additional-suffix: "| A6 suffix"
-#    filter: "(?i)港|hk|hongkong|hong kong"
-#    exclude-filter: "xxx"
-#    exclude-type: "ss|http"
+
   A7:
     type: http
-    url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_iOS.txt#(AzadNet.t.me)"
-    interval: 86
-    proxy: DIRECT
-    size-limit: 0
-    header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
+    url: "https://SOS.CMLiussss.net/auto"
+    interval: 86400
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      timeout: 50
-#      lazy: true
-#      expected-status: 204
+      lazy: true
+      expected-status: 100
     override:
-      tfo: false
-      mptcp: false
-      udp: true
-      udp-over-tcp: true
-      down: "50 Mbps"
-      up: "10 Mbps"
-      skip-cert-verify: true
-      interface-name: tailscale0
-      routing-mark: 233
-      ip-version: ipv4-prefer
       additional-prefix: "A7 prefix |"
       additional-suffix: "| A7 suffix"
-#    filter: "(?i)港|hk|hongkong|hong kong"
-#    exclude-filter: "xxx"
-#    exclude-type: "ss|http"
+
+  A8:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah"
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A8 prefix |"
+      additional-suffix: "| A8 suffix"
+
+  A9:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/pp1.yaml"
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A9 prefix |"
+      additional-suffix: "| A9 suffix"
+
+  A10:
+    type: http
+    url: "http://150.230.195.209:12580/clash/proxies"
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A10 prefix |"
+      additional-suffix: "| A10 suffix"
+
+  A11:
+    type: http
+    url: "http://141.147.161.50:12580/clash/proxies"
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A11 prefix |"
+      additional-suffix: "| A11 suffix"
+
+  A12:
+    type: http
+    url: "http://155.248.172.106:12580/clash/proxies"
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A12 prefix |"
+      additional-suffix: "| A12 suffix"
+      
+  A13:
+    type: http
+    url: "http://66.42.50.118:12580/clash/proxies"
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A13 prefix |"
+      additional-suffix: "| A13 suffix"
+
+  A14:
+    type: http
+    url: "https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1225clash.yml"
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A14 prefix |"
+      additional-suffix: "| A14 suffix"
 
 rule-providers:
   LocalAreaNetwork:
@@ -530,44 +510,229 @@ rule-providers:
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.yaml
     behavior: domain
     format: yaml
+    
+#  自定义出站: 
+ #   <<: *Local
+#    path: ./etc/自定义规则.list 
+
+  WebRTC:
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/rules/WebRTC.list"
+    behavior: classical
+    format: text
+
+  CN_IP:
+    type: http 
+    behavior: classical
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs"
+  CN_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs"
+
+  No-ads-all_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://anti-ad.net/mihomo.mrs"
+
+  TikTok_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/TikTok/TikTok_OCD_Domain.mrs"
+
+  Spotify_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Spotify/Spotify_OCD_Domain.mrs"
+  Spotify_IP:
+    type: http 
+    behavior: classical
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Spotify/Spotify_OCD_IP.mrs"
+
+  Facebook_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Facebook/Facebook_OCD_Domain.mrs"
+  Facebook_IP:
+    type: http 
+    behavior: classical
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Facebook/Facebook_OCD_IP.mrs"
+
+  Telegram_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
+  Telegram_IP:
+    type: http 
+    behavior: classical
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
+
+  YouTube_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/YouTube/YouTube_OCD_Domain.mrs"
+  YouTube_IP:
+    type: http 
+    behavior: classical
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/YouTube/YouTube_OCD_IP.mrs"
+
+  Google_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Google/Google_OCD_Domain.mrs"
+  Google_IP:
+    type: http 
+    behavior: classical
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Google/Google_OCD_IP.mrs"
+
+  GoogleFCM_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
+  GoogleFCM_IP:
+    type: http 
+    behavior: classical
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
+
+  Microsoft_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
+
+  OpenAI_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/OpenAI/OpenAI_OCD_Domain.mrs"
+  OpenAI_IP:
+    type: http 
+    behavior: classical
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/OpenAI/OpenAI_OCD_IP.mrs"
+
+  Discord_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Discord/Discord_OCD_Domain.mrs"
+
+  GitHub_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/GitHub/GitHub_OCD_Domain.mrs"
+
+  Twitter_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Twitter/Twitter_OCD_Domain.mrs"
+  Twitter_IP:
+    type: http 
+    behavior: classical
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Twitter/Twitter_OCD_IP.mrs"
+
+  Private_D:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
+  Private_IP:
+    type: http 
+    behavior: classical
+    format: mrs
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
 
 proxies:
-  - name: "IRAN"
-    type: direct
-    udp: true
-    ip-version: ipv4
-    interface-name: eth0
-    routing-mark: 1234
-  - name: "DNS"
-    type: dns
+  - {name: ایران, type: direct, udp: true}
+  - {name: ⛔️ reject, type: reject}
+  - {name: 🌐 DNS_Hijack, type: dns}
 proxy-groups:
   - name: PROXY
     type: select
     filter: ""
     exclude-filter: ""
     hidden: false
-    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
     proxies:
+  
+      - 🎈 fallback
       - 🎈 Auto
-      
+      - ایران
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
   - name: 🎈 Auto
     type: url-test
     filter: ""
     exclude-filter: ""
+    exclude-type: "socks5|http"
+    include-all-providers: true
+    hidden: false
+    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 5000
+    
+  - name: 🎈 fallback
+    type: fallback
+    filter: ""
+    exclude-filter: ""
+    exclude-type: "socks5|http"
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 5000
+    include-all-providers: true
     hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
     use:
-      - A1
-      - A2
-      - A3
-      - A4
-      - A5
-      - A6
-      - A7
-    url: "https://networkcheck.kde.org/"
-    timeout: 5
-    max-failed-times: 5
-    disable-udp: true
     
   - name: 🎯 Direct
     type: select
@@ -576,22 +741,292 @@ proxy-groups:
     hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Rocket.png"
     proxies:
-      - IRAN
+      - ایران
       - 🎈 Auto
-    disable-udp: true
-    
-  - name: 🛑 Reject
+      - 🌐 DNS_Hijack
+      - REJECT-DROP
+      - PASS
+  - name: 🛑 WebRTC
     type: select
-    filter: ""
-    exclude-filter: ""
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/WebRTC.svg"
     hidden: false
-    icon: ""
     proxies:
-      - REJECT
-      - DIRECT
-      - PROXY
-    disable-udp: true
-  
+      - ⛔️ reject
+      - 🌐 DNS_Hijack
+      - REJECT-DROP
+      - PASS
+
+
+  - name: Microsoft
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Microsoft.svg"
+    proxies:
+      - 🎈 fallback
+      - 🎈 Auto
+      - ایران
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
+
+  - name: Telegram
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Telegram.svg"
+    proxies:
+      - 🎈 fallback
+      - 🎈 Auto
+      - ایران
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
+
+  - name: Discord
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Discord.svg"
+    proxies:
+      - 🎈 fallback
+      - 🎈 Auto
+      - ایران
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
+
+  - name: Spotify
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Spotify.svg"
+    proxies:
+      - 🎈 fallback
+      - 🎈 Auto
+      - ایران
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
+
+  - name: TikTok
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/TikTok.svg"
+    proxies:
+      - 🎈 fallback
+      - 🎈 Auto
+      - ایران
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
+
+  - name: YouTube
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/YouTube.svg"
+    proxies:
+      - 🎈 fallback
+      - 🎈 Auto
+      - ایران
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
+
+  - name: Netflix
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Netflix.svg"
+    proxies:
+      - 🎈 fallback
+      - 🎈 Auto
+      - ایران
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
+
+  - name: Google
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Google.svg"
+    proxies:
+      - 🎈 fallback
+      - 🎈 Auto
+      - ایران
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
+
+  - name: GoogleFCM
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GoogleFCM.svg"
+    proxies:
+      - 🎈 fallback
+      - 🎈 Auto
+      - ایران
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
+
+  - name: Facebook
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Facebook.svg"
+    proxies:
+      - 🎈 fallback
+      - 🎈 Auto
+      - ایران
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
+
+  - name: OpenAI
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/OpenAI.svg"
+    proxies:
+      - 🎈 fallback
+      - 🎈 Auto
+      - ایران
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
+
+  - name: GitHub
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GitHub.svg"
+    proxies:
+      - 🎈 fallback
+      - 🎈 Auto
+      - ایران
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
+
+  - name: Twitter(X)
+    type: select
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Twitter.svg"
+    proxies:
+      - 🎈 fallback
+      - 🎈 Auto
+      - ایران
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
+          
+  - name: Taiwan
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/CN.svg"
+    filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
+    type: url-test
+    exclude-type: "socks5|http"
+    include-all-providers: true
+    hidden: false
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 5000
+
+  - name: hongkong
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/HK.svg"
+    filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
+    type: url-test
+    exclude-type: "socks5|http"
+    include-all-providers: true
+    hidden: false
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 5000
+
+  - name: Japan
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/JP.svg"
+    filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
+    type: url-test
+    exclude-type: "socks5|http"
+    include-all-providers: true
+    hidden: false
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 5000
+
+  - name: US
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/US.svg"
+    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
+    type: url-test
+    exclude-type: "socks5|http"
+    include-all-providers: true
+    hidden: false
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 5000
+
+  - name: Singapore
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Singapore.svg"
+    filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
+    type: url-test
+    exclude-type: "socks5|http"
+    include-all-providers: true
+    hidden: false
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 5000
+      - 
+  - name: Globe
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Globe.svg"
+    filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
+    type: url-test
+    exclude-type: "socks5|http"
+    include-all-providers: true
+    hidden: false
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 5000
+    
+  - name: Persian Gulf
+    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/freedom.webp"
+    type: url-test
+    exclude-type: "socks5|http|vless|trojan|ss|vmess"
+    include-all-providers: true
+    hidden: false
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 5000    
 rules:
   - PROCESS-NAME,chrome.exe,PROXY
   - PROCESS-NAME,com.termux,PROXY
@@ -599,9 +1034,39 @@ rules:
   - PROCESS-NAME-REGEX,curl$,PROXY
   - PROCESS-NAME-REGEX,(?i)Telegram,PROXY
   - PROCESS-NAME-REGEX,.*telegram.*,PROXY
-  
-  - NETWORK,udp,IRAN
-  - DST-PORT,80,DNS
+  - DST-PORT,53,🌐 DNS_Hijack
+  - DST-PORT,853,🌐 DNS_Hijack
+  - RULE-SET,WebRTC,🛑 WebRTC
+  - RULE-SET,No-ads-all_D,🛑 WebRTC
+  - RULE-SET,GitHub_D,GitHub
+  - RULE-SET,Discord_D,Discord
+  - RULE-SET,TikTok_D,TikTok
+  - RULE-SET,Twitter_D,Twitter(X)
+  - RULE-SET,Twitter_IP,Twitter(X)
+  - RULE-SET,YouTube_D,YouTube
+  - RULE-SET,YouTube_IP,YouTube
+  - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
+  - RULE-SET,Google_D,Google
+  - RULE-SET,Google_IP,Google
+#  - RULE-SET,Netflix_D,Netflix
+#  - RULE-SET,Netflix_IP,Netflix
+  - RULE-SET,Spotify_D,Spotify
+  - RULE-SET,Spotify_IP,Spotify
+  - RULE-SET,Facebook_D,Facebook
+  - RULE-SET,Facebook_IP,Facebook
+  - RULE-SET,OpenAI_D,OpenAI
+  - RULE-SET,OpenAI_IP,OpenAI
+#  - RULE-SET,Apple_D,Apple
+#  - RULE-SET,Apple_IP,Apple
+  - RULE-SET,Microsoft_D,Microsoft
+  - RULE-SET,Telegram_D,Telegram
+  - RULE-SET,Telegram_IP,Telegram
+  - DOMAIN,browserleaks.com,PROXY
+  - RULE-SET,CN_D,🎯 Direct
+  - RULE-SET,CN_IP,🎯 Direct
+  - RULE-SET,Private_D,🎯 Direct
+  - RULE-SET,Private_IP,🎯 Direct
+  - NETWORK,udp,PROXY
   - SRC-PORT,7777,PROXY
   - IN-PORT,7890,PROXY
   - IN-TYPE,SOCKS/HTTP,PROXY
@@ -617,70 +1082,52 @@ rules:
   - IP-CIDR6,fc00::/7,REJECT,no-resolve
   - IP-CIDR6,fe80::/10,REJECT,no-resolve
   - IP-CIDR6,fd00::/8,REJECT,no-resolve
-  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑 Reject
-  - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
-  - RULE-SET,category-ads-all,🛑 Reject
+  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑 WebRTC
+  - AND,((DST-PORT,443),(NETWORK,udp)),🛑 WebRTC
+  - RULE-SET,category-ads-all,🛑 WebRTC
   - RULE-SET,GEOIP-Private,🎯 Direct,no-resolve
   - RULE-SET,GEOIP-CN,🎯 Direct,no-resolve
   - RULE-SET,GEOSITE-Private,🎯 Direct,no-resolve
   - RULE-SET,GEOSITE-CN,🎯 Direct,no-resolve
   - RULE-SET,geolocation-!cn,PROXY
-  - RULE-SET,LocalAreaNetwork,IRAN,no-resolve
+  - RULE-SET,LocalAreaNetwork,🎯 Direct,no-resolve
   - RULE-SET,UnBan,PROXY
   - DOMAIN-SUFFIX,google.com,PROXY
-  - RULE-SET,BanAD,🛑 Reject
-  - RULE-SET,BanProgramAD,🛑 Reject
-  - RULE-SET,GoogleFCM,PROXY
+  - RULE-SET,BanAD,🛑 WebRTC
+  - RULE-SET,BanProgramAD,🛑 WebRTC
+  - RULE-SET,GoogleFCM,GoogleFCM
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
   - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
-  - RULE-SET,GoogleCNProxyIP,PROXY
-  - RULE-SET,GoogleCN,PROXY
-  - RULE-SET,YouTube,PROXY
-  - RULE-SET,Google,PROXY
-  - RULE-SET,Bing,PROXY
-  - RULE-SET,OneDrive,PROXY
-  - RULE-SET,Microsoft,PROXY
+  - RULE-SET,GoogleCNProxyIP,Google
+  - RULE-SET,GoogleCN,Google
+  - RULE-SET,YouTube,YouTube
+  - RULE-SET,Google,Google
+  - RULE-SET,Bing,Microsoft
+  - RULE-SET,OneDrive,Microsoft
+  - RULE-SET,Microsoft,Microsoft
   - RULE-SET,Apple,PROXY
-  - RULE-SET,Telegram,PROXY
-  - RULE-SET,OpenAi,PROXY
-  - RULE-SET,ChinaMedia,PROXY
+  - RULE-SET,Telegram,Telegram
+  - RULE-SET,OpenAi,OpenAI
+  - RULE-SET,ChinaMedia,🎯 Direct
   - RULE-SET,ProxyMedia,PROXY
   - DOMAIN-SUFFIX,v2rayse.com,PROXY
   - DOMAIN-SUFFIX,cff.pw,PROXY
   - DOMAIN-SUFFIX,vpnse.org,PROXY
   - DOMAIN-SUFFIX,cfmem.com,PROXY
-  - DOMAIN-SUFFIX,networkcheck.kde.org,IRAN
+  - DOMAIN-SUFFIX,networkcheck.kde.org,🎯 Direct
   - RULE-SET,ProxyGFWlist,PROXY
-  - RULE-SET,ChinaDomain,PROXY
-  - RULE-SET,ChinaCompanyIp,PROXY
+  - RULE-SET,ChinaDomain,🎯 Direct
+  - RULE-SET,ChinaCompanyIp,🎯 Direct
   - RULE-SET,Download,🎯 Direct
-  - GEOIP,ir,IRAN
+  - GEOIP,ir,🎯 Direct
   - IN-TYPE,inner,PROXY
   - MATCH,PROXY
   
-listeners:
-  - name: socks5-in-1
-    type: socks
-    port: 10808 
+#listeners:
 
-  - name: http-in-1
-    type: http
-    port: 10809 
-    listen: 0.0.0.0
-
-  - name: mixed-in-1
-    type: mixed 
-    port: 10810 
-    listen: 0.0.0.0
-
-  - name: reidr-in-1
-    type: redir
-    port: 10811
-    listen: 0.0.0.0
-
-  - name: tproxy-in-1
-    type: tproxy
-    port: 10812 
-    listen: 0.0.0.0
-
-      
+#  - name: mixed-in-1
+#    type: mixed 
+#    port: 10810 
+#    listen: 0.0.0.0
+#    proxy: PROXY
+    
