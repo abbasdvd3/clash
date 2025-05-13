@@ -1,5 +1,5 @@
 mode: rule
-ipv6: false
+ipv6: true
 # redir-port: 7892
 # tproxy-port: 7895
 allow-lan: true
@@ -8,6 +8,8 @@ interface-name: ""
 secret: 
 external-controller: 0.0.0.0:9090
 external-ui: ./dashboard
+external-ui-name: xd
+external-doh-server: /dns-query
 keep-alive-interval: 30
 find-process-mode: strict
 external-controller-tls: 0.0.0.0:9091
@@ -35,7 +37,7 @@ geox-url:
   asn: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
 allow-private-network: true
 external-controller-unix: mihomo.sock
-external-controller-pipe: pipe\mihomo
+external-controller-pipe: \\.\pipe\mihomo
 profile:
   store-selected: true
   store-fake-ip: true
@@ -47,15 +49,12 @@ tun:
   enable: true
   stack: Mixed
   auto-route: true
-  route-address:
-    - 0.0.0.0/1
-    - 128.0.0.0/1
-    - ::/1
-    - 8000::/1
+  udp-timeout: 300
   auto-detect-interface: true
   dns-hijack:
     - any:53
     - tcp://any:53
+    - 0.0.0.0:53
   device: utun_clash
   mtu: 1500
   strict-route: true
@@ -70,16 +69,17 @@ experimental:
         value: "en-US,en;q=0.9"
   sniff-tls-sni: false
   udp-fallback-match: false
+  quic-go-disable-gso: true
 
 dns:
   enable: true
   cache-algorithm: arc
-  prefer-h3: false
+  prefer-h3: true
   use-hosts: true
   use-system-hosts: true
   respect-rules: false
   listen: 0.0.0.0:1053
-  ipv6: false
+  ipv6: true
   default-nameserver:
     - 223.5.5.5
     - 223.6.6.6
@@ -105,7 +105,16 @@ dns:
     - https://8.8.8.8/dns-query
     - https://1.1.1.1/dns-query
     - https://9.9.9.9/dns-query
+    "geosite:category-ads-all": rcode://success
   nameserver:
+    - https://8.8.8.8/dns-query#DNSconnect&h3=true
+    - https://8.8.4.4/dns-query#DNSconnect&h3=true
+    - https://[2001:4860:4860::8888]/dns-query#DNSconnect&h3=true
+    - https://[2001:4860:4860::8844]/dns-query#DNSconnect&h3=true
+    - https://1.1.1.1/dns-query#DNSconnect&h3=true
+    - https://1.0.0.1/dns-query#DNSconnect&h3=true
+    - https://[2606:4700:4700::1111]/dns-query#DNSconnect&h3=true
+    - https://[2606:4700:4700::1001]/dns-query#DNSconnect&h3=true
     - https://doh.pub/dns-query
     - https://cloudflare-dns.com/dns-query
     - https://dns.alidns.com/dns-query
@@ -716,7 +725,7 @@ proxy-groups:
     exclude-type: "socks5|http"
     include-all-providers: true
     hidden: false
-    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 5000
