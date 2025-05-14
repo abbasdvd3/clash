@@ -108,6 +108,12 @@ dns:
   proxy-server-nameserver:
   - https://dns.google/dns-query
   - tls://one.one.one.one
+  direct-nameserver:
+    - 223.5.5.5
+    - 223.6.6.6
+    - 114.114.114.114
+    - 119.29.29.29
+  direct-nameserver-follow-policy: false
   fallback-filter:
     geoip: true
     geoip-code: ir
@@ -522,7 +528,6 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/Misaka-blog/chromego_merge/main/sub/merged_proxies_new.yaml"    
     interval: 3600
-    path: h3/provider1.yaml
     proxies: DIRECT
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
     override:
@@ -532,7 +537,6 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
     interval: 3600
-    path: h3/provider2.yaml
     proxies: DIRECT
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
     override:
@@ -542,7 +546,6 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/hysteria"    
     interval: 3600
-    path: h3/provider3.yaml
     proxies: DIRECT
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
     override:
@@ -552,7 +555,6 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/vless"
     interval: 3600
-    path: h3/provider4.yaml
     proxies: DIRECT
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
     override:
@@ -562,7 +564,6 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/shadowsocks"    
     interval: 3600
-    path: h3/provider5.yaml
     proxies: DIRECT
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
     override:
@@ -572,7 +573,6 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
     interval: 3600
-    path: h3/provider6.yaml
     proxies: DIRECT
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
     override:
@@ -582,7 +582,6 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/Vauth/node/main/Main"    
     interval: 3600
-    path: h3/provider7.yaml
     proxies: DIRECT
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
     override:
@@ -592,7 +591,6 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/WilliamStar007/ClashX-V2Ray-TopFreeProxy/main/combine/clash.config.yaml"
     interval: 3600
-    path: h3/provider8.yaml
     proxies: DIRECT
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
     override:
@@ -602,7 +600,6 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_base64_Sub.txt"    
     interval: 3600
-    path: h3/provider9.yaml
     proxies: DIRECT
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
     override:
@@ -612,7 +609,6 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml"
     interval: 3600
-    path: h3/provider10.yaml
     proxies: DIRECT
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
     override:
@@ -632,7 +628,6 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml"
     interval: 3600
-    path: h3/provider12.yaml
     proxies: DIRECT
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
     override:
@@ -642,13 +637,11 @@ rule-providers:
     type: http
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
-    path: ruleset/block.yaml
     interval: 86400
   AWA:
     type: http
     behavior: domain
     format: yaml
-    path: ruleset/AWAvenue-Ads-Rule-Clash.yaml
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
     interval: 86400
   ir:
@@ -656,63 +649,54 @@ rule-providers:
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
-    path: ./ruleset/ir.yaml
     interval: 86400
   ads:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
-    path: ./ruleset/ads.yaml
     interval: 86400
   malware:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
-    path: ./ruleset/malware.yaml
     interval: 86400
   phishing:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
-    path: ./ruleset/phishing.yaml
     interval: 86400
   cryptominers:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
-    path: ./ruleset/cryptominers.yaml
     interval: 86400
   apps:
     type: http
     format: yaml
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml"
-    path: ./ruleset/apps.yaml
     interval: 86400
   ircidr:
     type: http
     format: yaml
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
-    path: ./ruleset/ircidr.yaml
     interval: 86400
   private:
     type: http
     format: yaml
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
-    path: ./ruleset/private.yaml
     interval: 86400
   irasn:
     type: http
     format: yaml
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
-    path: ./ruleset/irasn.yaml
     interval: 86400
   social:
     type: http
@@ -726,7 +710,6 @@ rule-providers:
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
-    path: ./ruleset/nsfw1.yaml
     interval: 86400
   Google:
     type: http
@@ -734,20 +717,17 @@ rule-providers:
     url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/Google.list
     format: text
     interval: 3600
-    path: ruleset/Google.list
   IpinfoSpeedtest:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/mphin/ProxyTools/main/rules/IpinfoSpeedtest.list
     format: text
     interval: 3600
-    path: ruleset/IpinfoSpeedtest.list
   gfw:
     type: http
     format: yaml
     behavior: domain
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
-    path: ruleset/gfw.txt
     interval: 86400
   UnBan:
     type: http
@@ -755,224 +735,192 @@ rule-providers:
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
     format: text
     interval: 3600
-    path: ruleset/UnBan.list
   BanAD:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
     format: text
     interval: 3600
-    path: ruleset/BanAD.list
   BanProgramAD:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
     format: text
     interval: 3600
-    path: ruleset/BanProgramAD.list
   BanEasyList:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list
     format: text
     interval: 3600
-    path: ruleset/BanEasyList.list
   BanEasyListChina:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
     format: text
     interval: 3600
-    path: ruleset/BanEasyListChina.list
   BanEasyPrivacy:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
     format: text
-    interval: 3600
-    path: ruleset/BanEasyPrivacy.list    
+    interval: 3600  
   GoogleFCM:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
     format: text
     interval: 3600
-    path: ruleset/GoogleFCM.list
   GoogleCN:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
     format: text
     interval: 3600
-    path: ruleset/GoogleCN.list
   SteamCN:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list
     format: text
     interval: 3600
-    path: ruleset/SteamCN.list
   Bing:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list
     format: text
     interval: 3600
-    path: ruleset/Bing.list
   OneDrive:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list
     format: text
     interval: 3600
-    path: ruleset/OneDrive.list
   Microsoft:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
     format: text
     interval: 3600
-    path: ruleset/Microsoft.list
   Apple:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
     format: text
     interval: 3600
-    path: ruleset/Apple.list
   Telegram:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
     format: text
     interval: 3600
-    path: ruleset/Telegram.list
   OpenAi:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
     format: text
     interval: 3600
-    path: ruleset/OpenAi.list
   NetEaseMusic:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/NetEaseMusic.list
     format: text
     interval: 3600
-    path: ruleset/NetEaseMusic.list
   Epic:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Epic.list
     format: text
     interval: 3600
-    path: ruleset/Epic.list
   Origin:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Origin.list
     format: text
     interval: 3600
-    path: ruleset/Origin.list
   Sony:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Sony.list
     format: text
     interval: 3600
-    path: ruleset/Sony.list
   Steam:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Steam.list
     format: text
     interval: 3600
-    path: ruleset/Steam.list
   Nintendo:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Nintendo.list
     format: text
     interval: 3600
-    path: ruleset/Nintendo.list
   YouTube:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list
     format: text
     interval: 3600
-    path: ruleset/YouTube.list
   Netflix:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Netflix.list
     format: text
     interval: 3600
-    path: ruleset/Netflix.list
   Bahamut:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bahamut.list
     format: text
     interval: 3600
-    path: ruleset/Bahamut.list
   BilibiliHMT:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list
     format: text
     interval: 3600
-    path: ruleset/BilibiliHMT.list
   Bilibili:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bilibili.list
     format: text
     interval: 3600
-    path: ruleset/Bilibili.list
   ChinaMedia:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list
     format: text
     interval: 3600
-    path: ruleset/ChinaMedia.list
   ProxyMedia:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
     format: text
     interval: 3600
-    path: ruleset/ProxyMedia.list
   ProxyGFWlist:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
     format: text
     interval: 3600
-    path: ruleset/ProxyGFWlist.list
   ChinaDomain:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
     format: text
     interval: 3600
-    path: ruleset/ChinaDomain.list
   ChinaCompanyIp:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
     format: text
     interval: 3600
-    path: ruleset/ChinaCompanyIp.list
   Download:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list
     format: text
     interval: 3600
-    path: ruleset/Download.list
 rules:
   - RULE-SET,private,DIRECT,no-resolve
   - RULE-SET,apps,DIRECT
