@@ -45,6 +45,7 @@ external-controller-pipe: \\.\pipe\mihomo
 profile:
   store-selected: true
   store-fake-ip: true
+  tracing: true
 lan-allowed-ips:
   - 0.0.0.0/0
   - ::/0
@@ -85,12 +86,13 @@ dns:
   listen: 0.0.0.0:1053
   ipv6: true
   default-nameserver:
-    - 223.5.5.5
-    - 223.6.6.6
-    - 114.114.114.114
-    - 9.9.9.9
-    - 8.8.4.4
-    - 1.1.1.1
+    - '127.0.0.1:53'
+    - '223.5.5.5'
+    - '223.6.6.6'
+    - '114.114.114.114'
+    - '9.9.9.9'
+    - '8.8.8.8'
+    - '1.1.1.1'
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
@@ -98,58 +100,98 @@ dns:
     - '*.lan'
   nameserver-policy:
     "RULE-SET:GEOSITE-CN,Google,GEOSITE-Private":
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-    - https://8.8.8.8/dns-query
-    - https://1.1.1.1/dns-query
-    - https://9.9.9.9/dns-query
+    - 'https://doh.pub/dns-query'
+    - 'https://dns.alidns.com/dns-query'
+    - 'https://8.8.8.8/dns-query'
+    - 'https://1.1.1.1/dns-query'
+    - 'https://9.9.9.9/dns-query'
     "ruleset:geolocation-!cn,OpenAi,ProxyMedia,ProxyGFWlist":
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-    - https://8.8.8.8/dns-query
-    - https://1.1.1.1/dns-query
-    - https://9.9.9.9/dns-query
-    "geosite:category-ads-all": rcode://success
+    - 'https://doh.pub/dns-query'
+    - 'https://dns.alidns.com/dns-query'
+    - 'https://8.8.8.8/dns-query'
+    - 'https://1.1.1.1/dns-query'
+    - 'https://9.9.9.9/dns-query'
+    "geosite:category-ads-all": 'rcode://success'
+    "geosite:category-ads-all": 'rcode://format_error'
+    "geosite:category-ads-all": 'rcode://server_failure'
+    "geosite:category-ads-all": 'rcode://not_implemented'
+    "geosite:category-ads-all": 'rcode://refused'
   nameserver:
-    - https://8.8.8.8/dns-query#DNSconnect&h3=true
-    - https://8.8.4.4/dns-query#DNSconnect&h3=true
-    - https://[2001:4860:4860::8888]/dns-query#DNSconnect&h3=true
-    - https://[2001:4860:4860::8844]/dns-query#DNSconnect&h3=true
-    - https://1.1.1.1/dns-query#DNSconnect&h3=true
-    - https://1.0.0.1/dns-query#DNSconnect&h3=true
-    - https://[2606:4700:4700::1111]/dns-query#DNSconnect&h3=true
-    - https://[2606:4700:4700::1001]/dns-query#DNSconnect&h3=true
-    - https://doh.pub/dns-query
-    - https://cloudflare-dns.com/dns-query
-    - https://dns.alidns.com/dns-query
-    - https://dns.quad9.net/dns-query
-    - dhcp://system
+    - '127.0.0.1:53'
+    - 'https://8.8.8.8/dns-query#DNSconnect&h3=true'
+    - 'https://8.8.4.4/dns-query#DNSconnect&h3=true'
+    - 'https://[2001:4860:4860::8888]/dns-query#DNSconnect&h3=true'
+    - 'https://[2001:4860:4860::8844]/dns-query#DNSconnect&h3=true'
+    - 'https://1.1.1.1/dns-query#DNSconnect&h3=true'
+    - 'https://1.0.0.1/dns-query#DNSconnect&h3=true'
+    - 'https://[2606:4700:4700::1111]/dns-query#DNSconnect&h3=true'
+    - 'https://[2606:4700:4700::1001]/dns-query#DNSconnect&h3=true'
+    - 'https://doh.pub/dns-query'
+    - 'https://cloudflare-dns.com/dns-query'
+    - 'https://dns.alidns.com/dns-query'
+    - 'https://dns.quad9.net/dns-query'
+    - 'dhcp://system'
   fallback:
-    - tls://8.8.4.4
-    - tls://1.1.1.1
-    - tls://dns.quad9.net
-    - https://cloudflare-dns.com/dns-query
-    - 114.114.114.114
+    - '127.0.0.1:53'
+    - 'tls://8.8.4.4'
+    - 'tls://1.1.1.1'
+    - 'tcp://8.8.4.4'
+    - 'tcp://1.1.1.1'
+    - 'tls://dns.quad9.net'
+    - 'https://cloudflare-dns.com/dns-query'
+    - 'tcp://9.9.9.9'
   proxy-server-nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
+    - 'https://doh.pub/dns-query'
+    - 'https://dns.alidns.com/dns-query'
   direct-nameserver:
-    - 223.5.5.5
-    - 223.6.6.6
-    - 114.114.114.114
-    - 119.29.29.29
+    - '223.5.5.5'
+    - '223.6.6.6'
+    - 'tls://8.8.4.4'
+    - 'tls://1.1.1.1'
+    - 'tcp://8.8.4.4'
+    - 'tcp://1.1.1.1'
   direct-nameserver-follow-policy: false
   fallback-filter:
-    geoip: false
+    geoip: true
     geoip-code: ir
     geosite:
-      - nsfw
+      - 'nsfw'
     ipcidr:
-      - 240.0.0.0/4
+      - '240.0.0.0/4'
+      - '0.0.0.0/32'
+      - '100.64.0.0/10'
+      - '127.0.0.0/8'
+      - '240.0.0.0/4'
+      - '10.0.0.0/8'
+      - '169.254.0.0/16'
+      - '172.16.0.0/12'
+      - '192.0.0.0/24'
+      - '192.0.2.0/24'
+      - '192.88.99.0/24'
+      - '192.168.0.0/16'
+      - '198.18.0.0/16'
+      - '198.51.100.0/24'
+      - '203.0.113.0/24'
+      - '224.0.0.0/4'
+      - '255.255.255.255/32'
+      - '::1/128'
+      - 'fc00::/7'
+      - 'fe80::/10'
+      - '39.102.194.95/32'
+      - '182.43.124.6/32'
+      - '101.35.177.86/32'
+      - '116.89.243.8/32'
+      - '119.28.87.227/32'
     domain:
       - '+.google.com'
       - '+.facebook.com'
       - '+.youtube.com'
+      - '+.google.cn'
+      - '+.googleapis.cn'
+      - '+.googleapis.com'
+      - '+.github.com'
+      - '+.twitter.com'
+
  
 #hosts:
 #  '*.clash.dev': 127.0.0.1
@@ -163,6 +205,7 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
     interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -177,6 +220,7 @@ proxy-providers:
     type: http
     url: "https://shadowmere.xyz/api/b64sub/"
     interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -191,6 +235,7 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x"
     interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -205,6 +250,7 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/FREEIRAN-VIP"
     interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -219,6 +265,7 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_iOS.txt#(AzadNet.t.me)"
     interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -233,6 +280,7 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
     interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -247,6 +295,7 @@ proxy-providers:
     type: http
     url: "https://SOS.CMLiussss.net/auto"
     interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -261,6 +310,7 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah"
     interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -275,6 +325,7 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/10.yaml"
     interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -289,6 +340,7 @@ proxy-providers:
     type: http
     url: "http://150.230.195.209:12580/clash/proxies"
     interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -303,6 +355,7 @@ proxy-providers:
     type: http
     url: "http://141.147.161.50:12580/clash/proxies"
     interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -317,6 +370,7 @@ proxy-providers:
     type: http
     url: "http://155.248.172.106:12580/clash/proxies"
     interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -331,6 +385,7 @@ proxy-providers:
     type: http
     url: "http://66.42.50.118:12580/clash/proxies"
     interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -345,6 +400,7 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1225clash.yml"
     interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -359,168 +415,168 @@ rule-providers:
   LocalAreaNetwork:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list"
     format: text
 
   UnBan:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list"
     format: text
 
   BanAD:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list"
     format: text
 
   BanProgramAD:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list"
     format: text
 
   GoogleFCM:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list"
     format: text
 
   GoogleCNProxyIP:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list"
     format: text
 
   GoogleCN:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list"
     format: text
 
   YouTube:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list"
     format: text
 
   Google:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list"
     format: text
 
   Bing:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list"
     format: text
 
   OneDrive:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list"
     format: text
 
   Microsoft:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list"
     format: text
 
   Apple:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list"
     format: text
 
   Telegram:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list"
     format: text
 
   OpenAi:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list"
     format: text
 
   Netflix:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Netflix.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Netflix.list"
     format: text
 
   ChinaMedia:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list"
     format: text
 
   ProxyMedia:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list"
     format: text
 
   ProxyGFWlist:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list"
     format: text
 
   ChinaDomain:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list"
     format: text
 
   ChinaCompanyIp:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list"
     format: text
     
   Download:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list"
     format: text
 
   category-ads-all:
     type: http
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.yaml
+    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.yaml"
     behavior: domain
     format: yaml
 
   GEOIP-Private:
     type: http
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.yaml
+    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.yaml"
     behavior: classical
     format: yaml
 
   GEOIP-CN:
     type: http
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/ir.yaml
+    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/ir.yaml"
     behavior: classical
     format: yaml
 
   GEOSITE-Private:
     type: http
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.yaml
+    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.yaml"
     behavior: domain
     format: yaml
 
   GEOSITE-CN:
     type: http
-    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ir.yaml
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ir.yaml"
     behavior: domain
     format: yaml
 
   geolocation-!cn:
     type: http
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.yaml
+    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.yaml"
     behavior: domain
     format: yaml
     
@@ -707,7 +763,7 @@ proxy-groups:
   - name: PROXY
     type: select
     filter: ""
-    exclude-filter: ""
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
     proxies:
@@ -724,7 +780,7 @@ proxy-groups:
   - name: 🎈 Auto
     type: url-test
     filter: ""
-    exclude-filter: "error"
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "socks5|http"
     include-all-providers: true
     hidden: false
@@ -734,7 +790,7 @@ proxy-groups:
   - name: 🎈 fallback
     type: fallback
     filter: ""
-    exclude-filter: ""
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "ss|socks5|http"
     url: http://www.gstatic.com/generate_204
     interval: 150
@@ -770,6 +826,8 @@ proxy-groups:
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Microsoft.svg"
     include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-type: "socks5|http"
     proxies:
       - 🎈 Auto
       - 🎈 fallback
@@ -786,6 +844,8 @@ proxy-groups:
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Telegram.svg"
     include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-type: "socks5|http"
     proxies:
       - 🎈 Auto
       - 🎈 fallback
@@ -802,6 +862,8 @@ proxy-groups:
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Discord.svg"
     include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-type: "socks5|http"
     proxies:
       - 🎈 Auto
       - 🎈 fallback
@@ -818,6 +880,8 @@ proxy-groups:
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Spotify.svg"
     include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-type: "socks5|http"
     proxies:
       - 🎈 Auto
       - 🎈 fallback
@@ -834,6 +898,8 @@ proxy-groups:
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/TikTok.svg"
     include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-type: "socks5|http"
     proxies:
       - 🎈 Auto
       - 🎈 fallback
@@ -850,6 +916,8 @@ proxy-groups:
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/YouTube.svg"
     include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-type: "socks5|http"
     proxies:
       - 🎈 Auto
       - 🎈 fallback
@@ -866,6 +934,8 @@ proxy-groups:
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Netflix.svg"
     include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-type: "socks5|http"
     proxies:
       - 🎈 Auto
       - 🎈 fallback
@@ -882,6 +952,8 @@ proxy-groups:
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Google.svg"
     include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-type: "socks5|http"
     proxies:
       - 🎈 Auto
       - 🎈 fallback
@@ -898,6 +970,8 @@ proxy-groups:
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GoogleFCM.svg"
     include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-type: "socks5|http"
     proxies:
       - 🎈 Auto
       - 🎈 fallback
@@ -914,6 +988,8 @@ proxy-groups:
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Facebook.svg"
     include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-type: "socks5|http"
     proxies:
       - 🎈 Auto
       - 🎈 fallback
@@ -930,6 +1006,8 @@ proxy-groups:
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/OpenAI.svg"
     include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-type: "socks5|http"
     proxies:
       - 🎈 Auto
       - 🎈 fallback
@@ -946,6 +1024,8 @@ proxy-groups:
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GitHub.svg"
     include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-type: "socks5|http"
     proxies:
       - 🎈 Auto
       - 🎈 fallback
@@ -962,6 +1042,8 @@ proxy-groups:
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Twitter.svg"
     include-all-providers: true
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-type: "socks5|http"
     proxies:
       - 🎈 Auto
       - 🎈 fallback
@@ -979,6 +1061,7 @@ proxy-groups:
     filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
     type: url-test
     exclude-type: "socks5|http"
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
     hidden: false
     url: http://www.gstatic.com/generate_204
@@ -988,6 +1071,7 @@ proxy-groups:
     filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
     type: url-test
     exclude-type: "socks5|http"
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
     hidden: false
     url: http://www.gstatic.com/generate_204
@@ -997,6 +1081,7 @@ proxy-groups:
     filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
     type: url-test
     exclude-type: "socks5|http"
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
     hidden: false
     url: http://www.gstatic.com/generate_204
@@ -1006,6 +1091,7 @@ proxy-groups:
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     type: url-test
     exclude-type: "socks5|http"
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
     hidden: false
     url: http://www.gstatic.com/generate_204
@@ -1015,6 +1101,7 @@ proxy-groups:
     filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
     type: url-test
     exclude-type: "socks5|http"
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
     hidden: false
     url: http://www.gstatic.com/generate_204
@@ -1024,6 +1111,7 @@ proxy-groups:
     filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
     type: url-test
     exclude-type: "socks5|http"
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
     hidden: false
     url: http://www.gstatic.com/generate_204
@@ -1031,7 +1119,8 @@ proxy-groups:
   - name: Persian Gulf
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/freedom.webp"
     type: url-test
-    exclude-type: "ss|ssr|socks5|http|trojan|vmess"
+    exclude-type: "Shadowsocks|ssr|socks5|http|trojan|vmess"
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
     hidden: false
     url: http://www.gstatic.com/generate_204
