@@ -62,18 +62,18 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah" 
     path: Prem2/p1.yaml
-    interval: 89
-#    exclude-filter: Expire
+    interval: 8999
+    exclude-type: "vless|Shadowsocksr|socks5|http"
     health-check:
       enable: true
       interval: 30
       url: https://www.pornhub.com/generate_204
   provider2:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/pp1.yaml"    
+    url: "https://proxypool.link/clash/proxies"    
     path: Prem2/P2.yaml
-    interval: 89
- #   exclude-filter: Expire
+    interval: 8999
+    exclude-type: "vless|Shadowsocksr|socks5|http"
     health-check:
       enable: true
       interval: 30
@@ -82,8 +82,8 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1225clash.yml"    
     path: Prem2/P3.yaml
-    interval: 89
- #   exclude-filter: Expire
+    interval: 8999
+    exclude-type: "vless|Shadowsocksr|socks5|http"
     health-check:
       enable: true
       interval: 30
@@ -92,28 +92,28 @@ proxy-providers:
     type: http
     url: "http://66.42.50.118:12580/clash/proxies" 
     path: Prem2/p4.yaml
-    interval: 89
-#    exclude-filter: Expire
+    interval: 8999
+    exclude-type: "vless|Shadowsocksr|socks5|http"
     health-check:
       enable: true
       interval: 30
       url: https://www.pornhub.com/generate_204
-#  provider5:
-#    type: http
-#    url: "https://clash.221207.xyz/pubclashyaml"    
-#    path: Prem2/P5.yaml
-#    interval: 89
- #   exclude-filter: Expire
-#    health-check:
-#      enable: true
-#      interval: 30
-#      url: https://www.pornhub.com/generate_204
+  provider5:
+    type: http
+    url: "https://proxy.crazygeeky.com/clash/proxies"    
+    path: Prem2/P5.yaml
+    interval: 8999
+    exclude-type: "vless|Shadowsocksr|socks5|http"
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.pornhub.com/generate_204
   provider6:
     type: http
     url: "http://155.248.172.106:12580/clash/proxies"    
     path: Prem2/P6.yaml
-    interval: 89
- #   exclude-filter: Expire
+    interval: 8999
+    exclude-type: "vless|Shadowsocksr|socks5|http"
     health-check:
       enable: true
       interval: 30
@@ -122,17 +122,18 @@ proxy-providers:
     type: http
     url: "http://141.147.161.50:12580/clash/proxies"
     path: Prem/p7.yaml
-    interval: 89
+    interval: 8999
+    exclude-type: "vless|Shadowsocksr|socks5|http"
     health-check:
       enable: true
       interval: 30
       url: https://www.pornhub.com/generate_204
   provider8:
     type: http
-    url: "http://150.230.195.209:12580/clash/proxies" 
+    url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies" 
     path: Prem/p8.yaml
     interval: 89
-#    exclude-filter: Expire
+    exclude-type: "vless|Shadowsocksr|socks5|http"
     health-check:
       enable: true
       interval: 30
@@ -150,7 +151,6 @@ proxy-groups:
     proxies:
       - url-test
       - United+url-test
-      - United+fallback
       - fallback
   - name: fallback
     type: fallback
@@ -165,7 +165,7 @@ proxy-groups:
       - provider2
       - provider3
       - provider4
-#      - provider5
+      - provider5
       - provider6
       - provider7
       - provider8
@@ -182,26 +182,11 @@ proxy-groups:
       - provider2
       - provider3
       - provider4
-#      - provider5
+      - provider5
       - provider6
       - provider7
       - provider8
-  - name: United+fallback
-    type: fallback
-    url: https://www.google.com/
-    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
-    disable-udp: false
-    interval: 99
-    hidden: false
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-#      - provider5
-      - provider6
-      - provider7
-      - provider8
+
   - name: url-test
     type: url-test
     url: https://www.google.com/
@@ -213,7 +198,7 @@ proxy-groups:
       - provider2
       - provider3
       - provider4
- #     - provider5
+      - provider5
       - provider6
       - provider7
       - provider8
@@ -230,14 +215,13 @@ proxy-groups:
     proxies:
       - FINAL
       - United+url-test
-      - United+fallback
       - fallback     
     use:
       - provider1
       - provider2
       - provider3
       - provider4
-#      - provider5
+      - provider5
       - provider6
       - provider7
       - provider8
