@@ -57,11 +57,19 @@ tun:
   udp-timeout: 300
   auto-detect-interface: true
   dns-hijack:
-    - any:53
-    - tcp://any:53
-    - 0.0.0.0:53
+    - 'any:53'
+    - '198.18.0.1/16'
+    - 'tcp://any:53'
+    - '0.0.0.0:53'
+    - '127.0.0.1:53'
+    - '223.5.5.5:53'
+    - '223.6.6.6:53'
+    - '114.114.114.114:53'
+    - '9.9.9.9:53'
+    - '8.8.8.8:53'
+    - '1.1.1.1:53'
   device: utun_clash
-  mtu: 1500
+  mtu: 1470
   strict-route: true
   endpoint-independent-nat: false
   
@@ -87,12 +95,12 @@ dns:
   ipv6: true
   default-nameserver:
     - '127.0.0.1:53'
-    - '223.5.5.5'
-    - '223.6.6.6'
-    - '114.114.114.114'
-    - '9.9.9.9'
-    - '8.8.8.8'
-    - '1.1.1.1'
+    - '223.5.5.5:53'
+    - '223.6.6.6:53'
+    - '114.114.114.114:53'
+    - '9.9.9.9:53'
+    - '8.8.8.8:53'
+    - '1.1.1.1:53'
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
@@ -805,9 +813,9 @@ proxy-groups:
     hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Rocket.png"
     proxies:
+      - 🌐 DNS_Hijack
       - ایران
       - 🎈 Auto
-      - 🌐 DNS_Hijack
       - REJECT-DROP
       - PASS
   - name: 🛑 WebRTC
@@ -830,7 +838,6 @@ proxy-groups:
     proxies:
       - PROXY
       - 🎈 fallback
-      - ایران
       - Globe
       - Taiwan
       - hongkong
@@ -848,7 +855,6 @@ proxy-groups:
     proxies:
       - PROXY
       - 🎈 fallback
-      - ایران
       - Globe
       - Taiwan
       - hongkong
@@ -866,7 +872,6 @@ proxy-groups:
     proxies:
       - PROXY
       - 🎈 fallback
-      - ایران
       - Globe
       - Taiwan
       - hongkong
@@ -884,7 +889,6 @@ proxy-groups:
     proxies:
       - PROXY
       - 🎈 fallback
-      - ایران
       - Globe
       - Taiwan
       - hongkong
@@ -902,7 +906,6 @@ proxy-groups:
     proxies:
       - PROXY
       - 🎈 fallback
-      - ایران
       - Globe
       - Taiwan
       - hongkong
@@ -920,7 +923,6 @@ proxy-groups:
     proxies:
       - PROXY
       - 🎈 fallback
-      - ایران
       - Globe
       - Taiwan
       - hongkong
@@ -938,7 +940,6 @@ proxy-groups:
     proxies:
       - PROXY
       - 🎈 fallback
-      - ایران
       - Globe
       - Taiwan
       - hongkong
@@ -956,7 +957,6 @@ proxy-groups:
     proxies:
       - PROXY
       - 🎈 fallback
-      - ایران
       - Globe
       - Taiwan
       - hongkong
@@ -974,7 +974,6 @@ proxy-groups:
     proxies:
       - PROXY
       - 🎈 fallback
-      - ایران
       - Globe
       - Taiwan
       - hongkong
@@ -992,7 +991,6 @@ proxy-groups:
     proxies:
       - PROXY
       - 🎈 fallback
-      - ایران
       - Globe
       - Taiwan
       - hongkong
@@ -1010,7 +1008,6 @@ proxy-groups:
     proxies:
       - PROXY
       - 🎈 fallback
-      - ایران
       - Globe
       - Taiwan
       - hongkong
@@ -1028,7 +1025,6 @@ proxy-groups:
     proxies:
       - PROXY
       - 🎈 fallback
-      - ایران
       - Globe
       - Taiwan
       - hongkong
@@ -1047,7 +1043,6 @@ proxy-groups:
       - PROXY
       - 🎈 Auto
       - 🎈 fallback
-      - ایران
       - Globe
       - Taiwan
       - hongkong
