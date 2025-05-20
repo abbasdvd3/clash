@@ -760,7 +760,7 @@ proxies:
   - {name: ⛔️ reject, type: reject}
   - {name: 🌐 DNS_Hijack, type: dns}
 proxy-groups:
-  - name: PROXY
+  - name: PROX
     type: select
     filter: ""
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
@@ -1124,8 +1124,26 @@ proxy-groups:
     include-all-providers: true
     hidden: false
     url: http://www.gstatic.com/generate_204
-  #  interval: 300
+    interval: 300
     tolerance: 5000
+    
+  - name: PROXY
+    type: fallback
+    interval: 180
+    tolerance: 5000
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    hidden: false
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
+    proxies:
+      - 🎈 Auto
+      - 🎈 fallback
+      - Globe
+      - Taiwan
+      - hongkong
+      - Japan
+      - US
+      - Singapore
+      - Persian Gulf
 rules:
   - PROCESS-NAME,chrome.exe,Google
   - PROCESS-NAME,com.termux,PROXY
@@ -1226,7 +1244,7 @@ listeners:
 
   - name: mixed-in-1
     type: mixed 
-    port: 10810 
-    listen: 0.0.0.0
+    port: 7890
+    listen: 127.0.0.1
     proxy: PROXY
     
