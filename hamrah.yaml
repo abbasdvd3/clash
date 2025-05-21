@@ -18,7 +18,7 @@ keep-alive-interval: 30
 find-process-mode: strict
 external-controller-tls: 0.0.0.0:9091
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
-unified-delay: false
+unified-delay: true
 tcp-concurrent: true
 authentication: []
 skip-auth-prefixes:
@@ -108,17 +108,19 @@ dns:
     - '*.lan'
   nameserver-policy:
     "RULE-SET:GEOSITE-CN,Google,GEOSITE-Private":
-    - 'https://doh.pub/dns-query'
-    - 'https://dns.alidns.com/dns-query'
-    - 'https://8.8.8.8/dns-query'
-    - 'https://1.1.1.1/dns-query'
-    - 'https://9.9.9.9/dns-query'
+    - '223.5.5.5:53'
+    - '223.6.6.6:53'
+    - '114.114.114.114:53'
+    - '9.9.9.9:53'
+    - '8.8.8.8:53'
+    - '1.1.1.1:53'
     "ruleset:geolocation-!cn,OpenAi,ProxyMedia,ProxyGFWlist":
-    - 'https://doh.pub/dns-query'
-    - 'https://dns.alidns.com/dns-query'
-    - 'https://8.8.8.8/dns-query'
-    - 'https://1.1.1.1/dns-query'
-    - 'https://9.9.9.9/dns-query'
+    - '223.5.5.5:53'
+    - '223.6.6.6:53'
+    - '114.114.114.114:53'
+    - '9.9.9.9:53'
+    - '8.8.8.8:53'
+    - '1.1.1.1:53'
     "geosite:category-ads-all": 'rcode://success'
     "geosite:category-ads-all": 'rcode://format_error'
     "geosite:category-ads-all": 'rcode://server_failure'
@@ -126,31 +128,30 @@ dns:
     "geosite:category-ads-all": 'rcode://refused'
   nameserver:
     - '127.0.0.1:53'
-    - 'https://8.8.8.8/dns-query#DNSconnect&h3=true'
-    - 'https://8.8.4.4/dns-query#DNSconnect&h3=true'
     - 'https://[2001:4860:4860::8888]/dns-query#DNSconnect&h3=true'
     - 'https://[2001:4860:4860::8844]/dns-query#DNSconnect&h3=true'
-    - 'https://1.1.1.1/dns-query#DNSconnect&h3=true'
-    - 'https://1.0.0.1/dns-query#DNSconnect&h3=true'
     - 'https://[2606:4700:4700::1111]/dns-query#DNSconnect&h3=true'
     - 'https://[2606:4700:4700::1001]/dns-query#DNSconnect&h3=true'
-    - 'https://doh.pub/dns-query'
-    - 'https://cloudflare-dns.com/dns-query'
-    - 'https://dns.alidns.com/dns-query'
-    - 'https://dns.quad9.net/dns-query'
-    - 'dhcp://system'
+    - '223.5.5.5:53'
+    - '223.6.6.6:53'
+    - '114.114.114.114:53'
+    - '9.9.9.9:53'
+    - '8.8.8.8:53'
+    - '1.1.1.1:53'
   fallback:
     - '127.0.0.1:53'
     - 'tls://8.8.4.4'
     - 'tls://1.1.1.1'
     - 'tcp://8.8.4.4'
     - 'tcp://1.1.1.1'
-    - 'tls://dns.quad9.net'
-    - 'https://cloudflare-dns.com/dns-query'
     - 'tcp://9.9.9.9'
   proxy-server-nameserver:
-    - 'https://doh.pub/dns-query'
-    - 'https://dns.alidns.com/dns-query'
+    - '223.5.5.5:53'
+    - '223.6.6.6:53'
+    - '114.114.114.114:53'
+    - '9.9.9.9:53'
+    - '8.8.8.8:53'
+    - '1.1.1.1:53'
   direct-nameserver:
     - '223.5.5.5'
     - '223.6.6.6'
@@ -786,9 +787,10 @@ proxy-groups:
       - Persian Gulf
   - name: 🎈 Auto
     type: url-test
-    filter: ""
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
+    interval: 180
+    tolerance: 5000
     include-all-providers: true
     hidden: false
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
@@ -796,11 +798,10 @@ proxy-groups:
     
   - name: 🎈 fallback
     type: fallback
-    filter: ""
+    interval: 180
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocks|Shadowsocksr|socks5|http"
     url: http://www.gstatic.com/generate_204
-    interval: 150
     include-all-providers: true
     hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
@@ -1055,6 +1056,8 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/CN.svg"
     filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
     type: url-test
+    interval: 180
+    tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
@@ -1065,6 +1068,8 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/HK.svg"
     filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
     type: url-test
+    interval: 180
+    tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
@@ -1075,6 +1080,8 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/JP.svg"
     filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
     type: url-test
+    interval: 180
+    tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
@@ -1085,6 +1092,8 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/US.svg"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     type: url-test
+    interval: 180
+    tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
@@ -1095,6 +1104,8 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Singapore.svg"
     filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
     type: url-test
+    interval: 180
+    tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
@@ -1105,6 +1116,8 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Globe.svg"
     filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
     type: url-test
+    interval: 180
+    tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
@@ -1114,16 +1127,16 @@ proxy-groups:
   - name: Persian Gulf
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/freedom.webp"
     type: url-test
+    interval: 180
+    tolerance: 5000
     exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|vmess"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
     hidden: false
     url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 5000
     
   - name: PROXY
-    type: fallback
+    type: url-test
     interval: 180
     tolerance: 5000
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
@@ -1174,8 +1187,8 @@ rules:
   - RULE-SET,Telegram_D,Telegram
   - RULE-SET,Telegram_IP,Telegram
   - DOMAIN,browserleaks.com,PROXY
-  - RULE-SET,CN_D,🎯 Direct
-  - RULE-SET,CN_IP,🎯 Direct
+  - RULE-SET,CN_D,PROXY
+  - RULE-SET,CN_IP,PROXY
   - RULE-SET,Private_D,🎯 Direct
   - RULE-SET,Private_IP,🎯 Direct
   - NETWORK,udp,PROXY
@@ -1220,7 +1233,7 @@ rules:
   - RULE-SET,Apple,PROXY
   - RULE-SET,Telegram,Telegram
   - RULE-SET,OpenAi,OpenAI
-  - RULE-SET,ChinaMedia,🎯 Direct
+  - RULE-SET,ChinaMedia,PROXY
   - RULE-SET,ProxyMedia,PROXY
   - DOMAIN-SUFFIX,v2rayse.com,PROXY
   - DOMAIN-SUFFIX,cff.pw,PROXY
@@ -1228,8 +1241,8 @@ rules:
   - DOMAIN-SUFFIX,cfmem.com,PROXY
   - DOMAIN-SUFFIX,networkcheck.kde.org,🎯 Direct
   - RULE-SET,ProxyGFWlist,PROXY
-  - RULE-SET,ChinaDomain,🎯 Direct
-  - RULE-SET,ChinaCompanyIp,🎯 Direct
+  - RULE-SET,ChinaDomain,PROXY
+  - RULE-SET,ChinaCompanyIp,PROXY
   - RULE-SET,Download,🎯 Direct
   - GEOIP,ir,🎯 Direct
   - IN-TYPE,inner,PROXY
