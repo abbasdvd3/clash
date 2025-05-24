@@ -771,7 +771,7 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
 
 proxies:
-  - {name: ایران, type: direct, udp: true}
+  - {name: ایران, type: direct,server: 0.0.0.0,port: 9797, udp: true}
   - {name: ⛔️ reject, type: reject}
   - {name: 🌐 DNS_Hijack, type: dns}
 proxy-groups:
@@ -797,8 +797,8 @@ proxy-groups:
     type: url-test
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
-    interval: 180
-    tolerance: 5000
+  #  interval: 180
+    tolerance: 500
     include-all-providers: true
     hidden: false
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
@@ -806,7 +806,7 @@ proxy-groups:
     
   - name: 🎈 fallback
     type: fallback
-    interval: 180
+  #  interval: 180
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocks|Shadowsocksr|socks5|http"
     url: http://www.gstatic.com/generate_204
@@ -1064,7 +1064,7 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/CN.svg"
     filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
     type: url-test
-    interval: 180
+  #  interval: 180
     tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
@@ -1076,7 +1076,7 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/HK.svg"
     filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
     type: url-test
-    interval: 180
+ #   interval: 180
     tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
@@ -1088,7 +1088,7 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/JP.svg"
     filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
     type: url-test
-    interval: 180
+ #   interval: 180
     tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
@@ -1100,7 +1100,7 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/US.svg"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     type: url-test
-    interval: 180
+ #   interval: 180
     tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
@@ -1112,7 +1112,7 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Singapore.svg"
     filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
     type: url-test
-    interval: 180
+  #  interval: 180
     tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
@@ -1124,7 +1124,7 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Globe.svg"
     filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
     type: url-test
-    interval: 180
+ #   interval: 180
     tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
@@ -1135,7 +1135,7 @@ proxy-groups:
   - name: Persian Gulf
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/freedom.webp"
     type: url-test
-    interval: 180
+  #  interval: 180
     tolerance: 5000
     exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|vmess|vless"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
@@ -1145,8 +1145,8 @@ proxy-groups:
     
   - name: PROXY
     type: url-test
-    interval: 180
-    tolerance: 5000
+ #   interval: 180
+    tolerance: 10
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
@@ -1197,9 +1197,9 @@ rules:
   - DOMAIN,browserleaks.com,PROXY
   - RULE-SET,CN_D,PROXY
   - RULE-SET,CN_IP,PROXY
-  - RULE-SET,Private_D,🎯 Direct
-  - RULE-SET,Private_IP,🎯 Direct
-  - NETWORK,udp,PROXY
+  - RULE-SET,Private_D,ایران
+  - RULE-SET,Private_IP,ایران
+  - NETWORK,udp,ایران
   - SRC-PORT,7777,PROXY
   - IN-PORT,7890,PROXY
   - IN-TYPE,SOCKS/HTTP,PROXY
@@ -1218,10 +1218,10 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑 WebRTC
   - AND,((DST-PORT,443),(NETWORK,udp)),🛑 WebRTC
   - RULE-SET,category-ads-all,🛑 WebRTC
-  - RULE-SET,GEOIP-Private,🎯 Direct,no-resolve
-  - RULE-SET,GEOIP-CN,🎯 Direct,no-resolve
-  - RULE-SET,GEOSITE-Private,🎯 Direct,no-resolve
-  - RULE-SET,GEOSITE-CN,🎯 Direct,no-resolve
+ # - RULE-SET,GEOIP-Private,🎯 Direct,no-resolve
+#  - RULE-SET,GEOIP-CN,🎯 Direct,no-resolve
+#  - RULE-SET,GEOSITE-Private,🎯 Direct,no-resolve
+#  - RULE-SET,GEOSITE-CN,🎯 Direct,no-resolve
   - RULE-SET,geolocation-!cn,PROXY
   - RULE-SET,LocalAreaNetwork,🎯 Direct,no-resolve
   - RULE-SET,UnBan,PROXY
@@ -1247,13 +1247,14 @@ rules:
   - DOMAIN-SUFFIX,cff.pw,PROXY
   - DOMAIN-SUFFIX,vpnse.org,PROXY
   - DOMAIN-SUFFIX,cfmem.com,PROXY
-  - DOMAIN-SUFFIX,networkcheck.kde.org,🎯 Direct
+  - DOMAIN-SUFFIX,networkcheck.kde.org,ایران
+  - DOMAIN-SUFFIX,farsroid.com,ایران
   - RULE-SET,ProxyGFWlist,PROXY
   - RULE-SET,ChinaDomain,PROXY
   - RULE-SET,ChinaCompanyIp,PROXY
   - RULE-SET,Download,🎯 Direct
   - GEOIP,ir,🎯 Direct
-  - IN-TYPE,inner,PROXY
+  - IN-TYPE,inner,🐍PROX🐍
   - MATCH,🐍PROX🐍
   
 listeners:
