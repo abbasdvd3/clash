@@ -2,7 +2,7 @@
 proxies:
 proxy-groups:
   - name: 🕹
-    type: select
+    type: url-test
     proxies:
       - 🕹load-balance
       - ♻️ url-test
@@ -15,10 +15,10 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
   - name: 🕹load-balance
-    type: url-test
+    type: load-balance
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
-    interval: 180
+#    interval: 180
 #    tolerance: 10
     hidden: false
     proxies:
@@ -32,7 +32,7 @@ proxy-groups:
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
-    interval: 180
+#    interval: 180
 #   tolerance: 10
     hidden: false
     proxies:
@@ -49,7 +49,7 @@ proxy-groups:
     type: fallback
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
-    interval: 180
+  #  interval: 180
  #   tolerance: 10
     hidden: false
     proxies:
@@ -67,7 +67,7 @@ proxy-groups:
     strategy: round-robin
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: true
-    interval: 180
+ #   interval: 180
 #    tolerance: 10
     hidden: false
     proxies:
@@ -99,13 +99,7 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
+
       
   - name: 💬 OpenAi
     type: select
@@ -121,13 +115,7 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
+
       
   - name: 📹
     type: select
@@ -143,14 +131,7 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-   
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
+
  
   - name: 🎥
     type: select
@@ -182,13 +163,7 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
+
 
   - name: 📺2
     type: select
@@ -204,13 +179,7 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
+
       
   - name: 🌍
     type: select
@@ -227,13 +196,7 @@ proxy-groups:
       - 🇯🇵 
       - 🇰🇷 
   
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
+
       
   - name: 🌏
     type: select
@@ -270,13 +233,7 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
+
       
   - name: Ⓜ️
     type: select
@@ -355,7 +312,7 @@ proxy-groups:
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
-    interval: 300
+ #   interval: 300
  #   tolerance: 10
     filter: '🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港'
     hidden: false
@@ -372,7 +329,7 @@ proxy-groups:
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
-    interval: 300
+ #   interval: 300
  #   tolerance: 10
     filter: '🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日'
     hidden: false
@@ -389,7 +346,7 @@ proxy-groups:
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
-    interval: 300
+ #   interval: 300
  #   tolerance: 10
     filter: '🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥'
     hidden: false
@@ -406,7 +363,7 @@ proxy-groups:
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
-    interval: 300
+#    interval: 300
  #   tolerance: 10
     filter: "cn|TW"
     hidden: false
@@ -423,7 +380,7 @@ proxy-groups:
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: false
-    interval: 300
+ #   interval: 300
   #  tolerance: 10
     filter: '🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]'
     hidden: false
@@ -463,13 +420,7 @@ proxy-groups:
       - 🇺🇲 
       - 🇯🇵 
       - 🇰🇷 
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
+
 proxy-providers:
   provider1:
     type: http
