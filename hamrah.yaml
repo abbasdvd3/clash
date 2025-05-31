@@ -99,13 +99,13 @@ dns:
   listen: 0.0.0.0:1053
   ipv6: true
   default-nameserver:
-    - '127.0.0.1:853'
-    - '223.5.5.5:853'
-    - '223.6.6.6:853'
-    - '114.114.114.114:853'
-    - '9.9.9.9:853'
-    - '8.8.8.8:853'
-    - '1.1.1.1:853'
+    - '127.0.0.1:53'
+    - '223.5.5.5:53'
+    - '223.6.6.6:53'
+    - '114.114.114.114:53'
+    - '9.9.9.9:53'
+    - '8.8.8.8:53'
+    - '1.1.1.1:53'
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
@@ -113,19 +113,19 @@ dns:
     - '*.lan'
   nameserver-policy:
     "RULE-SET:GEOSITE-CN,Google,GEOSITE-Private":
-    - '223.5.5.5:853'
-    - '223.6.6.6:853'
-    - '114.114.114.114:853'
-    - '9.9.9.9:853'
-    - '8.8.8.8:853'
-    - '1.1.1.1:853'
+    - '223.5.5.5:53'
+    - '223.6.6.6:53'
+    - '114.114.114.114:53'
+    - '9.9.9.9:53'
+    - '8.8.8.8:53'
+    - '1.1.1.1:53'
     "ruleset:geolocation-!cn,OpenAi,ProxyMedia,ProxyGFWlist":
-    - '223.5.5.5:853'
-    - '223.6.6.6:853'
-    - '114.114.114.114:853'
-    - '9.9.9.9:853'
-    - '8.8.8.8:853'
-    - '1.1.1.1:853'
+    - '223.5.5.5:53'
+    - '223.6.6.6:53'
+    - '114.114.114.114:53'
+    - '9.9.9.9:53'
+    - '8.8.8.8:53'
+    - '1.1.1.1:53'
     "geosite:category-ads-all": 'rcode://success'
     "geosite:category-ads-all": 'rcode://format_error'
     "geosite:category-ads-all": 'rcode://server_failure'
@@ -137,27 +137,27 @@ dns:
     - 'https://[2001:4860:4860::8844]/dns-query#DNSconnect&h3=true'
     - 'https://[2606:4700:4700::1111]/dns-query#DNSconnect&h3=true'
     - 'https://[2606:4700:4700::1001]/dns-query#DNSconnect&h3=true'
-    - '223.5.5.5:853'
-    - '223.6.6.6:853'
-    - '114.114.114.114:853'
-    - '9.9.9.9:853'
-    - '8.8.8.8:853'
-    - '1.1.1.1:853'
+    - '223.5.5.5:53'
+    - '223.6.6.6:53'
+    - '114.114.114.114:53'
+    - '9.9.9.9:53'
+    - '8.8.8.8:53'
+    - '1.1.1.1:53'
     - 'dhcp://en0'
   fallback:
     - '127.0.0.1:53'
-    - 'tls://8.8.4.4:853'
-    - 'tls://1.1.1.1:853'
-    - 'tcp://8.8.4.4:853'
-    - 'tcp://1.1.1.1:853'
-    - 'tcp://9.9.9.9:853'
+    - 'tls://8.8.4.4:53'
+    - 'tls://1.1.1.1:53'
+    - 'tcp://8.8.4.4:53'
+    - 'tcp://1.1.1.1:53'
+    - 'tcp://9.9.9.9:53'
   proxy-server-nameserver:
-    - '223.5.5.5:853'
-    - '223.6.6.6:853'
-    - '114.114.114.114:853'
-    - '9.9.9.9:853'
-    - '8.8.8.8:853'
-    - '1.1.1.1:853'
+    - '223.5.5.5:53'
+    - '223.6.6.6:53'
+    - '114.114.114.114:53'
+    - '9.9.9.9:53'
+    - '8.8.8.8:53'
+    - '1.1.1.1:53'
   direct-nameserver:
     - '223.5.5.5'
     - '223.6.6.6'
@@ -207,14 +207,6 @@ dns:
       - '+.github.com'
       - '+.twitter.com'
 
- 
-#hosts:
-#  '*.clash.dev': 127.0.0.1
-#  'alpha.clash.dev': '::1'
-#  test.com: [1.1.1.1, 2.2.2.2]
-#  baidu.com: google.com
-#  google.com: 225.5.5.5, 9.9.9.9
-  
 proxy-providers:
   A1:
     type: http
@@ -227,8 +219,8 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A1 prefix |"
+   #  override:
+    #   additional-prefix: "A1 prefix |"
      # additional-suffix: "| A1 suffix"
     
   A2:
@@ -242,8 +234,8 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A2 prefix |"
+#    override:
+#      additional-prefix: "A2 prefix |"
     #  additional-suffix: "| A2 suffix"
 
   A3:
@@ -257,8 +249,8 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A3 prefix |"
+ #   override:
+ #     additional-prefix: "A3 prefix |"
      # additional-suffix: "| A3 suffix"
     
   A4:
@@ -272,8 +264,8 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A4 prefix |"
+#    override:
+#      additional-prefix: "A4 prefix |"
     #  additional-suffix: "| A4 suffix"
 
   A5:
@@ -287,8 +279,8 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A5 prefix |"
+ #   override:
+#      additional-prefix: "A5 prefix |"
      # additional-suffix: "| A5 suffix"
     
   A6:
@@ -302,8 +294,8 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A6 prefix |"
+ #   override:
+ #     additional-prefix: "A6 prefix |"
      # additional-suffix: "| A6 suffix"
 
   A7:
@@ -317,8 +309,8 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A7 prefix |"
+ #   override:
+ #     additional-prefix: "A7 prefix |"
      # additional-suffix: "| A7 suffix"
 
   A8:
@@ -332,8 +324,8 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A8 prefix |"
+ #   override:
+ #     additional-prefix: "A8 prefix |"
      # additional-suffix: "| A8 suffix"
 
   A9:
@@ -347,8 +339,8 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A9 prefix |"
+#    override:
+  #    additional-prefix: "A9 prefix |"
     #  additional-suffix: "| A9 suffix"
 
   A10:
@@ -362,8 +354,8 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A10 prefix |"
+ #   override:
+  #    additional-prefix: "A10 prefix |"
    #   additional-suffix: "| A10 suffix"
 
   A11:
@@ -377,8 +369,8 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A11 prefix |"
+#    override:
+ #     additional-prefix: "A11 prefix |"
     #  additional-suffix: "| A11 suffix"
 
   A12:
@@ -392,8 +384,8 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A12 prefix |"
+#    override:
+#      additional-prefix: "A12 prefix |"
     #  additional-suffix: "| A12 suffix"
       
   A13:
@@ -407,8 +399,8 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A13 prefix |"
+#    override:
+ #     additional-prefix: "A13 prefix |"
     #  additional-suffix: "| A13 suffix"
 
   A14:
@@ -422,8 +414,8 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A14 prefix |"
+#    override:
+ #     additional-prefix: "A14 prefix |"
     #  additional-suffix: "| A14 suffix"
 
 rule-providers:
