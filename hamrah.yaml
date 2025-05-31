@@ -7,23 +7,28 @@ tproxy-port: 9898
 mode: rule
 ipv6: true
 allow-lan: true
-log-level: silent
+log-level: debug
 interface-name: "en0"
 secret: 
-external-controller: 127.0.0.1:9090
+external-controller: "0.0.0.0:9090"
+external-controller-tls: "0.0.0.0:9091"
 external-ui: ./dashboard
 external-ui-name: ./xd
 external-doh-server: ./dns-query
 external-controller-cors:
-  allow-origins:
-    - "*"
   allow-private-network: true
-
+  allow-origins:
+  - tauri://localhost
+  - http://tauri.localhost
+  - http://localhost:9090
+  - https://yacd.metacubex.one
+  - https://metacubex.github.io
+  - https://board.zash.run.place
 external-controller-unix: mihomo.sock
 external-controller-pipe: \\.\pipe\mihomo
 keep-alive-interval: 30
 find-process-mode: strict
-external-controller-tls: 127.0.0.1:9091
+
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 unified-delay: true
 tcp-concurrent: true
@@ -107,11 +112,53 @@ dns:
     - '8.8.8.8:53'
     - '1.1.1.1:53'
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  fake-ip-range: 28.0.0.0/8
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - '*.lan'
   nameserver-policy:
+    "*.google.com":
+      - '114.114.114.114'
+      - 'quic://223.5.5.5'
+      - 'https://doh.pub/dns-query'
+    "*.instagram.com":
+      - '114.114.114.114'
+      - 'quic://223.5.5.5'
+      - 'https://doh.pub/dns-query'
+    "*.sxyprn.com":
+      - 'https://120.53.53.53/dns-query'
+      - 'https://223.5.5.5/dns-query'
+      - 'https://doh.pub/dns-query'
+      - '223.5.5.5'
+      - 'https://dns.alidns.com/dns-query'
+      - 'https://94.140.14.14/dns-query#h3=true'
+      - 'tls://9.9.9.11'
+      - 'tls://208.67.222.222'
+      - 'tls://[2620:fe::11]'
+      - 'tls://[2620:119:35::35]'
+    "*.spankbang.com":
+      - 'https://120.53.53.53/dns-query'
+      - 'https://223.5.5.5/dns-query'
+      - 'https://doh.pub/dns-query'
+      - '223.5.5.5'
+      - 'https://dns.alidns.com/dns-query'
+      - 'https://94.140.14.14/dns-query#h3=true'
+      - 'tls://9.9.9.11'
+      - 'tls://208.67.222.222'
+      - 'tls://[2620:fe::11]'
+      - 'tls://[2620:119:35::35]'
+    "google.com":
+      - '223.5.5.5'
+      - '114.114.114.114'
+      - '9.9.9.9'
+    "facebook.com":
+      - '223.5.5.5'
+      - '114.114.114.114'
+      - '9.9.9.9'
+    "twitter.com":
+      - '223.5.5.5'
+      - '114.114.114.114'
+      - '9.9.9.9'
     "RULE-SET:GEOSITE-CN,Google,GEOSITE-Private":
     - '223.5.5.5:53'
     - '223.6.6.6:53'
@@ -126,11 +173,7 @@ dns:
     - '9.9.9.9:53'
     - '8.8.8.8:53'
     - '1.1.1.1:53'
-    "geosite:category-ads-all": 'rcode://success'
-    "geosite:category-ads-all": 'rcode://format_error'
-    "geosite:category-ads-all": 'rcode://server_failure'
-    "geosite:category-ads-all": 'rcode://not_implemented'
-    "geosite:category-ads-all": 'rcode://refused'
+    "geosite:category-ads-all": rcode://success
   nameserver:
     - '127.0.0.1:53'
     - 'https://[2001:4860:4860::8888]/dns-query#DNSconnect&h3=true'
@@ -206,7 +249,40 @@ dns:
       - '+.googleapis.com'
       - '+.github.com'
       - '+.twitter.com'
-
+hosts:
+  google.com:
+    - 9.9.9.9
+    - 225.5.5.5
+    - 1.1.1.1
+  gov.cn: 127.0.0.1
+  +.facebook.com:
+    - 9.9.9.9
+    - 225.5.5.5
+    - 1.1.1.1
+  .youtube.com:
+    - 9.9.9.9
+    - 225.5.5.5
+    - 1.1.1.1
+  google.cn:
+    - 9.9.9.9
+    - 225.5.5.5
+    - 1.1.1.1
+  googleapis.cn:
+    - 9.9.9.9
+    - 225.5.5.5
+    - 1.1.1.1
+  googleapis.com:
+    - 9.9.9.9
+    - 225.5.5.5
+    - 1.1.1.1
+  twitter.com:
+    - 9.9.9.9
+    - 225.5.5.5
+    - 1.1.1.1
+  instagram.com:
+    - 9.9.9.9
+    - 225.5.5.5
+    - 1.1.1.1
 proxy-providers:
   A1:
     type: http
