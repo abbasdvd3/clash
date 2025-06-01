@@ -13,7 +13,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A1 prefix |"
-      additional-suffix: "| test suffix"
+      
     
   A2:
     type: http
@@ -28,8 +28,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A2 prefix |"
-      additional-suffix: "| test suffix"
-
+      
   A3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x"
@@ -43,7 +42,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A3 prefix |"
-      additional-suffix: "| test suffix"
+      
     
   A4:
     type: http
@@ -58,7 +57,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A4 prefix |"
-      additional-suffix: "| test suffix"
+      
 
   A5:
     type: http
@@ -73,7 +72,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A5 prefix |"
-      additional-suffix: "| test suffix"
+      
     
   A6:
     type: http
@@ -88,7 +87,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A6 prefix |"
-      additional-suffix: "| test suffix"
+      
 
   A7:
     type: http
@@ -103,7 +102,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A7 prefix |"
-      additional-suffix: "| test suffix"
+     
 
   A8:
     type: http
@@ -118,7 +117,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A8 prefix |"
-      additional-suffix: "| test suffix"
+      
 
   A9:
     type: http
@@ -133,7 +132,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A9 prefix |"
-      additional-suffix: "| test suffix"
+    
 
   A10:
     type: http
@@ -148,7 +147,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A10 prefix |"
-      additional-suffix: "| test suffix"
+      
 
   A11:
     type: http
@@ -163,7 +162,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A11 prefix |"
-      additional-suffix: "| test suffix"
+      
 
   A12:
     type: http
@@ -178,7 +177,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A12 prefix |"
-      additional-suffix: "| test suffix"
+    
       
   A13:
     type: http
@@ -193,7 +192,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A13 prefix |"
-      additional-suffix: "| test suffix"
+    
 
   A14:
     type: http
@@ -208,17 +207,21 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A14 prefix |"
-      additional-suffix: "| test suffix"
+    
 
 proxies: 
   - name: "iran"
     type: direct
     udp: true
 
+port: 7890
+socks-port: 7891
 mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
 ipv6: true
 allow-lan: true
-unified-delay: false
+unified-delay: true
 tcp-concurrent: true
 external-controller: 127.0.0.1:9090
 external-ui: ui
