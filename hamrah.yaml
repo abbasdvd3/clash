@@ -65,6 +65,7 @@ tun:
   stack: Mixed
   auto-route: true
   udp-timeout: 30
+  auto-redirect: true
   auto-detect-interface: true
   dns-hijack:
     - 'any:53'
@@ -72,6 +73,8 @@ tun:
   device: utun_clash
   mtu: 1470
   strict-route: true
+  gso: true
+  gso-max-size: 65536
   endpoint-independent-nat: false
   
 experimental:
@@ -854,25 +857,38 @@ proxy-groups:
       - Persian Gulf
   - name: 🎈 Auto
     type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
+    tolerance: 5000
+    lazy: true
+    timeout: 5000
+    max-failed-times: 5
+    disable-udp: true
+    interface-name: en0
+    routing-mark: 11451
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
-  #  interval: 180
-    tolerance: 500
     include-all-providers: true
     hidden: false
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
-    url: http://www.gstatic.com/generate_204
+
     
   - name: 🎈 fallback
     type: fallback
-  #  interval: 180
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
+    lazy: true
+    timeout: 5000
+    max-failed-times: 5
+    disable-udp: true
+    interface-name: en0
+    routing-mark: 11451
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocks|Shadowsocksr|socks5|http"
-    url: http://www.gstatic.com/generate_204
     include-all-providers: true
+    include-all-proxies: false
     hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
-    use:
     
   - name: 🎯 Direct
     type: select
