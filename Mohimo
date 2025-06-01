@@ -265,7 +265,7 @@ proxy-groups:
   - name: default
     type: select
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Proxy.png"
-    proxies: [Automatic selection,iran,hong kong,taiwan,japan,Singapore,united states,Other regions,All nodes]
+    proxies: [Automatic selection,hong kong,taiwan,japan,Singapore,united states,Other regions,All nodes]
 
   - name: Google
     type: select
@@ -384,7 +384,9 @@ proxy-groups:
     filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*"
 
   - name: All nodes
-    type: select
+    type: fallback
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/China_Map.png"
     include-all: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
@@ -394,7 +396,7 @@ proxy-groups:
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
     interval: 300
-#    tolerance: 5000
+    tolerance: 5000
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Auto.png"
     include-all-providers: true
     lazy: true
