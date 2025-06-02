@@ -224,7 +224,7 @@ allow-lan: true
 unified-delay: true
 tcp-concurrent: true
 external-controller: 127.0.0.1:9090
-external-ui: ui
+external-ui: /ui
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 
 find-process-mode: strict
@@ -325,7 +325,9 @@ dns:
 proxy-groups:
 
   - name: default
-    type: select
+    type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+#    interval: 300
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Proxy.png"
     proxies: [Automatic selection,hong kong,taiwan,japan,Singapore,united states,Other regions,All nodes]
 
