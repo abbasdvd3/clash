@@ -1356,88 +1356,75 @@ rules:
   - MATCH,🐍PROX🐍
   
 listeners:
-
   - name: socks5-in-1
     type: socks
     port: 10808
-    #listen: 0.0.0.0
-    # rule: sub-rule-name1
-    # proxy: proxy
-    # udp: false
-
-  - name: http-in-1
-    type: http
-    port: 10809 
     listen: 0.0.0.0
     # rule: sub-rule-name1
     # proxy: proxy
-
+    udp: false
+  - name: http-in-1
+    type: http
+    port: 10809
+    listen: 0.0.0.0
+    # rule: sub-rule-name1
+    # proxy: proxy
   - name: mixed-in-1
     type: mixed
     port: 10810
     listen: 0.0.0.0
     # rule: sub-rule-name1
     # proxy: proxy
-    # udp: false
-
+    udp: false
   - name: reidr-in-1
     type: redir
     port: 10811
     listen: 0.0.0.0
     # rule: sub-rule-name1
     # proxy: proxy
-
   - name: tproxy-in-1
     type: tproxy
     port: 10812
     listen: 0.0.0.0
     # rule: sub-rule-name1
     # proxy: proxy
-    # udp: false
-
+    udp: false
   - name: tunnel-in-1
     type: tunnel
-    port: 10816 
+    port: 10816
     listen: 0.0.0.0
     # rule: sub-rule-name1 
     # proxy: proxy 
     network: [tcp, udp]
     target: 8.8.8.8:53
-
- 
-  - name: anytls-in-1
-    type: anytls
-    port: 10818 
-    listen: 0.0.0.0
-
   - name: trojan-in-1
     type: trojan
-    port: 10819 
+    port: 10819
     listen: 0.0.0.0
     # rule: sub-rule-name1 
     # proxy: proxy 
-
   - name: hysteria2-in-1
     type: hysteria2
     port: 10820
     listen: 0.0.0.0
     # rule: sub-rule-name1 
     # proxy: proxy 
-
   - name: tun-in-1
     type: tun
     # rule: sub-rule-name1 
     # proxy: proxy 
-    stack: system # gvisor / mixed
+    stack: mixed
     dns-hijack:
-    - 0.0.0.0:53 
-    # auto-detect-interface: false 
-    # auto-route: false 
-    # mtu: 9000 
-    inet4-address: 
+    - 'any:53'
+    - 'tcp://any:53'
+    - '0.0.0.0:53'
+    auto-detect-interface: true
+    auto-route: true
+    mtu: 9000
+    inet4-address:
     - 198.19.0.1/30
-    inet6-address: 
+    inet6-address:
     - "fdfe:dcba:9877::1/126"
-    # strict-route: true 
-    # endpoint-independent-nat: false 
+    strict-route: true
+    endpoint-independent-nat: true
     
