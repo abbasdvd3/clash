@@ -46,7 +46,7 @@ proxy-providers:
     
   A4:
     type: http
-    url: "https://raw.githubusercontent.com/sarvari1378/SingBOX/refs/heads/main/SUB/FREEIRAN-VIP"
+    url: "https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg"
     interval: 86400
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -61,7 +61,7 @@ proxy-providers:
 
   A5:
     type: http
-    url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_iOS.txt#(AzadNet.t.me)"
+    url: "https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Tuic.txt"
     interval: 86400
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -76,7 +76,7 @@ proxy-providers:
     
   A6:
     type: http
-    url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
+    url: "https://raw.githubusercontent.com/ssrsub/ssr/master/Clash.yaml"
     interval: 86400
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -196,7 +196,7 @@ proxy-providers:
 
   A14:
     type: http
-    url: "https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1225clash.yml"
+    url: "https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Hysteria2.txt"
     interval: 86400
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -234,17 +234,93 @@ profile:
   store-selected: true
   store-fake-ip: true
 
+tunnels:
+- network: [tcp, udp]
+  address: 127.0.0.1:6553
+  target: 8.8.8.8:53
+  proxy: proxy
+
 tun:
   enable: true
-  stack: mixed
-  dns-hijack:
-    - "any:53"
-    - "tcp://any:53"
+  stack: system
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  device: utun0
+  mtu: 9000
+  strict-route: true
+  gso: true
+  gso-max-size: 65536
+  udp-timeout: 300
+  iproute2-table-index: 2022
+  iproute2-rule-index: 9000
+  endpoint-independent-nat: false
+  route-address-set:
+    - ruleset-1
+  route-exclude-address-set:
+    - ruleset-2
+  route-address:
+    - 0.0.0.0/1
+    - 128.0.0.0/1
+    - "::/1"
+    - "8000::/1"
+  route-exclude-address:
+  - 192.168.0.0/16
+  - fc00::/7
+  include-interface:
+  - eth0
+  exclude-interface:
+  - eth1
+  include-uid:
+  - 0
+  include-uid-range:
+  - 1000:9999
+  exclude-uid:
+  - 1000
+  exclude-uid-range:
+  - 1000:9999
+  include-android-user:
+  - 0
+  - 10
+  include-package:
+  - com.android.chrome
+  exclude-package:
+  - com.android.captiveportallogin
 
-
+dns:
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.cloudflare.com/dns-query#skip-cert-verify=true
+  fallback:
+    - https://8.8.8.8/dns-query
+    - https://8.8.8.8/dns-query#ecs=1.1.1.1/24&ecs-override=true
+    - https://8.8.8.8/dns-query#ecs=1.1.1.1/24
+    - tls://8.8.4.4
+    - tls://1.1.1.1
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+  direct-nameserver:
+    - system
+    - dhcp://system
+  direct-nameserver-follow-policy: false
+  nameserver-policy:
+    "geosite:cn,private":
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    geosite:
+      - gfw
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
 
 proxy-groups:
 
@@ -312,7 +388,7 @@ proxy-groups:
   - name: hong kong
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
-    interval: 300
+#    interval: 300
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/HK.png"
     include-all: true
     exclude-type: "Shadowsocksr|socks5|http|direct"  
@@ -322,7 +398,7 @@ proxy-groups:
   - name: taiwan
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
-    interval: 300
+#    interval: 300
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/TW.png"
     include-all: true
     exclude-type: "Shadowsocksr|socks5|http|direct"
@@ -332,7 +408,7 @@ proxy-groups:
   - name: japan
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
-    interval: 300
+ #   interval: 300
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/JP.png"
     include-all: true
     exclude-type: "Shadowsocksr|socks5|http|direct"
@@ -342,7 +418,7 @@ proxy-groups:
   - name: united states
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
-    interval: 300
+#    interval: 300
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/US.png"
     include-all: true
     exclude-type: "Shadowsocksr|socks5|http|direct"
@@ -352,7 +428,7 @@ proxy-groups:
   - name: Singapore
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
-    interval: 300
+#    interval: 300
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/SG.png"
     include-all: true
     exclude-type: "Shadowsocksr|socks5|http|direct"
@@ -362,7 +438,7 @@ proxy-groups:
   - name: Other regions
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
-    interval: 300
+#    interval: 300
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
     include-all: true
     exclude-type: "Shadowsocksr|socks5|http|direct"
@@ -372,7 +448,7 @@ proxy-groups:
   - name: All nodes
     type: fallback
     url: 'https://www.gstatic.com/generate_204'
-    interval: 300
+#    interval: 300
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/China_Map.png"
     include-all: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
@@ -385,10 +461,6 @@ proxy-groups:
     tolerance: 5000
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Auto.png"
     include-all-providers: true
-    lazy: true
-    timeout: 5000
-    max-failed-times: 5
-    disable-udp: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http|direct"
     
@@ -483,3 +555,71 @@ rule-providers:
   telegram_ip:
     <<: *ip
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"
+
+
+listeners:
+  - name: socks5-in-1
+    type: socks
+    port: 10808
+    #listen: 0.0.0.0 # 默认监听 0.0.0.0
+    # rule: sub-rule-name1 # 默认使用 rules,如果未找到 sub-rule 则直接使用 rules
+    # proxy: proxy # 如果不为空则直接将该入站流量交由指定proxy处理
+    # udp: false # 默认 true
+
+  - name: http-in-1
+    type: http
+    port: 10809
+    listen: 0.0.0.0
+    # rule: sub-rule-name1 # 默认使用 rules,如果未找到 sub-rule 则直接使用 rules
+    # proxy: proxy # 如果不为空则直接将该入站流量交由指定proxy处理(当proxy不为空时,这里的proxy名称必须合法,否则会出错)
+
+  - name: mixed-in-1
+    type: mixed #  HTTP(S) 和 SOCKS 代理混合
+    port: 10810
+    listen: 0.0.0.0
+    # rule: sub-rule-name1 # 默认使用 rules,如果未找到 sub-rule 则直接使用 rules
+    # proxy: proxy # 如果不为空则直接将该入站流量交由指定proxy处理(当proxy不为空时,这里的proxy名称必须合法,否则会出错)
+    # udp: false # 默认 true
+
+  - name: reidr-in-1
+    type: redir
+    port: 10811
+    listen: 0.0.0.0
+    # rule: sub-rule-name1 # 默认使用 rules,如果未找到 sub-rule 则直接使用 rules
+    # proxy: proxy # 如果不为空则直接将该入站流量交由指定proxy处理(当proxy不为空时,这里的proxy名称必须合法,否则会出错)
+
+  - name: tproxy-in-1
+    type: tproxy
+    port: 10812
+    listen: 0.0.0.0
+    # rule: sub-rule-name1 # 默认使用 rules,如果未找到 sub-rule 则直接使用 rules
+    # proxy: proxy # 如果不为空则直接将该入站流量交由指定proxy处理(当proxy不为空时,这里的proxy名称必须合法,否则会出错)
+    # udp: false # 默认 true
+
+  - name: tunnel-in-1
+    type: tunnel
+    port: 10816
+    listen: 0.0.0.0
+    # rule: sub-rule-name1 # 默认使用 rules,如果未找到 sub-rule 则直接使用 rules
+    # proxy: proxy # 如果不为空则直接将该入站流量交由指定proxy处理(当proxy不为空时,这里的proxy名称必须合法,否则会出错)
+    network: [tcp, udp]
+    target: target.com
+
+  - name: tun-in-1
+    type: tun
+    # rule: sub-rule-name1 # 默认使用 rules,如果未找到 sub-rule 则直接使用 rules
+    # proxy: proxy # 如果不为空则直接将该入站流量交由指定proxy处理(当proxy不为空时,这里的proxy名称必须合法,否则会出错)
+    stack: system # gvisor / lwip
+    dns-hijack:
+      - 0.0.0.0:53 # 需要劫持的 DNS
+    # auto-detect-interface: false # 自动识别出口网卡
+    # auto-route: false # 配置路由表
+    # mtu: 9000 # 最大传输单元
+    inet4-address: # 必须手动设置ipv4地址段
+      - 198.19.0.1/30
+    inet6-address: # 必须手动设置ipv6地址段
+      - "fdfe:dcba:9877::1/126"
+
+
+
+
