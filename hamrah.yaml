@@ -7,13 +7,14 @@ tproxy-port: 9898
 mode: rule
 ipv6: true
 allow-lan: true
+bind-address: "*"
 log-level: debug
 interface-name: "en0"
 secret: 
 external-controller: "0.0.0.0:9090"
 external-controller-tls: "0.0.0.0:9091"
-external-ui: /dashboard
-external-ui-name: /xd
+external-ui: external-ui: /path/to/ui/folder/dashboard
+external-ui-name: xd
 external-doh-server: /dns-query
 external-controller-cors:
   allow-private-network: true
@@ -35,6 +36,12 @@ authentication: []
 skip-auth-prefixes:
   - 127.0.0.1/8
   - ::1/128
+lan-allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+lan-disallowed-ips:
+  - 192.168.0.3/32
+  
 tls:
   certificate: ""
   private-key: ""
@@ -54,10 +61,7 @@ profile:
   store-selected: true
   store-fake-ip: true
   tracing: true
-lan-allowed-ips:
-  - 0.0.0.0/0
-  - ::/0
-lan-disallowed-ips: []
+
 tun:
   enable: true
   stack: Mixed
@@ -68,8 +72,9 @@ tun:
   dns-hijack:
     - 'any:53'
     - 'tcp://any:53'
+    - '0.0.0.0:53'
   device: utun_clash
-  mtu: 1470
+  mtu: 9000
   strict-route: true
   gso: true
   gso-max-size: 65536
@@ -91,35 +96,44 @@ dns:
   use-hosts: true
   use-system-hosts: true
   respect-rules: false
-  listen: 0.0.0.0:1053
+  listen: 0.0.0.0:53
   ipv6: true
   default-nameserver:
-    - '127.0.0.1:53'
-    - '223.5.5.5:53'
-    - '223.6.6.6:53'
-    - '114.114.114.114:53'
-    - '9.9.9.9:53'
-    - '8.8.8.8:53'
-    - '1.1.1.1:53'
+    - 'tcp://127.0.0.1:853'
+    - 'tcp://223.5.5.5:853'
+    - 'tcp://223.6.6.6:853'
+    - 'tcp://114.114.114.114:853'
+    - 'tcp://9.9.9.9:853'
+    - 'system'
+    - 'tls://1.12.12.12:853'
+    - 'tcp://8.8.8.8:853'
+    - 'tcp://1.1.1.1:853'
+    - 'tls://223.5.5.5'
+    - 'tls://223.6.6.6'
+    - 'tls://114.114.114.114'
+    - 'tls://9.9.9.9'
+    - 'tls://8.8.8.8'
+    - 'tls://1.1.1.1'
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.0/8
+  fake-ip-range: 28.0.0.1/8
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - '*.lan'
+    - rule-set:fakeip-filter
   nameserver-policy:
     "*.google.com":
-      - '114.114.114.114'
+      - 'tcp://114.114.114.114'
       - 'quic://223.5.5.5'
       - 'https://doh.pub/dns-query'
     "*.instagram.com":
-      - '114.114.114.114'
+      - 'tcp://114.114.114.114'
       - 'quic://223.5.5.5'
       - 'https://doh.pub/dns-query'
     "*.sxyprn.com":
       - 'https://120.53.53.53/dns-query'
       - 'https://223.5.5.5/dns-query'
       - 'https://doh.pub/dns-query'
-      - '223.5.5.5'
+      - 'tcp://223.5.5.5'
       - 'https://dns.alidns.com/dns-query'
       - 'https://94.140.14.14/dns-query#h3=true'
       - 'tls://9.9.9.11'
@@ -130,7 +144,7 @@ dns:
       - 'https://120.53.53.53/dns-query'
       - 'https://223.5.5.5/dns-query'
       - 'https://doh.pub/dns-query'
-      - '223.5.5.5'
+      - 'tcp://223.5.5.5'
       - 'https://dns.alidns.com/dns-query'
       - 'https://94.140.14.14/dns-query#h3=true'
       - 'tls://9.9.9.11'
@@ -138,66 +152,72 @@ dns:
       - 'tls://[2620:fe::11]'
       - 'tls://[2620:119:35::35]'
     "google.com":
-      - '223.5.5.5'
-      - '114.114.114.114'
-      - '9.9.9.9'
+      - 'tcp://223.5.5.5'
+      - 'tcp://114.114.114.114'
+      - 'tcp://9.9.9.9'
     "facebook.com":
-      - '223.5.5.5'
-      - '114.114.114.114'
-      - '9.9.9.9'
+      - 'tcp://223.5.5.5'
+      - 'tcp://114.114.114.114'
+      - 'tcp://9.9.9.9'
     "twitter.com":
-      - '223.5.5.5'
-      - '114.114.114.114'
-      - '9.9.9.9'
+      - 'tcp://223.5.5.5'
+      - 'tcp://114.114.114.114'
+      - 'tcp://9.9.9.9'
     "RULE-SET:GEOSITE-CN,Google,GEOSITE-Private":
-    - '223.5.5.5:53'
-    - '223.6.6.6:53'
-    - '114.114.114.114:53'
-    - '9.9.9.9:53'
-    - '8.8.8.8:53'
-    - '1.1.1.1:53'
+    - 'tcp://223.5.5.5:853'
+    - 'tcp://223.6.6.6:853'
+    - 'tcp://114.114.114.114:853'
+    - 'tcp://9.9.9.9:853'
+    - 'tcp://8.8.8.8:853'
+    - 'tcp://1.1.1.1:853'
     "ruleset:geolocation-!cn,OpenAi,ProxyMedia,ProxyGFWlist":
-    - '223.5.5.5:53'
-    - '223.6.6.6:53'
-    - '114.114.114.114:53'
-    - '9.9.9.9:53'
-    - '8.8.8.8:53'
-    - '1.1.1.1:53'
+    - 'tcp://223.5.5.5:853'
+    - 'tcp://223.6.6.6:853'
+    - 'tcp://114.114.114.114:853'
+    - 'tcp://9.9.9.9:853'
+    - 'tcp://8.8.8.8:853'
+    - 'tcp://1.1.1.1:853'
     "geosite:category-ads-all": rcode://success
   nameserver:
-    - '127.0.0.1:53'
+    - 'tcp://127.0.0.1:53'
     - 'https://[2001:4860:4860::8888]/dns-query#DNSconnect&h3=true'
     - 'https://[2001:4860:4860::8844]/dns-query#DNSconnect&h3=true'
     - 'https://[2606:4700:4700::1111]/dns-query#DNSconnect&h3=true'
     - 'https://[2606:4700:4700::1001]/dns-query#DNSconnect&h3=true'
-    - '223.5.5.5:53'
-    - '223.6.6.6:53'
-    - '114.114.114.114:53'
-    - '9.9.9.9:53'
-    - '8.8.8.8:53'
-    - '1.1.1.1:53'
+    - 'tcp://223.5.5.5:853'
+    - 'tcp://223.6.6.6:853'
+    - 'tcp://114.114.114.114:853'
+    - 'tcp://9.9.9.9:853'
+    - 'tcp://8.8.8.8:853'
+    - 'tcp://1.1.1.1:853'
+    - 'tls://223.5.5.5:853' 
+    - 'https://doh.pub/dns-query' 
+    - 'https://dns.alidns.com/dns-query#h3=true' 
+    - 'https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true'
+    - 'quic://dns.adguard.com:784'
     - 'dhcp://en0'
   fallback:
-    - '127.0.0.1:53'
-    - 'tls://8.8.4.4:53'
-    - 'tls://1.1.1.1:53'
-    - 'tcp://8.8.4.4:53'
-    - 'tcp://1.1.1.1:53'
-    - 'tcp://9.9.9.9:53'
+    - 'tcp://127.0.0.1:853'
+    - 'tls://8.8.4.4:853'
+    - 'tls://1.1.1.1:853'
+    - 'tcp://8.8.4.4:853'
+    - 'tcp://1.1.1.1:853'
+    - 'tcp://9.9.9.9:853'
   proxy-server-nameserver:
-    - '223.5.5.5:53'
-    - '223.6.6.6:53'
-    - '114.114.114.114:53'
-    - '9.9.9.9:53'
-    - '8.8.8.8:53'
-    - '1.1.1.1:53'
+    - 'tcp://223.5.5.5:853'
+    - 'tcp://223.6.6.6:853'
+    - 'tcp://114.114.114.114:853'
+    - 'tcp://9.9.9.9:853'
+    - 'tcp://8.8.8.8:853'
+    - 'tcp://1.1.1.1:853'
   direct-nameserver:
-    - '223.5.5.5'
-    - '223.6.6.6'
+    - 'tcp://223.5.5.5'
+    - 'tcp://223.6.6.6'
     - 'tls://8.8.4.4'
     - 'tls://1.1.1.1'
     - 'tcp://8.8.4.4'
     - 'tcp://1.1.1.1'
+    - 'system://'
   direct-nameserver-follow-policy: false
   fallback-filter:
     geoip: true
@@ -827,6 +847,12 @@ rule-providers:
     format: mrs
     interval: 86400
     url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
+  fakeip-filter:
+    type: http 
+    behavior: domain
+    format: text
+    interval: 86400
+    url: "https://raw.githubusercontent.com/juewuy/ShellCrash/refs/heads/dev/public/fake_ip_filter.list"
 
 proxies:
   - {name: ایران, type: direct,server: 0.0.0.0,port: 9797, udp: true}
@@ -854,7 +880,7 @@ proxy-groups:
   - name: 🎈 Auto
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
-    interval: 300
+    interval: 30
     tolerance: 5000
     lazy: true
     timeout: 5000
@@ -872,7 +898,7 @@ proxy-groups:
   - name: 🎈 fallback
     type: fallback
     url: 'https://www.gstatic.com/generate_204'
-    interval: 300
+    interval: 180
     lazy: true
     timeout: 5000
     max-failed-times: 5
@@ -912,7 +938,7 @@ proxy-groups:
   - name: Microsoft
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Microsoft.svg"
-    include-all-providers: true
+  #  include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
@@ -929,7 +955,7 @@ proxy-groups:
   - name: Telegram
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Telegram.svg"
-    include-all-providers: true
+ #   include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
@@ -946,7 +972,7 @@ proxy-groups:
   - name: Discord
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Discord.svg"
-    include-all-providers: true
+   # include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
@@ -963,7 +989,7 @@ proxy-groups:
   - name: Spotify
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Spotify.svg"
-    include-all-providers: true
+ #   include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
@@ -980,7 +1006,7 @@ proxy-groups:
   - name: TikTok
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/TikTok.svg"
-    include-all-providers: true
+   # include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
@@ -997,7 +1023,7 @@ proxy-groups:
   - name: YouTube
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/YouTube.svg"
-    include-all-providers: true
+  #  include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
@@ -1014,7 +1040,7 @@ proxy-groups:
   - name: Netflix
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Netflix.svg"
-    include-all-providers: true
+  #  include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
@@ -1031,7 +1057,7 @@ proxy-groups:
   - name: Google
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Google.svg"
-    include-all-providers: true
+ #   include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
@@ -1048,7 +1074,7 @@ proxy-groups:
   - name: GoogleFCM
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GoogleFCM.svg"
-    include-all-providers: true
+ #   include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
@@ -1065,7 +1091,7 @@ proxy-groups:
   - name: Facebook
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Facebook.svg"
-    include-all-providers: true
+  #  include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
@@ -1082,7 +1108,7 @@ proxy-groups:
   - name: OpenAI
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/OpenAI.svg"
-    include-all-providers: true
+  #  include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
@@ -1099,7 +1125,7 @@ proxy-groups:
   - name: GitHub
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GitHub.svg"
-    include-all-providers: true
+#    include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
@@ -1116,7 +1142,7 @@ proxy-groups:
   - name: Twitter(X)
     type: select
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Twitter.svg"
-    include-all-providers: true
+ #   include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
@@ -1232,6 +1258,7 @@ proxy-groups:
       - Singapore
       - Persian Gulf
 rules:
+  - rule-set,fakeip-filter,ایران
   - PROCESS-NAME,chrome.exe,Google
   - PROCESS-NAME,com.termux,PROXY
   - PROCESS-NAME,com.chrome,Google
@@ -1330,9 +1357,87 @@ rules:
   
 listeners:
 
+  - name: socks5-in-1
+    type: socks
+    port: 10808
+    #listen: 0.0.0.0
+    # rule: sub-rule-name1
+    # proxy: proxy
+    # udp: false
+
+  - name: http-in-1
+    type: http
+    port: 10809 
+    listen: 0.0.0.0
+    # rule: sub-rule-name1
+    # proxy: proxy
+
   - name: mixed-in-1
-    type: mixed 
-    port: 7890
-    listen: 127.0.0.1
-    proxy: 🐍PROX🐍
+    type: mixed
+    port: 10810
+    listen: 0.0.0.0
+    # rule: sub-rule-name1
+    # proxy: proxy
+    # udp: false
+
+  - name: reidr-in-1
+    type: redir
+    port: 10811
+    listen: 0.0.0.0
+    # rule: sub-rule-name1
+    # proxy: proxy
+
+  - name: tproxy-in-1
+    type: tproxy
+    port: 10812
+    listen: 0.0.0.0
+    # rule: sub-rule-name1
+    # proxy: proxy
+    # udp: false
+
+  - name: tunnel-in-1
+    type: tunnel
+    port: 10816 
+    listen: 0.0.0.0
+    # rule: sub-rule-name1 
+    # proxy: proxy 
+    network: [tcp, udp]
+    target: 8.8.8.8:53
+
+ 
+  - name: anytls-in-1
+    type: anytls
+    port: 10818 
+    listen: 0.0.0.0
+
+  - name: trojan-in-1
+    type: trojan
+    port: 10819 
+    listen: 0.0.0.0
+    # rule: sub-rule-name1 
+    # proxy: proxy 
+
+  - name: hysteria2-in-1
+    type: hysteria2
+    port: 10820
+    listen: 0.0.0.0
+    # rule: sub-rule-name1 
+    # proxy: proxy 
+
+  - name: tun-in-1
+    type: tun
+    # rule: sub-rule-name1 
+    # proxy: proxy 
+    stack: system # gvisor / mixed
+    dns-hijack:
+    - 0.0.0.0:53 
+    # auto-detect-interface: false 
+    # auto-route: false 
+    # mtu: 9000 
+    inet4-address: 
+    - 198.19.0.1/30
+    inet6-address: 
+    - "fdfe:dcba:9877::1/126"
+    # strict-route: true 
+    # endpoint-independent-nat: false 
     
