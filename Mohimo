@@ -238,7 +238,7 @@ tunnels:
 - network: [tcp, udp]
   address: 127.0.0.1:6553
   target: 8.8.8.8:53
-  proxy: proxy
+  proxy: other
 
 tun:
   enable: true
@@ -311,10 +311,10 @@ dns:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
   fallback-filter:
-    geoip: true
-    geoip-code: CN
+    geoip: false
+    geoip-code: ir
     geosite:
-      - gfw
+  #    - gfw
     ipcidr:
       - 240.0.0.0/4
     domain:
