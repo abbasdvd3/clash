@@ -860,7 +860,7 @@ proxies:
   - {name: 🌐 DNS_Hijack, type: dns}
 proxy-groups:
   - name: 🐍PROX🐍
-    type: url-test
+    type: select
     exclude-type: "Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
@@ -883,7 +883,7 @@ proxy-groups:
     interval: 30
     tolerance: 5000
     lazy: true
-    timeout: 5000
+    timeout: 500
     max-failed-times: 5
     disable-udp: true
     interface-name: en0
@@ -900,7 +900,7 @@ proxy-groups:
     url: 'https://www.gstatic.com/generate_204'
     interval: 180
     lazy: true
-    timeout: 5000
+    timeout: 500
     max-failed-times: 5
     disable-udp: true
     interface-name: en0
@@ -1243,7 +1243,7 @@ proxy-groups:
   - name: PROXY
     type: url-test
     interval: 180
-    tolerance: 10
+    tolerance: 100
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
@@ -1260,9 +1260,9 @@ proxy-groups:
 rules:
   - rule-set,fakeip-filter,ایران
   - PROCESS-NAME,chrome.exe,Google
-  - PROCESS-NAME,com.termux,PROXY
+  - PROCESS-NAME,com.termux,🐍PROX🐍
   - PROCESS-NAME,com.chrome,Google
-  - PROCESS-NAME-REGEX,curl$,PROXY
+  - PROCESS-NAME-REGEX,curl$,🐍PROX🐍
   - PROCESS-NAME-REGEX,(?i)Telegram,Telegram
   - PROCESS-NAME-REGEX,.*telegram.*,Telegram
   - DST-PORT,53,🌐 DNS_Hijack
@@ -1292,15 +1292,15 @@ rules:
   - RULE-SET,Microsoft_D,Microsoft
   - RULE-SET,Telegram_D,Telegram
   - RULE-SET,Telegram_IP,Telegram
-  - DOMAIN,browserleaks.com,PROXY
-  - RULE-SET,CN_D,PROXY
-  - RULE-SET,CN_IP,PROXY
+  - DOMAIN,browserleaks.com,🐍PROX🐍
+  - RULE-SET,CN_D,🐍PROX🐍
+  - RULE-SET,CN_IP,🐍PROX🐍
   - RULE-SET,Private_D,ایران
   - RULE-SET,Private_IP,ایران
   - NETWORK,udp,ایران
-  - SRC-PORT,7777,PROXY
-  - IN-PORT,7890,PROXY
-  - IN-TYPE,SOCKS/HTTP,PROXY
+  - SRC-PORT,7777,🐍PROX🐍
+  - IN-PORT,7890,🐍PROX🐍
+  - IN-TYPE,SOCKS/HTTP,🐍PROX🐍
   - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
   - IP-CIDR,10.0.0.0/8,REJECT,no-resolve
   - IP-CIDR,100.64.0.0/10,REJECT,no-resolve
@@ -1320,15 +1320,15 @@ rules:
 #  - RULE-SET,GEOIP-CN,🎯 Direct,no-resolve
 #  - RULE-SET,GEOSITE-Private,🎯 Direct,no-resolve
 #  - RULE-SET,GEOSITE-CN,🎯 Direct,no-resolve
-  - RULE-SET,geolocation-!cn,PROXY
+  - RULE-SET,geolocation-!cn,🐍PROX🐍
   - RULE-SET,LocalAreaNetwork,🎯 Direct,no-resolve
-  - RULE-SET,UnBan,PROXY
-  - DOMAIN-SUFFIX,google.com,PROXY
+  - RULE-SET,UnBan,🐍PROX🐍
+  - DOMAIN-SUFFIX,google.com,🐍PROX🐍
   - RULE-SET,BanAD,🛑 WebRTC
   - RULE-SET,BanProgramAD,🛑 WebRTC
   - RULE-SET,GoogleFCM,GoogleFCM
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
-  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🐍PROX🐍
+  - DOMAIN-SUFFIX,services.googleapis.cn,🐍PROX🐍
   - RULE-SET,GoogleCNProxyIP,Google
   - RULE-SET,GoogleCN,Google
   - RULE-SET,YouTube,YouTube
@@ -1336,20 +1336,20 @@ rules:
   - RULE-SET,Bing,Microsoft
   - RULE-SET,OneDrive,Microsoft
   - RULE-SET,Microsoft,Microsoft
-  - RULE-SET,Apple,PROXY
+  - RULE-SET,Apple,🐍PROX🐍
   - RULE-SET,Telegram,Telegram
   - RULE-SET,OpenAi,OpenAI
-  - RULE-SET,ChinaMedia,PROXY
-  - RULE-SET,ProxyMedia,PROXY
-  - DOMAIN-SUFFIX,v2rayse.com,PROXY
-  - DOMAIN-SUFFIX,cff.pw,PROXY
-  - DOMAIN-SUFFIX,vpnse.org,PROXY
-  - DOMAIN-SUFFIX,cfmem.com,PROXY
+  - RULE-SET,ChinaMedia,🐍PROX🐍
+  - RULE-SET,ProxyMedia,🐍PROX🐍
+  - DOMAIN-SUFFIX,v2rayse.com,🐍PROX🐍
+  - DOMAIN-SUFFIX,cff.pw,🐍PROX🐍
+  - DOMAIN-SUFFIX,vpnse.org,🐍PROX🐍
+  - DOMAIN-SUFFIX,cfmem.com,🐍PROX🐍
   - DOMAIN-SUFFIX,networkcheck.kde.org,ایران
   - DOMAIN-SUFFIX,farsroid.com,ایران
-  - RULE-SET,ProxyGFWlist,PROXY
-  - RULE-SET,ChinaDomain,PROXY
-  - RULE-SET,ChinaCompanyIp,PROXY
+  - RULE-SET,ProxyGFWlist,🐍PROX🐍
+  - RULE-SET,ChinaDomain,🐍PROX🐍
+  - RULE-SET,ChinaCompanyIp,🐍PROX🐍
   - RULE-SET,Download,🎯 Direct
   - GEOIP,ir,🎯 Direct
   - IN-TYPE,inner,🐍PROX🐍
@@ -1360,44 +1360,44 @@ listeners:
     type: socks
     port: 10808
     listen: 0.0.0.0
-    rule: Google_D
+  #  rule: Google_D
     proxy: 🐍PROX🐍
-    udp: false
+    udp: true
 
   - name: http-in-1
     type: http
     port: 10809
     listen: 0.0.0.0
-    rule: Google_D
+  #  rule: Google_D
     proxy: 🐍PROX🐍
 
   - name: mixed-in-1
     type: mixed
     port: 10810
     listen: 0.0.0.0
-    rule: Google_D
+  #  rule: Google_D
     proxy: 🐍PROX🐍
-    udp: false
+    udp: true
   - name: tproxy-in-1
     type: tproxy
     port: 10812
     listen: 0.0.0.0
-    rule: Google_D
+   # rule: Google_D
     proxy: 🐍PROX🐍
-    udp: false
+    udp: true
 
   - name: tunnel-in-1
     type: tunnel
     port: 10816
     listen: 0.0.0.0
-    rule: Google_D
+ #   rule: Google_D
     proxy: 🐍PROX🐍
     network: [tcp, udp]
     target: 8.8.8.8:53
     
   - name: tun-in-1
     type: tun
-    rule: Google_D
+ #   rule: Google_D
     proxy: 🐍PROX🐍
     stack: mixed
     dns-hijack:
