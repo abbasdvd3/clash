@@ -1,5 +1,5 @@
 
-port: 7890
+port: 7892
 socks-port: 7891
 mixed-port: 7890
 redir-port: 9797
@@ -89,6 +89,11 @@ experimental:
   sniff-tls-sni: false
   udp-fallback-match: false
   quic-go-disable-gso: false
+tunnels: 
+  - network: [tcp, udp]
+    address: 127.0.0.1:7777
+    target: 8.8.8.8:53
+    proxy: 🐍PROX🐍
 dns:
   enable: true
   cache-algorithm: arc
@@ -307,7 +312,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A1 prefix |"
-      additional-suffix: "| test suffix"
+##      additional-suffix: "| test suffix"
     
   A2:
     type: http
@@ -322,7 +327,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A2 prefix |"
-      additional-suffix: "| test suffix"
+###      additional-suffix: "| test suffix"
 
   A3:
     type: http
@@ -337,7 +342,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A3 prefix |"
-      additional-suffix: "| test suffix"
+#      additional-suffix: "| test suffix"
     
   A4:
     type: http
@@ -352,7 +357,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A4 prefix |"
-      additional-suffix: "| test suffix"
+#      additional-suffix: "| test suffix"
 
   A5:
     type: http
@@ -367,7 +372,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A5 prefix |"
-      additional-suffix: "| test suffix"
+#      additional-suffix: "| test suffix"
     
   A6:
     type: http
@@ -382,7 +387,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A6 prefix |"
-      additional-suffix: "| test suffix"
+#      additional-suffix: "| test suffix"
 
   A7:
     type: http
@@ -397,7 +402,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A7 prefix |"
-      additional-suffix: "| test suffix"
+#      additional-suffix: "| test suffix"
 
   A8:
     type: http
@@ -412,7 +417,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A8 prefix |"
-      additional-suffix: "| test suffix"
+#      additional-suffix: "| test suffix"
 
   A9:
     type: http
@@ -427,7 +432,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A9 prefix |"
-      additional-suffix: "| test suffix"
+#      additional-suffix: "| test suffix"
 
   A10:
     type: http
@@ -442,7 +447,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A10 prefix |"
-      additional-suffix: "| test suffix"
+#      additional-suffix: "| test suffix"
 
   A11:
     type: http
@@ -457,7 +462,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A11 prefix |"
-      additional-suffix: "| test suffix"
+#      additional-suffix: "| test suffix"
 
   A12:
     type: http
@@ -472,7 +477,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A12 prefix |"
-      additional-suffix: "| test suffix"
+#      additional-suffix: "| test suffix"
       
   A13:
     type: http
@@ -487,7 +492,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A13 prefix |"
-      additional-suffix: "| test suffix"
+#      additional-suffix: "| test suffix"
 
   A14:
     type: http
@@ -502,7 +507,7 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A14 prefix |"
-      additional-suffix: "| test suffix"
+##      additional-suffix: "| test suffix"
 
 rule-providers:
   LocalAreaNetwork:
@@ -889,7 +894,7 @@ proxy-groups:
     interface-name: en0
     routing-mark: 11451
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    exclude-type: "Shadowsocksr|socks5|http"
+    exclude-type: "socks5|http"
     include-all-providers: true
     hidden: false
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
@@ -906,7 +911,7 @@ proxy-groups:
     interface-name: en0
     routing-mark: 11451
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    exclude-type: "Shadowsocks|Shadowsocksr|socks5|http"
+    exclude-type: "socks5|http"
     include-all-providers: true
     include-all-proxies: false
     hidden: false
@@ -1265,8 +1270,10 @@ rules:
   - PROCESS-NAME-REGEX,curl$,🐍PROX🐍
   - PROCESS-NAME-REGEX,(?i)Telegram,Telegram
   - PROCESS-NAME-REGEX,.*telegram.*,Telegram
-  - DST-PORT,53,🌐 DNS_Hijack
-  - DST-PORT,853,🌐 DNS_Hijack
+  - DST-PORT,53,🐍PROX🐍
+  - DST-PORT,853,🐍PROX🐍
+  - DST-PORT,80,🐍PROX🐍
+  - DST-PORT,443,🐍PROX🐍
   - RULE-SET,WebRTC,🛑 WebRTC
   - RULE-SET,No-ads-all_D,🛑 WebRTC
   - RULE-SET,GitHub_D,GitHub
@@ -1358,47 +1365,53 @@ rules:
 listeners:
   - name: socks5-in-1
     type: socks
-    port: 10808
+    port: 7891
     listen: 0.0.0.0
   #  rule: Google_D
-    proxy: 🐍PROX🐍
-    udp: true
+  #  proxy: 🐍PROX🐍
+  #  udp: true
 
   - name: http-in-1
     type: http
-    port: 10809
+    port: 7892
     listen: 0.0.0.0
   #  rule: Google_D
-    proxy: 🐍PROX🐍
+  #  proxy: 🐍PROX🐍
 
   - name: mixed-in-1
     type: mixed
-    port: 10810
+    port: 7890
     listen: 0.0.0.0
   #  rule: Google_D
-    proxy: 🐍PROX🐍
-    udp: true
+  #  proxy: 🐍PROX🐍
+  #  udp: true
+  
+  - name: reidr-in-1
+    type: redir
+    port: 9797
+    listen: 0.0.0.0
+    
   - name: tproxy-in-1
     type: tproxy
-    port: 10812
+    port: 9898
     listen: 0.0.0.0
    # rule: Google_D
-    proxy: 🐍PROX🐍
-    udp: true
+  #  proxy: 🐍PROX🐍
+  #  udp: true
 
   - name: tunnel-in-1
     type: tunnel
-    port: 10816
+    port: 7777
     listen: 0.0.0.0
  #   rule: Google_D
-    proxy: 🐍PROX🐍
+  #  proxy: 🐍PROX🐍
     network: [tcp, udp]
     target: 8.8.8.8:53
     
   - name: tun-in-1
     type: tun
  #   rule: Google_D
-    proxy: 🐍PROX🐍
+  #  proxy: 🐍PROX🐍
     stack: mixed
     dns-hijack:
     - 0.0.0.0:53
