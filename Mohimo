@@ -61,7 +61,7 @@ proxy-providers:
 
   A5:
     type: http
-    url: "https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Tuic.txt"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N"
     interval: 86400
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -236,19 +236,20 @@ profile:
 
 tunnels:
 - network: [tcp, udp]
-  address: 127.0.0.1:6553
+  address: 127.0.0.1:7890
   target: 8.8.8.8:53
   proxy: other
 
 tun:
   enable: true
-  stack: system
+  stack: mixed
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
   dns-hijack:
     - any:53
     - tcp://any:53
+    - 0.0.0.0:53
   device: utun0
   mtu: 9000
   strict-route: true
@@ -392,71 +393,71 @@ proxy-groups:
   - name: hong kong
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
-#    interval: 300
+    interval: 100
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/HK.png"
     include-all: true
-    exclude-type: "Shadowsocksr|socks5|http|direct"  
+    exclude-type: "socks5|http|direct"  
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "(?i)港|hk|hongkong|hong kong"
 
   - name: taiwan
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
-#    interval: 300
+    interval: 100
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/TW.png"
     include-all: true
-    exclude-type: "Shadowsocksr|socks5|http|direct"
+    exclude-type: "socks5|http|direct"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "(?i)台|tw|taiwan"
 
   - name: japan
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
- #   interval: 300
+    interval: 100
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/JP.png"
     include-all: true
-    exclude-type: "Shadowsocksr|socks5|http|direct"
+    exclude-type: "socks5|http|direct"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "(?i)日|jp|japan"
 
   - name: united states
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
-#    interval: 300
+    interval: 100
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/US.png"
     include-all: true
-    exclude-type: "Shadowsocksr|socks5|http|direct"
+    exclude-type: "socks5|http|direct"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "(?i)美|us|unitedstates|united states"
 
   - name: Singapore
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
-#    interval: 300
+    interval: 100
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/SG.png"
     include-all: true
-    exclude-type: "Shadowsocksr|socks5|http|direct"
+    exclude-type: "socks5|http|direct"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "(?i)(新|sg|singapore)"
 
   - name: Other regions
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
-#    interval: 300
+    interval: 100
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
     include-all: true
-    exclude-type: "Shadowsocksr|socks5|http|direct"
+    exclude-type: "socks5|http|direct"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*"
 
   - name: All nodes
     type: fallback
     url: 'https://www.gstatic.com/generate_204'
-#    interval: 300
+    interval: 100
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/China_Map.png"
     include-all: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    exclude-type: "Shadowsocksr|socks5|http|direct"
+    exclude-type: "socks5|http|direct"
 
   - name: Automatic selection
     type: url-test
@@ -466,10 +467,13 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Auto.png"
     include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    exclude-type: "Shadowsocksr|socks5|http|direct"
+    exclude-type: "socks5|http|direct"
     
 
 rules:
+  - DST-PORT,80,other
+  - DST-PORT,53,other
+  - DST-PORT,443,other
   - RULE-SET,private_ip,iran,no-resolve
   - RULE-SET,github_domain,Github
   - RULE-SET,twitter_domain,Twitter
