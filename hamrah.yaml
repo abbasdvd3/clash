@@ -11,10 +11,10 @@ bind-address: "*"
 log-level: debug
 interface-name: "en0"
 secret: 
-external-controller: "0.0.0.0:9090"
+external-controller: "127.0.0.1:9090"
 external-controller-tls: "0.0.0.0:9091"
-external-ui: /path/to/ui/folder/dashboard
-external-ui-name: xd
+external-ui: /dashboard
+external-ui-name: /xd
 external-doh-server: /dns-query
 external-controller-cors:
   allow-private-network: true
@@ -91,7 +91,7 @@ experimental:
   quic-go-disable-gso: false
 tunnels: 
   - network: [tcp, udp]
-    address: 127.0.0.1:7777
+    address: 127.0.0.1:7893
     target: 8.8.8.8:53
     proxy: 🐍PROX🐍
 dns:
@@ -924,8 +924,9 @@ proxy-groups:
     hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Rocket.png"
     proxies:
-      - 🌐 DNS_Hijack
+      
       - ایران
+      - 🌐 DNS_Hijack
       - 🎈 Auto
       - REJECT-DROP
       - PASS
@@ -1304,22 +1305,10 @@ rules:
   - RULE-SET,CN_IP,🐍PROX🐍
   - RULE-SET,Private_D,ایران
   - RULE-SET,Private_IP,ایران
-  - NETWORK,udp,ایران
+  - NETWORK,udp,🐍PROX🐍
   - SRC-PORT,7777,🐍PROX🐍
   - IN-PORT,7890,🐍PROX🐍
   - IN-TYPE,SOCKS/HTTP,🐍PROX🐍
-  - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
-  - IP-CIDR,10.0.0.0/8,REJECT,no-resolve
-  - IP-CIDR,100.64.0.0/10,REJECT,no-resolve
-  - IP-CIDR,127.0.0.0/8,REJECT,no-resolve
-  - IP-CIDR,172.16.0.0/12,REJECT,no-resolve
-  - IP-CIDR,192.168.0.0/16,REJECT,no-resolve
-  - IP-CIDR,198.18.0.0/16,REJECT,no-resolve
-  - IP-CIDR,224.0.0.0/4,REJECT,no-resolve
-  - IP-CIDR6,::1/128,REJECT,no-resolve
-  - IP-CIDR6,fc00::/7,REJECT,no-resolve
-  - IP-CIDR6,fe80::/10,REJECT,no-resolve
-  - IP-CIDR6,fd00::/8,REJECT,no-resolve
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑 WebRTC
   - AND,((DST-PORT,443),(NETWORK,udp)),🛑 WebRTC
   - RULE-SET,category-ads-all,🛑 WebRTC
@@ -1328,7 +1317,7 @@ rules:
 #  - RULE-SET,GEOSITE-Private,🎯 Direct,no-resolve
 #  - RULE-SET,GEOSITE-CN,🎯 Direct,no-resolve
   - RULE-SET,geolocation-!cn,🐍PROX🐍
-  - RULE-SET,LocalAreaNetwork,🎯 Direct,no-resolve
+  - RULE-SET,LocalAreaNetwork,ایران,no-resolve
   - RULE-SET,UnBan,🐍PROX🐍
   - DOMAIN-SUFFIX,google.com,🐍PROX🐍
   - RULE-SET,BanAD,🛑 WebRTC
@@ -1401,7 +1390,7 @@ listeners:
 
   - name: tunnel-in-1
     type: tunnel
-    port: 7777
+    port: 7893
     listen: 0.0.0.0
  #   rule: Google_D
   #  proxy: 🐍PROX🐍
