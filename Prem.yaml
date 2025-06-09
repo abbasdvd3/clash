@@ -1,11 +1,28 @@
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: false
+external-controller: 127.0.0.1:9090
+
 dns:
   enable: true
   ipv6: true
   enhanced-mode: fake-ip
   fake-ip-range: 100.0.0.0/8
   fake-ip-filter:
-    - "*.lan"
-    - "*.local"
+    - '*.lan'
+    - '*.localdomain'
+    - '*.example'
+    - '*.invalid'
+    - '*.localhost'
+    - '*.test'
+    - '*.local'
+    - '*.home.arpa'
+    - router.asus.com
+    - localhost.sec.qq.com
+    - localhost.ptlogin2.qq.com
+    - +.msftconnecttest.com
   default-nameserver:
     - 114.114.114.114#PROXY
     - 9.9.9.9#PROXY
@@ -148,12 +165,12 @@ proxy-providers:
       url: https://www.pornhub.com/generate_204
 proxies:
 proxy-groups:
-  - name: FINAL
+  - name: PROXY
     type: url-test
-    url: https://www.google.com/
+    url: https://www.pornhub.com/
     interval: 99
     tolerance: 800
-    disable-udp: false
+    disable-udp: true
     use:
  #     - provider1
     proxies:
@@ -162,8 +179,8 @@ proxy-groups:
       - fallback
   - name: fallback
     type: fallback
-    url: https://www.google.com/
-    disable-udp: false
+    url: https://www.pornhub.com/
+    disable-udp: true
     interval: 99
  #   filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     hidden: false
@@ -179,8 +196,8 @@ proxy-groups:
       - provider8
   - name: United+url-test
     type: url-test
-    url: https://www.google.com/
-    disable-udp: false
+    url: https://www.pornhub.com/
+    disable-udp: true
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     interval: 99
     tolerance: 80
@@ -197,8 +214,8 @@ proxy-groups:
 
   - name: url-test
     type: url-test
-    url: https://www.google.com/
-    disable-udp: false
+    url: https://www.pornhub.com/
+    disable-udp: true
     interval: 99
     hidden: false
     use:
@@ -216,23 +233,23 @@ proxy-groups:
     disable-udp: true
     proxies:
       - DIRECT
-      - FINAL      
-  - name: PROXY
-    type: select
-    disable-udp: false
-    proxies:
-      - FINAL
-      - United+url-test
-      - fallback     
-    use:
-      - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
-      - provider7
-      - provider8
+      - PROXY 
+#  - name: PROXY
+ #   type: select
+  #  disable-udp: true
+  #  proxies:
+   #   - FINAL
+   #   - United+url-test
+   #   - fallback     
+  #  use:
+     # - provider1
+    #  - provider2
+    #  - provider3
+     # - provider4
+    #  - provider5
+   #   - provider6
+     # - provider7
+     # - provider8
 rule-providers:
   ir:
     type: http
