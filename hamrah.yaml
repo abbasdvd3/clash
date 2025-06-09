@@ -101,7 +101,7 @@ dns:
   use-hosts: true
   use-system-hosts: true
   respect-rules: false
-  listen: 0.0.0.0:53
+  listen: 0.0.0.0:1053
   ipv6: true
   default-nameserver:
     - 'tcp://127.0.0.1:853'
@@ -130,11 +130,11 @@ dns:
       - 'tcp://114.114.114.114'
       - 'quic://223.5.5.5'
       - 'https://doh.pub/dns-query'
-    "*.instagram.com":
+    "+.instagram.com":
       - 'tcp://114.114.114.114'
       - 'quic://223.5.5.5'
       - 'https://doh.pub/dns-query'
-    "*.sxyprn.com":
+    "+.sxyprn.com":
       - 'https://120.53.53.53/dns-query'
       - 'https://223.5.5.5/dns-query'
       - 'https://doh.pub/dns-query'
@@ -145,7 +145,7 @@ dns:
       - 'tls://208.67.222.222'
       - 'tls://[2620:fe::11]'
       - 'tls://[2620:119:35::35]'
-    "*.spankbang.com":
+    "+.spankbang.com":
       - 'https://120.53.53.53/dns-query'
       - 'https://223.5.5.5/dns-query'
       - 'https://doh.pub/dns-query'
@@ -156,15 +156,47 @@ dns:
       - 'tls://208.67.222.222'
       - 'tls://[2620:fe::11]'
       - 'tls://[2620:119:35::35]'
-    "google.com":
+    "www.createporn.com":
+      - 'quic://94.140.14.140:784'
+      - 'tls://94.140.14.140:853'
+      - 'https://94.140.14.140/dns-query'
+      - 'quic://94.140.14.141:784'
+      - 'tls://94.140.14.141:853'
+      - 'https://94.140.14.141/dns-query'
+      - 'quic://[2a10:50c0::1:ff]:784'
+      - 'tls://[2a10:50c0::1:ff]:853'
+      - 'https://[2a10:50c0::1:ff]/dns-query'
+      - 'quic://[2a10:50c0::2:ff]:784'
+      - 'tls://[2a10:50c0::2:ff]:853'
+      - 'https://[2a10:50c0::2:ff]/dns-query'
+      - 'tls://edns.apad.pro:853'
+      - 'https://edns.apad.pro:3306/dns-query'
+      - 'tls://h2o.apad.pro:853'
+      - 'https://h2o.apad.pro/dns-query'
+      - 'https://doh.apad.pro/dns-query'
+      - 'quic://94.140.14.140:784'
+      - 'tls://94.140.14.140:853'
+      - 'https://94.140.14.140/dns-query'
+      - 'quic://94.140.14.141:784'
+      - 'tls://94.140.14.141:853'
+      - 'https://94.140.14.141/dns-query'
+      - 'quic://[2a10:50c0::1:ff]:784'
+      - 'tls://[2a10:50c0::1:ff]:853'
+      - 'https://[2a10:50c0::1:ff]/dns-query'
+      - 'quic://[2a10:50c0::2:ff]:784'
+      - 'tls://[2a10:50c0::2:ff]:853'
+      - 'https://[2a10:50c0::2:ff]/dns-query'
+      - 'https://dns-adguard.heinu.cf/dns-query'
+      - 'https://dns-adguard.heinu.ga/dns-query'
+    "+.google.com":
       - 'tcp://223.5.5.5'
       - 'tcp://114.114.114.114'
       - 'tcp://9.9.9.9'
-    "facebook.com":
+    "+.facebook.com":
       - 'tcp://223.5.5.5'
       - 'tcp://114.114.114.114'
       - 'tcp://9.9.9.9'
-    "twitter.com":
+    "+.twitter.com":
       - 'tcp://223.5.5.5'
       - 'tcp://114.114.114.114'
       - 'tcp://9.9.9.9'
@@ -886,7 +918,7 @@ proxy-groups:
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
     interval: 30
-    tolerance: 5000
+    tolerance: 500
     lazy: true
     timeout: 500
     max-failed-times: 5
@@ -942,13 +974,16 @@ proxy-groups:
 
 
   - name: Microsoft
-    type: select
+    type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 30
+    tolerance: 500
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Microsoft.svg"
   #  include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
-      - PROXY
+      - 🐍PROX🐍
       - 🎈 fallback
       - Globe
       - Taiwan
@@ -959,13 +994,16 @@ proxy-groups:
       - Persian Gulf
 
   - name: Telegram
-    type: select
+    type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 30
+    tolerance: 500
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Telegram.svg"
  #   include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
-      - PROXY
+      - 🐍PROX🐍
       - 🎈 fallback
       - Globe
       - Taiwan
@@ -976,13 +1014,16 @@ proxy-groups:
       - Persian Gulf
 
   - name: Discord
-    type: select
+    type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 30
+    tolerance: 500
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Discord.svg"
    # include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
-      - PROXY
+      - 🐍PROX🐍
       - 🎈 fallback
       - Globe
       - Taiwan
@@ -993,13 +1034,16 @@ proxy-groups:
       - Persian Gulf
 
   - name: Spotify
-    type: select
+    type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 30
+    tolerance: 500
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Spotify.svg"
  #   include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
-      - PROXY
+      - 🐍PROX🐍
       - 🎈 fallback
       - Globe
       - Taiwan
@@ -1010,13 +1054,16 @@ proxy-groups:
       - Persian Gulf
 
   - name: TikTok
-    type: select
+    type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 30
+    tolerance: 500
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/TikTok.svg"
    # include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
-      - PROXY
+      - 🐍PROX🐍
       - 🎈 fallback
       - Globe
       - Taiwan
@@ -1027,13 +1074,16 @@ proxy-groups:
       - Persian Gulf
 
   - name: YouTube
-    type: select
+    type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 30
+    tolerance: 500
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/YouTube.svg"
   #  include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
-      - PROXY
+      - 🐍PROX🐍
       - 🎈 fallback
       - Globe
       - Taiwan
@@ -1050,7 +1100,7 @@ proxy-groups:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
-      - PROXY
+      - 🐍PROX🐍
       - 🎈 fallback
       - Globe
       - Taiwan
@@ -1061,13 +1111,16 @@ proxy-groups:
       - Persian Gulf
 
   - name: Google
-    type: select
+    type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 30
+    tolerance: 500
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Google.svg"
  #   include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
-      - PROXY
+      - 🐍PROX🐍
       - 🎈 fallback
       - Globe
       - Taiwan
@@ -1078,13 +1131,16 @@ proxy-groups:
       - Persian Gulf
 
   - name: GoogleFCM
-    type: select
+    type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 30
+    tolerance: 500
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GoogleFCM.svg"
  #   include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
-      - PROXY
+      - 🐍PROX🐍
       - 🎈 fallback
       - Globe
       - Taiwan
@@ -1095,13 +1151,16 @@ proxy-groups:
       - Persian Gulf
 
   - name: Facebook
-    type: select
+    type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 30
+    tolerance: 500
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Facebook.svg"
   #  include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
-      - PROXY
+      - 🐍PROX🐍
       - 🎈 fallback
       - Globe
       - Taiwan
@@ -1112,13 +1171,16 @@ proxy-groups:
       - Persian Gulf
 
   - name: OpenAI
-    type: select
+    type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 30
+    tolerance: 500
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/OpenAI.svg"
   #  include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
-      - PROXY
+      - 🐍PROX🐍
       - 🎈 fallback
       - Globe
       - Taiwan
@@ -1129,13 +1191,16 @@ proxy-groups:
       - Persian Gulf
 
   - name: GitHub
-    type: select
+    type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 30
+    tolerance: 500
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GitHub.svg"
 #    include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
-      - PROXY
+      - 🐍PROX🐍
       - 🎈 fallback
       - Globe
       - Taiwan
@@ -1146,13 +1211,16 @@ proxy-groups:
       - Persian Gulf
 
   - name: Twitter(X)
-    type: select
+    type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 30
+    tolerance: 500
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Twitter.svg"
  #   include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "Shadowsocksr|socks5|http"
     proxies:
-      - PROXY
+      - 🐍PROX🐍
       - 🎈 Auto
       - 🎈 fallback
       - Globe
@@ -1168,7 +1236,7 @@ proxy-groups:
     filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
     type: url-test
     interval: 180
-    tolerance: 5000
+    tolerance: 500
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
@@ -1180,7 +1248,7 @@ proxy-groups:
     filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
     type: url-test
     interval: 180
-    tolerance: 5000
+    tolerance: 500
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
@@ -1192,7 +1260,7 @@ proxy-groups:
     filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
     type: url-test
     interval: 180
-    tolerance: 5000
+    tolerance: 500
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
@@ -1204,7 +1272,7 @@ proxy-groups:
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     type: url-test
     interval: 180
-    tolerance: 5000
+    tolerance: 500
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
@@ -1216,19 +1284,19 @@ proxy-groups:
     filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
     type: url-test
     interval: 180
-    tolerance: 5000
+    tolerance: 500
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
     hidden: false
     url: http://www.gstatic.com/generate_204
-      - 
+    
   - name: Globe
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Globe.svg"
     filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
     type: url-test
     interval: 180
-    tolerance: 5000
+    tolerance: 500
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
@@ -1239,7 +1307,7 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/freedom.webp"
     type: url-test
     interval: 180
-    tolerance: 5000
+    tolerance: 50
     exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|vmess|vless"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
