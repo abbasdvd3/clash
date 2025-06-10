@@ -9,7 +9,7 @@ ipv6: true
 allow-lan: true
 bind-address: "*"
 log-level: debug
-interface-name: ""
+interface-name: "auto"
 secret: 
 external-controller: "127.0.0.1:9090"
 external-controller-tls: "0.0.0.0:9091"
@@ -21,7 +21,7 @@ external-controller-cors:
   allow-origins:
   - tauri://localhost
   - http://tauri.localhost
-  - http://localhost:9090
+  - http://localhost:3000
   - https://yacd.metacubex.one
   - https://metacubex.github.io
   - https://board.zash.run.place
@@ -86,8 +86,8 @@ experimental:
         value: "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36"
       - name: "Accept-Language"
         value: "en-US,en;q=0.9"
-  sniff-tls-sni: false
-  udp-fallback-match: false
+  sniff-tls-sni: true
+  udp-fallback-match: true
   quic-go-disable-gso: false
 tunnels: 
   - network: [tcp, udp]
@@ -109,7 +109,6 @@ dns:
     - 'tcp://223.6.6.6:853'
     - 'tcp://114.114.114.114:853'
     - 'tcp://9.9.9.9:853'
-    - 'system'
     - 'tls://1.12.12.12:853'
     - 'tcp://8.8.8.8:853'
     - 'tcp://1.1.1.1:853'
@@ -233,6 +232,7 @@ dns:
     - 'https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true'
     - 'quic://dns.adguard.com:784'
     - 'dhcp://en0'
+    - 'system'
   fallback:
     - 'tcp://127.0.0.1:853'
     - 'tls://8.8.4.4:853'
@@ -911,16 +911,17 @@ proxy-groups:
   - name: "🎈 Auto"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 300
+    interval: 0
     tolerance: 5000
     lazy: true
     timeout: 50
     max-failed-times: 5
     disable-udp: true
-    interface-name: ''
+    interface-name: 'auto'
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "socks5|http"
     include-all-providers: true
+    expected-status: "200/302/400-503"
     hidden: false
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
 
@@ -928,15 +929,16 @@ proxy-groups:
   - name: "🎈 fallback"
     type: fallback
     url: "https://www.pornhub.com/generate_204"
-    interval: 180
+    interval: 0
     lazy: true
     timeout: 500
     max-failed-times: 5
     disable-udp: true
-    interface-name: ''
+    interface-name: 'auto'
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "socks5|http"
     include-all-providers: true
+    expected-status: "200/302/400-503"
     hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
     
@@ -967,7 +969,7 @@ proxy-groups:
   - name: "Microsoft"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 300
+    interval: 0
     tolerance: 5000
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Microsoft.svg"
   #  include-all-providers: true
@@ -980,7 +982,7 @@ proxy-groups:
   - name: "Telegram"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 300
+    interval: 0
     tolerance: 5000
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Telegram.svg"
  #   include-all-providers: true
@@ -993,7 +995,7 @@ proxy-groups:
   - name: "Discord"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 300
+    interval: 0
     tolerance: 5000
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Discord.svg"
    # include-all-providers: true
@@ -1006,7 +1008,7 @@ proxy-groups:
   - name: "Spotify"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 300
+    interval: 0
     tolerance: 5000
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Spotify.svg"
  #   include-all-providers: true
@@ -1019,7 +1021,7 @@ proxy-groups:
   - name: "TikTok"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 300
+    interval: 0
     tolerance: 5000
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/TikTok.svg"
    # include-all-providers: true
@@ -1032,7 +1034,7 @@ proxy-groups:
   - name: "YouTube"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 300
+    interval: 0
     tolerance: 5000
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/YouTube.svg"
   #  include-all-providers: true
@@ -1045,7 +1047,7 @@ proxy-groups:
   - name: "Netflix"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 300
+    interval: 0
     tolerance: 5000
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Netflix.svg"
   #  include-all-providers: true
@@ -1058,7 +1060,7 @@ proxy-groups:
   - name: "Google"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 300
+    interval: 0
     tolerance: 5000
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Google.svg"
  #   include-all-providers: true
@@ -1071,7 +1073,7 @@ proxy-groups:
   - name: "GoogleFCM"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 300
+    interval: 0
     tolerance: 5000
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GoogleFCM.svg"
  #   include-all-providers: true
@@ -1084,7 +1086,7 @@ proxy-groups:
   - name: "Facebook"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 300
+    interval: 0
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Facebook.svg"
   #  include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
@@ -1096,7 +1098,7 @@ proxy-groups:
   - name: "OpenAI"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 300
+    interval: 0
     tolerance: 5000
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/OpenAI.svg"
   #  include-all-providers: true
@@ -1109,7 +1111,7 @@ proxy-groups:
   - name: "GitHub"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 300
+    interval: 0
     tolerance: 5000
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GitHub.svg"
 #    include-all-providers: true
@@ -1122,7 +1124,7 @@ proxy-groups:
   - name: "Twitter(X)"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 30
+    interval: 0
     tolerance: 500
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Twitter.svg"
  #   include-all-providers: true
@@ -1137,11 +1139,12 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/CN.svg"
     filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
     type: url-test
-    interval: 180
-    tolerance: 500
+    interval: 0
+    tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
+    expected-status: "200/302/400-503"
     hidden: false
     url: "http://www.pornhub.com/generate_204"
 
@@ -1149,11 +1152,12 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/HK.svg"
     filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
     type: url-test
-    interval: 180
-    tolerance: 500
+    interval: 0
+    tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
+    expected-status: "200/302/400-503"
     hidden: false
     url: "http://www.pornhub.com/generate_204"
 
@@ -1161,11 +1165,12 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/JP.svg"
     filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
     type: url-test
-    interval: 180
-    tolerance: 500
+    interval: 0
+    tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
+    expected-status: "200/302/400-503"
     hidden: false
     url: "http://www.pornhub.com/generate_204"
 
@@ -1173,11 +1178,12 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/US.svg"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     type: url-test
-    interval: 180
-    tolerance: 500
+    interval: 0
+    tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
+    expected-status: "200/302/400-503"
     hidden: false
     url: "http://www.pornhub.com/generate_204"
 
@@ -1185,11 +1191,12 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Singapore.svg"
     filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
     type: url-test
-    interval: 180
+    interval: 0
     tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
+    expected-status: "200/302/400-503"
     hidden: false
     url: "http://www.pornhub.com/generate_204"
     
@@ -1197,30 +1204,33 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Globe.svg"
     filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
     type: url-test
-    interval: 180
+    interval: 0
     tolerance: 5000
     exclude-type: "Shadowsocksr|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
+    expected-status: "200/302/400-503"
     hidden: false
     url: "http://www.pornhub.com/generate_204"
     
   - name: "Persian Gulf"
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/freedom.webp"
     type: url-test
-    interval: 180
-    tolerance: 50
+    interval: 0
+    tolerance: 500
     exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|vmess|vless"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     include-all-providers: true
+    expected-status: "200/302/400-503"
     hidden: false
     url: "http://www.pornhub.com/generate_204"
     
   - name: "PROXY"
     type: url-test
     url: "http://www.pornhub.com/generate_204"
-    interval: 180
-    tolerance: 100
+    expected-status: "200/302/400-503"
+    interval: 0
+    tolerance: 500
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
