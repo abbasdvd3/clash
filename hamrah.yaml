@@ -260,7 +260,9 @@ dns:
     geoip: true
     geoip-code: ir
     geosite:
-   #   - 'nsfw'
+      - 'nsfw'
+      - 'social'
+
     ipcidr:
       - '240.0.0.0/4'
       - '0.0.0.0/32'
@@ -1251,8 +1253,6 @@ rules:
   - PROCESS-NAME-REGEX,curl$,🐍PROX🐍
   - PROCESS-NAME-REGEX,(?i)Telegram,Telegram
   - PROCESS-NAME-REGEX,.*telegram.*,Telegram
-  - DST-PORT,53,🐍PROX🐍
-  - DST-PORT,853,🐍PROX🐍
   - DST-PORT,80,🐍PROX🐍
   - DST-PORT,443,🐍PROX🐍
   - RULE-SET,WebRTC,🛑 WebRTC
@@ -1328,7 +1328,10 @@ rules:
   - RULE-SET,ChinaCompanyIp,🐍PROX🐍
   - RULE-SET,Download,🎯 Direct
   - GEOIP,ir,🎯 Direct
+  - GEOIP,JP,🐍PROX🐍
+  - GEOIP,CN,🐍PROX🐍
   - IN-TYPE,inner,🐍PROX🐍
+  - DST-PORT,80/8080/443/8443,🐍PROX🐍
   - MATCH,🐍PROX🐍
   
 listeners:
