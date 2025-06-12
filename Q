@@ -163,7 +163,6 @@
       {
         "rule_set": [
           "geosite-netflix",
-          "geosite-nsfw",
           "geosite-social",
           "geosite-youtube",
           "geosite-telegram",
@@ -207,8 +206,6 @@
           "geosite-apple@cn",
           "geosite-private",
           "geosite-airwick",
-          "geosite-github",
-          "geoip-github",
           "geosite-category-media-ir",
           "geosite-category-news-ir",
           "geosite-category-payment-ir",
@@ -15010,14 +15007,12 @@
          "geosite-amazon",
         "geoip-amazon",
         "geosite-social",
-        "geosite-nsfw",
         "geosite-pornpros"
         ],
         "outbound": "selecto"
       },
       {
         "rule_set": [
-          "GeoIP2-CN",
           "geosite-github",
           "geosite-cn",
           "geosite-icloud@cn",
@@ -15166,14 +15161,6 @@
         "tag": "geosite-xhamster",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/xhamster.srs",
-        "download_detour": "direct",
-        "update_interval": "20d"
-      },
-      {
-        "type": "remote",
-        "tag": "GeoIP2-CN",
-        "format": "binary",
-        "url": "https://wiki.jokin.uk/cnip2.srs",
         "download_detour": "direct",
         "update_interval": "20d"
       },
@@ -16394,14 +16381,6 @@
         "update_interval": "20d"
       },
       {
-        "tag": "geosite-nsfw",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-nsfw.srs",
-        "download_detour": "direct",
-        "update_interval": "20d"
-      },
-      {
         "tag": "geosite-social",
         "type": "remote",
         "format": "binary",
@@ -16441,7 +16420,7 @@
     "clash_api": {
       "external_controller": "0.0.0.0:9090",
       "external_ui": "ui",
-      "external_ui_download_detour": "Proxy",
+      "external_ui_download_detour": "direct",
       "default_mode": "rule"
     }
   }
