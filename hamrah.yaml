@@ -1,338 +1,20 @@
 
-port: 7892
-socks-port: 7891
-mixed-port: 7890
-redir-port: 9797
-tproxy-port: 9898
-mode: rule
-ipv6: true
-allow-lan: true
-bind-address: "*"
-log-level: debug
-interface-name: "auto"
-secret: 
-external-controller: "127.0.0.1:9090"
-external-controller-tls: "0.0.0.0:9091"
-external-ui: /data/user/0/com.github.metacubex.clash.alpha/files/clash/ui/
-external-ui-name: xd
-external-doh-server: /dns-query
-external-controller-cors:
-  allow-private-network: true
-  allow-origins:
-  - tauri://localhost
-  - http://tauri.localhost
-  - http://localhost:3000
-  - https://yacd.metacubex.one
-  - https://metacubex.github.io
-  - https://board.zash.run.place
-external-controller-unix: mihomo.sock
-external-controller-pipe: \\.\pipe\mihomo
-keep-alive-interval: 30
-find-process-mode: strict
-external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
-unified-delay: false
-tcp-concurrent: true
-authentication: []
-skip-auth-prefixes:
-  - 127.0.0.1/8
-  - ::1/128
-lan-allowed-ips:
-  - 0.0.0.0/0
-  - ::/0
-lan-disallowed-ips:
-  - 192.168.0.3/32
-  
-tls:
-  certificate: ""
-  private-key: ""
-global-client-fingerprint: random
-geodata-mode: true
-geo-auto-update: false
-geo-update-interval: 24
-geodata-loader: memconservative
-global-ua: clash.meta
-etag-support: true
-geox-url:
-  geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
-  geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
-  mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
-  asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
-profile:
-  store-selected: true
-  store-fake-ip: true
-  tracing: true
-
-tun:
-  enable: true
-  stack: Mixed
-  auto-route: true
-  udp-timeout: 30
-  auto-redirect: true
-  auto-detect-interface: true
-  dns-hijack:
-    - 'any:53'
-    - 'tcp://any:53'
-    - '0.0.0.0:53'
-  device: utun_clash
-  mtu: 9000
-  strict-route: true
-  gso: true
-  gso-max-size: 65536
-  endpoint-independent-nat: false
-experimental:
-  http-headers:
-    request:
-      - name: "User-Agent"
-        value: "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36"
-      - name: "Accept-Language"
-        value: "en-US,en;q=0.9"
-  sniff-tls-sni: true
-  udp-fallback-match: true
-  quic-go-disable-gso: false
-tunnels: 
-  - network: [tcp, udp]
-    address: 127.0.0.1:7893
-    target: 8.8.8.8:53
-    proxy: 🐍PROX🐍
-dns:
-  enable: true
-  cache-algorithm: arc
-  prefer-h3: true
-  use-hosts: true
-  use-system-hosts: true
-  respect-rules: false
-  listen: 0.0.0.0:1053
-  ipv6: true
-  default-nameserver:
-    - 'tcp://127.0.0.1:853'
-    - 'tcp://223.5.5.5:853'
-    - 'tcp://223.6.6.6:853'
-    - 'tcp://114.114.114.114:853'
-    - 'tcp://9.9.9.9:853'
-    - 'tls://1.12.12.12:853'
-    - 'tcp://8.8.8.8:853'
-    - 'tcp://1.1.1.1:853'
-    - 'tls://223.5.5.5'
-    - 'tls://223.6.6.6'
-    - 'tls://114.114.114.114'
-    - 'tls://9.9.9.9'
-    - 'tls://8.8.8.8'
-    - 'tls://1.1.1.1'
-  enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.1/8
-  fake-ip-filter-mode: blacklist
-  fake-ip-filter:
-    - '*.lan'
-    - rule-set:fakeip-filter
-  nameserver-policy:
-    "*.google.com":
-      - 'tcp://114.114.114.114'
-      - 'quic://223.5.5.5'
-      - 'https://doh.pub/dns-query'
-    "+.instagram.com":
-      - 'tcp://114.114.114.114'
-      - 'quic://223.5.5.5'
-      - 'https://doh.pub/dns-query'
-    "+.sxyprn.com":
-      - 'https://120.53.53.53/dns-query'
-      - 'https://223.5.5.5/dns-query'
-      - 'https://doh.pub/dns-query'
-      - 'tcp://223.5.5.5'
-      - 'https://dns.alidns.com/dns-query'
-      - 'https://94.140.14.14/dns-query#h3=true'
-      - 'tls://9.9.9.11'
-      - 'tls://208.67.222.222'
-      - 'tls://[2620:fe::11]'
-      - 'tls://[2620:119:35::35]'
-    "+.spankbang.com":
-      - 'https://120.53.53.53/dns-query'
-      - 'https://223.5.5.5/dns-query'
-      - 'https://doh.pub/dns-query'
-      - 'tcp://223.5.5.5'
-      - 'https://dns.alidns.com/dns-query'
-      - 'https://94.140.14.14/dns-query#h3=true'
-      - 'tls://9.9.9.11'
-      - 'tls://208.67.222.222'
-      - 'tls://[2620:fe::11]'
-      - 'tls://[2620:119:35::35]'
-    "www.createporn.com":
-      - 'quic://94.140.14.140:784'
-      - 'tls://94.140.14.140:853'
-      - 'https://94.140.14.140/dns-query'
-      - 'quic://94.140.14.141:784'
-      - 'tls://94.140.14.141:853'
-      - 'https://94.140.14.141/dns-query'
-      - 'quic://[2a10:50c0::1:ff]:784'
-      - 'tls://[2a10:50c0::1:ff]:853'
-      - 'https://[2a10:50c0::1:ff]/dns-query'
-      - 'quic://[2a10:50c0::2:ff]:784'
-      - 'tls://[2a10:50c0::2:ff]:853'
-      - 'https://[2a10:50c0::2:ff]/dns-query'
-      - 'tls://edns.apad.pro:853'
-      - 'https://edns.apad.pro:3306/dns-query'
-      - 'tls://h2o.apad.pro:853'
-      - 'https://h2o.apad.pro/dns-query'
-      - 'https://doh.apad.pro/dns-query'
-      - 'quic://94.140.14.140:784'
-      - 'tls://94.140.14.140:853'
-      - 'https://94.140.14.140/dns-query'
-      - 'quic://94.140.14.141:784'
-      - 'tls://94.140.14.141:853'
-      - 'https://94.140.14.141/dns-query'
-      - 'quic://[2a10:50c0::1:ff]:784'
-      - 'tls://[2a10:50c0::1:ff]:853'
-      - 'https://[2a10:50c0::1:ff]/dns-query'
-      - 'quic://[2a10:50c0::2:ff]:784'
-      - 'tls://[2a10:50c0::2:ff]:853'
-      - 'https://[2a10:50c0::2:ff]/dns-query'
-      - 'https://dns-adguard.heinu.cf/dns-query'
-      - 'https://dns-adguard.heinu.ga/dns-query'
-    "+.google.com":
-      - 'tcp://223.5.5.5'
-      - 'tcp://114.114.114.114'
-      - 'tcp://9.9.9.9'
-    "+.facebook.com":
-      - 'tcp://223.5.5.5'
-      - 'tcp://114.114.114.114'
-      - 'tcp://9.9.9.9'
-    "+.twitter.com":
-      - 'tcp://223.5.5.5'
-      - 'tcp://114.114.114.114'
-      - 'tcp://9.9.9.9'
-    "RULE-SET:GEOSITE-CN,Google,GEOSITE-Private":
-    - 'tcp://223.5.5.5:853'
-    - 'tcp://223.6.6.6:853'
-    - 'tcp://114.114.114.114:853'
-    - 'tcp://9.9.9.9:853'
-    - 'tcp://8.8.8.8:853'
-    - 'tcp://1.1.1.1:853'
-    "ruleset:geolocation-!cn,OpenAi,ProxyMedia,ProxyGFWlist":
-    - 'tcp://223.5.5.5:853'
-    - 'tcp://223.6.6.6:853'
-    - 'tcp://114.114.114.114:853'
-    - 'tcp://9.9.9.9:853'
-    - 'tcp://8.8.8.8:853'
-    - 'tcp://1.1.1.1:853'
-    "geosite:category-ads-all": rcode://success
-  nameserver:
-    - 'tcp://127.0.0.1:53'
-    - 'https://[2001:4860:4860::8888]/dns-query#DNSconnect&h3=true'
-    - 'https://[2001:4860:4860::8844]/dns-query#DNSconnect&h3=true'
-    - 'https://[2606:4700:4700::1111]/dns-query#DNSconnect&h3=true'
-    - 'https://[2606:4700:4700::1001]/dns-query#DNSconnect&h3=true'
-    - 'tcp://223.5.5.5:853'
-    - 'tcp://223.6.6.6:853'
-    - 'tcp://114.114.114.114:853'
-    - 'tcp://9.9.9.9:853'
-    - 'tcp://8.8.8.8:853'
-    - 'tcp://1.1.1.1:853'
-    - 'tls://223.5.5.5:853' 
-    - 'https://doh.pub/dns-query' 
-    - 'https://dns.alidns.com/dns-query#h3=true' 
-    - 'https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true'
-    - 'quic://dns.adguard.com:784'
-    - 'dhcp://en0'
-    - 'system'
-  fallback:
-    - 'tcp://127.0.0.1:853'
-    - 'tls://8.8.4.4:853'
-    - 'tls://1.1.1.1:853'
-    - 'tcp://8.8.4.4:853'
-    - 'tcp://1.1.1.1:853'
-    - 'tcp://9.9.9.9:853'
-  proxy-server-nameserver:
-    - 'tcp://223.5.5.5:853'
-    - 'tcp://223.6.6.6:853'
-    - 'tcp://114.114.114.114:853'
-    - 'tcp://9.9.9.9:853'
-    - 'tcp://8.8.8.8:853'
-    - 'tcp://1.1.1.1:853'
-  direct-nameserver:
-    - 'tcp://223.5.5.5'
-    - 'tcp://223.6.6.6'
-    - 'tls://8.8.4.4'
-    - 'tls://1.1.1.1'
-    - 'tcp://8.8.4.4'
-    - 'tcp://1.1.1.1'
-    - 'system://'
-  direct-nameserver-follow-policy: false
-  fallback-filter:
-    geoip: true
-    geoip-code: ir
-    geosite:
-      - 'nsfw'
-      - 'social'
-
-    ipcidr:
-      - '240.0.0.0/4'
-      - '0.0.0.0/32'
-      - '100.64.0.0/10'
-      - '127.0.0.0/8'
-      - '240.0.0.0/4'
-      - '10.0.0.0/8'
-      - '169.254.0.0/16'
-      - '172.16.0.0/12'
-      - '192.0.0.0/24'
-      - '192.0.2.0/24'
-      - '192.88.99.0/24'
-      - '192.168.0.0/16'
-      - '198.18.0.0/16'
-      - '198.51.100.0/24'
-      - '203.0.113.0/24'
-      - '224.0.0.0/4'
-      - '255.255.255.255/32'
-      - '::1/128'
-      - 'fc00::/7'
-      - 'fe80::/10'
-      - '39.102.194.95/32'
-      - '182.43.124.6/32'
-      - '101.35.177.86/32'
-      - '116.89.243.8/32'
-      - '119.28.87.227/32'
-    domain:
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
-      - '+.google.cn'
-      - '+.googleapis.cn'
-      - '+.googleapis.com'
-      - '+.github.com'
-      - '+.twitter.com'
-hosts:
-  google.com:
-    - 9.9.9.9
-    - 225.5.5.5
-    - 1.1.1.1
-  gov.cn: 127.0.0.1
-  +.facebook.com:
-    - 9.9.9.9
-    - 225.5.5.5
-    - 1.1.1.1
-  .youtube.com:
-    - 9.9.9.9
-    - 225.5.5.5
-    - 1.1.1.1
-  google.cn:
-    - 9.9.9.9
-    - 225.5.5.5
-    - 1.1.1.1
-  googleapis.cn:
-    - 9.9.9.9
-    - 225.5.5.5
-    - 1.1.1.1
-  googleapis.com:
-    - 9.9.9.9
-    - 225.5.5.5
-    - 1.1.1.1
-  twitter.com:
-    - 9.9.9.9
-    - 225.5.5.5
-    - 1.1.1.1
-  instagram.com:
-    - 9.9.9.9
-    - 225.5.5.5
-    - 1.1.1.1
 proxy-providers:
+  BV1:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/10.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.pornhub.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "B1 prefix |"
+##      additional-suffix: "| test suffix"
+
   B1:
     type: http
     url: "https://anaer.github.io/Sub/clash.yaml"
@@ -340,7 +22,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -354,7 +36,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -369,7 +51,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -384,7 +66,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -399,7 +81,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -414,7 +96,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -429,7 +111,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -444,7 +126,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -459,7 +141,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -474,7 +156,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -489,7 +171,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -504,7 +186,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -519,7 +201,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -534,7 +216,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -549,7 +231,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -564,7 +246,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.pornhub.com/generate_204
       interval: 300
       lazy: true
       expected-status: 100
@@ -795,355 +477,6 @@ proxy-providers:
       additional-prefix: "A14 prefix |"
 ##      additional-suffix: "| test suffix"
 
-rule-providers:
-  LocalAreaNetwork:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list"
-    format: text
-
-  UnBan:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list"
-    format: text
-
-  BanAD:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list"
-    format: text
-
-  BanProgramAD:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list"
-    format: text
-
-  GoogleFCM:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list"
-    format: text
-
-  GoogleCNProxyIP:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list"
-    format: text
-
-  GoogleCN:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list"
-    format: text
-
-  YouTube:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list"
-    format: text
-
-  Google:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list"
-    format: text
-
-  Bing:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list"
-    format: text
-
-  OneDrive:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list"
-    format: text
-
-  Microsoft:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list"
-    format: text
-
-  Apple:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list"
-    format: text
-
-  Telegram:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list"
-    format: text
-
-  OpenAi:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list"
-    format: text
-
-  Netflix:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Netflix.list"
-    format: text
-
-  ChinaMedia:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list"
-    format: text
-
-  ProxyMedia:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list"
-    format: text
-
-  ProxyGFWlist:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list"
-    format: text
-
-  ChinaDomain:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list"
-    format: text
-
-  ChinaCompanyIp:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list"
-    format: text
-    
-  Download:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list"
-    format: text
-
-  category-ads-all:
-    type: http
-    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.yaml"
-    behavior: domain
-    format: yaml
-
-  GEOIP-Private:
-    type: http
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.yaml"
-    behavior: classical
-    format: yaml
-
-  GEOIP-CN:
-    type: http
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat@meta/geo/geoip/ir.yaml"
-    behavior: classical
-    format: yaml
-
-  GEOSITE-Private:
-    type: http
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.yaml"
-    behavior: domain
-    format: yaml
-
-  GEOSITE-CN:
-    type: http
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ir.yaml"
-    behavior: domain
-    format: yaml
-
-  geolocation-!cn:
-    type: http
-    url: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-!cn.yaml"
-    behavior: domain
-    format: yaml
-    
-#  自定义出站: 
- #   <<: *Local
-#    path: ./etc/自定义规则.list 
-
-  WebRTC:
-    type: http
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/rules/WebRTC.list"
-    behavior: classical
-    format: text
-
-  CN_IP:
-    type: http 
-    behavior: ipcidr
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs"
-  CN_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs"
-
-  No-ads-all_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://anti-ad.net/mihomo.mrs"
-
-  TikTok_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/TikTok/TikTok_OCD_Domain.mrs"
-
-  Spotify_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Spotify/Spotify_OCD_Domain.mrs"
-  Spotify_IP:
-    type: http 
-    behavior: ipcidr
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Spotify/Spotify_OCD_IP.mrs"
-
-  Facebook_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Facebook/Facebook_OCD_Domain.mrs"
-  Facebook_IP:
-    type: http 
-    behavior: ipcidr
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Facebook/Facebook_OCD_IP.mrs"
-
-  Telegram_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
-  Telegram_IP:
-    type: http 
-    behavior: ipcidr
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
-
-  YouTube_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/YouTube/YouTube_OCD_Domain.mrs"
-  YouTube_IP:
-    type: http 
-    behavior: ipcidr
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/YouTube/YouTube_OCD_IP.mrs"
-
-  Google_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Google/Google_OCD_Domain.mrs"
-  Google_IP:
-    type: http 
-    behavior: ipcidr
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Google/Google_OCD_IP.mrs"
-
-  GoogleFCM_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
-  GoogleFCM_IP:
-    type: http 
-    behavior: ipcidr
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
-
-  Microsoft_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
-
-  OpenAI_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/OpenAI/OpenAI_OCD_Domain.mrs"
-  OpenAI_IP:
-    type: http 
-    behavior: ipcidr
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/OpenAI/OpenAI_OCD_IP.mrs"
-
-  Discord_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Discord/Discord_OCD_Domain.mrs"
-
-  GitHub_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/GitHub/GitHub_OCD_Domain.mrs"
-
-  Twitter_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Twitter/Twitter_OCD_Domain.mrs"
-  Twitter_IP:
-    type: http 
-    behavior: ipcidr
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Twitter/Twitter_OCD_IP.mrs"
-
-  Private_D:
-    type: http
-    behavior: domain
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
-  Private_IP:
-    type: http 
-    behavior: ipcidr
-    format: mrs
-    interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/MoGuangYu/rule@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
-  fakeip-filter:
-    type: http 
-    behavior: domain
-    format: text
-    interval: 86400
-    url: "https://raw.githubusercontent.com/juewuy/ShellCrash/refs/heads/dev/public/fake_ip_filter.list"
 
 proxies:
   - {name: ایران, type: direct,server: 0.0.0.0,port: 9797, udp: true}
@@ -1152,10 +485,7 @@ proxies:
 proxy-groups:
   - name: "🐍PROX🐍"
     type: select
-    exclude-type: "Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
     url: "http://www.pornhub.com/generate_204"
-    include-all-providers: true
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
     proxies:
@@ -1167,15 +497,9 @@ proxy-groups:
     url: "https://www.pornhub.com/generate_204"
     interval: 0
     tolerance: 5000
-    lazy: true
-    timeout: 50
-    max-failed-times: 5
-    disable-udp: true
-    interface-name: 'auto'
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "socks5|http"
     include-all-providers: true
-    expected-status: "200/302/400-503"
     hidden: false
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
 
@@ -1185,8 +509,6 @@ proxy-groups:
     url: "https://www.pornhub.com/generate_204"
     interval: 0
     timeout: 500
-    max-failed-times: 5
-    disable-udp: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "socks5|http"
     include-all-providers: true
@@ -1497,157 +819,7 @@ proxy-groups:
       - "Singapore"
       - "Persian Gulf"
 rules:
-  - rule-set,fakeip-filter,ایران
-  - PROCESS-NAME,chrome.exe,Google
-  - PROCESS-NAME,com.termux,🐍PROX🐍
-  - PROCESS-NAME,com.chrome,Google
-  - PROCESS-NAME-REGEX,curl$,🐍PROX🐍
-  - PROCESS-NAME-REGEX,(?i)Telegram,Telegram
-  - PROCESS-NAME-REGEX,.*telegram.*,Telegram
-  - RULE-SET,WebRTC,🛑 WebRTC
-  - RULE-SET,No-ads-all_D,🛑 WebRTC
-  - RULE-SET,GitHub_D,GitHub
-  - RULE-SET,Discord_D,Discord
-  - RULE-SET,TikTok_D,TikTok
-  - RULE-SET,Twitter_D,Twitter(X)
-  - RULE-SET,Twitter_IP,Twitter(X)
-  - RULE-SET,YouTube_D,YouTube
-  - RULE-SET,YouTube_IP,YouTube
-  - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
-  - RULE-SET,Google_D,Google
-  - RULE-SET,Google_IP,Google
-#  - RULE-SET,Netflix_D,Netflix
-#  - RULE-SET,Netflix_IP,Netflix
-  - RULE-SET,Spotify_D,Spotify
-  - RULE-SET,Spotify_IP,Spotify
-  - RULE-SET,Facebook_D,Facebook
-  - RULE-SET,Facebook_IP,Facebook
-  - RULE-SET,OpenAI_D,OpenAI
-  - RULE-SET,OpenAI_IP,OpenAI
-#  - RULE-SET,Apple_D,Apple
-#  - RULE-SET,Apple_IP,Apple
-  - RULE-SET,Microsoft_D,Microsoft
-  - RULE-SET,Telegram_D,Telegram
-  - RULE-SET,Telegram_IP,Telegram
-  - DOMAIN,browserleaks.com,🐍PROX🐍
-  - RULE-SET,CN_D,🐍PROX🐍
-  - RULE-SET,CN_IP,🐍PROX🐍
-  - RULE-SET,Private_D,ایران
-  - RULE-SET,Private_IP,ایران
-  - NETWORK,udp,ایران
-  - SRC-PORT,7777,ایران
-  - IN-PORT,7890,🐍PROX🐍
-  - IN-TYPE,SOCKS/HTTP,🐍PROX🐍
-  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑 WebRTC
-  - AND,((DST-PORT,443),(NETWORK,udp)),🛑 WebRTC
-  - RULE-SET,category-ads-all,🛑 WebRTC
- # - RULE-SET,GEOIP-Private,🎯 Direct,no-resolve
-#  - RULE-SET,GEOIP-CN,🎯 Direct,no-resolve
-#  - RULE-SET,GEOSITE-Private,🎯 Direct,no-resolve
-#  - RULE-SET,GEOSITE-CN,🎯 Direct,no-resolve
-  - RULE-SET,geolocation-!cn,🐍PROX🐍
-  - RULE-SET,LocalAreaNetwork,ایران,no-resolve
-  - RULE-SET,UnBan,🐍PROX🐍
-  - DOMAIN-SUFFIX,google.com,🐍PROX🐍
-  - RULE-SET,BanAD,🛑 WebRTC
-  - RULE-SET,BanProgramAD,🛑 WebRTC
-  - RULE-SET,GoogleFCM,GoogleFCM
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🐍PROX🐍
-  - DOMAIN-SUFFIX,services.googleapis.cn,🐍PROX🐍
-  - RULE-SET,GoogleCNProxyIP,Google
-  - RULE-SET,GoogleCN,Google
-  - RULE-SET,YouTube,YouTube
-  - RULE-SET,Google,Google
-  - RULE-SET,Bing,Microsoft
-  - RULE-SET,OneDrive,Microsoft
-  - RULE-SET,Microsoft,Microsoft
-  - RULE-SET,Apple,🐍PROX🐍
-  - RULE-SET,Telegram,Telegram
-  - RULE-SET,OpenAi,OpenAI
-  - RULE-SET,ChinaMedia,🐍PROX🐍
-  - RULE-SET,ProxyMedia,🐍PROX🐍
-  - DOMAIN-SUFFIX,v2rayse.com,🐍PROX🐍
-  - DOMAIN-SUFFIX,cff.pw,🐍PROX🐍
-  - DOMAIN-SUFFIX,vpnse.org,🐍PROX🐍
-  - DOMAIN-SUFFIX,cfmem.com,🐍PROX🐍
-  - DOMAIN-SUFFIX,networkcheck.kde.org,ایران
-  - DOMAIN-SUFFIX,farsroid.com,ایران
-  - RULE-SET,ProxyGFWlist,🐍PROX🐍
-  - RULE-SET,ChinaDomain,🐍PROX🐍
-  - RULE-SET,ChinaCompanyIp,🐍PROX🐍
-  - RULE-SET,Download,🎯 Direct
-  - GEOIP,ir,🎯 Direct
-  - IN-TYPE,inner,🐍PROX🐍
-  - DST-PORT,80/8080/443/8443,🐍PROX🐍
+
   - MATCH,🐍PROX🐍
-  
-listeners:
-  - name: socks5-in-1
-    type: socks
-    port: 7891
-    listen: 0.0.0.0
-  #  rule: Google_D
-  #  proxy: 🐍PROX🐍
-  #  udp: true
-
-  - name: http-in-1
-    type: http
-    port: 7892
-    listen: 0.0.0.0
-  #  rule: Google_D
-  #  proxy: 🐍PROX🐍
-
-  - name: mixed-in-1
-    type: mixed
-    port: 7890
-    listen: 0.0.0.0
-  #  rule: Google_D
-  #  proxy: 🐍PROX🐍
-  #  udp: true
-  
-  - name: reidr-in-1
-    type: redir
-    port: 9797
-    listen: 0.0.0.0
-    
-  - name: tproxy-in-1
-    type: tproxy
-    port: 9898
-    listen: 0.0.0.0
-   # rule: Google_D
-  #  proxy: 🐍PROX🐍
-  #  udp: true
-
-  - name: tunnel-in-1
-    type: tunnel
-    port: 7893
-    listen: 0.0.0.0
- #   rule: Google_D
-  #  proxy: 🐍PROX🐍
-    network: [tcp, udp]
-    target: 8.8.8.8:53
-    
-  - name: tun-in-1
-    type: tun
- #   rule: Google_D
-  #  proxy: 🐍PROX🐍
-    stack: mixed
-    dns-hijack:
-    - 0.0.0.0:53
-    auto-detect-interface: true
-    auto-route: true
-    mtu: 9000
-    inet4-address:
-    - 198.19.0.1/30
-    inet6-address:
-    - "fdfe:dcba:9877::1/126"
-    strict-route: true
-    inet4-route-address:
-    - 0.0.0.0/1
-    - 128.0.0.0/1
-    inet6-route-address: 
-    - "::/1"
-    - "8000::/1"
-    endpoint-independent-nat: true
 
 
