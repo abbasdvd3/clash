@@ -1,450 +1,361 @@
+
+port: 7892
+socks-port: 7891
+mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
+mode: rule
+ipv6: true
+allow-lan: true
+bind-address: "*"
+log-level: debug
+interface-name: ""
+secret: 
+external-controller: "127.0.0.1:9090"
+external-controller-tls: "0.0.0.0:9091"
+external-ui: /data/user/0/com.github.metacubex.clash.alpha/files/clash/ui/
+external-ui-name: xd
+external-doh-server: /dns-query
+external-controller-cors:
+  allow-private-network: true
+  allow-origins:
+  - tauri://localhost
+  - http://tauri.localhost
+  - http://localhost:3000
+  - https://yacd.metacubex.one
+  - https://metacubex.github.io
+  - https://board.zash.run.place
+external-controller-unix: mihomo.sock
+external-controller-pipe: \\.\pipe\mihomo
+keep-alive-interval: 30
+find-process-mode: strict
+external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 unified-delay: true
+tcp-concurrent: true
+authentication: []
+skip-auth-prefixes:
+  - 127.0.0.1/8
+  - ::1/128
+lan-allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+lan-disallowed-ips:
+  - 192.168.0.3/32
+  
+tls:
+  certificate: ""
+  private-key: ""
+global-client-fingerprint: random
+geodata-mode: false
+geo-auto-update: false
+geo-update-interval: 24
+geodata-loader: memconservative
+global-ua: clash.meta
+etag-support: true
 proxy-providers:
   BV1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/10.yaml"
-    interval: 86400
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
+      
     
 ##      additional-suffix: "| test suffix"
 
   B1:
     type: http
     url: "https://anaer.github.io/Sub/clash.yaml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
+      
 
 ##      additional-suffix: "| test suffix"
   B15:
     type: http
     url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config_extra.yaml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
+      
 
 
   B16:
     type: http
     url: "https://raw.githubusercontent.com/itxve/fetch-clash-node/main/node/ClashNode.yaml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
+      
 #    override:    #   additional-prefix: "B16 prefix |"
 ##      additional-suffix: "| test suffix"   
 
   BA2:
     type: http
     url: "https://proxypool.link/clash/proxies"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
+      
 
 
   BA3:
     type: http
     url: "https://pxypool.131433.xyz/clash/proxies"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "BA3 prefix |"
-#      additional-suffix: "| test suffix"
     
   BA4:
     type: http
     url: "http://weoknow.com/data/dayupdate/1/z1.txt"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
-
-
+      
   BA5:
     type: http
     url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config.yaml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "BA5 prefix |"
-#      additional-suffix: "| test suffix"
     
   BA6:
     type: http
     url: "https://raw.githubusercontent.com/misersun/config003/main/config_all.yaml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
- 
-
+    
   BA7:
     type: http
     url: "https://raw.githubusercontent.com/misersun/config003/main/config_all_quest.yaml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "BA7 prefix |"
-#      additional-suffix: "| test suffix"
-
+    
   BA8:
     type: http
     url: "https://raw.githubusercontent.com/shbioc/clash/main/aaa01.yaml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "BA8 prefix |"
-#      additional-suffix: "| test suffix"
 
   BA9:
     type: http
     url: "https://raw.githubusercontent.com/zhlx2835/freefq/main/clash.yaml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "BA9 prefix |"
-#      additional-suffix: "| test suffix"
 
   BA10:
     type: http
     url: "https://raw.githubusercontent.com/BUTUbird/ClashPoint/main/application.yaml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "BA10 prefix |"
-#      additional-suffix: "| test suffix"
 
   BA11:
     type: http
     url: "https://raw.githubusercontent.com/aiboboxx/clashfree/main/clash.yml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "BA11 prefix |"
-#      additional-suffix: "| test suffix"
 
   BA12:
     type: http
     url: "https://raw.githubusercontent.com/parkerpa/zypjj/main/clash"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "BA12 prefix |"
-#      additional-suffix: "| test suffix"
       
   BA13:
     type: http
     url: "https://raw.githubusercontent.com/igeekshare/GeekshareFreeNode/main/clash/Geekshare.yaml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "BA13 prefix |"
-#      additional-suffix: "| test suffix"
 
   BA14:
     type: http
     url: "https://raw.githubusercontent.com/69z1zfw2fly/fly/main/2.yaml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "BA14 prefix |"
-##      additional-suffix: "| test suffix"
 
   A1:
     type: http
     url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "A1 prefix |"
-##      additional-suffix: "| test suffix"
     
   A2:
     type: http
     url: "https://shadowmere.xyz/api/b64sub/"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "A2 prefix |"
-###      additional-suffix: "| test suffix"
-
+      
   A3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "A3 prefix |"
-#      additional-suffix: "| test suffix"
     
   A4:
     type: http
     url: "https://shadowshare.v2cross.com/publicserver/servers/temp/YCw0l6R3PoDbGFq5"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "A4 prefix |"
-#      additional-suffix: "| test suffix"
 
   A5:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/M"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "A5 prefix |"
-#      additional-suffix: "| test suffix"
+
   N5:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "N5 prefix |"
-#      additional-suffix: "| test suffix"    
   A6:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "A6 prefix |"
-#      additional-suffix: "| test suffix"
 
   A7:
     type: http
     url: "https://SOS.CMLiussss.net/auto"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "A7 prefix |"
-#      additional-suffix: "| test suffix"
-
+      
   A8:
     type: http
     url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "A8 prefix |"
-#      additional-suffix: "| test suffix"
-
+      
   A9:
     type: http
     url: "https://proxy.crazygeeky.com/clash/proxies"
-    interval: 86400
-    
+    interval: 600  
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "A9 prefix |"
-#      additional-suffix: "| test suffix"
-
+      
   A10:
     type: http
     url: "https://raw.githubusercontent.com/Misaka-blog/chromego_merge/main/sub/merged_proxies_new.yaml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "A10 prefix |"
-#      additional-suffix: "| test suffix"
 
   A11:
     type: http
     url: "http://141.147.161.50:12580/clash/proxies"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "A11 prefix |"
-#      additional-suffix: "| test suffix"
 
   A12:
     type: http
     url: "http://155.248.172.106:12580/clash/proxies"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "A12 prefix |"
-#      additional-suffix: "| test suffix"
-      
+     
   A13:
     type: http
     url: "http://66.42.50.118:12580/clash/proxies"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "A13 prefix |"
-#      additional-suffix: "| test suffix"
-
+      
   A14:
     type: http
     url: "https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1225clash.yml"
-    interval: 86400
-    
+    interval: 600
     health-check:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      lazy: true
-      expected-status: 100
-#    override:    #   additional-prefix: "A14 prefix |"
-##      additional-suffix: "| test suffix"
-
-
+      
 proxies:
 proxy-groups:
   - name: "🐍PROX🐍"
-    type: select
+    type: url-test
     url: "http://www.pornhub.com/generate_204"
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
@@ -508,7 +419,6 @@ proxy-groups:
     
   - name: "Globe"
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Globe.svg"
-    filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
     type: url-test
     include-all-providers: true
     hidden: false
