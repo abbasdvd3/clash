@@ -62,9 +62,6 @@ proxy-providers:
       url: https://www.pornhub.com/generate_204
       interval: 300
       
-    
-##      additional-suffix: "| test suffix"
-
   B1:
     type: http
     url: "https://anaer.github.io/Sub/clash.yaml"
@@ -74,8 +71,6 @@ proxy-providers:
       url: https://www.pornhub.com/generate_204
       interval: 300
       
-
-##      additional-suffix: "| test suffix"
   B15:
     type: http
     url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config_extra.yaml"
@@ -85,8 +80,6 @@ proxy-providers:
       url: https://www.pornhub.com/generate_204
       interval: 300
       
-
-
   B16:
     type: http
     url: "https://raw.githubusercontent.com/itxve/fetch-clash-node/main/node/ClashNode.yaml"
@@ -96,9 +89,6 @@ proxy-providers:
       url: https://www.pornhub.com/generate_204
       interval: 300
       
-#    override:    #   additional-prefix: "B16 prefix |"
-##      additional-suffix: "| test suffix"   
-
   BA2:
     type: http
     url: "https://proxypool.link/clash/proxies"
@@ -108,8 +98,6 @@ proxy-providers:
       url: https://www.pornhub.com/generate_204
       interval: 300
       
-
-
   BA3:
     type: http
     url: "https://pxypool.131433.xyz/clash/proxies"
@@ -342,7 +330,7 @@ proxy-providers:
       enable: true
       url: "https://www.pornhub.com/generate_204"
       interval: 300
-      
+
   A14:
     type: http
     url: "https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1225clash.yml"
@@ -366,6 +354,7 @@ proxy-groups:
   - name: "🎈 Auto"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
+    exclude-type: "Shadowsocksr|socks5|vmess"
     include-all-providers: true
     hidden: false
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
@@ -373,6 +362,7 @@ proxy-groups:
   - name: "🎈 fallback"
     type: fallback
     url: "https://www.pornhub.com/generate_204"
+    exclude-type: "Shadowsocksr|socks5|http|vmess"
     include-all-providers: true
     hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
@@ -426,16 +416,19 @@ proxy-groups:
     
   - name: "Persian Gulf"
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/freedom.webp"
+    exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|vmess"
     type: url-test
     include-all-providers: true
     hidden: false
     url: "http://www.pornhub.com/generate_204"
     
   - name: "PROXY"
-    type: url-test
+    type: select
     url: "http://www.pornhub.com/generate_204"
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
+    
+    include-all-providers: true
     proxies:
       - "🎈 Auto"
       - "🎈 fallback"
@@ -447,7 +440,24 @@ proxy-groups:
       - "Singapore"
       - "Persian Gulf"
 rules:
-
+  - DOMAIN-SUFFIX,acl4.ssr,DIRECT
+  - DOMAIN-SUFFIX,ip6-localhost,DIRECT
+  - DOMAIN-SUFFIX,ip6-loopback,DIRECT
+  - DOMAIN-SUFFIX,lan,DIRECT
+  - DOMAIN-SUFFIX,local,DIRECT
+  - DOMAIN-SUFFIX,localhost,DIRECT
+  - IP-CIDR,0.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,198.18.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
+  - IP-CIDR6,fc00::/7,DIRECT,no-resolve
+  - IP-CIDR6,fe80::/10,DIRECT,no-resolve
+  - IP-CIDR6,fd00::/8,DIRECT,no-resolve
   - MATCH,🐍PROX🐍
 
 
