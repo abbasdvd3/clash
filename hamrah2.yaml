@@ -7,7 +7,7 @@ tproxy-port: 9898
 allow-lan: true
 log-level: silent
 interface-name: ""
-secret: 
+mode: GLOBAL
 external-controller: 0.0.0.0:9090
 external-ui: ./dashboard
 external-controller-tls: 0.0.0.0:9091
@@ -131,7 +131,14 @@ proxy-groups:
       - 🕹 select
       - ♻️ url-test
       
-
+  - name: GLOBAL
+    type: select
+    udp: true
+    use: 
+    proxies: 
+      - 🕹 select
+      - ♻️ url-test
+      - DIRECT
 proxy-providers:
   provider1:
     type: http
@@ -330,4 +337,4 @@ rules:
   - IP-CIDR6,::1/128,DIRECT,no-resolve
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,🕹 select
-  - MATCH,🕹
+  - MATCH,GLOBAL
