@@ -14,8 +14,6 @@ external-controller-tls: 0.0.0.0:9091
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 unified-delay: true
 tcp-concurrent: true
-
-
 profile:
   store-selected: true
   store-fake-ip: true
@@ -23,7 +21,7 @@ profile:
 proxies:
 proxy-groups:
   - name: 🕹 select
-    type: select
+    type: url-test
     proxies:
       - ♻️ url-test
       - 🚧 fallback
@@ -32,9 +30,8 @@ proxy-groups:
   - name: ♻️ url-test
     type: url-test
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: false
-    interval: 180
- #   tolerance: 10
+    udp: true
+    interval: 280
     hidden: false
     proxies:
     use:
@@ -64,7 +61,7 @@ proxy-groups:
   - name: 🚧 fallback
     type: fallback
     url: http://speed.cloudflare.com/__down?bytes=20000000
-    udp: false
+    udp: true
     interval: 180
 #    tolerance: 10
     hidden: false
@@ -98,7 +95,6 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     udp: true
     interval: 180
- #   tolerance: 10
     hidden: false
     proxies:
     use:
@@ -138,7 +134,7 @@ proxy-groups:
     proxies: 
       - 🕹 select
       - ♻️ url-test
-      - DIRECT
+      - 🚧 fallback
 proxy-providers:
   provider1:
     type: http
