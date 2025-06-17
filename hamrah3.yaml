@@ -27,7 +27,7 @@ external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-
 proxies:
 proxy-groups:
   - name: 🕹 select
-    type: fallback
+    type: url-test
     url: https://fiber.google.com/speedtest/generate_104
     nodeGroupType: 0
     interval: 180
@@ -46,8 +46,7 @@ proxy-groups:
   - name: ✈️
     type: fallback
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 580
-    tolerance: 100
+    interval: 180
     include-all-providers: true
     proxies:
     use:
@@ -55,10 +54,9 @@ proxy-groups:
   - name: ♻️ url-test
     type: fallback
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 400
+    interval: 188
     include-all-providers: true
     nodeGroupType: 0
-    tolerance: 100
     proxies:
     use:
       - provider1
@@ -66,7 +64,7 @@ proxy-groups:
   - name: 🚧 fallback
     type: fallback
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 500
+    interval: 100
     include-all-providers: true
     nodeGroupType: 0
     proxies:
@@ -79,11 +77,9 @@ proxy-groups:
   - name: ⚖️ load-balance
     type: fallback
     url: https://fiber.google.com/speedtest/generate_204
-    interval: 500
-    expected-status: 300/304
+    interval: 180
     include-all-providers: true
     nodeGroupType: 0
-    tolerance: 10
     proxies:
     use:
   
@@ -99,7 +95,6 @@ proxy-groups:
     url: https://fiber.google.com/speedtest/generate_204
     interval: 180
     include-all-providers: true
-    expected-status: 200/204
     filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
     proxies: 
     use:
@@ -109,7 +104,6 @@ proxy-groups:
     url: https://fiber.google.com/speedtest/generate_204
     interval: 180
     include-all-providers: true
-    expected-status: 200/204
     filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
     proxies: 
     use:
@@ -119,7 +113,6 @@ proxy-groups:
     url: https://fiber.google.com/speedtest/generate_204
     interval: 180
     include-all-providers: true
-    expected-status: 200/204
     proxies:
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     use:
@@ -129,7 +122,6 @@ proxy-groups:
     url: https://fiber.google.com/speedtest/generate_204
     interval: 180
     include-all-providers: true
-    expected-status: 200/204
     filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
     proxies: 
     use:
@@ -139,7 +131,6 @@ proxy-groups:
     url: https://fiber.google.com/speedtest/generate_204
     interval: 180
     include-all-providers: true
-    expected-status: 200/204
     filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
     proxies: 
     use:
@@ -149,7 +140,6 @@ proxy-groups:
     url: https://fiber.google.com/speedtest/generate_204
     interval: 180
     include-all-providers: true
-    expected-status: 200/204
     filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
     proxies: 
     use:
@@ -167,7 +157,7 @@ proxy-providers:
 
   provider2:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/x"
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
@@ -185,7 +175,7 @@ proxy-providers:
 
   provider4:
     type: http
-    url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/vless"
+    url: "https://cdn.jsdelivr.net/gh/vxiaov/free_proxies@main/clash/clash.provider.yaml"
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
