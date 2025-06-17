@@ -144,7 +144,7 @@ proxy-providers:
  
 rules:
 
-  - DOMAIN-SUFFIX,googlesyndication.com,🕹 select
+  - DOMAIN-SUFFIX,googlesyndication.com,GLOBAL
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),🛑
   - GEOSITE,category-ads-all,🛑
   - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
@@ -155,10 +155,10 @@ rules:
   - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
   - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),🛑
   - AND,((NETWORK,udp),(GEOSITE,youtube)),🛑
-  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
-  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
-  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
-  - IP-CIDR6,::1/128,REJECT,no-resolve
+  - IP-CIDR,127.0.0.1/32,DIRECT,no-resolve
+  - IP-CIDR,198.18.0.1/16,DIRECT,no-resolve
+  - IP-CIDR,28.0.0.1/8,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),🛑
-  - IN-TYPE,inner,🕹 select
+  - IN-TYPE,inner,GLOBAL
   - MATCH,GLOBAL
