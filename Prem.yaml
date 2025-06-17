@@ -20,7 +20,7 @@ proxy-providers:
       url: "https://www.pornhub.com/generate_204"
   provider2:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/pp1.yaml"    
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/p.all"
     path: Prem2/P2.yaml
     interval: 899
     proxy: DIRECT
@@ -32,7 +32,7 @@ proxy-providers:
       url: "https://www.pornhub.com/generate_204"
   provider3:
     type: http
-    url: "https://raw.githubusercontent.com/Alvin9999/pac2/master/clash/1/config.yaml"    
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/t""    
     path: Prem2/P3.yaml
     interval: 899
     proxy: DIRECT
@@ -42,43 +42,7 @@ proxy-providers:
       enable: true
       interval: 30
       url: "https://www.pornhub.com/generate_204"
-  provider4:
-    type: http
-    url: "http://66.42.50.118:12580/clash/proxies" 
-    path: Prem2/p4.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless|Shadowsocksr|socks5|http"
-    health-check:
-      enable: true
-      interval: 30
-      url: "https://www.pornhub.com/generate_204"
-  provider5:
-    type: http
-    url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/ss_clash.yaml"    
-    path: Prem2/P5.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless|Shadowsocksr|socks5|http"
-    health-check:
-      enable: true
-      interval: 30
-      url: "https://www.pornhub.com/generate_204"
  
-  provider8:
-    type: http
-    url: "https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/combine.yaml" 
-    path: Prem/p8.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless|Shadowsocksr|socks5|http"
-    health-check:
-      enable: true
-      interval: 30
-      url: "https://www.pornhub.com/generate_204"
 proxies:
 proxy-groups:
   - name: PROXY
@@ -105,10 +69,6 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
-      - provider4
-      - provider5
-   
-      - provider8
   - name: United+url-test
     type: url-test
     url: "https://www.pornhub.com/"
@@ -121,11 +81,6 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
-      - provider4
-      - provider5
-    
-      - provider8
-
   - name: url-test
     type: url-test
     url: "https://www.pornhub.com/"
@@ -136,10 +91,6 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
-      - provider4
-      - provider5
-   
-      - provider8
     proxies: 
   - name: 🎯 DIRECT
     type: select
@@ -147,23 +98,31 @@ proxy-groups:
     proxies:
       - DIRECT
       - PROXY 
-#  - name: PROXY
- #   type: select
-  #  disable-udp: true
-  #  proxies:
-   #   - FINAL
-   #   - United+url-test
-   #   - fallback     
-  #  use:
-     # - provider1
-    #  - provider2
-    #  - provider3
-     # - provider4
-    #  - provider5
-   #   - provider6
-     # - provider7
-     # - provider8
+
 
 rules:
-
+  - GEOIP,facebook,PROXY
+  - GEOIP,google,PROXY
+  - GEOIP,twitter,PROXY
+  - GEOIP,telegram,PROXY
+  - PROCESS-NAME,fs_v2.exe,DIRECT
+  - PROCESS-NAME,Swapface.exe,DIRECT
+  - PROCESS-NAME,conhost.exe,DIRECT
+  - DOMAIN-SUFFIX,swapface.org,DIRECT
+  - GEOIP,telegram,PROXY
+  - GEOIP,google,PROXY
+  - GEOIP,facebook,PROXY
+  - GEOIP,CN,🎯 DIRECT
+  - DOMAIN-SUFFIX,fast.com,🎯 DIRECT
+  - DOMAIN-SUFFIX,speedtest.net,🎯 DIRECT
+  - PROCESS-NAME,com.tomclaw.appsend,DIRECT
+  - DOMAIN-SUFFIX,appteka.store,DIRECT
+  - DOMAIN-SUFFIX,appteka.store/api,DIRECT
+  - DOMAIN-SUFFIX,ir,🎯 DIRECT,no-resolve
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
+  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
+  - DOMAIN-SUFFIX,apkpure.com,PROXY
+  - GEOIP,ir,🎯 DIRECT,no-resolve
+  - GEOIP,private,🎯 DIRECT,no-resolve
+  - DOMAIN-KEYWORD,appteka.store,🎯 DIRECT
   - MATCH,PROXY
