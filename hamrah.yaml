@@ -6,95 +6,11 @@ tproxy-port: 9898
 mode: global
 ipv6: true
 allow-lan: true
-bind-address: "*"
 log-level: debug
-interface-name: ""
 external-ui: WebUI/ZashBoard
 external-controller: "127.0.0.1:9090"
 external-controller-tls: "0.0.0.0:9091"
-external-doh-server: /dns-query
-external-controller-cors:
-  allow-private-network: true
-  allow-origins:
-  - tauri://localhost
-  - http://tauri.localhost
-  - http://localhost:3000
-  - https://yacd.metacubex.one
-  - https://metacubex.github.io
-  - https://board.zash.run.place
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
-unified-delay: true
-tcp-concurrent: true
-skip-auth-prefixes:
-  - 127.0.0.1/8
-  - ::1/128
-lan-allowed-ips:
-  - 0.0.0.0/0
-  - ::/0
-lan-disallowed-ips:
-  - 192.168.0.3/32
-global-client-fingerprint: random
-find-process-mode: always
-sniffer:
-  enable: true
-  override-destination: false
-  sniff:
-    HTTP:
-      ports: [80, 443, 8080-8880]
-      override-destination: true
-    TLS:
-      ports: [443, 853, 8443]
-    QUIC:
-      ports: [443, 853, 8443]
-  skip-domain:
-    - "+.push.apple.com"
-    - "Mijia Cloud"
-geox-url:
-  geoip: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat"
-  geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
-  mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
-  asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"    
-tun:
-  enable: true
-  stack: system
-  device: Meta
-  auto-route: true
-  auto-detect-interface: true
-  strict-route: true
-  dns-hijack: 
-    - any:53
-    - tcp://any:53
-dns:
-  enable: true
-  perfer-h3: false
-  ipv6: true
-  ipv6-timeout: 300
-  respect-rules: false
-  proxy-server-nameserver:
-    - https://223.5.5.5/dns-query
-    - https://120.53.53.53/dns-query
-    - 223.5.5.5
-    - 114.114.114.114
-  nameserver:
-    - 223.5.5.5
-    - 114.114.114.114
-    - 119.29.29.29
-    - 180.76.76.76
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*.lan'
-    - '*.localdomain'
-    - '*.example'
-    - '*.invalid'
-    - '*.localhost'
-    - '*.test'
-    - '*.local'
-    - '*.home.arpa'
-    - router.asus.com
-    - localhost.sec.qq.com
-    - localhost.ptlogin2.qq.com
-    - +.msftconnecttest.com
 proxy-providers:
   BV1:
     type: http
