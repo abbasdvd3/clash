@@ -4,25 +4,26 @@ mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
 allow-lan: true
-lan-allowed-ips: ["0.0.0.0/0", "::/0"]
-lan-disallowed-ips: []
-mode: rule
-log-level: info
-ipv6: true
+log-level: silent
+interface-name: ""
+mode: GLOBAL
 external-controller: 0.0.0.0:9090
-secret: ""
+external-ui: ./dashboard
+external-controller-tls: 0.0.0.0:9091
+external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 unified-delay: true
 tcp-concurrent: true
-global-client-fingerprint: chrome
+profile:
+  store-selected: true
+  store-fake-ip: true
 
 proxy-groups:
   - name: Mismatch
     type: url-test
     use:
     proxies:
-      - Proxy
-      - Autofallback
       - Auto
+      - Autofallback
       - Geo-HK
       - Geo-TW
       - Geo-SG
@@ -35,7 +36,6 @@ proxy-groups:
   - name: Auto
     type: url-test
     interval: 100
-    expected-status: 200/204
     tolerance: 990
     url: http://www.gstatic.com/generate_204
     use:
@@ -52,8 +52,6 @@ proxy-groups:
   - name: Autofallback
     type: fallback
     interval: 160
-    expected-status: 200/204
-   # tolerance: 150
     url: http://www.gstatic.com/generate_204
     use:
     proxies:
@@ -69,134 +67,87 @@ proxy-groups:
   - name: Geo-HK
     type: url-test
     interval: 100
-    expected-status: 200/204
     tolerance: 990
     url: http://www.gstatic.com/generate_204
+    include-all-providers: true
     filter: "HongKong|HK|香港"
     use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
+
   - name: Geo-TW
     type: url-test
-    expected-status: 200/204
     interval: 100
     tolerance: 990
     url: http://www.gstatic.com/generate_204
+    include-all-providers: true
     filter: "Taiwan|TW|台湾"
     use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
 
   - name: Geo-SG
     type: url-test
     interval: 100
     tolerance: 990
-    expected-status: 200/204
     url: http://www.gstatic.com/generate_204
+    include-all-providers: true
     filter: "Singapore|SG|新加坡"
     use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
 
   - name: Geo-JP
     type: url-test
     interval: 100
     tolerance: 990
-    expected-status: 200/204
     url: http://www.gstatic.com/generate_204
+    include-all-providers: true
     filter: "Japan|JP|日本"
     use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
 
   - name: Geo-US
     type: url-test
     interval: 100
     tolerance: 990
-    expected-status: 200/204
     url: http://www.gstatic.com/generate_204
+    include-all-providers: true
     filter: "America|United States|US|美国"
     use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
 
   - name: Geo-UK
     type: url-test
     interval: 100
     tolerance: 99
-    expected-status: 200/204
     url: http://www.gstatic.com/generate_204
+    include-all-providers: true
     filter: "Britain|England|UK|英国"
     use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
  
   - name: Geo-DE
     type: url-test
     interval: 100
     tolerance: 990
-    expected-status: 200/204
     url: http://www.gstatic.com/generate_204
+    include-all-providers: true
     filter: "Germany|Deutsch|DE|德国"
     use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
 
   - name: Geo-CN
     type: url-test
     interval: 100
     tolerance: 990
-    expected-status: 200/204
     url: http://www.gstatic.com/generate_204
+    include-all-providers: true
     disable-dns: true
     filter: "China|CN|中国"
     use: 
-      - Subscription-1
-      - Subscription-2
-      - Subscription-3
-      - Subscription-4
-      - Subscription-5
-      - Subscription-6
 
-  - name: Proxy
+  - name: N
     type: select
-    use: 
-   #   - Subscription-1
-   #   - Subscription-2
-   #   - Subscription-3
-    #  - Subscription-4
-   #   - Subscription-5
-   #   - Subscription-6
     proxies:
-      - Auto
+      - DIRECT
+      - Proxy
+  - name: GLOBAL
+    type: select
+    udp: true
+    use: 
+    proxies: 
+      - Mismatch
       - Autofallback
       - Geo-HK
       - Geo-TW
@@ -206,11 +157,6 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-  - name: N
-    type: select
-    proxies:
-      - DIRECT
-      - Proxy
 proxy-providers:
   Subscription-1:
     type: http
@@ -299,4 +245,4 @@ rules:
   - DOMAIN,iosapps.itunes.apple.com,DIRECT
   - GEOIP,private,DIRECT,no-resolve
   - GEOIP,ir,DIRECT
-  - MATCH,Mismatch
+  - MATCH,GLOBAL
