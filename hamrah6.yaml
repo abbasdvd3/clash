@@ -90,62 +90,60 @@ proxy-groups:
       - Auto
       - fallback
       - Geo-US
-
+      - Geo-CN
+      - Geo-JP
   - name: Auto
     type: url-test
     url: http://www.gstatic.com/generate_204
+    include-all-providers: true
     interval: 100
     lazy: true
     use: 
-
-      
   - name: fallback
     type: fallback
     url: http://www.gstatic.com/generate_204
+    include-all-providers: true
     interval: 180
     lazy: true
     use:
-      
   - name: Geo-SG
     type: url-test
     url: http://www.gstatic.com/generate_204
+    include-all-providers: true
     interval: 100
     lazy: true
     filter: "HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国"
     use: 
-      
   - name: Geo-JP
     type: url-test
     url: http://www.gstatic.com/generate_204
+    include-all-providers: true
     interval: 100
     lazy: true
     filter: "Japan|JP|日本"
     use: 
-      
   - name: Geo-US
     type: url-test
     url: http://www.gstatic.com/generate_204
+    include-all-providers: true
     interval: 100
     lazy: true
     filter: "America|United States|US|美国"
     use: 
-      
   - name: Geo-CN
     type: url-test
     url: http://www.gstatic.com/generate_204
+    include-all-providers: true
     interval: 100
     lazy: true
     filter: "China|CN|中国"
     use: 
-
- 
   - name: Social
     type: url-test
     use: 
     proxies: 
       - Proxy
       - Auto
-
   - name: IR
     type: select
     disable-dns: true
@@ -161,7 +159,6 @@ proxy-groups:
       - Proxy
       - Auto
       - fallback
-
 proxy-providers:
   Subscription-1:
     type: http
