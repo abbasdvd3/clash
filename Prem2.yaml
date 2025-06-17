@@ -2,7 +2,7 @@
 proxy-providers:
   provider1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah" 
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah"
     path: Prem2/p1.yaml
     interval: 89
 #    exclude-filter: Expire
@@ -12,7 +12,7 @@ proxy-providers:
       url: https://www.pornhub.com/generate_204
   provider2:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/pp1.yaml"    
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/p.all"
     path: Prem2/P2.yaml
     interval: 89
  #   exclude-filter: Expire
@@ -22,7 +22,7 @@ proxy-providers:
       url: https://www.pornhub.com/generate_204
   provider3:
     type: http
-    url: "https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1225clash.yml"    
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/t"
     path: Prem2/P3.yaml
     interval: 89
  #   exclude-filter: Expire
@@ -40,29 +40,7 @@ proxy-providers:
       enable: true
       interval: 30
       url: https://www.pornhub.com/generate_204
-  provider5:
-    type: http
-    url: "http://141.147.161.50:12580/clash/proxies"    
-    path: Prem2/P5.yaml
-    interval: 89
- #   exclude-filter: Expire
-    health-check:
-      enable: true
-      interval: 30
-      url: https://www.pornhub.com/generate_204
-  provider6:
-    type: http
-    url: "http://150.230.195.209:12580/clash/proxies"    
-    path: Prem2/P6.yaml
-    interval: 89
- #   exclude-filter: Expire
-    health-check:
-      enable: true
-      interval: 30
-      url: https://www.pornhub.com/generate_204
       
-
-
 proxy-groups:
   - name: 'PRO'
     type: 'select'
@@ -85,8 +63,6 @@ proxy-groups:
       - 'provider2'
       - 'provider3'
       - 'provider4'
-      - 'provider5'
-      - 'provider6'
   - name: '📶 First Available'
     type: 'fallback'
     url: 'https://www.pornhub.com/generate_204'
@@ -96,8 +72,6 @@ proxy-groups:
       - 'provider2'
       - 'provider3'
       - 'provider4'
-      - 'provider5'
-      - 'provider6'
     proxies:
   - name: '♻️ Load Balance'
     type: 'load-balance'
@@ -109,8 +83,6 @@ proxy-groups:
       - 'provider2'
       - 'provider3'
       - 'provider4'
-      - 'provider5'
-      - 'provider6'
     proxies:
   - name: 'PROXY'
     type: 'select'
@@ -119,8 +91,6 @@ proxy-groups:
       - 'provider2'
       - 'provider3'
       - 'provider4'
-      - 'provider5'
-      - 'provider6'
     proxies:
       - 'PRO'
       - '⚡️ Fastest'
@@ -148,8 +118,6 @@ proxy-groups:
       - 'provider2'
       - 'provider3'
       - 'provider4'
-      - 'provider5'
-      - 'provider6'
   - name: 'IRAN'
     type: 'select'
     proxies:
@@ -159,7 +127,6 @@ proxy-groups:
       - '📶 First Available'
       - '♻️ Load Balance'
       - 'PRO'
-
 rules:
 
   - MATCH,PROXY
