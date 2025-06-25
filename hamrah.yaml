@@ -3,7 +3,7 @@ socks-port: 7891
 mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
-mode: rule
+# mode: rule
 ipv6: true
 allow-lan: true
 log-level: debug
@@ -631,16 +631,16 @@ proxies:
   - {name: 🇬🇧 United Kingdom 26, server: yourjobnavigator.online, port: 443, type: trojan, password: 2cba4104747d49d18319e5ade1b93ab5, skip-cert-verify: false, tfo: false}
   - {name: 🇷🇺 Russia 4, server: 194.53.53.249, port: 2083, type: trojan, password: d6b8011a-c725-435a-9fec-bf6d3530392c, sni: vle.amclubsvip.dpdns.org, skip-cert-verify: false, network: ws, ws-opts: {path: "/?ed=2560&PROT_TYPE=trojan", headers: {Host: vle.amclubsvip.dpdns.org}}, tfo: false}
 proxy-groups:
-  - name: "🐍PROX🐍"
-    type: url-test
+  - name: "PROXY"
+    type: select
     interval: 300
     tolerance: 5000
+    include-all: true
     url: "http://www.pornhub.com/generate_204"
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
     proxies:
       - "🎈Auto"
-      - "PROXY"
       - "🎈fallback"
       - "Globe"
       - "Taiwan"
@@ -652,9 +652,9 @@ proxy-groups:
   - name: "🎈Auto"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
-    interval: 300
-    tolerance: 50
-    exclude-type: "direct|IRAN|socks5|http"
+    interval: 3300
+    tolerance: 5000
+    exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|vmess|direct|IRAN|TUC"
     include-all: true
     hidden: false
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
@@ -663,7 +663,7 @@ proxy-groups:
     type: fallback
     url: "https://www.pornhub.com/generate_204"
     interval: 180
-    exclude-type: "direct|IRAN|socks5|http"
+    exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|vmess|direct|IRAN|TUC"
     include-all: true
     hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
@@ -673,8 +673,8 @@ proxy-groups:
     filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
     type: url-test
     exclude-type: "direct|IRAN"
-    interval: 300
-    tolerance: 50
+    interval: 3300
+    tolerance: 5000
     include-all: true
     hidden: false
     url: "http://www.pornhub.com/generate_204"
@@ -683,8 +683,8 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/HK.svg"
     filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
     type: url-test
-    interval: 300
-    tolerance: 50
+    interval: 3300
+    tolerance: 5000
     exclude-type: "direct|IRAN"
     include-all: true
     hidden: false
@@ -694,8 +694,8 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/JP.svg"
     filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
     type: url-test
-    interval: 300
-    tolerance: 50
+    interval: 3300
+    tolerance: 5000
     exclude-type: "direct|IRAN"
     include-all: true
     hidden: false
@@ -705,9 +705,9 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/US.svg"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     type: url-test
-    interval: 300
-    tolerance: 50
-    exclude-type: "direct|IRAN"
+    interval: 3300
+    tolerance: 5000
+    exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|vmess|direct|IRAN|TUC"
     include-all: true
     hidden: false
     url: "http://www.pornhub.com/generate_204"
@@ -716,8 +716,8 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Singapore.svg"
     filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
     type: url-test
-    interval: 300
-    tolerance: 50
+    interval: 3300
+    tolerance: 5000
     exclude-type: "direct|IRAN"
     include-all: true
     hidden: false
@@ -726,38 +726,22 @@ proxy-groups:
   - name: "Globe"
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Globe.svg"
     type: url-test
-    interval: 300
-    tolerance: 50
-    exclude-type: "direct|IRAN"
+    interval: 3300
+    tolerance: 5000
+    exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|vmess|direct|IRAN|TUC"
     include-all: true
     hidden: false
     url: "http://www.pornhub.com/generate_204"
     
   - name: "Persian Gulf"
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/freedom.webp"
-    exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|vmess|direct|IRAN"
+    exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|vmess|direct|IRAN|TUC"
     type: url-test
-    interval: 300
-    tolerance: 50
+    interval: 3300
+    tolerance: 5000
     include-all: true
     hidden: false
     url: "http://www.pornhub.com/generate_204"
-    
-  - name: "PROXY"
-    type: url-test
-    interval: 300
-    tolerance: 500
-    url: "http://www.pornhub.com/generate_204"
-    hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
-    proxies:
-      - "Globe"
-      - "Taiwan"
-      - "hongkong"
-      - "Japan"
-      - "US"
-      - "Singapore"
-      - "Persian Gulf"
 
     
 rules:
@@ -861,8 +845,8 @@ rules:
   - IP-CIDR6,fd00::/8,DIRECT,no-resolve
 #  - GEOIP,private,DIRECT,no-resolve
   - GEOSITE,category-ads-all,REJECT
-  - GEOIP,telegram,🐍PROX🐍
-  - GEOIP,openai,🐍PROX🐍
-  - GEOIP,facebook,🐍PROX🐍
-  - GEOIP,google,🐍PROX🐍
-  - MATCH,🐍PROX🐍
+  - GEOIP,telegram,PROXY
+  - GEOIP,openai,PROXY
+  - GEOIP,facebook,PROXY
+  - GEOIP,google,PROXY
+  - MATCH,GLOBAL
