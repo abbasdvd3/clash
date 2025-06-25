@@ -21,7 +21,8 @@ profile:
 proxies:
 proxy-groups:
   - name: 🕹 select
-    type: url-test
+    type: select
+    include-all-providers: true
     proxies:
       - ♻️ url-test
       - 🚧 fallback
@@ -41,8 +42,8 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
     udp: true
-    interval: 180
-#    tolerance: 10
+    interval: 1800
+    tolerance: 1000
     hidden: false
     proxies:
     use:
@@ -53,7 +54,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
     udp: true
-    interval: 180
+    interval: 1800
     hidden: false
     proxies:
     use:
@@ -65,14 +66,7 @@ proxy-groups:
       - 🕹 select
       - ♻️ url-test
       
-  - name: GLOBAL
-    type: select
-    udp: true
-    use: 
-    proxies: 
-      - 🕹 select
-      - ♻️ url-test
-      - 🚧 fallback
+
 proxy-providers:
   provider1:
     type: http
@@ -271,4 +265,4 @@ rules:
   - IP-CIDR6,::1/128,DIRECT,no-resolve
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,🕹 select
-  - MATCH,GLOBAL
+  - MATCH,🕹 select
