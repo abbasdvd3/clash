@@ -2,7 +2,8 @@
 proxies:
 proxy-groups:
   - name: 🕹
-    type: select
+    type: select 
+    include-all-providers: true
     proxies:
       - ♻️ url-test
       - 🚧 fallback
@@ -13,8 +14,8 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
     udp: true
-#    interval: 180
-#   tolerance: 10
+    interval: 1800
+    tolerance: 1000
     hidden: false
     proxies:
     use:
@@ -24,7 +25,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
     udp: true
-  #  interval: 180
+    interval: 1800
  #   tolerance: 10
     hidden: false
     proxies:
@@ -36,8 +37,8 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
     udp: true
- #   interval: 180
-#    tolerance: 10
+    interval: 1800
+    tolerance: 1000
     hidden: false
     proxies:
     use:
@@ -49,14 +50,6 @@ proxy-groups:
       - 🕹
       - ♻️ url-test
       
-  - name: GLOBAL
-    type: select
-    include-all-providers: true
-    use: 
-    proxies: 
-      - 🕹
-      - 🚧 fallback
-      - ⚖️ load-balance
 proxy-providers:
   provider1:
     type: http
@@ -127,7 +120,7 @@ proxy-providers:
  
 rules:
 
-  - DOMAIN-SUFFIX,googlesyndication.com,GLOBAL
+  - DOMAIN-SUFFIX,googlesyndication.com,🕹
   - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
   - GEOSITE,category-ads-all,REJECT
   - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
@@ -143,5 +136,5 @@ rules:
   - IP-CIDR,28.0.0.1/8,DIRECT,no-resolve
   - IP-CIDR6,::1/128,DIRECT,no-resolve
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
-  - IN-TYPE,inner,GLOBAL
-  - MATCH,GLOBAL
+  - IN-TYPE,inner,🕹
+  - MATCH,🕹
