@@ -6,7 +6,7 @@ tproxy-port: 9898
 allow-lan: true
 log-level: silent
 interface-name: ""
-mode: GLOBAL
+# mode: GLOBAL
 external-controller: 0.0.0.0:9090
 external-ui: ./dashboard
 external-controller-tls: 0.0.0.0:9091
@@ -19,8 +19,8 @@ profile:
 
 proxy-groups:
   - name: Mismatch
-    type: url-test
-    use:
+    type: select
+    include-all-providers: true
     proxies:
       - Auto
       - Autofallback
@@ -35,52 +35,32 @@ proxy-groups:
       
   - name: Auto
     type: url-test
-    interval: 100
+    interval: 1800
+    include-all-providers: true
     tolerance: 990
     url: http://www.gstatic.com/generate_204
-    use:
-    proxies:
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-UK
-      - Geo-DE
-      - Geo-CN
       
   - name: Autofallback
     type: fallback
-    interval: 160
+    interval: 1600
+    include-all-providers: true
     url: http://www.gstatic.com/generate_204
-    use:
-    proxies:
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-UK
-      - Geo-DE
-      - Geo-CN
-      
+
   - name: Geo-HK
     type: url-test
-    interval: 100
+    interval: 1000
     tolerance: 990
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
     filter: "HongKong|HK|香港"
-    use: 
 
   - name: Geo-TW
     type: url-test
-    interval: 100
+    interval: 1000
     tolerance: 990
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
     filter: "Taiwan|TW|台湾"
-    use: 
 
   - name: Geo-SG
     type: url-test
@@ -89,74 +69,53 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
     filter: "Singapore|SG|新加坡"
-    use: 
 
   - name: Geo-JP
     type: url-test
-    interval: 100
+    interval: 1000
     tolerance: 990
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
     filter: "Japan|JP|日本"
-    use: 
 
   - name: Geo-US
     type: url-test
-    interval: 100
+    interval: 1000
     tolerance: 990
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
     filter: "America|United States|US|美国"
-    use: 
 
   - name: Geo-UK
     type: url-test
-    interval: 100
+    interval: 1000
     tolerance: 99
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
     filter: "Britain|England|UK|英国"
-    use: 
  
   - name: Geo-DE
     type: url-test
-    interval: 100
+    interval: 1000
     tolerance: 990
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
     filter: "Germany|Deutsch|DE|德国"
-    use: 
 
   - name: Geo-CN
     type: url-test
-    interval: 100
+    interval: 1000
     tolerance: 990
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
     disable-dns: true
     filter: "China|CN|中国"
-    use: 
 
   - name: N
     type: select
     proxies:
       - DIRECT
       - Mismatch
-  - name: GLOBAL
-    type: select
-    udp: true
-    use: 
-    proxies: 
-      - Mismatch
-      - Autofallback
-      - Geo-HK
-      - Geo-TW
-      - Geo-SG
-      - Geo-JP
-      - Geo-US
-      - Geo-UK
-      - Geo-DE
-      - Geo-CN
 proxy-providers:
   Subscription-1:
     type: http
@@ -245,4 +204,4 @@ rules:
   - DOMAIN,iosapps.itunes.apple.com,DIRECT
   - GEOIP,private,DIRECT,no-resolve
   - GEOIP,ir,DIRECT
-  - MATCH,GLOBAL
+  - MATCH,Mismatch
