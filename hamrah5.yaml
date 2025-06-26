@@ -6,7 +6,7 @@ tproxy-port: 9898
 allow-lan: true
 log-level: silent
 interface-name: ""
-# mode: GLOBAL
+mode: rule
 external-controller: 0.0.0.0:9090
 external-ui: ./dashboard
 external-controller-tls: 0.0.0.0:9091
@@ -19,7 +19,7 @@ profile:
 
 proxy-groups:
   - name: Mismatch
-    type: select
+    type: url-test
  #   include-all-providers: true
     proxies:
       - Auto
@@ -35,20 +35,20 @@ proxy-groups:
       
   - name: Auto
     type: url-test
-    interval: 180
+    interval: 1800
     include-all-providers: true
     tolerance: 990
     url: http://www.gstatic.com/generate_204
       
   - name: Autofallback
     type: fallback
-    interval: 160
+    interval: 500
     include-all-providers: true
     url: http://www.gstatic.com/generate_204
 
   - name: Geo-HK
     type: url-test
-    interval: 100
+    interval: 1000
     tolerance: 990
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
@@ -56,7 +56,7 @@ proxy-groups:
 
   - name: Geo-TW
     type: url-test
-    interval: 100
+    interval: 1000
     tolerance: 990
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
@@ -64,7 +64,7 @@ proxy-groups:
 
   - name: Geo-SG
     type: url-test
-    interval: 100
+    interval: 1000
     tolerance: 990
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
@@ -72,7 +72,7 @@ proxy-groups:
 
   - name: Geo-JP
     type: url-test
-    interval: 100
+    interval: 1000
     tolerance: 990
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
@@ -80,7 +80,7 @@ proxy-groups:
 
   - name: Geo-US
     type: url-test
-    interval: 100
+    interval: 1000
     tolerance: 990
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
@@ -88,15 +88,15 @@ proxy-groups:
 
   - name: Geo-UK
     type: url-test
-    interval: 100
-    tolerance: 99
+    interval: 1000
+    tolerance: 990
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
     filter: "Britain|England|UK|英国"
  
   - name: Geo-DE
     type: url-test
-    interval: 100
+    interval: 1000
     tolerance: 990
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
@@ -104,7 +104,7 @@ proxy-groups:
 
   - name: Geo-CN
     type: url-test
-    interval: 100
+    interval: 1000
     tolerance: 990
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
