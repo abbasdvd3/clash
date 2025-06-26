@@ -12,7 +12,7 @@ mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
 allow-lan: true
-# mode: Rule
+mode: Rule
 bind-address: "*"
 ipv6: true
 log-level: info
@@ -32,7 +32,7 @@ global-client-fingerprint: chrome
 dns:
   enable: true
   listen: 0.0.0.0:1053
-  ipv6: false
+  ipv6: true
   default-nameserver:
     - 114.114.114.114:53
     - 180.76.76.76:53
@@ -51,7 +51,7 @@ dns:
     - 8.8.4.4:53
     - 1.1.1.1:53
     - 1.0.0.1:53
-  enhanced-mode: redir-host
+  enhanced-mode: fake-ip
   fake-ip-range: 100.10.0.0/16
   fake-ip-filter:
     - "*.lan"
@@ -84,7 +84,7 @@ proxies:
     udp: false
 proxy-groups:
   - name: Proxy
-    type: select
+    type: url-test
   #  include-all-providers: true
     proxies:
       - Auto
@@ -94,7 +94,7 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
-    interval: 100
+    interval: 1000
     filter: "America|United States|US|美国"
     lazy: true
 
@@ -102,7 +102,7 @@ proxy-groups:
     type: fallback
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
-    interval: 180
+    interval: 1800
     filter: "America|United States|US|美国"
     lazy: true
 
@@ -110,7 +110,7 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
-    interval: 100
+    interval: 1000
     lazy: true
     filter: "HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国"
     use: 
@@ -118,7 +118,7 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
-    interval: 100
+    interval: 1000
     lazy: true
     filter: "Japan|JP|日本"
 
@@ -126,7 +126,7 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
-    interval: 100
+    interval: 1000
     lazy: true
     filter: "America|United States|US|美国"
  
@@ -134,7 +134,7 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
-    interval: 100
+    interval: 1000
     lazy: true
     filter: "China|CN|中国"
   
