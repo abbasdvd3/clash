@@ -3,7 +3,7 @@ socks-port: 7891
 mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
-# mode: rule
+mode: rule
 ipv6: true
 allow-lan: true
 log-level: debug
@@ -632,8 +632,8 @@ proxies:
   - {name: 🇷🇺 Russia 4, server: 194.53.53.249, port: 2083, type: trojan, password: d6b8011a-c725-435a-9fec-bf6d3530392c, sni: vle.amclubsvip.dpdns.org, skip-cert-verify: false, network: ws, ws-opts: {path: "/?ed=2560&PROT_TYPE=trojan", headers: {Host: vle.amclubsvip.dpdns.org}}, tfo: false}
 proxy-groups:
   - name: "PROXY"
-    type: select
-    interval: 300
+    type: url-test
+    interval: 1200
     tolerance: 5000
   #  include-all: true
     url: "http://www.pornhub.com/generate_204"
