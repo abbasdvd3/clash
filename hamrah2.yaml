@@ -7,12 +7,12 @@ tproxy-port: 9898
 allow-lan: true
 log-level: silent
 interface-name: ""
-# mode: GLOBAL
+mode: GLOBAL
 external-controller: 0.0.0.0:9090
 external-ui: ./dashboard
 external-controller-tls: 0.0.0.0:9091
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
-unified-delay: false
+unified-delay: true
 tcp-concurrent: true
 profile:
   store-selected: true
@@ -21,7 +21,7 @@ profile:
 proxies:
 proxy-groups:
   - name: 🕹 select
-    type: select
+    type: url-test
   #  include-all-providers: true
     proxies:
       - ♻️ url-test
@@ -33,7 +33,7 @@ proxy-groups:
     url: http://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
     udp: true
-    interval: 280
+    interval: 500
     hidden: false
     proxies:
     use:
