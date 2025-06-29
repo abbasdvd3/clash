@@ -11,24 +11,12 @@
       },
       {
         "tag": "dns_direct",
-        "address": [
-          "https://1.12.12.12/dns-query",
-          "https://223.5.5.5/dns-query",
-          "[2400:3200::1]",
-          "[2400:3200:baba::1]",
-          "[2402:4e00::]"
-        ],
+        "address": "tls://8.8.8.8",
         "detour": "DIRECT"
       },
       {
         "tag": "dns_proxy",
-        "address": [
-          "h3://94.140.14.14/dns-query",
-          "h3://94.140.15.15/dns-query",
-          "h3://1.0.0.2/dns-query",
-          "h3://[2606:4700:4700::1112]/dns-query",
-          "h3://[2606:4700:4700::1002]/dns-query"
-        ]
+        "address": "https://223.5.5.5/dns-query",
       },
       {
         "tag": "dns_fakeip",
@@ -553,36 +541,44 @@
   "route": {
     "rules": [
       {
-        "protocol": "dns",
-        "outbound": "dns-out"
+        "inbound": [
+          "tun-in",
+          "mixed-in"
+        ],
+        "action": "sniff"
       },
       {
-        "clash_mode": "Direct",
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 53
+          },
+          {
+            "protocol": "dns"
+          }
+        ],
+        "action": "hijack-dns"
+      },
+      {
+        "clash_mode": "direct",
         "outbound": "DIRECT"
       },
       {
         "clash_mode": "Global",
-        "outbound": "GLOBAL"
+        "outbound": "🤢"
       },
       {
         "rule_set": "geosite_googlefcm",
         "outbound": "گوگل"
       },
       {
-        "network": "tcp",
-        "domain_keyword": [
-          "extshort.weixin.qq.com",
-          "long.weixin.qq.com"
+        "domain": [
+          "clash.razord.top",
+          "yacd.metacubex.one",
+          "yacd.haishan.me",
+          "d.metacubex.one"
         ],
-        "port": [
-          80,
-          8080,
-          443
-        ],
-        "outbound": "اتصالات"
-      },
-      {
-        "domain_keyword": "short.weixin.qq.com",
         "outbound": "ایران"
       },
       {
