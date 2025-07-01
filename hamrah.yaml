@@ -75,25 +75,25 @@ dns:
   default-nameserver:
     - 127.0.0.1:53
     - system
-    - 223.5.5.5:853
-    - 223.6.6.6:853
-    - 114.114.114.114:853
-    - 9.9.9.9:853
-    - 8.8.8.8:853
-    - 1.1.1.1:853
+    - 223.5.5.5
+    - 223.6.6.6
+    - 114.114.114.114
+    - 9.9.9.9
+    - 8.8.8.8
+    - 1.1.1.1
     - 2400:3200::1
     - 2001:4860:4860::8888
-    - tls://223.5.5.5:853
-    - tls://223.6.6.6:853
-    - tls://119.29.29.29:853
+    - tls://223.5.5.5
+    - tls://223.6.6.6
+    - tls://119.29.29.29
     - tls://[2400:3200::1]:853
     - tls://[2402:4e00::]:853
     - tls://[2400:3200::1]:853
     - tls://[2400:3200:baba::1]:853
-    - tls://223.5.5.5:853
-    - tls://223.6.6.6:853
-    - tls://1.12.12.12:853
-    - tls://120.53.53.53:853
+    - tls://223.5.5.5
+    - tls://223.6.6.6
+    - tls://1.12.12.12
+    - tls://120.53.53.53
     - 117.50.10.10
   direct-nameserver:
     - https://dnspub.restena.lu/dns-query
@@ -114,12 +114,12 @@ dns:
     - https://dns.rubyfish.cn/dns-query
     - https://dns.nextdns.io/dns-query
     - https://doh.360.cn/dns-query
-    - tls://[2400:3200::1]:853
-    - tls://[2400:3200:baba::1]:853
-    - tls://223.5.5.5:853
-    - tls://223.6.6.6:853
-    - tls://1.12.12.12:853
-    - tls://120.53.53.53:853
+    - tls://[2400:3200::1]
+    - tls://[2400:3200:baba::1]
+    - tls://223.5.5.5
+    - tls://223.6.6.6
+    - tls://1.12.12.12
+    - tls://120.53.53.53
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
     - https://cloudflare-dns.com/dns-query
@@ -129,10 +129,10 @@ dns:
     - https://[2001:4860:4860::8844]/dns-query#DNSconnect&h3=true
     - https://[2606:4700:4700::1111]/dns-query#DNSconnect&h3=true
     - https://[2606:4700:4700::1001]/dns-query#DNSconnect&h3=true
-    - 114.114.114.114:53
-    - 9.9.9.9:53
-    - 8.8.8.8:53
-    - 1.1.1.1:53
+    - 114.114.114.114
+    - 9.9.9.9
+    - 8.8.8.8
+    - 1.1.1.1
     - dhcp://en0
   proxy-server-nameserver:
     - https://doh.pub/dns-query#h3=true
@@ -442,9 +442,10 @@ proxy-providers:
 proxies:
 proxy-groups:
   - name: "PRO"
-    type: select
-    url: "http://www.pornhub.com/generate_204"
+    type: url-test
+    url: "http://www.google.com/generate_204"
     hidden: false
+    interval: 180
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
     proxies:
       - "🎈Auto"
@@ -455,10 +456,10 @@ proxy-groups:
       - "MCI"
   - name: "🎈Auto"
     type: url-test
-    url: "https://www.pornhub.com/generate_204"
+    url: "https://www.google.com/generate_204"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 33
-    tolerance: 500
+    interval: 180
+  #  tolerance: 500
     exclude-type: "direct|IRAN"
     include-all: true
     hidden: false
@@ -466,7 +467,7 @@ proxy-groups:
 
   - name: "🎈fallback"
     type: fallback
-    url: "https://www.pornhub.com/generate_204"
+    url: "https://www.google.com/generate_204"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     interval: 180
     exclude-type: "direct|IRAN"
@@ -479,30 +480,30 @@ proxy-groups:
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: url-test
-    interval: 33
-    tolerance: 500
+    interval: 180
+   # tolerance: 500
     exclude-type: "direct|trojan|socks5|http"
     include-all: true
     hidden: false
-    url: "http://www.pornhub.com/generate_204"
+    url: "http://www.google.com/generate_204"
 
   - name: "Persian Gulf"
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/freedom.webp"
     exclude-type: "direct|Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: url-test
-    interval: 33
-    tolerance: 500
+    interval: 180
+   # tolerance: 500
     include-all: true
     hidden: false
-    url: "http://www.pornhub.com/generate_204"
+    url: "http://www.google.com/generate_204"
     
   - name: "MTN"
     type: url-test
     url: "https://www.pornhub.com/generate_204"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 33
-    tolerance: 500
+    interval: 180
+  #  tolerance: 500
     exclude-type: "direct|IRAN"
     use:
       - "MTN"
@@ -511,9 +512,9 @@ proxy-groups:
     
   - name: "MCI"
     type: url-test
-    url: "https://www.pornhub.com/generate_204"
+    url: "https://www.google.com/generate_204"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 33
+    interval: 180
     tolerance: 500
     exclude-type: "direct|IRAN"
     use:
@@ -544,7 +545,7 @@ proxy-groups:
     disable-udp: false
   - name: "PROXY"
     type: select
-    url: "http://www.pornhub.com/generate_204"
+    url: "http://www.google.com/generate_204"
     hidden: false
     include-all: true
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
