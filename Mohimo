@@ -221,7 +221,7 @@ redir-port: 9797
 tproxy-port: 9898
 ipv6: true
 allow-lan: true
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 external-controller: 127.0.0.1:9090
 external-ui: /ui
@@ -232,11 +232,6 @@ profile:
   store-selected: true
   store-fake-ip: true
 
-tunnels:
-- network: [tcp, udp]
-  address: 127.0.0.1:7890
-  target: 8.8.8.8:53
-  proxy: GLOBAL
 
 tun:
   enable: true
@@ -326,7 +321,7 @@ proxy-groups:
   - name: default
     type: url-test
     url: 'https://www.gstatic.com/generate_204'
-#    interval: 300
+    interval: 300
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Proxy.png"
 #    exclude-type: "Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
  #   include-all-providers: true
@@ -467,17 +462,10 @@ proxy-groups:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "socks5|http|direct"
     
-  - name: GLOBAL
-    type: select
-    udp: true
-    use: 
-    proxies: 
-      - default
-      - All nodes
 rules:
-  - DST-PORT,80,GLOBAL
-  - DST-PORT,53,GLOBAL
-  - DST-PORT,443,GLOBAL
+  - DST-PORT,80,default
+  - DST-PORT,53,default
+  - DST-PORT,443,default
   - RULE-SET,private_ip,iran,no-resolve
   - RULE-SET,github_domain,Github
   - RULE-SET,twitter_domain,Twitter
@@ -497,7 +485,7 @@ rules:
   - RULE-SET,telegram_ip,Telegram
   - RULE-SET,twitter_ip,Twitter
   - RULE-SET,ir_ip,iran
-  - MATCH,GLOBAL
+  - MATCH,default
 
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
