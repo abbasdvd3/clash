@@ -7,33 +7,411 @@ mode: rule
 ipv6: true
 allow-lan: true
 log-level: debug
-unified-delay: true
-external-ui: WebUI/ZashBoard
-external-controller: "127.0.0.1:9090"
+external-controller: "0.0.0.0:9090"
 external-controller-tls: "0.0.0.0:9091"
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+external-controller-cors:
+  allow-private-network: true
+  allow-origins:
+  - tauri://localhost
+  - http://tauri.localhost
+  - http://localhost:3000
+  - https://yacd.metacubex.one
+  - https://metacubex.github.io
+  - https://board.zash.run.place
+external-ui: ui
+keep-alive-interval: 30
+find-process-mode: always
+external-ui-name: xd
+external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+unified-delay: false
+tcp-concurrent: true
+global-client-fingerprint: random
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  geoip: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
+  geosite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
+  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
+  asn: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
+global-ua: chrome
+profile:
+  store-selected: true
+  store-fake-ip: true
+tun:
+  enable: true
+  stack: Mixed
+  auto-route: true
+  route-address:
+    - 0.0.0.0/1
+    - 128.0.0.0/1
+    - ::/1
+    - 8000::/1
+  auto-detect-interface: true
+  dns-hijack:
+    - udp://any:853
+    - tcp://any:53
+    - 198.18.0.1/16:53
+    - 198.18.0.2/16:53
+    - tcp://any:53
+    - tcp://0.0.0.0:53
+    - tcp://127.0.0.1:53
+    - tcp://223.5.5.5:53
+    - tcp://223.6.6.6:53
+    - tcp://114.114.114.114:53
+    - tcp://9.9.9.9:53
+    - tcp://8.8.8.8:53
+    - tcp://1.1.1.1:53
+  device: utun_clash
+  mtu: 15000
+  strict-route: true
+  endpoint-independent-nat: true
 dns:
   enable: true
   listen: 0.0.0.0:1053
   ipv6: true
+  use-hosts: true
+  use-system-hosts: true
   default-nameserver:
+    - 127.0.0.1:53
+    - system
+    - 223.5.5.5:853
+    - 223.6.6.6:853
+    - 114.114.114.114:853
+    - 9.9.9.9:853
+    - 8.8.8.8:853
+    - 1.1.1.1:853
+    - 2400:3200::1
+    - 2001:4860:4860::8888
+    - tls://223.5.5.5:853
+    - tls://223.6.6.6:853
+    - tls://119.29.29.29:853
+    - tls://[2400:3200::1]:853
+    - tls://[2402:4e00::]:853
+    - tls://[2400:3200::1]:853
+    - tls://[2400:3200:baba::1]:853
+    - tls://223.5.5.5:853
+    - tls://223.6.6.6:853
+    - tls://1.12.12.12:853
+    - tls://120.53.53.53:853
+    - 117.50.10.10
+  direct-nameserver:
+    - https://dnspub.restena.lu/dns-query
+    - 158.64.1.29
     - 223.5.5.5
-    - 114.114.114.114
+    - 223.6.6.6
+    - tls://8.8.4.4
+    - tls://1.1.1.1
+    - tcp://8.8.4.4
+    - tcp://1.1.1.1
   nameserver:
-    - 223.5.5.5
-    - 114.114.114.114
-    - 119.29.29.29
+    - tls://dns.adguard.com:853
     - 180.76.76.76
+    - 119.29.29.29
+    - 117.50.11.11
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+    - https://dns.rubyfish.cn/dns-query
+    - https://dns.nextdns.io/dns-query
+    - https://doh.360.cn/dns-query
+    - tls://[2400:3200::1]:853
+    - tls://[2400:3200:baba::1]:853
+    - tls://223.5.5.5:853
+    - tls://223.6.6.6:853
+    - tls://1.12.12.12:853
+    - tls://120.53.53.53:853
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+    - 127.0.0.1:53
+    - https://[2001:4860:4860::8888]/dns-query#DNSconnect&h3=true
+    - https://[2001:4860:4860::8844]/dns-query#DNSconnect&h3=true
+    - https://[2606:4700:4700::1111]/dns-query#DNSconnect&h3=true
+    - https://[2606:4700:4700::1001]/dns-query#DNSconnect&h3=true
+    - 114.114.114.114:53
+    - 9.9.9.9:53
+    - 8.8.8.8:53
+    - 1.1.1.1:53
+    - dhcp://en0
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query#h3=true
+    - https://dns.alidns.com/dns-query#h3=true
+    - http://www.alidns.com/#h3=true
+    - https://www.114dns.com/#h3=true
+    - https://www.dnspod.cn/Products/Public.DNS#h3=true
+    - https://developers.google.com/speed/public-dns/docs/using#h3=true
+    - https://1.1.1.1/#h3=true
+    - https://www.quad9.net/#h3=true
+    - https://www.opendns.com/#h3=true
+    - 178.22.122.100
+    - 185.51.200.2
+    - 78.157.42.100
+    - 78.157.42.101
+    - 10.202.10.10
+    - 10.202.10.11
+    - 10.202.10.202
+    - 10.202.10.102
+    - 208.67.222.222
+    - 208.67.220.220
+    - 208.67.222.220
+    - 208.67.220.222
+    - 127.0.0.1:53
+    - 77.88.8.1
+    - 77.88.8.8
+    - 199.85.126.10
+    - 199.85.127.10
+    - 209.244.0.3
+    - 209.244.0.4
+    - 4.2.2.1
+    - 4.2.2.2
+    - 4.2.2.3
+    - 4.2.2.4
+    - 4.2.2.5
+    - 4.2.2.6
+    - 8.26.56.26
+    - 8.20.247.20
+    - 216.146.35.35
+    - 216.146.36.36
+    - 198.153.192.1
+    - 198.153.194.1
+    - 156.154.70.22
+    - 156.154.71.22
+    - 94.140.14.14
+    - 94.140.15.15
+    - 149.112.112.112
+    - 9.9.9.10
+    - 149.112.112.10
+    - 45.90.28.230
+    - 45.90.30.230
+    - 178.22.122.100
+    - 185.51.200.2
+    - 119.29.29.29
+    - 119.28.28.28
+    - 182.254.116.116
+    - 182.254.118.118
+    - 101.226.4.6
+    - 123.125.81.6
+    - 140.207.198.6
+    - 218.30.118.6
+    - 114.114.114.114
+    - 114.114.115.115
+    - 199.85.126.20
+    - 199.85.127.20
+    - 77.88.8.88
+    - 77.88.8.2
+    - 1.1.1.2
+    - 1.0.0.2
+    - 8.26.56.26
+    - 8.20.247.20
+    - 185.228.168.9
+    - 185.228.169.9
+    - 156.154.70.2
+    - 156.154.71.2
+    - 2001:4860:4860::8888
+    - 2001:4860:4860::8844
+    - 2620:0:ccc::2
+    - 2620:0:ccd::2
+    - 2a02:6b8::feed:0ff
+    - 2a02:6b8:0:1::feed:0ff
+    - 2606:4700:4700::1111
+    - 2606:4700:4700::1001
+    - 2001:470:6c:521::2
+    - 2001:470:6d:521::1
+    - 2001:1608:10:25::1c04:b12f
+    - 2001:1608:10:25::9249:d69b
+    - 2001:910:800::12
+    - 2001:910:800::40
+    - 2610:a1:1018::1
+    - 2610:a1:1019::1
+    - 2610:a1:1018::5
+    - 2610:a1:1019::5
+    - 2a10:50c0::ad1:ff
+    - 2a10:50c0::ad2:ff
+    - 2620:fe::fe
+    - 2620:fe::9
+    - 2620:fe::10
+    - 2620:fe::fe:10
+    - 2a07:a8c0::46:1af1
+    - 2a07:a8c1::46:1af1
+    - 2a02:6b8::feed:bad
+    - 2a02:6b8:0:1::feed:bad
+    - 2610:a1:1018::2
+    - 2610:a1:1019::2
+    - 2a02:6b8::feed:bad
+    - 2a02:6b8:0:1::feed:bad
+    - 2606:4700:4700::1112
+    - 2606:4700:4700::1002
+    - 2a0d:2a00:1::2
+    - 2a0d:2a00:2::2
+    - 2610:a1:1018::2
+    - 2610:a1:1019::2
+  nameserver-policy:
+    "www.google.com":
+      - 114.114.114.114
+      - quic://223.5.5.5
+      - https://doh.pub/dns-query
+    "www.instagram.com":
+      - 114.114.114.114
+      - quic://223.5.5.5
+      - https://doh.pub/dns-query
+    "www.sxyprn.com":
+      - https://120.53.53.53/dns-query
+      - https://223.5.5.5/dns-query
+      - https://doh.pub/dns-query
+      - 223.5.5.5
+      - https://dns.alidns.com/dns-query
+      - https://94.140.14.14/dns-query#h3=true
+      - tls://9.9.9.11
+      - tls://208.67.222.222
+      - tls://[2620:fe::11]
+      - tls://[2620:119:35::35]
+    "www.spankbang.com":
+      - https://120.53.53.53/dns-query
+      - https://223.5.5.5/dns-query
+      - https://doh.pub/dns-query
+      - 223.5.5.5
+      - https://dns.alidns.com/dns-query
+      - https://94.140.14.14/dns-query#h3=true
+      - tls://9.9.9.11
+      - tls://208.67.222.222
+      - tls://[2620:fe::11]
+      - tls://[2620:119:35::35]
+    geosite:category-ads-all: rcode://success
+    "www.google.com":
+      - 223.5.5.5
+      - 114.114.114.114
+      - 9.9.9.9
+    "www.facebook.com":
+      - 223.5.5.5
+      - 114.114.114.114
+      - 9.9.9.9
+    "www.createporn.com":
+      - https://doh.pub/dns-query#h3=true
+      - https://dns.alidns.com/dns-query#h3=true
+      - http://www.alidns.com/#h3=true
+      - https://www.114dns.com/#h3=true
+      - https://www.dnspod.cn/Products/Public.DNS#h3=true
+      - https://developers.google.com/speed/public-dns/docs/using#h3=true
+      - https://1.1.1.1/#h3=true
+      - https://www.quad9.net/#h3=true
+      - https://www.opendns.com/#h3=true
+      - 178.22.122.100
+      - 185.51.200.2
+      - 78.157.42.100
+      - 78.157.42.101
+      - 10.202.10.10
+      - 10.202.10.11
+      - 10.202.10.202
+      - 10.202.10.102
+      - 208.67.222.222
+      - 208.67.220.220
+      - 208.67.222.220
+      - 208.67.220.222
+      - 127.0.0.1:53
+      - 77.88.8.1
+      - 77.88.8.8
+      - 199.85.126.10
+      - 199.85.127.10
+      - 209.244.0.3
+      - 209.244.0.4
+      - 4.2.2.1
+      - 4.2.2.2
+      - 4.2.2.3
+      - 4.2.2.4
+      - 4.2.2.5
+      - 4.2.2.6
+      - 8.26.56.26
+      - 8.20.247.20
+      - 216.146.35.35
+      - 216.146.36.36
+      - 198.153.192.1
+      - 198.153.194.1
+      - 156.154.70.22
+      - 156.154.71.22
+      - 94.140.14.14
+      - 94.140.15.15
+      - 149.112.112.112
+      - 9.9.9.10
+      - 149.112.112.10
+      - 45.90.28.230
+      - 45.90.30.230
+      - 178.22.122.100
+      - 185.51.200.2
+      - 119.29.29.29
+      - 119.28.28.28
+      - 182.254.116.116
+      - 182.254.118.118
+      - 101.226.4.6
+      - 123.125.81.6
+      - 140.207.198.6
+      - 218.30.118.6
+      - 114.114.114.114
+      - 114.114.115.115
+      - 199.85.126.20
+      - 199.85.127.20
+      - 77.88.8.88
+      - 77.88.8.2
+      - 1.1.1.2
+      - 1.0.0.2
+      - 8.26.56.26
+      - 8.20.247.20
+      - 185.228.168.9
+      - 185.228.169.9
+      - 156.154.70.2
+      - 156.154.71.2
+      - 2001:4860:4860::8888
+      - 2001:4860:4860::8844
+      - 2620:0:ccc::2
+      - 2620:0:ccd::2
+      - 2a02:6b8::feed:0ff
+      - 2a02:6b8:0:1::feed:0ff
+      - 2606:4700:4700::1111
+      - 2606:4700:4700::1001
+      - 2001:470:6c:521::2
+      - 2001:470:6d:521::1
+      - 2001:1608:10:25::1c04:b12f
+      - 2001:1608:10:25::9249:d69b
+      - 2001:910:800::12
+      - 2001:910:800::40
+      - 2610:a1:1018::1
+      - 2610:a1:1019::1
+      - 2610:a1:1018::5
+      - 2610:a1:1019::5
+      - 2a10:50c0::ad1:ff
+      - 2a10:50c0::ad2:ff
+      - 2620:fe::fe
+      - 2620:fe::9
+      - 2620:fe::10
+      - 2620:fe::fe:10
+      - 2a07:a8c0::46:1af1
+      - 2a07:a8c1::46:1af1
+      - 2a02:6b8::feed:bad
+      - 2a02:6b8:0:1::feed:bad
+      - 2610:a1:1018::2
+      - 2610:a1:1019::2
+      - 2a02:6b8::feed:bad
+      - 2a02:6b8:0:1::feed:bad
+      - 2606:4700:4700::1112
+      - 2606:4700:4700::1002
+      - 2a0d:2a00:1::2
+      - 2a0d:2a00:2::2
+      - 2610:a1:1018::2
+      - 2610:a1:1019::2
+    "www.twitter.com":
+      - 223.5.5.5
+      - 114.114.114.114
+      - 9.9.9.9
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  fake-ip-range: 100.0.0.0/16
+  fake-ip-filter-mode: blacklist
+  direct-nameserver-follow-policy: false
   fake-ip-filter:
-    - '*.lan'
-    - '*.localdomain'
-    - '*.example'
-    - '*.invalid'
-    - '*.localhost'
-    - '*.test'
-    - '*.local'
+    - "*.lan"
+    - "*.local"
+    - "www.torrent.eu.org"
+    - "www.msftconnecttest.com"
 proxy-providers:
   MCI:
     type: http
@@ -42,7 +420,7 @@ proxy-providers:
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
-      interval: 300
+      interval: 30
       
   MTN:
     type: http
@@ -51,7 +429,7 @@ proxy-providers:
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
-      interval: 300
+      interval: 30
       
   X:
     type: http
@@ -60,15 +438,12 @@ proxy-providers:
     health-check:
       enable: true
       url: https://www.pornhub.com/generate_204
-      interval: 300
+      interval: 30
       
 proxies:
 proxy-groups:
-  - name: "PROXY"
-    type: url-test
-    interval: 1200
-    tolerance: 5000
-  #  include-all: true
+  - name: "PRO"
+    type: select
     url: "http://www.pornhub.com/generate_204"
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
@@ -83,8 +458,8 @@ proxy-groups:
     type: url-test
     url: "https://www.pornhub.com/generate_204"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 330
-    tolerance: 5000
+    interval: 33
+    tolerance: 500
     exclude-type: "direct|IRAN"
     include-all: true
     hidden: false
@@ -105,8 +480,8 @@ proxy-groups:
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: url-test
-    interval: 330
-    tolerance: 5000
+    interval: 33
+    tolerance: 500
     exclude-type: "direct|trojan|socks5|http"
     include-all: true
     hidden: false
@@ -117,7 +492,7 @@ proxy-groups:
     exclude-type: "direct|Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: url-test
-    interval: 330
+    interval: 33
     tolerance: 500
     include-all: true
     hidden: false
@@ -127,8 +502,8 @@ proxy-groups:
     type: url-test
     url: "https://www.pornhub.com/generate_204"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 330
-    tolerance: 5000
+    interval: 33
+    tolerance: 500
     exclude-type: "direct|IRAN"
     use:
       - "MTN"
@@ -139,14 +514,240 @@ proxy-groups:
     type: url-test
     url: "https://www.pornhub.com/generate_204"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 330
-    tolerance: 5000
+    interval: 33
+    tolerance: 500
     exclude-type: "direct|IRAN"
     use:
       - "MCI"
     hidden: false
-    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"  
+    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
+  - name: 🎯 Direct
+    type: select
+    filter: ""
+    exclude-filter: ""
+    hidden: false
+    icon: ""
+    proxies:
+      - DIRECT
+      - PROXY
+      - PASS
+    disable-udp: true
+  - name: 🛑 Reject
+    type: select
+    filter: ""
+    exclude-filter: ""
+    hidden: false
+    icon: ""
+    proxies:
+      - REJECT
+      - DIRECT
+      - PASS
+    disable-udp: false
+  - name: "PROXY"
+    type: select
+    url: "http://www.pornhub.com/generate_204"
+    hidden: false
+    include-all: true
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
+    proxies:
+      - "PRO"
+      - "🎈Auto"
+      - "🎈fallback"
+      - "US"
+      - "Persian Gulf"
+      - "MTN"
+      - "MCI"
+rule-providers:
+
+  LocalAreaNetwork:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/LocalAreaNetwork.list
+  category-ads-all:
+    type: http
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs
+    behavior: domain
+    format: mrs
+
+  BanEasyList:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanEasyList.list
+  BanEasyListChina:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanEasyListChina.list
+  BanEasyPrivacy:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanEasyPrivacy.list
+  UnBan:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/UnBan.list
+  BanAD:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanAD.list
+  BanProgramAD:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/BanProgramAD.list
+  GoogleFCM:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/GoogleFCM.list
+  GoogleCNProxyIP:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/GoogleCNProxyIP.list
+  GoogleCN:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/GoogleCN.list
+  YouTube:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/YouTube.list
+  Google:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/Google.list
+  AI:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/AI.list
+  OpenAi:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/OpenAi.list
+  Microsoft:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/Microsoft.list
+  Apple:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/Apple.list
+  Telegram:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/Telegram.list
+  ProxyMedia:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/ProxyMedia.list
+  ProxyGFWlist:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/ProxyGFWlist.list
+  ChinaDomain:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/ChinaDomain.list
+  ChinaCompanyIp:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
+    format: text
+    interval: 3600
+    path: ./ACL4SSR/ACL4SSR/ChinaCompanyIp.list
 rules:
+  - RULE-SET,LocalAreaNetwork,🎯 Direct
+  - RULE-SET,BanAD,🛑 Reject
+  - RULE-SET,BanProgramAD,🛑 Reject
+  - RULE-SET,GoogleCN,PROXY
+  - RULE-SET,UnBan,PROXY
+  - RULE-SET,BanAD,🛑 Reject
+  - RULE-SET,BanProgramAD,🛑 Reject
+  - RULE-SET,BanEasyList,🛑 Reject
+  - RULE-SET,BanEasyListChina,🛑 Reject
+  - RULE-SET,BanEasyPrivacy,🛑 Reject
+  - RULE-SET,AI,PROXY
+  - RULE-SET,GoogleFCM,PROXY
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
+  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
+  - RULE-SET,GoogleCNProxyIP,PROXY
+  - RULE-SET,GoogleCN,PROXY
+  - RULE-SET,YouTube,PROXY
+  - RULE-SET,Google,PROXY
+  - RULE-SET,Microsoft,PROXY
+  - RULE-SET,Apple,PROXY
+  - RULE-SET,Telegram,PROXY
+  - RULE-SET,ProxyMedia,PROXY
+  - DOMAIN-SUFFIX,v2rayse.com,PROXY
+  - DOMAIN-SUFFIX,cff.pw,PROXY
+  - DOMAIN-SUFFIX,vpnse.org,PROXY
+  - DOMAIN-SUFFIX,cfmem.com,PROXY
+  - RULE-SET,ProxyGFWlist,PROXY
+  - RULE-SET,ChinaDomain,PROXY
+  - RULE-SET,ChinaCompanyIp,PROXY
+  - GEOIP,ir,🎯 Direct
+  - DOMAIN,googleadservices.com,PROXY
+  - DST-PORT,80,PROXY
+  - SRC-PORT,443,PROXY
+  - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
+  - RULE-SET,category-ads-all,🛑 Reject
   - DOMAIN-SUFFIX,achat-followers-instagram.com,PROXY
   - DOMAIN-SUFFIX,acheter-followers-instagram.com,PROXY
   - DOMAIN-SUFFIX,acheterdesfollowersinstagram.com,PROXY
