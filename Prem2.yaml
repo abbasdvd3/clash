@@ -1,46 +1,115 @@
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: false
+external-controller: 127.0.0.1:9090
 
+dns:
+  enable: true
+  ipv6: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 100.0.0.0/8
+  fake-ip-filter:
+    - '*.lan'
+    - '*.localdomain'
+    - '*.example'
+    - '*.invalid'
+    - '*.localhost'
+    - '*.test'
+    - '*.local'
+    - '*.home.arpa'
+    - router.asus.com
+    - localhost.sec.qq.com
+    - localhost.ptlogin2.qq.com
+    - +.msftconnecttest.com
+  default-nameserver:
+    - 114.114.114.114#PROXY
+    - 9.9.9.9#PROXY
+    - 223.6.6.6#PROXY
+    - 180.76.76.76#PROXY
+    - 119.28.28.28#PROXY
+  nameserver:
+    - tls://dot.pub:853#PROXY
+    - tls://1.12.12.12:853#PROXY
+    - tls://120.53.53.53:853#PROXY
+    - https://doh.pub/dns-query#PROXY
+    - 1.1.1.1#PROXY
+    - 77.88.8.1#PROXY
+    - 77.88.8.8#PROXY
 proxy-providers:
   provider1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah"
     path: Prem2/p1.yaml
     interval: 89
-#    exclude-filter: Expire
     health-check:
       enable: true
       interval: 30
-      url: https://www.pornhub.com/generate_204
+      url: https://www.google.com/generate_204
   provider2:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/p.all"
     path: Prem2/P2.yaml
     interval: 89
- #   exclude-filter: Expire
     health-check:
       enable: true
       interval: 30
-      url: https://www.pornhub.com/generate_204
+      url: https://www.google.com/generate_204
   provider3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/t"
     path: Prem2/P3.yaml
     interval: 89
- #   exclude-filter: Expire
     health-check:
       enable: true
       interval: 30
-      url: https://www.pornhub.com/generate_204
+      url: https://www.google.com/generate_204
   provider4:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/1.yaml"  # http://66.42.50.118:12580/clash/proxies 
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/1.yaml" # http://66.42.50.118:12580/clash/proxies 
     path: Prem2/p4.yaml
     interval: 89
-#    exclude-filter: Expire
     health-check:
       enable: true
       interval: 30
-      url: https://www.pornhub.com/generate_204
-      
+      url: https://www.google.com/generate_204
+  provider5:
+    type: http
+    url: "https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1225clash.yml"
+    path: Prem2/P5.yaml
+    interval: 89
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.google.com/generate_204
+  provider6:
+    type: http
+    url: "http://66.42.50.118:12580/clash/proxies"
+    path: Prem2/p6.yaml
+    interval: 89
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.google.com/generate_204
+  provider7:
+    type: http
+    url: "http://141.147.161.50:12580/clash/proxies"
+    path: Prem2/P5.yaml
+    interval: 89
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.google.com/generate_204
+  provider8:
+    type: http
+    url: "http://150.230.195.209:12580/clash/proxies"
+    path: Prem2/P8.yaml
+    interval: 89
+    health-check:
+      enable: true
+      interval: 30
+      url: https://www.google.com/generate_204
 proxy-groups:
   - name: 'PRO'
     type: 'select'
@@ -54,35 +123,47 @@ proxy-groups:
       - 'United'
   - name: '⚡️ Fastest'
     type: 'url-test'
-    tolerance: 99
+    tolerance: 500
     url: 'https://www.pornhub.com/generate_204'
- #   interval: 50
+    interval: 5000
     proxies:
     use: 
       - 'provider1'
       - 'provider2'
       - 'provider3'
       - 'provider4'
+      - 'provider5'
+      - 'provider6'
+      - 'provider7'
+      - 'provider8'
   - name: '📶 First Available'
     type: 'fallback'
     url: 'https://www.pornhub.com/generate_204'
-    interval: 99
+    interval: 180
     use: 
       - 'provider1'
       - 'provider2'
       - 'provider3'
       - 'provider4'
+      - 'provider5'
+      - 'provider6'
+      - 'provider7'
+      - 'provider8'
     proxies:
   - name: '♻️ Load Balance'
     type: 'load-balance'
     url: 'https://www.pornhub.com/generate_204'
-    interval: 99
+    interval: 500
     strategy: 'consistent-hashing'
     use: 
       - 'provider1'
       - 'provider2'
       - 'provider3'
       - 'provider4'
+      - 'provider5'
+      - 'provider6'
+      - 'provider7'
+      - 'provider8'
     proxies:
   - name: 'PROXY'
     type: 'select'
@@ -91,6 +172,10 @@ proxy-groups:
       - 'provider2'
       - 'provider3'
       - 'provider4'
+      - 'provider5'
+      - 'provider6'
+      - 'provider7'
+      - 'provider8'
     proxies:
       - 'PRO'
       - '⚡️ Fastest'
@@ -109,7 +194,7 @@ proxy-groups:
   - name: 'United'
     type: 'url-test'
     url: 'https://www.pornhub.com/generate_204'
-    interval: 100
+    interval: 500
     tolerance: 100
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     proxies:
@@ -118,6 +203,10 @@ proxy-groups:
       - 'provider2'
       - 'provider3'
       - 'provider4'
+      - 'provider5'
+      - 'provider6'
+      - 'provider7'
+      - 'provider8'
   - name: 'IRAN'
     type: 'select'
     proxies:
@@ -128,5 +217,5 @@ proxy-groups:
       - '♻️ Load Balance'
       - 'PRO'
 rules:
-
+  - GEOIP,ir,IRAN
   - MATCH,PROXY
