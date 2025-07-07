@@ -88,32 +88,8 @@ proxy-providers:
       url: "https://www.google.com/generate_204"
   provider5:
     type: http
-    url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/ss_clash.yaml"    
-    path: Prem2/P5.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless"
-    health-check:
-      enable: true
-      interval: 30
-      url: "https://www.google.com/generate_204"
-  provider6:
-    type: http
-    url: "https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/combine.yaml" 
-    path: Prem/p6.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless"
-    health-check:
-      enable: true
-      interval: 30
-      url: "https://www.google.com/generate_204"
-  provider7:
-    type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/pp1.yaml"
-    path: Prem/P7.yaml
+    path: Prem/P5.yaml
     interval: 899
     proxy: DIRECT
     skip-cert-verify: true
@@ -148,8 +124,7 @@ proxy-groups:
       - 'provider3'
       - 'provider4'
       - 'provider5'
-      - 'provider6'
-      - 'provider7'
+
   - name: '⚡️ Fastest'
     type: 'url-test'
     tolerance: 500
@@ -163,8 +138,7 @@ proxy-groups:
       - 'provider3'
       - 'provider4'
       - 'provider5'
-      - 'provider6'
-      - 'provider7'
+
 
   - name: '📶 First Available'
     type: 'fallback'
@@ -177,8 +151,7 @@ proxy-groups:
       - 'provider3'
       - 'provider4'
       - 'provider5'
-      - 'provider6'
-      - 'provider7'
+
     proxies:
   - name: '♻️ Load Balance'
     type: 'load-balance'
@@ -192,8 +165,7 @@ proxy-groups:
       - 'provider3'
       - 'provider4'
       - 'provider5'
-      - 'provider6'
-      - 'provider7'
+
     proxies:
   - name: 'PROXY'
     type: 'select'
@@ -204,8 +176,7 @@ proxy-groups:
       - 'provider3'
       - 'provider4'
       - 'provider5'
-      - 'provider6'
-      - 'provider7'
+
     proxies:
       - 'PRO'
       - '⚡️ Fastest'
@@ -236,8 +207,7 @@ proxy-groups:
       - 'provider3'
       - 'provider4'
       - 'provider5'
-      - 'provider6'
-      - 'provider7'
+
   - name: 'IRAN'
     type: 'select'
     proxies:
