@@ -136,20 +136,8 @@ proxy-providers:
       url: "https://www.google.com/generate_204"
   provider6:
     type: http
-    url: "https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/combine.yaml" 
-    path: Prem/p6.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless"
-    health-check:
-      enable: true
-      interval: 30
-      url: "https://www.google.com/generate_204"
-  provider7:
-    type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/pp1.yaml"
-    path: Prem/P7.yaml
+    path: Prem/P6.yaml
     interval: 899
     proxy: DIRECT
     skip-cert-verify: true
@@ -187,7 +175,7 @@ proxy-groups:
       - provider4
       - provider5
       - provider6
-      - provider7
+
   - name: United+url-test
     type: url-test
     url: "https://www.google.com/"
@@ -204,7 +192,7 @@ proxy-groups:
       - provider4
       - provider5
       - provider6
-      - provider7
+
   - name: url-test
     type: url-test
     url: "https://www.google.com/"
@@ -220,7 +208,7 @@ proxy-groups:
       - provider4
       - provider5
       - provider6
-      - provider7
+
     proxies: 
   - name: 🎯 DIRECT
     type: select
