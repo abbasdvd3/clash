@@ -219,6 +219,7 @@ proxy-groups:
     url: "http://www.google.com/generate_204"
     hidden: false
     interval: 180
+    tolerance: 5000
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
     proxies:
       - "🎈Auto"
@@ -232,7 +233,7 @@ proxy-groups:
     url: "https://www.google.com/generate_204"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     interval: 280
-  #  tolerance: 500
+    tolerance: 500
     exclude-type: "direct|IRAN"
     include-all: true
     hidden: false
@@ -254,7 +255,7 @@ proxy-groups:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: url-test
     interval: 180
-   # tolerance: 500
+    tolerance: 500
     exclude-type: "direct|trojan|socks5|http"
     include-all: true
     hidden: false
@@ -266,7 +267,7 @@ proxy-groups:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: url-test
     interval: 180
-   # tolerance: 500
+    tolerance: 500
     include-all: true
     hidden: false
     url: "http://www.google.com/generate_204"
@@ -276,7 +277,7 @@ proxy-groups:
     url: "https://www.pornhub.com/generate_204"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     interval: 180
-  #  tolerance: 500
+    tolerance: 500
     exclude-type: "direct|IRAN"
     use:
       - "MTN"
@@ -288,7 +289,7 @@ proxy-groups:
     url: "https://www.google.com/generate_204"
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     interval: 180
-  #  tolerance: 500
+    tolerance: 500
     exclude-type: "direct|IRAN"
     use:
       - "MCI"
@@ -593,7 +594,7 @@ rules:
   - DOMAIN-SUFFIX,onlineinstagram.com,PROXY
   - DOMAIN-SUFFIX,web-instagram.net,PROXY
   - DOMAIN-SUFFIX,wwwinstagram.com,PROXY
-  - DOMAIN-SUFFIX,icloud.com,DIRECT
+  - DOMAIN-SUFFIX,icloud.com,PROXY
   - DOMAIN-SUFFIX,googlevideo.com,PROXY
   - DOMAIN-SUFFIX,youtube.com,PROXY
   - DOMAIN-SUFFIX,github.com,PROXY
@@ -602,27 +603,27 @@ rules:
   - DOMAIN-SUFFIX,tiktokcdn.com,PROXY
   - DOMAIN-KEYWORD,openai,PROXY
   - DOMAIN-KEYWORD,chatgpt,PROXY
-  - DOMAIN-SUFFIX,ip6-localhost,DIRECT
-  - DOMAIN-SUFFIX,ip6-loopback,DIRECT
-  - DOMAIN-SUFFIX,lan,DIRECT
-  - DOMAIN-SUFFIX,local,DIRECT
-  - DOMAIN-SUFFIX,localhost,DIRECT
-  - IP-CIDR,0.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
-  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
-  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,198.18.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
-  - IP-CIDR6,::1/128,DIRECT,no-resolve
-  - IP-CIDR6,fc00::/7,DIRECT,no-resolve
-  - IP-CIDR6,fe80::/10,DIRECT,no-resolve
-  - IP-CIDR6,fd00::/8,DIRECT,no-resolve
-#  - GEOIP,private,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,ip6-localhost,🎯 Direct
+  - DOMAIN-SUFFIX,ip6-loopback,🎯 Direct
+  - DOMAIN-SUFFIX,lan,🎯 Direct
+  - DOMAIN-SUFFIX,local,🎯 Direct
+  - DOMAIN-SUFFIX,localhost,🎯 Direct
+  - IP-CIDR,0.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,10.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,100.64.0.0/10,🎯 Direct,no-resolve
+  - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,172.16.0.0/12,🎯 Direct,no-resolve
+  - IP-CIDR,192.168.0.0/16,🎯 Direct,no-resolve
+  - IP-CIDR,198.18.0.0/16,🎯 Direct,no-resolve
+  - IP-CIDR,224.0.0.0/4,🎯 Direct,no-resolve
+  - IP-CIDR6,::1/128,🎯 Direct,no-resolve
+  - IP-CIDR6,fc00::/7,🎯 Direct,no-resolve
+  - IP-CIDR6,fe80::/10,🎯 Direct,no-resolve
+  - IP-CIDR6,fd00::/8,🎯 Direct,no-resolve
+#  - GEOIP,private,🎯 Direct,no-resolve
   - GEOSITE,category-ads-all,REJECT
   - GEOIP,telegram,PROXY
-  - GEOIP,openai,PROXY
+ # - GEOIP,openai,PROXY
   - GEOIP,facebook,PROXY
   - GEOIP,google,PROXY
   - MATCH,PROXY
