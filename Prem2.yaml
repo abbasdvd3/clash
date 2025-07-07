@@ -83,33 +83,7 @@ proxy-providers:
       enable: true
       interval: 30
       url: https://www.google.com/generate_204
-  provider6:
-    type: http
-    url: "http://66.42.50.118:12580/clash/proxies"
-    path: Prem2/p6.yaml
-    interval: 89
-    health-check:
-      enable: true
-      interval: 30
-      url: https://www.google.com/generate_204
-  provider7:
-    type: http
-    url: "http://141.147.161.50:12580/clash/proxies"
-    path: Prem2/P5.yaml
-    interval: 89
-    health-check:
-      enable: true
-      interval: 30
-      url: https://www.google.com/generate_204
-  provider8:
-    type: http
-    url: "http://150.230.195.209:12580/clash/proxies"
-    path: Prem2/P8.yaml
-    interval: 89
-    health-check:
-      enable: true
-      interval: 30
-      url: https://www.google.com/generate_204
+
 proxy-groups:
   - name: 'PRO'
     type: 'select'
@@ -133,9 +107,7 @@ proxy-groups:
       - 'provider3'
       - 'provider4'
       - 'provider5'
-      - 'provider6'
-      - 'provider7'
-      - 'provider8'
+
   - name: '📶 First Available'
     type: 'fallback'
     url: 'https://www.pornhub.com/generate_204'
@@ -146,9 +118,7 @@ proxy-groups:
       - 'provider3'
       - 'provider4'
       - 'provider5'
-      - 'provider6'
-      - 'provider7'
-      - 'provider8'
+
     proxies:
   - name: '♻️ Load Balance'
     type: 'load-balance'
@@ -161,9 +131,7 @@ proxy-groups:
       - 'provider3'
       - 'provider4'
       - 'provider5'
-      - 'provider6'
-      - 'provider7'
-      - 'provider8'
+
     proxies:
   - name: 'PROXY'
     type: 'select'
@@ -173,9 +141,7 @@ proxy-groups:
       - 'provider3'
       - 'provider4'
       - 'provider5'
-      - 'provider6'
-      - 'provider7'
-      - 'provider8'
+
     proxies:
       - 'PRO'
       - '⚡️ Fastest'
@@ -204,9 +170,7 @@ proxy-groups:
       - 'provider3'
       - 'provider4'
       - 'provider5'
-      - 'provider6'
-      - 'provider7'
-      - 'provider8'
+
   - name: 'IRAN'
     type: 'select'
     proxies:
