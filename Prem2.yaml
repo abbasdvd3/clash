@@ -40,49 +40,88 @@ dns:
 proxy-providers:
   provider1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah" 
     path: Prem2/p1.yaml
-    interval: 89
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
     health-check:
       enable: true
       interval: 30
-      url: https://www.google.com/generate_204
+      url: "https://www.google.com/generate_204"
   provider2:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/p.all"
     path: Prem2/P2.yaml
-    interval: 89
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
     health-check:
       enable: true
       interval: 30
-      url: https://www.google.com/generate_204
+      url: "https://www.google.com/generate_204"
   provider3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/t"
-    path: Prem2/P3.yaml
-    interval: 89
+    path: Prem/P3.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
     health-check:
       enable: true
       interval: 30
-      url: https://www.google.com/generate_204
+      url: "https://www.google.com/generate_204"
   provider4:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/1.yaml" # http://66.42.50.118:12580/clash/proxies 
-    path: Prem2/p4.yaml
-    interval: 89
+    url: "https://raw.githubusercontent.com/Alvin9999/pac2/master/clash/1/config.yaml"    
+    path: Prem/P4.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
     health-check:
       enable: true
       interval: 30
-      url: https://www.google.com/generate_204
+      url: "https://www.google.com/generate_204"
   provider5:
     type: http
-    url: "https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1225clash.yml"
+    url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/ss_clash.yaml"    
     path: Prem2/P5.yaml
-    interval: 89
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
     health-check:
       enable: true
       interval: 30
-      url: https://www.google.com/generate_204
+      url: "https://www.google.com/generate_204"
+  provider6:
+    type: http
+    url: "https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/combine.yaml" 
+    path: Prem/p6.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
+    health-check:
+      enable: true
+      interval: 30
+      url: "https://www.google.com/generate_204"
+  provider7:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/pp1.yaml"
+    path: Prem/P7.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
+    health-check:
+      enable: true
+      interval: 30
+      url: "https://www.google.com/generate_204"
 
 proxy-groups:
   - name: 'PRO'
@@ -95,10 +134,12 @@ proxy-groups:
       - '📶 First Available'
       - '♻️ Load Balance'
       - 'United'
-  - name: '⚡️ Fastest'
-    type: 'url-test'
+      - '⚡️relay'
+  - name: '⚡️relay'
+    type: 'relay'
     tolerance: 500
-    url: 'https://www.pornhub.com/generate_204'
+    url: 'https://www.google.com/generate_204'
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     interval: 5000
     proxies:
     use: 
@@ -107,47 +148,71 @@ proxy-groups:
       - 'provider3'
       - 'provider4'
       - 'provider5'
+      - 'provider6'
+      - 'provider7'
+  - name: '⚡️ Fastest'
+    type: 'url-test'
+    tolerance: 500
+    url: 'https://www.google.com/generate_204'
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    interval: 5000
+    proxies:
+    use: 
+      - 'provider1'
+      - 'provider2'
+      - 'provider3'
+      - 'provider4'
+      - 'provider5'
+      - 'provider6'
+      - 'provider7'
 
   - name: '📶 First Available'
     type: 'fallback'
-    url: 'https://www.pornhub.com/generate_204'
+    url: 'https://www.google.com/generate_204'
     interval: 180
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     use: 
       - 'provider1'
       - 'provider2'
       - 'provider3'
       - 'provider4'
       - 'provider5'
-
+      - 'provider6'
+      - 'provider7'
     proxies:
   - name: '♻️ Load Balance'
     type: 'load-balance'
-    url: 'https://www.pornhub.com/generate_204'
+    url: 'https://www.google.com/generate_204'
     interval: 500
     strategy: 'consistent-hashing'
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     use: 
       - 'provider1'
       - 'provider2'
       - 'provider3'
       - 'provider4'
       - 'provider5'
-
+      - 'provider6'
+      - 'provider7'
     proxies:
   - name: 'PROXY'
     type: 'select'
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     use: 
       - 'provider1'
       - 'provider2'
       - 'provider3'
       - 'provider4'
       - 'provider5'
-
+      - 'provider6'
+      - 'provider7'
     proxies:
       - 'PRO'
       - '⚡️ Fastest'
       - '📶 First Available'
       - '♻️ Load Balance'
       - 'United'
+      - '⚡️relay'
   - name: '🍎Ⓜ️'
     type: 'select'
     proxies:
@@ -156,13 +221,14 @@ proxy-groups:
       - '⚡️ Fastest'
       - '📶 First Available'
       - '♻️ Load Balance'
-     
+      - '⚡️relay'
   - name: 'United'
     type: 'url-test'
-    url: 'https://www.pornhub.com/generate_204'
+    url: 'https://www.google.com/generate_204'
     interval: 500
     tolerance: 100
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     proxies:
     use: 
       - 'provider1'
@@ -170,7 +236,8 @@ proxy-groups:
       - 'provider3'
       - 'provider4'
       - 'provider5'
-
+      - 'provider6'
+      - 'provider7'
   - name: 'IRAN'
     type: 'select'
     proxies:
@@ -180,6 +247,7 @@ proxy-groups:
       - '📶 First Available'
       - '♻️ Load Balance'
       - 'PRO'
+      - '⚡️relay'
 rules:
   - GEOIP,private,IRAN,no-resolve
   - GEOSITE,category-ads-all,REJECT
