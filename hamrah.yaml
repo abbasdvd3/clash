@@ -30,10 +30,10 @@ geodata-mode: true
 geo-auto-update: true
 geo-update-interval: 24
 geox-url:
-  geoip: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
-  geosite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
+  GeoIP: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
+  GeoSite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
   mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
-  asn: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
+  ANS: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
 global-ua: chrome
 profile:
   store-selected: true
@@ -63,7 +63,7 @@ tun:
     - tcp://8.8.8.8:53
     - tcp://1.1.1.1:53
   device: utun_clash
-  mtu: 15000
+  mtu: 1500
   strict-route: true
   endpoint-independent-nat: true
 dns:
@@ -73,12 +73,12 @@ dns:
   use-hosts: true
   use-system-hosts: true
   default-nameserver:
-    - 223.5.5.5
-    - 9.9.9.9
-    - 8.8.8.8
-    - 1.1.1.1
-    - 2400:3200::1
-    - 2001:4860:4860::8888
+    - tls://223.5.5.5
+    - tcp://9.9.9.9
+    - tcp://8.8.8.8
+    - tls://1.1.1.1
+    - tls://2400:3200::1
+    - tls://2001:4860:4860::8888
     - tls://223.5.5.5
     - tls://223.6.6.6
     - tls://119.29.29.29
@@ -87,7 +87,7 @@ dns:
     - tls://[2400:3200::1]
     - tls://[2400:3200:baba::1]
     - tls://1.12.12.12
-    - tls://120.53.53.53
+    - tcp://120.53.53.53
   direct-nameserver:
     - tls://1.1.1.1
     - tcp://8.8.4.4
@@ -98,18 +98,18 @@ dns:
     - https://1.1.1.1/#h3=true
   nameserver-policy:
     "www.google.com":
-      - 114.114.114.114
+      - tls://114.114.114.114
       - quic://223.5.5.5
       - https://doh.pub/dns-query
     "www.instagram.com":
-      - 114.114.114.114
+      - tls://114.114.114.114
       - quic://223.5.5.5
       - https://doh.pub/dns-query
     "www.sxyprn.com":
       - https://120.53.53.53/dns-query
       - https://223.5.5.5/dns-query
       - https://doh.pub/dns-query
-      - 223.5.5.5
+      - tls://223.5.5.5
       - https://dns.alidns.com/dns-query
       - https://94.140.14.14/dns-query#h3=true
       - tls://9.9.9.11
@@ -120,7 +120,7 @@ dns:
       - https://120.53.53.53/dns-query
       - https://223.5.5.5/dns-query
       - https://doh.pub/dns-query
-      - 223.5.5.5
+      - tls://223.5.5.5
       - https://dns.alidns.com/dns-query
       - https://94.140.14.14/dns-query#h3=true
       - tls://9.9.9.11
@@ -129,25 +129,34 @@ dns:
       - tls://[2620:119:35::35]
     geosite:category-ads-all: rcode://success
     "www.google.com":
-      - 223.5.5.5
-      - 114.114.114.114
-      - 9.9.9.9
+      - tls://223.5.5.5
+      - tls://114.114.114.114
+      - tls://9.9.9.9
+      - https://120.53.53.53/dns-query
+      - https://223.5.5.5/dns-query
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+      - https://94.140.14.14/dns-query#h3=true
+      - tls://9.9.9.11
+      - tls://208.67.222.222
+      - tls://[2620:fe::11]
+      - tls://[2620:119:35::35]
     "www.facebook.com":
-      - 223.5.5.5
-      - 114.114.114.114
-      - 9.9.9.9
+      - tls://223.5.5.5
+      - tls://114.114.114.114
+      - tls://9.9.9.9
     "www.createporn.com":
       - https://dns.alidns.com/dns-query
       - https://1.1.1.1/#h3=true
       - https://www.quad9.net/#h3=true
       - https://www.opendns.com/#h3=true
-      - 77.88.8.88
-      - 1.1.1.2
-      - 1.0.0.2
+      - tls://77.88.8.88
+      - tls://1.1.1.2
+      - tls://1.0.0.2
     "www.twitter.com":
-      - 223.5.5.5
-      - 114.114.114.114
-      - 9.9.9.9
+      - tls://223.5.5.5
+      - tls://114.114.114.114
+      - tls://9.9.9.9
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.0/8
   fake-ip-filter-mode: blacklist
@@ -157,7 +166,31 @@ dns:
     - "*.local"
     - "www.torrent.eu.org"
     - "www.msftconnecttest.com"
-p: &p {type: http, interval: 3600, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}}
+  fallback:
+    - https://1.1.1.2/dns-query
+    - https://1.0.0.2/dns-query
+    - https://208.67.222.222/dns-query
+    - https://208.67.220.220/dns-query
+    - https://9.9.9.9/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    geosite:
+      - social
+      - nsfw
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+    domain:
+      - +.google.com
+      - +.github.com
+      - +.facebook.com
+      - +.twitter.com
+      - +.youtube.com
+      - +.google.cn
+      - +.googleapis.cn
+      - +.googleapis.com
+p: &p {type: http, interval: 360, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}}
 proxy-providers:
   A: {<<: *p, url: 'https://cdn.jsdelivr.net/gh/itxve/fetch-clash-node/node/merge.yaml', override: {additional-prefix: '[A]'}}
   B: {<<: *p, url: 'https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml', override: {additional-prefix: '[B]'}}
@@ -175,48 +208,4926 @@ proxy-providers:
   L: {<<: *p, url: 'http://150.230.195.209:12580/clash/proxies', override: {additional-prefix: '[L]'}}
   O: {<<: *p, url: 'http://175.178.182.178:12580/clash/proxies', override: {additional-prefix: '[O]'}}
   P: {<<: *p, url: 'http://66.42.50.118:12580/clash/proxies', override: {additional-prefix: '[P]'}}
-  M2: {<<: *p, url: 'https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/v2rayshare.yaml', override: {additional-prefix: '[M2]'}}
-  N2: {<<: *p, url: 'https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodefree.yaml', override: {additional-prefix: '[N2]'}}
-  J2: {<<: *p, url: 'https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/yudou66.yaml', override: {additional-prefix: '[J2]'}}
-  K2: {<<: *p, url: 'https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/ndnode.yaml', override: {additional-prefix: '[K2]'}}
+  M2: {<<: *p, url: 'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/v2rayshare.yaml', override: {additional-prefix: '[M2]'}}
+  N2: {<<: *p, url: 'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodefree.yaml', override: {additional-prefix: '[N2]'}}
+  J2: {<<: *p, url: 'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/yudou66.yaml', override: {additional-prefix: '[J2]'}}
+  K2: {<<: *p, url: 'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/ndnode.yaml', override: {additional-prefix: '[K2]'}}
   L2: {<<: *p, url: 'https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml', override: {additional-prefix: '[L2]'}}
-  O2: {<<: *p, url: 'https://ghp.ci/raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/freenode.yaml', override: {additional-prefix: '[O2]'}}
+  O2: {<<: *p, url: 'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/freenode.yaml', override: {additional-prefix: '[O2]'}}
   P2: {<<: *p, url: 'https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/clash.yml', override: {additional-prefix: '[P2]'}}
-  MCI:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/MCI"
-    interval: 600
-    health-check:
-      enable: true
-      url: https://www.pornhub.com/generate_204
-      interval: 30
-    override:
-      additional-prefix: "[MCI]"  
-  MTN:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/MTN"
-    interval: 600
-    health-check:
-      enable: true
-      url: https://www.pornhub.com/generate_204
-      interval: 30
-    override:
-      additional-prefix: "[MTN]"  
-  X:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x"
-    interval: 600
-    health-check:
-      enable: true
-      url: https://www.pornhub.com/generate_204
-      interval: 30
-    override:
-      additional-prefix: "[X]" 
-     
+  MCI: {<<: *p, url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/MCI', override: {additional-prefix: '[MCI]'}}
+  MTN: {<<: *p, url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/MTN', override: {additional-prefix: '[MTN]'}}
+  X: {<<: *p, url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x', override: {additional-prefix: '[X]'}}
+  A1: {<<: *p, url: 'https://fforever.github.io/v2rayfree/', override: {additional-prefix: '[A1]'}}
+  B2: {<<: *p, url: 'https://raw.githubusercontent.com/wrfree/free/main/ssr', override: {additional-prefix: '[B2]'}}
+  C3: {<<: *p, url: 'https://v2ray.neocities.org/v2ray.txt', override: {additional-prefix: '[C3]'}}
+  D4: {<<: *p, url: 'https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/combine.yaml', override: {additional-prefix: '[D4]'}}
+  E5: {<<: *p, url: 'https://proxy.crazygeeky.com/clash/proxies', override: {additional-prefix: '[E5]'}}
+  F6: {<<: *p, url: 'https://proxypool1999.banyunxiaoxi.icu/clash/proxies', override: {additional-prefix: '[F6]'}}
+  G7: {<<: *p, url: 'https://pxypool.131433.xyz/clash/proxies', override: {additional-prefix: '[G7]'}}
+  H8: {<<: *p, url: 'https://proxypool.link/clash/proxies', override: {additional-prefix: '[H8]'}}
+  I9: {<<: *p, url: 'https://anaer.github.io/Sub/clash.yaml', override: {additional-prefix: '[I9]'}}
+  M10: {<<: *p, url: 'http://66.42.50.118:12580/clash/proxies', override: {additional-prefix: '[M10]'}}
+  N11: {<<: *p, url: 'https://hyt-allen-xu.netlify.app/', override: {additional-prefix: '[N11]'}}
+  J12: {<<: *p, url: 'https://iwxf.netlify.app/', override: {additional-prefix: '[J12]'}}
+  K13: {<<: *p, url: 'https://jiang.netlify.app/', override: {additional-prefix: '[K13]'}}
+  L14: {<<: *p, url: 'https://muma16fx.netlify.app/', override: {additional-prefix: '[L14]'}}
+  O15: {<<: *p, url: 'https://sub.diba.workers.dev/', override: {additional-prefix: '[O15]'}}
+  P16: {<<: *p, url: 'https://www.xrayvip.com/free.txt', override: {additional-prefix: '[P16]'}}
+  P17: {<<: *p, url: 'https://qiaomenzhuanfx.netlify.app/', override: {additional-prefix: '[P17]'}}
+
+proxies:
+  - name: '1'
+    type: vmess
+    server: 67.21.75.40
+    port: 45555
+    uuid: b12c4f8d-1aaa-4333-98e6-ec939292c580
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 64
+    cipher: auto
+  - name: '2'
+    type: vmess
+    server: 94.136.185.230
+    port: 10534
+    uuid: b01c7ef9-33ec-41f6-bfbf-77ddc4d21649
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '3'
+    type: vmess
+    server: abc.theyyszmn.sbs
+    port: 443
+    uuid: 3d84a668-0588-447b-fbe1-058deb5baf93
+    network: tcp
+    tls: true
+    servername: abc.theyyszmn.sbs
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '4'
+    type: vmess
+    server: 51.38.64.209
+    port: 44023
+    uuid: 7da457da-ed0f-437d-c81d-6c35885bbea3
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '5'
+    type: vmess
+    server: 57.129.24.124
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '6'
+    type: vmess
+    server: 186.190.215.193
+    port: 22324
+    uuid: 04621bae-ab36-11ec-b909-0242ac120002
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '7'
+    type: vmess
+    server: 38.47.176.251
+    port: 56051
+    uuid: 2bca3569-0662-47f7-fdf8-421f30e71f44
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '8'
+    type: vmess
+    server: 107.148.6.67
+    port: 30001
+    uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 64
+    cipher: auto
+  - name: '9'
+    type: vmess
+    server: 15.235.50.172
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '10'
+    type: vmess
+    server: 146.59.55.50
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '11'
+    type: vmess
+    server: 66.94.114.122
+    port: 53503
+    uuid: c9b9dea3-5868-477f-e54d-2c8f124f647d
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '12'
+    type: vmess
+    server: 38.99.82.193
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '13'
+    type: vmess
+    server: 57.129.25.22
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '14'
+    type: vmess
+    server: 169.150.208.83
+    port: 18000
+    uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '15'
+    type: vmess
+    server: 57.129.28.65
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: kapelleng.com
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '16'
+    type: vmess
+    server: 57.129.24.125
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '17'
+    type: vmess
+    server: 57.129.28.69
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '18'
+    type: vmess
+    server: 23.162.200.227
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '19'
+    type: vmess
+    server: 57.129.64.238
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: kapelleng.com
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '20'
+    type: vmess
+    server: 5.182.37.231
+    port: 49664
+    uuid: 9395474c-e2a1-4565-ba56-c16e7373c4c4
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '21'
+    type: vmess
+    server: 186.190.215.193
+    port: 22324
+    uuid: 04621bae-ab36-11ec-b909-0242ac120002
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '22'
+    type: vmess
+    server: 134.195.198.147
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '23'
+    type: vmess
+    server: 23.158.56.241
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '24'
+    type: vmess
+    server: 94.136.185.230
+    port: 10534
+    uuid: b01c7ef9-33ec-41f6-bfbf-77ddc4d21649
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '25'
+    type: vmess
+    server: 135.125.182.74
+    port: 28213
+    uuid: 81852771-76fb-4e94-e4f1-4e37a698a49a
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '26'
+    type: vmess
+    server: 15.204.11.190
+    port: 15361
+    uuid: 5d7bf9e3-415c-40f3-c66d-a54ea0fd860e
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '27'
+    type: vmess
+    server: 57.129.25.22
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '28'
+    type: vmess
+    server: 169.150.208.83
+    port: 18000
+    uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '29'
+    type: vmess
+    server: 51.38.64.209
+    port: 44023
+    uuid: 7da457da-ed0f-437d-c81d-6c35885bbea3
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '30'
+    type: vmess
+    server: 23.166.88.183
+    port: 22324
+    uuid: 04621bae-ab36-11ec-b909-0242ac120002
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '31'
+    type: vmess
+    server: 57.129.64.238
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: kapelleng.com
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '32'
+    type: vmess
+    server: 198.2.218.216
+    port: 44883
+    uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '33'
+    type: vmess
+    server: 15.235.50.172
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '34'
+    type: vmess
+    server: 107.148.6.67
+    port: 30001
+    uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 64
+    cipher: auto
+  - name: '35'
+    type: vmess
+    server: 38.99.82.193
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '36'
+    type: vmess
+    server: 23.162.200.227
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '37'
+    type: vmess
+    server: 57.129.24.125
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '38'
+    type: vmess
+    server: abc.theyyszmn.sbs
+    port: 443
+    uuid: 3d84a668-0588-447b-fbe1-058deb5baf93
+    network: tcp
+    tls: true
+    servername: abc.theyyszmn.sbs
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '39'
+    type: vmess
+    server: 66.94.114.122
+    port: 53503
+    uuid: c9b9dea3-5868-477f-e54d-2c8f124f647d
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '40'
+    type: vmess
+    server: 15.235.83.227
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '41'
+    type: vmess
+    server: 94.136.185.230
+    port: 10534
+    uuid: b01c7ef9-33ec-41f6-bfbf-77ddc4d21649
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '42'
+    type: vmess
+    server: 5.182.37.231
+    port: 49664
+    uuid: 9395474c-e2a1-4565-ba56-c16e7373c4c4
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '43'
+    type: vmess
+    server: 186.190.215.193
+    port: 22324
+    uuid: 04621bae-ab36-11ec-b909-0242ac120002
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '44'
+    type: vmess
+    server: 134.195.198.147
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '45'
+    type: vmess
+    server: 57.129.25.22
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '46'
+    type: vmess
+    server: 23.158.56.241
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '47'
+    type: vmess
+    server: 57.129.28.69
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '48'
+    type: vmess
+    server: 57.129.24.124
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '49'
+    type: vmess
+    server: 57.129.25.25
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '50'
+    type: vmess
+    server: 135.125.182.74
+    port: 28213
+    uuid: 81852771-76fb-4e94-e4f1-4e37a698a49a
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '51'
+    type: vmess
+    server: 23.166.88.183
+    port: 22324
+    uuid: 04621bae-ab36-11ec-b909-0242ac120002
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '52'
+    type: vmess
+    server: 198.2.218.216
+    port: 44883
+    uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '53'
+    type: vmess
+    server: 38.99.82.193
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '54'
+    type: vmess
+    server: 146.59.55.50
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '55'
+    type: vmess
+    server: 15.235.83.227
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '56'
+    type: vmess
+    server: 66.94.114.122
+    port: 53503
+    uuid: c9b9dea3-5868-477f-e54d-2c8f124f647d
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '57'
+    type: vmess
+    server: 38.47.176.251
+    port: 56051
+    uuid: 2bca3569-0662-47f7-fdf8-421f30e71f44
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '58'
+    type: vmess
+    server: 107.148.6.67
+    port: 30001
+    uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 64
+    cipher: auto
+  - name: '59'
+    type: vmess
+    server: 57.129.24.124
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '60'
+    type: vmess
+    server: 5.182.37.231
+    port: 49664
+    uuid: 9395474c-e2a1-4565-ba56-c16e7373c4c4
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '61'
+    type: vmess
+    server: 23.162.200.227
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '62'
+    type: vmess
+    server: 94.136.185.230
+    port: 10534
+    uuid: b01c7ef9-33ec-41f6-bfbf-77ddc4d21649
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '63'
+    type: vmess
+    server: 135.125.182.74
+    port: 28213
+    uuid: 81852771-76fb-4e94-e4f1-4e37a698a49a
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '64'
+    type: vmess
+    server: 51.38.64.209
+    port: 44023
+    uuid: 7da457da-ed0f-437d-c81d-6c35885bbea3
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '65'
+    type: vmess
+    server: 169.150.208.83
+    port: 18000
+    uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '66'
+    type: vmess
+    server: 15.204.11.190
+    port: 15361
+    uuid: 5d7bf9e3-415c-40f3-c66d-a54ea0fd860e
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '67'
+    type: vmess
+    server: 186.190.215.193
+    port: 22324
+    uuid: 04621bae-ab36-11ec-b909-0242ac120002
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '68'
+    type: vmess
+    server: 38.99.82.193
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '69'
+    type: vmess
+    server: 23.162.200.227
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '70'
+    type: vmess
+    server: 5.182.37.231
+    port: 49664
+    uuid: 9395474c-e2a1-4565-ba56-c16e7373c4c4
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '71'
+    type: vmess
+    server: 94.136.185.230
+    port: 10534
+    uuid: b01c7ef9-33ec-41f6-bfbf-77ddc4d21649
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '72'
+    type: vmess
+    server: 15.235.83.227
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '73'
+    type: vmess
+    server: 23.166.88.183
+    port: 22324
+    uuid: 04621bae-ab36-11ec-b909-0242ac120002
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '74'
+    type: vmess
+    server: 15.235.50.172
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '75'
+    type: vmess
+    server: 57.129.24.124
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '76'
+    type: vmess
+    server: vc.fly.dev
+    port: 443
+    uuid: 35379219-6535-4f2e-a4fe-3e44f61e0eee
+    network: ws
+    tls: true
+    servername: vc.fly.dev
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 32
+    cipher: auto
+  - name: '77'
+    type: vmess
+    server: 169.150.208.83
+    port: 18000
+    uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '78'
+    type: vmess
+    server: 51.38.64.209
+    port: 44023
+    uuid: 7da457da-ed0f-437d-c81d-6c35885bbea3
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '79'
+    type: vmess
+    server: 15.204.11.190
+    port: 15361
+    uuid: 5d7bf9e3-415c-40f3-c66d-a54ea0fd860e
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '80'
+    type: vmess
+    server: 57.129.25.22
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '81'
+    type: vmess
+    server: 57.129.24.125
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '82'
+    type: vmess
+    server: 66.94.114.122
+    port: 53503
+    uuid: c9b9dea3-5868-477f-e54d-2c8f124f647d
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '83'
+    type: vmess
+    server: 107.167.31.38
+    port: 30000
+    uuid: 603a9dc0-78de-419c-a22a-441c27d178a4
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 64
+    cipher: auto
+  - name: '84'
+    type: vmess
+    server: 134.195.198.147
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '85'
+    type: vmess
+    server: 198.2.218.216
+    port: 44883
+    uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '86'
+    type: vmess
+    server: 38.47.176.251
+    port: 56051
+    uuid: 2bca3569-0662-47f7-fdf8-421f30e71f44
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '87'
+    type: vmess
+    server: 57.129.28.69
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: true
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    skip-cert-verify: true
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '88'
+    type: vmess
+    server: 135.125.182.74
+    port: 28213
+    uuid: 81852771-76fb-4e94-e4f1-4e37a698a49a
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '89'
+    type: vmess
+    server: 23.158.56.241
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '90'
+    type: vmess
+    server: 94.136.185.230
+    port: 10534
+    uuid: b01c7ef9-33ec-41f6-bfbf-77ddc4d21649
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '91'
+    type: vless
+    server: night.dl.darinips.com
+    port: 443
+    uuid: fde86c85-6d4d-420b-bfde-47687763517e
+    network: tcp
+    tls: true
+    servername: journalofbigdata.springeropen.com
+    skip-cert-verify: true
+    client-fingerprint: firefox
+    reality-opts:
+      public-key: 3WnHdv9A0tNParChTLxPnDteRD841h8thOGR7MBgAhY
+    ip-version: dual
+    udp: true
+  - name: '92'
+    type: vless
+    server: 151.101.64.155
+    port: 80
+    uuid: 45920b77-3804-4b43-b664-37eabd1ea460
+    tls: false
+    ip-version: dual
+  - name: '93'
+    type: vless
+    server: pro.jahanover.sbs
+    port: 80
+    uuid: 0abfbcbc-2c54-4712-a809-48bfea1570ec
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '94'
+    type: vless
+    server: ir.lightning2025.top
+    port: 699
+    uuid: 62301c33-a285-78e8-9689-a28bea5712b9
+    tls: false
+    ip-version: dual
+  - name: '95'
+    type: vless
+    server: biography.com
+    port: 80
+    uuid: dffb97d9-7a40-4f06-9ba7-56455d16fdc3
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '96'
+    type: vmess
+    server: iran.aiteamplus.ir
+    port: 8081
+    uuid: 8d000875-db2e-45a5-8ecc-c376fd8472b7
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '97'
+    type: vless
+    server: 151.101.0.155
+    port: 80
+    uuid: Parsashonam
+    tls: false
+    ip-version: dual
+  - name: '98'
+    type: vless
+    server: 151.101.3.8
+    port: 80
+    uuid: BeFreeWithUs
+    network: ws
+    tls: false
+    ws-opts:
+      path: /
+      headers:
+        host: befreewithus.net
+    ip-version: dual
+  - name: '99'
+    type: vless
+    server: 212.80.31.4
+    port: 882
+    uuid: c5e98daf-cd6f-4671-ac65-25ece924db2a
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '100'
+    type: vless
+    server: food1.hamrahconfig.com
+    port: 80
+    uuid: b4914fd2-31b8-4bba-91f2-8af8c2633fbc
+    network: ws
+    tls: false
+    ws-opts:
+      path: /download
+      headers:
+        host: hajibaba.com
+    ip-version: dual
+  - name: '101'
+    type: vless
+    server: ip.fonexteam.online
+    port: 80
+    uuid: 0d2e0ef8-b87c-4438-8b64-7cc399ec1953
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '102'
+    type: vless
+    server: sajad4.x0x1.ru
+    port: 40265
+    uuid: 30d2b8ce-21ec-437c-91d2-4b802d841ed9
+    network: ws
+    tls: false
+    ws-opts:
+      path: /
+    ip-version: dual
+  - name: '103'
+    type: vless
+    server: 91.99.99.20
+    port: 52914
+    uuid: d569b044-0dbb-496a-8d28-a3f14a003e73
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '104'
+    type: vless
+    server: 46.102.157.79
+    port: 58210
+    uuid: fbddfdbf-d505-51ee-b6a6-bc1f4f4e0195
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '105'
+    type: vless
+    server: samischool2.daltoon.online
+    port: 80
+    uuid: 4e9fcecd-14ca-4457-9986-9ab2358b3155
+    tls: false
+    ip-version: dual
+  - name: '106'
+    type: vless
+    server: media.samagazine.ir
+    port: 8080
+    uuid: b5e0289d-1bb7-4c5b-f850-016298066cf8
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '107'
+    type: vless
+    server: 46.102.157.79
+    port: 58105
+    uuid: fbddfda5-cf1f-4bf4-acbc-a60555541beb
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '108'
+    type: vless
+    server: TR-SERVER-VIP-N-G-S-IS.tr-vip-nightgemshop.pledh.com
+    port: 8080
+    uuid: ca737a09-9eb9-4c59-a55c-f3cfddf573f1
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '109'
+    type: vless
+    server: Mol1.misaghreserve.ir
+    port: 80
+    uuid: 3bebc077-0d92-4832-9ae4-c0820a673b9e
+    tls: false
+    ip-version: dual
+  - name: '110'
+    type: vless
+    server: 151.101.3.8
+    port: 80
+    uuid: 80dea69e-d239-42ea-be46-aab32ffe3ab1
+    tls: false
+    ip-version: dual
+  - name: '111'
+    type: vless
+    server: 151.101.3.8
+    port: 80
+    uuid: 07af2138-82f3-44e2-8ee6-4b236468d1d8
+    tls: false
+    ip-version: dual
+  - name: '112'
+    type: vless
+    server: 151.101.3.8
+    port: 80
+    uuid: Parsashonam-263
+    tls: false
+    ip-version: dual
+  - name: '113'
+    type: vmess
+    server: 185.201.49.68
+    port: 48086
+    uuid: ffece2a9-0296-46a9-8db8-742d29d240ff
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '114'
+    type: vless
+    server: irtun.m0rt3zsh0pping2.ir
+    port: 9091
+    uuid: 62237966-b2c6-4bf9-a269-3717e1773c99
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '115'
+    type: vless
+    server: 151.101.3.8
+    port: 80
+    uuid: aaf9b830-36ea-4ff9-85fa-953a53f24765
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '116'
+    type: vless
+    server: iza3.lalash.ir
+    port: 80
+    uuid: d2b1da5b-7f0d-4004-923f-7eadc7a69b74
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '117'
+    type: vless
+    server: iza3.lalash.ir
+    port: 80
+    uuid: d2b1da5b-7f0d-4004-923f-7eadc7a69b74
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '118'
+    type: vless
+    server: speedy.mooo.info
+    port: 80
+    uuid: 20e30ab6-1d53-4c47-b299-8a655e1ef18d
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '119'
+    type: vless
+    server: 2sudo.winapp3.ir
+    port: 80
+    uuid: 5b0e1347-1e9b-4b83-a27b-468e3dafb69b
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '120'
+    type: vless
+    server: netmeli.noytads.ir
+    port: 80
+    uuid: e018bfab-0902-47a0-abfc-7efbd017ec73
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '121'
+    type: vless
+    server: se5.reata.ir
+    port: 2026
+    uuid: 59359b9c-3a3c-471e-9cc9-3cc4d49b07ed
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '122'
+    type: vmess
+    server: 151.101.3.8
+    port: 80
+    uuid: freewireguard-marg-bar-zahak
+    network: xhttp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '123'
+    type: vless
+    server: svnteam.aeza.nisvn.ir
+    port: 80
+    uuid: be21696b-7356-4792-98bd-829d89d6fb67
+    tls: false
+    ip-version: dual
+  - name: '124'
+    type: vless
+    server: 89.47.197.25
+    port: 50008
+    uuid: 8c67b1b8-3802-4327-bbb6-195c9fdd270f
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '125'
+    type: vmess
+    server: xvon.fast.hosting-ip.com
+    port: 80
+    uuid: d9a05aa9-441f-4e94-8412-aea47601775f
+    network: xhttp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '126'
+    type: vless
+    server: mr.reiisvezze2.ir
+    port: 39387
+    uuid: 289c0de5-81ba-4af8-aeb2-7e7e49f5c8a8
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '127'
+    type: vless
+    server: ftp55.basalam.eu
+    port: 80
+    uuid: e2d0eaf0-c4cf-4acc-958f-b7323c363cfc
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '128'
+    type: vless
+    server: ipfast.maketunnelim.lat
+    port: 80
+    uuid: ec2c4dfe-7df7-4200-a330-c48b4b9e3b3b
+    tls: false
+    ip-version: dual
+  - name: '129'
+    type: vless
+    server: www.speedtest.net
+    port: 443
+    uuid: 3058e698-61fd-4d12-95bc-f1fe4c071713
+    tls: false
+    ip-version: dual
+  - name: '130'
+    type: vless
+    server: 151.101.3.8
+    port: 80
+    uuid: f6d328f5-1b77-4a70-bd16-98aa7fc84828
+    tls: false
+    ip-version: dual
+  - name: '131'
+    type: vless
+    server: se1.reata.ir
+    port: 2021
+    uuid: 9e8d1829-1680-43b2-9846-8d58009a5f35
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '132'
+    type: vless
+    server: 151.101.3.8
+    port: 80
+    uuid: 92283226-915a-4c02-a8c9-02587b372fa4
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '133'
+    type: ss
+    server: admin.c2.webramz.co
+    port: 443
+    tls: false
+    password: WstuSnlu4ieA9M0L
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '134'
+    type: vless
+    server: 104.248.91.139
+    port: 18461
+    uuid: d1821c66-378e-4a7c-abc0-52cabab11887
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '135'
+    type: vless
+    server: temp.cutemugs.ir
+    port: 7076
+    uuid: 2b0d6f26-6275-39c7-3a0b-0079866524df
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '136'
+    type: vless
+    server: 151.101.242.172
+    port: 80
+    uuid: 62915088-0f71-4592-bf82-3f02d4db1239
+    tls: false
+    ip-version: dual
+  - name: '137'
+    type: vless
+    server: 151.101.3.8
+    port: 80
+    uuid: freewireguard-telegram-channel
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '138'
+    type: vless
+    server: 185.29.223.151
+    port: 2083
+    uuid: e834394b-11f8-49bd-bedd-5fdbee745706
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '139'
+    type: ss
+    server: api.namasha.co
+    port: 443
+    tls: false
+    password: u17T3BvpYaaiuW2c
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '140'
+    type: vless
+    server: 151.101.3.8
+    port: 80
+    uuid: freewireguard-telegram-channel
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '141'
+    type: vless
+    server: nv163.momdping.com
+    port: 443
+    uuid: d99c54fb-2cba-4b0e-b140-beee2fd6ea7b
+    network: ws
+    tls: true
+    servername: nv163.momdping.com
+    skip-cert-verify: true
+    ws-opts:
+      path: /
+    ip-version: dual
+  - name: '142'
+    type: ss
+    server: admin.c2.webramz.co
+    port: 443
+    tls: false
+    password: WstuSnlu4ieA9M0L
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '143'
+    type: vless
+    server: power.teampluss.ir
+    port: 80
+    uuid: d06b82d1-1a2b-4942-a19c-e112d7afe8b2
+    tls: false
+    ip-version: dual
+  - name: '144'
+    type: ss
+    server: 74.177.141.93
+    port: 443
+    tls: false
+    password: W74XFALLLuw6m5IA
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '145'
+    type: ss
+    server: Nigga.Best
+    port: 9093
+    tls: false
+    password: ''
+    ip-version: dual
+    cipher: YWVzLTI1Ni1nY206RnRERS9tL3pGR04yL2VkQmk5MWllNFAxQzVKQVRsU001SWVNaVNpejlBcz0%3D@Nigga.Best
+  - name: '146'
+    type: vless
+    server: power.teampluss.ir
+    port: 80
+    uuid: d06b82d1-1a2b-4942-a19c-e112d7afe8b2
+    tls: false
+    ip-version: dual
+  - name: '147'
+    type: vmess
+    server: vip.mobiletoskan.com
+    port: 2020
+    uuid: 5c270eb1-e18d-4020-949d-17e18445dac5
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '148'
+    type: vmess
+    server: 188.212.97.202
+    port: 2020
+    uuid: 5c270eb1-e18d-4020-949d-17e18445dac5
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '149'
+    type: ss
+    server: admin.c4.havij.co
+    port: 443
+    tls: false
+    password: VWsBymdCxQI9Qk8m
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '150'
+    type: vless
+    server: wexi.godali.org
+    port: 57412
+    uuid: 0f151d94-a15f-4cf3-a81b-9d932d8133c0
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '151'
+    type: vless
+    server: 151.101.3.8
+    port: 80
+    uuid: 18aa1b02-867c-4071-a0b7-0b53b0516ff7
+    tls: false
+    ip-version: dual
+  - name: '152'
+    type: vless
+    server: 185.113.139.103
+    port: 443
+    uuid: 13a894b0-e414-5459-a0fa-9309209c386b
+    network: ws
+    tls: false
+    servername: 185.113.139.103
+    client-fingerprint: chrome
+    ws-opts:
+      path: /vless
+      headers:
+        host: 185.113.139.103
+    ip-version: dual
+  - name: '153'
+    type: vless
+    server: nwarne.fast.hosting-ip.com
+    port: 80
+    uuid: 2dc56709-0f44-4bef-bee8-41ab6e128904
+    tls: false
+    ip-version: dual
+  - name: '154'
+    type: vless
+    server: viusr.atashsite.ir
+    port: 9076
+    uuid: a6d81882-5ec9-4134-a955-cbcf2f0a0976
+    network: tcp
+    tls: true
+    servername: www.cloudflare.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+      short-id: 6ba85179e30d4fc2
+    ip-version: dual
+    udp: true
+  - name: '155'
+    type: vless
+    server: 185.113.139.103
+    port: 443
+    uuid: 13a894b0-e414-5459-a0fa-9309209c386b
+    network: ws
+    tls: false
+    servername: 185.113.139.103
+    client-fingerprint: chrome
+    ws-opts:
+      path: /vless
+      headers:
+        host: 185.113.139.103
+    ip-version: dual
+  - name: '156'
+    type: vmess
+    server: tehran-sms.xyz
+    port: 443
+    uuid: 7f034e0b-0d3f-4961-92d6-1b4bdbf3cb17
+    network: ws
+    tls: true
+    servername: pkgbuild.org
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '157'
+    type: ss
+    server: 20.91.252.21
+    port: 48172
+    tls: false
+    password: 51yloQC8D9w1Wae7FHtI65
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '158'
+    type: vless
+    server: 5.181.171.10
+    port: 443
+    uuid: 49ed01ad-3bb4-204f-b0ff-a58f658fd618
+    network: tcp
+    tls: true
+    servername: speed.cloudflare.com
+    flow: xtls-rprx-vision
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: YNGotlyAx3ELUmi4lxOUjiEDmibqf1pPUTE9o3YYT2Y
+    ip-version: dual
+    udp: true
+  - name: '159'
+    type: vless
+    server: viop.fast.hosting-ip.com
+    port: 80
+    uuid: 4a5d5d8b-32eb-4fe9-88d0-3b592a61d752
+    tls: false
+    ip-version: dual
+  - name: '160'
+    type: vless
+    server: 185.29.223.151
+    port: 2083
+    uuid: 064ba335-b5f7-4bd8-83b7-81255581b220
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '161'
+    type: vless
+    server: ir9.boilersforpellets.com
+    port: 443
+    uuid: 2f11e0ef-7e0d-45d1-8785-53d55daf193e
+    network: ws
+    tls: true
+    servername: ir9.boilersforpellets.com
+    skip-cert-verify: true
+    ws-opts:
+      path: /
+      headers:
+        host: ir9.boilersforpellets.com
+    ip-version: dual
+  - name: '162'
+    type: vless
+    server: ir8.boilersforpellets.com
+    port: 443
+    uuid: 112e4e31-1cab-446c-8be4-c416f3b5470b
+    network: ws
+    tls: true
+    servername: ir8.boilersforpellets.com
+    skip-cert-verify: true
+    ws-opts:
+      path: /
+      headers:
+        host: ir8.boilersforpellets.com
+    ip-version: dual
+  - name: '163'
+    type: ss
+    server: 147.45.178.200
+    port: 57456
+    tls: false
+    password: c40641c1f89e7acb
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '164'
+    type: vless
+    server: 199.232.214.172
+    port: 80
+    uuid: 2bb1227e-97d2-11fc-45e1-daee8d0dcb02
+    tls: false
+    ip-version: dual
+  - name: '165'
+    type: ss
+    server: admin.c3.webramz.co
+    port: 443
+    tls: false
+    password: Bog0ELmMM9DSxDdQ
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '166'
+    type: vless
+    server: 89.44.242.226
+    port: 2000
+    uuid: 45f7be0f-0e95-4884-bb16-f71b9ce9e032
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '167'
+    type: vless
+    server: 185.235.197.174
+    port: 80
+    uuid: a9f40576-6321-491f-bb4a-7d8a762eea27
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '168'
+    type: ss
+    server: 74.177.215.110
+    port: 443
+    tls: false
+    password: W74XFALLLuw6m5IA
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '169'
+    type: ss
+    server: series-a2-mec.samanehha.co
+    port: 443
+    tls: false
+    password: u17T3BvpYaaiuW2c
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '170'
+    type: ss
+    server: admin.c4.webramz.co
+    port: 443
+    tls: false
+    password: 69MUii7VDwMqh7Hz
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '171'
+    type: vmess
+    server: 99.199.73.53
+    port: 33230
+    uuid: 29f86640-0359-456c-d6e6-75155b3d781e
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '172'
+    type: vless
+    server: 99.199.73.53
+    port: 20911
+    uuid: 623a1b9d-bf41-4181-9466-d099996dc706
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '173'
+    type: vless
+    server: 217.60.236.215
+    port: 8443
+    uuid: 77371595-b7aa-472a-9d61-e9731861af07
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '174'
+    type: ss
+    server: 2FreakConfig.usecharge.ir
+    port: 443
+    tls: false
+    password: W74XFALLLuw6m5IA
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '175'
+    type: vless
+    server: pqh41v5.whatstrue.shop
+    port: 1001
+    uuid: c7c922da-ab54-433c-8046-1f9bf9d95c23
+    network: tcp
+    tls: true
+    servername: telewebion.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: 8Gunn8hjWbit5yLtTPcvLph0u2ovHLsGoXX4IJS1EQ0
+      short-id: 5fab0deb
+    ip-version: dual
+    udp: true
+  - name: '176'
+    type: vless
+    server: rezashakor.uniquenonstop.space
+    port: 22921
+    uuid: fb85dd7a-f159-49f2-98bf-8c190be49102
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '177'
+    type: vless
+    server: ir9.boilersforpellets.com
+    port: 443
+    uuid: 2f11e0ef-7e0d-45d1-8785-53d55daf193e
+    network: ws
+    tls: true
+    servername: ir9.boilersforpellets.com
+    skip-cert-verify: true
+    ws-opts:
+      path: /
+      headers:
+        host: ir9.boilersforpellets.com
+    ip-version: dual
+  - name: '178'
+    type: vmess
+    server: 99.199.73.53
+    port: 37333
+    uuid: 2f165ac3-573f-4361-b7f2-6c2d4dc36048
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '179'
+    type: ss
+    server: 62.133.63.212
+    port: 57456
+    tls: false
+    password: c40641c1f89e7acb
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '180'
+    type: vless
+    server: 91.99.198.191
+    port: 443
+    uuid: 2eaef053-5fd6-4def-b234-d760690355ff
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '181'
+    type: vless
+    server: 91.99.80.183
+    port: 51615
+    uuid: 2eaef053-5fd6-4def-b234-d760690355ff
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '182'
+    type: vless
+    server: smart4.oxygen-server.site
+    port: 2111
+    uuid: 2cfce1af-cfb4-4a73-9676-35fbcdc40964
+    network: grpc
+    tls: false
+    grpc-opts:
+      grpc-service-name: 2112vless
+    ip-version: dual
+  - name: '183'
+    type: ss
+    server: 172.166.8.137
+    port: 443
+    tls: false
+    password: mps3FwmDjLrWaOVg
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '184'
+    type: ss
+    server: 2FreakConfig.usecharge.ir
+    port: 443
+    tls: false
+    password: W74XFALLLuw6m5IA
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '185'
+    type: vless
+    server: 217.114.40.12
+    port: 80
+    uuid: a9f40576-6321-491f-bb4a-7d8a762eea27
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '186'
+    type: vless
+    server: 91.99.202.155
+    port: 443
+    uuid: 2eaef053-5fd6-4def-b234-d760690355ff
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '187'
+    type: vless
+    server: 150.241.99.63
+    port: 80
+    uuid: 2e6f1b4f-cc02-44b4-9e5a-55960c950956
+    network: xhttp
+    tls: true
+    servername: journalofbigdata.springeropen.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: XvE4spgyHFlKdak6PAN23URn4I-vfIBtuylpc1U5pWM
+      short-id: 5426024033df45
+    ip-version: dual
+    udp: true
+  - name: '188'
+    type: vless
+    server: mcc.kangavar20.info
+    port: 26842
+    uuid: 21b7ccd3-23e4-49a3-a5f7-dd510c9b06fc
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '189'
+    type: vless
+    server: mci.dl101movis.ir
+    port: 80
+    uuid: f6232313-e4bc-4861-834d-85fd98ba642a
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '190'
+    type: ss
+    server: USA.tiny1.cloud
+    port: 1080
+    tls: false
+    password: aJrY225YM4FD8SOXlRjnIA
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '191'
+    type: vless
+    server: 104.18.26.90
+    port: 443
+    uuid: 42795c1c-acab-46f5-8c10-a86de801411b
+    tls: false
+    ip-version: dual
+  - name: '192'
+    type: vless
+    server: 193.151.137.17
+    port: 4411
+    uuid: dbc9b263-f858-44c1-af4f-4e4ee1723490
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '193'
+    type: vless
+    server: 91.99.205.121
+    port: 443
+    uuid: 153ee04c-dcc1-4ef8-a146-8fb31cec1f48
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '194'
+    type: ss
+    server: admin.c4.webramz.co
+    port: 443
+    tls: false
+    password: 69MUii7VDwMqh7Hz
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '195'
+    type: ss
+    server: 185.112.32.244
+    port: 31792
+    tls: false
+    password: ''
+    ip-version: dual
+    cipher: YWVzLTEyOC1nY206T09TV0RZWFRTUldNVEFFSUo4WFVDRDI3UjJGMzg0T0RLVEhYRjQxWUxSVjQ%3D@185.112.32.244
+  - name: '196'
+    type: vless
+    server: ver2.tcod008.info
+    port: 59761
+    uuid: ae9539b5-70dd-41b5-9666-11a29559a840
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '197'
+    type: vless
+    server: SvnTeam.fast.hosting-ip.com
+    port: 80
+    uuid: da7086f8-055a-463c-b83f-7a9b6b140a9b
+    tls: false
+    ip-version: dual
+  - name: '198'
+    type: vless
+    server: 91.99.145.219
+    port: 443
+    uuid: 2eaef053-5fd6-4def-b234-d760690355ff
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '199'
+    type: ss
+    server: 147.45.178.200
+    port: 57456
+    tls: false
+    password: c40641c1f89e7acb
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '200'
+    type: vless
+    server: 2393123233.torob.com.tr
+    port: 1429
+    uuid: e65f0a57-96f4-4c60-b550-d5bd0c20c557
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '201'
+    type: vless
+    server: 5.181.171.10
+    port: 443
+    uuid: 49ed01ad-3bb4-204f-b0ff-a58f658fd618
+    network: tcp
+    tls: true
+    servername: speed.cloudflare.com
+    flow: xtls-rprx-vision
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: YNGotlyAx3ELUmi4lxOUjiEDmibqf1pPUTE9o3YYT2Y
+    ip-version: dual
+    udp: true
+  - name: '202'
+    type: vless
+    server: test.fast.hosting-ip.com
+    port: 80
+    uuid: 0788f940-bc79-4438-9553-ac469844469d
+    tls: false
+    ip-version: dual
+  - name: '203'
+    type: vless
+    server: S1.LoadBalance.LAT
+    port: 2090
+    uuid: 52ddd2b7-d2da-4169-b11d-b51679c01eb0
+    network: grpc
+    tls: true
+    servername: refersion.com
+    skip-cert-verify: true
+    client-fingerprint: firefox
+    reality-opts:
+      public-key: OTv4I7eaaqHgYAlL5EIrDlotApPujvk9OoJU58FRGz4
+      short-id: e17185329455b179
+    grpc-opts:
+      grpc-service-name: mgrpcm
+    ip-version: dual
+    udp: true
+  - name: '204'
+    type: vless
+    server: 91.99.198.191
+    port: 443
+    uuid: 2eaef053-5fd6-4def-b234-d760690355ff
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '205'
+    type: vless
+    server: nextgenerationaiplatform.ir
+    port: 443
+    uuid: fbc96a4a-6aea-4b91-97f5-ef49d41da669
+    tls: false
+    ip-version: dual
+  - name: '206'
+    type: vless
+    server: 85.133.215.188
+    port: 3311
+    uuid: ccd5d8c4-634c-46bc-8f7a-5be3b8649858
+    network: grpc
+    tls: false
+    grpc-opts: {}
+    ip-version: dual
+  - name: '207'
+    type: vless
+    server: 91.99.145.219
+    port: 443
+    uuid: 2eaef053-5fd6-4def-b234-d760690355ff
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '208'
+    type: vless
+    server: 209.38.243.0
+    port: 2025
+    uuid: be91a34d-6faf-43b6-a70b-14e12e5cf973
+    network: grpc
+    tls: true
+    servername: journalofbigdata.springeropen.com
+    skip-cert-verify: true
+    client-fingerprint: random
+    reality-opts:
+      public-key: hQhLQS4IVfzjFrTD5unsIJJDfEcJrXQgDezwjMxL8x0
+      short-id: a0d3059a
+    grpc-opts: {}
+    ip-version: dual
+    udp: true
+  - name: '209'
+    type: vless
+    server: 91.99.160.13
+    port: 443
+    uuid: 2eaef053-5fd6-4def-b234-d760690355ff
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '210'
+    type: vless
+    server: 91.99.92.95
+    port: 51615
+    uuid: 2eaef053-5fd6-4def-b234-d760690355ff
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '211'
+    type: vless
+    server: turkey.jewelll.ir
+    port: 3311
+    uuid: ccd5d8c4-634c-46bc-8f7a-5be3b8649858
+    network: grpc
+    tls: false
+    grpc-opts: {}
+    ip-version: dual
+  - name: '212'
+    type: vless
+    server: cellone.learn-new.ir
+    port: 443
+    uuid: 52201103-6d69-4577-a65d-ced254d8c9d2
+    network: tcp
+    tls: true
+    servername: khanacademy.org
+    flow: xtls-rprx-vision
+    alpn:
+      - http/1.1
+    skip-cert-verify: true
+    reality-opts:
+      public-key: ikTKkSZZZ18NraMIwbLCP8ln6NmsD77VTSKWTESIOAk
+      short-id: 6acf3ba5790e4324
+    ip-version: dual
+    udp: true
+  - name: '213'
+    type: vless
+    server: 91.99.195.6
+    port: 80
+    uuid: 91a5d5b3-4b88-4359-aeec-e1532f535fd6
+    network: grpc
+    tls: true
+    servername: refersion.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: ZO276Z5WXIqCmNLXT8Lewzjhhgm365JUJXAKyKq8Rz4
+      short-id: bc063769cb
+    grpc-opts:
+      grpc-service-name: refersion.com
+    ip-version: dual
+    udp: true
+  - name: '214'
+    type: vless
+    server: 91.99.166.65
+    port: 80
+    uuid: bc796c67-81fa-404a-9234-0ab0db243bfc
+    network: xhttp
+    tls: true
+    servername: aider.chat
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: nuNgT0HxAJ7YZPfM5uYM_-8aDKvCmr9jQpxBUMRjJRE
+      short-id: 39f0afc3
+    ip-version: dual
+    udp: true
+  - name: '215'
+    type: vless
+    server: 193.151.137.17
+    port: 4411
+    uuid: dbc9b263-f858-44c1-af4f-4e4ee1723490
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '216'
+    type: vless
+    server: 91.99.207.135
+    port: 51615
+    uuid: 2eaef053-5fd6-4def-b234-d760690355ff
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '217'
+    type: vless
+    server: 141.193.213.10
+    port: 80
+    uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+    network: ws
+    tls: false
+    ws-opts:
+      path: /telegram-MTMVPN
+      headers:
+        host: us.laoyoutiao.link
+    ip-version: dual
+  - name: '218'
+    type: vless
+    server: 85.133.215.188
+    port: 3311
+    uuid: ccd5d8c4-634c-46bc-8f7a-5be3b8649858
+    network: grpc
+    tls: false
+    grpc-opts: {}
+    ip-version: dual
+  - name: '219'
+    type: vless
+    server: 5.181.171.10
+    port: 443
+    uuid: 49ed01ad-3bb4-204f-b0ff-a58f658fd618
+    network: tcp
+    tls: true
+    servername: speed.cloudflare.com
+    flow: xtls-rprx-vision
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: YNGotlyAx3ELUmi4lxOUjiEDmibqf1pPUTE9o3YYT2Y
+    ip-version: dual
+    udp: true
+  - name: '220'
+    type: ss
+    server: 4.223.100.248
+    port: 48172
+    tls: false
+    password: 51yloQC8D9w1Wae7FHtI65
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '221'
+    type: vless
+    server: 91.99.154.53
+    port: 80
+    uuid: b199c99a-2f30-4efa-b448-04ddfcc6175b
+    network: xhttp
+    tls: true
+    servername: yahoo.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: RI_YAKjmGqfPcpWBfFdybjEY9TbBhPmc8b9khTLPi1w
+      short-id: fbe3b0
+    ip-version: dual
+    udp: true
+  - name: '222'
+    type: vless
+    server: 91.99.204.242
+    port: 19056
+    uuid: d8ed00b9-6002-4482-ade0-611f357a0f3b
+    tls: false
+    ip-version: dual
+  - name: '223'
+    type: vless
+    server: 209.38.202.192
+    port: 42030
+    uuid: f6bd0b57-1e1c-4dd1-8f1c-939cb96bdb0a
+    network: grpc
+    tls: true
+    servername: journalofbigdata.springeropen.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: ZyEwIOp_n6SemqIK57145NS5UWz3-BrL_fRob9qx4Tk
+      short-id: '15'
+    grpc-opts: {}
+    ip-version: dual
+    udp: true
+  - name: '224'
+    type: vless
+    server: 91.99.154.53
+    port: 80
+    uuid: b199c99a-2f30-4efa-b448-04ddfcc6175b
+    network: xhttp
+    tls: true
+    servername: yahoo.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: RI_YAKjmGqfPcpWBfFdybjEY9TbBhPmc8b9khTLPi1w
+      short-id: fbe3b0
+    ip-version: dual
+    udp: true
+  - name: '225'
+    type: vless
+    server: 91.99.204.242
+    port: 31263
+    uuid: 7b1fc5ef-258a-476b-a776-64542363d004
+    network: grpc
+    tls: true
+    servername: sourceforge.net
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: GTeAy40hV6N5BF32wu7lKB4OZWT9XHFcjzwbMWwXWSs
+      short-id: cd34
+    grpc-opts: {}
+    ip-version: dual
+    udp: true
+  - name: '226'
+    type: vless
+    server: test.fast.hosting-ip.com
+    port: 80
+    uuid: TELEGRAM-NUFiLTER
+    tls: false
+    ip-version: dual
+  - name: '227'
+    type: vless
+    server: test.fast.hosting-ip.com
+    port: 80
+    uuid: 3ec5186b-d636-48b0-9a0a-30d824f63078
+    tls: false
+    ip-version: dual
+  - name: '228'
+    type: vless
+    server: 185.207.196.13
+    port: 8880
+    uuid: 9f3c4ab7-ea26-4d96-91a9-c85ff64ad9a0
+    network: ws
+    tls: false
+    servername: Telegram-channel-WangCai2
+    ws-opts:
+      path: /telegram-channel-mtmvpn---telegram-channel-mtmvpn
+      headers:
+        host: c.82313369.xyz
+    ip-version: dual
+  - name: '229'
+    type: vless
+    server: 185.207.198.254
+    port: 8880
+    uuid: 34c01e61-f4f3-4afb-a83b-406caf8caa33
+    network: ws
+    tls: false
+    servername: Telegram-channel-WangCai2
+    ws-opts:
+      path: /Telegram🇨🇳
+      headers:
+        host: yg.bantony199.top
+    ip-version: dual
+  - name: '230'
+    type: ss
+    server: 5.75.205.114
+    port: 1574
+    tls: false
+    password: OkxRE2UuBCd6YpFbkWf5Rg
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '231'
+    type: vless
+    server: 104.21.67.187
+    port: 2087
+    uuid: d8506e85-4631-4513-9651-5914b8b33e5d
+    tls: false
+    ip-version: dual
+  - name: '232'
+    type: ss
+    server: admin.c1.havij.co
+    port: 443
+    tls: false
+    password: wGA2iy7GzO7zefvD
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '233'
+    type: vless
+    server: 46.31.76.3
+    port: 80
+    uuid: ffc13868-bc71-490e-84db-5722873cf0f5
+    network: xhttp
+    tls: true
+    servername: journalofbigdata.springeropen.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oTX6mQJYxkmmdF7Rq_stAKX_hYoOMXGaWmoblFl2zgo
+      short-id: '5942e2'
+    ip-version: dual
+    udp: true
+  - name: '234'
+    type: vless
+    server: 91.99.199.145
+    port: 443
+    uuid: MdVpnSec
+    network: tcp
+    tls: true
+    servername: www.latimes.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: Nx4K6MTHh3ZDnRbOTc0ZORSZ-lh6IXuIc9K-sM5mrXA
+      short-id: 7399588d8eeb
+    ip-version: dual
+    udp: true
+  - name: '235'
+    type: vless
+    server: gsoowjowj.toppho.ir
+    port: 8443
+    uuid: Anty_Vpn-Anty_Vpn-Anty_Vpn
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '236'
+    type: vless
+    server: nv137.momdping.com
+    port: 443
+    uuid: e16c1f00-afa4-405f-a944-932f81e18e23
+    network: ws
+    tls: true
+    servername: nv137.momdping.com
+    skip-cert-verify: true
+    ws-opts:
+      path: /
+    ip-version: dual
+  - name: '237'
+    type: vless
+    server: 0Can.amazon-osishop.ir
+    port: 8880
+    uuid: 881bc54d-4a96-46d0-814c-c261718293f5
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '238'
+    type: vless
+    server: 45.82.251.69
+    port: 1001
+    uuid: c7c922da-ab54-433c-8046-1f9bf9d95c23
+    network: tcp
+    tls: true
+    servername: telewebion.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: 8Gunn8hjWbit5yLtTPcvLph0u2ovHLsGoXX4IJS1EQ0
+      short-id: 5fab0deb
+    ip-version: dual
+    udp: true
+  - name: '239'
+    type: vless
+    server: 91.99.160.217
+    port: 443
+    uuid: 7a66b8ef-9713-4b69-b839-6bb45070af35
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '240'
+    type: vless
+    server: 104.18.26.90
+    port: 8443
+    uuid: c3c19bdf-2eff-49e0-9746-4c98206a67b0
+    tls: false
+    ip-version: dual
+  - name: '241'
+    type: vless
+    server: 104.18.26.90
+    port: 80
+    uuid: c3c19bdf-2eff-49e0-9746-4c98206a67b0
+    tls: false
+    ip-version: dual
+  - name: '242'
+    type: vless
+    server: 91.99.231.218
+    port: 443
+    uuid: 7b6eca4c-44ae-40c6-973a-4e3b29d30803
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '243'
+    type: vless
+    server: 91.99.160.217
+    port: 443
+    uuid: 7a66b8ef-9713-4b69-b839-6bb45070af35
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '244'
+    type: trojan
+    server: 104.18.26.90
+    port: 443
+    tls: false
+    password: Xa4^l(;.;B#a
+    skip-cert-verify: false
+    ip-version: dual
+  - name: '245'
+    type: vless
+    server: 5.255.120.217
+    port: 80
+    uuid: a24481eb-0496-4ab9-9bd0-af1d530df91d
+    network: xhttp
+    tls: true
+    servername: journalofbigdata.springeropen.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: C4LNbOB3Ar0cntu528Jtn5ivsMZhyk9tkuAlU-jeCio
+      short-id: 8c
+    ip-version: dual
+    udp: true
+  - name: '246'
+    type: vless
+    server: 104.18.26.90
+    port: 80
+    uuid: c3c19bdf-2eff-49e0-9746-4c98206a67b0
+    tls: false
+    ip-version: dual
+  - name: '247'
+    type: trojan
+    server: 104.18.26.90
+    port: 443
+    tls: false
+    password: Xa4^l(;.;B#a
+    skip-cert-verify: false
+    ip-version: dual
+  - name: '248'
+    type: vless
+    server: 91.99.195.73
+    port: 443
+    uuid: 36ee3f5a-3816-4c03-a324-47531167e53b
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '249'
+    type: vmess
+    server: 198.2.218.216
+    port: 44883
+    uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '250'
+    type: vless
+    server: 46.31.76.3
+    port: 80
+    uuid: e3b90b1d-1a59-40db-ab8f-1f1a06a32b53
+    network: xhttp
+    tls: true
+    servername: journalofbigdata.springeropen.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: oTX6mQJYxkmmdF7Rq_stAKX_hYoOMXGaWmoblFl2zgo
+      short-id: '5942e2'
+    ip-version: dual
+    udp: true
+  - name: '251'
+    type: vless
+    server: 181.214.99.36
+    port: 443
+    uuid: 2ebdc8ed-7b96-4839-b32f-b5d21a11f320
+    network: tcp
+    tls: true
+    servername: docker.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: zguKemuiateh9w_YrRsbWEwm94KaNd-fAUxuZMR1p2c
+      short-id: 781c
+    ip-version: dual
+    udp: true
+  - name: '252'
+    type: vless
+    server: 104.18.26.90
+    port: 8080
+    uuid: b8fad738-ce93-4ef1-a632-b8059ec582de
+    network: httpupgrade
+    tls: false
+    ip-version: dual
+  - name: '253'
+    type: vless
+    server: www.venzo.com.tr
+    port: 443
+    uuid: bf4d1d83-91eb-4f7e-990f-3ca764eac4bd
+    tls: false
+    ip-version: dual
+  - name: '254'
+    type: vless
+    server: 141.193.213.10
+    port: 80
+    uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+    network: ws
+    tls: false
+    ws-opts:
+      path: /telegram-MTMVPN
+      headers:
+        host: us.laoyoutiao.link
+    ip-version: dual
+  - name: '255'
+    type: vmess
+    server: 62.60.179.55
+    port: 8080
+    uuid: 5616ec8e-38ce-003f-838e-7ba0900845ab
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '256'
+    type: vless
+    server: Ws.mciickoir.ir
+    port: 9620
+    uuid: 3ed3966a-ca0e-4a46-a437-8000836fa495
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '257'
+    type: vless
+    server: Sd.mciickoir.ir
+    port: 9620
+    uuid: 3ed3966a-ca0e-4a46-a437-8000836fa495
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '258'
+    type: vless
+    server: 104.18.26.90
+    port: 80
+    uuid: 👉TELEGRAM___JOKERRVPN👈
+    tls: false
+    ip-version: dual
+  - name: '259'
+    type: vless
+    server: 91.99.174.121:8880?security=none&encryption=none&host=eN.TwiTtER.cOM.
+    port: 8880
+    uuid: ''
+    network: tcp
+    tls: false
+    ip-version: dual
+    cipher: a2eda8e1-4452-481b-9a71-aab18d3ed17e@91.99.174.121
+  - name: '260'
+    type: vless
+    server: srv5.amazon-osishop.ir
+    port: 8880
+    uuid: a2eda8e1-4452-481b-9a71-aab18d3ed17e
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '261'
+    type: vless
+    server: 104.18.26.90
+    port: 80
+    uuid: b2bb37ae-918a-4c7b-8cfb-3bcf35cf9c7e
+    tls: false
+    ip-version: dual
+  - name: '262'
+    type: vless
+    server: 185.133.125.10
+    port: 19161
+    uuid: c5b69a7f-8e71-4425-8613-0f3c2a97d6d7
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '263'
+    type: vless
+    server: 91.99.182.226
+    port: 34171
+    uuid: 82bdbba7-105d-4590-b08f-1d4d238abada
+    network: tcp
+    tls: true
+    servername: www.latimes.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: xnqAqhJPTN9MejLmPrBprshg49u92dkYnraLNkI3EXA
+      short-id: fb18ca71d301b50c
+    ip-version: dual
+    udp: true
+  - name: '264'
+    type: vless
+    server: 104.18.26.90
+    port: 8880
+    uuid: f272146a-0eef-45bc-a112-c5909f33fdba
+    tls: false
+    ip-version: dual
+  - name: '265'
+    type: vless
+    server: 104.18.26.90
+    port: 80
+    uuid: telegram-id-ArV2ray
+    tls: false
+    ip-version: dual
+  - name: '266'
+    type: vless
+    server: 91.107.159.32
+    port: 443
+    uuid: 4c585027-6ef2-42ff-899b-06a97b1ee7b2
+    network: tcp
+    tls: true
+    servername: yahoo.com
+    flow: xtls-rprx-vision
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: WjYNpDmgqI19JN7jmgTW6lAHUGN1YEa4yc9Bwqs9w0Y
+      short-id: 0f8bc395378e80
+    ip-version: dual
+    udp: true
+  - name: '267'
+    type: vless
+    server: v2.tunnel.motwebserversdmmian.com
+    port: 8084
+    uuid: 000dec39-61ac-4ff2-97e1-5f7c003cf2e5
+    network: ws
+    tls: false
+    ws-opts:
+      path: /telegram----v2tunnel_vpn
+      headers:
+        host: zula.ir
+    ip-version: dual
+  - name: '268'
+    type: vless
+    server: 151.101.3.8
+    port: 80
+    uuid: 24dd368a-1ce6-493b-a036-0f4d479f4540
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '269'
+    type: vless
+    server: 62.60.193.203
+    port: 49141
+    uuid: c053d3eb-e68a-445d-9136-c6f9dd09e90f
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '270'
+    type: vless
+    server: crm.xpersian.com
+    port: 8443
+    uuid: b8c24464-1925-4338-b431-1f3673434ccf
+    network: tcp
+    tls: true
+    servername: tgju.org
+    skip-cert-verify: true
+    client-fingerprint: firefox
+    reality-opts:
+      public-key: eUzR83jhnC_Mq_tOuIHKW4sPa_D2jjYSeyrunYS-Zm4
+      short-id: 33c48970a3f211ed
+    ip-version: dual
+    udp: true
+  - name: '271'
+    type: vless
+    server: 91.99.166.65
+    port: 80
+    uuid: d449ba28-d545-474d-ad97-6e8a9fbc336b
+    network: xhttp
+    tls: true
+    servername: aider.chat
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: nuNgT0HxAJ7YZPfM5uYM_-8aDKvCmr9jQpxBUMRjJRE
+      short-id: 39f0afc3
+    ip-version: dual
+    udp: true
+  - name: '272'
+    type: vless
+    server: 91.99.166.65
+    port: 80
+    uuid: 0e2c33de-0882-4c7a-9343-b05d204216ba
+    network: xhttp
+    tls: true
+    servername: aider.chat
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: nuNgT0HxAJ7YZPfM5uYM_-8aDKvCmr9jQpxBUMRjJRE
+      short-id: 39f0afc3
+    ip-version: dual
+    udp: true
+  - name: '273'
+    type: vless
+    server: enamad.ir-snapp.ir-iran.ir-aparat.com.githubfiles.xyz
+    port: 2087
+    uuid: fb557b79-8554-40d4-994f-0f4be3ca0cee
+    network: grpc
+    tls: true
+    servername: yahoo.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: Co_fWsuPQ7frIIzkuH-Y0EjHz5vOSh3ZaWVqg0m0YV0
+    grpc-opts:
+      grpc-service-name: enamad.ir-snapp.ir-iran.ir-aparat.com.githubfiles.xyz
+    ip-version: dual
+    udp: true
+  - name: '274'
+    type: vless
+    server: multi.gameworld.sbs
+    port: 7636
+    uuid: b20db523-c1ed-4301-a0c6-fc1df5eb7804
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '275'
+    type: vmess
+    server: 185.189.58.195
+    port: 8080
+    uuid: 0d1da504-fd3d-5192-8a52-90c87bc5e5ca
+    network: tcp
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: chacha20-poly1305
+  - name: '276'
+    type: vless
+    server: 45.76.140.111
+    port: 443
+    uuid: ae7d51f2-fd15-45d2-a77c-590f23788a52
+    network: xhttp
+    tls: true
+    servername: cdn.skypack.dev
+    skip-cert-verify: true
+    client-fingerprint: firefox
+    reality-opts:
+      public-key: rPomFaHQdUvIZ1CKylejYHXJ_ygI2rtPIZaVuaRXaVY
+      short-id: 8a2c6af0c06f
+    ip-version: dual
+    udp: true
+  - name: '277'
+    type: ss
+    server: fr.opensocks.site
+    port: 8388
+    tls: false
+    password: ''
+    ip-version: dual
+    cipher: Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpabVUyTw%3D%3D@fr.opensocks.site
+  - name: '278'
+    type: vless
+    server: sd.mciickoir.ir
+    port: 9620
+    uuid: 3ed3966a-ca0e-4a46-a437-8000836fa495
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '279'
+    type: vless
+    server: xpanel-ir.panelfreedom.com
+    port: 2092
+    uuid: c7ce02e8-a47a-416d-97c0-5508b29b69a9
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '280'
+    type: vless
+    server: 141.193.213.10
+    port: 80
+    uuid: fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf
+    network: ws
+    tls: false
+    ws-opts:
+      path: /Telegram---MTMVPN---Telegram---MTMVPN---Telegram---MTMVPN---Telegram---MTMVPN---Telegram---MTMVPN---Telegram---MTMVPN
+      headers:
+        host: us.laoyoutiao.link
+    ip-version: dual
+  - name: '281'
+    type: vless
+    server: Sd.mciickoir.ir
+    port: 9620
+    uuid: 3ed3966a-ca0e-4a46-a437-8000836fa495
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '282'
+    type: vless
+    server: ma3.reactjsworld.com
+    port: 80
+    uuid: c03f2abc-4772-6228-2480-fddf33493ccd
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '283'
+    type: vless
+    server: 91.99.178.189
+    port: 443
+    uuid: 15398933-070d-4ea2-9697-5fcd79793c97
+    network: tcp
+    tls: false
+    ip-version: dual
+  - name: '284'
+    type: vless
+    server: ma3.reactjsworld.com
+    port: 80
+    uuid: c03f2abc-4772-6228-2480-fddf33493ccd
+    network: xhttp
+    tls: false
+    ip-version: dual
+  - name: '285'
+    type: vless
+    server: 152.228.210.41
+    port: 443
+    uuid: 7f96e1ed-c53f-4d48-960f-308722b51461
+    network: tcp
+    tls: true
+    servername: snapp.ir
+    skip-cert-verify: true
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: NVzXDuB9PZECzVgRWCVZJ4rCujQ5d2tw64Ufftci8C4
+      short-id: 5bef46444e87
+    ip-version: dual
+    udp: true
+  - name: '286'
+    type: ss
+    server: 92.63.193.252
+    port: 20
+    tls: false
+    password: ''
+    ip-version: dual
+    cipher: YWVzLTI1Ni1nY206MUtzc2J1VHliUURCWWdEanU1bk5TZw%3D%3D@92.63.193.252
+  - name: '287'
+    type: ss
+    server: 4.158.64.226
+    port: 443
+    tls: false
+    password: 69MUii7VDwMqh7Hz
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '288'
+    type: vless
+    server: 3bd9.55dca.e048.f63-fef1f.yfjcs.com
+    port: 443
+    uuid: 627712cf-d0e1-4545-81fb-241e7fda0284
+    network: tcp
+    tls: true
+    servername: yfhk2.xn--4gq62f52gppi29k.com
+    flow: xtls-rprx-vision
+    skip-cert-verify: true
+    client-fingerprint: firefox
+    ip-version: dual
+  - name: '289'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: 099bbfe9-826e-4d66-a3c8-8a2411cfd3dc
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+      short-id: 65bd65cb739aeebe
+    ip-version: dual
+    udp: true
+  - name: '290'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: 415efa03-2298-4f54-9f6a-b17b55f87d4c
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+    ip-version: dual
+    udp: true
+  - name: '291'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: b3b6854e-bc87-4f98-9634-e4c042a42b04
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+    ip-version: dual
+    udp: true
+  - name: '292'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: 98950304-25b7-4376-9466-e1af86ea1b2d
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+    ip-version: dual
+    udp: true
+  - name: '293'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: aea9a7c6-cf3d-432c-a541-d11c80eef2e0
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+    ip-version: dual
+    udp: true
+  - name: '294'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: 4582a8ba-2d0c-4e55-b7cd-7e76622fe55a
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+    ip-version: dual
+    udp: true
+  - name: '295'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: 75cd5f0d-77a8-4806-ba36-6d0d755d6374
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+      short-id: 65bd65cb739aeebe
+    ip-version: dual
+    udp: true
+  - name: '296'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: f0835e28-2398-4066-b61a-11a9da6aa576
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+      short-id: 65bd65cb739aeebe
+    ip-version: dual
+    udp: true
+  - name: '297'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: ce903daa-2d4b-4ebc-a306-45434960cb97
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+      short-id: 65bd65cb739aeebe
+    ip-version: dual
+    udp: true
+  - name: '298'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: f94d21b5-5bc0-47a4-93c9-c1f56d7b0b98
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+    ip-version: dual
+    udp: true
+  - name: '299'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: 51bd7c29-8e1b-4b01-91b8-97d0d16d291d
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+      short-id: 65bd65cb739aeebe
+    ip-version: dual
+    udp: true
+  - name: '300'
+    type: ss
+    server: 38.54.45.129
+    port: 990
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '301'
+    type: ss
+    server: 192.71.249.78
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '302'
+    type: ss
+    server: 156.146.62.161
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '303'
+    type: ss
+    server: 156.146.62.162
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '304'
+    type: ss
+    server: 156.146.62.163
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '305'
+    type: ss
+    server: 156.146.62.164
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '306'
+    type: ss
+    server: 204.136.10.115
+    port: 1866
+    tls: false
+    password: oXGp1+ihlfKg826H
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '307'
+    type: ss
+    server: 154.223.16.212
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '308'
+    type: ss
+    server: 134.255.210.49
+    port: 990
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '309'
+    type: ss
+    server: 195.181.160.6
+    port: 990
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '310'
+    type: ss
+    server: 37.143.129.230
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '311'
+    type: ss
+    server: fin.outlinebot1.ru
+    port: 5904
+    tls: false
+    password: 5TZnwPb23pQS39lIucspJw
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '312'
+    type: ss
+    server: 192.71.166.102
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '313'
+    type: ss
+    server: 46.183.184.60
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '314'
+    type: ss
+    server: 45.87.175.154
+    port: 8080
+    tls: false
+    password: 4a2rfixophdjffa8KVA4Aa
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '315'
+    type: ss
+    server: 45.87.175.166
+    port: 8080
+    tls: false
+    password: QCXDxuDlTTMD7jtgHUjIoj
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '316'
+    type: ss
+    server: 45.87.175.171
+    port: 8080
+    tls: false
+    password: cvII85TrW6n0OGyfpHVS1u
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '317'
+    type: ss
+    server: 45.87.175.178
+    port: 8080
+    tls: false
+    password: cvII85TrW6n0OGyfpHVS1u
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '318'
+    type: ss
+    server: 45.87.175.181
+    port: 8080
+    tls: false
+    password: 1RWwXhwfAB5gAEozU4G2Pg
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '319'
+    type: ss
+    server: 45.87.175.188
+    port: 8080
+    tls: false
+    password: 1RWwXhwfAB5gAEozU4G2Pg
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '320'
+    type: ss
+    server: 45.87.175.199
+    port: 8080
+    tls: false
+    password: 1RWwXhwfAB5gAEozU4G2Pg
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '321'
+    type: ss
+    server: 45.87.175.28
+    port: 8080
+    tls: false
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '322'
+    type: ss
+    server: 185.153.197.5
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '323'
+    type: ss
+    server: 46.183.185.15
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '324'
+    type: ss
+    server: 46.183.185.37
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '325'
+    type: ss
+    server: 185.213.23.226
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '326'
+    type: ss
+    server: 185.47.255.22
+    port: 990
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '327'
+    type: ss
+    server: 185.231.233.112
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '328'
+    type: ss
+    server: 38.165.233.93
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '329'
+    type: vmess
+    server: 104.18.149.76
+    port: 443
+    uuid: de94cc0a-0592-4969-b1fc-97ea8f0ea0b3
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '330'
+    type: vmess
+    server: s1.cn-db.top
+    port: 8880
+    uuid: 05881d43-e9da-3d65-8cbe-fb0459b78557
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '331'
+    type: vmess
+    server: awetdfgn_cdn.hfhfb.homes
+    port: 2086
+    uuid: 16f000d7-7805-459d-9130-200d00180b7c
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '332'
+    type: vmess
+    server: orvps2.horsenma.net
+    port: 8443
+    uuid: 57e595e6-ef54-4e0d-b8df-e96db9612b99
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '333'
+    type: vmess
+    server: ssss3.11890604.xyz
+    port: 80
+    uuid: f898ffcb-6417-4373-9640-0b66091e8206
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '334'
+    type: vmess
+    server: 222222r.11890604.xyz
+    port: 80
+    uuid: f898ffcb-6417-4373-9640-0b66091e8206
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '335'
+    type: vmess
+    server: rrrrrrrrrt.11890604.xyz
+    port: 443
+    uuid: f898ffcb-6417-4373-9640-0b66091e8206
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '336'
+    type: vmess
+    server: FffvvVbnhJui8.222560.XYz
+    port: 443
+    uuid: 7701ddf5-6a48-401b-a3ec-8af52b6deb48
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '337'
+    type: vmess
+    server: 104.21.3.189
+    port: 2053
+    uuid: 2fc37713-3017-497e-ff2d-965f826a19a3
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '338'
+    type: vmess
+    server: us01.sh-cloudflare.sbs
+    port: 8443
+    uuid: 2bd0c9d7-f239-437e-a1e1-6cf830af2a1a
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '339'
+    type: vmess
+    server: SSsXXXCvBnmjKi.931.Pp.uA
+    port: 443
+    uuid: da128246-33b0-4c88-a44e-d91e9e0a1e05
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '340'
+    type: vmess
+    server: sSsdCVfBGNjkI.931.PP.Ua
+    port: 443
+    uuid: a4e8ec0a-75d0-4fc5-837a-4973ed3a9d3e
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '341'
+    type: vmess
+    server: wWSxcdFR5.999834.XYz
+    port: 80
+    uuid: cdec9d57-661d-456a-bbf2-b4c38e9c6711
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '342'
+    type: vmess
+    server: xcvBnMjKi.999824.xyZ
+    port: 443
+    uuid: 512d9674-db12-44ca-a1b5-654244549b65
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '343'
+    type: vmess
+    server: ssXxZaSw.999824.xyZ
+    port: 443
+    uuid: 512d9674-db12-44ca-a1b5-654244549b65
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '344'
+    type: vmess
+    server: sssssssxxxx.2032.pp.ua
+    port: 443
+    uuid: 4174b95d-115e-4d39-add6-1f8db95bb860
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '345'
+    type: vmess
+    server: sssccvfbgh.4444926.xyz
+    port: 80
+    uuid: f898ffcb-6417-4373-9640-0b66091e8206
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '346'
+    type: vmess
+    server: dddcccvff.4444936.xyz
+    port: 80
+    uuid: f898ffcb-6417-4373-9640-0b66091e8206
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '347'
+    type: vmess
+    server: 3DdDf.444652.xYZ
+    port: 443
+    uuid: cdec9d57-661d-456a-bbf2-b4c38e9c6711
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '348'
+    type: vmess
+    server: 33DEFRTy6.444652.XYZ
+    port: 80
+    uuid: cdec9d57-661d-456a-bbf2-b4c38e9c6711
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '349'
+    type: vmess
+    server: EeEDCFVg.999824.xYZ
+    port: 80
+    uuid: cdec9d57-661d-456a-bbf2-b4c38e9c6711
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '350'
+    type: vmess
+    server: wSxcdFR5.999824.xyz
+    port: 80
+    uuid: cdec9d57-661d-456a-bbf2-b4c38e9c6711
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '351'
+    type: vmess
+    server: 1a2d514b-37cf-499f-8d08-d017a92ab5bb.asoul-ava.top
+    port: 443
+    uuid: 5f726fe3-d82e-4da5-a711-8af0cbb2b682
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '352'
+    type: ss
+    server: 194.14.217.38
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '353'
+    type: ss
+    server: 194.71.126.31
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '354'
+    type: ss
+    server: 121.127.46.147
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '355'
+    type: ss
+    server: 192.71.244.150
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '356'
+    type: ss
+    server: 156.146.40.194
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '357'
+    type: ss
+    server: 185.123.101.241
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '358'
+    type: ss
+    server: 185.123.101.241
+    port: 990
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '359'
+    type: ss
+    server: 142.4.216.225
+    port: 80
+    tls: false
+    password: JIhN6rBKkaEboLNXVSv5rq
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '360'
+    type: ss
+    server: ca225.vpnbook.com
+    port: 80
+    tls: false
+    password: JIhN6rBKkaEboLNXVSv5rq
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '361'
+    type: ss
+    server: 149.22.95.183
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '362'
+    type: vmess
+    server: 23.162.200.227
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '363'
+    type: vmess
+    server: 51.79.102.253
+    port: 80
+    uuid: 58fe1542-5290-40ad-815a-77707a81afe5
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '364'
+    type: ss
+    server: 79.127.233.170
+    port: 990
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '365'
+    type: vmess
+    server: twjxlnnoljxc2.jkhkgj.xyz
+    port: 80
+    uuid: 16f000d7-7805-459d-9130-200d00180b7c
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '366'
+    type: ss
+    server: 154.223.20.79
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '367'
+    type: ss
+    server: 223.165.4.173
+    port: 990
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '368'
+    type: trojan
+    server: 104.248.18.1
+    port: 1935
+    network: tcp
+    tls: true
+    password: 6gZh2JbfhQ
+    sni: x1-germany-digitalocean-v2.devefun.org
+    skip-cert-verify: true
+    ip-version: dual
+  - name: '369'
+    type: ss
+    server: 138.124.115.157
+    port: 1080
+    tls: false
+    password: M-nffO40KlclwbCX9CV1DQ
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '370'
+    type: ss
+    server: 193.108.119.230
+    port: 8080
+    tls: false
+    password: 14fFPrbezE3HDZzsMOr6
+    ip-version: dual
+    cipher: rc4-md5
+  - name: '371'
+    type: ss
+    server: 45.144.54.33
+    port: 34803
+    tls: false
+    password: LiHQX9cDbdooBHlIg0eiqQ
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '372'
+    type: vmess
+    server: 57.129.24.125
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '373'
+    type: ss
+    server: 192.36.27.94
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '374'
+    type: ss
+    server: 45.154.206.192
+    port: 990
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '375'
+    type: ss
+    server: 195.154.169.198
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '376'
+    type: ss
+    server: 195.154.185.174
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '377'
+    type: ss
+    server: 45.158.171.110
+    port: 8080
+    tls: false
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '378'
+    type: ss
+    server: 45.158.171.132
+    port: 8080
+    tls: false
+    password: 4a2rfixophdjffa8KVA4Aa
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '379'
+    type: ss
+    server: 45.158.171.136
+    port: 8080
+    tls: false
+    password: 1RWwXhwfAB5gAEozU4G2Pg
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '380'
+    type: ss
+    server: 45.158.171.141
+    port: 8080
+    tls: false
+    password: 4a2rfixophdjffa8KVA4Aa
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '381'
+    type: ss
+    server: 45.158.171.146
+    port: 8080
+    tls: false
+    password: QCXDxuDlTTMD7jtgHUjIoj
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '382'
+    type: ss
+    server: 45.158.171.151
+    port: 8080
+    tls: false
+    password: 1RWwXhwfAB5gAEozU4G2Pg
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '383'
+    type: ss
+    server: 45.158.171.66
+    port: 8080
+    tls: false
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '384'
+    type: ss
+    server: de-freevmess.privateip.net
+    port: 8443
+    tls: false
+    password: 5bda2736-81e7-43b4-86fc-286f8f8e6578
+    ip-version: dual
+    cipher: aes-256-gcm
+  - name: '385'
+    type: ss
+    server: 51.195.119.47
+    port: 1080
+    tls: false
+    password: qXvO7zYU7KeaB0Md7DQLow
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '386'
+    type: ss
+    server: series-a2-mec.samanehha.co
+    port: 443
+    tls: false
+    password: u17T3BvpYaaiuW2c
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '387'
+    type: ss
+    server: series-a2-mec.varzesh360.co
+    port: 443
+    tls: false
+    password: u17T3BvpYaaiuW2c
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '388'
+    type: ss
+    server: admin.c2.webramz.co
+    port: 443
+    tls: false
+    password: WstuSnlu4ieA9M0L
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '389'
+    type: ss
+    server: series-a2.samanehha.co
+    port: 443
+    tls: false
+    password: W74XFALLLuw6m5IA
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '390'
+    type: ss
+    server: series-a1.samanehha.co
+    port: 443
+    tls: false
+    password: W74XFALLLuw6m5IA
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '391'
+    type: ss
+    server: freakconfig13.felafel.org
+    port: 443
+    tls: false
+    password: 1xO2cqPazqjGfCfd
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '392'
+    type: ss
+    server: series-a2.varzesh360.co
+    port: 443
+    tls: false
+    password: mps3FwmDjLrWaOVg
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '393'
+    type: ss
+    server: admin.c1.webramz.co
+    port: 443
+    tls: false
+    password: 1xO2cqPazqjGfCfd
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '394'
+    type: ss
+    server: admin.c3.webramz.co
+    port: 443
+    tls: false
+    password: Bog0ELmMM9DSxDdQ
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '395'
+    type: ss
+    server: 141.98.101.178
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '396'
+    type: ss
+    server: 185.5.38.111
+    port: 55988
+    tls: false
+    password: BpFieMT6SobpqRiKFefvYu7eXk99XfCeWfjpntzSh81FfMx9R7rJW6LTmzH78StTEhCd7w32ZMxbGJZS98gpn1ozr9jAbMoa
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '397'
+    type: ss
+    server: mx2.drawnrisha.one
+    port: 55988
+    tls: false
+    password: FjgGNNHQiELzxXmaHRxxtQbxDDvGXFxYdTbYe91JKZsjvKLHoY9rn9ruYE45377WjtU3m4kmXQZDXiHBJsgVfhmpawEoGvq9
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '398'
+    type: ss
+    server: 212.102.53.193
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '399'
+    type: ss
+    server: 212.102.53.194
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '400'
+    type: ss
+    server: 212.102.53.195
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '401'
+    type: ss
+    server: 212.102.53.196
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '402'
+    type: ss
+    server: uk-dc1.yangon.club
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '403'
+    type: ss
+    server: 212.102.53.197
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '404'
+    type: ss
+    server: 212.102.53.198
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '405'
+    type: ss
+    server: 212.102.53.78
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '406'
+    type: ss
+    server: 212.102.53.79
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '407'
+    type: ss
+    server: 212.102.53.80
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '408'
+    type: ss
+    server: 212.102.53.81
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '409'
+    type: ss
+    server: admin.c4.webramz.co
+    port: 443
+    tls: false
+    password: 69MUii7VDwMqh7Hz
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '410'
+    type: ss
+    server: 85.210.120.237
+    port: 443
+    tls: false
+    password: Bog0ELmMM9DSxDdQ
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '411'
+    type: vmess
+    server: cc424de4-swd340-swp3f3-1teuc.hgc1.tcpbbr.net
+    port: 8080
+    uuid: a5a81a34-f257-11ef-ba82-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '412'
+    type: vmess
+    server: 43b5a616-sw04g0-swasv3-luwe.hgc1.tcpbbr.net
+    port: 8080
+    uuid: a2b0fd2b-716f-0df8-d4e2-03a1c00e5f1a
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '413'
+    type: vmess
+    server: 5ec07bae-swkhs0-taxf6m-ieln.hgc1.tcpbbr.net
+    port: 8080
+    uuid: f5c0eda2-4b97-11ed-bd7c-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '414'
+    type: vmess
+    server: 507dabb3-swtr40-sxzp1j-1irfn.hgc1.tcpbbr.net
+    port: 8080
+    uuid: a33115b6-75fa-11ed-8826-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 0
+    cipher: auto
+  - name: '415'
+    type: vmess
+    server: 06eb7c64-sv2sg0-svxfqo-1hfyu.hk3.p5pv.com
+    port: 80
+    uuid: ab0147e4-e673-11ee-8058-f23c91cfbbc9
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '416'
+    type: vmess
+    server: bb9bfc22-svc1s0-szegoe-12hj8.hk3.p5pv.com
+    port: 80
+    uuid: 5acc7a7c-d7ea-11eb-8673-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '417'
+    type: vmess
+    server: b1601217-sv2sg0-tcdlur-1qwom.hk3.p5pv.com
+    port: 80
+    uuid: 8d0ec7cc-eefa-11ee-9b59-f23c91cfbbc9
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '418'
+    type: vmess
+    server: 0f64e685-sv0xs0-svwnuh-1t4wg.hk3.p5pv.com
+    port: 80
+    uuid: 1b13e20c-e778-11ef-907f-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '419'
+    type: vmess
+    server: 940e6f36-sva740-tbmeud-1th9y.hk3.p5pv.com
+    port: 80
+    uuid: 12a81f5a-fa9e-11ef-8400-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '420'
+    type: vmess
+    server: b2d5cb20-sv2sg0-t7qy26-14g76.hk3.p5pv.com
+    port: 80
+    uuid: 4729b4c8-1790-11eb-8684-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '421'
+    type: vmess
+    server: 6dbaea45-sv0xs0-t9i7o2-1lt20.hk3.p5pv.com
+    port: 80
+    uuid: bf4ec108-f2b7-11ef-b654-f23c91cfbbc9
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '422'
+    type: vmess
+    server: 80aec38c-sv0xs0-sx16xo-1j3zm.hk3.p5pv.com
+    port: 80
+    uuid: 6ce63b80-8b5b-11ef-b635-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '423'
+    type: vmess
+    server: 7beca07b-sv2sg0-sx16xo-1j3zm.hk3.p5pv.com
+    port: 80
+    uuid: 6ce63b80-8b5b-11ef-b635-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '424'
+    type: vmess
+    server: 9984b70d-sv4n40-sx16xo-1j3zm.hk3.p5pv.com
+    port: 80
+    uuid: 6ce63b80-8b5b-11ef-b635-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '425'
+    type: vmess
+    server: 6de4b9d4-suk9s0-t8ro7t-1ey07.hk3.p5pv.com
+    port: 80
+    uuid: 203d1d64-3313-11ed-bb74-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '426'
+    type: vmess
+    server: 8ab19792-sv4n40-svxfqo-1hfyu.hk3.p5pv.com
+    port: 80
+    uuid: ab0147e4-e673-11ee-8058-f23c91cfbbc9
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '427'
+    type: vmess
+    server: cb884b8d-suvds0-tb6yrr-1tfcw.hk3.p5pv.com
+    port: 80
+    uuid: 1282cc1a-f426-11ef-9495-f23c91cfbbc9
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '428'
+    type: vmess
+    server: 97fb24b1-sv0xs0-svxfqo-1hfyu.hk3.p5pv.com
+    port: 80
+    uuid: ab0147e4-e673-11ee-8058-f23c91cfbbc9
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '429'
+    type: vmess
+    server: f8579e49-sv4n40-t9hghw-1sdoq.hk3.p5pv.com
+    port: 80
+    uuid: 7c077572-6da9-11ef-b786-f23c91cfbbc9
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '430'
+    type: vmess
+    server: 0e7f1016-sva740-te0v28-1mh67.hk3.p5pv.com
+    port: 80
+    uuid: e1c7fbbc-96b6-11ef-8563-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '431'
+    type: vmess
+    server: 76d9dbf9-sva740-szegoe-12hj8.hk3.p5pv.com
+    port: 80
+    uuid: 5acc7a7c-d7ea-11eb-8673-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '432'
+    type: vmess
+    server: 5b2c09e0-suvds0-t2oosc-xm0q.hk3.p5pv.com
+    port: 80
+    uuid: 3437f34e-1b77-11eb-8684-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '433'
+    type: vmess
+    server: 580abbb4-suvds0-sv5llu-1ldl3.hk3.p5pv.com
+    port: 80
+    uuid: fd224a6c-addc-11ed-a8bf-f23c91cfbbc9
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '434'
+    type: vmess
+    server: fb6f1580-sv2sg0-svpmdc-nx3b.hk3.p5pv.com
+    port: 80
+    uuid: 32315324-cf6b-11ed-979b-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '435'
+    type: vmess
+    server: 3be014a6-sv0xs0-svpmdc-nx3b.hk3.p5pv.com
+    port: 80
+    uuid: 32315324-cf6b-11ed-979b-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '436'
+    type: vmess
+    server: e0349a52-sv8cg0-t7uinf-i8ie.hk3.p5pv.com
+    port: 80
+    uuid: 990e8f34-bd4f-11ef-bdb9-f23c91cfbbc9
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '437'
+    type: vmess
+    server: f72738d2-sv0xs0-tc2sod-1tizo.hk3.p5pv.com
+    port: 80
+    uuid: bf36227c-0191-11f0-aee1-f23c91cfbbc9
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '438'
+    type: vmess
+    server: 45c56923-sucv40-tcop2n-tl32.hk3.p5pv.com
+    port: 80
+    uuid: 5c02ab88-7b9c-11ea-8fc9-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '439'
+    type: vmess
+    server: 0bdf3f30-sv8cg0-t9uin7-19ord.hk.p5pv.com
+    port: 80
+    uuid: dcdb1278-4b7d-11ed-bb74-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '440'
+    type: vmess
+    server: 0a46ce00-sunz40-taz53d-1j0y6.hk.p5pv.com
+    port: 80
+    uuid: 1cce7df2-251c-11ee-9409-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '441'
+    type: vmess
+    server: 5730d1c0-sva740-te0v28-1mh67.hk.p5pv.com
+    port: 80
+    uuid: e1c7fbbc-96b6-11ef-8563-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '442'
+    type: vmess
+    server: c62b5b59-sv2sg0-sx0ey8-1b8u2.hk.p5pv.com
+    port: 80
+    uuid: 908111a6-f96b-11ed-9264-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '443'
+    type: vmess
+    server: 9d99030e-sv8cg0-syx1ku-1o8ak.hk.p5pv.com
+    port: 80
+    uuid: 8bb68d04-6973-11ee-b518-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '444'
+    type: vmess
+    server: 3417ad6c-sv2sg0-te1s1a-1i55g.hk.p5pv.com
+    port: 80
+    uuid: d1d13cd2-329f-11ed-bb74-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '445'
+    type: vmess
+    server: 5d49c948-suvds0-tb6yrr-1tfcw.hk.p5pv.com
+    port: 80
+    uuid: 1282cc1a-f426-11ef-9495-f23c91cfbbc9
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '446'
+    type: vmess
+    server: 84a663fa-sunz40-swhx5y-1q3dm.hk.p5pv.com
+    port: 80
+    uuid: c1785de0-212f-11ef-92aa-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '447'
+    type: vmess
+    server: fcd0d554-suvds0-t2oosc-xm0q.hk.p5pv.com
+    port: 80
+    uuid: 3437f34e-1b77-11eb-8684-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '448'
+    type: vmess
+    server: 49c660d6-sucv40-svb30a-150lf.hk.p5pv.com
+    port: 80
+    uuid: 3035b36e-679f-11ed-87fd-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '449'
+    type: vmess
+    server: eff0bb96-sv0xs0-t7x08i-1i87l.hk.p5pv.com
+    port: 80
+    uuid: 40d572ec-7f67-11ed-bf1f-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '450'
+    type: vmess
+    server: 687032bd-sucv40-sxlqds-1qs82.hk.p5pv.com
+    port: 80
+    uuid: 9c6d1142-dc2b-11ee-88c7-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '451'
+    type: vmess
+    server: 16033f27-sv2sg0-tcdlur-1qwom.hk.p5pv.com
+    port: 80
+    uuid: 8d0ec7cc-eefa-11ee-9b59-f23c91cfbbc9
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '452'
+    type: vmess
+    server: 3cb34bed-sucv40-swr62l-lj7z.hk.p5pv.com
+    port: 80
+    uuid: 331cae90-f7e9-11ed-b4e2-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '453'
+    type: vmess
+    server: 3e236b99-sucv40-sudq0l-1rz5s.hk.p5pv.com
+    port: 80
+    uuid: 40e084d6-0316-11f0-90e2-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '454'
+    type: vmess
+    server: d2ad3545-sv0xs0-t7bo2t-1psmw.hk.p5pv.com
+    port: 80
+    uuid: 42bb6d36-97c7-11ee-be7f-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '455'
+    type: vmess
+    server: 3ab9dc0e-sub0g0-tax87j-fxtw.hk.p5pv.com
+    port: 80
+    uuid: c5437726-aa85-3ab0-f5ed-a62156a904f9
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '456'
+    type: vmess
+    server: acf5ec1c-sv2sg0-t2y63q-1jk6u.hk.p5pv.com
+    port: 80
+    uuid: 45bc25b2-1a10-11ed-91c0-f23c91cfbbc9
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '457'
+    type: vmess
+    server: 510ddbe7-sv2sg0-t7x08i-1i87l.hk.p5pv.com
+    port: 80
+    uuid: 40d572ec-7f67-11ed-bf1f-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '458'
+    type: vmess
+    server: d271ef67-sv2sg0-t6oj1r-1pv16.hk.p5pv.com
+    port: 80
+    uuid: 541259a8-8df6-11ee-ace4-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '459'
+    type: vmess
+    server: 7b2f8c5e-sv2sg0-tc61cs-1tja8.hk.p5pv.com
+    port: 80
+    uuid: d2f0bee2-02f1-11f0-8eb0-f23c9164ca5d
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '460'
+    type: vmess
+    server: e4fac854-sum4g0-sx1cxx-1tfjk.hk.p5pv.com
+    port: 80
+    uuid: 49396d98-f4b4-11ef-8c3f-f23c913c8d2b
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 2
+    cipher: auto
+  - name: '461'
+    type: ss
+    server: 203.23.128.33
+    port: 990
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '462'
+    type: ss
+    server: 37.235.49.152
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '463'
+    type: vmess
+    server: 107.148.6.67
+    port: 30001
+    uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
+    network: ws
+    tls: false
+    ip-version: dual
+    alterId: 64
+    cipher: auto
+  - name: '464'
+    type: ss
+    server: 149.22.87.204
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '465'
+    type: ss
+    server: 149.22.87.241
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '466'
+    type: ss
+    server: '@@p222.panda001.net'
+    port: 15098
+    tls: false
+    password: qwerREWQ
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '467'
+    type: ss
+    server: 154.90.62.168
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '468'
+    type: ss
+    server: 154.90.63.177
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '469'
+    type: ss
+    server: 109.201.152.181
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-cfb
+  - name: '470'
+    type: ss
+    server: 149.34.244.68
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '471'
+    type: ss
+    server: 193.29.139.138
+    port: 8080
+    tls: false
+    password: QCXDxuDlTTMD7jtgHUjIoj
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '472'
+    type: ss
+    server: 193.29.139.179
+    port: 8080
+    tls: false
+    password: cvII85TrW6n0OGyfpHVS1u
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '473'
+    type: ss
+    server: 193.29.139.251
+    port: 8080
+    tls: false
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '474'
+    type: ss
+    server: 208.67.105.196
+    port: 42029
+    tls: false
+    password: SjdGCHwafjktt1rzpGxTKYTvVBWb8Xa6E5DTr6MzbdHQSwvpLiDczj3n6MBjy2uyFSzgqgvCWsDQmpM4VQzfPzyGYF58wdyD
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '475'
+    type: ss
+    server: 208.67.105.87
+    port: 42501
+    tls: false
+    password: nq96KftrZAj3LuFQESqmn44Mo5oCuo2cipoEsae25mrmHG2oJ4VT37scBfVBpN5DWtUELZutVhhXs8Le5B8fZ9hLn9ytwvbf
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '476'
+    type: ss
+    server: 51.15.17.169
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '477'
+    type: ss
+    server: 77.246.102.112
+    port: 60117
+    tls: false
+    password: Y1hjiUmSgucgzYYJ0WtqwW
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '478'
+    type: ss
+    server: 89.23.103.125
+    port: 42090
+    tls: false
+    password: uQS5ntVqC00sSKkeNzUiD3
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '479'
+    type: ss
+    server: 45.144.48.63
+    port: 57456
+    tls: false
+    password: d3837224ed465f00
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '480'
+    type: ss
+    server: war.ssvpnapp.win
+    port: 57456
+    tls: false
+    password: d3837224ed465f00
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '481'
+    type: ss
+    server: 92.118.205.228
+    port: 990
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '482'
+    type: ss
+    server: 185.126.239.250
+    port: 990
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '483'
+    type: ss
+    server: 45.139.24.24
+    port: 57456
+    tls: false
+    password: 360e21d21977dc11
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '484'
+    type: ss
+    server: 45.151.62.54
+    port: 28825
+    tls: false
+    password: 0zyDRZ1XmNXaaCAN7KEA8a
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '485'
+    type: ss
+    server: 104.167.197.25
+    port: 57456
+    tls: false
+    password: 360e21d21977dc11
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '486'
+    type: ss
+    server: 104.192.226.106
+    port: 989
+    tls: false
+    password: f8f7aCzcPKbsF8p3
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '487'
+    type: ss
+    server: 156.146.38.167
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '488'
+    type: ss
+    server: 156.146.38.168
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '489'
+    type: ss
+    server: 156.146.38.169
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '490'
+    type: ss
+    server: 172.233.128.126
+    port: 1866
+    tls: false
+    password: oXGp1+ihlfKg826H
+    ip-version: dual
+    cipher: chacha20-ietf-poly1305
+  - name: '491'
+    type: ss
+    server: 173.244.56.6
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '492'
+    type: ss
+    server: 173.244.56.9
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '493'
+    type: ss
+    server: 212.102.47.129
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '494'
+    type: ss
+    server: 212.102.47.130
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '495'
+    type: ss
+    server: 212.102.47.131
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '496'
+    type: ss
+    server: 212.102.47.132
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '497'
+    type: ss
+    server: 37.19.198.160
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '498'
+    type: ss
+    server: 37.19.198.236
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '499'
+    type: ss
+    server: 37.19.198.243
+    port: 443
+    tls: false
+    password: shadowsocks
+    ip-version: dual
+    cipher: aes-128-gcm
+  - name: '500'
+    type: ss
+    server: 45.55.2.232
+    port: 14293
+    tls: false
+    password: 2170f8
+    ip-version: dual
+    cipher: aes-256-cfb
+  - name: '501'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: 23688fde-e4f2-4e12-9f53-330a34d8f534
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+    ip-version: dual
+    udp: true
+  - name: '502'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: 87095951-a3aa-4ded-b0fc-3377a9aefb10
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+      short-id: 65bd65cb739aeebe
+    ip-version: dual
+    udp: true
+  - name: '503'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: 9dba791e-a3f5-40d1-869e-b9122abdf60e
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+      short-id: 65bd65cb739aeebe
+    ip-version: dual
+    udp: true
+  - name: '504'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: ead16550-db03-4cc7-889d-73ab85d6a53d
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+      short-id: 65bd65cb739aeebe
+    ip-version: dual
+    udp: true
+  - name: '505'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: e63acfe9-e70f-4d9a-83d5-f0b2e8febf01
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+    ip-version: dual
+    udp: true
+  - name: '506'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: 2607b31b-abe3-4ef9-b833-693a0db5580f
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+      short-id: 65bd65cb739aeebe
+    ip-version: dual
+    udp: true
+  - name: '507'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: e3f62a6b-fd6c-4af7-aeb1-f74b5b0b3a03
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+      short-id: 65bd65cb739aeebe
+    ip-version: dual
+    udp: true
+  - name: '508'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: eae31fd3-e1d4-401d-abd7-7831256edca3
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+      short-id: 65bd65cb739aeebe
+    ip-version: dual
+    udp: true
+  - name: '509'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: 857f9657-7300-4d27-bf7d-98e2be829833
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+      short-id: 65bd65cb739aeebe
+    ip-version: dual
+    udp: true
+  - name: '510'
+    type: vless
+    server: 195.15.215.198
+    port: 443
+    uuid: df40aeb5-6633-4c65-a8c8-0a95c087c357
+    network: tcp
+    tls: false
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: FpsSPBGXGa6c1mIGmCMmrnsdnVSHQAYnQNur-QMiDTw
+    ip-version: dual
+    udp: true
 proxy-groups:
   - name: "PRO"
     type: url-test
     url: "http://www.google.com/generate_204"
+    exclude-type: "direct|Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http|tuc"
+    include-all: true
     hidden: false
     interval: 180
     tolerance: 5000
@@ -231,10 +5142,10 @@ proxy-groups:
   - name: "🎈Auto"
     type: url-test
     url: "https://www.google.com/generate_204"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     interval: 280
     tolerance: 500
-    exclude-type: "direct|IRAN"
+    exclude-type: "direct|socks5|http|tuc"
     include-all: true
     hidden: false
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
@@ -242,9 +5153,9 @@ proxy-groups:
   - name: "🎈fallback"
     type: fallback
     url: "https://www.google.com/generate_204"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     interval: 180
-    exclude-type: "direct|IRAN"
+    exclude-type: "direct|Shadowsocksr|socks5|http"
     include-all: true
     hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
@@ -252,11 +5163,11 @@ proxy-groups:
   - name: "US"
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/US.svg"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: url-test
     interval: 180
     tolerance: 500
-    exclude-type: "direct|trojan|socks5|http"
+    exclude-type: "direct|socks5|http"
     include-all: true
     hidden: false
     url: "http://www.google.com/generate_204"
@@ -264,7 +5175,7 @@ proxy-groups:
   - name: "Persian Gulf"
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/freedom.webp"
     exclude-type: "direct|Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: url-test
     interval: 180
     tolerance: 500
@@ -274,25 +5185,27 @@ proxy-groups:
     
   - name: "MTN"
     type: url-test
-    url: "https://www.pornhub.com/generate_204"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    url: "https://www.google.com/generate_204"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     interval: 180
     tolerance: 500
-    exclude-type: "direct|IRAN"
-    use:
-      - "MTN"
+    include-all: true
+    exclude-type: "direct|Shadowsocks|Shadowsocksr|trojan|socks5|http"
+#    use:
+#      - "MTN"
     hidden: false
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
     
   - name: "MCI"
     type: url-test
     url: "https://www.google.com/generate_204"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     interval: 180
     tolerance: 500
-    exclude-type: "direct|IRAN"
-    use:
-      - "MCI"
+    include-all: true
+    exclude-type: "direct|Shadowsocksr|vless|trojan|vmess|socks5|http"
+#    use:
+ #     - "MCI"
     hidden: false
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
   - name: 🎯 Direct
@@ -322,7 +5235,9 @@ proxy-groups:
     url: "http://www.google.com/generate_204"
     hidden: false
     include-all: true
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
+    exclude-type: "direct|socks5|http"
     proxies:
       - "PRO"
       - "🎈Auto"
