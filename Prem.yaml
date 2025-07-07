@@ -126,7 +126,7 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/ss_clash.yaml"    
     path: Prem2/P5.yaml
-    interval: 8999
+    interval: 899
     proxy: DIRECT
     skip-cert-verify: true
     exclude-type: "vless"
@@ -145,7 +145,19 @@ proxy-providers:
     health-check:
       enable: true
       interval: 30
-      url: "https://www.google.com/generate_204" 
+      url: "https://www.google.com/generate_204"
+  provider7:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/pp1.yaml"
+    path: Prem/P7.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
+    health-check:
+      enable: true
+      interval: 30
+      url: "https://www.google.com/generate_204"
 proxies:
 proxy-groups:
   - name: PROXY
@@ -176,8 +188,6 @@ proxy-groups:
       - provider5
       - provider6
       - provider7
-      - provider8
-      - provider9
   - name: United+url-test
     type: url-test
     url: "https://www.google.com/"
@@ -195,8 +205,6 @@ proxy-groups:
       - provider5
       - provider6
       - provider7
-      - provider8
-      - provider9
   - name: url-test
     type: url-test
     url: "https://www.google.com/"
@@ -213,8 +221,6 @@ proxy-groups:
       - provider5
       - provider6
       - provider7
-      - provider8
-      - provider9
     proxies: 
   - name: 🎯 DIRECT
     type: select
