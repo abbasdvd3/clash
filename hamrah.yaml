@@ -186,36 +186,14 @@ dns:
       - +.googleapis.com
 p: &p {type: http, interval: 360, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 300}}
 proxy-providers:
-  A: {<<: *p, url: 'https://cdn.jsdelivr.net/gh/itxve/fetch-clash-node/node/merge.yaml', override: {additional-prefix: '[A]'}}
-  B: {<<: *p, url: 'https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml', override: {additional-prefix: '[B]'}}
-  C: {<<: *p, url: 'https://mxlsub.me/free', override: {additional-prefix: '[C]'}}
-  D: {<<: *p, url: 'https://cdn.jsdelivr.net/gh/Ruk1ng001/freeSub@main/clash.yaml', override: {additional-prefix: '[D]'}}
-  E: {<<: *p, url: 'https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml', override: {additional-prefix: '[E]'}}
-  F: {<<: *p, url: 'https://testingcf.jsdelivr.net/gh/chengaopan/AutoMergePublicNodes@master/list.yml', override: {additional-prefix: '[F]'}}
-  G: {<<: *p, url: 'https://raw.githubusercontent.com/vxiaov/free_proxies/main/clash/clash.provider.yaml', override: {additional-prefix: '[G]'}}
-  H: {<<: *p, url: 'https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml', override: {additional-prefix: '[H]'}}
-  I: {<<: *p, url: 'https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml', override: {additional-prefix: '[I]'}}
-  M: {<<: *p, url: 'https://cdn.jsdelivr.net/gh/qjlxg/aggregator@main/data/clash.yaml', override: {additional-prefix: '[M]'}}
   N: {<<: *p, url: 'https://weoknow.com/data/dayupdate/1/z1.txt', override: {additional-prefix: '[N]'}}
   J: {<<: *p, url: 'https://9527521.xyz/config/Q1ArvBnXKIeqY4d5', override: {additional-prefix: '[J]'}}
   K: {<<: *p, url: 'https://9527521.xyz/config/Tlvr07NhCbyAZjc6', override: {additional-prefix: '[K]'}}
   L: {<<: *p, url: 'http://150.230.195.209:12580/clash/proxies', override: {additional-prefix: '[L]'}}
   O: {<<: *p, url: 'http://175.178.182.178:12580/clash/proxies', override: {additional-prefix: '[O]'}}
   P: {<<: *p, url: 'http://66.42.50.118:12580/clash/proxies', override: {additional-prefix: '[P]'}}
-  M2: {<<: *p, url: 'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/v2rayshare.yaml', override: {additional-prefix: '[M2]'}}
-  N2: {<<: *p, url: 'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/nodefree.yaml', override: {additional-prefix: '[N2]'}}
-  J2: {<<: *p, url: 'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/yudou66.yaml', override: {additional-prefix: '[J2]'}}
-  K2: {<<: *p, url: 'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/ndnode.yaml', override: {additional-prefix: '[K2]'}}
-  L2: {<<: *p, url: 'https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml', override: {additional-prefix: '[L2]'}}
-  O2: {<<: *p, url: 'https://raw.githubusercontent.com/Barabama/FreeNodes/main/nodes/freenode.yaml', override: {additional-prefix: '[O2]'}}
-  P2: {<<: *p, url: 'https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/clash.yml', override: {additional-prefix: '[P2]'}}
-  MCI: {<<: *p, url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/MCI', override: {additional-prefix: '[MCI]'}}
-  MTN: {<<: *p, url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/MTN', override: {additional-prefix: '[MTN]'}}
   X: {<<: *p, url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x', override: {additional-prefix: '[X]'}}
   A1: {<<: *p, url: 'https://fforever.github.io/v2rayfree/', override: {additional-prefix: '[A1]'}}
-  B2: {<<: *p, url: 'https://raw.githubusercontent.com/wrfree/free/main/ssr', override: {additional-prefix: '[B2]'}}
-  C3: {<<: *p, url: 'https://v2ray.neocities.org/v2ray.txt', override: {additional-prefix: '[C3]'}}
-  D4: {<<: *p, url: 'https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/combine.yaml', override: {additional-prefix: '[D4]'}}
   E5: {<<: *p, url: 'https://proxy.crazygeeky.com/clash/proxies', override: {additional-prefix: '[E5]'}}
   F6: {<<: *p, url: 'https://proxypool1999.banyunxiaoxi.icu/clash/proxies', override: {additional-prefix: '[F6]'}}
   G7: {<<: *p, url: 'https://pxypool.131433.xyz/clash/proxies', override: {additional-prefix: '[G7]'}}
@@ -234,9 +212,9 @@ proxies:
 
 proxy-groups:
   - name: "PRO"
-    type: url-test
+    type: select
     url: "http://www.google.com/generate_204"
-    exclude-type: "direct|Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http|tuc"
+    exclude-type: "direct|Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
     include-all: true
     hidden: false
     interval: 180
