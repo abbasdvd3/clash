@@ -1,0 +1,2800 @@
+
+mixed-port: 7890
+allow-lan: false
+mode: rule
+ipv6: false
+log-level: info
+external-controller: 0.0.0.0:9090
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  ipv6: false
+  default-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+  nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 119.29.29.29
+    - 180.76.76.76
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - router.asus.com
+    - localhost.sec.qq.com
+    - localhost.ptlogin2.qq.com
+    - +.msftconnecttest.com
+
+proxies:
+  - type: ss
+    name: Z_NL
+    server: 45.158.171.110
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: ss
+    name: Z_ID
+    server: 223.165.4.173
+    port: 990
+    cipher: chacha20-ietf-poly1305
+    password: f8f7aCzcPKbsF8p3
+  - type: ss
+    name: Z_DE
+    server: 45.87.175.157
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: cvII85TrW6n0OGyfpHVS1u
+  - type: ss
+    name: Z_1_DE
+    server: 45.87.175.58
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: ss
+    name: Z_1_NL
+    server: war.ssvpnapp.win
+    port: 57456
+    cipher: chacha20-ietf-poly1305
+    password: d3837224ed465f00
+  - type: ss
+    name: Z_TH
+    server: 103.15.91.171
+    port: 52327
+    cipher: aes-256-gcm
+    password: atjgsJXmcv
+  - type: vmess
+    name: Z_2_NL
+    server: 103.169.142.241
+    port: 8880
+    uuid: B9O1v3TY8e5dQAoD
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_3_NL
+    server: cc2dash.89060004.xyz
+    port: 2096
+    uuid: tYTyRELH4fLQlSdv
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: cc2d1.89060004.xyz
+    ws-opts:
+      path: /
+      headers:
+        Host: cc2d1.89060004.xyz
+    tls: true
+  - type: vmess
+    name: Z_4_NL
+    server: 186.190.215.193
+    port: 22324
+    uuid: 2sVsXqbLB4AUlnlT
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_5_NL
+    server: 45.158.171.136
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: 4a2rfixophdjffa8KVA4Aa
+  - type: ss
+    name: Z_UA
+    server: 37.19.198.243
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: ss
+    name: Z_MD
+    server: 185.93.173.218
+    port: 990
+    cipher: chacha20-ietf-poly1305
+    password: f8f7aCzcPKbsF8p3
+  - type: ss
+    name: Z_US
+    server: 212.102.47.132
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_6_NL
+    server: 108.165.152.241
+    port: 8880
+    uuid: 0R1XV5BloBtN9yjY
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_7_NL
+    server: 202.79.160.243
+    port: 443
+    uuid: aqZ8ZEiOpngmETvR
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: www.32278117.xyz
+    ws-opts:
+      path: /path/191019072927
+      headers:
+        Host: www.32278117.xyz
+    tls: true
+  - type: vmess
+    name: Z_8_NL
+    server: 51.38.64.209
+    port: 44023
+    uuid: 0yWLgsJ4HKvl2KOq
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_9_NL
+    server: 108.162.194.241
+    port: 8880
+    uuid: 6QTpF8K63vnLhjN5
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_10_NL
+    server: 2.58.87.221
+    port: 12269
+    uuid: PfQFvmwcsNHxaV5x
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: ""
+    ws-opts:
+      path: /
+      headers:
+        Host: ""
+  - type: ss
+    name: Z_1_UA
+    server: 188.191.147.127
+    port: 31348
+    cipher: chacha20-ietf-poly1305
+    password: 6IVOuzMfH5ROpgwtRTcNJKYJvYe9FDVaU7wAYYh8PRLxxZs6
+  - type: ss
+    name: Z_1_US
+    server: 149.22.87.241
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_11_NL
+    server: 94.136.185.230
+    port: 10534
+    uuid: U1apTqBkYVGYQhLs
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_2_DE
+    server: 185.177.229.245
+    port: 1866
+    cipher: chacha20-ietf-poly1305
+    password: oXGp1+ihlfKg826H
+  - type: vmess
+    name: Z_12_NL
+    server: 185.142.53.63
+    port: 43585
+    uuid: pDDN24BVIw5PkVkm
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_13_NL
+    server: 45.136.245.177
+    port: 25015
+    uuid: MDWBsxh1JUmlkqhT
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: ""
+    ws-opts:
+      path: /
+      headers:
+        Host: ""
+  - type: vmess
+    name: Z_14_NL
+    server: 57.129.25.20
+    port: 443
+    uuid: Cl9nk938GO5EnOd0
+    alterId: 1
+    network: ws
+    cipher: auto
+    servername: 57.129.25.20
+    ws-opts:
+      path: linkvws
+      headers:
+        Host: 57.129.25.20
+    tls: true
+  - type: vmess
+    name: Z_15_NL
+    server: 104.17.121.140
+    port: 8443
+    uuid: Y3dhwrefg7iAlHOD
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: mg-innocent-adjust-shape.trycloudflare.com
+    ws-opts:
+      path: /
+      headers:
+        Host: mg-innocent-adjust-shape.trycloudflare.com
+    tls: true
+  - type: ss
+    name: Z_16_NL
+    server: 193.29.139.202
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: ss
+    name: Z_2_US
+    server: 185.47.255.22
+    port: 990
+    cipher: chacha20-ietf-poly1305
+    password: f8f7aCzcPKbsF8p3
+  - type: ss
+    name: Z_3_US
+    server: 212.102.47.131
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_17_NL
+    server: lt.fxlcn.com
+    port: 45258
+    uuid: 9rIlKdphwQPCFMSj
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_18_NL
+    server: 2.188.219.43
+    port: 8443
+    uuid: TzUP8DSqKHrFS5Gx
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: ""
+    ws-opts:
+      path: /
+      headers:
+        Host: ""
+  - type: vmess
+    name: Z_19_NL
+    server: 23.166.88.183
+    port: 22324
+    uuid: iUn0kMblHoIz41zd
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_IN
+    server: 134.209.147.198
+    port: 990
+    cipher: chacha20-ietf-poly1305
+    password: f8f7aCzcPKbsF8p3
+  - type: ss
+    name: Z_3_DE
+    server: 45.87.175.199
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: QCXDxuDlTTMD7jtgHUjIoj
+  - type: ss
+    name: Z_GB
+    server: 141.98.101.178
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_20_NL
+    server: 5.182.37.231
+    port: 49664
+    uuid: wlHiULmDRxWhSyFB
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_21_NL
+    server: 103.116.7.241
+    port: 8880
+    uuid: CxK9aAsTJa4IZ3rE
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: ss
+    name: Z_4_US
+    server: exchange.gameaurela.click
+    port: 52952
+    cipher: chacha20-ietf-poly1305
+    password: LMSNh21TrXjR2ok25Q2nE8ENT2zoBmPvka3RCCUAHZELCnWoekVjvaf89qwcRkdbxEfep2bc2aUtmnxqvF1ayQRez1JHjULj
+  - type: vmess
+    name: Z_22_NL
+    server: 216.227.168.157
+    port: 45237
+    uuid: IQ7sm8QfuAIgZSBm
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_IR
+    server: sgp.fastsoonlink.com
+    port: 40005
+    cipher: chacha20-ietf-poly1305
+    password: 79:99:78:D4:99:31:C3:AC:0B:6C:11:6D:5F:1B:A8:A5:7F:08:08:28:02:3C:C8:95:26:63:9A:B0:3B:18:62:35
+  - type: vmess
+    name: Z_23_NL
+    server: 172.67.131.27
+    port: 2053
+    uuid: ibVj4r558AICPrdS
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: rak2d4.89060004.xyz
+    ws-opts:
+      path: /
+      headers:
+        Host: rak2d4.89060004.xyz
+    tls: true
+  - type: vmess
+    name: Z_24_NL
+    server: 91.99.153.39
+    port: 39130
+    uuid: KxUpIWwGPomP1Uvu
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: panel.arushasoft.com
+    ws-opts:
+      path: /
+      headers:
+        Host: panel.arushasoft.com
+  - type: ss
+    name: Z_1_IN
+    server: 103.104.247.49
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: vmess
+    name: Z_25_NL
+    server: 82.197.69.131
+    port: 39674
+    uuid: 2UAJxRwlgH7wGbFx
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_26_NL
+    server: 38.12.83.217
+    port: 30002
+    uuid: tgAkDAxNWXOOj9lM
+    alterId: 64
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_27_NL
+    server: v10.heduian.link
+    port: 30807
+    uuid: 3ec8FcEkIrhPP0Lg
+    alterId: 2
+    network: ws
+    cipher: auto
+    servername: baidu.com
+    ws-opts:
+      path: /oooo
+      headers:
+        Host: baidu.com
+  - type: vmess
+    name: Z_28_NL
+    server: 15.204.234.200
+    port: 41100
+    uuid: Dd8DadaNoRkbhjqc
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_29_NL
+    server: 103.245.228.241
+    port: 8880
+    uuid: TcKrKeCBc7wkuoXP
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_30_NL
+    server: fa.fxlcn.com
+    port: 45237
+    uuid: M8xvki0F9r9ep1Qd
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_31_NL
+    server: e6cjccn36pz4.jkhkgj.xyz
+    port: 80
+    uuid: gX7l1BuYnioMCHil
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: file.dingtalk.com
+    ws-opts:
+      path: /market/tw?ed=512
+      headers:
+        Host: file.dingtalk.com
+  - type: ss
+    name: Z_1_GB
+    server: 212.102.53.78
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: ss
+    name: Z_CN
+    server: 156.226.173.104
+    port: 443
+    cipher: aes-128-gcm
+    password: ZMOmCcKew5oDwrnCg8OMXsOUwovChUlUwpbCn8Oyw67Dm186EsOUKgVVw6t1GsOrw6A=
+  - type: vmess
+    name: Z_32_NL
+    server: xc133.meiziba5566.com
+    port: 443
+    uuid: 6LtTDyZ1PiIc3Tec
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: xc133.meiziba5566.com
+    ws-opts:
+      path: /268f7e36
+      headers:
+        Host: xc133.meiziba5566.com
+    tls: true
+  - type: ss
+    name: Z_2_GB
+    server: uk-dc1.yangon.club
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: ss
+    name: Z_4_DE
+    server: 45.87.175.164
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: cvII85TrW6n0OGyfpHVS1u
+  - type: ss
+    name: Z_5_US
+    server: 152.53.2.128
+    port: 34045
+    cipher: aes-256-gcm
+    password: TG:@Enkelte_notif&&TG:@Notif_Chat
+  - type: vmess
+    name: Z_33_NL
+    server: 827f07.4c38f09e.shop
+    port: 80
+    uuid: jPzySHilHsAje5I5
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: hk04s.4c38f09e.shop
+    ws-opts:
+      path: /
+      headers:
+        Host: hk04s.4c38f09e.shop
+  - type: vmess
+    name: Z_34_NL
+    server: 111.119.196.187
+    port: 54746
+    uuid: yR5Swlq24yFvgArg
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: ""
+    ws-opts:
+      path: /ddd
+      headers:
+        Host: ""
+  - type: ss
+    name: Z_3_GB
+    server: 212.102.53.198
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: trojan
+    name: Z_6_US
+    server: 192.3.107.252
+    port: 443
+    password: 2ee85121-31de-4581-a492-eb00f606e392
+    network: tcp
+    sni: rc8.freeguard.org
+    tls: true
+  - type: vmess
+    name: Z_35_NL
+    server: 202.79.160.164
+    port: 443
+    uuid: dvjrVnF8kjft0K3E
+    alterId: 64
+    network: ws
+    cipher: auto
+    servername: www.20850772.xyz
+    ws-opts:
+      path: /path/191019072927
+      headers:
+        Host: www.20850772.xyz
+    tls: true
+  - type: ss
+    name: Z_7_US
+    server: 2.58.87.221
+    port: 16899
+    cipher: aes-128-gcm
+    password: Yc2CtrIz8L
+  - type: ss
+    name: Z_5_DE
+    server: 45.87.175.92
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: ss
+    name: Z_6_DE
+    server: 45.87.175.22
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: vmess
+    name: Z_36_NL
+    server: 135.84.74.241
+    port: 8880
+    uuid: GeW615Ss30ZnfKpa
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_37_NL
+    server: p03.xiaohezi.it.eu.org
+    port: 443
+    uuid: DHe4pl3mygVj3HCP
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: p03.xiaohezi.it.eu.org
+    ws-opts:
+      path: /vmess
+      headers:
+        Host: p03.xiaohezi.it.eu.org
+    tls: true
+  - type: ss
+    name: Z_8_US
+    server: 38.165.233.18
+    port: 990
+    cipher: chacha20-ietf-poly1305
+    password: f8f7aCzcPKbsF8p3
+  - type: vmess
+    name: Z_38_NL
+    server: lt.fxlcn.com
+    port: 45291
+    uuid: V7lWt0Iu5vqJUNKR
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_39_NL
+    server: us-n1.speedyyun.com
+    port: 25314
+    uuid: fPKwIRfhjT0SHgaA
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: us-n1.speedyyun.com
+    ws-opts:
+      path: /victorias
+      headers:
+        Host: us-n1.speedyyun.com
+  - type: ss
+    name: Z_40_NL
+    server: 45.144.48.63
+    port: 57456
+    cipher: chacha20-ietf-poly1305
+    password: d3837224ed465f00
+  - type: ss
+    name: Z_41_NL
+    server: 45.158.171.70
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: ss
+    name: Z_1_IR
+    server: 151.242.251.153
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: QCXDxuDlTTMD7jtgHUjIoj
+  - type: ss
+    name: Z_2_IR
+    server: 151.242.251.131
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: QCXDxuDlTTMD7jtgHUjIoj
+  - type: vmess
+    name: Z_42_NL
+    server: 62.146.235.193
+    port: 28011
+    uuid: MA2mFMZfeQJlslEr
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_43_NL
+    server: 1a2d514b-37cf-499f-8d08-d017a92ab5bb.asoul-ava.top
+    port: 443
+    uuid: cSKvvllyEQupbXUH
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: 1a2d514b-37cf-499f-8d08-d017a92ab5bb.asoul-ava.top
+    ws-opts:
+      path: /azumase.ren
+      headers:
+        Host: 1a2d514b-37cf-499f-8d08-d017a92ab5bb.asoul-ava.top
+    tls: true
+  - type: ss
+    name: Z_44_NL
+    server: 45.144.54.33
+    port: 34803
+    cipher: chacha20-ietf-poly1305
+    password: LiHQX9cDbdooBHlIg0eiqQ
+  - type: vmess
+    name: Z_45_NL
+    server: 51.79.86.182
+    port: 42610
+    uuid: SkuXoowr3P0FLk05
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_46_NL
+    server: 94.140.0.241
+    port: 8880
+    uuid: 6aod4YRzD9oynW3w
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_47_NL
+    server: 45.67.230.79
+    port: 11052
+    uuid: DqaWbySDvl5of3YJ
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_9_US
+    server: 173.244.56.6
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_48_NL
+    server: 108.162.192.241
+    port: 8880
+    uuid: yTqdzausGrVjgs93
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: ss
+    name: Z_JP
+    server: 160.16.123.124
+    port: 10087
+    cipher: aes-128-gcm
+    password: "10086"
+  - type: vmess
+    name: Z_49_NL
+    server: 108.165.216.241
+    port: 8880
+    uuid: T3zRVtKEmTuTv4SL
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_50_NL
+    server: 527cb2.827a4c39.shop
+    port: 80
+    uuid: udmEzvRSAZ3Xuxoe
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: sg02s.827a4c39.shop
+    ws-opts:
+      path: /
+      headers:
+        Host: sg02s.827a4c39.shop
+  - type: ss
+    name: Z_7_DE
+    server: 46.101.245.131
+    port: 44354
+    cipher: chacha20-ietf-poly1305
+    password: 9RviNa4tscjcmCB408vLSg
+  - type: vmess
+    name: Z_51_NL
+    server: 102.177.189.241
+    port: 8880
+    uuid: BihhZHUv9lH8DKef
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: ss
+    name: Z_52_NL
+    server: 45.158.171.60
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: ss
+    name: Z_1_CN
+    server: 203.23.128.33
+    port: 990
+    cipher: chacha20-ietf-poly1305
+    password: f8f7aCzcPKbsF8p3
+  - type: ss
+    name: Z_RU
+    server: tr.vpnsparta.pro
+    port: 57456
+    cipher: chacha20-ietf-poly1305
+    password: c40641c1f89e7acb
+  - type: vmess
+    name: Z_53_NL
+    server: 109.176.239.241
+    port: 8880
+    uuid: AUU9WED4oQkPRwgW
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_54_NL
+    server: rak1ding.89060004.xyz
+    port: 2083
+    uuid: pH4mckF7bejmw5vc
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: rak1d3.988988.shop
+    ws-opts:
+      path: /
+      headers:
+        Host: rak1d3.988988.shop
+    tls: true
+  - type: vmess
+    name: Z_55_NL
+    server: 108.162.195.241
+    port: 8880
+    uuid: EzcL5pkL15jtx8yg
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_56_NL
+    server: 23.162.200.227
+    port: 443
+    uuid: HjiR4JcrRFGwMqbf
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: ""
+    ws-opts:
+      path: /linkvws
+      headers:
+        Host: ""
+    tls: true
+  - type: ss
+    name: Z_1_RU
+    server: 81.19.137.222
+    port: 57456
+    cipher: chacha20-ietf-poly1305
+    password: a58fa62b4944ddbf
+  - type: ss
+    name: Z_10_US
+    server: 156.146.38.168
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_57_NL
+    server: 135.84.73.241
+    port: 8880
+    uuid: dLcTMTwhKlIBXULf
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: ss
+    name: Z_4_GB
+    server: 212.102.53.79
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: ss
+    name: Z_11_US
+    server: 212.102.47.130
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_58_NL
+    server: 38.99.82.193
+    port: 443
+    uuid: mPf4dc3pyOYOpMHK
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: tilebani.com
+    ws-opts:
+      path: /linkvws
+      headers:
+        Host: tilebani.com
+    tls: true
+  - type: ss
+    name: Z_KR
+    server: 220.124.31.130
+    port: 19378
+    cipher: aes-256-gcm
+    password: NiznLvoIuy
+  - type: ss
+    name: Z_2_RU
+    server: 77.105.166.12
+    port: 8594
+    cipher: chacha20-ietf-poly1305
+    password: mSQiuT5jR17nyWgcXOPrTW
+  - type: vmess
+    name: Z_59_NL
+    server: 169.150.208.83
+    port: 18000
+    uuid: EweW3gh8rzqRZLMk
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_5_GB
+    server: 212.102.53.193
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: ss
+    name: Z_3_RU
+    server: 78.153.131.96
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: 7jvHHF5SaFob
+  - type: vmess
+    name: Z_60_NL
+    server: 57.128.198.152
+    port: 80
+    uuid: I95l8ZTuicUwySM9
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: ""
+    ws-opts:
+      path: /vmess/
+      headers:
+        Host: ""
+  - type: vmess
+    name: Z_61_NL
+    server: 114.129.43.241
+    port: 8880
+    uuid: jOSdcrmbjdClpJ5u
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_62_NL
+    server: 139.64.235.241
+    port: 8880
+    uuid: SXdB4Fd10pvUyH5D
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_63_NL
+    server: 108.162.196.241
+    port: 8880
+    uuid: 4IOudVplRnprWDvU
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: ss
+    name: Z_CH
+    server: 156.146.62.161
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: ss
+    name: Z_12_US
+    server: 51.195.119.47
+    port: 1080
+    cipher: chacha20-ietf-poly1305
+    password: qXvO7zYU7KeaB0Md7DQLow
+  - type: ss
+    name: Z_8_DE
+    server: 45.87.175.171
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: 1RWwXhwfAB5gAEozU4G2Pg
+  - type: ss
+    name: Z_64_NL
+    server: 193.29.139.240
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: vmess
+    name: Z_65_NL
+    server: ov-germany4.09vpn.com
+    port: 8443
+    uuid: AFIUF0MMFcok9sDI
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: ""
+    ws-opts:
+      path: /vmess/
+      headers:
+        Host: ""
+    tls: true
+  - type: ss
+    name: Z_13_US
+    server: 144.126.146.38
+    port: 30100
+    cipher: chacha20-ietf-poly1305
+    password: 741ddced-e6ee-4175-9c1a-e524009f9045
+  - type: vmess
+    name: Z_66_NL
+    server: 148.113.6.81
+    port: 49882
+    uuid: LZuHIpTuJAqOhnKV
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_CA
+    server: ca225.vpnbook.com
+    port: 80
+    cipher: chacha20-ietf-poly1305
+    password: JIhN6rBKkaEboLNXVSv5rq
+  - type: ss
+    name: Z_14_US
+    server: beta.mattenadene.org
+    port: 54075
+    cipher: chacha20-ietf-poly1305
+    password: o38yuvzSe3m5aDNpHtUPH1zGwbGEXXMDsGwVaub2SYEmHUa2WGZUjiezX3Vvva9CCzpjxYtuJLgKsSnsyKBf9ciPVba3y4o3
+  - type: ss
+    name: Z_2_IN
+    server: 103.104.247.47
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: ss
+    name: Z_15_US
+    server: 208.67.105.196
+    port: 42029
+    cipher: chacha20-ietf-poly1305
+    password: SjdGCHwafjktt1rzpGxTKYTvVBWb8Xa6E5DTr6MzbdHQSwvpLiDczj3n6MBjy2uyFSzgqgvCWsDQmpM4VQzfPzyGYF58wdyD
+  - type: ss
+    name: Z_16_US
+    server: 173.244.56.9
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: ss
+    name: Z_17_US
+    server: pr.fastsoonlink.com
+    port: 40030
+    cipher: chacha20-ietf-poly1305
+    password: 7905a32b-012c-4711-89e2-73b6713eca75
+  - type: ss
+    name: Z_6_GB
+    server: 212.102.53.196
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_67_NL
+    server: 104.234.239.241
+    port: 8880
+    uuid: ORdC1ZYDGI1TgLir
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: ss
+    name: Z_68_NL
+    server: 45.158.171.146
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: QCXDxuDlTTMD7jtgHUjIoj
+  - type: vmess
+    name: Z_69_NL
+    server: 15.235.41.200
+    port: 80
+    uuid: ZKG9AdsU357bN31b
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: ""
+    ws-opts:
+      path: /IOebhLMhl1CTbFHbL95myfRX2
+      headers:
+        Host: ""
+  - type: vmess
+    name: Z_70_NL
+    server: 15.235.83.227
+    port: 443
+    uuid: OYXS6eFlKdtHO2k6
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: mankadmu.com
+    ws-opts:
+      path: /linkvws
+      headers:
+        Host: mankadmu.com
+    tls: true
+  - type: ss
+    name: Z_18_US
+    server: 156.146.38.167
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_71_NL
+    server: 104.129.164.241
+    port: 8880
+    uuid: JxgTnVTjPSNk0fBo
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_72_NL
+    server: 15.204.11.190
+    port: 15361
+    uuid: tUvINqiASJaeab7h
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_73_NL
+    server: www.meter.net
+    port: 2083
+    uuid: DdgPMrZbTMdYGKtf
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: blaze-ger-248.blazecloudmain.site
+    ws-opts:
+      path: /linkwsrt?ed=2560
+      headers:
+        Host: blaze-ger-248.blazecloudmain.site
+    tls: true
+  - type: vmess
+    name: Z_74_NL
+    server: 103.181.165.26
+    port: 49597
+    uuid: 7gkilr3MyFgNFlq1
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_75_NL
+    server: 104.18.149.76
+    port: 443
+    uuid: oIzBYthEnSFZGjsJ
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: us.kkp.me.eu.org
+    ws-opts:
+      path: /aa
+      headers:
+        Host: us.kkp.me.eu.org
+    tls: true
+  - type: ss
+    name: Z_9_DE
+    server: 45.87.175.154
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: QCXDxuDlTTMD7jtgHUjIoj
+  - type: ss
+    name: Z_4_RU
+    server: 95.163.176.37
+    port: 8506
+    cipher: chacha20-ietf-poly1305
+    password: eUh4lSpi7nOYj0vSrqLUh0
+  - type: ss
+    name: Z_3_IN
+    server: 103.111.114.29
+    port: 57456
+    cipher: chacha20-ietf-poly1305
+    password: 360e21d21977dc11
+  - type: ss
+    name: Z_2_UA
+    server: 37.19.198.236
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: ss
+    name: Z_5_RU
+    server: 147.45.178.200
+    port: 57456
+    cipher: chacha20-ietf-poly1305
+    password: a58fa62b4944ddbf
+  - type: ss
+    name: Z_10_DE
+    server: 45.87.175.28
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: ss
+    name: Z_ES
+    server: 212.192.12.22
+    port: 50126
+    cipher: aes-256-gcm
+    password: 7e1dd4c55bf85da5
+  - type: vmess
+    name: Z_76_NL
+    server: f60ac0.3c06b95d.shop
+    port: 80
+    uuid: G5qQAlr6f9ueGmBI
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: sg02s.3c06b95d.shop
+    ws-opts:
+      path: /
+      headers:
+        Host: sg02s.3c06b95d.shop
+  - type: vmess
+    name: Z_77_NL
+    server: 104.129.166.241
+    port: 8880
+    uuid: 0Yvw2B8Jj1widOKj
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_78_NL
+    server: 141.101.113.241
+    port: 8880
+    uuid: yDU9fbuhsSQnnMlB
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: ss
+    name: Z_3_UA
+    server: switcher-nick-croquet.freesocks.work
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: 9tqhMdIrTkgQ46PvhyAtMH
+  - type: ss
+    name: Z_1_CA
+    server: 142.4.216.225
+    port: 80
+    cipher: chacha20-ietf-poly1305
+    password: JIhN6rBKkaEboLNXVSv5rq
+  - type: vmess
+    name: Z_79_NL
+    server: 51.79.102.253
+    port: 80
+    uuid: ka2IDjX4Ixa62Wz2
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: ""
+    ws-opts:
+      path: /IOebhLMhl1CTbFHbL95myfRX2
+      headers:
+        Host: ""
+  - type: ss
+    name: Z_7_GB
+    server: 212.102.53.80
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: ss
+    name: Z_AR
+    server: 181.119.30.20
+    port: 990
+    cipher: chacha20-ietf-poly1305
+    password: f8f7aCzcPKbsF8p3
+  - type: vmess
+    name: Z_80_NL
+    server: 119.206.102.29
+    port: 45979
+    uuid: wyUSc5BkcEOmTKBP
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: ""
+    ws-opts:
+      path: /test
+      headers:
+        Host: ""
+  - type: ss
+    name: Z_SG
+    server: 188.166.220.70
+    port: 37708
+    cipher: chacha20-ietf-poly1305
+    password: 24Wk2NSszrfHn22zem1lYV
+  - type: ss
+    name: Z_81_NL
+    server: 193.29.139.227
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: QCXDxuDlTTMD7jtgHUjIoj
+  - type: ss
+    name: Z_82_NL
+    server: 45.154.206.192
+    port: 990
+    cipher: chacha20-ietf-poly1305
+    password: f8f7aCzcPKbsF8p3
+  - type: ss
+    name: Z_83_NL
+    server: 193.29.139.217
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: QCXDxuDlTTMD7jtgHUjIoj
+  - type: trojan
+    name: Z_84_NL
+    server: 194.104.147.74
+    port: 1066
+    password: dda4f3bf-85fb-41bd-9d8e-77a8a02dbd59
+    network: tcp
+    sni: 194.104.147.74
+    tls: true
+  - type: vmess
+    name: Z_85_NL
+    server: 198.2.218.216
+    port: 44883
+    uuid: v9nRYZk5AteVP0G8
+    alterId: 64
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_BG
+    server: 149.34.244.68
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_86_NL
+    server: 45.128.54.84
+    port: 37313
+    uuid: PFkXkC8Vr7KiEGRt
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_6_RU
+    server: 62.133.63.212
+    port: 57456
+    cipher: chacha20-ietf-poly1305
+    password: c40641c1f89e7acb
+  - type: ss
+    name: Z_19_US
+    server: hackney-latest-strike.freesocks.work
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: XUMTygEM1jVYIvysXKqA5T
+  - type: vmess
+    name: Z_87_NL
+    server: 46.250.243.56
+    port: 50394
+    uuid: YslCk716Mns7SMJU
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_11_DE
+    server: 45.87.175.35
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: ss
+    name: Z_20_US
+    server: 156.146.38.169
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_88_NL
+    server: 164.70.68.128
+    port: 59361
+    uuid: DJ5WXHjjpnAJPdjG
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_8_GB
+    server: 212.102.53.81
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_89_NL
+    server: 57.129.25.25
+    port: 443
+    uuid: e0frY0lQ6ILoVT26
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: f.khilei.com
+    ws-opts:
+      path: /linkvws
+      headers:
+        Host: f.khilei.com
+    tls: true
+  - type: ss
+    name: Z_9_GB
+    server: 212.102.53.195
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_90_NL
+    server: 57.129.25.22
+    port: 443
+    uuid: osbxkEEMjOeALi8T
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    ws-opts:
+      path: /linkvws
+      headers:
+        Host: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    tls: true
+  - type: vmess
+    name: Z_91_NL
+    server: 2.58.87.221
+    port: 46628
+    uuid: pGjManECw4Fs5Vk0
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_10_GB
+    server: 212.102.53.194
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_92_NL
+    server: 2112e4.7d79233c.shop
+    port: 80
+    uuid: CZFlv1RpMGaGLhBA
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: hk01s.7d79233c.shop
+    ws-opts:
+      path: /
+      headers:
+        Host: hk01s.7d79233c.shop
+  - type: ss
+    name: Z_93_NL
+    server: 193.29.139.157
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: 4a2rfixophdjffa8KVA4Aa
+  - type: ss
+    name: Z_CZ
+    server: 195.181.160.6
+    port: 990
+    cipher: chacha20-ietf-poly1305
+    password: f8f7aCzcPKbsF8p3
+  - type: vmess
+    name: Z_94_NL
+    server: ys.fxlcn.com
+    port: 45279
+    uuid: ONqXkbYJy4d17qri
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_95_NL
+    server: blog.aihi.uk
+    port: 3306
+    uuid: 3wxEF67QEi1NSGJc
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: blog.aihi.uk
+    ws-opts:
+      path: /ray
+      headers:
+        Host: blog.aihi.uk
+    tls: true
+  - type: ss
+    name: Z_1_ES
+    server: 92.38.171.215
+    port: 31348
+    cipher: chacha20-ietf-poly1305
+    password: 0RsrcFJ1vOsWEqg3P55hvaacKfuShT0cc1h0t8AD0NA8u1uR
+  - type: trojan
+    name: Z_21_US
+    server: 198.23.229.250
+    port: 443
+    password: 2ee85121-31de-4581-a492-eb00f606e392
+    network: tcp
+    sni: rc6.freeguard.org
+    tls: true
+  - type: vmess
+    name: Z_96_NL
+    server: cc2dash.89060004.xyz
+    port: 2083
+    uuid: p4O2j6Njyn5sdeLK
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: cc2d3.89060004.xyz
+    ws-opts:
+      path: /
+      headers:
+        Host: cc2d3.89060004.xyz
+    tls: true
+  - type: ss
+    name: Z_TR
+    server: 185.123.101.241
+    port: 990
+    cipher: chacha20-ietf-poly1305
+    password: f8f7aCzcPKbsF8p3
+  - type: ss
+    name: Z_22_US
+    server: 208.67.105.87
+    port: 42501
+    cipher: chacha20-ietf-poly1305
+    password: nq96KftrZAj3LuFQESqmn44Mo5oCuo2cipoEsae25mrmHG2oJ4VT37scBfVBpN5DWtUELZutVhhXs8Le5B8fZ9hLn9ytwvbf
+  - type: vmess
+    name: Z_97_NL
+    server: 51.222.158.243
+    port: 8443
+    uuid: P4rLlNaQNsZmENN9
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: ""
+    ws-opts:
+      path: /vmess/
+      headers:
+        Host: ""
+    tls: true
+  - type: ss
+    name: Z_98_NL
+    server: 213.109.147.242
+    port: 62685
+    cipher: chacha20-ietf-poly1305
+    password: VpKABcOpNNA0l5G2AVOmw8
+  - type: vmess
+    name: Z_99_NL
+    server: 130.250.137.241
+    port: 8880
+    uuid: Rm4rGsw6nhHPWxXX
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: ss
+    name: Z_RO
+    server: 185.126.239.250
+    port: 990
+    cipher: chacha20-ietf-poly1305
+    password: f8f7aCzcPKbsF8p3
+  - type: ss
+    name: Z_100_NL
+    server: 45.158.171.66
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: vmess
+    name: Z_101_NL
+    server: 103.133.1.241
+    port: 8880
+    uuid: KmNHozvu9tjqpOdl
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: ss
+    name: Z_23_US
+    server: 156.146.38.170
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: ss
+    name: Z_11_GB
+    server: 212.102.53.197
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_102_NL
+    server: panel3.ipyar.org
+    port: 32017
+    uuid: KtPOf0vL4eJkgmwq
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: vmess
+    name: Z_103_NL
+    server: 57.129.28.69
+    port: 443
+    uuid: 70Ep1OLWzSvp2zbh
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: baradiha.com
+    ws-opts:
+      path: /linkvws
+      headers:
+        Host: baradiha.com
+    tls: true
+  - type: ss
+    name: Z_24_US
+    server: 94.131.21.174
+    port: 54075
+    cipher: chacha20-ietf-poly1305
+    password: o38yuvzSe3m5aDNpHtUPH1zGwbGEXXMDsGwVaub2SYEmHUa2WGZUjiezX3Vvva9CCzpjxYtuJLgKsSnsyKBf9ciPVba3y4o3
+  - type: ss
+    name: Z_25_US
+    server: 104.167.197.25
+    port: 57456
+    cipher: chacha20-ietf-poly1305
+    password: 360e21d21977dc11
+  - type: vmess
+    name: Z_104_NL
+    server: 15.235.50.172
+    port: 443
+    uuid: MaPhOruuFIHFT5Vr
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: baradiha.com
+    ws-opts:
+      path: /linkvws
+      headers:
+        Host: baradiha.com
+    tls: true
+  - type: vmess
+    name: Z_105_NL
+    server: 104.128.93.97
+    port: 80
+    uuid: aCoLJPghX3vuNsP7
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: ""
+    ws-opts:
+      path: /
+      headers:
+        Host: ""
+  - type: vmess
+    name: Z_106_NL
+    server: 104.31.16.241
+    port: 8880
+    uuid: erx6VQUgqiDNPrjL
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: ss
+    name: Z_4_UA
+    server: 37.19.198.160
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_107_NL
+    server: 103.160.204.241
+    port: 8880
+    uuid: ayuMX5ZaV19CDrL5
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_108_NL
+    server: cloudgetservice.mcloudservice.site
+    port: 443
+    uuid: dtQ9kt6BRCILniSJ
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: Fra-Vp-123.BLaZECLOUD.Site
+    ws-opts:
+      path: /linvkws
+      headers:
+        Host: Fra-Vp-123.BLaZECLOUD.Site
+    tls: true
+  - type: ss
+    name: Z_12_DE
+    server: 45.87.175.10
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: vmess
+    name: Z_109_NL
+    server: www.wto.org
+    port: 8080
+    uuid: oKfBXJWqe737N8of
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: h3.xuherp.ggff.net
+    ws-opts:
+      path: /
+      headers:
+        Host: h3.xuherp.ggff.net
+  - type: ss
+    name: Z_26_US
+    server: 164.92.156.41
+    port: 24206
+    cipher: chacha20-ietf-poly1305
+    password: zI7kiNZ0UfV9cXB73a4nRD
+  - type: ss
+    name: Z_110_NL
+    server: 193.29.139.235
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: vmess
+    name: Z_111_NL
+    server: 57.129.24.124
+    port: 443
+    uuid: ZxfNvJHOZTU866wb
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    ws-opts:
+      path: /linkvws
+      headers:
+        Host: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    tls: true
+  - type: vmess
+    name: Z_112_NL
+    server: 104.129.165.241
+    port: 8880
+    uuid: A1H9GQSy8JTUxgQs
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: ss
+    name: Z_13_DE
+    server: 45.87.175.65
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: vmess
+    name: Z_113_NL
+    server: v7.heduian.link
+    port: 30807
+    uuid: UIP4IG93cZ03vxUB
+    alterId: 2
+    network: ws
+    cipher: auto
+    servername: ocbc.com
+    ws-opts:
+      path: /oooo
+      headers:
+        Host: ocbc.com
+  - type: ss
+    name: Z_14_DE
+    server: 45.87.175.69
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: ss
+    name: Z_114_NL
+    server: 193.29.139.251
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: oZIoA69Q8yhcQV8ka3Pa3A
+  - type: vmess
+    name: Z_115_NL
+    server: 15.235.83.228
+    port: 443
+    uuid: l2obmjuEueUKGYdt
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    ws-opts:
+      path: /linkvws
+      headers:
+        Host: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
+    tls: true
+  - type: vmess
+    name: Z_116_NL
+    server: 104.239.72.241
+    port: 8880
+    uuid: pwVSkq2cXTtoHDfe
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_117_NL
+    server: 140.99.233.241
+    port: 8880
+    uuid: YYaSztQZsBAvZM7z
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: ss
+    name: Z_1_JP
+    server: 153.121.51.214
+    port: 10087
+    cipher: aes-128-gcm
+    password: "10086"
+  - type: ss
+    name: Z_3_IR
+    server: beesyar.org
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: 4a2rfixophdjffa8KVA4Aa
+  - type: ss
+    name: Z_4_IR
+    server: xcel0dooz.pet0er23mh21qq.com
+    port: 1080
+    cipher: chacha20-ietf-poly1305
+    password: bCmNtjuyczgcKj2s3P3eBg
+  - type: vmess
+    name: Z_118_NL
+    server: 135.125.182.74
+    port: 28213
+    uuid: m2XoHrpON9U6eTpa
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_15_DE
+    server: 45.87.175.178
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: cvII85TrW6n0OGyfpHVS1u
+  - type: vmess
+    name: Z_119_NL
+    server: 141.11.202.241
+    port: 8880
+    uuid: N5JBJikH79WdXrkG
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+  - type: vmess
+    name: Z_120_NL
+    server: 34.80.156.254
+    port: 55084
+    uuid: IDzQAvQY1nWDnKAn
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_1_CH
+    server: 156.146.62.162
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: ss
+    name: Z_121_NL
+    server: 193.29.139.179
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: cvII85TrW6n0OGyfpHVS1u
+  - type: vmess
+    name: Z_122_NL
+    server: 146.59.55.50
+    port: 443
+    uuid: 2uUFdHkIH9iHMVGQ
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: o.metuji.com
+    ws-opts:
+      path: /linkvws
+      headers:
+        Host: o.metuji.com
+    tls: true
+  - type: vmess
+    name: Z_123_NL
+    server: 103.124.107.144
+    port: 29800
+    uuid: UjiQdRpDUfJ3Kwkr
+    alterId: 0
+    network: tcp
+    cipher: auto
+    servername: ""
+  - type: ss
+    name: Z_5_IR
+    server: 151.242.251.147
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: QCXDxuDlTTMD7jtgHUjIoj
+  - type: ss
+    name: Z_27_US
+    server: 149.22.87.204
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: ss
+    name: Z_28_US
+    server: 212.102.47.129
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: ss
+    name: Z_7_RU
+    server: 46.226.163.225
+    port: 57456
+    cipher: chacha20-ietf-poly1305
+    password: c40641c1f89e7acb
+  - type: ss
+    name: Z_2_CH
+    server: 156.146.62.164
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: ss
+    name: Z_3_CH
+    server: 156.146.62.163
+    port: 443
+    cipher: aes-128-gcm
+    password: shadowsocks
+  - type: vmess
+    name: Z_124_NL
+    server: 94.247.142.241
+    port: 8880
+    uuid: GnkYJ9uALg9WOWT6
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: TG.WangCai2.s2.db-link02.top
+    ws-opts:
+      path: /dabai.in
+      headers:
+        Host: TG.WangCai2.s2.db-link02.top
+proxy-groups:
+  - name: 🚀
+    type: select
+    proxies:
+      - ♻
+      - DIRECT
+      - Z_NL
+      - Z_ID
+      - Z_DE
+      - Z_1_DE
+      - Z_1_NL
+      - Z_TH
+      - Z_2_NL
+      - Z_3_NL
+      - Z_4_NL
+      - Z_5_NL
+      - Z_UA
+      - Z_MD
+      - Z_US
+      - Z_6_NL
+      - Z_7_NL
+      - Z_8_NL
+      - Z_9_NL
+      - Z_10_NL
+      - Z_1_UA
+      - Z_1_US
+      - Z_11_NL
+      - Z_2_DE
+      - Z_12_NL
+      - Z_13_NL
+      - Z_14_NL
+      - Z_15_NL
+      - Z_16_NL
+      - Z_2_US
+      - Z_3_US
+      - Z_17_NL
+      - Z_18_NL
+      - Z_19_NL
+      - Z_IN
+      - Z_3_DE
+      - Z_GB
+      - Z_20_NL
+      - Z_21_NL
+      - Z_4_US
+      - Z_22_NL
+      - Z_IR
+      - Z_23_NL
+      - Z_24_NL
+      - Z_1_IN
+      - Z_25_NL
+      - Z_26_NL
+      - Z_27_NL
+      - Z_28_NL
+      - Z_29_NL
+      - Z_30_NL
+      - Z_31_NL
+      - Z_1_GB
+      - Z_CN
+      - Z_32_NL
+      - Z_2_GB
+      - Z_4_DE
+      - Z_5_US
+      - Z_33_NL
+      - Z_34_NL
+      - Z_3_GB
+      - Z_6_US
+      - Z_35_NL
+      - Z_7_US
+      - Z_5_DE
+      - Z_6_DE
+      - Z_36_NL
+      - Z_37_NL
+      - Z_8_US
+      - Z_38_NL
+      - Z_39_NL
+      - Z_40_NL
+      - Z_41_NL
+      - Z_1_IR
+      - Z_2_IR
+      - Z_42_NL
+      - Z_43_NL
+      - Z_44_NL
+      - Z_45_NL
+      - Z_46_NL
+      - Z_47_NL
+      - Z_9_US
+      - Z_48_NL
+      - Z_JP
+      - Z_49_NL
+      - Z_50_NL
+      - Z_7_DE
+      - Z_51_NL
+      - Z_52_NL
+      - Z_1_CN
+      - Z_RU
+      - Z_53_NL
+      - Z_54_NL
+      - Z_55_NL
+      - Z_56_NL
+      - Z_1_RU
+      - Z_10_US
+      - Z_57_NL
+      - Z_4_GB
+      - Z_11_US
+      - Z_58_NL
+      - Z_KR
+      - Z_2_RU
+      - Z_59_NL
+      - Z_5_GB
+      - Z_3_RU
+      - Z_60_NL
+      - Z_61_NL
+      - Z_62_NL
+      - Z_63_NL
+      - Z_CH
+      - Z_12_US
+      - Z_8_DE
+      - Z_64_NL
+      - Z_65_NL
+      - Z_13_US
+      - Z_66_NL
+      - Z_CA
+      - Z_14_US
+      - Z_2_IN
+      - Z_15_US
+      - Z_16_US
+      - Z_17_US
+      - Z_6_GB
+      - Z_67_NL
+      - Z_68_NL
+      - Z_69_NL
+      - Z_70_NL
+      - Z_18_US
+      - Z_71_NL
+      - Z_72_NL
+      - Z_73_NL
+      - Z_74_NL
+      - Z_75_NL
+      - Z_9_DE
+      - Z_4_RU
+      - Z_3_IN
+      - Z_2_UA
+      - Z_5_RU
+      - Z_10_DE
+      - Z_ES
+      - Z_76_NL
+      - Z_77_NL
+      - Z_78_NL
+      - Z_3_UA
+      - Z_1_CA
+      - Z_79_NL
+      - Z_7_GB
+      - Z_AR
+      - Z_80_NL
+      - Z_SG
+      - Z_81_NL
+      - Z_82_NL
+      - Z_83_NL
+      - Z_84_NL
+      - Z_85_NL
+      - Z_BG
+      - Z_86_NL
+      - Z_6_RU
+      - Z_19_US
+      - Z_87_NL
+      - Z_11_DE
+      - Z_20_US
+      - Z_88_NL
+      - Z_8_GB
+      - Z_89_NL
+      - Z_9_GB
+      - Z_90_NL
+      - Z_91_NL
+      - Z_10_GB
+      - Z_92_NL
+      - Z_93_NL
+      - Z_CZ
+      - Z_94_NL
+      - Z_95_NL
+      - Z_1_ES
+      - Z_21_US
+      - Z_96_NL
+      - Z_TR
+      - Z_22_US
+      - Z_97_NL
+      - Z_98_NL
+      - Z_99_NL
+      - Z_RO
+      - Z_100_NL
+      - Z_101_NL
+      - Z_23_US
+      - Z_11_GB
+      - Z_102_NL
+      - Z_103_NL
+      - Z_24_US
+      - Z_25_US
+      - Z_104_NL
+      - Z_105_NL
+      - Z_106_NL
+      - Z_4_UA
+      - Z_107_NL
+      - Z_108_NL
+      - Z_12_DE
+      - Z_109_NL
+      - Z_26_US
+      - Z_110_NL
+      - Z_111_NL
+      - Z_112_NL
+      - Z_13_DE
+      - Z_113_NL
+      - Z_14_DE
+      - Z_114_NL
+      - Z_115_NL
+      - Z_116_NL
+      - Z_117_NL
+      - Z_1_JP
+      - Z_3_IR
+      - Z_4_IR
+      - Z_118_NL
+      - Z_15_DE
+      - Z_119_NL
+      - Z_120_NL
+      - Z_1_CH
+      - Z_121_NL
+      - Z_122_NL
+      - Z_123_NL
+      - Z_5_IR
+      - Z_27_US
+      - Z_28_US
+      - Z_7_RU
+      - Z_2_CH
+      - Z_3_CH
+      - Z_124_NL
+  - name: ♻
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    proxies:
+      - Z_NL
+      - Z_ID
+      - Z_DE
+      - Z_1_DE
+      - Z_1_NL
+      - Z_TH
+      - Z_2_NL
+      - Z_3_NL
+      - Z_4_NL
+      - Z_5_NL
+      - Z_UA
+      - Z_MD
+      - Z_US
+      - Z_6_NL
+      - Z_7_NL
+      - Z_8_NL
+      - Z_9_NL
+      - Z_10_NL
+      - Z_1_UA
+      - Z_1_US
+      - Z_11_NL
+      - Z_2_DE
+      - Z_12_NL
+      - Z_13_NL
+      - Z_14_NL
+      - Z_15_NL
+      - Z_16_NL
+      - Z_2_US
+      - Z_3_US
+      - Z_17_NL
+      - Z_18_NL
+      - Z_19_NL
+      - Z_IN
+      - Z_3_DE
+      - Z_GB
+      - Z_20_NL
+      - Z_21_NL
+      - Z_4_US
+      - Z_22_NL
+      - Z_IR
+      - Z_23_NL
+      - Z_24_NL
+      - Z_1_IN
+      - Z_25_NL
+      - Z_26_NL
+      - Z_27_NL
+      - Z_28_NL
+      - Z_29_NL
+      - Z_30_NL
+      - Z_31_NL
+      - Z_1_GB
+      - Z_CN
+      - Z_32_NL
+      - Z_2_GB
+      - Z_4_DE
+      - Z_5_US
+      - Z_33_NL
+      - Z_34_NL
+      - Z_3_GB
+      - Z_6_US
+      - Z_35_NL
+      - Z_7_US
+      - Z_5_DE
+      - Z_6_DE
+      - Z_36_NL
+      - Z_37_NL
+      - Z_8_US
+      - Z_38_NL
+      - Z_39_NL
+      - Z_40_NL
+      - Z_41_NL
+      - Z_1_IR
+      - Z_2_IR
+      - Z_42_NL
+      - Z_43_NL
+      - Z_44_NL
+      - Z_45_NL
+      - Z_46_NL
+      - Z_47_NL
+      - Z_9_US
+      - Z_48_NL
+      - Z_JP
+      - Z_49_NL
+      - Z_50_NL
+      - Z_7_DE
+      - Z_51_NL
+      - Z_52_NL
+      - Z_1_CN
+      - Z_RU
+      - Z_53_NL
+      - Z_54_NL
+      - Z_55_NL
+      - Z_56_NL
+      - Z_1_RU
+      - Z_10_US
+      - Z_57_NL
+      - Z_4_GB
+      - Z_11_US
+      - Z_58_NL
+      - Z_KR
+      - Z_2_RU
+      - Z_59_NL
+      - Z_5_GB
+      - Z_3_RU
+      - Z_60_NL
+      - Z_61_NL
+      - Z_62_NL
+      - Z_63_NL
+      - Z_CH
+      - Z_12_US
+      - Z_8_DE
+      - Z_64_NL
+      - Z_65_NL
+      - Z_13_US
+      - Z_66_NL
+      - Z_CA
+      - Z_14_US
+      - Z_2_IN
+      - Z_15_US
+      - Z_16_US
+      - Z_17_US
+      - Z_6_GB
+      - Z_67_NL
+      - Z_68_NL
+      - Z_69_NL
+      - Z_70_NL
+      - Z_18_US
+      - Z_71_NL
+      - Z_72_NL
+      - Z_73_NL
+      - Z_74_NL
+      - Z_75_NL
+      - Z_9_DE
+      - Z_4_RU
+      - Z_3_IN
+      - Z_2_UA
+      - Z_5_RU
+      - Z_10_DE
+      - Z_ES
+      - Z_76_NL
+      - Z_77_NL
+      - Z_78_NL
+      - Z_3_UA
+      - Z_1_CA
+      - Z_79_NL
+      - Z_7_GB
+      - Z_AR
+      - Z_80_NL
+      - Z_SG
+      - Z_81_NL
+      - Z_82_NL
+      - Z_83_NL
+      - Z_84_NL
+      - Z_85_NL
+      - Z_BG
+      - Z_86_NL
+      - Z_6_RU
+      - Z_19_US
+      - Z_87_NL
+      - Z_11_DE
+      - Z_20_US
+      - Z_88_NL
+      - Z_8_GB
+      - Z_89_NL
+      - Z_9_GB
+      - Z_90_NL
+      - Z_91_NL
+      - Z_10_GB
+      - Z_92_NL
+      - Z_93_NL
+      - Z_CZ
+      - Z_94_NL
+      - Z_95_NL
+      - Z_1_ES
+      - Z_21_US
+      - Z_96_NL
+      - Z_TR
+      - Z_22_US
+      - Z_97_NL
+      - Z_98_NL
+      - Z_99_NL
+      - Z_RO
+      - Z_100_NL
+      - Z_101_NL
+      - Z_23_US
+      - Z_11_GB
+      - Z_102_NL
+      - Z_103_NL
+      - Z_24_US
+      - Z_25_US
+      - Z_104_NL
+      - Z_105_NL
+      - Z_106_NL
+      - Z_4_UA
+      - Z_107_NL
+      - Z_108_NL
+      - Z_12_DE
+      - Z_109_NL
+      - Z_26_US
+      - Z_110_NL
+      - Z_111_NL
+      - Z_112_NL
+      - Z_13_DE
+      - Z_113_NL
+      - Z_14_DE
+      - Z_114_NL
+      - Z_115_NL
+      - Z_116_NL
+      - Z_117_NL
+      - Z_1_JP
+      - Z_3_IR
+      - Z_4_IR
+      - Z_118_NL
+      - Z_15_DE
+      - Z_119_NL
+      - Z_120_NL
+      - Z_1_CH
+      - Z_121_NL
+      - Z_122_NL
+      - Z_123_NL
+      - Z_5_IR
+      - Z_27_US
+      - Z_28_US
+      - Z_7_RU
+      - Z_2_CH
+      - Z_3_CH
+      - Z_124_NL
+    interval: 300
+    tolerance: 5000
+  - name: 🎯
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀
+      - ♻
+  - name: 🐟
+    type: select
+    proxies:
+      - 🚀
+      - 🎯
+      - ♻
+      - Z_NL
+      - Z_ID
+      - Z_DE
+      - Z_1_DE
+      - Z_1_NL
+      - Z_TH
+      - Z_2_NL
+      - Z_3_NL
+      - Z_4_NL
+      - Z_5_NL
+      - Z_UA
+      - Z_MD
+      - Z_US
+      - Z_6_NL
+      - Z_7_NL
+      - Z_8_NL
+      - Z_9_NL
+      - Z_10_NL
+      - Z_1_UA
+      - Z_1_US
+      - Z_11_NL
+      - Z_2_DE
+      - Z_12_NL
+      - Z_13_NL
+      - Z_14_NL
+      - Z_15_NL
+      - Z_16_NL
+      - Z_2_US
+      - Z_3_US
+      - Z_17_NL
+      - Z_18_NL
+      - Z_19_NL
+      - Z_IN
+      - Z_3_DE
+      - Z_GB
+      - Z_20_NL
+      - Z_21_NL
+      - Z_4_US
+      - Z_22_NL
+      - Z_IR
+      - Z_23_NL
+      - Z_24_NL
+      - Z_1_IN
+      - Z_25_NL
+      - Z_26_NL
+      - Z_27_NL
+      - Z_28_NL
+      - Z_29_NL
+      - Z_30_NL
+      - Z_31_NL
+      - Z_1_GB
+      - Z_CN
+      - Z_32_NL
+      - Z_2_GB
+      - Z_4_DE
+      - Z_5_US
+      - Z_33_NL
+      - Z_34_NL
+      - Z_3_GB
+      - Z_6_US
+      - Z_35_NL
+      - Z_7_US
+      - Z_5_DE
+      - Z_6_DE
+      - Z_36_NL
+      - Z_37_NL
+      - Z_8_US
+      - Z_38_NL
+      - Z_39_NL
+      - Z_40_NL
+      - Z_41_NL
+      - Z_1_IR
+      - Z_2_IR
+      - Z_42_NL
+      - Z_43_NL
+      - Z_44_NL
+      - Z_45_NL
+      - Z_46_NL
+      - Z_47_NL
+      - Z_9_US
+      - Z_48_NL
+      - Z_JP
+      - Z_49_NL
+      - Z_50_NL
+      - Z_7_DE
+      - Z_51_NL
+      - Z_52_NL
+      - Z_1_CN
+      - Z_RU
+      - Z_53_NL
+      - Z_54_NL
+      - Z_55_NL
+      - Z_56_NL
+      - Z_1_RU
+      - Z_10_US
+      - Z_57_NL
+      - Z_4_GB
+      - Z_11_US
+      - Z_58_NL
+      - Z_KR
+      - Z_2_RU
+      - Z_59_NL
+      - Z_5_GB
+      - Z_3_RU
+      - Z_60_NL
+      - Z_61_NL
+      - Z_62_NL
+      - Z_63_NL
+      - Z_CH
+      - Z_12_US
+      - Z_8_DE
+      - Z_64_NL
+      - Z_65_NL
+      - Z_13_US
+      - Z_66_NL
+      - Z_CA
+      - Z_14_US
+      - Z_2_IN
+      - Z_15_US
+      - Z_16_US
+      - Z_17_US
+      - Z_6_GB
+      - Z_67_NL
+      - Z_68_NL
+      - Z_69_NL
+      - Z_70_NL
+      - Z_18_US
+      - Z_71_NL
+      - Z_72_NL
+      - Z_73_NL
+      - Z_74_NL
+      - Z_75_NL
+      - Z_9_DE
+      - Z_4_RU
+      - Z_3_IN
+      - Z_2_UA
+      - Z_5_RU
+      - Z_10_DE
+      - Z_ES
+      - Z_76_NL
+      - Z_77_NL
+      - Z_78_NL
+      - Z_3_UA
+      - Z_1_CA
+      - Z_79_NL
+      - Z_7_GB
+      - Z_AR
+      - Z_80_NL
+      - Z_SG
+      - Z_81_NL
+      - Z_82_NL
+      - Z_83_NL
+      - Z_84_NL
+      - Z_85_NL
+      - Z_BG
+      - Z_86_NL
+      - Z_6_RU
+      - Z_19_US
+      - Z_87_NL
+      - Z_11_DE
+      - Z_20_US
+      - Z_88_NL
+      - Z_8_GB
+      - Z_89_NL
+      - Z_9_GB
+      - Z_90_NL
+      - Z_91_NL
+      - Z_10_GB
+      - Z_92_NL
+      - Z_93_NL
+      - Z_CZ
+      - Z_94_NL
+      - Z_95_NL
+      - Z_1_ES
+      - Z_21_US
+      - Z_96_NL
+      - Z_TR
+      - Z_22_US
+      - Z_97_NL
+      - Z_98_NL
+      - Z_99_NL
+      - Z_RO
+      - Z_100_NL
+      - Z_101_NL
+      - Z_23_US
+      - Z_11_GB
+      - Z_102_NL
+      - Z_103_NL
+      - Z_24_US
+      - Z_25_US
+      - Z_104_NL
+      - Z_105_NL
+      - Z_106_NL
+      - Z_4_UA
+      - Z_107_NL
+      - Z_108_NL
+      - Z_12_DE
+      - Z_109_NL
+      - Z_26_US
+      - Z_110_NL
+      - Z_111_NL
+      - Z_112_NL
+      - Z_13_DE
+      - Z_113_NL
+      - Z_14_DE
+      - Z_114_NL
+      - Z_115_NL
+      - Z_116_NL
+      - Z_117_NL
+      - Z_1_JP
+      - Z_3_IR
+      - Z_4_IR
+      - Z_118_NL
+      - Z_15_DE
+      - Z_119_NL
+      - Z_120_NL
+      - Z_1_CH
+      - Z_121_NL
+      - Z_122_NL
+      - Z_123_NL
+      - Z_5_IR
+      - Z_27_US
+      - Z_28_US
+      - Z_7_RU
+      - Z_2_CH
+      - Z_3_CH
+      - Z_124_NL
+rules:
+# 本地/局域网地址
+# 参考：https://en.wikipedia.org/wiki/Reserved_IP_addresses
+# ACL4SSR标志 如没有，代表不是用ACL4SSR规则
+# 本地/局域网地址
+# Router managed 路由器管理域名
+  - DOMAIN-SUFFIX,acl4.ssr,🎯 全球直连
+  - DOMAIN-SUFFIX,ip6-localhost,🎯 全球直连
+  - DOMAIN-SUFFIX,ip6-loopback,🎯 全球直连
+  - DOMAIN-SUFFIX,lan,🎯 全球直连
+  - DOMAIN-SUFFIX,local,🎯 全球直连
+  - DOMAIN-SUFFIX,localhost,🎯 全球直连
+  - IP-CIDR,0.0.0.0/8,🎯 全球直连,no-resolve
+  - IP-CIDR,10.0.0.0/8,🎯 全球直连,no-resolve
+  - IP-CIDR,100.64.0.0/10,🎯 全球直连,no-resolve
+  - IP-CIDR,127.0.0.0/8,🎯 全球直连,no-resolve
+  - IP-CIDR,172.16.0.0/12,🎯 全球直连,no-resolve
+  - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
+  - IP-CIDR,198.18.0.0/16,🎯 全球直连,no-resolve
+  - IP-CIDR,224.0.0.0/4,🎯 全球直连,no-resolve
+  - IP-CIDR6,::1/128,🎯 全球直连,no-resolve
+  - IP-CIDR6,fc00::/7,🎯 全球直连,no-resolve
+  - IP-CIDR6,fe80::/10,🎯 全球直连,no-resolve
+  - IP-CIDR6,fd00::/8,🎯 全球直连,no-resolve
+  - DOMAIN,instant.arubanetworks.com,🎯 全球直连
+  - DOMAIN,setmeup.arubanetworks.com,🎯 全球直连
+  - DOMAIN,router.asus.com,🎯 全球直连
+  - DOMAIN,www.asusrouter.com,🎯 全球直连
+  - DOMAIN-SUFFIX,hiwifi.com,🎯 全球直连
+  - DOMAIN-SUFFIX,leike.cc,🎯 全球直连
+  - DOMAIN-SUFFIX,miwifi.com,🎯 全球直连
+  - DOMAIN-SUFFIX,my.router,🎯 全球直连
+  - DOMAIN-SUFFIX,p.to,🎯 全球直连
+  - DOMAIN-SUFFIX,peiluyou.com,🎯 全球直连
+  - DOMAIN-SUFFIX,phicomm.me,🎯 全球直连
+  - DOMAIN-SUFFIX,router.ctc,🎯 全球直连
+  - DOMAIN-SUFFIX,routerlogin.com,🎯 全球直连
+  - DOMAIN-SUFFIX,tendawifi.com,🎯 全球直连
+  - DOMAIN-SUFFIX,zte.home,🎯 全球直连
+  - DOMAIN-SUFFIX,tplogin.cn,🎯 全球直连
+  - DOMAIN-SUFFIX,wifi.cmcc,🎯 全球直连
+# 本碎片只包含常见广告关键字、广告联盟。无副作用，放心使用
+# 广告关键词
+# 广告联盟-国内****************
+# 广告联盟-国外****************
+# 垃圾站点****************
+# 运营商广告****************
+
+  - MATCH,🐟
