@@ -8159,6 +8159,7 @@ proxy-groups:
   - name: 🚀 Select
     type: select
     hidden: false
+    include-all-proxies: true
     proxies:
       - 🎈 Auto
       - 🐟 Fallback
@@ -8200,7 +8201,7 @@ proxy-groups:
     disable-udp: true
 rules:
   - DOMAIN,googleadservices.com,🚀 Select
-  - DST-PORT,80,🎯 Direct
+  - DST-PORT,80,🚀 Select
   - SRC-PORT,443,🚀 Select
   - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
   - MATCH,🚀 Select
