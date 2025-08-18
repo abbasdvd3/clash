@@ -8,11 +8,11 @@ allow-lan: true
 log-level: silent
 interface-name: ""
 mode: rule
-external-controller: 0.0.0.0:9090
+external-controller: 127.0.0.1:9090
 external-ui: ./dashboard
-external-controller-tls: 0.0.0.0:9091
+external-controller-tls: 127.0.0.1:9091
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
-unified-delay: false
+unified-delay: true
 tcp-concurrent: true
 profile:
   store-selected: true
@@ -265,3 +265,4 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,🕹 select
   - MATCH,🕹 select
+
