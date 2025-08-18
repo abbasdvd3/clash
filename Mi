@@ -25,33 +25,28 @@ dns:
     - "*.test"
 
 proxy-groups:
+
   - name: 🚀 Select
     type: select
-    hidden: false
+
     include-all-proxies: true
     proxies:
       - 🎈 Auto
       - 🐟 Fallback
-    disable-udp: true
+
   - name: 🎈 Auto
     type: url-test
-    hidden: false
     include-all-proxies: true
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50000
-    lazy: true
-    disable-udp: true
+
   - name: 🎯 Direct
     type: select
-    filter: ""
-    exclude-filter: ""
-    hidden: false
     proxies:
       - DIRECT
       - 🚀 Select
-      - PASS
-    disable-udp: true
+
   - name: 🛑 Reject
     type: select
     hidden: false
@@ -59,16 +54,30 @@ proxy-groups:
       - REJECT
       - DIRECT
       - PASS
-    disable-udp: true
+      
   - name: 🐟 Fallback
     type: fallback
     hidden: false
     include-all-proxies: true
     url: https://www.gstatic.com/generate_204
     interval: 180
-    lazy: true
-    disable-udp: true
+
 rules:
+  - RULE-SET,applications,🎯 Direct
+  - DOMAIN,clash.razord.top,🎯 Direct
+  - DOMAIN,yacd.haishan.me,🎯 Direct
+  - RULE-SET,private,🎯 Direct
+  - RULE-SET,reject,🛑 Reject
+  - DOMAIN,www.icloud.com,🚀 Select
+  - DOMAIN-SUFFIX,icloud-content.com,🚀 Select
+  - RULE-SET,icloud,🎯 Direct
+  - RULE-SET,apple,🚀 Select
+  - RULE-SET,google,🚀 Select
+  - RULE-SET,proxy,🚀 Select
+  - RULE-SET,direct,🎯 Direct
+  - RULE-SET,lancidr,🎯 Direct
+  - RULE-SET,cncidr,🎯 Direct
+  - RULE-SET,telegramcidr,🚀 Select
   - DOMAIN,googleadservices.com,🚀 Select
   - DST-PORT,80,🚀 Select
   - SRC-PORT,443,🚀 Select
@@ -76,12 +85,6 @@ rules:
   - MATCH,🚀 Select
 
 proxies:
-  - type: ss
-    name: 🇺🇸 机场推荐:dafei.de 美国 53
-    server: 34.203.13.163
-    port: 443
-    cipher: aes-256-cfb
-    password: amazonskr05
   - type: trojan
     name: 🇺🇸 机场推荐:dafei.de 美国 413
     server: test.hdcloud.link
@@ -91,15 +94,6 @@ proxies:
     sni: test.hdcloud.link
     skip-cert-verify: true
     tls: true
-  - type: vmess
-    name: 🇩🇪 机场推荐:dafei.de 德国 08
-    server: 46.29.34.205
-    port: 22947
-    uuid: d7291fc4-1702-4826-8fe1-ab301b1c8f82
-    alterId: 0
-    network: tcp
-    cipher: auto
-    servername: ""
   - type: ss
     name: 🇲🇩 机场推荐:dafei.de 摩尔多瓦 01
     server: 185.153.197.5
@@ -125,53 +119,17 @@ proxies:
     cipher: aes-256-cfb
     password: gYCYXfkUQEs2TaJQ
   - type: ss
-    name: "🇷🇺_RU_俄罗斯_211\r_1"
-    server: 80.92.204.106
-    port: 9070
-    cipher: aes-256-cfb
-    password: bf7v334KKDV3YDhH
-  - type: ss
-    name: "🇷🇺_RU_俄罗斯_209\r_1"
-    server: 80.92.204.106
-    port: 9043
-    cipher: aes-256-cfb
-    password: HSZuyJQcWe8dxNdF
-  - type: ss
     name: "🇷🇺_RU_俄罗斯_190\r_1"
     server: 217.30.10.70
     port: 9088
     cipher: aes-256-cfb
     password: f8npKgNzdkss2ytn
   - type: ss
-    name: "🇷🇺_RU_俄罗斯_210\r"
-    server: 80.92.204.106
-    port: 9059
-    cipher: aes-256-cfb
-    password: 9XwYyZsK8SNzQDtY
-  - type: ss
-    name: "🇷🇺_RU_俄罗斯_213\r_1"
-    server: 80.92.204.106
-    port: 9079
-    cipher: aes-256-cfb
-    password: TPqX8edgbAURcAMb
-  - type: ss
-    name: "🇷🇺_RU_俄罗斯_212\r_1"
-    server: 80.92.204.106
-    port: 9073
-    cipher: aes-256-cfb
-    password: daFYagqDdBdA6VTX
-  - type: ss
     name: "🇷🇺_RU_俄罗斯_188\r_1"
     server: 217.30.10.70
     port: 9050
     cipher: aes-256-cfb
     password: FG5ddLsMPbV5CutE
-  - type: ss
-    name: "🇷🇺_RU_俄罗斯_214\r_1"
-    server: 80.92.204.106
-    port: 9093
-    cipher: aes-256-cfb
-    password: wfLC2y7rzZyCmuyt
   - type: ss
     name: "🇷🇺_RU_俄罗斯_183\r_1"
     server: 217.30.10.70
@@ -191,18 +149,6 @@ proxies:
     cipher: aes-256-cfb
     password: SBM7R883jBmnqe6C
   - type: ss
-    name: "🇷🇺_RU_俄罗斯_191\r_1"
-    server: 217.30.10.70
-    port: 9033
-    cipher: aes-256-cfb
-    password: UTJA57ypk2XKQpnm
-  - type: ss
-    name: "🇷🇺_RU_俄罗斯_205\r_1"
-    server: 80.92.204.106
-    port: 9038
-    cipher: aes-256-cfb
-    password: gYCYXfkUQEs2TaJQ
-  - type: ss
     name: "🇷🇺_RU_俄罗斯_192\r_1"
     server: 217.30.10.70
     port: 9073
@@ -215,23 +161,11 @@ proxies:
     cipher: aes-256-cfb
     password: JdmRK9gMEqFgs8nP
   - type: ss
-    name: "🇷🇺_RU_俄罗斯_207\r_1"
-    server: 80.92.204.106
-    port: 9041
-    cipher: aes-256-cfb
-    password: U6qnYRhfyDmn8sgn
-  - type: ss
     name: "1_47\r_1"
     server: 217.30.10.18
     port: 9042
     cipher: aes-256-cfb
     password: S7KwUu7yBy58S3Ga
-  - type: ss
-    name: "1_136\r_1"
-    server: 217.30.10.70
-    port: 9020
-    cipher: aes-256-cfb
-    password: BNmAXXxAHYpTRdzu
   - type: ss
     name: "1_384\r_1"
     server: 192.71.244.150
@@ -263,12 +197,6 @@ proxies:
     cipher: aes-256-cfb
     password: QWDDvVE9npNurQfA
   - type: ss
-    name: "1_100\r_1"
-    server: 147.78.1.230
-    port: 989
-    cipher: aes-256-cfb
-    password: f8f7aCzcPKbsF8p3
-  - type: ss
     name: "1_299\r_1"
     server: 217.30.10.70
     port: 9042
@@ -287,12 +215,6 @@ proxies:
     cipher: aes-256-cfb
     password: fG2artUmHfNT2cX7
   - type: ss
-    name: "1_252\r_1"
-    server: 80.92.204.106
-    port: 9014
-    cipher: aes-256-cfb
-    password: KnJGad3FqTvjqbaX
-  - type: ss
     name: "1_124\r_1"
     server: 217.30.10.70
     port: 9070
@@ -304,12 +226,6 @@ proxies:
     port: 9014
     cipher: aes-256-cfb
     password: KnJGad3FqTvjqbaX
-  - type: ss
-    name: "1_280\r_1"
-    server: 80.92.204.106
-    port: 9026
-    cipher: aes-256-cfb
-    password: QWDDvVE9npNurQfA
   - type: ss
     name: "1_123\r_1"
     server: 217.30.10.70
@@ -377,12 +293,6 @@ proxies:
     cipher: aes-256-cfb
     password: Sn5B7jTqr76aCJT8
   - type: ss
-    name: "1_80\r_1"
-    server: 217.30.10.18
-    port: 9079
-    cipher: aes-256-cfb
-    password: TPqX8edgbAURcAMb
-  - type: ss
     name: "1_149\r_1"
     server: 217.30.10.70
     port: 9027
@@ -425,12 +335,6 @@ proxies:
     cipher: aes-256-cfb
     password: UWZQeLRWnkqgkseq
   - type: ss
-    name: "1_241\r_1"
-    server: 80.92.204.106
-    port: 9053
-    cipher: aes-256-cfb
-    password: SBM7R883jBmnqe6C
-  - type: ss
     name: "1_94\r_1"
     server: 107.155.57.51
     port: 8080
@@ -448,12 +352,6 @@ proxies:
     port: 9043
     cipher: aes-256-cfb
     password: HSZuyJQcWe8dxNdF
-  - type: ss
-    name: "1_323\r_1"
-    server: 80.92.204.106
-    port: 9018
-    cipher: aes-256-cfb
-    password: fG2artUmHfNT2cX7
   - type: ss
     name: "1_42\r"
     server: 185.193.49.88
@@ -515,12 +413,6 @@ proxies:
     cipher: aes-256-cfb
     password: rNBfNuuANFCAk7KB
   - type: ss
-    name: "1_292\r_1"
-    server: 185.237.185.160
-    port: 989
-    cipher: aes-256-cfb
-    password: f8f7aCzcPKbsF8p3
-  - type: ss
     name: "1_150\r_1"
     server: 217.30.10.70
     port: 9007
@@ -557,29 +449,11 @@ proxies:
     cipher: aes-256-cfb
     password: cp8pRSUAyLhTfVWH
   - type: ss
-    name: "1_259\r_1"
-    server: 80.92.204.106
-    port: 9008
-    cipher: aes-256-cfb
-    password: y9VURyNzJWNRYEGQ
-  - type: ss
     name: "1_264\r"
     server: 217.30.10.18
     port: 9025
     cipher: aes-256-cfb
     password: XPtzA9sCug3SPR4c
-  - type: ss
-    name: "1_255\r_1"
-    server: 80.92.204.106
-    port: 9058
-    cipher: aes-256-cfb
-    password: dML2sfhbVwvtfNPe
-  - type: ss
-    name: "1_239\r_1"
-    server: 80.92.204.106
-    port: 9060
-    cipher: aes-256-cfb
-    password: ueLXVkvh4hckhErQ
   - type: ss
     name: "1_370\r_1"
     server: 192.71.166.102
@@ -610,12 +484,6 @@ proxies:
     port: 9041
     cipher: aes-256-cfb
     password: U6qnYRhfyDmn8sgn
-  - type: ss
-    name: "12511"
-    server: 80.92.204.106
-    port: 9003
-    cipher: aes-256-cfb
-    password: JdmRK9gMEqFgs8nP
   - type: trojan
     name: 🔒 TR-TCP-TLS 🇫🇷 FR-51.38.99.96:443
     server: 51.38.99.96
@@ -650,15 +518,6 @@ proxies:
     password: f42e1a2e-e650-44f4-8d17-bcb68663da18
     network: tcp
     sni: www.seetheworldjp.ga
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
-    name: 🔒 TR-TCP-TLS 🇬🇧 GB-51.38.65.155:443
-    server: 51.38.65.155
-    port: 443
-    password: ab052d70-48a0-11f0-bea4-1239d0255272
-    network: tcp
-    sni: uk1.test3.net
     skip-cert-verify: true
     tls: true
   - type: trojan
@@ -706,12 +565,6 @@ proxies:
     sni: uk.justfarazmand.ir
     skip-cert-verify: true
     tls: true
-  - type: ss
-    name: Bolivia_37_37
-    server: 185.93.173.218
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: f8f7aCzcPKbsF8p3
   - type: ss
     name: 🇺🇸 机场推荐:dafei.de 美国 66_2
     server: 38.54.57.90
@@ -814,63 +667,6 @@ proxies:
     port: 10087
     cipher: aes-128-gcm
     password: "10086"
-  - type: ss
-    name: v2cross.com_2
-    server: 151.242.251.131
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: QCXDxuDlTTMD7jtgHUjIoj
-  - type: ss
-    name: v2cross.com_3
-    server: 151.242.251.144
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: 4a2rfixophdjffa8KVA4Aa
-  - type: ss
-    name: v2cross.com_4
-    server: 150.241.86.252
-    port: 1080
-    cipher: chacha20-ietf-poly1305
-    password: _b6x5tfO1wZUxObuR_AIXg
-  - type: vmess
-    name: v2cross.com_7
-    server: 91.218.143.133
-    port: 20086
-    uuid: a440e0d3-d39a-4bd8-a2c4-e22a6aef96e0
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: ""
-    ws-opts:
-      path: /
-      headers:
-        Host: ""
-  - type: vmess
-    name: v2cross.com_10
-    server: 51.254.21.193
-    port: 20086
-    uuid: 9bcecb26-920a-4e68-b296-88526310bff6
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: ""
-    ws-opts:
-      path: /
-      headers:
-        Host: ""
-  - type: vmess
-    name: v2cross.com_17
-    server: 173.208.51.193
-    port: 20086
-    uuid: b1726eb2-271b-4cb6-bae8-37647e78b776
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: ""
-    ws-opts:
-      path: /
-      headers:
-        Host: ""
   - type: vmess
     name: v2cross.com_18
     server: 164.70.68.128
@@ -880,19 +676,6 @@ proxies:
     network: tcp
     cipher: auto
     servername: ""
-  - type: vmess
-    name: v2cross.com_20
-    server: 128.241.227.188
-    port: 20086
-    uuid: 5b0d1179-cb7c-4b5f-9b8e-c8048c34d2a0
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: ""
-    ws-opts:
-      path: /
-      headers:
-        Host: ""
   - type: vmess
     name: v2cross.com_21
     server: 70.39.196.85
@@ -907,45 +690,10 @@ proxies:
       headers:
         Host: ""
   - type: vmess
-    name: v2cross.com_23
-    server: 45.121.48.174
-    port: 20788
-    uuid: bfc630aa-4598-4481-9338-cac15e3e6b65
-    alterId: 0
-    network: tcp
-    cipher: auto
-    servername: ""
-  - type: vmess
-    name: v2cross.com_24
-    server: 119.235.249.154
-    port: 20086
-    uuid: a067283b-3d00-4b0a-9ffb-3c184c83c089
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: ""
-    ws-opts:
-      path: /
-      headers:
-        Host: ""
-  - type: vmess
     name: v2cross.com_25
     server: 62.60.187.28
     port: 20086
     uuid: 570b4cfc-80d5-4277-8c97-8444ba0689b9
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: ""
-    ws-opts:
-      path: /
-      headers:
-        Host: ""
-  - type: vmess
-    name: v2cross.com_31
-    server: 185.84.161.150
-    port: 20086
-    uuid: ebba0676-e05a-49ec-8344-d96d749e01c0
     alterId: 0
     network: ws
     cipher: auto
@@ -994,36 +742,10 @@ proxies:
       headers:
         Host: ""
   - type: vmess
-    name: v2cross.com_41
-    server: 64.81.27.65
-    port: 20521
-    uuid: a36885a5-6d97-45d7-85c1-cc11e1cece4a
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: ""
-    ws-opts:
-      path: /
-      headers:
-        Host: ""
-  - type: vmess
     name: v2cross.com_44
     server: 82.29.132.9
     port: 20086
     uuid: b2c61f53-a359-429c-900e-255f02def6be
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: ""
-    ws-opts:
-      path: /
-      headers:
-        Host: ""
-  - type: vmess
-    name: v2cross.com_47
-    server: 47.84.62.1
-    port: 20086
-    uuid: d2a0bcd7-e32d-4b71-91a9-5fd7043b7025
     alterId: 0
     network: ws
     cipher: auto
@@ -1192,15 +914,6 @@ proxies:
     network: tcp
     tls: true
   - type: trojan
-    name: 美国_121320150
-    server: aws-us-dallas-1.f1rocketnode.com
-    port: 443
-    password: pjdnqv
-    network: tcp
-    sni: aws-us-dallas-1.f1rocketnode.com
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
     name: 美国_121320152
     server: aws-us-nyc-1.f1rocketnode.com
     port: 443
@@ -1232,15 +945,6 @@ proxies:
     port: 443
     password: aef2ca33-b162-409f-8f16-4c736c338412
     network: tcp
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
-    name: "🔒 TR-TCP-TLS 🏴‍☠️ NA-104.18.11.39:443\r_1"
-    server: 104.18.11.39
-    port: 443
-    password: "123456"
-    network: tcp
-    sni: trojan-amp-id01.globalssh.xyz
     skip-cert-verify: true
     tls: true
   - type: trojan
@@ -1481,14 +1185,6 @@ proxies:
     password: bVUMJoUwGYvDLGbfZyt52ynMi
     network: tcp
     sni: free-nl-2.undef.network
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
-    name: 🇬🇧_GB_p.All_2396_1
-    server: uk1.test3.net
-    port: 443
-    password: 62313560-c059-11ee-b43c-1239d0255272
-    network: tcp
     skip-cert-verify: true
     tls: true
   - type: trojan
@@ -1994,14 +1690,6 @@ proxies:
     skip-cert-verify: true
     tls: true
   - type: trojan
-    name: "美国 004_2@8\r_1"
-    server: 23.142.200.175
-    port: 443
-    password: 27876_t7d7f4e3f
-    network: tcp
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
     name: 🇨🇳_CN_3238_1
     server: official.taipeicitygovernment.if.ua
     port: 8443
@@ -2178,15 +1866,6 @@ proxies:
     skip-cert-verify: true
     tls: true
   - type: trojan
-    name: "🇺🇲 United States 294\r\r_1"
-    server: aws-us-dallas-1.f1rocketnode.com
-    port: 443
-    password: pjdnqv
-    network: tcp
-    sni: aws-us-dallas-1.f1rocketnode.com
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
     name: "🇨🇳 Taiwan 8\r\r_1"
     server: download1tw.windowsupdatea.com
     port: 443
@@ -2202,15 +1881,6 @@ proxies:
     password: 2158f727-fb4e-483c-925f-7cc1a20cb7a2
     network: tcp
     sni: medidorr-gro-hidalgo-1.uninnet.net.mx.prod.hosts.ooklaserver.net
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
-    name: "未知328\r_1"
-    server: 51.38.65.155
-    port: 443
-    password: 56b6df40-0f4d-11ef-97ad-1239d0255272
-    network: tcp
-    sni: chatbuzzteambhm.chatbuzzt7150.workers.dev
     skip-cert-verify: true
     tls: true
   - type: trojan
@@ -2372,14 +2042,6 @@ proxies:
     skip-cert-verify: true
     tls: true
   - type: trojan
-    name: "🇺🇸_US_美国_tr_1048\r_1"
-    server: 72.167.45.6
-    port: 443
-    password: a3fa58b581353bb375d2ddad0f327938
-    network: tcp
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
     name: "🇺🇸_US_美国_tr_1027\r_1"
     server: aws-us-nyc-1.f1rocketnode.com
     port: 443
@@ -2436,15 +2098,6 @@ proxies:
     port: 443
     password: your_password
     network: tcp
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
-    name: "🇺🇸_US_美国_tr_1182\r_1"
-    server: 104.18.11.39
-    port: 443
-    password: "123456"
-    network: tcp
-    sni: trojan-amp-id01.globalssh.xyz
     skip-cert-verify: true
     tls: true
   - type: trojan
@@ -3089,15 +2742,6 @@ proxies:
     skip-cert-verify: true
     tls: true
   - type: trojan
-    name: "🔒 TR-TCP-TLS 🏴‍☠️ NA-104.18.11.39:443\r_2"
-    server: 104.18.11.39
-    port: 443
-    password: "123456"
-    network: tcp
-    sni: trojan-amp-id01.globalssh.xyz
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
     name: 🇺🇸_美国_hamraH_213_2
     server: guolicheng.cc
     port: 443
@@ -3335,14 +2979,6 @@ proxies:
     password: bVUMJoUwGYvDLGbfZyt52ynMi
     network: tcp
     sni: free-nl-2.undef.network
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
-    name: 🇬🇧_GB_p.All_2396_2
-    server: uk1.test3.net
-    port: 443
-    password: 62313560-c059-11ee-b43c-1239d0255272
-    network: tcp
     skip-cert-verify: true
     tls: true
   - type: trojan
@@ -3839,14 +3475,6 @@ proxies:
     skip-cert-verify: true
     tls: true
   - type: trojan
-    name: "美国 004_2@8\r_2"
-    server: 23.142.200.175
-    port: 443
-    password: 27876_t7d7f4e3f
-    network: tcp
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
     name: 🇨🇳_CN_3238_2
     server: official.taipeicitygovernment.if.ua
     port: 8443
@@ -4023,15 +3651,6 @@ proxies:
     skip-cert-verify: true
     tls: true
   - type: trojan
-    name: "🇺🇲 United States 294\r\r_2"
-    server: aws-us-dallas-1.f1rocketnode.com
-    port: 443
-    password: pjdnqv
-    network: tcp
-    sni: aws-us-dallas-1.f1rocketnode.com
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
     name: "🇨🇳 Taiwan 8\r\r_2"
     server: download1tw.windowsupdatea.com
     port: 443
@@ -4047,15 +3666,6 @@ proxies:
     password: 2158f727-fb4e-483c-925f-7cc1a20cb7a2
     network: tcp
     sni: medidorr-gro-hidalgo-1.uninnet.net.mx.prod.hosts.ooklaserver.net
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
-    name: "未知328\r_2"
-    server: 51.38.65.155
-    port: 443
-    password: 56b6df40-0f4d-11ef-97ad-1239d0255272
-    network: tcp
-    sni: chatbuzzteambhm.chatbuzzt7150.workers.dev
     skip-cert-verify: true
     tls: true
   - type: trojan
@@ -4281,15 +3891,6 @@ proxies:
     port: 443
     password: your_password
     network: tcp
-    skip-cert-verify: true
-    tls: true
-  - type: trojan
-    name: "🇺🇸_US_美国_tr_1182\r_2"
-    server: 104.18.11.39
-    port: 443
-    password: "123456"
-    network: tcp
-    sni: trojan-amp-id01.globalssh.xyz
     skip-cert-verify: true
     tls: true
   - type: trojan
@@ -4916,15 +4517,6 @@ proxies:
       path: /f1rocket
       headers:
         Host: aws-uk-london-1.f1cflineb.com
-  - type: vmess
-    name: 🇨🇳 CN_186
-    server: 183.236.51.36
-    port: 59003
-    uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-    alterId: 64
-    network: tcp
-    cipher: auto
-    servername: ""
   - type: trojan
     name: 🇨🇳 CN_187
     server: a03.taipeicitygovernment.cn.ua
@@ -5062,14 +4654,6 @@ proxies:
     sni: kdlsupport.zendesk.com
     tls: true
   - type: trojan
-    name: y_639
-    server: 172.66.44.230
-    port: 8443
-    password: 8r%253C%255B9%2527l6hAO%25238ZQi
-    network: tcp
-    sni: Koma-YT.PAGeS.Dev
-    tls: true
-  - type: trojan
     name: y_654
     server: 104.19.35.14
     port: 443
@@ -5098,14 +4682,6 @@ proxies:
     password: 9Qtb5266ijqU
     network: tcp
     sni: aryanews.onetwothree123.ir
-    tls: true
-  - type: trojan
-    name: y_755
-    server: 104.17.148.22
-    port: 2053
-    password: Bc%2523%253F%253Fcut0k9l
-    network: tcp
-    sni: G7tAU5ZF41eqnF9FpwJ8rmQY3SFYEI4l.PRX11.wORKeRS.dEV
     tls: true
   - type: trojan
     name: y_820
@@ -5146,14 +4722,6 @@ proxies:
     sni: 403b3611-99bC-43b7-88D7-26ED5D0825A9-3.pagES.DEv
     tls: true
   - type: trojan
-    name: y_989
-    server: 172.66.44.214
-    port: 2053
-    password: T%2540_WvT8Ho%2540LW%2525w_,
-    network: tcp
-    sni: NOp-55q.pAgEs.dEv
-    tls: true
-  - type: trojan
     name: y_1092
     server: 172.67.130.66
     port: 443
@@ -5168,22 +4736,6 @@ proxies:
     password: 4863e1b2-ec2f-4c71-b862-ce533028e57e
     network: tcp
     sni: trus.moonfree.top
-    tls: true
-  - type: trojan
-    name: y_1295
-    server: 172.67.202.155
-    port: 8443
-    password: 6X1Ca9dbWv%2540%255E
-    network: tcp
-    sni: soft.onetwothree123.ir
-    tls: true
-  - type: trojan
-    name: y_1389
-    server: 172.66.45.36
-    port: 2083
-    password: Uy1,SF%2523%255Dszr%2525y.%253Cs
-    network: tcp
-    sni: jOinMaHdIsErVer-6Qj.PAgES.DEv
     tls: true
   - type: trojan
     name: y_1428
@@ -5307,14 +4859,6 @@ proxies:
     network: tcp
     sni: ush9pgjbr1t6mxmbwe.jjjiedian6j4tblb.com
     tls: true
-  - type: trojan
-    name: y_2311
-    server: 172.66.47.183
-    port: 8443
-    password: V+%2540iFj2PAdz.%257D_Hq
-    network: tcp
-    sni: jOinmAhdIsERveR-62E.PaGes.dEv
-    tls: true
   - type: ss
     name: y_2464
     server: 217.30.10.18
@@ -5349,28 +4893,12 @@ proxies:
     network: tcp
     sni: pangpi.pages.dev
     tls: true
-  - type: trojan
-    name: y_2740
-    server: 172.66.44.86
-    port: 2053
-    password: Ys.c7%253FD9qmBLo%255EZ%255D
-    network: tcp
-    sni: JOInMaHDiSeRVeR-333.pAGEs.DeV
-    tls: true
   - type: ss
     name: y_2906
     server: 107.155.57.11
     port: 8080
     cipher: rc4-md5
     password: 14fFPrbezE3HDZzsMOr6
-  - type: trojan
-    name: y_2909
-    server: 172.66.47.84
-    port: 2083
-    password: fnufMt%253AsQ&rC0HUu
-    network: tcp
-    sni: joinmAHDIsERVER-6vv.PaGeS.dEv
-    tls: true
   - type: trojan
     name: y_2952
     server: 162.159.44.148
@@ -5424,28 +4952,12 @@ proxies:
     sni: jobscareertoday.com
     tls: true
   - type: trojan
-    name: y_3379
-    server: 172.66.47.62
-    port: 2053
-    password: qCfu8t$s%257B2m%253BsTxm
-    network: tcp
-    sni: JOinMaHdISeRvEr-C1C.PaGES.dEV
-    tls: true
-  - type: trojan
     name: y_3420
     server: 104.16.127.23
     port: 443
     password: uV8u9Q41e2
     network: tcp
     sni: DieGo.DIEgoMAraDOnA.iR.
-    tls: true
-  - type: trojan
-    name: y_3498
-    server: 104.17.147.77
-    port: 443
-    password: 71409d3e488548e8bb076d229778f008
-    network: tcp
-    sni: bangladeshipatri.com
     tls: true
   - type: trojan
     name: y_3502
@@ -5470,14 +4982,6 @@ proxies:
     password: bpb-trojan
     network: tcp
     sni: G1-21N.paGEs.dev
-    tls: true
-  - type: trojan
-    name: y_3671
-    server: 172.67.175.40
-    port: 2083
-    password: 3qx%2525QmCt%255E&cg
-    network: tcp
-    sni: tabnak.farsonline24.ir
     tls: true
   - type: trojan
     name: y_3713
@@ -5524,14 +5028,6 @@ proxies:
     cipher: aes-256-cfb
     password: GA9KzeEgvfxNrgmM
   - type: trojan
-    name: y_4059
-    server: 172.66.47.83
-    port: 443
-    password: "%253AZ%2523%25253cdIG%2527c*%253B*O%257D"
-    network: tcp
-    sni: JoinmAhDiSeRvER-csn.PaGeS.DEv
-    tls: true
-  - type: trojan
     name: y_4089
     server: 172.67.175.40
     port: 8443
@@ -5554,30 +5050,6 @@ proxies:
     password: 4863e1b2-ec2f-4c71-b862-ce533028e57e
     network: tcp
     sni: trus.moonfree.top
-    tls: true
-  - type: trojan
-    name: y_4154
-    server: 188.114.97.1
-    port: 2053
-    password: Bc%2523%253F%253Fcut0k9l
-    network: tcp
-    sni: G7tAu5Zf41EQNf9fpWJ8RmQy3SFyEi4l.prX11.WOrkers.DEV
-    tls: true
-  - type: trojan
-    name: y_4191
-    server: 104.21.44.185
-    port: 8443
-    password: 4Tze3Ri*i%2523Fo
-    network: tcp
-    sni: soft.onetwothree123.ir
-    tls: true
-  - type: trojan
-    name: y_4228
-    server: 104.16.159.6
-    port: 443
-    password: 669d0ac7b5b64ebbb1abb75d5d540a5c
-    network: tcp
-    sni: bangladeshipatri.com
     tls: true
   - type: trojan
     name: y_4290
@@ -5604,44 +5076,12 @@ proxies:
     sni: cpuhot.boshrachoice.ir.
     tls: true
   - type: trojan
-    name: y_4415
-    server: 104.21.18.192
-    port: 443
-    password: rXzh%253B%253FnW1GGKB(K8
-    network: tcp
-    sni: sAiKOXpUbGm.ZhkinGkuRD13.WorkErs.dEV
-    tls: true
-  - type: trojan
-    name: y_4482
-    server: 172.67.149.227
-    port: 443
-    password: s8xwZ%255D%257C%253FV%253EcH
-    network: tcp
-    sni: fL9F9zCnHrfnvkA1oYA84yy6p44dHfqP.tUrbOOsErveR.wOrKeRS.dEv
-    tls: true
-  - type: trojan
     name: y_4607
     server: 104.21.44.185
     port: 2053
     password: 9Qtb5266ijqU
     network: tcp
     sni: aryanews.onetwothree123.ir
-    tls: true
-  - type: trojan
-    name: y_4718
-    server: 172.66.47.42
-    port: 2053
-    password: T%2540_WvT8Ho%2540LW%2525w_,
-    network: tcp
-    sni: NOp-55q.pAgEs.dEv
-    tls: true
-  - type: trojan
-    name: y_4728
-    server: 172.66.44.109
-    port: 2053
-    password: aP&%257B)UBD%2540qDGS9b%253B
-    network: tcp
-    sni: JoinmAhDiSERver-7Hd.paGes.Dev
     tls: true
   - type: ss
     name: y_4840
@@ -5712,14 +5152,6 @@ proxies:
     sni: iNTeRnET4EVERIeONe7.PaGes.DeV
     tls: true
   - type: trojan
-    name: y_5336
-    server: 172.66.44.173
-    port: 443
-    password: "%253AZ%2523%25253cdIG%2527c*%253B*O%257D"
-    network: tcp
-    sni: JoinmAhDiSeRvER-csn.PaGeS.DEv
-    tls: true
-  - type: trojan
     name: y_5347
     server: 172.67.161.74
     port: 8443
@@ -5727,12 +5159,6 @@ proxies:
     network: tcp
     sni: support.sabapardaziran.ir
     tls: true
-  - type: ss
-    name: y_5358
-    server: 80.92.204.106
-    port: 9025
-    cipher: aes-256-cfb
-    password: XPtzA9sCug3SPR4c
   - type: ss
     name: y_5363
     server: 217.30.10.18
@@ -5754,14 +5180,6 @@ proxies:
     password: "123"
     network: tcp
     sni: epeius001-ea1.pages.dev
-    tls: true
-  - type: trojan
-    name: y_5489
-    server: 172.66.47.30
-    port: 2087
-    password: 0q%252776Evm32qz%2540Q%2527(
-    network: tcp
-    sni: JOInMahdiserver-11R.PaGES.dEv
     tls: true
   - type: trojan
     name: y_5586
@@ -5856,14 +5274,6 @@ proxies:
     cipher: rc4-md5
     password: 14fFPrbezE3HDZzsMOr6
   - type: trojan
-    name: y_6037
-    server: 104.17.148.22
-    port: 8443
-    password: U&YcI8%253E7ep%257D%253CeT8%255D
-    network: tcp
-    sni: jOInMaHdisErVeR-Ys7.pagEs.DEV
-    tls: true
-  - type: trojan
     name: y_6059
     server: 172.66.40.215
     port: 443
@@ -5930,14 +5340,6 @@ proxies:
     cipher: chacha20-ietf-poly1305
     password: 0RsrcFJ1vOsWEqg3P55hvaacKfuShT0cc1h0t8AD0NA8u1uR
   - type: trojan
-    name: y_6406
-    server: 104.16.159.7
-    port: 443
-    password: 4732adfa16c6450bbef87264e41332db
-    network: tcp
-    sni: bangladeshipatri.com
-    tls: true
-  - type: trojan
     name: y_6432
     server: 104.21.48.6
     port: 2053
@@ -5952,22 +5354,6 @@ proxies:
     password: auto
     network: tcp
     sni: dcf741e8.epeius-2gy.pages.dev
-    tls: true
-  - type: trojan
-    name: y_6567
-    server: 172.66.46.220
-    port: 2083
-    password: Uy1,SF%2523%255Dszr%2525y.%253Cs
-    network: tcp
-    sni: jOinMaHdIsErVer-6Qj.PAgES.DEv
-    tls: true
-  - type: trojan
-    name: y_6652
-    server: 104.16.159.5
-    port: 443
-    password: 984e400bf5d541b7b0815913fe0c432a
-    network: tcp
-    sni: bangladeshipatri.com
     tls: true
   - type: ss
     name: y_6746
@@ -5992,22 +5378,6 @@ proxies:
     sni: trojanmz.pages.dev
     tls: true
   - type: trojan
-    name: y_6819
-    server: 104.21.48.6
-    port: 2083
-    password: 1H%25254NBDAq%2523bQ
-    network: tcp
-    sni: tabnak.farsonline24.ir
-    tls: true
-  - type: trojan
-    name: y_6835
-    server: 172.66.44.194
-    port: 2053
-    password: qCfu8t$s%257B2m%253BsTxm
-    network: tcp
-    sni: JOinMaHdISeRvEr-C1C.PaGES.dEV
-    tls: true
-  - type: trojan
     name: y_6873
     server: 172.67.75.172
     port: 8443
@@ -6021,14 +5391,6 @@ proxies:
     port: 9042
     cipher: aes-256-cfb
     password: S7KwUu7yBy58S3Ga
-  - type: trojan
-    name: y_6936
-    server: 172.66.44.182
-    port: 443
-    password: 8QOe)&jIP%255E%255Dl%257BP.1
-    network: tcp
-    sni: JoInMAHdisErVER-78D.PaGEs.DEV
-    tls: true
   - type: ss
     name: y_6939
     server: 217.30.10.18
@@ -6073,14 +5435,6 @@ proxies:
     port: 9005
     cipher: aes-256-cfb
     password: ZET59LF6DvCC8KVt
-  - type: trojan
-    name: y_7476
-    server: 172.66.44.226
-    port: 2087
-    password: 0q%252776Evm32qz%2540Q%2527(
-    network: tcp
-    sni: JOInMahdiserver-11R.PaGES.dEv
-    tls: true
   - type: ss
     name: y_7508
     server: 185.237.185.160
@@ -6102,14 +5456,6 @@ proxies:
     password: 2YDH6ktJOt
     network: tcp
     sni: support.sabapardaziran.ir
-    tls: true
-  - type: trojan
-    name: y_7593
-    server: 172.66.44.172
-    port: 2083
-    password: fnufMt%253AsQ&rC0HUu
-    network: tcp
-    sni: joinmAHDIsERVER-6vv.PaGeS.dEv
     tls: true
   - type: trojan
     name: y_7600
@@ -6150,14 +5496,6 @@ proxies:
     password: auto
     network: tcp
     sni: nameless-term-9c25.vpnconnect202020.workers.dev
-    tls: true
-  - type: trojan
-    name: y_7977
-    server: 172.66.47.74
-    port: 443
-    password: 8QOe)&jIP%255E%255Dl%257BP.1
-    network: tcp
-    sni: JoInMAHdisErVER-78D.PaGEs.DEV
     tls: true
   - type: trojan
     name: y_8005
@@ -6241,14 +5579,6 @@ proxies:
     skip-cert-verify: true
     tls: true
   - type: trojan
-    name: y_8488
-    server: 104.17.147.22
-    port: 2053
-    password: Bc%2523%253F%253Fcut0k9l
-    network: tcp
-    sni: G7tAU5ZF41eqnF9FpwJ8rmQY3SFYEI4l.PRX11.wORKeRS.dEV
-    tls: true
-  - type: trojan
     name: y_8532
     server: 104.17.147.11
     port: 443
@@ -6279,22 +5609,6 @@ proxies:
     cipher: aes-256-cfb
     password: XPtzA9sCug3SPR4c
   - type: trojan
-    name: y_8920
-    server: 104.21.88.9
-    port: 443
-    password: s8xwZ%255D%257C%253FV%253EcH
-    network: tcp
-    sni: fL9F9zCnHrfnvkA1oYA84yy6p44dHfqP.tUrbOOsErveR.wOrKeRS.dEv
-    tls: true
-  - type: trojan
-    name: y_8958
-    server: 172.66.44.73
-    port: 8443
-    password: V+%2540iFj2PAdz.%257D_Hq
-    network: tcp
-    sni: jOinmAhdIsERveR-62E.PaGes.dEv
-    tls: true
-  - type: trojan
     name: y_8976
     server: 104.21.35.43
     port: 443
@@ -6308,12 +5622,6 @@ proxies:
     port: 9064
     cipher: aes-256-cfb
     password: cp8pRSUAyLhTfVWH
-  - type: ss
-    name: y_9052
-    server: 80.92.204.106
-    port: 9057
-    cipher: aes-256-cfb
-    password: wjTugX3ZtHMB9c3Z
   - type: trojan
     name: y_9076
     server: 104.21.15.33
@@ -6352,12 +5660,6 @@ proxies:
     network: tcp
     sni: 403B3611-99bc-43B7-88d7-26ed5d0825a9-3.PaGes.deV
     tls: true
-  - type: ss
-    name: y_9598
-    server: 80.92.204.106
-    port: 9037
-    cipher: aes-256-cfb
-    password: TN2YqghxeFDKZfLU
   - type: trojan
     name: y_9634
     server: 104.26.9.227
@@ -6411,53 +5713,17 @@ proxies:
     cipher: aes-256-cfb
     password: gYCYXfkUQEs2TaJQ
   - type: ss
-    name: "🇷🇺_RU_俄罗斯_211\r_2"
-    server: 80.92.204.106
-    port: 9070
-    cipher: aes-256-cfb
-    password: bf7v334KKDV3YDhH
-  - type: ss
-    name: "🇷🇺_RU_俄罗斯_209\r_2"
-    server: 80.92.204.106
-    port: 9043
-    cipher: aes-256-cfb
-    password: HSZuyJQcWe8dxNdF
-  - type: ss
     name: "🇷🇺_RU_俄罗斯_190\r_2"
     server: 217.30.10.70
     port: 9088
     cipher: aes-256-cfb
     password: f8npKgNzdkss2ytn
   - type: ss
-    name: "🇷🇺_RU_俄罗斯_206\r"
-    server: 80.92.204.106
-    port: 9040
-    cipher: aes-256-cfb
-    password: p9z5BVADH2YFs3MN
-  - type: ss
-    name: "🇷🇺_RU_俄罗斯_213\r_2"
-    server: 80.92.204.106
-    port: 9079
-    cipher: aes-256-cfb
-    password: TPqX8edgbAURcAMb
-  - type: ss
-    name: "🇷🇺_RU_俄罗斯_212\r_2"
-    server: 80.92.204.106
-    port: 9073
-    cipher: aes-256-cfb
-    password: daFYagqDdBdA6VTX
-  - type: ss
     name: "🇷🇺_RU_俄罗斯_188\r_2"
     server: 217.30.10.70
     port: 9050
     cipher: aes-256-cfb
     password: FG5ddLsMPbV5CutE
-  - type: ss
-    name: "🇷🇺_RU_俄罗斯_214\r_2"
-    server: 80.92.204.106
-    port: 9093
-    cipher: aes-256-cfb
-    password: wfLC2y7rzZyCmuyt
   - type: ss
     name: "🇷🇺_RU_俄罗斯_183\r_2"
     server: 217.30.10.70
@@ -6477,18 +5743,6 @@ proxies:
     cipher: aes-256-cfb
     password: SBM7R883jBmnqe6C
   - type: ss
-    name: "🇷🇺_RU_俄罗斯_191\r_2"
-    server: 217.30.10.70
-    port: 9033
-    cipher: aes-256-cfb
-    password: UTJA57ypk2XKQpnm
-  - type: ss
-    name: "🇷🇺_RU_俄罗斯_205\r_2"
-    server: 80.92.204.106
-    port: 9038
-    cipher: aes-256-cfb
-    password: gYCYXfkUQEs2TaJQ
-  - type: ss
     name: "🇷🇺_RU_俄罗斯_192\r_2"
     server: 217.30.10.70
     port: 9073
@@ -6501,29 +5755,11 @@ proxies:
     cipher: aes-256-cfb
     password: JdmRK9gMEqFgs8nP
   - type: ss
-    name: "🇷🇺_RU_俄罗斯_207\r_2"
-    server: 80.92.204.106
-    port: 9041
-    cipher: aes-256-cfb
-    password: U6qnYRhfyDmn8sgn
-  - type: ss
     name: "1_47\r_2"
     server: 217.30.10.18
     port: 9042
     cipher: aes-256-cfb
     password: S7KwUu7yBy58S3Ga
-  - type: ss
-    name: "1_136\r_2"
-    server: 217.30.10.70
-    port: 9020
-    cipher: aes-256-cfb
-    password: BNmAXXxAHYpTRdzu
-  - type: ss
-    name: "1_384\r_2"
-    server: 192.71.244.150
-    port: 989
-    cipher: aes-256-cfb
-    password: f8f7aCzcPKbsF8p3
   - type: ss
     name: "1_74\r_2"
     server: 217.30.10.18
@@ -6579,12 +5815,6 @@ proxies:
     cipher: aes-256-cfb
     password: fG2artUmHfNT2cX7
   - type: ss
-    name: "1_254\r"
-    server: 80.92.204.106
-    port: 9056
-    cipher: aes-256-cfb
-    password: rNBfNuuANFCAk7KB
-  - type: ss
     name: "1_148\r"
     server: 217.30.10.70
     port: 9053
@@ -6597,41 +5827,17 @@ proxies:
     cipher: aes-256-cfb
     password: f8npKgNzdkss2ytn
   - type: ss
-    name: "1_252\r_2"
-    server: 80.92.204.106
-    port: 9014
-    cipher: aes-256-cfb
-    password: KnJGad3FqTvjqbaX
-  - type: ss
     name: "1_124\r_2"
     server: 217.30.10.70
     port: 9070
     cipher: aes-256-cfb
     password: bf7v334KKDV3YDhH
   - type: ss
-    name: "1_247\r"
-    server: 80.92.204.106
-    port: 9038
-    cipher: aes-256-cfb
-    password: gYCYXfkUQEs2TaJQ
-  - type: ss
-    name: "1_154\r"
-    server: 217.30.10.70
-    port: 9033
-    cipher: aes-256-cfb
-    password: UTJA57ypk2XKQpnm
-  - type: ss
     name: "1_132\r_2"
     server: 217.30.10.70
     port: 9014
     cipher: aes-256-cfb
     password: KnJGad3FqTvjqbaX
-  - type: ss
-    name: "1_280\r_2"
-    server: 80.92.204.106
-    port: 9026
-    cipher: aes-256-cfb
-    password: QWDDvVE9npNurQfA
   - type: ss
     name: "1_123\r_2"
     server: 217.30.10.70
@@ -6693,23 +5899,11 @@ proxies:
     cipher: aes-256-cfb
     password: rNBfNuuANFCAk7KB
   - type: ss
-    name: "1_256\r"
-    server: 80.92.204.106
-    port: 9073
-    cipher: aes-256-cfb
-    password: daFYagqDdBdA6VTX
-  - type: ss
     name: "1_145\r_2"
     server: 217.30.10.70
     port: 9025
     cipher: aes-256-cfb
     password: XPtzA9sCug3SPR4c
-  - type: ss
-    name: "1_243\r"
-    server: 80.92.204.106
-    port: 9043
-    cipher: aes-256-cfb
-    password: HSZuyJQcWe8dxNdF
   - type: ss
     name: "1_133\r_2"
     server: 217.30.10.70
@@ -6723,35 +5917,17 @@ proxies:
     cipher: aes-128-cfb
     password: shadowsocks
   - type: ss
-    name: "1_281\r"
-    server: 80.92.204.106
-    port: 9070
-    cipher: aes-256-cfb
-    password: bf7v334KKDV3YDhH
-  - type: ss
     name: "1_245\r_2"
     server: 217.30.10.70
     port: 9097
     cipher: aes-256-cfb
     password: Sn5B7jTqr76aCJT8
   - type: ss
-    name: "1_80\r_2"
-    server: 217.30.10.18
-    port: 9079
-    cipher: aes-256-cfb
-    password: TPqX8edgbAURcAMb
-  - type: ss
     name: "1_139\r"
     server: 217.30.10.70
     port: 9003
     cipher: aes-256-cfb
     password: JdmRK9gMEqFgs8nP
-  - type: ss
-    name: "1_156\r"
-    server: 80.92.204.106
-    port: 9079
-    cipher: aes-256-cfb
-    password: TPqX8edgbAURcAMb
   - type: ss
     name: "1_149\r_2"
     server: 217.30.10.70
@@ -6813,12 +5989,6 @@ proxies:
     cipher: aes-256-cfb
     password: UWZQeLRWnkqgkseq
   - type: ss
-    name: "1_241\r_2"
-    server: 80.92.204.106
-    port: 9053
-    cipher: aes-256-cfb
-    password: SBM7R883jBmnqe6C
-  - type: ss
     name: "1_94\r_2"
     server: 107.155.57.51
     port: 8080
@@ -6836,12 +6006,6 @@ proxies:
     port: 9043
     cipher: aes-256-cfb
     password: HSZuyJQcWe8dxNdF
-  - type: ss
-    name: "1_323\r_2"
-    server: 80.92.204.106
-    port: 9018
-    cipher: aes-256-cfb
-    password: fG2artUmHfNT2cX7
   - type: ss
     name: "1_291\r"
     server: 45.89.52.66
@@ -6909,35 +6073,17 @@ proxies:
     cipher: aes-256-cfb
     password: y9VURyNzJWNRYEGQ
   - type: ss
-    name: "1_242\r"
-    server: 80.92.204.106
-    port: 9041
-    cipher: aes-256-cfb
-    password: U6qnYRhfyDmn8sgn
-  - type: ss
     name: "1_135\r_2"
     server: 217.30.10.70
     port: 9000
     cipher: aes-256-cfb
     password: a3GFYt36Sm82Vys9
   - type: ss
-    name: "1_249\r"
-    server: 80.92.204.106
-    port: 9007
-    cipher: aes-256-cfb
-    password: kSPmvwdFzGMMW5pY
-  - type: ss
     name: "1_248\r_2"
     server: 217.30.10.70
     port: 9084
     cipher: aes-256-cfb
     password: c3NtHJ5ujV2tGDfj
-  - type: ss
-    name: "1_293\r"
-    server: 45.89.52.66
-    port: 9020
-    cipher: aes-256-cfb
-    password: BNmAXXxAHYpTRdzu
   - type: ss
     name: "1_292\r_2"
     server: 185.237.185.160
@@ -6981,36 +6127,6 @@ proxies:
     cipher: aes-256-cfb
     password: cp8pRSUAyLhTfVWH
   - type: ss
-    name: "1_259\r_2"
-    server: 80.92.204.106
-    port: 9008
-    cipher: aes-256-cfb
-    password: y9VURyNzJWNRYEGQ
-  - type: ss
-    name: "1_255\r_2"
-    server: 80.92.204.106
-    port: 9058
-    cipher: aes-256-cfb
-    password: dML2sfhbVwvtfNPe
-  - type: ss
-    name: "1_239\r_2"
-    server: 80.92.204.106
-    port: 9060
-    cipher: aes-256-cfb
-    password: ueLXVkvh4hckhErQ
-  - type: ss
-    name: "1_257\r"
-    server: 80.92.204.106
-    port: 9093
-    cipher: aes-256-cfb
-    password: wfLC2y7rzZyCmuyt
-  - type: ss
-    name: "1_253\r"
-    server: 80.92.204.106
-    port: 9040
-    cipher: aes-256-cfb
-    password: p9z5BVADH2YFs3MN
-  - type: ss
     name: "1_122\r_2"
     server: 217.30.10.70
     port: 9094
@@ -7034,15 +6150,300 @@ proxies:
     port: 9024
     cipher: aes-256-cfb
     password: BejrQvtu9sqUeNuZ
-  - type: ss
-    name: "1_103\r"
-    server: 80.92.204.106
-    port: 9027
-    cipher: aes-256-cfb
-    password: EXN3S3eQpjE7EJu8
-  - type: ss
-    name: "12512"
-    server: 80.92.204.106
-    port: 9003
-    cipher: aes-256-cfb
-    password: JdmRK9gMEqFgs8nP
+  - type: trojan
+    name: y_639
+    server: 172.66.44.230
+    port: 8443
+    password: 8r%25253C%25255B9%252527l6hAO%2525238ZQi
+    network: tcp
+    sni: Koma-YT.PAGeS.Dev
+    tls: true
+  - type: trojan
+    name: y_755
+    server: 104.17.148.22
+    port: 2053
+    password: Bc%252523%25253F%25253Fcut0k9l
+    network: tcp
+    sni: G7tAU5ZF41eqnF9FpwJ8rmQY3SFYEI4l.PRX11.wORKeRS.dEV
+    tls: true
+  - type: trojan
+    name: y_989
+    server: 172.66.44.214
+    port: 2053
+    password: T%252540_WvT8Ho%252540LW%252525w_,
+    network: tcp
+    sni: NOp-55q.pAgEs.dEv
+    tls: true
+  - type: trojan
+    name: y_1295
+    server: 172.67.202.155
+    port: 8443
+    password: 6X1Ca9dbWv%252540%25255E
+    network: tcp
+    sni: soft.onetwothree123.ir
+    tls: true
+  - type: trojan
+    name: y_1389
+    server: 172.66.45.36
+    port: 2083
+    password: Uy1,SF%252523%25255Dszr%252525y.%25253Cs
+    network: tcp
+    sni: jOinMaHdIsErVer-6Qj.PAgES.DEv
+    tls: true
+  - type: trojan
+    name: y_2311
+    server: 172.66.47.183
+    port: 8443
+    password: V+%252540iFj2PAdz.%25257D_Hq
+    network: tcp
+    sni: jOinmAhdIsERveR-62E.PaGes.dEv
+    tls: true
+  - type: trojan
+    name: y_2740
+    server: 172.66.44.86
+    port: 2053
+    password: Ys.c7%25253FD9qmBLo%25255EZ%25255D
+    network: tcp
+    sni: JOInMaHDiSeRVeR-333.pAGEs.DeV
+    tls: true
+  - type: trojan
+    name: y_2909
+    server: 172.66.47.84
+    port: 2083
+    password: fnufMt%25253AsQ&rC0HUu
+    network: tcp
+    sni: joinmAHDIsERVER-6vv.PaGeS.dEv
+    tls: true
+  - type: trojan
+    name: y_3379
+    server: 172.66.47.62
+    port: 2053
+    password: qCfu8t$s%25257B2m%25253BsTxm
+    network: tcp
+    sni: JOinMaHdISeRvEr-C1C.PaGES.dEV
+    tls: true
+  - type: trojan
+    name: y_3671
+    server: 172.67.175.40
+    port: 2083
+    password: 3qx%252525QmCt%25255E&cg
+    network: tcp
+    sni: tabnak.farsonline24.ir
+    tls: true
+  - type: trojan
+    name: y_4059
+    server: 172.66.47.83
+    port: 443
+    password: "%25253AZ%252523%2525253cdIG%252527c*%25253B*O%25257D"
+    network: tcp
+    sni: JoinmAhDiSeRvER-csn.PaGeS.DEv
+    tls: true
+  - type: trojan
+    name: y_4154
+    server: 188.114.97.1
+    port: 2053
+    password: Bc%252523%25253F%25253Fcut0k9l
+    network: tcp
+    sni: G7tAu5Zf41EQNf9fpWJ8RmQy3SFyEi4l.prX11.WOrkers.DEV
+    tls: true
+  - type: trojan
+    name: y_4191
+    server: 104.21.44.185
+    port: 8443
+    password: 4Tze3Ri*i%252523Fo
+    network: tcp
+    sni: soft.onetwothree123.ir
+    tls: true
+  - type: trojan
+    name: y_4415
+    server: 104.21.18.192
+    port: 443
+    password: rXzh%25253B%25253FnW1GGKB(K8
+    network: tcp
+    sni: sAiKOXpUbGm.ZhkinGkuRD13.WorkErs.dEV
+    tls: true
+  - type: trojan
+    name: y_4482
+    server: 172.67.149.227
+    port: 443
+    password: s8xwZ%25255D%25257C%25253FV%25253EcH
+    network: tcp
+    sni: fL9F9zCnHrfnvkA1oYA84yy6p44dHfqP.tUrbOOsErveR.wOrKeRS.dEv
+    tls: true
+  - type: trojan
+    name: y_4718
+    server: 172.66.47.42
+    port: 2053
+    password: T%252540_WvT8Ho%252540LW%252525w_,
+    network: tcp
+    sni: NOp-55q.pAgEs.dEv
+    tls: true
+  - type: trojan
+    name: y_4728
+    server: 172.66.44.109
+    port: 2053
+    password: aP&%25257B)UBD%252540qDGS9b%25253B
+    network: tcp
+    sni: JoinmAhDiSERver-7Hd.paGes.Dev
+    tls: true
+  - type: trojan
+    name: y_5336
+    server: 172.66.44.173
+    port: 443
+    password: "%25253AZ%252523%2525253cdIG%252527c*%25253B*O%25257D"
+    network: tcp
+    sni: JoinmAhDiSeRvER-csn.PaGeS.DEv
+    tls: true
+  - type: trojan
+    name: y_5489
+    server: 172.66.47.30
+    port: 2087
+    password: 0q%25252776Evm32qz%252540Q%252527(
+    network: tcp
+    sni: JOInMahdiserver-11R.PaGES.dEv
+    tls: true
+  - type: trojan
+    name: y_6037
+    server: 104.17.148.22
+    port: 8443
+    password: U&YcI8%25253E7ep%25257D%25253CeT8%25255D
+    network: tcp
+    sni: jOInMaHdisErVeR-Ys7.pagEs.DEV
+    tls: true
+  - type: trojan
+    name: y_6567
+    server: 172.66.46.220
+    port: 2083
+    password: Uy1,SF%252523%25255Dszr%252525y.%25253Cs
+    network: tcp
+    sni: jOinMaHdIsErVer-6Qj.PAgES.DEv
+    tls: true
+  - type: trojan
+    name: y_6819
+    server: 104.21.48.6
+    port: 2083
+    password: 1H%2525254NBDAq%252523bQ
+    network: tcp
+    sni: tabnak.farsonline24.ir
+    tls: true
+  - type: trojan
+    name: y_6835
+    server: 172.66.44.194
+    port: 2053
+    password: qCfu8t$s%25257B2m%25253BsTxm
+    network: tcp
+    sni: JOinMaHdISeRvEr-C1C.PaGES.dEV
+    tls: true
+  - type: trojan
+    name: y_6936
+    server: 172.66.44.182
+    port: 443
+    password: 8QOe)&jIP%25255E%25255Dl%25257BP.1
+    network: tcp
+    sni: JoInMAHdisErVER-78D.PaGEs.DEV
+    tls: true
+  - type: trojan
+    name: y_7476
+    server: 172.66.44.226
+    port: 2087
+    password: 0q%25252776Evm32qz%252540Q%252527(
+    network: tcp
+    sni: JOInMahdiserver-11R.PaGES.dEv
+    tls: true
+  - type: trojan
+    name: y_7593
+    server: 172.66.44.172
+    port: 2083
+    password: fnufMt%25253AsQ&rC0HUu
+    network: tcp
+    sni: joinmAHDIsERVER-6vv.PaGeS.dEv
+    tls: true
+  - type: trojan
+    name: y_7977
+    server: 172.66.47.74
+    port: 443
+    password: 8QOe)&jIP%25255E%25255Dl%25257BP.1
+    network: tcp
+    sni: JoInMAHdisErVER-78D.PaGEs.DEV
+    tls: true
+  - type: trojan
+    name: y_8488
+    server: 104.17.147.22
+    port: 2053
+    password: Bc%252523%25253F%25253Fcut0k9l
+    network: tcp
+    sni: G7tAU5ZF41eqnF9FpwJ8rmQY3SFYEI4l.PRX11.wORKeRS.dEV
+    tls: true
+  - type: trojan
+    name: y_8920
+    server: 104.21.88.9
+    port: 443
+    password: s8xwZ%25255D%25257C%25253FV%25253EcH
+    network: tcp
+    sni: fL9F9zCnHrfnvkA1oYA84yy6p44dHfqP.tUrbOOsErveR.wOrKeRS.dEv
+    tls: true
+  - type: trojan
+    name: y_8958
+    server: 172.66.44.73
+    port: 8443
+    password: V+%252540iFj2PAdz.%25257D_Hq
+    network: tcp
+    sni: jOinmAhdIsERveR-62E.PaGes.dEv
+    tls: true
+
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
+    interval: 36000
+  icloud:
+    type: http
+    behavior: domain
+    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
+    interval: 36000
+  apple:
+    type: http
+    behavior: domain
+    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
+    interval: 36000
+  google:
+    type: http
+    behavior: domain
+    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
+    interval: 36000
+  proxy:
+    type: http
+    behavior: domain
+    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
+    interval: 36000
+  direct:
+    type: http
+    behavior: domain
+    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
+    interval: 36000
+  private:
+    type: http
+    behavior: domain
+    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
+    interval: 36000
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
+    interval: 36000
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
+    interval: 36000
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
+    interval: 36000
+  applications:
+    type: http
+    behavior: classical
+    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt
+    interval: 36000
