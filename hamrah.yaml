@@ -7,8 +7,8 @@ mode: rule
 ipv6: true
 allow-lan: true
 log-level: debug
-external-controller: "0.0.0.0:9090"
-external-controller-tls: "0.0.0.0:9091"
+external-controller: "127.0.0.1:9090"
+external-controller-tls: "127.0.0.1:9091"
 external-controller-cors:
   allow-private-network: true
   allow-origins:
@@ -23,7 +23,7 @@ keep-alive-interval: 30
 find-process-mode: always
 external-ui-name: xd
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
-unified-delay: false
+unified-delay: true
 tcp-concurrent: true
 global-client-fingerprint: random
 geodata-mode: true
@@ -251,10 +251,10 @@ proxy-groups:
 
   - name: "US"
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/US.svg"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
+  #  filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: url-test
-    interval: 180
+    interval: 18
     tolerance: 5000
     exclude-type: "direct"
     include-all: true
@@ -263,11 +263,11 @@ proxy-groups:
 
   - name: "Persian Gulf"
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/freedom.webp"
-    exclude-type: "direct|Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
+  #  exclude-type: "direct|Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: url-test
-    interval: 180
-    tolerance: 5000
+    interval: 18
+    tolerance: 50000
     include-all: true
     hidden: false
     url: "http://www.google.com/generate_204"
