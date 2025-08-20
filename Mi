@@ -25,14 +25,24 @@ dns:
     - "*.test"
 tun:
   enable: true
-  stack: system
+  stack: gvisor
   auto-route: true
   auto-detect-interface: true
   dns-hijack:
-    - 8.8.8.8
-    - 8.8.4.4
-    - any:53
+    - udp://any:853
+    - tcp://any:53
+    - 198.18.0.1/16:53
+    - 198.18.0.2/16:53
+    - tcp://any:53
     - tcp://0.0.0.0:53
+    - tcp://127.0.0.1:53
+    - tcp://223.5.5.5:53
+    - tcp://223.6.6.6:53
+    - tcp://114.114.114.114:53
+    - tcp://9.9.9.9:53
+    - tcp://8.8.8.8:53
+    - tcp://1.1.1.1:53
+    - any:53
 proxy-groups:
 
   - name: 🚀 Select
