@@ -15,7 +15,7 @@ dns:
     - 8.8.8.8
     - 1.1.1.1
   enhanced-mode: fake-ip
- # fake-ip-range: 198.18.0.1/16
+  fake-ip-range: 100.0.0.1/8
   fake-ip-filter:
     - "*.lan"
     - "*.localdomain"
@@ -23,12 +23,20 @@ dns:
     - "*.invalid"
     - "*.localhost"
     - "*.test"
-
+tun:
+  enable: true
+  stack: system
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - 8.8.8.8
+    - 8.8.4.4
+    - any:53
+    - tcp://0.0.0.0:53
 proxy-groups:
 
   - name: 🚀 Select
     type: select
-
     include-all-proxies: true
     proxies:
       - 🎈 Auto
@@ -63,21 +71,10 @@ proxy-groups:
     interval: 180
 
 rules:
-  - RULE-SET,applications,🎯 Direct
   - DOMAIN,clash.razord.top,🎯 Direct
   - DOMAIN,yacd.haishan.me,🎯 Direct
-  - RULE-SET,private,🎯 Direct
-  - RULE-SET,reject,🛑 Reject
   - DOMAIN,www.icloud.com,🚀 Select
   - DOMAIN-SUFFIX,icloud-content.com,🚀 Select
-  - RULE-SET,icloud,🎯 Direct
-  - RULE-SET,apple,🚀 Select
-  - RULE-SET,google,🚀 Select
-  - RULE-SET,proxy,🚀 Select
-  - RULE-SET,direct,🎯 Direct
-  - RULE-SET,lancidr,🎯 Direct
-  - RULE-SET,cncidr,🎯 Direct
-  - RULE-SET,telegramcidr,🚀 Select
   - DOMAIN,googleadservices.com,🚀 Select
   - DST-PORT,80,🚀 Select
   - SRC-PORT,443,🚀 Select
@@ -6390,60 +6387,3 @@ proxies:
     network: tcp
     sni: jOinmAhdIsERveR-62E.PaGes.dEv
     tls: true
-
-rule-providers:
-  reject:
-    type: http
-    behavior: domain
-    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
-    interval: 36000
-  icloud:
-    type: http
-    behavior: domain
-    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
-    interval: 36000
-  apple:
-    type: http
-    behavior: domain
-    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
-    interval: 36000
-  google:
-    type: http
-    behavior: domain
-    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
-    interval: 36000
-  proxy:
-    type: http
-    behavior: domain
-    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
-    interval: 36000
-  direct:
-    type: http
-    behavior: domain
-    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
-    interval: 36000
-  private:
-    type: http
-    behavior: domain
-    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
-    interval: 36000
-  telegramcidr:
-    type: http
-    behavior: ipcidr
-    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
-    interval: 36000
-  cncidr:
-    type: http
-    behavior: ipcidr
-    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
-    interval: 36000
-  lancidr:
-    type: http
-    behavior: ipcidr
-    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
-    interval: 36000
-  applications:
-    type: http
-    behavior: classical
-    url: https://testingcf.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt
-    interval: 36000
