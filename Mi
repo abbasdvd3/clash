@@ -27,7 +27,15 @@ tun:
   enable: true
   stack: gvisor
   auto-route: true
+  mtu: 1500
+  strict-route: true
   auto-detect-interface: true
+  endpoint-independent-nat: true
+  route-address:
+    - 0.0.0.0/1
+    - 128.0.0.0/1
+    - ::/1
+    - 8000::/1
   dns-hijack:
     - udp://any:853
     - tcp://any:53
