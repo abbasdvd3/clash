@@ -4370,11 +4370,14 @@ tun:
   endpoint-independent-nat: true
 dns:
   enable: true
-  listen: 0.0.0.0:53
+  listen: 0.0.0.0:1053
   ipv6: true
   use-hosts: true
   use-system-hosts: true
-  default-nameserver:
+  direct-nameserver:
+    - tls://1.1.1.1
+    - tcp://8.8.4.4
+  nameserver:
     - tls://223.5.5.5
     - tcp://9.9.9.9
     - tcp://8.8.8.8
@@ -4384,10 +4387,6 @@ dns:
     - tls://119.29.29.29
     - tls://1.12.12.12
     - tcp://120.53.53.53
-  direct-nameserver:
-    - tls://1.1.1.1
-    - tcp://8.8.4.4
-  nameserver:
     - tls://dns.adguard.com
     - https://cloudflare-dns.com/dns-query
     - https://1.1.1.1/#h3=true
@@ -4498,11 +4497,11 @@ dns:
     - tls://1.12.12.12
     - tcp://120.53.53.53
   fallback-filter:
-    geoip: true
+    geoip: false
     geoip-code: ir
     geosite:
-      - social
-      - nsfw
+  #    - social
+   #   - nsfw
     ipcidr:
       - 240.0.0.0/4
       - 0.0.0.0/32
@@ -4515,6 +4514,7 @@ dns:
       - +.google.cn
       - +.googleapis.cn
       - +.googleapis.com
+      - +.createporn.com
 proxy-providers:
   A1:
     type: http
@@ -4680,10 +4680,23 @@ proxy-providers:
     override:
       additional-prefix: "A14 prefix |"
       additional-suffix: "| test suffix"
-      
+  A15:
+    type: http
+    url: "https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A15 prefix |"
+      additional-suffix: "| test suffix"  
 proxy-groups:
   - name: "PROXY"
-    type: url-test
+    type: select
     url: "http://www.google.com/generate_204"
     hidden: false
    # interval: 180
