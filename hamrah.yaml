@@ -4497,7 +4497,7 @@ dns:
     - tls://1.12.12.12
     - tcp://120.53.53.53
   fallback-filter:
-    geoip: false
+    geoip: true
     geoip-code: ir
     geosite:
   #    - social
@@ -4505,6 +4505,29 @@ dns:
     ipcidr:
       - 240.0.0.0/4
       - 0.0.0.0/32
+      - 100.64.0.0/10
+      - 127.0.0.0/8
+      - 240.0.0.0/4
+      - 10.0.0.0/8
+      - 169.254.0.0/16
+      - 172.16.0.0/12
+      - 192.0.0.0/24
+      - 192.0.2.0/24
+      - 192.88.99.0/24
+      - 192.168.0.0/16
+      - 198.18.0.0/16
+      - 198.51.100.0/24
+      - 203.0.113.0/24
+      - 224.0.0.0/4
+      - 255.255.255.255/32
+      - ::1/128
+      - fc00::/7
+      - fe80::/10
+      - 39.102.194.95/32
+      - 182.43.124.6/32
+      - 101.35.177.86/32
+      - 116.89.243.8/32
+      - 119.28.87.227/32
     domain:
       - +.google.com
       - +.github.com
@@ -4696,10 +4719,10 @@ proxy-providers:
       additional-suffix: "| test suffix"  
 proxy-groups:
   - name: "PROXY"
-    type: select
+    type: url-test
     url: "http://www.google.com/generate_204"
     hidden: false
-   # interval: 180
+    interval: 1
     tolerance: 500000
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
     proxies:
