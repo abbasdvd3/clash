@@ -42,7 +42,7 @@ dns:
     - tls://dns.google:853#PROXY
     - https://8.8.4.4/dns-query#PROXY
   fallback-filter:
-    geoip: true
+    geoip: false
     geoip-code: ir
     ipcidr:
       - 240.0.0.0/4
@@ -140,8 +140,8 @@ proxy-groups:
     type: url-test
     url: "https://www.google.com/"
     interval: 99
-    tolerance: 800
-    disable-udp: false
+    tolerance: 8000
+    disable-udp: true
     use:
  #     - provider1
     proxies:
@@ -151,7 +151,7 @@ proxy-groups:
   - name: fallback
     type: fallback
     url: "https://www.google.com/"
-    disable-udp: false
+    disable-udp: true
     interval: 180
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     hidden: false
@@ -172,7 +172,7 @@ proxy-groups:
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     interval: 300
     tolerance: 5000
-    hidden: false
+    hidden: true
     use:
       - provider1
       - provider2
@@ -185,7 +185,7 @@ proxy-groups:
     type: url-test
     url: "https://www.google.com/"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    disable-udp: false
+    disable-udp: true
     interval: 99
     tolerance: 5000
     hidden: false
@@ -218,7 +218,7 @@ rules:
   - GEOIP,telegram,PROXY
   - GEOIP,google,PROXY
   - GEOIP,facebook,PROXY
-  - GEOIP,CN,🎯 DIRECT
+#  - GEOIP,CN,🎯 DIRECT
   - DOMAIN-SUFFIX,fast.com,🎯 DIRECT
   - DOMAIN-SUFFIX,speedtest.net,🎯 DIRECT
   - PROCESS-NAME,com.tomclaw.appsend,DIRECT
