@@ -1,6 +1,6 @@
 mixed-port: 7890
 allow-lan: true
-mode: rule
+mode: GLOBAL
 ipv6: true
 log-level: info
 external-controller: 127.0.0.1:9090
@@ -27,32 +27,13 @@ tun:
   enable: true
   stack: gvisor
   auto-route: true
-  mtu: 1500
+  mtu: 9000
   strict-route: true
   auto-detect-interface: true
   endpoint-independent-nat: true
-  route-address:
-    - 0.0.0.0/1
-    - 128.0.0.0/1
-    - ::/1
-    - 8000::/1
   dns-hijack:
-    - udp://any:853
-    - tcp://any:53
-    - 198.18.0.16:53
-    - 198.18.0.32:53
-    - tcp://any:53
-    - tcp://0.0.0.0:53
-    - tcp://127.0.0.1:53
-    - tcp://223.5.5.5:53
-    - tcp://223.6.6.6:53
-    - tcp://114.114.114.114:53
-    - tcp://9.9.9.9:53
-    - tcp://8.8.8.8:53
-    - tcp://1.1.1.1:53
     - any:53
 proxy-groups:
-
   - name: 🚀 Select
     type: select
     include-all-proxies: true
@@ -88,6 +69,12 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 180
 
+  - name: GLOBAL
+    type: select
+    proxies:
+      - 🎈 Auto
+      - 🐟 Fallback
+
 rules:
   - DOMAIN,clash.razord.top,🎯 Direct
   - DOMAIN,yacd.haishan.me,🎯 Direct
@@ -97,18 +84,9 @@ rules:
   - DST-PORT,80,🚀 Select
   - SRC-PORT,443,🚀 Select
   - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
-  - MATCH,🚀 Select
+  - MATCH,GLOBAL
 
 proxies:
-  - type: trojan
-    name: 🇺🇸 机场推荐:dafei.de 美国 413
-    server: test.hdcloud.link
-    port: 443
-    password: 76c0f554-8fc9-4c4c-ab07-ce76235bcce3
-    network: tcp
-    sni: test.hdcloud.link
-    skip-cert-verify: true
-    tls: true
   - type: ss
     name: 🇲🇩 机场推荐:dafei.de 摩尔多瓦 01
     server: 185.153.197.5
