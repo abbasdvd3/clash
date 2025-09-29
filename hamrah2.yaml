@@ -9,7 +9,7 @@ log-level: silent
 interface-name: ""
 mode: rule
 external-controller: 127.0.0.1:9090
-external-ui: ./dashboard
+external-ui: dashboard
 external-controller-tls: 127.0.0.1:9091
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 unified-delay: true
@@ -17,7 +17,57 @@ tcp-concurrent: true
 profile:
   store-selected: true
   store-fake-ip: true
+geodata-mode: true
+geodata-loader: memconservative
+allow-lan: true
+find-process-mode: strict
+ipv6: true
 
+tun:
+  enable: true
+  device: Meta
+  stack: gvisor
+  auto-route: true
+  auto-redirect: false
+  auto-detect-interface: true
+  dns-hijack: ['any:53']
+  route-exclude-address: []
+  mtu: 1500
+  
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: false
+  prefer-h3: false
+  respect-rules: true
+  use-system-hosts: false
+  cache-algorithm: arc
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '+.lan'
+    - '+.local'
+    - '+.msftconnecttest.com'
+    - '+.msftncsi.com'
+    - 'localhost.ptlogin2.qq.com'
+    - 'localhost.sec.qq.com'
+    - '+.in-addr.arpa'
+    - '+.ip6.arpa'
+    - 'time.*.com'
+    - 'time.*.gov'
+    - 'pool.ntp.org'
+    - 'localhost.work.weixin.qq.com'
+  default-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+  nameserver:
+    - https://1.1.1.1/dns-query
+    - https://dns.google/dns-query
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query
+    - https://doh.pub/dns-query
+    - https://1.1.1.1/dns-query
+    - https://dns.google/dns-query
 proxies:
 proxy-groups:
   - name: 🕹 select
@@ -265,4 +315,5 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,🕹 select
   - MATCH,🕹 select
+
 
