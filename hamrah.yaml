@@ -106,6 +106,9 @@ dns:
     - tls://[2620:fe::11]
     - tls://[2620:119:35::35]
   nameserver-policy:
+    "rule-set:LocalAreaNetwork,private,ir,ircidr":
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
     "www.google.com":
       - tls://114.114.114.114
       - quic://223.5.5.5
@@ -125,7 +128,7 @@ dns:
       - tls://208.67.222.222
       - tls://[2620:fe::11]
       - tls://[2620:119:35::35]
-    "www.spankbang.com":
+    "rule-set:GoogleCN,UnBan,AI,GoogleFCM,Google,GoogleCNProxyIP,Microsoft,Telegram,ProxyMedia,ProxyGFWlist,social,nsfw":
       - https://120.53.53.53/dns-query
       - https://223.5.5.5/dns-query
       - https://doh.pub/dns-query
@@ -190,7 +193,7 @@ dns:
     - tls://1.12.12.12
     - tcp://120.53.53.53
   fallback-filter:
-    geoip: false
+    geoip: true
     geoip-code: ir
     geosite:
   #    - social
@@ -279,7 +282,7 @@ proxy-providers:
 
   A7:
     type: http
-    url: "https://SOS.CMLiussss.net/auto"
+    url: "https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg"
     interval: 86400
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -309,7 +312,7 @@ proxy-providers:
 
   A9:
     type: http
-    url: "https://proxy.crazygeeky.com/clash/proxies"
+    url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-2.yaml"
     interval: 86400
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -384,7 +387,7 @@ proxy-providers:
 
   A14:
     type: http
-    url: "https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1225clash.yml"
+    url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
     interval: 86400
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -409,7 +412,318 @@ proxy-providers:
       expected-status: 100
     override:
       additional-prefix: "A15 prefix |"
-      additional-suffix: "| test suffix"  
+      additional-suffix: "| test suffix"
+  A16:
+    type: http
+    url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list_raw.txt"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A16 prefix |"
+      additional-suffix: "| test suffix"
+    
+  A22:
+    type: http
+    url: "https://raw.githubusercontent.com/yaney01/Yaney01/main/README.md"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A22 prefix |"
+      additional-suffix: "| test suffix"
+    
+  A66:
+    type: http
+    url: "https://raw.githubusercontent.com/HakurouKen/free-node/main/public"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A66 prefix |"
+      additional-suffix: "| test suffix"
+
+  A77:
+    type: http
+    url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/actives.txt"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A77 prefix |"
+      additional-suffix: "| test suffix"
+
+  A88:
+    type: http
+    url: "https://raw.githubusercontent.com/shabane/kamaji/master/hub/merged.txt"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A88 prefix |"
+      additional-suffix: "| test suffix"
+
+  A99:
+    type: http
+    url: "https://raw.githubusercontent.com/markbang/chromegopacs/main/hy2pac.txt"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A99 prefix |"
+      additional-suffix: "| test suffix"
+
+  A100:
+    type: http
+    url: "https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A100 prefix |"
+      additional-suffix: "| test suffix"
+
+  A111:
+    type: http
+    url: "https://raw.githubusercontent.com/abshare/abshare.github.io/main/README.md"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A111 prefix |"
+      additional-suffix: "| test suffix"
+
+  A122:
+    type: http
+    url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A122 prefix |"
+      additional-suffix: "| test suffix"
+      
+  A133:
+    type: http
+    url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A133 prefix |"
+      additional-suffix: "| test suffix"
+
+  A144:
+    type: http
+    url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A14 prefix |"
+      additional-suffix: "| test suffix"
+  A155:
+    type: http
+    url: "https://raw.githubusercontent.com/aiboboxx/clashfree/main/clash.yml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A155 prefix |"
+      additional-suffix: "| test suffix"
+  A101:
+    type: http
+    url: "https://raw.githubusercontent.com/mheidari98/.proxy/main/all"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A101 prefix |"
+      additional-suffix: "| test suffix"
+    
+  A102:
+    type: http
+    url: "https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/Clash.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A102 prefix |"
+      additional-suffix: "| test suffix"
+    
+  A106:
+    type: http
+    url: "https://raw.githubusercontent.com/ts-sf/fly/main/clash"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A106 prefix |"
+      additional-suffix: "| test suffix"
+
+  A107:
+    type: http
+    url: "https://raw.githubusercontent.com/PangTouY00/Auto_proxy/main/Long_term_subscription_num"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A107 prefix |"
+      additional-suffix: "| test suffix"
+
+  A108:
+    type: http
+    url: "https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A108 prefix |"
+      additional-suffix: "| test suffix"
+
+  A109:
+    type: http
+    url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A109 prefix |"
+      additional-suffix: "| test suffix"
+
+  A110:
+    type: http
+    url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A110 prefix |"
+      additional-suffix: "| test suffix"
+  AA108:
+    type: http
+    url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "AA108 prefix |"
+      additional-suffix: "| test suffix"
+
+  AA109:
+    type: http
+    url: "https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "AA109 prefix |"
+      additional-suffix: "| test suffix"
 proxy-groups:
   - name: "PROXY"
     type: "select"
@@ -518,7 +832,83 @@ proxy-groups:
       - "PASS"
     
 rule-providers:
-
+  nsfw:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.txt"
+    interval: 86400
+    
+  social:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.txt"
+    interval: 86400
+    
+  ir:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
+    interval: 86400
+    
+  ads:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.txt"
+    interval: 86400
+    
+  malware:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt"
+    interval: 86400
+    
+  phishing:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.txt"
+    interval: 86400
+    
+  cryptominers:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.txt"
+    interval: 86400
+    
+  apps:
+    type: http
+    format: text
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.txt"
+    interval: 86400
+    
+  ircidr:
+    type: http
+    format: text
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
+    interval: 86400
+    
+  private:
+    type: http
+    format: text
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.txt"
+    interval: 86400
+    
+  irasn:
+    type: http
+    format: text
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.txt"
+    interval: 86400
+    
   LocalAreaNetwork:
     type: http
     behavior: classical
@@ -673,126 +1063,137 @@ rule-providers:
     interval: 3600
 
 rules:
-  - RULE-SET,LocalAreaNetwork,🎯 Direct
+  - RULE-SET,private,🎯 Direct,no-resolve
+  - RULE-SET,apps,🎯 Direct
+  - RULE-SET,ads,🛑 Reject
+  - RULE-SET,malware,🛑 Reject
+  - RULE-SET,phishing,🛑 Reject
+  - RULE-SET,cryptominers,🛑 Reject
+  - RULE-SET,ir,🎯 Direct
+  - RULE-SET,ircidr,🎯 Direct
+  - RULE-SET,irasn,🎯 Direct
+  - RULE-SET,social,PROXY,no-resolve
+  - RULE-SET,nsfw,PROXY,no-resolve
+  - RULE-SET,LocalAreaNetwork,🎯 Direct,no-resolve
   - RULE-SET,BanAD,🛑 Reject
   - RULE-SET,BanProgramAD,🛑 Reject
-  - RULE-SET,GoogleCN,PROXY
-  - RULE-SET,UnBan,PROXY
+  - RULE-SET,GoogleCN,PROXY,no-resolve
+  - RULE-SET,UnBan,PROXY,no-resolve
   - RULE-SET,BanAD,🛑 Reject
   - RULE-SET,BanProgramAD,🛑 Reject
   - RULE-SET,BanEasyList,🛑 Reject
   - RULE-SET,BanEasyListChina,🛑 Reject
   - RULE-SET,BanEasyPrivacy,🛑 Reject
-  - RULE-SET,AI,PROXY
-  - RULE-SET,GoogleFCM,PROXY
+  - RULE-SET,AI,PROXY,no-resolve
+  - RULE-SET,GoogleFCM,PROXY,no-resolve
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
-  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
-  - RULE-SET,GoogleCNProxyIP,PROXY
-  - RULE-SET,GoogleCN,PROXY
-  - RULE-SET,YouTube,PROXY
-  - RULE-SET,Google,PROXY
-  - RULE-SET,Microsoft,PROXY
+  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY,no-resolve
+  - RULE-SET,GoogleCNProxyIP,PROXY,no-resolve
+  - RULE-SET,GoogleCN,PROXY,no-resolve
+  - RULE-SET,YouTube,PROXY,no-resolve
+  - RULE-SET,Google,PROXY,no-resolve
+  - RULE-SET,Microsoft,PROXY,no-resolve
   - RULE-SET,Apple,PROXY
-  - RULE-SET,Telegram,PROXY
-  - RULE-SET,ProxyMedia,PROXY
+  - RULE-SET,Telegram,PROXY,no-resolve
+  - RULE-SET,ProxyMedia,PROXY,no-resolve
   - DOMAIN-SUFFIX,v2rayse.com,PROXY
   - DOMAIN-SUFFIX,cff.pw,PROXY
   - DOMAIN-SUFFIX,vpnse.org,PROXY
   - DOMAIN-SUFFIX,cfmem.com,PROXY
-  - RULE-SET,ProxyGFWlist,PROXY
-  - RULE-SET,ChinaDomain,PROXY
-  - RULE-SET,ChinaCompanyIp,PROXY
-  - GEOIP,ir,🎯 Direct
-  - DOMAIN,googleadservices.com,PROXY
-  - DST-PORT,80,PROXY
-  - SRC-PORT,443,PROXY
+  - RULE-SET,ProxyGFWlist,PROXY,no-resolve
+  - RULE-SET,ChinaDomain,PROXY,no-resolve
+  - RULE-SET,ChinaCompanyIp,PROXY,no-resolve
+  - GEOIP,ir,🎯 Direct,no-resolve
+  - DOMAIN,googleadservices.com,PROXY,no-resolve
+  - DST-PORT,80,PROXY,no-resolve
+  - SRC-PORT,443,PROXY,no-resolve
   - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
   - RULE-SET,category-ads-all,🛑 Reject
-  - DOMAIN-SUFFIX,achat-followers-instagram.com,PROXY
-  - DOMAIN-SUFFIX,acheter-followers-instagram.com,PROXY
-  - DOMAIN-SUFFIX,acheterdesfollowersinstagram.com,PROXY
-  - DOMAIN-SUFFIX,acheterfollowersinstagram.com,PROXY
-  - DOMAIN-SUFFIX,bookstagram.com,PROXY
-  - DOMAIN-SUFFIX,carstagram.com,PROXY
-  - DOMAIN-SUFFIX,cdninstagram.com,PROXY
-  - DOMAIN-SUFFIX,chickstagram.com,PROXY
-  - DOMAIN-SUFFIX,ig.me,PROXY
-  - DOMAIN-SUFFIX,igcdn.com,PROXY
-  - DOMAIN-SUFFIX,igsonar.com,PROXY
-  - DOMAIN-SUFFIX,igtv.com,PROXY
-  - DOMAIN-SUFFIX,imstagram.com,PROXY
-  - DOMAIN-SUFFIX,imtagram.com,PROXY
-  - DOMAIN-SUFFIX,instaadder.com,PROXY
-  - DOMAIN-SUFFIX,instachecker.com,PROXY
-  - DOMAIN-SUFFIX,instafallow.com,PROXY
-  - DOMAIN-SUFFIX,instafollower.com,PROXY
-  - DOMAIN-SUFFIX,instagainer.com,PROXY
-  - DOMAIN-SUFFIX,instagda.com,PROXY
-  - DOMAIN-SUFFIX,instagify.com,PROXY
-  - DOMAIN-SUFFIX,instagmania.com,PROXY
-  - DOMAIN-SUFFIX,instagor.com,PROXY
-  - DOMAIN-SUFFIX,instagram-brand.com,PROXY
-  - DOMAIN-SUFFIX,instagram-engineering.com,PROXY
-  - DOMAIN-SUFFIX,instagram-help.com,PROXY
-  - DOMAIN-SUFFIX,instagram-press.com,PROXY
-  - DOMAIN-SUFFIX,instagram-press.net,PROXY
-  - DOMAIN-SUFFIX,instagram.com,PROXY
-  - DOMAIN-SUFFIX,instagramci.com,PROXY
-  - DOMAIN-SUFFIX,instagramcn.com,PROXY
-  - DOMAIN-SUFFIX,instagramdi.com,PROXY
-  - DOMAIN-SUFFIX,instagramhashtags.net,PROXY
-  - DOMAIN-SUFFIX,instagramhilecim.com,PROXY
-  - DOMAIN-SUFFIX,instagramhilesi.org,PROXY
-  - DOMAIN-SUFFIX,instagramium.com,PROXY
-  - DOMAIN-SUFFIX,instagramizlenme.com,PROXY
-  - DOMAIN-SUFFIX,instagramkusu.com,PROXY
-  - DOMAIN-SUFFIX,instagramlogin.com,PROXY
-  - DOMAIN-SUFFIX,instagramm.com,PROXY
-  - DOMAIN-SUFFIX,instagramn.com,PROXY
-  - DOMAIN-SUFFIX,instagrampartners.com,PROXY
-  - DOMAIN-SUFFIX,instagramphoto.com,PROXY
-  - DOMAIN-SUFFIX,instagramq.com,PROXY
-  - DOMAIN-SUFFIX,instagramsepeti.com,PROXY
-  - DOMAIN-SUFFIX,instagramtakipcisatinal.net,PROXY
-  - DOMAIN-SUFFIX,instagramtakiphilesi.com,PROXY
-  - DOMAIN-SUFFIX,instagramtips.com,PROXY
-  - DOMAIN-SUFFIX,instagramtr.com,PROXY
-  - DOMAIN-SUFFIX,instagran.com,PROXY
-  - DOMAIN-SUFFIX,instagranm.com,PROXY
-  - DOMAIN-SUFFIX,instagrem.com,PROXY
-  - DOMAIN-SUFFIX,instagrm.com,PROXY
-  - DOMAIN-SUFFIX,instagtram.com,PROXY
-  - DOMAIN-SUFFIX,instagy.com,PROXY
-  - DOMAIN-SUFFIX,instamgram.com,PROXY
-  - DOMAIN-SUFFIX,instangram.com,PROXY
-  - DOMAIN-SUFFIX,instanttelegram.com,PROXY
-  - DOMAIN-SUFFIX,instaplayer.net,PROXY
-  - DOMAIN-SUFFIX,instastyle.tv,PROXY
-  - DOMAIN-SUFFIX,instgram.com,PROXY
-  - DOMAIN-SUFFIX,intagram.com,PROXY
-  - DOMAIN-SUFFIX,intagrm.com,PROXY
-  - DOMAIN-SUFFIX,intgram.com,PROXY
-  - DOMAIN-SUFFIX,kingstagram.com,PROXY
-  - DOMAIN-SUFFIX,lnstagram-help.com,PROXY
-  - DOMAIN-SUFFIX,theinstagramhack.com,PROXY
-  - DOMAIN-SUFFIX,oninstagram.com,PROXY
-  - DOMAIN-SUFFIX,online-instagram.com,PROXY
-  - DOMAIN-SUFFIX,onlineinstagram.com,PROXY
-  - DOMAIN-SUFFIX,web-instagram.net,PROXY
-  - DOMAIN-SUFFIX,wwwinstagram.com,PROXY
-  - DOMAIN-SUFFIX,icloud.com,PROXY
-  - DOMAIN-SUFFIX,googlevideo.com,PROXY
-  - DOMAIN-SUFFIX,youtube.com,PROXY
-  - DOMAIN-SUFFIX,github.com,PROXY
-  - DOMAIN-SUFFIX,github.io,PROXY
-  - DOMAIN-SUFFIX,tiktok.com,PROXY
-  - DOMAIN-SUFFIX,tiktokcdn.com,PROXY
-  - DOMAIN-KEYWORD,openai,PROXY
-  - DOMAIN-KEYWORD,chatgpt,PROXY
-  - DOMAIN-SUFFIX,ip6-localhost,🎯 Direct
-  - DOMAIN-SUFFIX,ip6-loopback,🎯 Direct
-  - DOMAIN-SUFFIX,lan,🎯 Direct
-  - DOMAIN-SUFFIX,local,🎯 Direct
+  - DOMAIN-SUFFIX,achat-followers-instagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,acheter-followers-instagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,acheterdesfollowersinstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,acheterfollowersinstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,bookstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,carstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,cdninstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,chickstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,ig.me,PROXY,no-resolve
+  - DOMAIN-SUFFIX,igcdn.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,igsonar.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,igtv.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,imstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,imtagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instaadder.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instachecker.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instafallow.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instafollower.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagainer.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagda.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagify.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagmania.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagor.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagram-brand.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagram-engineering.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagram-help.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagram-press.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagram-press.net,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramci.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramcn.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramdi.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramhashtags.net,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramhilecim.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramhilesi.org,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramium.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramizlenme.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramkusu.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramlogin.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramm.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramn.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagrampartners.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramphoto.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramq.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramsepeti.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramtakipcisatinal.net,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramtakiphilesi.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramtips.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagramtr.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagran.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagranm.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagrem.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagrm.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagtram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instagy.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instamgram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instangram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instanttelegram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instaplayer.net,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instastyle.tv,PROXY,no-resolve
+  - DOMAIN-SUFFIX,instgram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,intagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,intagrm.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,intgram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,kingstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,lnstagram-help.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,theinstagramhack.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,oninstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,online-instagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,onlineinstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,web-instagram.net,PROXY,no-resolve
+  - DOMAIN-SUFFIX,wwwinstagram.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,icloud.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,googlevideo.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,youtube.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,github.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,github.io,PROXY,no-resolve
+  - DOMAIN-SUFFIX,tiktok.com,PROXY,no-resolve
+  - DOMAIN-SUFFIX,tiktokcdn.com,PROXY,no-resolve
+  - DOMAIN-KEYWORD,openai,PROXY,no-resolve
+  - DOMAIN-KEYWORD,chatgpt,PROXY,no-resolve
+  - DOMAIN-SUFFIX,ip6-localhost,🎯 Direct,no-resolve
+  - DOMAIN-SUFFIX,ip6-loopback,🎯 Direct,no-resolve
+  - DOMAIN-SUFFIX,lan,🎯 Direct,no-resolve
+  - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
   - DOMAIN-SUFFIX,localhost,🎯 Direct
   - IP-CIDR,0.0.0.0/8,🎯 Direct,no-resolve
   - IP-CIDR,10.0.0.0/8,🎯 Direct,no-resolve
