@@ -125,7 +125,7 @@ dns:
     - tls://[2620:fe::11]
     - tls://[2620:119:35::35]
   nameserver-policy:
-    "rule-set:LocalAreaNetwork,private,ir,ircidr":
+    "rule-set:LocalAreaNetwork,private,ir":
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
     "www.google.com":
@@ -910,14 +910,14 @@ rule-providers:
   ircidr:
     type: http
     format: text
-    behavior: ipcidr
+    behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
     interval: 86400
     
   private:
     type: http
     format: text
-    behavior: ipcidr
+    behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.txt"
     interval: 86400
     
