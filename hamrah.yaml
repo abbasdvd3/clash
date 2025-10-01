@@ -5,7 +5,7 @@ mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
 mode: rule
-ipv6: false
+ipv6: true
 allow-lan: true
 log-level: debug
 external-controller: "127.0.0.1:9090"
@@ -42,23 +42,41 @@ profile:
   
 tun:
   enable: true
-  stack: Mixed
+  stack: system
   auto-route: true
+  auto-redirect: true
   auto-detect-interface: true
   dns-hijack:
-    - any:853
+    - any:53
     - tcp://any:53
-  device: utun_clash
+  device: utun0
   mtu: 9000
   strict-route: true
+  gso: true
+  gso-max-size: 65536
+  udp-timeout: 300
+  iproute2-table-index: 2022
+  iproute2-rule-index: 9000
   endpoint-independent-nat: false
-  
+  inet4-route-address:
+  - 0.0.0.0/1
+  - 128.0.0.0/1
+  inet6-route-address:
+  - "::/1"
+  - "8000::/1"
+  inet4-route-exclude-address:
+  - 192.168.0.0/16
+  inet6-route-exclude-address:
+  - fc00::/7
 dns:
   enable: true
-  listen: 127.0.0.1:1053
-  ipv6: false
+  cache-algorithm: arc
+  prefer-h3: true
   use-hosts: true
   use-system-hosts: true
+  respect-rules: true
+  listen: 0.0.0.0:1053
+  ipv6: true
   ult-nameserver:
     - tls://223.5.5.5
     - tls://114.114.114.114
@@ -67,6 +85,7 @@ dns:
     - tls://1.1.1.1
     - tls://8.8.4.4
     - tls://8.8.8.8
+    - tcp://8.8.8.8
   direct-nameserver:
     - tls://1.1.1.1
     - tcp://8.8.4.4
