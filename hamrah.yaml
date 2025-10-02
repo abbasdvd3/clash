@@ -746,7 +746,7 @@ proxy-providers:
 proxy-groups:
   - name: "PROXY"
     type: "select"
-    url: "http://www.google.com/generate_204"
+    url: "http://www.google.com/"
     hidden: false
     interval: 1500
     tolerance: 500000
@@ -760,10 +760,10 @@ proxy-groups:
       - "🇺🇸US🇺🇸"
   - name: "🎈Auto"
     type: "url-test"
-    url: "https://www.google.com/generate_204"
+    url: "http://www.google.com/"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 280
-    tolerance: 5
+    interval: 2
+    tolerance: 50000
     exclude-type: "direct|trojan"
     include-all-providers: true
     include-all-proxies: true
@@ -772,7 +772,7 @@ proxy-groups:
 
   - name: "🎈fallback"
     type: "fallback"
-    url: "https://www.google.com/generate_204"
+    url: "http://www.google.com/"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     interval: 1
     exclude-type: "direct|trojan"
@@ -787,18 +787,15 @@ proxy-groups:
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
     interval: 18
-    tolerance: 5
+    tolerance: 50000
     exclude-type: "direct|trojan"
     include-all-providers: true
     include-all-proxies: true
     hidden: false
-    url: "http://www.google.com/generate_204"
+    url: "http://www.google.com/"
     
   - name: "🎯 Direct"
     type: "select"
-    filter: ""
-    exclude-filter: ""
-    hidden: false
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
     proxies:
       - "DIRECT"
@@ -807,7 +804,6 @@ proxy-groups:
     
   - name: "🛑 Reject"
     type: "select"
-    hidden: false
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/block.svg"
     proxies:
       - "REJECT"
