@@ -53,13 +53,6 @@ proxy-providers:
       interval: 3600
       timeout: 5000
       lazy: true
-rule-providers:
-  gfw:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
-    path: ruleset/gfw.yaml
-    interval: 86400
 
 proxies:
   - name: 🇫🇷
@@ -510,46 +503,101 @@ rules:
 # 执行类型：常规
 
 # GitHub
-- DOMAIN-SUFFIX,github.com,GitHub
-- DOMAIN-SUFFIX,github.io,GitHub
-- DOMAIN-SUFFIX,githubassets.com,GitHub
-- DOMAIN-SUFFIX,githubusercontent.com,GitHub
+  - DOMAIN-SUFFIX,github.com,GitHub
+  - DOMAIN-SUFFIX,github.io,GitHub
+  - DOMAIN-SUFFIX,githubassets.com,GitHub
+  - DOMAIN-SUFFIX,githubusercontent.com,GitHub
 # Google
-- DOMAIN-SUFFIX,google.com,Google
-- DOMAIN-SUFFIX,youtube.com,Google
-- DOMAIN-SUFFIX,ytimg.com,Google
-- DOMAIN-SUFFIX,googlevideo.com,Google
-# Spotify
-- DOMAIN,audio4-ak-spotify-com.akamaized.net,Spotify
-- DOMAIN,heads-ak-spotify-com.akamaized.net,Spotify
-- DOMAIN,spotify.com.edgesuite.net,Spotify
-- DOMAIN,spotify.map.fastly.net,Spotify
-- DOMAIN,spotify.map.fastlylb.net,Spotify
-- DOMAIN-SUFFIX,audio-ak-spotify-com.akamaized.net,Spotify
-- DOMAIN-SUFFIX,byspotify.com,Spotify
-- DOMAIN-SUFFIX,heads4-ak-spotify-com.akamaized.net,Spotify
-- DOMAIN-SUFFIX,pscdn.co,Spotify
-- DOMAIN-SUFFIX,scdn.co,Spotify
-- DOMAIN-SUFFIX,spoti.fi,Spotify
-- DOMAIN-SUFFIX,spotify-com.akamaized.net,Spotify
-- DOMAIN-SUFFIX,spotify-everywhere.com,Spotify
-- DOMAIN-SUFFIX,spotify.com,Spotify
-- DOMAIN-SUFFIX,spotify.design,Spotify
-- DOMAIN-SUFFIX,spotifycdn.com,Spotify
-- DOMAIN-SUFFIX,spotifycdn.net,Spotify
-- DOMAIN-SUFFIX,spotifycharts.com,Spotify
-- DOMAIN-SUFFIX,spotifycodes.com,Spotify
-- DOMAIN-SUFFIX,spotifyforbrands.com,Spotify
-- DOMAIN-SUFFIX,spotifyjobs.com,Spotify
-- DOMAIN-SUFFIX,spotifynewsroom.jp,Spotify
-- DOMAIN-SUFFIX,spotilocal.com,Spotify
-- DOMAIN-SUFFIX,tospotify.com,Spotify
-- DOMAIN-KEYWORD,-spotify-,Spotify
-- DOMAIN-KEYWORD,spotify.com,Spotify
-- IP-CIDR,104.154.127.126/32,Spotify,no-resolve
-- IP-CIDR,35.186.224.47/32,Spotify,no-resolve
-- DOMAIN-SUFFIX,spotify.com,Spotify
+  - DOMAIN-SUFFIX,google.com,Bing,no-resolve
+  - DOMAIN-SUFFIX,youtube.com,Bing,no-resolve
+  - DOMAIN-SUFFIX,ytimg.com,Bing,no-resolve
+  - DOMAIN-SUFFIX,googlevideo.com,Bing,no-resolve
+  - RULE-SET,private_ip,Others,no-resolve
+  - RULE-SET,github_domain,Bing
+  - RULE-SET,twitter_domain,Bing,no-resolve
+  - RULE-SET,youtube_domain,Bing,no-resolve
+  - RULE-SET,google_domain,Bing,no-resolve
+  - RULE-SET,telegram_domain,Bing,no-resolve
+  - RULE-SET,netflix_domain,Bing,no-resolve
+  - RULE-SET,bilibili_domain,REJECT
+  - RULE-SET,ehentai_domain,Bing,no-resolve
+  - RULE-SET,bahamut_domain,Others
+  - RULE-SET,spotify_domain,Bing,no-resolve
+  - RULE-SET,cn_domain,Others
+  - RULE-SET,geolocation-!cn,Bing,no-resolve
 
-- GEOIP,ir,DIRECT
-- RULE-SET,gfw,Google
-- MATCH,Google
+  - RULE-SET,google_ip,Bing,no-resolve
+  - RULE-SET,netflix_ip,Bing,no-resolve
+  - RULE-SET,telegram_ip,Bing,no-resolve
+  - RULE-SET,twitter_ip,Bing,no-resolve
+  - RULE-SET,cn_ip,Others
+  - MATCH,Bing,no-resolve
+
+rule-anchor:
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: yaml}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: yaml}
+rule-providers:
+  private_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml"
+  cn_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
+  biliintl_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.yaml"
+  ehentai_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/nsfw.yaml"
+  github_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.yaml"
+  twitter_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.yaml"
+  youtube_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.yaml"
+  google_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.yaml"
+  telegram_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.yaml"
+  netflix_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.yaml"
+  bilibili_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.yaml"
+  bahamut_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/social.yaml"
+  spotify_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.yaml"
+  pixiv_domain:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pixiv.yaml"
+  geolocation-!cn:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
+
+  private_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.yaml"
+  cn_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/lr.yaml"
+  google_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml"
+  netflix_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.yaml"
+  twitter_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.yaml"
+  telegram_ip:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.yaml"
