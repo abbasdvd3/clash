@@ -19,7 +19,7 @@ external-controller-cors:
   - https://yacd.metacubex.one
   - https://metacubex.github.io
   - https://board.zash.run.place
-external-ui: ui
+external-ui: ./dashboard
 keep-alive-interval: 30
 find-process-mode: always
 external-ui-name: xd
@@ -50,24 +50,10 @@ tun:
     - any:53
     - tcp://any:53
   device: utun0
-  mtu: 9000
+  mtu: 1500
   strict-route: true
-  gso: true
-  gso-max-size: 65536
-  udp-timeout: 300
-  iproute2-table-index: 2022
-  iproute2-rule-index: 9000
-  endpoint-independent-nat: false
-  inet4-route-address:
-  - 0.0.0.0/1
-  - 128.0.0.0/1
-  inet6-route-address:
-  - "::/1"
-  - "8000::/1"
-  inet4-route-exclude-address:
-  - 192.168.0.0/16
-  inet6-route-exclude-address:
-  - fc00::/7
+
+
 dns:
   enable: true
   cache-algorithm: arc
@@ -75,7 +61,7 @@ dns:
   use-hosts: true
   use-system-hosts: true
   respect-rules: true
-  listen: 0.0.0.0:1053
+  listen: 0.0.0.0:53
   ipv6: true
   ult-nameserver:
     - tls://223.5.5.5
@@ -745,7 +731,7 @@ proxy-providers:
       additional-suffix: "| test suffix"
 proxy-groups:
   - name: "PROXY"
-    type: "select"
+    type: "url-test"
     url: "http://www.google.com/"
     hidden: false
     interval: 1500
@@ -762,7 +748,7 @@ proxy-groups:
     type: "url-test"
     url: "http://www.google.com/"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 2
+    interval: 200
     tolerance: 50000
     exclude-type: "direct|trojan"
     include-all-providers: true
@@ -774,7 +760,7 @@ proxy-groups:
     type: "fallback"
     url: "http://www.google.com/"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 1
+    interval: 100
     exclude-type: "direct|trojan"
     include-all-providers: true
     include-all-proxies: true
@@ -786,7 +772,7 @@ proxy-groups:
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
-    interval: 18
+    interval: 180
     tolerance: 50000
     exclude-type: "direct|trojan"
     include-all-providers: true
@@ -1666,66 +1652,6 @@ rules:
   - DOMAIN-SUFFIX,go.10086.cn,🛑 Reject
   - DOMAIN-SUFFIX,hivedata.cc,🛑 Reject
   - DOMAIN-SUFFIX,navi.gd.chinamobile.com,🛑 Reject
-# 包含常用应用的各种去广告规则。
-# 可能有轻微副作用，可放心使用。（如果网站功能和广告冲突，会删掉去广告规则）
-# 163
-# 17173
-# 178
-# 2345
-# 360
-# 58
-# Alibaba
-# Adobe
-# Apple
-# AutoHome
-# Baidu
-# Book-app 起点 掌阅 书旗 宜搜
-# ByteDance 头条抖音
-# Dangdang
-# Duomi
-# Facebook
-# Fang
-# Google
-# JD
-# Kugou
-# Kuwo
-# Meizu flyme 魅族
-# Meitu
-# Miui 小米
-# Moji
-# Qingting.fm
-# QQ
-# RenRen
-# Sina
-# Sougou
-# Teleplus
-# Twitter
-# UC ali
-# Weifeng
-# WPS Office
-# Wi-Fi key
-# Ximalaya 喜马拉雅
-# Xunlei 迅雷app&看看
-# Yahoo
-# Zhihu
-# Ads in Video apps 下面都是 ********************
-# 6间房
-# Baofeng 暴风影音
-# Douyu
-# Fenghuang 凤凰TV
-# Funshion 风行
-# iqiyi PPS 爱奇艺
-# Ku6 酷6
-# LeTV 乐视
-# MGTV 芒果TV
-# Sohu 搜狐
-# PPTV、PPLive
-# QQ Live
-# Youku & Tudou
-# Youtube
-# Others ads in Video apps
-# Ads in Video apps end 上面都是 ********************
-# 常用网站广告
   - DOMAIN-SUFFIX,a.youdao.com,🛑 Reject
   - DOMAIN-SUFFIX,adgeo.corp.163.com,🛑 Reject
   - DOMAIN-SUFFIX,analytics.126.net,🛑 Reject
