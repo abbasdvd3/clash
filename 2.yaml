@@ -1,4 +1,57 @@
+proxies:
+proxy-groups:
+  - name: 🕹 select
+    type: url-test
+  #  include-all-providers: true
+    proxies:
+      - ♻️ url-test
+      - 🚧 fallback
+      - ⚖️ load-balance
 
+  - name: ♻️ url-test
+    type: url-test
+    url: http://speed.cloudflare.com/__down?bytes=20000000
+    include-all: true
+    udp: true
+    interval: 500
+    hidden: false
+    proxies:
+    use:
+  - name: 🚧 fallback
+    type: fallback
+    url: http://speed.cloudflare.com/__down?bytes=20000000
+    include-all: true
+    udp: true
+    interval: 180
+    hidden: false
+    proxies:
+    use:
+      
+  - name: ⚖️ load-balance
+    type: load-balance
+    strategy: round-robin
+    url: http://speed.cloudflare.com/__down?bytes=20000000
+    include-all: true
+    udp: true
+    interval: 180
+    hidden: false
+    proxies:
+    use:
+
+  - name: 🎯
+    type: select
+    proxies:
+      - DIRECT
+      - 🕹 select
+      - ♻️ url-test
+rules:
+  - IP-CIDR,127.0.0.1/32,DIRECT,no-resolve
+  - IP-CIDR,198.18.0.1/16,DIRECT,no-resolve
+  - IP-CIDR,28.0.0.1/8,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
+  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
+  - IN-TYPE,inner,🕹 select
+  - MATCH,🕹 select
 proxies:
   - {"name":"🇺🇸_US_R_497","type":"vmess","server":"malaysia.com","port":2086,"cipher":"auto","uuid":"e9e3cc13-db48-4cc1-8c24-7626439a5339","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"github.com/Alvin9999"}}
   - {"name":"MN_5_85","type":"vmess","server":"172.64.233.7","port":2086,"cipher":"auto","uuid":"e9e3cc13-db48-4cc1-8c24-7626439a5339","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"github.com/Alvin9999","headers":{"host":"ip2.1457230.xyz"}}}
