@@ -1,4 +1,57 @@
+proxies:
+proxy-groups:
+  - name: 🕹 select
+    type: url-test
+  #  include-all-providers: true
+    proxies:
+      - ♻️ url-test
+      - 🚧 fallback
+      - ⚖️ load-balance
 
+  - name: ♻️ url-test
+    type: url-test
+    url: http://speed.cloudflare.com/__down?bytes=20000000
+    include-all-providers: true
+    udp: true
+    interval: 500
+    hidden: false
+    proxies:
+    use:
+  - name: 🚧 fallback
+    type: fallback
+    url: http://speed.cloudflare.com/__down?bytes=20000000
+    include-all-providers: true
+    udp: true
+    interval: 180
+    hidden: false
+    proxies:
+    use:
+      
+  - name: ⚖️ load-balance
+    type: load-balance
+    strategy: round-robin
+    url: http://speed.cloudflare.com/__down?bytes=20000000
+    include-all-providers: true
+    udp: true
+    interval: 180
+    hidden: false
+    proxies:
+    use:
+
+  - name: 🎯
+    type: select
+    proxies:
+      - DIRECT
+      - 🕹 select
+      - ♻️ url-test
+rules:
+  - IP-CIDR,127.0.0.1/32,DIRECT,no-resolve
+  - IP-CIDR,198.18.0.1/16,DIRECT,no-resolve
+  - IP-CIDR,28.0.0.1/8,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
+  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
+  - IN-TYPE,inner,🕹 select
+  - MATCH,🕹 select
 proxies:
   - {"name":"日本_121320056","type":"vmess","server":"167.179.83.138","port":36013,"cipher":"auto","uuid":"97700372-07d0-4e10-db96-937844f30a50","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
   - {"name":"clash_2","type":"vmess","server":"45.121.48.172","port":10001,"cipher":"auto","uuid":"dba51a2e-a788-43b7-9ac4-9f7cc1255f15","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
@@ -5875,3 +5928,4 @@ proxies:
   - {"name":"🇺🇸_k_2118","type":"vmess","server":"104.19.45.254","port":8443,"cipher":"auto","uuid":"39135a39-e6ca-43df-a360-d859eea58d86","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/","headers":{"host":"hk01.leleles.us"}}}
   - {"name":"🇺🇸_k_2119","type":"vmess","server":"104.19.45.255","port":8443,"cipher":"auto","uuid":"39135a39-e6ca-43df-a360-d859eea58d86","alterId":0,"tls":true,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/","headers":{"host":"hk01.leleles.us"}}}
   - {"name":"🇷🇺_k_2140","type":"vmess","server":"46.17.42.246","port":35049,"cipher":"auto","uuid":"43cf1a56-26d9-4ed9-8f93-c7fd10714384","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
+
