@@ -41,18 +41,44 @@ profile:
   store-fake-ip: true
   
 tun:
-  enable: true
-  stack: system
+  enable: false
+  mtu: 9000
+  device: clash
+  stack: mixed
+  dns-hijack:
+  - any:53
+  - tcp://any:53
   auto-route: true
+  strict-route: true
   auto-redirect: true
   auto-detect-interface: true
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  device: utun0
-  mtu: 1500
-  strict-route: true
-
+profile:
+  store-selected: true
+  store-fake-ip: true
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    QUIC:
+      ports:
+      - 443
+    TLS:
+      ports:
+      - 443
+      - 8443
+    HTTP:
+      ports:
+      - 80
+      - 8080-8880
+      override-destination: true
+  sniffing:
+  - tls
+  - http
+  port-whitelist:
+  - 80
+  - 443
 
 dns:
   enable: true
@@ -64,40 +90,19 @@ dns:
   listen: 0.0.0.0:53
   ipv6: true
   ult-nameserver:
-    - tls://223.5.5.5
-    - tls://114.114.114.114
-    - tls://119.29.29.29
-    - tls://180.76.76.76
-    - tls://1.1.1.1
-    - tls://8.8.4.4
-    - tls://8.8.8.8
-    - tcp://8.8.8.8
+    - 127.0.0.1:53
+    - 223.5.5.5:53
+    - 9.9.9.9:53
+    - 8.8.8.8:53
+    - 1.1.1.1:53
   direct-nameserver:
-    - tls://1.1.1.1
-    - tcp://8.8.4.4
+    - system
   nameserver:
-    - tls://223.5.5.5
-    - tcp://9.9.9.9
-    - tcp://8.8.8.8
-    - tls://1.1.1.1
-    - tls://223.5.5.5
-    - tls://223.6.6.6
-    - tls://119.29.29.29
-    - tls://1.12.12.12
-    - tcp://120.53.53.53
-    - tls://dns.adguard.com
-    - https://cloudflare-dns.com/dns-query
-    - https://1.1.1.1/#h3=true
-    - https://120.53.53.53/dns-query
-    - https://223.5.5.5/dns-query
-    - https://doh.pub/dns-query
-    - tls://223.5.5.5
-    - https://dns.alidns.com/dns-query
-    - https://94.140.14.14/dns-query#h3=true
-    - tls://9.9.9.9
-    - tls://208.67.222.222
-    - tls://[2620:fe::11]
-    - tls://[2620:119:35::35]
+    - 127.0.0.1:53
+    - 223.5.5.5:53
+    - 9.9.9.9:53
+    - 8.8.8.8:53
+    - 1.1.1.1:53
   proxy-server-nameserver:
     - https://1.1.1.1/#h3=true
     - https://120.53.53.53/dns-query
@@ -184,19 +189,10 @@ dns:
     - "www.torrent.eu.org"
     - "www.msftconnecttest.com"
   fallback:
-    - https://1.1.1.2/dns-query
-    - https://1.0.0.2/dns-query
-    - https://208.67.222.222/dns-query
-    - https://208.67.220.220/dns-query
-    - https://9.9.9.9/dns-query
-    - tcp://9.9.9.9
-    - tcp://8.8.8.8
-    - tls://1.1.1.1
-    - tls://223.5.5.5
-    - tls://223.6.6.6
-    - tls://119.29.29.29
-    - tls://1.12.12.12
-    - tcp://120.53.53.53
+    - 223.5.5.5:53
+    - 9.9.9.9:53
+    - 8.8.8.8:53
+    - 1.1.1.1:53
   fallback-filter:
     geoip: true
     geoip-code: ir
@@ -406,7 +402,7 @@ proxy-providers:
       additional-suffix: "| test suffix"
   A15:
     type: http
-    url: "https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/10.yaml" #https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt
     interval: 86400
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -736,9 +732,9 @@ proxy-groups:
     hidden: false
     interval: 1500
     tolerance: 500000
-    include-all-providers: true
-    include-all-proxies: true
-    exclude-type: "direct|Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
+ #   include-all-providers: true
+ #   include-all-proxies: true
+ #   exclude-type: "direct|Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
     proxies:
       - "🎈Auto"
