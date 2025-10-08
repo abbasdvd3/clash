@@ -1,0 +1,567 @@
+
+
+
+mixed-port: 7890
+ipv6: true
+allow-lan: true
+unified-delay: false
+tcp-concurrent: true
+external-controller: 127.0.0.1:9090
+external-ui: ./dashboard
+external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+
+geodata-mode: true
+geox-url:
+  GeoIP: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
+  GeoSite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
+  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
+  ANS: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
+
+find-process-mode: strict
+global-client-fingerprint: chrome
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+dns:
+  enable: true
+  cache-algorithm: arc
+  prefer-h3: true
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: true
+  listen: 0.0.0.0:53
+  ipv6: true
+  default-nameserver:
+    - 223.5.5.5
+    - tls://223.5.5.5
+    - tls://223.6.6.6
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - '*.lan'
+  nameserver-policy:
+    '+.arpa': '10.0.0.1'
+#    'rule-set:ir':
+ #   - https://doh.pub/dns-query
+##    - https://dns.alidns.com/dns-query
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - tls://8.8.4.4
+    - tls://1.1.1.1
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    geosite:
+      - social
+      - nsfw
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
+proxy-providers:
+  A41:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/41.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A41 prefix |"
+      additional-suffix: "| test suffix"
+  A441:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/2.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A441 prefix |"
+      additional-suffix: "| test suffix"
+  A1:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/vip"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A1 prefix |"
+      additional-suffix: "| test suffix"
+    
+  A2:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/v"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A2 prefix |"
+      additional-suffix: "| test suffix"
+    
+  A6:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/t"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A6 prefix |"
+      additional-suffix: "| test suffix"
+
+  A7:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/s"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A7 prefix |"
+      additional-suffix: "| test suffix"
+
+  A8:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/r"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A8 prefix |"
+      additional-suffix: "| test suffix"
+
+  A9:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/pp1.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A9 prefix |"
+      additional-suffix: "| test suffix"
+
+  A10:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/p.hamrah"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A10 prefix |"
+      additional-suffix: "| test suffix"
+
+  A11:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/p.all"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A11 prefix |"
+      additional-suffix: "| test suffix"
+
+  A12:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/j.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A12 prefix |"
+      additional-suffix: "| test suffix"
+      
+  A13:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/i"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A13 prefix |"
+      additional-suffix: "| test suffix"
+
+  A14:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/hamrah"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A14 prefix |"
+      additional-suffix: "| test suffix"
+  A15:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/h.yaml" #https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A15 prefix |"
+      additional-suffix: "| test suffix"
+  A16:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/all"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A16 prefix |"
+      additional-suffix: "| test suffix"
+    
+  A22:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/a"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A22 prefix |"
+      additional-suffix: "| test suffix"
+    
+  A66:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A66 prefix |"
+      additional-suffix: "| test suffix"
+
+  A77:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/MTN"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A77 prefix |"
+      additional-suffix: "| test suffix"
+
+  A88:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/MCI"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A88 prefix |"
+      additional-suffix: "| test suffix"
+proxies:
+  - name: "IRAN"
+    type: direct
+    udp: true
+    ip-version: ipv4
+    interface-name: eth0
+    routing-mark: 1234
+proxy-groups:
+  - name: "PROXY"
+    type: "url-test"
+    url: "https://www.google.com/"
+    hidden: false
+    interval: 15
+ #   tolerance: 500000
+ #   include-all-providers: true
+ #   include-all-proxies: true
+ #   exclude-type: "direct|Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png"
+    proxies:
+      - "🎈Auto"
+      - "🎈fallback"
+      - "🇺🇸US🇺🇸"
+      - "A"
+      - "B"
+      - "C"
+      - "D"
+      - "E"
+      - "F"
+      - "G"
+      - "M"
+  - name: "🎈Auto"
+    type: "url-test"
+    url: "https://www.google.com/"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    interval: 200
+    exclude-type: "direct|http|socks5"
+    include-all-providers: true
+    hidden: false
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Global.png"
+
+  - name: "🎈fallback"
+    type: "fallback"
+    url: "https://www.google.com/"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    interval: 100
+    exclude-type: "direct|http|socks5"
+    include-all-providers: true
+    hidden: false
+    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+
+  - name: "🇺🇸US🇺🇸"
+    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    type: "url-test"
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
+    interval: 200
+#    tolerance: 5000
+    exclude-type: "direct|http|socks5"
+    include-all-providers: true
+    hidden: false
+    url: "http://www.google.com/"
+    
+  - name: "A"
+    type: "url-test"
+    url: "https://www.google.com/"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    interval: 200
+ #   tolerance: 50000
+    exclude-type: "Shadowsocks|socks5|http|trojan|vmess|direct|IRAN|hysteria2h|ysteria2|vless"
+    include-all-providers: true
+    hidden: false
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Google_Search.png"
+
+  - name: "B"
+    type: "url-test"
+    url: "https://www.google.com/"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    interval: 200
+ #   tolerance: 50000
+    exclude-type: "Shadowsocksr|socks5|http|trojan|vmess|direct|IRAN|hysteria2h|ysteria2|vless"
+    include-all-providers: true
+    hidden: false
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Netflix.png"
+
+  - name: "C"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    type: "url-test"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/YouTube.png"
+    interval: 200
+#    tolerance: 5000
+    exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|vmess|direct|IRAN|hysteria2h|ysteria2|vless"
+    include-all-providers: true
+    hidden: false
+    url: "http://www.google.com/"
+    
+  - name: "D"
+    type: "url-test"
+    url: "https://www.google.com/"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    interval: 200
+ #   tolerance: 50000
+    exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|direct|IRAN|hysteria2h|ysteria2|vless"
+    include-all-providers: true
+    hidden: false
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Twitter.png"
+
+  - name: "E"
+    type: "url-test"
+    url: "https://www.google.com/"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    interval: 200
+ #   tolerance: 50000
+    exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|vmess|direct|IRAN|hysteria2h|ysteria2"
+    include-all-providers: true
+    hidden: false
+    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+
+  - name: "F"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    type: "url-test"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Auto.png"
+    interval: 200
+#    tolerance: 5000
+    exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|vmess|direct|IRAN|vless"
+    include-all-providers: true
+    hidden: false
+    url: "http://www.google.com/"
+    
+  - name: "G"
+    type: "url-test"
+    url: "https://www.google.com/"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    interval: 200
+ #   tolerance: 50000
+    exclude-type: "Shadowsocks|Shadowsocksr|trojan|vmess|direct|IRAN|hysteria2h|ysteria2|vless"
+    include-all-providers: true
+    hidden: false
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/US.png"
+
+  - name: "M"
+    type: "url-test"
+    url: "https://www.google.com/"
+    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    interval: 200
+ #   tolerance: 50000
+    exclude-type: "Shadowsocks|Shadowsocksr|socks5|http|trojan|vmess|direct|IRAN|hysteria2h|ysteria2|vless"
+    hidden: false
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/HK.png"
+    proxies:
+      - "A"
+      - "B"
+      - "C"
+      - "D"
+      - "E"
+      - "F"
+      - "G"
+  - name: "🎯 Direct"
+    type: "select"
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
+    proxies:
+      - "IRAN"
+      - "PROXY"
+      - "PASS"
+    
+  - name: "🛑 Reject"
+    type: "select"
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/block.svg"
+    proxies:
+      - "REJECT"
+      - "DIRECT"
+      - "PASS"
+      
+rules:
+  - DOMAIN-SUFFIX,acl4.ssr,🎯 Direct
+  - DOMAIN-SUFFIX,ip6-localhost,🎯 Direct
+  - DOMAIN-SUFFIX,ip6-loopback,🎯 Direct
+  - DOMAIN-SUFFIX,lan,🎯 Direct
+  - DOMAIN-SUFFIX,local,🎯 Direct
+  - DOMAIN-SUFFIX,localhost,🎯 Direct
+  - IP-CIDR,0.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,10.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,100.64.0.0/10,🎯 Direct,no-resolve
+  - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,172.16.0.0/12,🎯 Direct,no-resolve
+  - IP-CIDR,192.168.0.0/16,🎯 Direct,no-resolve
+  - IP-CIDR,198.18.0.0/16,🎯 Direct,no-resolve
+  - IP-CIDR,224.0.0.0/4,🎯 Direct,no-resolve
+  - IP-CIDR6,::1/128,🎯 Direct,no-resolve
+  - IP-CIDR6,fc00::/7,🎯 Direct,no-resolve
+  - IP-CIDR6,fe80::/10,🎯 Direct,no-resolve
+  - IP-CIDR6,fd00::/8,🎯 Direct,no-resolve
+  - DOMAIN-SUFFIX,google.com,PROXY
+  - GEOIP,ir,🎯 Direct
+  - MATCH,PROXY
