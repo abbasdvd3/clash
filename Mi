@@ -1,37 +1,4 @@
 
-mixed-port: 7890
-allow-lan: true
-mode: GLOBAL
-log-level: info
-ipv6: true
-external-controller: 0.0.0.0:9090
-dns:
-  enable: true
-  listen: 0.0.0.0:53
-  ipv6: true
-  default-nameserver:
-    - 223.5.5.5
-    - 114.114.114.114
-  nameserver:
-    - 223.5.5.5
-    - 114.114.114.114
-    - 119.29.29.29
-    - 180.76.76.76
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*.lan'
-    - '*.localdomain'
-    - '*.example'
-    - '*.invalid'
-    - '*.localhost'
-    - '*.test'
-    - '*.local'
-    - '*.home.arpa'
-    - router.asus.com
-    - localhost.sec.qq.com
-    - localhost.ptlogin2.qq.com
-    - +.msftconnecttest.com
 proxy-groups:
   - name: 🚀 Select
     type: select
@@ -68,16 +35,6 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 180
 
-  - name: GLOBAL
-    type: url-test
-  #  include-all-proxies: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50000
-    proxies:
-      - 🎈 Auto
-      - 🐟 Fallback
-
 rules:
   - DOMAIN,clash.razord.top,🎯 Direct
   - DOMAIN,yacd.haishan.me,🎯 Direct
@@ -87,8 +44,7 @@ rules:
   - DST-PORT,80,🚀 Select
   - SRC-PORT,443,🚀 Select
   - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
-  - MATCH,GLOBAL
-
+  - MATCH,🚀 Select
 
 proxies:
   - type: ss
