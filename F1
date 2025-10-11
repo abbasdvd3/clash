@@ -1,95 +1,4 @@
 
-
-
-mixed-port: 7890
-ipv6: true
-allow-lan: true
-unified-delay: false
-tcp-concurrent: true
-external-controller: 127.0.0.1:9090
-external-ui: ./dashboard
-external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
-
-geodata-mode: true
-geox-url:
-  GeoIP: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
-  GeoSite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
-  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
-  ANS: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
-
-find-process-mode: strict
-global-client-fingerprint: chrome
-
-profile:
-  store-selected: true
-  store-fake-ip: true
-
-sniffer:
-  enable: true
-  sniff:
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-    TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  skip-domain:
-    - "Mijia Cloud"
-    - "+.push.apple.com"
-
-tun:
-  enable: true
-  stack: mixed
-  dns-hijack:
-    - "any:53"
-    - "tcp://any:53"
-  auto-route: true
-  auto-redirect: true
-  auto-detect-interface: true
-dns:
-  enable: true
-  cache-algorithm: arc
-  prefer-h3: true
-  use-hosts: true
-  use-system-hosts: true
-  respect-rules: true
-  listen: 0.0.0.0:53
-  ipv6: true
-  default-nameserver:
-    - 223.5.5.5
-    - tls://223.5.5.5
-    - tls://223.6.6.6
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter-mode: blacklist
-  fake-ip-filter:
-    - '*.lan'
-  nameserver-policy:
-    '+.arpa': '10.0.0.1'
-#    'rule-set:ir':
- #   - https://doh.pub/dns-query
-##    - https://dns.alidns.com/dns-query
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-  fallback:
-    - tls://8.8.4.4
-    - tls://1.1.1.1
-  proxy-server-nameserver:
-    - https://doh.pub/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: ir
-    geosite:
-      - social
-      - nsfw
-    ipcidr:
-      - 240.0.0.0/4
-    domain:
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
 proxy-providers:
   A41:
     type: http
@@ -380,14 +289,14 @@ proxies:
     routing-mark: 1234
 proxy-groups:
   - name: "PROXY"
-    type: "url-test"
+    type: "select"
     url: "https://www.google.com/"
     hidden: false
     interval: 15
  #   tolerance: 500000
  #   include-all-providers: true
  #   include-all-proxies: true
- #   exclude-type: "direct|Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
+    exclude-type: "direct|Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png"
     proxies:
       - "🎈Auto"
