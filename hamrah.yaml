@@ -14,7 +14,7 @@ external-ui: ./dashboard
 keep-alive-interval: 30
 find-process-mode: strict
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: random
 geodata-mode: true
@@ -108,17 +108,17 @@ dns:
     - 8.8.8.8:53
     - 1.1.1.1:53
   proxy-server-nameserver:
-    - https://1.1.1.1/#h3=true
-    - https://120.53.53.53/dns-query
+  #  - https://1.1.1.1/#h3=true
+    # - https://120.53.53.53/dns-query
     - https://223.5.5.5/dns-query
     - https://doh.pub/dns-query
     - tls://223.5.5.5
     - https://dns.alidns.com/dns-query
     - https://94.140.14.14/dns-query#h3=true
     - tls://9.9.9.9
-    - tls://208.67.222.222
-    - tls://[2620:fe::11]
-    - tls://[2620:119:35::35]
+  #  - tls://208.67.222.222
+  #  - tls://[2620:fe::11]
+   # - tls://[2620:119:35::35]
   nameserver-policy:
     "rule-set:LocalAreaNetwork,private,ir":
     - https://doh.pub/dns-query
@@ -132,7 +132,7 @@ dns:
       - quic://223.5.5.5
       - https://doh.pub/dns-query
     "www.sxyprn.com/":
-      - https://120.53.53.53/dns-query
+    #  - https://120.53.53.53/dns-query
       - https://223.5.5.5/dns-query
       - https://doh.pub/dns-query
       - tls://223.5.5.5
