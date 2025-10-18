@@ -87,97 +87,146 @@ sniffer:
 dns:
   enable: true
   cache-algorithm: arc
-  prefer-h3: true
+  prefer-h3: false
   use-hosts: true
   use-system-hosts: true
   respect-rules: true
   listen: 0.0.0.0:53
   ipv6: true
-  ult-nameserver:
+  defult-nameserver:
     - 127.0.0.1:53
-    - 223.5.5.5:53
-    - 9.9.9.9:53
-    - 8.8.8.8:53
-    - 1.1.1.1:53
+    - 94.140.15.15
+    - 94.140.14.14
+    - 94.140.14.14:5443
+    - tls://2a10:50c0::ad1:ff
+    - tls://2a10:50c0::ad2:ff
+    - tls://[2a10:50c0::ad1:ff]:5443
   direct-nameserver:
     - 1.1.1.1
   nameserver:
     - 127.0.0.1:53
-    - 223.5.5.5:53
-    - 9.9.9.9:53
-    - 8.8.8.8:53
-    - 1.1.1.1:53
+    - 94.140.15.15
+    - 94.140.14.14
+    - 94.140.14.14:5443
+    - https://dns.adguard-dns.com/dns-query
+    - tls://dns.adguard-dns.com
+    - quic://dns.adguard-dns.com
+    - 2.dnscrypt.default.ns1.adguard.com
+    - tls://2a10:50c0::ad1:ff
+    - tls://2a10:50c0::ad2:ff
+    - tls://[2a10:50c0::ad1:ff]:5443
   proxy-server-nameserver:
-  #  - https://1.1.1.1/#h3=true
-    # - https://120.53.53.53/dns-query
-    - https://223.5.5.5/dns-query
-    - https://doh.pub/dns-query
-    - tls://223.5.5.5
-    - https://dns.alidns.com/dns-query
-    - https://94.140.14.14/dns-query#h3=true
-    - tls://9.9.9.9
-  #  - tls://208.67.222.222
-  #  - tls://[2620:fe::11]
-   # - tls://[2620:119:35::35]
+    - 94.140.15.15
+    - 94.140.14.14
+    - 94.140.14.14:5443
+    - https://dns.adguard-dns.com/dns-query
+    - tls://dns.adguard-dns.com
+    - quic://dns.adguard-dns.com
+    - 2.dnscrypt.default.ns1.adguard.com
+    - tls://2a10:50c0::ad1:ff
+    - tls://2a10:50c0::ad2:ff
+    - tls://[2a10:50c0::ad1:ff]:5443
   nameserver-policy:
     "rule-set:LocalAreaNetwork,private,ir":
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
+      - 94.140.15.15
+      - 94.140.14.14
+      - 94.140.14.14:5443
+      - https://dns.adguard-dns.com/dns-query
+      - tls://dns.adguard-dns.com
+      - quic://dns.adguard-dns.com
+      - 2.dnscrypt.default.ns1.adguard.com
+      - tls://2a10:50c0::ad1:ff
+      - tls://2a10:50c0::ad2:ff
+      - tls://[2a10:50c0::ad1:ff]:5443
     "www.google.com/":
-      - tls://114.114.114.114
-      - quic://223.5.5.5
-      - https://doh.pub/dns-query
+      - 94.140.15.15
+      - 94.140.14.14
+      - 94.140.14.14:5443
+      - https://dns.adguard-dns.com/dns-query
+      - tls://dns.adguard-dns.com
+      - quic://dns.adguard-dns.com
+      - 2.dnscrypt.default.ns1.adguard.com
+      - tls://2a10:50c0::ad1:ff
+      - tls://2a10:50c0::ad2:ff
+      - tls://[2a10:50c0::ad1:ff]:5443
     "www.instagram.com/":
-      - tls://114.114.114.114
-      - quic://223.5.5.5
-      - https://doh.pub/dns-query
+      - 94.140.15.15
+      - 94.140.14.14
+      - 94.140.14.14:5443
+      - https://dns.adguard-dns.com/dns-query
+      - tls://dns.adguard-dns.com
+      - quic://dns.adguard-dns.com
+      - 2.dnscrypt.default.ns1.adguard.com
+      - tls://2a10:50c0::ad1:ff
+      - tls://2a10:50c0::ad2:ff
+      - tls://[2a10:50c0::ad1:ff]:5443
     "www.sxyprn.com/":
-    #  - https://120.53.53.53/dns-query
-      - https://223.5.5.5/dns-query
-      - https://doh.pub/dns-query
-      - tls://223.5.5.5
-      - https://dns.alidns.com/dns-query
-      - https://94.140.14.14/dns-query#h3=true
-      - tls://9.9.9.9
-      - tls://208.67.222.222
+      - 94.140.15.15
+      - 94.140.14.14
+      - 94.140.14.14:5443
+      - https://dns.adguard-dns.com/dns-query
+      - tls://dns.adguard-dns.com
+      - quic://dns.adguard-dns.com
+      - 2.dnscrypt.default.ns1.adguard.com
+      - tls://2a10:50c0::ad1:ff
+      - tls://2a10:50c0::ad2:ff
+      - tls://[2a10:50c0::ad1:ff]:5443
     "rule-set:GoogleCN,UnBan,AI,GoogleFCM,Google,GoogleCNProxyIP,Microsoft,Telegram,ProxyMedia,ProxyGFWlist,social,nsfw":
-      - https://120.53.53.53/dns-query
-      - https://223.5.5.5/dns-query
-      - https://doh.pub/dns-query
-      - tls://223.5.5.5
-      - https://dns.alidns.com/dns-query
-      - https://94.140.14.14/dns-query#h3=true
-      - tls://9.9.9.9
-      - tls://208.67.222.222
-      - tls://[2620:fe::11]
-      - tls://[2620:119:35::35]
+      - 94.140.15.15
+      - 94.140.14.14
+      - 94.140.14.14:5443
+      - https://dns.adguard-dns.com/dns-query
+      - tls://dns.adguard-dns.com
+      - quic://dns.adguard-dns.com
+      - 2.dnscrypt.default.ns1.adguard.com
+      - tls://2a10:50c0::ad1:ff
+      - tls://2a10:50c0::ad2:ff
+      - tls://[2a10:50c0::ad1:ff]:5443
     geosite:category-ads-all: rcode://success
     "www.google.com/":
-      - tls://223.5.5.5
-      - tls://114.114.114.114
-      - tls://9.9.9.9
-      - https://120.53.53.53/dns-query
-      - https://223.5.5.5/dns-query
-      - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
-      - https://94.140.14.14/dns-query#h3=true
-      - tcp://9.9.9.9
+      - 94.140.15.15
+      - 94.140.14.14
+      - 94.140.14.14:5443
+      - https://dns.adguard-dns.com/dns-query
+      - tls://dns.adguard-dns.com
+      - quic://dns.adguard-dns.com
+      - 2.dnscrypt.default.ns1.adguard.com
+      - tls://2a10:50c0::ad1:ff
+      - tls://2a10:50c0::ad2:ff
+      - tls://[2a10:50c0::ad1:ff]:5443
     "www.facebook.com/":
-      - tls://223.5.5.5
-      - tls://114.114.114.114
-      - tls://9.9.9.9
+      - 94.140.15.15
+      - 94.140.14.14
+      - 94.140.14.14:5443
+      - https://dns.adguard-dns.com/dns-query
+      - tls://dns.adguard-dns.com
+      - quic://dns.adguard-dns.com
+      - 2.dnscrypt.default.ns1.adguard.com
+      - tls://2a10:50c0::ad1:ff
+      - tls://2a10:50c0::ad2:ff
+      - tls://[2a10:50c0::ad1:ff]:5443
     "www.createporn.com/":
-      - https://dns.alidns.com/dns-query
-      - https://1.1.1.1/#h3=true
-      - https://www.quad9.net/#h3=true
-      - https://www.opendns.com/#h3=true
-      - tls://77.88.8.88
-      - tls://1.1.1.2
-      - tls://1.0.0.2
+      - 94.140.15.15
+      - 94.140.14.14
+      - 94.140.14.14:5443
+      - https://dns.adguard-dns.com/dns-query
+      - tls://dns.adguard-dns.com
+      - quic://dns.adguard-dns.com
+      - 2.dnscrypt.default.ns1.adguard.com
+      - tls://2a10:50c0::ad1:ff
+      - tls://2a10:50c0::ad2:ff
+      - tls://[2a10:50c0::ad1:ff]:5443
     "www.twitter.com/":
-      - tls://223.5.5.5
-      - tls://114.114.114.114
-      - tls://9.9.9.9
+      - 94.140.15.15
+      - 94.140.14.14
+      - 94.140.14.14:5443
+      - https://dns.adguard-dns.com/dns-query
+      - tls://dns.adguard-dns.com
+      - quic://dns.adguard-dns.com
+      - 2.dnscrypt.default.ns1.adguard.com
+      - tls://2a10:50c0::ad1:ff
+      - tls://2a10:50c0::ad2:ff
+      - tls://[2a10:50c0::ad1:ff]:5443
   enhanced-mode: fake-ip
   fake-ip-range: 28.0.0.1/8
   fake-ip-filter-mode: blacklist
@@ -188,10 +237,16 @@ dns:
     - "www.torrent.eu.org"
     - "www.msftconnecttest.com"
   fallback:
-    - 223.5.5.5:53
-    - 9.9.9.9:53
-    - 8.8.8.8:53
-    - 1.1.1.1:53
+    - tls://94.140.15.15
+    - tls://94.140.14.14
+    - tls://94.140.14.14:5443
+    - https://dns.adguard-dns.com/dns-query
+    - tls://dns.adguard-dns.com
+    - quic://dns.adguard-dns.com
+    - 2.dnscrypt.default.ns1.adguard.com
+    - tls://2a10:50c0::ad1:ff
+    - tls://2a10:50c0::ad2:ff
+    - tls://[2a10:50c0::ad1:ff]:5443
   fallback-filter:
     geoip: true
     geoip-code: ir
