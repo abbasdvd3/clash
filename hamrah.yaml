@@ -59,31 +59,6 @@ tun:
   auto-redirect: true
   auto-detect-interface: true
 
-sniffer:
-  enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
-  override-destination: true
-  sniff:
-    QUIC:
-      ports:
-      - 443
-    TLS:
-      ports:
-      - 443
-      - 8443
-    HTTP:
-      ports:
-      - 80
-      - 8080-8880
-      override-destination: true
-  sniffing:
-  - tls
-  - http
-  port-whitelist:
-  - 80
-  - 443
-
 dns:
   enable: true
   cache-algorithm: arc
@@ -1018,9 +993,8 @@ rules:
   - IP-CIDR6,fc00::/7,🎯 Direct,no-resolve
   - IP-CIDR6,fe80::/10,🎯 Direct,no-resolve
   - IP-CIDR6,fd00::/8,🎯 Direct,no-resolve
-  - IP-CIDR,94.140.15.15,🎯 Direct
-  - IP-CIDR,94.140.14.14,🎯 Direct
-  - IP-CIDR,94.140.14.14:5443,🎯 Direct
+  - IP-CIDR,94.140.15.15/16,🎯 Direct
+  - IP-CIDR,94.140.14.14/16,🎯 Direct
   - DOMAIN,dns.adguard-dns.com/dns-query,🎯 Direct
   - DOMAIN,dns.adguard-dns.com,🎯 Direct
   - DOMAIN,2.dnscrypt.default.ns1.adguard.com,🎯 Direct
