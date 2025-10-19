@@ -236,91 +236,31 @@ dns:
     - "*.local"
     - "www.torrent.eu.org"
     - "www.msftconnecttest.com"
-  fallback:
-    - tls://94.140.15.15
-    - tls://94.140.14.14
-    - tls://94.140.14.14:5443
-    - https://dns.adguard-dns.com/dns-query
-    - tls://dns.adguard-dns.com
-    - quic://dns.adguard-dns.com
-    - 2.dnscrypt.default.ns1.adguard.com
-    - tls://[2a10:50c0::ad1:ff]
-    - tls://[2a10:50c0::ad2:ff]
-    - tls://[2a10:50c0::ad1:ff]:5443
-  fallback-filter:
-    geoip: true
-    geoip-code: ir
-    geosite:
-      - social
-      - nsfw
-    ipcidr:
-      - 240.0.0.0/4
-      - 0.0.0.0/32
-      - 100.64.0.0/10
-      - 127.0.0.0/8
-      - 240.0.0.0/4
-      - 10.0.0.0/8
-      - 169.254.0.0/16
-      - 172.16.0.0/12
-      - 192.0.0.0/24
-      - 192.0.2.0/24
-      - 192.88.99.0/24
-      - 192.168.0.0/16
-      - 198.18.0.0/16
-      - 198.51.100.0/24
-      - 203.0.113.0/24
-      - 224.0.0.0/4
-      - 255.255.255.255/32
-      - ::1/128
-      - fc00::/7
-      - fe80::/10
-      - 39.102.194.95/32
-      - 182.43.124.6/32
-      - 101.35.177.86/32
-      - 116.89.243.8/32
-      - 119.28.87.227/32
-    domain:
-      - +.google.com
-      - +.github.com
-      - +.facebook.com
-      - +.twitter.com
-      - +.youtube.com
-      - +.google.cn
-      - +.googleapis.cn
-      - +.googleapis.com
-      - +.createporn.com
-      - +.instagram.com
-      - +.appspot.com
-      - +.telegram.com
-      - +.blogger.com
-      - +.gmail.com
-      - +.gvt1.com
+
 proxy-providers:
-  A1:
-    type: http
-    url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
-    interval: 86400
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      lazy: true
-      expected-status: 100
-    override:
-      additional-prefix: "A1 prefix |"
-      additional-suffix: "| test suffix"
+#  A1:
+#    type: http
+#    url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
+#    interval: 30
+#    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+#    health-check:
+#      enable: true
+#      url: https://www.google.com/generate_204
+#      interval: 300
+#      expected-status: 100
+#    override:
+#      additional-prefix: "A1 prefix |"
+#      additional-suffix: "| test suffix"
     
   A2:
     type: http
     url: "https://shadowmere.xyz/api/b64sub/"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A2 prefix |"
@@ -328,13 +268,12 @@ proxy-providers:
   A3:
     type: http
     url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A3 prefix |"
@@ -343,13 +282,12 @@ proxy-providers:
   A4:
     type: http
     url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A4 prefix |"
@@ -357,13 +295,12 @@ proxy-providers:
   A5:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A5 prefix |"
@@ -372,13 +309,12 @@ proxy-providers:
   A6:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A6 prefix |"
@@ -387,13 +323,12 @@ proxy-providers:
   A7:
     type: http
     url: "https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A7 prefix |"
@@ -402,13 +337,12 @@ proxy-providers:
   A8:
     type: http
     url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A8 prefix |"
@@ -417,13 +351,12 @@ proxy-providers:
   A9:
     type: http
     url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-2.yaml"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A9 prefix |"
@@ -432,13 +365,12 @@ proxy-providers:
   A10:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/vip"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A10 prefix |"
@@ -447,13 +379,12 @@ proxy-providers:
   A11:
     type: http
     url: "http://141.147.161.50:12580/clash/proxies"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A11 prefix |"
@@ -462,13 +393,12 @@ proxy-providers:
   A12:
     type: http
     url: "http://155.248.172.106:12580/clash/proxies"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A12 prefix |"
@@ -477,13 +407,12 @@ proxy-providers:
   A13:
     type: http
     url: "http://66.42.50.118:12580/clash/proxies"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A13 prefix |"
@@ -492,13 +421,12 @@ proxy-providers:
   A14:
     type: http
     url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A14 prefix |"
@@ -507,13 +435,12 @@ proxy-providers:
   A15:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N" #https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A15 prefix |"
@@ -522,13 +449,12 @@ proxy-providers:
   A16:
     type: http
     url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list_raw.txt"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A16 prefix |"
@@ -537,13 +463,12 @@ proxy-providers:
   A17:
     type: http
     url: "https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A17 prefix |"
@@ -552,13 +477,12 @@ proxy-providers:
   A18:
     type: http
     url: "https://raw.githubusercontent.com/yaney01/Yaney01/main/README.md"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A18 prefix |"
@@ -567,13 +491,12 @@ proxy-providers:
   A19:
     type: http
     url: "https://raw.githubusercontent.com/HakurouKen/free-node/main/public"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A19 prefix |"
@@ -582,13 +505,12 @@ proxy-providers:
   A20:
     type: http
     url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/actives.txt"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A20 prefix |"
@@ -597,13 +519,12 @@ proxy-providers:
   A21:
     type: http
     url: "https://raw.githubusercontent.com/shabane/kamaji/master/hub/merged.txt"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A21 prefix |"
@@ -612,13 +533,12 @@ proxy-providers:
   A22:
     type: http
     url: "https://raw.githubusercontent.com/markbang/chromegopacs/main/hy2pac.txt"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A22 prefix |"
@@ -627,13 +547,12 @@ proxy-providers:
   A23:
     type: http
     url: "https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A23 prefix |"
@@ -642,13 +561,12 @@ proxy-providers:
   A24:
     type: http
     url: "https://raw.githubusercontent.com/abshare/abshare.github.io/main/README.md"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A24 prefix |"
@@ -657,13 +575,12 @@ proxy-providers:
   A25:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A25 prefix |"
@@ -672,13 +589,12 @@ proxy-providers:
   A26:
     type: http
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A26 prefix |"
@@ -687,13 +603,12 @@ proxy-providers:
   A27:
     type: http
     url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A27 prefix |"
@@ -702,13 +617,12 @@ proxy-providers:
   A28:
     type: http
     url: "https://suc-us.bihai.site/sub?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmheidari98%2F.proxy%2Fmain%2Fall&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online.ini&emoji=true&list=false&xudp=false&udp=false&tfo=false&expand=true&scv=false&fdn=false&new_name=true" 
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A28 prefix |"
@@ -717,13 +631,12 @@ proxy-providers:
   A29:
     type: http
     url: "https://config.v2cross.com/clashprofile/config" # https://raw.githubusercontent.com/mheidari98/.proxy/main/all
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A29 prefix |"
@@ -732,13 +645,12 @@ proxy-providers:
   A30:
     type: http
     url: "https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/Clash.yaml"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A30 prefix |"
@@ -747,13 +659,12 @@ proxy-providers:
   A31:
     type: http
     url: "https://raw.githubusercontent.com/ts-sf/fly/main/clash"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A31 prefix |"
@@ -763,13 +674,12 @@ proxy-providers:
     type: http
     url: "https://proxypool.link/clash/proxies" # 	
  #https://raw.githubusercontent.com/dongchengjie/airport/main/subs/merged/tested_within.yaml" # https://raw.githubusercontent.com/PangTouY00/Auto_proxy/main/Long_term_subscription_num
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A32 prefix |"
@@ -778,13 +688,12 @@ proxy-providers:
   A33:
     type: http
     url: "https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml"
-    interval: 86400
+    interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://www.google.com/generate_204
       interval: 300
-      lazy: true
       expected-status: 100
     override:
       additional-prefix: "A33 prefix |"
@@ -797,7 +706,7 @@ proxy-groups:
     url: "https://www.google.com/"
     hidden: false
  #   tolerance: 500000
-    interval: 15
+ #   interval: 15
  #   tolerance: 500000
  #   include-all-providers: true
  #   include-all-proxies: true
@@ -814,8 +723,8 @@ proxy-groups:
   #   tolerance: 500000  
     exclude-type: "direct|http|socks5|trojan"
     include-all-providers: true
-    include-all-proxies: true
-    hidden: false
+ #   include-all-proxies: true
+    hidden: true
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
 
   - name: "🎈fallback"
@@ -826,8 +735,8 @@ proxy-groups:
  #   interval: 100
     exclude-type: "direct|http|socks5|IRAN|vless|trojan"
     include-all-providers: true
-    include-all-proxies: true
-    hidden: false
+  #  include-all-proxies: true
+    hidden: true
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
 
   - name: "🇺🇸US🇺🇸"
@@ -837,10 +746,10 @@ proxy-groups:
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
    # interval: 180
  #   tolerance: 5000
-    exclude-type: "Shadowsocksr|socks5|http|trojan|vmess|direct|IRAN|vless"
+    exclude-type: "socks5|http|trojan|vmess|direct|IRAN"
     include-all-providers: true
-    include-all-proxies: true
-    hidden: false
+ #   include-all-proxies: true
+    hidden: true
     url: "http://www.google.com/"
     
   - name: "🎯 Direct"
@@ -849,7 +758,6 @@ proxy-groups:
     proxies:
       - "DIRECT"
       - "PROXY"
-      - "PASS"
     
   - name: "🛑 Reject"
     type: "select"
@@ -865,77 +773,77 @@ rule-providers:
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.txt"
-    interval: 86400
+    interval: 30
     
   social:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.txt"
-    interval: 86400
+    interval: 30
     
   ir:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
-    interval: 86400
+    interval: 30
     
   ads:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.txt"
-    interval: 86400
+    interval: 30
     
   malware:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt"
-    interval: 86400
+    interval: 30
     
   phishing:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.txt"
-    interval: 86400
+    interval: 30
     
   cryptominers:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.txt"
-    interval: 86400
+    interval: 30
     
   apps:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.txt"
-    interval: 86400
+    interval: 30
     
   ircidr:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
-    interval: 86400
+    interval: 30
     
   private:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.txt"
-    interval: 86400
+    interval: 30
     
   irasn:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.txt"
-    interval: 86400
+    interval: 30
     
   LocalAreaNetwork:
     type: http
@@ -2120,7 +2028,7 @@ rules:
   - DOMAIN-SUFFIX,adservice.google.com,🛑 Reject
   - DOMAIN-SUFFIX,afd.l.google.com,🛑 Reject
   - DOMAIN-SUFFIX,badad.googleplex.com,🛑 Reject
-  - DOMAIN-SUFFIX,csi.gstatic.com,🛑 Reject
+  - DOMAIN-SUFFIX,csi.google.com,🛑 Reject
   - DOMAIN-SUFFIX,doubleclick.com,🛑 Reject
   - DOMAIN-SUFFIX,doubleclick.net,🛑 Reject
   - DOMAIN-SUFFIX,google-analytics.com,🛑 Reject
@@ -5749,7 +5657,7 @@ rules:
   - DOMAIN-SUFFIX,grow.google,PROXY
   - DOMAIN-SUFFIX,gs-discuss.com,PROXY
   - DOMAIN-SUFFIX,gsearch.media,PROXY
-  - DOMAIN-SUFFIX,gstatic.com,PROXY
+  - DOMAIN-SUFFIX,google.com,PROXY
   - DOMAIN-SUFFIX,gtricks.com,PROXY
   - DOMAIN-SUFFIX,gts-vpn.com,PROXY
   - DOMAIN-SUFFIX,gtv.org,PROXY
@@ -9885,7 +9793,7 @@ rules:
   - DOMAIN-SUFFIX,googleapis.cn,PROXY
   - DOMAIN-SUFFIX,googleapis.com,PROXY
   - DOMAIN-SUFFIX,gstatic.cn,PROXY
-  - DOMAIN-SUFFIX,gstatic.com,PROXY
+  - DOMAIN-SUFFIX,google.com,PROXY
   - DOMAIN-SUFFIX,gvt0.com,PROXY
   - DOMAIN-SUFFIX,gvt1.com,PROXY
   - DOMAIN-SUFFIX,gvt2.com,PROXY
