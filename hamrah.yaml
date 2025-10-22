@@ -7,9 +7,20 @@ mode: rule
 ipv6: true
 allow-lan: true
 log-level: debug
-external-controller: "0.0.0.0:9090"
-external-controller-tls: "0.0.0.0:9091"
+bind-address: "*"
+lan-allowed-ips:
+- 0.0.0.0/0
+- ::/0
+lan-disallowed-ips:
+- 192.168.0.3/32
+skip-auth-prefixes:
+- 127.0.0.1/8
+- ::1/128
+external-controller: 127.0.0.1:9090
+external-controller-tls: 127.0.0.1:9443
+external-doh-server: /dns-query
 external-ui: dashboard
+external-ui-name: xd
 keep-alive-interval: 30
 find-process-mode: strict
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
@@ -17,17 +28,28 @@ unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: random
 geodata-mode: true
+geodata-loader: memconservative
 geo-auto-update: true
 geo-update-interval: 24
+etag-support: true
 geox-url:
   GeoIP: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
   GeoSite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
   mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
   ANS: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
-global-ua: chrome
+global-ua: clash.meta
 profile:
   store-selected: true
   store-fake-ip: true
+tls:
+  certificate: string
+  private-key: string
+  ech-key: |-
+    -----BEGIN ECH KEYS-----
+    ACATwY30o/RKgD6hgeQxwrSiApLaCgU+HKh7B6SUrAHaDwBD/g0APwAAIAAgHjzK
+    madSJjYQIf9o1N5GXjkW4DEEeb17qMxHdwMdNnwADAABAAEAAQACAAEAAwAIdGVz
+    dC5jb20AAA==
+    -----END ECH KEYS-----
 
 # hosts:
 #   'ota.googlezip.net': 127.0.0.1
@@ -75,7 +97,7 @@ dns:
     - tls://1.0.0.1
     - tls://9.9.9.9
   direct-nameserver:
-    - 1.1.1.1
+    - dhcp://system
   nameserver:
     - 127.0.0.1:53
     - 94.140.15.15
