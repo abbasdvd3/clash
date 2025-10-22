@@ -1,3 +1,28 @@
+listeners:
+- name: redir-in
+  type: redir
+  port: 9797
+  listen: 0.0.0.0
+  
+- name: mixed-in
+  type: mixed
+  port: 7890
+  listen: 0.0.0.0
+  udp: true
+  
+- name: socks-in
+  type: socks
+  port: 7891
+  listen: 0.0.0.0
+  udp: true
+  
+- name: http-in
+  type: http
+  port: 7892
+  listen: 0.0.0.0
+
+
+
 port: 7892
 socks-port: 7891
 mixed-port: 7890
@@ -616,8 +641,33 @@ proxy-providers:
     override:
       additional-prefix: "A33 prefix |"
       additional-suffix: "| test suffix"
-
-
+proxies:
+  
+- name: redir-in
+  type: direct
+  port: 9797
+  server: 0.0.0.0
+  
+- name: mixed-in
+  type: mixed
+  port: 7890
+  server: 0.0.0.0
+  udp: true
+  
+- name: socks-in
+  type: socks
+  port: 7891
+  server: 0.0.0.0
+  udp: true
+  
+- name: http-in
+  type: http
+  port: 7892
+  server: 0.0.0.0
+  
+- name: dns-out
+  type: dns
+  
 proxy-groups:
   - name: "PROXY"
     type: "select"
@@ -634,6 +684,11 @@ proxy-groups:
       - "🎈Auto"
       - "🎈fallback"
       - "🇺🇸US🇺🇸"
+      - "redir-in"
+      - "dns-out"
+      - "http-in"
+      - "socks-in"
+      - "mixed-in"
   - name: "🎈Auto"
     type: "url-test"
     url: "https://www.google.com/"
@@ -674,7 +729,7 @@ proxy-groups:
     type: "select"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
     proxies:
-      - "DIRECT"
+      - "redir-in"
       - "PROXY"
     
   - name: "🛑 Reject"
