@@ -576,17 +576,14 @@ proxy-groups:
       - "🎈Auto"
       - "🎈fallback"
       - "🇺🇸US🇺🇸"
-      - "redir-in"
-      - "dns-out"
       
   - name: "🎈Auto"
     type: "url-test"
     url: "https://www.google.com/"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    tolerance: 5
-    exclude-type: "direct|http|socks5|trojan|vmess"
+    tolerance: 5000
+    exclude-type: "direct|http|socks5|vmess"
     include-all-providers: true
- #   include-all-proxies: true
     hidden: true
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
 
@@ -595,7 +592,7 @@ proxy-groups:
     url: "https://www.google.com/"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     tolerance: 5
- #   interval: 100
+    interval: 100
     exclude-type: "direct|http|socks5|redir-in|trojan|vmess"
     include-all-providers: true
   #  include-all-proxies: true
@@ -607,9 +604,9 @@ proxy-groups:
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
-   # interval: 180
-    tolerance: 5
-    exclude-type: "socks5|http|trojan|vmess|direct|IRAN"
+    interval: 180
+    tolerance: 5000
+    exclude-type: "socks5|http|vmess|direct|IRAN"
     include-all-providers: true
  #   include-all-proxies: true
     hidden: true
@@ -620,14 +617,6 @@ proxy-groups:
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
     proxies:
       - "redir-in"
-      - "PROXY"
-    
-  - name: "🛑 Reject"
-    type: "select"
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/block.svg"
-    proxies:
-      - "dns-out"
-      - "DIRECT"
       - "PROXY"
     
 rule-providers:
@@ -650,75 +639,66 @@ rule-providers:
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
-    path: ./ruleset/ir.yaml
     interval: 86400
   ads:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
-    path: ./ruleset/ads.yaml
     interval: 86400
   malware:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
-    path: ./ruleset/malware.yaml
     interval: 86400
   phishing:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
-    path: ./ruleset/phishing.yaml
     interval: 86400
   cryptominers:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
-    path: ./ruleset/cryptominers.yaml
     interval: 86400
   apps:
     type: http
     format: yaml
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml"
-    path: ./ruleset/apps.yaml
     interval: 86400
   ircidr:
     type: http
     format: yaml
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
-    path: ./ruleset/ircidr.yaml
     interval: 86400
   private:
     type: http
     format: yaml
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
-    path: ./ruleset/private.yaml
     interval: 86400
   irasn:
     type: http
     format: yaml
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
-    path: ./ruleset/irasn.yaml
     interval: 86400
 
 rules :
-  - RULE-SET,private,DIRECT,no-resolve
-  - RULE-SET,apps,DIRECT
+  - RULE-SET,private,redir-in,no-resolve
+  - RULE-SET,apps,redir-in
   - RULE-SET,ads,REJECT
   - RULE-SET,malware,REJECT
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
-  - RULE-SET,ir,DIRECT
-  - RULE-SET,ircidr,DIRECT
-  - RULE-SET,irasn,DIRECT
+  - RULE-SET,ir,redir-in
+  - RULE-SET,ircidr,redir-in
+  - RULE-SET,irasn,redir-in
   - RULE-SET,social,PROXY
   - RULE-SET,nsfw,PROXY
   - MATCH,PROXY
