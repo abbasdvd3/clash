@@ -147,9 +147,17 @@ dns:
     "www.sxyprn.com/":
       - 94.140.15.15
       - 94.140.14.14
+      - https://dns.cloudflare.com/dns-query
+      - https://dns.google/dns-query
+      - https://security.cloudflare-dns.com/dns-query
+      - tls://9.9.9.9
     "rule-set:social,nsfw":
       - 94.140.15.15
       - 94.140.14.14
+      - https://dns.cloudflare.com/dns-query
+      - https://dns.google/dns-query
+      - https://security.cloudflare-dns.com/dns-query
+      - tls://9.9.9.9
     geosite:category-ads-all: rcode://success
     "www.google.com/":
       - 94.140.15.15
@@ -565,7 +573,7 @@ proxies:
 
 proxy-groups:
   - name: "PROXY"
-    type: "load-balance"
+    type: "select"
     url: "https://www.google.com/"
     lazy: true
   #  interval: 5000
@@ -698,6 +706,7 @@ rules :
   - RULE-SET,ir,redir-in
   - RULE-SET,ircidr,redir-in
   - RULE-SET,irasn,redir-in
-  - RULE-SET,social,PROXY
-  - RULE-SET,nsfw,PROXY
-  - MATCH,PROXY
+  - RULE-SET,social,PROXY,no-resolve
+  - RULE-SET,nsfw,PROXY,no-resolve
+  - GEOIP,ir,redir-in
+  - MATCH,PROXY,no-resolve
