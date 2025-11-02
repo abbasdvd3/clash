@@ -42,13 +42,13 @@ skip-auth-prefixes:
 - 127.0.0.1/8
 - ::1/128
 external-controller: 127.0.0.1:9090
-external-controller-tls: 127.0.0.1:9443
+external-controller-tls: https://zashboard.lokyshin.net/
 external-doh-server: /dns-query
 external-ui: dashboard
-# external-ui-name: xd
+external-ui-name: dashboard
 keep-alive-interval: 30
 find-process-mode: strict
-external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: random
@@ -494,10 +494,10 @@ proxy-providers:
     override:
       additional-prefix: "A27 prefix |"
       additional-suffix: "| test suffix"
-      
+
   A28:
     type: http
-    url: "https://suc-us.bihai.site/sub?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmheidari98%2F.proxy%2Fmain%2Fall&insert=false&config=https%3A%2F%2Fraw.githubusercontent.com%2FACL4SSR%2FACL4SSR%2Fmaster%2FClash%2Fconfig%2FACL4SSR_Online.ini&emoji=true&list=false&xudp=false&udp=false&tfo=false&expand=true&scv=false&fdn=false&new_name=true" 
+    url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml" 
     interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -589,7 +589,6 @@ proxy-groups:
   - name: "PROXY"
     type: "select"
     url: "https://www.google.com/"
-    lazy: true
   #  interval: 5000
    # tolerance: 50000
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
