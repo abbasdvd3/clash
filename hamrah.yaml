@@ -117,6 +117,8 @@ dns:
   defult-nameserver:
     - 127.0.0.1:53
     - 94.140.15.15
+    - 8.8.8.8
+    - 1.1.1.1
     - 94.140.14.14
     - tls://8.8.4.4
     - tls://1.0.0.1
@@ -125,28 +127,32 @@ dns:
     - dhcp://system
   nameserver:
     - 127.0.0.1:53
-    - 94.140.15.15
-    - 94.140.14.14
+    - https://94.140.15.15
+    - https://94.140.14.14
     - tls://8.8.4.4
     - tls://1.0.0.1
     - tls://9.9.9.9
   proxy-server-nameserver:
-    - 94.140.15.15
-    - 94.140.14.14
+    - https://94.140.15.15
+    - https://94.140.14.14
     - tls://dns.google
     - tls://cloudflare-dns.com
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
   nameserver-policy:
     "www.google.com/":
-      - 94.140.15.15
-      - 94.140.14.14
+      - https://8.8.8.8
+      - https://1.1.1.1
     "www.instagram.com/":
       - 94.140.15.15
       - 94.140.14.14
+      - https://8.8.8.8
+      - https://1.1.1.1
     "www.sxyprn.com/":
       - 94.140.15.15
       - 94.140.14.14
+      - https://8.8.8.8
+      - https://1.1.1.1
       - https://dns.cloudflare.com/dns-query
       - https://dns.google/dns-query
       - https://security.cloudflare-dns.com/dns-query
@@ -154,22 +160,30 @@ dns:
     "rule-set:social,nsfw":
       - 94.140.15.15
       - 94.140.14.14
+      - https://8.8.8.8
+      - https://1.1.1.1
       - https://dns.cloudflare.com/dns-query
       - https://dns.google/dns-query
       - https://security.cloudflare-dns.com/dns-query
       - tls://9.9.9.9
     geosite:category-ads-all: rcode://success
     "www.google.com/":
-      - 94.140.15.15
-      - 94.140.14.14
+      - https://8.8.8.8
+      - https://1.1.1.1
     "www.facebook.com/":
       - 94.140.15.15
+      - https://8.8.8.8
+      - https://1.1.1.1
       - 94.140.14.14
     "www.createporn.com/":
       - 94.140.15.15
+      - https://8.8.8.8
+      - https://1.1.1.1
       - 94.140.14.14
     "www.twitter.com/":
       - 94.140.15.15
+      - https://8.8.8.8
+      - https://1.1.1.1
       - 94.140.14.14
   enhanced-mode: fake-ip
   fake-ip-range: 100.0.0.1/8
@@ -697,6 +711,36 @@ rule-providers:
     interval: 86400
 
 rules :
+  - DOMAIN,ad.com,REJECT
+  - DOMAIN-SUFFIX,google.com,PROXY
+  - DOMAIN-KEYWORD,google,PROXY
+  - DOMAIN-WILDCARD,*.google.com,PROXY
+  - DOMAIN-REGEX,^abc.*com,PROXY
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR6,2620:0:2d0:200::7/32,PROXY
+  - IP-SUFFIX,8.8.8.8/24,PROXY
+  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
+  - SRC-IP-SUFFIX,192.168.1.201/8,DIRECT
+  - IN-PORT,7890,PROXY
+  - IN-PORT,7892,PROXY
+  - IN-PORT,7891,PROXY
+  - IN-TYPE,SOCKS/HTTP,PROXY
+  - IN-USER,mihomo,PROXY
+  - IN-NAME,ss,PROXY
+  - PROCESS-PATH,/usr/bin/wget,PROXY
+  - PROCESS-PATH,C:\Program Files\Google\Chrome\Application\chrome.exe,PROXY
+  - PROCESS-PATH-REGEX,.*bin/wget,PROXY
+  - PROCESS-PATH-REGEX,(?i).*Application\\chrome.*,PROXY
+
+  - PROCESS-NAME,curl,PROXY
+  - PROCESS-NAME,chrome.exe,PROXY
+  - PROCESS-NAME,com.termux,PROXY
+  - PROCESS-NAME-REGEX,curl$,PROXY
+  - PROCESS-NAME-REGEX,(?i)Telegram,PROXY
+  - PROCESS-NAME-REGEX,.*telegram.*,PROXY
+  - AND,((DOMAIN,google.com),(NETWORK,UDP)),DIRECT
+  - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
+  - NOT,((DOMAIN,google.com)),PROXY
   - RULE-SET,private,redir-in,no-resolve
   - RULE-SET,apps,redir-in
   - RULE-SET,ads,REJECT
