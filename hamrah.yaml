@@ -440,7 +440,7 @@ proxy-providers:
 
   A22:
     type: http
-    url: "https://raw.githubusercontent.com/markbang/chromegopacs/main/hy2pac.txt"
+    url: ""
     interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -589,8 +589,6 @@ proxy-groups:
   - name: "PROXY"
     type: "select"
     url: "https://www.google.com/"
-  #  interval: 5000
-   # tolerance: 50000
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
     proxies:
       - "🎈Auto"
@@ -602,7 +600,7 @@ proxy-groups:
     url: "https://www.google.com/"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     interval: 500
-    tolerance: 5000
+    tolerance: 50000
     exclude-type: "direct|http|socks5"
     include-all-providers: true
     udp: false
@@ -626,7 +624,7 @@ proxy-groups:
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
     interval: 500
-    tolerance: 5000
+    tolerance: 50000
     exclude-type: "socks5|http|direct|IRAN"
     include-all-providers: true
     hidden: true
