@@ -116,39 +116,26 @@ dns:
   ipv6: true
   defult-nameserver:
     - 127.0.0.1:53
-    - 94.140.15.15
     - 8.8.8.8
     - 1.1.1.1
-    - 94.140.14.14
     - tls://8.8.4.4
     - tls://1.0.0.1
-    - tls://9.9.9.9
   direct-nameserver:
     - 1.1.1.1
   nameserver:
     - 127.0.0.1:53
-    - https://94.140.15.15
-    - https://94.140.14.14
     - tls://8.8.4.4
     - tls://1.0.0.1
     - tls://9.9.9.9
   proxy-server-nameserver:
-    - https://94.140.15.15
-    - https://94.140.14.14
     - tls://dns.google
     - tls://cloudflare-dns.com
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
   nameserver-policy:
     "rule-set:social,nsfw":
-      - 94.140.15.15
-      - 94.140.14.14
       - https://8.8.8.8
       - https://1.1.1.1
-      - https://dns.cloudflare.com/dns-query
-      - https://dns.google/dns-query
-      - https://security.cloudflare-dns.com/dns-query
-      - tls://9.9.9.9
     geosite:category-ads-all: rcode://success
   enhanced-mode: fake-ip
   fake-ip-range: 100.0.0.1/8
@@ -160,9 +147,8 @@ dns:
     - "www.torrent.eu.org"
     - "www.msftconnecttest.com"
   fallback:
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
-    - https://security.cloudflare-dns.com/dns-query
+    - tcp://8.8.8.8
+    - tcp://1.1.1.1
     - tls://9.9.9.9
 proxy-providers:
   A1:
@@ -538,8 +524,8 @@ proxy-groups:
     type: "url-test"
     url: "https://www.google.com/"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 500
-    tolerance: 50000
+ #   interval: 500
+ #   tolerance: 50000
     exclude-type: "direct|http|socks5"
     include-all-providers: true
     udp: false
@@ -550,7 +536,7 @@ proxy-groups:
     type: "fallback"
     url: "https://www.google.com/"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 200
+#    interval: 200
     exclude-type: "direct|http|socks5|redir-in"
     include-all-providers: true
     udp: false
@@ -562,8 +548,8 @@ proxy-groups:
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
-    interval: 500
-    tolerance: 50000
+ #   interval: 500
+#    tolerance: 50000
     exclude-type: "socks5|http|direct|IRAN"
     include-all-providers: true
     hidden: true
