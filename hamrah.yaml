@@ -42,10 +42,19 @@ skip-auth-prefixes:
 - 127.0.0.1/8
 - ::1/128
 external-controller: 127.0.0.1:9090
-external-controller-tls: https://zashboard.lokyshin.net/
+external-controller-tls: 127.0.0.1:9091
 external-doh-server: /dns-query
 external-ui: dashboard
 external-ui-name: dashboard
+external-controller-cors:
+  allow-private-network: true
+  allow-origins:
+  - tauri://localhost
+  - http://tauri.localhost
+  - http://localhost:3000
+  - https://yacd.metacubex.one
+  - https://metacubex.github.io
+  - https://board.zash.run.place
 keep-alive-interval: 30
 find-process-mode: strict
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
