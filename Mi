@@ -35,7 +35,7 @@ dns:
     - +.msftconnecttest.com
 tun:
   enable: true
-  stack: system
+  stack: mixed
   auto-route: true
   auto-detect-interface: true
   dns-hijack:
@@ -49,13 +49,14 @@ tun:
     - 1.0.0.1
 proxy-groups:
   - name: 🚀 Select
-    type: url-test
-    include-all-proxies: false
+    type: select
+    include-all-proxies: true
     udp: false
     exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
     proxies:
-      - 🐟 Fallback
       - 🎈 Auto
+      - 🐟 Fallback
+
 
   - name: 🎈 Auto
     type: url-test
