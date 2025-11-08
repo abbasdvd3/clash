@@ -50,51 +50,75 @@ proxy-groups:
   - name: 🚀 Select
     type: url-test
     include-all-proxies: false
-    exclude-type: "socks5|http|direct|IRAN" # |trojan|vmess
+    udp: false
+    exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
     proxies:
-      - 🎈 Auto
       - 🐟 Fallback
+      - 🎈 Auto
 
   - name: 🎈 Auto
     type: url-test
     include-all-proxies: true
+    hidden: true
+    udp: false
+    interval: 300
+    tolerance: 50000
     url: https://www.gstatic.com/generate_204
-    exclude-type: "socks5|http|direct|IRAN" # |trojan|vmess
+    exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
 
   - name: 🎯 Direct
     type: select
     proxies:
-      - DIRECT
+      - redir-in
       - 🚀 Select
 
   - name: 🛑 Reject
     type: select
-    hidden: false
+    hidden: true
     proxies:
       - REJECT
-      - DIRECT
-      - PASS
+      - redir-in
+
       
   - name: 🐟 Fallback
     type: fallback
-    hidden: false
+    hidden: true
+    interval: 180
+    udp: false
     include-all-proxies: true
-    exclude-type: "socks5|http|direct|IRAN"
+    exclude-type: "socks5|http|direct|redir-in"
     url: https://www.gstatic.com/generate_204
 
 rules:
-  - DOMAIN,board.zash.run.place,🎯 Direct
-  - DOMAIN,clash.razord.top,🎯 Direct
-  - DOMAIN,yacd.haishan.me,🎯 Direct
+  - DOMAIN,board.zash.run.place,🚀 Select
+  - DOMAIN,clash.razord.top,🚀 Select
+  - DOMAIN,yacd.haishan.me,🚀 Select
   - DOMAIN,www.icloud.com,🚀 Select
   - DOMAIN-SUFFIX,icloud-content.com,🚀 Select
   - DOMAIN,googleadservices.com,🚀 Select
-  - DST-PORT,80,🚀 Select
-  - SRC-PORT,443,🚀 Select
   - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
+  - DOMAIN,ad.com,🛑 Reject
+  - DOMAIN-SUFFIX,google.com,🚀 Select
+  - DOMAIN-KEYWORD,google,🚀 Select
+  - IP-CIDR,127.0.0.0/8,redir-in,no-resolve
+  - IP-CIDR6,2620:0:2d0:200::7/32,🚀 Select
+  - IP-SUFFIX,8.8.8.8/24,🚀 Select
+  - SRC-IP-CIDR,192.168.1.201/32,redir-in
+  - SRC-IP-SUFFIX,192.168.1.201/8,redir-in
+  - IN-PORT,7890,🚀 Select
+  - IN-PORT,7892,🚀 Select
+  - IN-PORT,7891,🚀 Select
+  - IN-TYPE,SOCKS/HTTP,🚀 Select
+  - IN-USER,mihomo,🚀 Select
+  - IN-NAME,ss,🚀 Select
+  - AND,((DOMAIN,google.com),(NETWORK,UDP)),redir-in
+  - OR,((NETWORK,UDP),(DOMAIN,google.com)),🛑 Reject
+  - NOT,((DOMAIN,google.com)),🚀 Select
+  - GEOIP,ir,redir-in
   - MATCH,🚀 Select
 
 proxies:
+  - {"type":"direct","name":"redir-in","server":"127.0.0.1","port":9797,"udp":"false"}
   - {"type":"ss","name":"🇭🇰_HK_香港_demo:ChangFeng长风_1","server":"141.98.4.67","port":52952,"cipher":"chacha20-ietf-poly1305","password":"LMSNh21TrXjR2ok25Q2nE8ENT2zoBmPvka3RCCUAHZELCnWoekVjvaf89qwcRkdbxEfep2bc2aUtmnxqvF1ayQRez1JHjULj"}
   - {"type":"trojan","name":"🇭🇰_HK_香港_demo:ChangFeng长风_2","server":"23.247.137.64","port":443,"password":"3c4e10af98c30972","udp":true,"skip-cert-verify":true,"sni":"n2.gladns.com","network":"grpc"}
   - {"type":"ss","name":"🇭🇰_HK_香港_demo:ChangFeng长风_3","server":"102.207.216.176","port":990,"cipher":"chacha20-ietf-poly1305","password":"ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="}
