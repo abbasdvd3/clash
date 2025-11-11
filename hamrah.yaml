@@ -103,7 +103,7 @@ tls:
 
 tun:
   enable: true
-  mtu: 9000
+  mtu: 1500
   device: clash
   stack: mixed
   dns-hijack:
@@ -125,29 +125,35 @@ dns:
   ipv6: true
   defult-nameserver:
     - 127.0.0.1:53
-    - 8.8.8.8
-    - 1.1.1.1
-    - tls://8.8.4.4
-    - tls://1.0.0.1
+    - udp://8.8.8.8
+    - udp://1.1.1.1
+    - udp://76.76.2.0
+    - udp://76.223.122.150
+    - udp://146.112.41.102
+    - udp://146.112.41.2
+    - udp://1.0.0.1
   direct-nameserver:
     - 1.1.1.1
   nameserver:
     - 127.0.0.1:53
-    - tls://8.8.4.4
-    - tls://1.0.0.1
-    - tls://9.9.9.9
+    - https://cloudflare-dns.com/dns-query
+    - https://ada.openbld.net/dns-query
+    - https://freedns.controld.com/p0
+    - https://rubyfish.cn/dns-query
+    - https://all.dns.mullvad.net/dns-query
   proxy-server-nameserver:
-    - tls://dns.google
-    - tls://cloudflare-dns.com
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
+    - https://cloudflare-dns.com/dns-query:784
+    - https://ada.openbld.net/dns-query:784
+    - https://freedns.controld.com/p0:784
   nameserver-policy:
     "rule-set:social,nsfw":
       - https://8.8.8.8
-      - https://1.1.1.1
-    geosite:category-ads-all: rcode://success
+      - https://cloudflare-dns.com/dns-query
+      - https://ada.openbld.net/dns-query
+      - https://freedns.controld.com/p0
+    geosite:category-ads-all: rcode://succese
   enhanced-mode: fake-ip
-  fake-ip-range: 100.0.0.1/8
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
   direct-nameserver-follow-policy: false
   fake-ip-filter:
@@ -158,7 +164,9 @@ dns:
   fallback:
     - tcp://8.8.8.8
     - tcp://1.1.1.1
-    - tls://9.9.9.9
+    - https://cloudflare-dns.com/dns-query
+    - https://ada.openbld.net/dns-query
+    - https://freedns.controld.com/p0
 proxy-providers:
   A1:
     type: http
