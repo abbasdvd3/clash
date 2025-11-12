@@ -23,26 +23,16 @@ dns:
     - 'localhost.ptlogin2.qq.com'
     - '+.msftconnecttest.com'
   default-nameserver:
-    - 114.114.114.114#PROXY
-    - 9.9.9.9#PROXY
-    - 223.6.6.6#PROXY
-    - 180.76.76.76#PROXY
-    - 119.28.28.28#PROXY
+    - 1.1.1.1
+    - 8.8.8.8
   nameserver:
-    - tls://dot.pub:853#PROXY
-    - tls://1.12.12.12:853#PROXY
-    - tls://120.53.53.53:853#PROXY
-    - https://doh.pub/dns-query#PROXY
-    - 1.1.1.1#PROXY
-    - 77.88.8.1#PROXY
-    - 77.88.8.8#PROXY
+    - 1.1.1.1
+    - 8.8.8.8
   fallback:
-    - https://dns.quad9.net/dns-query#PROXY
-    - https://dns9.quad9.net/dns-query#PROXY
-    - tls://dns.google:853#PROXY
-    - https://8.8.4.4/dns-query#PROXY
+    - 1.1.1.1
+    - 8.8.4.4
   fallback-filter:
-    geoip: false
+    geoip: true
     geoip-code: ir
     ipcidr:
       - 240.0.0.0/4
@@ -60,7 +50,7 @@ dns:
       - +.gvt1.com
 tun:
   enable: true
-  stack: givisor
+  stack: system
   auto-route: true
   auto-detect-interface: true
   dns-hijack:
@@ -161,23 +151,25 @@ proxy-providers:
 proxies:
 proxy-groups:
   - name: PROXY
-    type: url-test
-    url: "https://www.google.com/"
-    interval: 99
-    tolerance: 8000
+    type: select
     disable-udp: true
-    use:
- #     - provider1
     proxies:
       - url-test
       - United+url-test
       - fallback
+    use:
+      - provider1
+      - provider2
+      - provider3
+      - provider4
+      - provider7
+      - provider6
+      - provider8
   - name: fallback
     type: fallback
     url: "https://www.google.com/"
     disable-udp: true
     interval: 180
-    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     hidden: false
     proxies:
     use:
@@ -191,9 +183,8 @@ proxy-groups:
   - name: United+url-test
     type: url-test
     url: "https://www.google.com/"
-    disable-udp: false
+    disable-udp: true
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
-    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     interval: 300
     tolerance: 5000
     hidden: true
@@ -209,7 +200,6 @@ proxy-groups:
   - name: url-test
     type: url-test
     url: "https://www.google.com/"
-    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     disable-udp: true
     interval: 99
     tolerance: 5000
