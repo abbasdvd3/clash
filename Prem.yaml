@@ -134,6 +134,30 @@ proxy-providers:
       enable: true
       interval: 30
       url: "https://www.google.com/generate_204"
+  provider7:
+    type: http
+    url: "http://66.42.50.118:12580/clash/proxies"    
+    path: Prem/P7.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
+    health-check:
+      enable: true
+      interval: 30
+      url: "https://www.google.com/generate_204"
+  provider8:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/1"
+    path: Prem/P8.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
+    health-check:
+      enable: true
+      interval: 30
+      url: "https://www.google.com/generate_204"
 proxies:
 proxy-groups:
   - name: PROXY
@@ -161,9 +185,9 @@ proxy-groups:
       - provider2
       - provider3
       - provider4
-
+      - provider7
       - provider6
-
+      - provider8
   - name: United+url-test
     type: url-test
     url: "https://www.google.com/"
@@ -178,8 +202,9 @@ proxy-groups:
       - provider2
       - provider3
       - provider4
-
+      - provider7
       - provider6
+      - provider8
 
   - name: url-test
     type: url-test
@@ -194,8 +219,9 @@ proxy-groups:
       - provider2
       - provider3
       - provider4
-   
+      - provider7
       - provider6
+      - provider8
 
     proxies: 
   - name: 🎯 DIRECT
