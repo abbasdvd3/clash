@@ -41,11 +41,11 @@ lan-disallowed-ips:
 skip-auth-prefixes:
 - 127.0.0.1/8
 - ::1/128
-external-controller: 127.0.0.1:9090
-external-controller-tls: 127.0.0.1:9091
+external-controller: 0.0.0.0:9090
+external-controller-tls: 0.0.0.0:9091
 external-doh-server: /dns-query
-external-ui: dashboard
-external-ui-name: dashboard
+external-ui: ./dashboard
+
 external-controller-cors:
   allow-private-network: true
   allow-origins:
@@ -53,7 +53,7 @@ external-controller-cors:
   - http://tauri.localhost
   - http://localhost:3000
   - https://yacd.metacubex.one
-  - https://metacubex.github.io
+  - https://d.metacubex.one
   - https://board.zash.run.place
 keep-alive-interval: 30
 find-process-mode: strict
@@ -62,7 +62,7 @@ unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: random
 geodata-mode: true
-geodata-loader: memconservative
+geodata-loader: standard
 geo-auto-update: true
 geo-update-interval: 24
 etag-support: true
@@ -75,15 +75,6 @@ global-ua: clash.meta
 profile:
   store-selected: true
   store-fake-ip: true
-tls:
-  certificate: string
-  private-key: string
-  ech-key: |-
-    -----BEGIN ECH KEYS-----
-    ACATwY30o/RKgD6hgeQxwrSiApLaCgU+HKh7B6SUrAHaDwBD/g0APwAAIAAgHjzK
-    madSJjYQIf9o1N5GXjkW4DEEeb17qMxHdwMdNnwADAABAAEAAQACAAEAAwAIdGVz
-    dC5jb20AAA==
-    -----END ECH KEYS-----
 
 # hosts:
 #   'ota.googlezip.net': 127.0.0.1
