@@ -118,11 +118,11 @@ dns:
     - 1.1.1.1
   nameserver:
     - 127.0.0.1:53
-    - https://cloudflare-dns.com/dns-query
-    - https://ada.openbld.net/dns-query
-    - https://freedns.controld.com/p0
-    - https://rubyfish.cn/dns-query
-    - https://all.dns.mullvad.net/dns-query
+    - https://cloudflare-dns.com/dns-query#PROXY
+    - https://ada.openbld.net/dns-query#PROXY
+    - https://freedns.controld.com/p0#PROXY
+    - https://rubyfish.cn/dns-query#PROXY
+    - https://all.dns.mullvad.net/dns-query#PROXY
   proxy-server-nameserver:
     - https://cloudflare-dns.com/dns-query:784
     - https://ada.openbld.net/dns-query:784
@@ -635,17 +635,34 @@ rule-providers:
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
     interval: 86400
-
+  geolocation-!cn:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
+    interval: 86400
+  AWA:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+    interval: 86400
 rules :
+
   - DOMAIN,ad.com,REJECT
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
+  - PROCESS-NAME,com.samsung.android.location,REJECT,no-resolve
+  - PROCESS-NAME,com.android.localtransport,REJECT,no-resolve
+  - PROCESS-NAME,com.google.android.gms.location.history,REJECT,no-resolve
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
+  - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
   - DOMAIN-SUFFIX,google.com,PROXY
   - DOMAIN-KEYWORD,google,PROXY
- # - DOMAIN-REGEX,^abc.*com,PROXY
-  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,redir-in,no-resolve
   - IP-CIDR6,2620:0:2d0:200::7/32,PROXY
   - IP-SUFFIX,8.8.8.8/24,PROXY
-  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
-  - SRC-IP-SUFFIX,192.168.1.201/8,DIRECT
+  - SRC-IP-CIDR,192.168.1.201/32,redir-in
+  - SRC-IP-SUFFIX,192.168.1.201/8,redir-in
   - IN-PORT,7890,PROXY
   - IN-PORT,7892,PROXY
   - IN-PORT,7891,PROXY
@@ -654,22 +671,17 @@ rules :
   - IN-NAME,ss,PROXY
   - PROCESS-PATH,/usr/bin/wget,PROXY
   - PROCESS-PATH,C:\Program Files\Google\Chrome\Application\chrome.exe,PROXY
-  # - PROCESS-PATH-REGEX,.*bin/wget,PROXY
- # - PROCESS-PATH-REGEX,(?i).*Application\\chrome.*,PROXY
-
   - PROCESS-NAME,curl,PROXY
   - PROCESS-NAME,chrome.exe,PROXY
   - PROCESS-NAME,com.termux,PROXY
- # - PROCESS-NAME-REGEX,curl$,PROXY
- # - PROCESS-NAME-REGEX,(?i)Telegram,PROXY
-#  - PROCESS-NAME-REGEX,.*telegram.*,PROXY
-  - AND,((DOMAIN,google.com),(NETWORK,UDP)),DIRECT
+  - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
   - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
   - NOT,((DOMAIN,google.com)),PROXY
   - RULE-SET,private,redir-in,no-resolve
   - RULE-SET,apps,redir-in
   - RULE-SET,ads,REJECT
   - RULE-SET,malware,REJECT
+  - RULE-SET,AWA,REJECT
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
   - RULE-SET,ir,redir-in
@@ -677,5 +689,6 @@ rules :
   - RULE-SET,irasn,redir-in
   - RULE-SET,social,PROXY,no-resolve
   - RULE-SET,nsfw,PROXY,no-resolve
+  - RULE-SET,geolocation-!cn,PROXY
   - GEOIP,ir,redir-in
   - MATCH,PROXY,no-resolve
