@@ -107,13 +107,13 @@ dns:
   ipv6: true
   defult-nameserver:
     - 127.0.0.1:53
-    - udp://8.8.8.8
-    - udp://1.1.1.1
-    - udp://76.76.2.0
-    - udp://76.223.122.150
-    - udp://146.112.41.102
-    - udp://146.112.41.2
-    - udp://1.0.0.1
+    - tls://8.8.8.8
+    - tls://1.1.1.1
+    - tls://76.76.2.0
+    - tls://76.223.122.150
+    - tls://146.112.41.102
+    - tls://146.112.41.2
+    - tls://1.0.0.1
   direct-nameserver:
     - 1.1.1.1
   nameserver:
@@ -341,7 +341,7 @@ proxy-providers:
       
   A18:
     type: http
-    url: "https://raw.githubusercontent.com/yaney01/Yaney01/main/README.md"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/T.yaml"
     interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -380,7 +380,7 @@ proxy-providers:
 
   A21:
     type: http
-    url: "https://raw.githubusercontent.com/shabane/kamaji/master/hub/merged.txt"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/S.yaml"
     interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -393,7 +393,7 @@ proxy-providers:
 
   A22:
     type: http
-    url: ""
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/e1.yaml"
     interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -446,7 +446,7 @@ proxy-providers:
 
   A28:
     type: http
-    url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml" 
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/p.yaml" 
     interval: 30
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
@@ -532,6 +532,8 @@ proxies:
 proxy-groups:
   - name: "PROXY"
     type: "url-test"
+    interval: 50
+    tolerance: 500
     url: "https://www.google.com/"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
     proxies:
@@ -543,9 +545,9 @@ proxy-groups:
     type: "url-test"
     url: "https://www.google.com/"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
- #   interval: 500
- #   tolerance: 50000
-    exclude-type: "direct|http|socks5"
+    interval: 50
+    tolerance: 500
+    exclude-type: "direct|http|socks5|redir-in"
     include-all-providers: true
     udp: false
     hidden: true
@@ -555,7 +557,7 @@ proxy-groups:
     type: "fallback"
     url: "https://www.google.com/"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-#    interval: 200
+    interval: 180
     exclude-type: "direct|http|socks5|redir-in"
     include-all-providers: true
     udp: false
@@ -567,9 +569,9 @@ proxy-groups:
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
- #   interval: 500
-#    tolerance: 50000
-    exclude-type: "socks5|http|direct|IRAN"
+    interval: 300
+    tolerance: 5
+    exclude-type: "socks5|http|direct|redir-in"
     include-all-providers: true
     hidden: true
     url: "https://www.google.com/"
@@ -673,11 +675,11 @@ rules :
   - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
   - DOMAIN-SUFFIX,google.com,PROXY
   - DOMAIN-KEYWORD,google,PROXY
-  - IP-CIDR,127.0.0.0/8,redir-in,no-resolve
+  - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
   - IP-CIDR6,2620:0:2d0:200::7/32,PROXY
   - IP-SUFFIX,8.8.8.8/24,PROXY
-  - SRC-IP-CIDR,192.168.1.201/32,redir-in
-  - SRC-IP-SUFFIX,192.168.1.201/8,redir-in
+  - SRC-IP-CIDR,192.168.1.201/32,🎯 Direct
+  - SRC-IP-SUFFIX,192.168.1.201/8,🎯 Direct
   - IN-PORT,7890,PROXY
   - IN-PORT,7892,PROXY
   - IN-PORT,7891,PROXY
@@ -692,18 +694,18 @@ rules :
   - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
   - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
   - NOT,((DOMAIN,google.com)),PROXY
-  - RULE-SET,private,redir-in,no-resolve
-  - RULE-SET,apps,redir-in
+  - RULE-SET,private,🎯 Direct,no-resolve
+  - RULE-SET,apps,🎯 Direct
   - RULE-SET,ads,REJECT
   - RULE-SET,malware,REJECT
   - RULE-SET,AWA,REJECT
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
-  - RULE-SET,ir,redir-in
-  - RULE-SET,ircidr,redir-in
-  - RULE-SET,irasn,redir-in
+  - RULE-SET,ir,🎯 Direct
+  - RULE-SET,ircidr,🎯 Direct
+  - RULE-SET,irasn,🎯 Direct
   - RULE-SET,social,PROXY,no-resolve
   - RULE-SET,nsfw,PROXY,no-resolve
   - RULE-SET,geolocation-!cn,PROXY
-  - GEOIP,ir,redir-in
+  - GEOIP,ir,🎯 Direct
   - MATCH,PROXY,no-resolve
