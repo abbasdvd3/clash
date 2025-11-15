@@ -90,7 +90,6 @@ tun:
   stack: mixed
   dns-hijack:
   - any:53
-  - tcp://any:53
   auto-route: true
   strict-route: true
   auto-redirect: true
@@ -108,6 +107,7 @@ dns:
   defult-nameserver:
     - 127.0.0.1:53
     - tls://8.8.8.8
+    - 185.236.104.104
     - tls://1.1.1.1
     - tls://76.76.2.0
     - tls://76.223.122.150
@@ -119,6 +119,7 @@ dns:
   nameserver:
     - 127.0.0.1:53
     - https://cloudflare-dns.com/dns-query#PROXY
+    - https://doh.flashstart.com/f17c9ee5
     - https://ada.openbld.net/dns-query#PROXY
     - https://freedns.controld.com/p0#PROXY
     - https://rubyfish.cn/dns-query#PROXY
@@ -133,11 +134,6 @@ dns:
       - https://cloudflare-dns.com/dns-query
       - https://ada.openbld.net/dns-query
       - https://freedns.controld.com/p0
-    geosite:category-ads-all: rcode://success
-    geosite:category-ads-all: rcode://format_error
-    geosite:category-ads-all: rcode://server_failure
-    geosite:category-ads-all: rcode://name_error
-    geosite:category-ads-all: rcode://not_implemented
     geosite:category-ads-all: rcode://refused
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
