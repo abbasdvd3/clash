@@ -1,13 +1,7 @@
-
-
-
-
-
-
 mixed-port: 7890
-allow-lan: false
+allow-lan: true
 mode: rule
-ipv6: false
+ipv6: true
 log-level: info
 external-controller: 0.0.0.0:9090
 lgbm-auto-update: true
@@ -18,7 +12,7 @@ profile:
 dns:
   enable: true
   listen: 0.0.0.0:53
-  ipv6: false
+  ipv6: true
   default-nameserver:
     - 223.5.5.5
     - 114.114.114.114
@@ -965,7 +959,7 @@ proxy-groups:
 
   - name: url-test
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: https://testmy.net/latency?addr=twitch.com
     interval: 300
     include-all-proxies: true
     exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
