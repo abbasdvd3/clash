@@ -12,12 +12,16 @@ dns:
   ipv6: true
   default-nameserver:
     - 223.5.5.5
-    - 114.114.114.114
+    - 8.8.8.8
+    - 8.8.4.4
+    - 1.1.1.1
+    - 1.0.0.1
   nameserver:
     - 223.5.5.5
-    - 114.114.114.114
-    - 119.29.29.29
-    - 180.76.76.76
+    - 8.8.8.8
+    - 8.8.4.4
+    - 1.1.1.1
+    - 1.0.0.1
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
@@ -39,9 +43,6 @@ tun:
   auto-route: true
   auto-detect-interface: true
   dns-hijack:
-    - 114.114.114.114
-    - 180.76.76.76
-    - 119.29.29.29
     - 223.5.5.5
     - 8.8.8.8
     - 8.8.4.4
@@ -51,7 +52,7 @@ proxy-groups:
   - name: 🚀 Select
     type: select
     include-all-proxies: true
-    udp: false
+    udp: true
     exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
     proxies:
       - 🎈 Auto
@@ -62,7 +63,7 @@ proxy-groups:
     type: url-test
     include-all-proxies: true
     hidden: true
-    udp: false
+    udp: true
     interval: 300
     tolerance: 50000
     url: https://www.gstatic.com/generate_204
@@ -86,7 +87,7 @@ proxy-groups:
     type: fallback
     hidden: true
     interval: 180
-    udp: false
+    udp: true
     include-all-proxies: true
     exclude-type: "socks5|http|direct|redir-in"
     url: https://www.gstatic.com/generate_204
