@@ -1,7 +1,7 @@
 mixed-port: 7890
-allow-lan: true
+allow-lan: false
 mode: rule
-ipv6: true
+ipv6: false
 log-level: info
 external-controller: 0.0.0.0:9090
 lgbm-auto-update: true
@@ -12,15 +12,21 @@ profile:
 dns:
   enable: true
   listen: 0.0.0.0:53
-  ipv6: true
+  ipv6: false
   default-nameserver:
-    - 223.5.5.5
-    - 114.114.114.114
+    - 8.8.4.4
+    - 64.212.106.84
+    - 9.9.9.9
+    - 66.28.0.45
+    - 7482.42.42
+    - 64.215.98.148
   nameserver:
-    - 223.5.5.5
-    - 114.114.114.114
-    - 119.29.29.29
-    - 180.76.76.76
+    - 8.8.4.4
+    - 64.212.106.84
+    - 9.9.9.9
+    - 66.28.0.45
+    - 7482.42.42
+    - 64.215.98.148
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
@@ -37,7 +43,588 @@ dns:
     - localhost.ptlogin2.qq.com
     - +.msftconnecttest.com
 
+proxy-groups:
+  - name: Smart Group
+    type: smart
+    policy-priority: "Premium:0.9;SG:1.3" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    include-all-proxies: true
+    exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
+    proxies:
 
+
+  - name: url-test
+    type: url-test
+    url: https://testmy.net/latency?addr=twitch.com
+    interval: 300
+    include-all-proxies: true
+    exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
+    proxies:
+    
+    
+  - name: 🎯 DIRECT
+    type: select
+    proxies:
+      - DIRECT
+      - Smart Group
+      - url-test
+  - name: 🛑 REJECT
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🐟
+    type: select
+    proxies:
+      - Smart Group
+      - 🎯 DIRECT
+      - url-test
+proxy-providers:
+  A1:
+    type: http
+    url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A1 prefix |"
+ #     additional-suffix:"| test suffix"
+    
+  A2:
+    type: http
+    url: "https://shadowmere.xyz/api/b64sub/"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A2 prefix |"
+ #     additional-suffix:"| test suffix"
+  A3:
+    type: http
+    url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A3 prefix |"
+ #     additional-suffix:"| test suffix"
+
+  A4:
+    type: http
+    url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A4 prefix |"
+ #     additional-suffix:"| test suffix"
+  A5:
+    type: http
+    url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A5 prefix |"
+ #     additional-suffix:"| test suffix"
+
+  A6:
+    type: http
+    url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A6 prefix |"
+ #     additional-suffix:"| test suffix"
+
+  A7:
+    type: http
+    url: "https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A7 prefix |"
+ #     additional-suffix:"| test suffix"
+
+  A8:
+    type: http
+    url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A8 prefix |"
+ #     additional-suffix:"| test suffix"
+
+  A9:
+    type: http
+    url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-2.yaml"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A9 prefix |"
+ #     additional-suffix:"| test suffix"
+
+  A10:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/vip"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A10 prefix |"
+ #     additional-suffix:"| test suffix"
+
+
+  A12:
+    type: http
+    url: "http://155.248.172.106:12580/clash/proxies"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A12 prefix |"
+ #     additional-suffix:"| test suffix"
+      
+  A13:
+    type: http
+    url: "http://66.42.50.118:12580/clash/proxies"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A13 prefix |"
+ #     additional-suffix:"| test suffix"
+
+  A14:
+    type: http
+    url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A14 prefix |"
+ #     additional-suffix:"| test suffix"
+      
+      
+  A18:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/T.yaml"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A18 prefix |"
+ #     additional-suffix:"| test suffix"
+    
+  A19:
+    type: http
+    url: "https://raw.githubusercontent.com/HakurouKen/free-node/main/public"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A19 prefix |"
+ #     additional-suffix:"| test suffix"
+
+  A20:
+    type: http
+    url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/actives.txt"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A20 prefix |"
+ #     additional-suffix:"| test suffix"
+
+  A21:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/S"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A21 prefix |"
+ #     additional-suffix:"| test suffix"
+
+  A22:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/e1.yaml"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A22 prefix |"
+ #     additional-suffix:"| test suffix"
+
+
+  A25:
+    type: http
+    url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A25 prefix |"
+ #     additional-suffix:"| test suffix"
+      
+  A26:
+    type: http
+    url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A26 prefix |"
+ #     additional-suffix:"| test suffix"
+
+  A27:
+    type: http
+    url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A27 prefix |"
+ #     additional-suffix:"| test suffix"
+
+  A28:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/p.yaml" 
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A28 prefix |"
+ #     additional-suffix:"| test suffix"
+      
+  A29:
+    type: http
+    url: "https://config.v2cross.com/clashprofile/config" # https://raw.githubusercontent.com/mheidari98/.proxy/main/all
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A29 prefix |"
+ #     additional-suffix:"| test suffix"
+    
+  A30:
+    type: http
+    url: "https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/Clash.yaml"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A30 prefix |"
+ #     additional-suffix:"| test suffix"
+    
+  A31:
+    type: http
+    url: "https://raw.githubusercontent.com/ts-sf/fly/main/clash"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A31 prefix |"
+ #     additional-suffix:"| test suffix"
+
+  A32:
+    type: http
+    url: "https://proxypool.link/clash/proxies" # 	
+ #https://raw.githubusercontent.com/dongchengjie/airport/main/subs/merged/tested_within.yaml" # https://raw.githubusercontent.com/PangTouY00/Auto_proxy/main/Long_term_subscription_num
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:  #     additional-prefix: "A32 prefix |"
+ #     additional-suffix:"| test suffix"
+
+  A33:
+    type: http
+    url: "https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml"
+    interval: 30
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://testmy.net/latency?addr=twitch.com
+      interval: 300
+      expected-status: 100
+ #   override:
+ #     additional-prefix: "A33 prefix |"
+ #     additional-suffix: "| test suffix"
+rule-providers:
+  LocalAreaNetwork:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
+    interval: 86400
+  BanAD:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+    interval: 86400
+  BanProgramAD:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
+    interval: 86400
+  GoogleCN:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
+    interval: 86400
+  SteamCN:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list
+    interval: 86400
+  Telegram:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
+    interval: 86400
+  ProxyMedia:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
+    interval: 86400
+  ProxyLite:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyLite.list
+    interval: 86400
+  ChinaDomain:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
+    interval: 86400
+  ChinaCompanyIp:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
+    interval: 86400
+  nsfw:
+    type: http
+    format: yaml
+    behavior: domain
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml
+    interval: 30
+
+  social:
+    type: http
+    format: yaml
+    behavior: domain
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml
+    interval: 30
+
+  ir:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
+    interval: 86400
+  ads:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
+    interval: 86400
+  malware:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
+    interval: 86400
+  phishing:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
+    interval: 86400
+  cryptominers:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
+    interval: 86400
+  apps:
+    type: http
+    format: yaml
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml"
+    interval: 86400
+  ircidr:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
+    interval: 86400
+  private:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
+    interval: 86400
+  irasn:
+    type: http
+    format: yaml
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
+    interval: 86400
+  geolocation-!cn:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
+    interval: 86400
+  AWA:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+    interval: 86400
+rules :
+  - DOMAIN-SUFFIX,createporn.com,🐟
+  - DOMAIN-KEYWORD,createporn,🐟
+  - DOMAIN,createporn,🐟
+  - DOMAIN,ad.com,REJECT
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
+  - PROCESS-NAME,com.samsung.android.location,REJECT,no-resolve
+  - PROCESS-NAME,com.android.localtransport,REJECT,no-resolve
+  - PROCESS-NAME,com.google.android.gms.location.history,REJECT,no-resolve
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
+  - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
+  - DOMAIN-SUFFIX,google.com,🐟
+  - DOMAIN-KEYWORD,google,🐟
+  - IP-CIDR,127.0.0.0/8,🎯 DIRECT,no-resolve
+  - IP-CIDR6,2620:0:2d0:200::7/32,🐟
+  - IP-SUFFIX,8.8.8.8/24,🐟
+  - SRC-IP-CIDR,192.168.1.201/32,🎯 DIRECT
+  - SRC-IP-SUFFIX,192.168.1.201/8,🎯 DIRECT
+  - IN-PORT,7890,🐟
+  - IN-PORT,7892,🐟
+  - IN-PORT,7891,🐟
+  - IN-TYPE,SOCKS/HTTP,🐟
+  - IN-USER,mihomo,🐟
+  - IN-NAME,ss,🐟
+  - PROCESS-PATH,/usr/bin/wget,🐟
+  - PROCESS-PATH,C:\Program Files\Google\Chrome\Application\chrome.exe,🐟
+  - PROCESS-NAME,curl,🐟
+  - PROCESS-NAME,chrome.exe,🐟
+  - PROCESS-NAME,com.termux,🐟
+  - AND,((DOMAIN,google.com),(NETWORK,UDP)),🐟
+  - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
+  - NOT,((DOMAIN,google.com)),🐟
+  - RULE-SET,private,🎯 DIRECT,no-resolve
+  - RULE-SET,apps,🎯 DIRECT
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,AWA,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,ir,🎯 DIRECT
+  - RULE-SET,ircidr,🎯 DIRECT
+  - RULE-SET,irasn,🎯 DIRECT
+  - RULE-SET,social,🐟,no-resolve
+  - RULE-SET,nsfw,🐟,no-resolve
+  - RULE-SET,geolocation-!cn,🐟
+  - GEOIP,ir,🎯 DIRECT
+  - RULE-SET,LocalAreaNetwork,🎯 DIRECT
+  - RULE-SET,BanAD,🛑 REJECT
+  - RULE-SET,BanProgramAD,🛑 REJECT
+  - RULE-SET,GoogleCN,🎯 DIRECT
+  - RULE-SET,SteamCN,🎯 DIRECT
+  - RULE-SET,Telegram,🐟
+  - RULE-SET,ProxyMedia,🐟
+  - RULE-SET,ProxyLite,🐟
+  - RULE-SET,ChinaDomain,🎯 DIRECT
+  - RULE-SET,ChinaCompanyIp,🎯 DIRECT
+  - GEOIP,ir,🎯 DIRECT
+  - MATCH,🐟
 
 proxies:
   - type: vmess
@@ -943,109 +1530,3 @@ proxies:
     network: tcp
     sni: www.nintendogames.net
     fingerprint: chrome
-
-proxy-groups:
-  - name: Smart Group
-    type: smart
-    policy-priority: "Premium:0.9;SG:1.3" 
-    uselightgbm: false
-    collectdata: false
-    sample-rate: 1
-    prefer-asn: true
-    include-all-proxies: true
-    exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
-    proxies:
-
-
-  - name: url-test
-    type: url-test
-    url: https://testmy.net/latency?addr=twitch.com
-    interval: 300
-    include-all-proxies: true
-    exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
-    proxies:
-    
-    
-  - name: 🎯 DIRECT
-    type: select
-    proxies:
-      - DIRECT
-      - Smart Group
-      - url-test
-  - name: 🛑 REJECT
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-  - name: 🐟
-    type: select
-    proxies:
-      - Smart Group
-      - 🎯 DIRECT
-      - url-test
-
-rule-providers:
-  LocalAreaNetwork:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
-    interval: 86400
-  BanAD:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
-    interval: 86400
-  BanProgramAD:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
-    interval: 86400
-  GoogleCN:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
-    interval: 86400
-  SteamCN:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list
-    interval: 86400
-  Telegram:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
-    interval: 86400
-  ProxyMedia:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
-    interval: 86400
-  ProxyLite:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyLite.list
-    interval: 86400
-  ChinaDomain:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
-    interval: 86400
-  ChinaCompanyIp:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
-    interval: 86400
-
-rules:
-  - RULE-SET,LocalAreaNetwork,🎯 DIRECT
-  - RULE-SET,BanAD,🛑 REJECT
-  - RULE-SET,BanProgramAD,🛑 REJECT
-  - RULE-SET,GoogleCN,🎯 DIRECT
-  - RULE-SET,SteamCN,🎯 DIRECT
-  - RULE-SET,Telegram,Smart Group
-  - RULE-SET,ProxyMedia,Smart Group
-  - RULE-SET,ProxyLite,Smart Group
-  - RULE-SET,ChinaDomain,🎯 DIRECT
-  - RULE-SET,ChinaCompanyIp,🎯 DIRECT
-  - GEOIP,ir,🎯 DIRECT
-  - MATCH,🐟
