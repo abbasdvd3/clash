@@ -62,11 +62,19 @@ dns:
 
 proxy-groups:
   - name: 🐟
-    type: select
+    type: smart
+    policy-priority: "Premium:0.9;SG:1.3" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
     proxies:
       - Smart Group
       - url-test
-
+      - �
+      - 🔮
+      - 🇺🇸
+  
   - name: Smart Group
     type: smart
     policy-priority: "Premium:0.9;SG:1.3" 
@@ -78,9 +86,46 @@ proxy-groups:
     udp: false
     include-all-proxies: true
     include-all-providers: true
-    exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
+    exclude-type: "socks5|http|direct|redir-in|🇺🇸|🔮|�|url-test"
     proxies:
 
+  - name: 🔯
+    type: fallback
+    url: https://testmy.net/latency?addr=twitch.com
+    interval: 300
+    tolerance: 50
+    exclude-type: "socks5|http|direct|redir-in|🇺🇸|🔮|�|url-test"
+    include-all-proxies: true
+    include-all-providers: true
+
+  - name: 🔮
+    type: load-balance
+    strategy: consistent-hashing
+    url: https://testmy.net/latency?addr=twitch.com
+    exclude-type: "socks5|http|direct|redir-in|🇺🇸|🔮|�|url-test"
+    interval: 300
+    tolerance: 50
+    include-all-proxies: true
+    include-all-providers: true
+    
+  - name: url-test
+    type: url-test
+    url: https://testmy.net/latency?addr=twitch.com
+    interval: 300
+    include-all-proxies: true
+    include-all-providers: true
+    exclude-type: "socks5|http|direct|redir-in|🇺🇸|🔮|�|url-test"
+    proxies:
+
+  - name: 🇺🇸
+    type: url-test
+    url: https://testmy.net/latency?addr=twitch.com
+    interval: 600
+    tolerance: 80
+    include-all-proxies: true
+    include-all-providers: true
+    exclude-type: "socks5|http|direct|redir-in|🇺🇸|🔮|�|url-test"
+    filter: "(?i)美|us|unitedstates|united states"
 
   - name: url-test
     type: url-test
@@ -90,7 +135,7 @@ proxy-groups:
     udp: false
     include-all-proxies: true
     include-all-providers: true
-    exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
+    exclude-type: "socks5|http|direct|redir-in|🇺🇸|🔮|�|url-test"
     proxies:
     
     
