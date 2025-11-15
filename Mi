@@ -11,17 +11,11 @@ dns:
   listen: 0.0.0.0:53
   ipv6: true
   default-nameserver:
-    - 223.5.5.5
-    - 8.8.8.8
-    - 8.8.4.4
-    - 1.1.1.1
-    - 1.0.0.1
+    - tls://8.8.8.8
+    - tls://1.1.1.1
   nameserver:
-    - 223.5.5.5
-    - 8.8.8.8
-    - 8.8.4.4
-    - 1.1.1.1
-    - 1.0.0.1
+    - tls://8.8.8.8
+    - tls://1.1.1.1
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
@@ -43,16 +37,14 @@ tun:
   auto-route: true
   auto-detect-interface: true
   dns-hijack:
-    - 223.5.5.5
-    - 8.8.8.8
-    - 8.8.4.4
-    - 1.1.1.1
-    - 1.0.0.1
+    - any://53
 proxy-groups:
   - name: 🚀 Select
     type: select
-    include-all-proxies: true
+#    include-all-proxies: true
     udp: false
+    interval: 300
+    tolerance: 5
     exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
     proxies:
       - 🎈 Auto
@@ -112,13 +104,14 @@ rules:
   - DOMAIN-SUFFIX,createporn.com,🚀 Select
   - DOMAIN-KEYWORD,createporn,🚀 Select
   - DOMAIN,createporn,🚀 Select
+  - IN-PORT,9797,redir-in
   - IN-PORT,7890,🚀 Select
   - IN-PORT,7892,🚀 Select
   - IN-PORT,7891,🚀 Select
   - IN-TYPE,SOCKS/HTTP,🚀 Select
   - IN-USER,mihomo,🚀 Select
   - IN-NAME,ss,🚀 Select
-  - AND,((DOMAIN,google.com),(NETWORK,UDP)),redir-in
+  - AND,((DOMAIN,google.com),(NETWORK,UDP)),🚀 Select
   - OR,((NETWORK,UDP),(DOMAIN,google.com)),🛑 Reject
   - NOT,((DOMAIN,google.com)),🚀 Select
   - GEOIP,ir,redir-in
