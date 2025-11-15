@@ -52,7 +52,7 @@ proxy-groups:
   - name: 🚀 Select
     type: select
     include-all-proxies: true
-    udp: true
+    udp: false
     exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
     proxies:
       - 🎈 Auto
@@ -63,14 +63,15 @@ proxy-groups:
     type: url-test
     include-all-proxies: true
     hidden: true
-    udp: true
+    udp: false
     interval: 300
-    tolerance: 50000
+    tolerance: 5
     url: https://www.gstatic.com/generate_204
     exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
 
   - name: 🎯 Direct
     type: select
+    udp: false
     proxies:
       - redir-in
       - 🚀 Select
@@ -87,7 +88,7 @@ proxy-groups:
     type: fallback
     hidden: true
     interval: 180
-    udp: true
+    udp: false
     include-all-proxies: true
     exclude-type: "socks5|http|direct|redir-in"
     url: https://www.gstatic.com/generate_204
