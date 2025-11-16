@@ -38,7 +38,6 @@ tun:
   auto-detect-interface: true
   dns-hijack:
     - any:53
-    - tcp://any:53
   device: utun0
   mtu: 9000
   strict-route: true
@@ -82,7 +81,7 @@ dns:
   perfer-h3: true
   ipv6: true
 #  ipv6-timeout: 300
-  listen: :5354
+  listen: :53
   use-hosts: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -987,7 +986,7 @@ proxy-providers:
       additional-suffix: "| test suffix"
 proxy-groups:
   - name: "PROXY"
-    type: "select"
+    type: "url-test"
     url: "http://www.google.com/generate_204"
     hidden: false
     interval: 1500
