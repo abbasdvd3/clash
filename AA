@@ -996,14 +996,12 @@ proxy-groups:
     proxies:
       - "🎈Auto"
       - "🎈fallback"
-      - "US"
-      - "Persian Gulf"
-      - "PK"
-      - "DK"
+
   - name: "🎈Auto"
     type: "url-test"
     url: "https://www.google.com/generate_204"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     interval: 280
     tolerance: 50000
     exclude-type: "direct|trojan"
@@ -1016,6 +1014,7 @@ proxy-groups:
     type: "fallback"
     url: "https://www.google.com/generate_204"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     interval: 180
     exclude-type: "direct|trojan"
     include-all-providers: true
@@ -1023,55 +1022,6 @@ proxy-groups:
     hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
 
-  - name: "US"
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/US.svg"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    type: "url-test"
-    interval: 18
-    tolerance: 50000
-    exclude-type: "direct|trojan"
-    include-all-providers: true
-    include-all-proxies: true
-    hidden: false
-    url: "http://www.google.com/generate_204"
-
-  - name: "Persian Gulf"
-    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/freedom.webp"
-    exclude-type: "direct|trojan"
-    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    type: "url-test"
-    interval: 18
-    tolerance: 500000
-    include-all-providers: false
-    include-all-proxies: true
-    hidden: false
-    url: "http://www.google.com/generate_204"
-    
-  - name: "PK"
-    type: "url-test"
-    url: "https://www.google.com/generate_204"
-    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 18
-    tolerance: 50000
-    include-all-providers: false
-    include-all-proxies: true
-    exclude-type: "direct|trojan"
-    hidden: false
-    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
-    
-  - name: "DK"
-    type: "url-test"
-    url: "https://www.google.com/generate_204"
-    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 18
-    tolerance: 50000
-    include-all-providers: false
-    include-all-proxies: true
-    exclude-type: "direct|trojan"
-    hidden: false
-    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
-    
   - name: "🎯 Direct"
     type: "select"
     filter: ""
@@ -1081,7 +1031,6 @@ proxy-groups:
     proxies:
       - "DIRECT"
       - "PROXY"
-      - "PASS"
     
   - name: "🛑 Reject"
     type: "select"
@@ -1090,7 +1039,6 @@ proxy-groups:
     proxies:
       - "REJECT"
       - "DIRECT"
-      - "PASS"
     
 rule-providers:
   nsfw:
