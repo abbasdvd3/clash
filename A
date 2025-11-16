@@ -38,7 +38,6 @@ tun:
   auto-detect-interface: true
   dns-hijack:
     - any:53
-    - tcp://any:53
   device: utun0
   mtu: 9000
   strict-route: true
@@ -646,7 +645,6 @@ proxy-groups:
     proxies:
       - "DIRECT"
       - "PROXY"
-      - "PASS"
     
   - name: "🛑 Reject"
     type: "select"
@@ -655,7 +653,7 @@ proxy-groups:
     proxies:
       - "REJECT"
       - "DIRECT"
-      - "PASS"
+      - "PROXY"
     
 rule-providers:
   nsfw:
