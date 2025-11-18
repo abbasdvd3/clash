@@ -21,7 +21,12 @@ listeners:
   port: 7892
   listen: 0.0.0.0
 
-
+ntp:
+  enable: true
+  write-to-system: true
+  server: time.apple.com
+  port: 123
+  interval: 30
 
 port: 7892
 socks-port: 7891
@@ -66,22 +71,25 @@ global-ua: clash.meta
 profile:
   store-selected: true
   store-fake-ip: true
-
-# hosts:
-#   'ota.googlezip.net': 127.0.0.1
-#   'ota-cache1.googlezip.net': 127.0.0.1
-#   'ota-cache2.googlezip.net': 127.0.0.1
-#   'localhost': 127.0.0.1       
-#   'ip6-localhost': ::1             
-#   'mtalk.google.com': 108.177.125.188
-#   'alt1-mtalk.google.com': 3.3.3.3
-#   'alt2-mtalk.google.com': 3.3.3.3
-#   'alt3-mtalk.google.com': 74.125.200.188
-#   'alt4-mtalk.google.com': 74.125.200.188
-#   'alt5-mtalk.google.com': 3.3.3.3
-#   'alt6-mtalk.google.com': 3.3.3.3
-#   'alt7-mtalk.google.com': 74.125.200.188
-#   'alt8-mtalk.google.com': 3.3.3.3
+hosts:
+  '*.clash.dev': 127.0.0.1
+  'alpha.clash.dev': '::1'
+  test.com: [1.1.1.1, 2.2.2.2]
+  baidu.com: google.com
+  ota.googlezip.net': 127.0.0.1
+  ota-cache1.googlezip.net': 127.0.0.1
+  ota-cache2.googlezip.net': 127.0.0.1
+  localhost': 127.0.0.1       
+  ip6-localhost': ::1             
+  mtalk.google.com': 108.177.125.188
+  alt1-mtalk.google.com': 3.3.3.3
+  alt2-mtalk.google.com': 3.3.3.3
+  alt3-mtalk.google.com': 74.125.200.188
+  alt4-mtalk.google.com': 74.125.200.188
+  alt5-mtalk.google.com': 3.3.3.3
+  alt6-mtalk.google.com': 3.3.3.3
+  alt7-mtalk.google.com': 74.125.200.188
+  alt8-mtalk.google.com': 3.3.3.3
 
 tun:
   enable: true
@@ -95,6 +103,8 @@ tun:
   auto-redirect: true
   auto-detect-interface: true
 
+tunnels:
+- tcp/udp,127.0.0.1:6553,8.8.8.8:53,proxy
 dns:
   enable: true
   cache-algorithm: arc
@@ -159,6 +169,40 @@ dns:
     - "lens.l.google.com"
     - "*.n.n.srv.nintendo.net"
     - "+.stun.playstation.net"
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - "router.asus.com"
+    - "localhost.sec.qq.com"
+    - "localhost.ptlogin2.qq.com"
+    - "+.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - "*.msftconnecttest.com"
+    - "+.lan"
+    - "+.cn"
+    - "+.10010.com"
+    - "+.chinaunicom.com"
+    - "+.baidu.com"
+    - "*.alipay.com"
+    - "*.alipayobjects.com"
+    - "*.jijifun.com"
+    - "connect.rom.miui.com"
+    - "localhost.ptlogin2.qq.com"
+    - "dl.google.com"
+    - "+.stun.*.*"
+    - "+.stun.*.*.*"
+    - "+.stun.*.*.*.*"
+    - "+.stun.*.*.*.*.*"
+    - "lens.l.google.com"
+    - "*.n.n.srv.nintendo.net"
+    - "+.stun.playstation.net"
+    - "*.mcdn.bilivideo.cn"
+    - "ntp.ntsc.ac.cn"
   fallback:
     - tcp://8.8.8.8
     - tcp://1.1.1.1
