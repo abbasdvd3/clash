@@ -4,8 +4,32 @@ mixed-port: 7890
 redir-port: 9797
 allow-lan: true
 mode: rule
+ipv6: true
 log-level: silent
 external-controller: '0.0.0.0:9090'
+external-controller-tls: 0.0.0.0:9091
+external-doh-server: /dns-query
+external-ui: ./dashboard
+external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
+keep-alive-interval: 30
+find-process-mode: strict
+unified-delay: true
+tcp-concurrent: true
+global-client-fingerprint: random
+geodata-mode: true
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 24
+etag-support: true
+geox-url:
+  GeoIP: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
+  GeoSite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
+  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
+  ANS: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
+global-ua: clash.meta
+profile:
+  store-selected: true
+  store-fake-ip: true
 dns:
   enable: true
   listen: 0.0.0.0:53
@@ -34,7 +58,7 @@ dns:
 
 proxy-groups:
   - name: 🚀 Select
-    type: select
+    type: url-test
 #    include-all-proxies: true
     udp: false
     interval: 300
