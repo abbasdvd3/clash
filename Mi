@@ -30,53 +30,7 @@ global-ua: clash.meta
 profile:
   store-selected: true
   store-fake-ip: true
-dns:
-  enable: true
-  listen: 0.0.0.0:53
-  ipv6: true
-  default-nameserver:
-    - tls://8.8.8.8
-    - tls://1.1.1.1
-  nameserver:
-    - tls://8.8.8.8
-    - tls://1.1.1.1
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - "*.lan"
-    - "*.localdomain"
-    - "*.example"
-    - "*.invalid"
-    - "*.localhost"
-    - "*.test"
-    - "*.local"
-    - "*.home.arpa"
-    - "router.asus.com"
-    - "localhost.sec.qq.com"
-    - "localhost.ptlogin2.qq.com"
-    - "+.msftconnecttest.com"
-    - "*.msftncsi.com"
-    - "*.msftconnecttest.com"
-    - "+.lan"
-    - "+.cn"
-    - "+.10010.com"
-    - "+.chinaunicom.com"
-    - "+.baidu.com"
-    - "*.alipay.com"
-    - "*.alipayobjects.com"
-    - "*.jijifun.com"
-    - "connect.rom.miui.com"
-    - "localhost.ptlogin2.qq.com"
-    - "dl.google.com"
-    - "+.stun.*.*"
-    - "+.stun.*.*.*"
-    - "+.stun.*.*.*.*"
-    - "+.stun.*.*.*.*.*"
-    - "lens.l.google.com"
-    - "*.n.n.srv.nintendo.net"
-    - "+.stun.playstation.net"
-    - "*.mcdn.bilivideo.cn"
-    - "ntp.ntsc.ac.cn"
+
 proxy-groups:
   - name: 🚀 PROXY
     type: url-test
@@ -331,10 +285,7 @@ rule-providers:
 rules:
   - RULE-SET,bing-ip,🚀 PROXY
   - RULE-SET,telegram-ip,🚀 PROXY
-  - RULE-SET,digitalocean-ip,redir-in
   - RULE-SET,openai-ip,🚀 PROXY
-  - RULE-SET,phishing-ip,🛑 Reject
-  - RULE-SET,malware-ip,🛑 Reject
   - RULE-SET,linode-ip,🚀 PROXY
   - RULE-SET,oracle-ip,🚀 PROXY
   - RULE-SET,twitter-ip,🚀 PROXY
@@ -348,11 +299,27 @@ rules:
   - RULE-SET,iranserver-ip,redir-in
   - RULE-SET,derakcloud-ip,redir-in
   - RULE-SET,arvancloud-ip,redir-in
+  - RULE-SET,ir-lite,redir-in
+  - RULE-SET,ir,redir-in
+  - RULE-SET,digitalocean-ip,redir-in
+  - RULE-SET,apps,redir-in
+  - RULE-SET,ircidr,redir-in
+  - RULE-SET,private,redir-in
+  - RULE-SET,irasn,redir-in
+  - RULE-SET,category-ads-all,🛑 Reject
+  - RULE-SET,ads,🛑 Reject
+  - RULE-SET,malware,🛑 Reject
+  - RULE-SET,phishing,🛑 Reject
+  - RULE-SET,cryptominers,🛑 Reject
+  - RULE-SET,phishing-ip,🛑 Reject
+  - RULE-SET,malware-ip,🛑 Reject
+  - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
+  - DOMAIN,ad.com,🛑 Reject
+  - RULE-SET,nsfw,🚀 PROXY
+  - RULE-SET,social,🚀 PROXY
   - DOMAIN,www.icloud.com,🚀 PROXY
   - DOMAIN-SUFFIX,icloud-content.com,🚀 PROXY
   - DOMAIN,googleadservices.com,🚀 PROXY
-  - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
-  - DOMAIN,ad.com,🛑 Reject
   - DOMAIN-SUFFIX,google.com,🚀 PROXY
   - DOMAIN-KEYWORD,google,🚀 PROXY
 #  - IP-CIDR,127.0.0.0/8,redir-in,no-resolve
