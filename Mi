@@ -83,7 +83,7 @@ proxy-groups:
 #    include-all-proxies: true
     udp: false
 #    interval: 300
-    tolerance: 5
+    tolerance: 1
     exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
     proxies:
       - 🎈 Auto
@@ -93,11 +93,12 @@ proxy-groups:
   - name: 🎈 Auto
     type: url-test
     include-all-proxies: true
+    include-all-providers: true
     hidden: true
     udp: false
     interval: 300
     tolerance: 5
-    url: https://www.gstatic.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
     exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
 
   - name: 🎯 Direct
@@ -121,8 +122,19 @@ proxy-groups:
     interval: 180
     udp: false
     include-all-proxies: true
+    include-all-providers: true
     exclude-type: "socks5|http|direct|redir-in"
-    url: https://www.gstatic.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
+    
+proxy-providers:
+  VPN1:
+    type: http
+    url: https://gh-proxy.com/raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
 
 rules:
   - DOMAIN,board.zash.run.place,🚀 Select
