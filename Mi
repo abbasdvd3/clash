@@ -78,7 +78,7 @@ dns:
     - "*.mcdn.bilivideo.cn"
     - "ntp.ntsc.ac.cn"
 proxy-groups:
-  - name: 🚀 Select
+  - name: 🚀 PROXY
     type: url-test
 #    include-all-proxies: true
     udp: false
@@ -106,7 +106,7 @@ proxy-groups:
     udp: false
     proxies:
       - redir-in
-      - 🚀 Select
+      - 🚀 PROXY
 
   - name: 🛑 Reject
     type: select
@@ -348,33 +348,33 @@ rules:
   - RULE-SET,iranserver-ip,redir-in
   - RULE-SET,derakcloud-ip,redir-in
   - RULE-SET,arvancloud-ip,redir-in
-  - DOMAIN,www.icloud.com,🚀 Select
-  - DOMAIN-SUFFIX,icloud-content.com,🚀 Select
-  - DOMAIN,googleadservices.com,🚀 Select
+  - DOMAIN,www.icloud.com,🚀 PROXY
+  - DOMAIN-SUFFIX,icloud-content.com,🚀 PROXY
+  - DOMAIN,googleadservices.com,🚀 PROXY
   - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
   - DOMAIN,ad.com,🛑 Reject
-  - DOMAIN-SUFFIX,google.com,🚀 Select
-  - DOMAIN-KEYWORD,google,🚀 Select
+  - DOMAIN-SUFFIX,google.com,🚀 PROXY
+  - DOMAIN-KEYWORD,google,🚀 PROXY
   - IP-CIDR,127.0.0.0/8,redir-in,no-resolve
-  - IP-CIDR6,2620:0:2d0:200::7/32,🚀 Select
-  - IP-SUFFIX,8.8.8.8/24,🚀 Select
+  - IP-CIDR6,2620:0:2d0:200::7/32,🚀 PROXY
+  - IP-SUFFIX,8.8.8.8/24,🚀 PROXY
   - SRC-IP-CIDR,192.168.1.201/32,redir-in
   - SRC-IP-SUFFIX,192.168.1.201/8,redir-in
-  - DOMAIN-SUFFIX,createporn.com,🚀 Select
-  - DOMAIN-KEYWORD,createporn,🚀 Select
-  - DOMAIN,createporn,🚀 Select
+  - DOMAIN-SUFFIX,createporn.com,🚀 PROXY
+  - DOMAIN-KEYWORD,createporn,🚀 PROXY
+  - DOMAIN,createporn,🚀 PROXY
   - IN-PORT,9797,redir-in
-  - IN-PORT,7890,🚀 Select
-  - IN-PORT,7892,🚀 Select
-  - IN-PORT,7891,🚀 Select
-  - IN-TYPE,SOCKS/HTTP,🚀 Select
-  - IN-USER,mihomo,🚀 Select
-  - IN-NAME,ss,🚀 Select
-  - AND,((DOMAIN,google.com),(NETWORK,UDP)),🚀 Select
+  - IN-PORT,7890,🚀 PROXY
+  - IN-PORT,7892,🚀 PROXY
+  - IN-PORT,7891,🚀 PROXY
+  - IN-TYPE,SOCKS/HTTP,🚀 PROXY
+  - IN-USER,mihomo,🚀 PROXY
+  - IN-NAME,ss,🚀 PROXY
+  - AND,((DOMAIN,google.com),(NETWORK,UDP)),🚀 PROXY
   - OR,((NETWORK,UDP),(DOMAIN,google.com)),🛑 Reject
-  - NOT,((DOMAIN,google.com)),🚀 Select
+  - NOT,((DOMAIN,google.com)),🚀 PROXY
   - GEOIP,ir,redir-in
-  - MATCH,🚀 Select
+  - MATCH,🚀 PROXY
 
 proxies:
   - type: direct
