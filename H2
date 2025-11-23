@@ -70,31 +70,24 @@ proxy-providers:
   H1:
     url: 'https://sos.cmliussss.net/auto'
     <<: *NodeParam
-    path: 'proxy_provider/H1.yaml'
   H1u:
     url: 'https://chromego-sub.netlify.app/sub/merged_proxies_new.yaml'
     <<: *NodeParam
-    path: 'proxy_provider/H1u.yaml'
   Hq1:
     url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x'
     <<: *NodeParam
-    path: 'proxy_provider/Hq1.yaml'
- # HA1:
- #   url: 'https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml'
- #   <<: *NodeParam
- #   path: 'proxy_provider/HA1.yaml'    
+  HA1:
+    url: 'https://raw.githubusercontent.com/lagzian/SS-Collector/main/SS/trinity_clash.yaml'
+    <<: *NodeParam  
   H1u5:
     url: 'https://cdn.jsdelivr.net/gh/itxve/fetch-clash-node/node/NodeFree.yaml'
     <<: *NodeParam
-    path: 'proxy_provider/H1u5.yaml'
   Hq15:
     url: 'https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fshadowmere.xyz%2Fapi%2Fb64sub%2F&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=true&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true'
     <<: *NodeParam
-    path: 'proxy_provider/Hq15.yaml'
   HA155:
     url: 'https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml'
     <<: *NodeParam
-    path: 'proxy_provider/HA155.yaml'
 
 FilterHK: &FilterHK '^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
 FilterTW: &FilterTW '^(?=.*((?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
@@ -173,15 +166,24 @@ proxy-groups:
 rule-providers:
   Proxy:
     <<: *RuleSet
-    path: './RuleSet/Proxy.yaml'
-    url: 'https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/Proxy.yaml'
-
+    url: https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Rule/Proxy.yaml
   AWAvenue-Ads-Rule:
     <<: *RuleSet
-    path: './RuleSet/AWAvenue-Ads-Rule-Clash.yaml'
-    url: 'https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml'
+    url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
+  nsfw:
+    <<: *RuleSet
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml
+  social:
+    <<: *RuleSet
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml
+  geolocation-!cn:
+    <<: *RuleSet
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml
 rules:
-  - RULE-SET, Proxy, auto
+  - RULE-SET,Proxy, auto
+  - RULE-SET,nsfw, auto
+  - RULE-SET,social, auto
+  - RULE-SET,geolocation-!cn, auto
   - RULE-SET,AWAvenue-Ads-Rule,REJECT
   - GEOIP, ir, DIRECT,no-resolve
   - MATCH,line
