@@ -711,6 +711,9 @@ rules :
   - DOMAIN-KEYWORD,dl2soft98.82.ir,redir-in
   - DOMAIN,dl2soft98.82,redir-in
   - DOMAIN-SUFFIX,dl2soft98.82.ir,redir-in
+  - DOMAIN-SUFFIX,farsroid,redir-in
+  - DOMAIN-KEYWORD,farsroid.com,redir-in
+  - DOMAIN,farsroid.com,redir-in
   - DOMAIN-SUFFIX,createporn.com,PROXY
   - DOMAIN-KEYWORD,createporn,PROXY
   - DOMAIN,createporn,PROXY
@@ -723,37 +726,37 @@ rules :
   - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
   - DOMAIN-SUFFIX,google.com,PROXY
   - DOMAIN-KEYWORD,google,PROXY
-  - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,127.0.0.0/8,,redir-in,no-resolve
   - IP-CIDR6,2620:0:2d0:200::7/32,PROXY
   - IP-SUFFIX,8.8.8.8/24,PROXY
-  - SRC-IP-CIDR,192.168.1.201/32,🎯 Direct
-  - SRC-IP-SUFFIX,192.168.1.201/8,🎯 Direct
+  - SRC-IP-CIDR,192.168.1.201/32,,redir-in
+  - SRC-IP-SUFFIX,192.168.1.201/8,,redir-in
   - IN-PORT,7890,PROXY
   - IN-PORT,7892,PROXY
   - IN-PORT,7891,PROXY
   - IN-TYPE,SOCKS/HTTP,PROXY
   - IN-USER,mihomo,PROXY
   - IN-NAME,ss,PROXY
-  - PROCESS-PATH,/usr/bin/wget,PROXY
-  - PROCESS-PATH,C:\Program Files\Google\Chrome\Application\chrome.exe,PROXY
-  - PROCESS-NAME,curl,PROXY
-  - PROCESS-NAME,chrome.exe,PROXY
+ # - PROCESS-PATH,/usr/bin/wget,PROXY
+#  - PROCESS-PATH,C:\Program Files\Google\Chrome\Application\chrome.exe,PROXY
+#  - PROCESS-NAME,curl,PROXY
+#  - PROCESS-NAME,chrome.exe,PROXY
   - PROCESS-NAME,com.termux,PROXY
   - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
   - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
   - NOT,((DOMAIN,google.com)),PROXY
-  - RULE-SET,private,🎯 Direct,no-resolve
-  - RULE-SET,apps,🎯 Direct
+  - RULE-SET,private,redir-in,no-resolve
+  - RULE-SET,apps,redir-in
   - RULE-SET,ads,REJECT
   - RULE-SET,malware,REJECT
   - RULE-SET,AWA,REJECT
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
-  - RULE-SET,ir,🎯 Direct
-  - RULE-SET,ircidr,🎯 Direct
-  - RULE-SET,irasn,🎯 Direct
+  - RULE-SET,ir,redir-in
+  - RULE-SET,ircidr,redir-in
+  - RULE-SET,irasn,redir-in
   - RULE-SET,social,PROXY,no-resolve
   - RULE-SET,nsfw,PROXY,no-resolve
   - RULE-SET,geolocation-!cn,PROXY
-  - GEOIP,ir,🎯 Direct
+  - GEOIP,ir,redir-in
   - MATCH,PROXY,no-resolve
