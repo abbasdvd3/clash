@@ -75,11 +75,12 @@ proxy-providers:
     health-check:
       enable: true
       interval: 30
-      url: "https://www.google.com/generate_204"
+      url: "https://speed.cloudflare.com/__down?bytes=104857600"
+
   provider2:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/p.all"
-    path: Prem2/P2.yaml
+    url: "https://raw.githubusercontent.com/Alvin9999/pac2/master/clash/1/config.yaml"    
+    path: Prem/P2.yaml
     interval: 899
     proxy: DIRECT
     skip-cert-verify: true
@@ -87,10 +88,11 @@ proxy-providers:
     health-check:
       enable: true
       interval: 30
-      url: "https://www.google.com/generate_204"
+      url: "https://speed.cloudflare.com/__down?bytes=104857600"
+      
   provider3:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/t"
+    url: "http://66.42.50.118:12580/clash/proxies"    
     path: Prem/P3.yaml
     interval: 899
     proxy: DIRECT
@@ -99,60 +101,12 @@ proxy-providers:
     health-check:
       enable: true
       interval: 30
-      url: "https://www.google.com/generate_204"
-  provider4:
-    type: http
-    url: "https://raw.githubusercontent.com/Alvin9999/pac2/master/clash/1/config.yaml"    
-    path: Prem/P4.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless"
-    health-check:
-      enable: true
-      interval: 30
-      url: "https://www.google.com/generate_204"
-  provider6:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/pp1.yaml"
-    path: Prem/P6.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless"
-    health-check:
-      enable: true
-      interval: 30
-      url: "https://www.google.com/generate_204"
-  provider7:
-    type: http
-    url: "http://66.42.50.118:12580/clash/proxies"    
-    path: Prem/P7.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless"
-    health-check:
-      enable: true
-      interval: 30
-      url: "https://www.google.com/generate_204"
-  provider8:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/1"
-    path: Prem/P8.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless"
-    health-check:
-      enable: true
-      interval: 30
-      url: "https://www.google.com/generate_204"
+      url: "https://speed.cloudflare.com/__down?bytes=104857600"
 proxies:
 proxy-groups:
   - name: PROXY
     type: url-test
-    url: "https://www.google.com/"
+    url: "https://speed.cloudflare.com/__down?bytes=104857600"
     disable-udp: true
     interval: 30
     proxies:
@@ -169,7 +123,7 @@ proxy-groups:
  #     - provider8
   - name: fallback
     type: fallback
-    url: "https://www.google.com/"
+    url: "https://speed.cloudflare.com/__down?bytes=104857600"
     disable-udp: true
     interval: 180
     hidden: false
@@ -178,13 +132,13 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
-      - provider4
-      - provider7
-      - provider6
-      - provider8
+  #    - provider4
+   #   - provider7
+  #    - provider6
+  #    - provider8
   - name: United+url-test
     type: url-test
-    url: "https://www.google.com/"
+    url: "https://speed.cloudflare.com/__down?bytes=104857600"
     disable-udp: true
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     interval: 300
@@ -194,14 +148,14 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
-      - provider4
-      - provider7
-      - provider6
-      - provider8
+   #   - provider4
+   #   - provider7
+   #   - provider6
+   #   - provider8
 
   - name: url-test
     type: url-test
-    url: "https://www.google.com/"
+    url: "https://speed.cloudflare.com/__down?bytes=104857600"
     disable-udp: true
     interval: 99
     tolerance: 5000
@@ -210,15 +164,15 @@ proxy-groups:
       - provider1
       - provider2
       - provider3
-      - provider4
-      - provider7
-      - provider6
-      - provider8
+  #    - provider4
+  #    - provider7
+  #    - provider6
+  #    - provider8
 
     proxies: 
   - name: 🎯 DIRECT
     type: select
-    disable-udp: false
+    disable-udp: true
     proxies:
       - DIRECT
       - PROXY 
