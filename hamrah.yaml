@@ -512,7 +512,7 @@ proxy-providers:
     
   A30:
     type: http
-    url: "https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/Clash.yaml"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N"
     interval: 30
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
@@ -561,8 +561,21 @@ proxy-providers:
       interval: 300
       expected-status: 100
  #   override:
- #     additional-prefix: "A33 prefix |"
+ #     additional-prefix: "A33 prefix |"https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml
  #     additional-suffix: "| test suffix"
+  A34:
+    type: http
+    url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
+    interval: 30
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: https://speed.cloudflare.com/__down?bytes=104857600
+      interval: 300
+      expected-status: 100
+ #   override:
+ #     additional-prefix: "A33 prefix |"
+ #     additional-suffix: "| test suffix" 
 proxies:
   - name: redir-in
     type: direct
