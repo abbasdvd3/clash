@@ -3,31 +3,21 @@ listeners:
   type: redir
   port: 9797
   listen: 0.0.0.0
-  
+  udp: false
 - name: mixed-in
   type: mixed
   port: 7890
   listen: 0.0.0.0
-  udp: true
-  
+  udp: false
 - name: socks-in
   type: socks
   port: 7891
   listen: 0.0.0.0
-  udp: true
-  
+  udp: false
 - name: http-in
   type: http
   port: 7892
   listen: 0.0.0.0
-
-ntp:
-  enable: true
-  write-to-system: true
-  server: time.apple.com
-  port: 123
-  interval: 30
-
 port: 7892
 socks-port: 7891
 mixed-port: 7890
@@ -53,7 +43,6 @@ external-ui: ./dashboard
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 keep-alive-interval: 30
 find-process-mode: strict
-
 unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: random
@@ -90,7 +79,6 @@ hosts:
   alt6-mtalk.google.com': 3.3.3.3
   alt7-mtalk.google.com': 74.125.200.188
   alt8-mtalk.google.com': 3.3.3.3
-
 tun:
   enable: true
   mtu: 1500
@@ -102,7 +90,6 @@ tun:
   strict-route: true
   auto-redirect: true
   auto-detect-interface: true
-
 tunnels:
 - tcp/udp,127.0.0.1:6553,8.8.8.8:53,PROXY
 dns:
@@ -220,9 +207,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A1 prefix |"
- #     additional-suffix:"| test suffix"
-    
   A2:
     type: http
     url: "https://shadowmere.xyz/api/b64sub/"
@@ -233,8 +217,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A2 prefix |"
- #     additional-suffix:"| test suffix"
   A3:
     type: http
     url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
@@ -245,9 +227,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A3 prefix |"
- #     additional-suffix:"| test suffix"
-
   A4:
     type: http
     url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml"
@@ -258,8 +237,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A4 prefix |"
- #     additional-suffix:"| test suffix"
   A5:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml"
@@ -270,9 +247,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A5 prefix |"
- #     additional-suffix:"| test suffix"
-
   A6:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
@@ -283,9 +257,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A6 prefix |"
- #     additional-suffix:"| test suffix"
-
   A7:
     type: http
     url: "https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg"
@@ -296,9 +267,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A7 prefix |"
- #     additional-suffix:"| test suffix"
-
   A8:
     type: http
     url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies"
@@ -309,9 +277,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A8 prefix |"
- #     additional-suffix:"| test suffix"
-
   A9:
     type: http
     url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-2.yaml"
@@ -322,9 +287,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A9 prefix |"
- #     additional-suffix:"| test suffix"
-
   A10:
     type: http
     url: "https://raw.githubusercontent.com/dongchengjie/airport/main/subs/merged/tested_within.yaml"
@@ -335,10 +297,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A10 prefix |"
- #     additional-suffix:"| test suffix"
-
-
   A12:
     type: http
     url: "http://155.248.172.106:12580/clash/proxies"
@@ -348,10 +306,7 @@ proxy-providers:
       enable: true
       url: "https://www.createporn.com/"
       interval: 50
-      expected-status: 200
- #   override:  #     additional-prefix: "A12 prefix |"
- #     additional-suffix:"| test suffix"
-      
+      expected-status: 200 
   A13:
     type: http
     url: "http://66.42.50.118:12580/clash/proxies"
@@ -362,9 +317,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A13 prefix |"
- #     additional-suffix:"| test suffix"
-
   A14:
     type: http
     url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
@@ -375,10 +327,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A14 prefix |"
- #     additional-suffix:"| test suffix"
-      
-    
   A19:
     type: http
     url: "https://raw.githubusercontent.com/HakurouKen/free-node/main/public"
@@ -389,9 +337,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A19 prefix |"
- #     additional-suffix:"| test suffix"
-
   A20:
     type: http
     url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/actives.txt"
@@ -402,9 +347,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A20 prefix |"
- #     additional-suffix:"| test suffix"
-
   A21:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/vip"
@@ -415,9 +357,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A21 prefix |"
- #     additional-suffix:"| test suffix"
-
   A22:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x"
@@ -428,10 +367,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A22 prefix |"
- #     additional-suffix:"| test suffix"
-
-
   A25:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml"
@@ -442,9 +377,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A25 prefix |"
- #     additional-suffix:"| test suffix"
-      
   A26:
     type: http
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
@@ -455,9 +387,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A26 prefix |"
- #     additional-suffix:"| test suffix"
-
   A27:
     type: http
     url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
@@ -468,9 +397,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A27 prefix |"
- #     additional-suffix:"| test suffix"
-      
   A29:
     type: http
     url: "https://config.v2cross.com/clashprofile/config" # https://raw.githubusercontent.com/mheidari98/.proxy/main/all
@@ -481,9 +407,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A29 prefix |"
- #     additional-suffix:"| test suffix"
-    
   A30:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N"
@@ -494,9 +417,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A30 prefix |"
- #     additional-suffix:"| test suffix"
-    
   A31:
     type: http
     url: "https://raw.githubusercontent.com/ts-sf/fly/main/clash"
@@ -507,13 +427,9 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A31 prefix |"
- #     additional-suffix:"| test suffix"
-
   A32:
     type: http
-    url: "https://proxypool.link/clash/proxies" # 	
- #https://raw.githubusercontent.com/dongchengjie/airport/main/subs/merged/tested_within.yaml" # https://raw.githubusercontent.com/PangTouY00/Auto_proxy/main/Long_term_subscription_num
+    url: "https://proxypool.link/clash/proxies" # #https://raw.githubusercontent.com/dongchengjie/airport/main/subs/merged/tested_within.yaml" # https://raw.githubusercontent.com/PangTouY00/Auto_proxy/main/Long_term_subscription_num
     interval: 300
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
@@ -521,9 +437,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:  #     additional-prefix: "A32 prefix |"
- #     additional-suffix:"| test suffix"
-
   A33:
     type: http
     url: "https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml"
@@ -534,9 +447,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:
- #     additional-prefix: "A33 prefix |"https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml
- #     additional-suffix: "| test suffix"
   A34:
     type: http
     url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
@@ -547,9 +457,6 @@ proxy-providers:
       url: "https://www.createporn.com/"
       interval: 50
       expected-status: 200
- #   override:
- #     additional-prefix: "A33 prefix |"
- #     additional-suffix: "| test suffix" 
 proxies:
   - name: redir-in
     type: direct
