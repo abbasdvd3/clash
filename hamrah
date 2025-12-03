@@ -1,0 +1,396 @@
+listeners:
+- name: redir-in
+  type: redir
+  port: 9797
+  listen: 0.0.0.0
+  udp: false
+- name: mixed-in
+  type: mixed
+  port: 7890
+  listen: 0.0.0.0
+  udp: false
+- name: socks-in
+  type: socks
+  port: 7891
+  listen: 0.0.0.0
+  udp: false
+- name: http-in
+  type: http
+  port: 7892
+  listen: 0.0.0.0
+port: 7892
+socks-port: 7891
+mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
+mode: rule
+ipv6: true
+allow-lan: true
+log-level: debug
+bind-address: "*"
+lan-allowed-ips:
+- 0.0.0.0/0
+- ::/0
+lan-disallowed-ips:
+- 192.168.0.3/32
+skip-auth-prefixes:
+- 127.0.0.1/8
+- ::1/128
+external-controller: 0.0.0.0:9090
+external-controller-tls: 0.0.0.0:9091
+external-doh-server: /dns-query
+external-ui: ./dashboard
+external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
+keep-alive-interval: 30
+find-process-mode: strict
+unified-delay: false
+tcp-concurrent: true
+global-client-fingerprint: random
+geodata-mode: true
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 24
+etag-support: true
+geox-url:
+  GeoIP: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
+  GeoSite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
+  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
+  ANS: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
+global-ua: clash.meta
+profile:
+  store-selected: true
+  store-fake-ip: true
+hosts:
+  '*.clash.dev': 127.0.0.1
+  'alpha.clash.dev': '::1'
+  test.com: [1.1.1.1, 2.2.2.2]
+  baidu.com: google.com
+  ota.googlezip.net': 127.0.0.1
+  ota-cache1.googlezip.net': 127.0.0.1
+  ota-cache2.googlezip.net': 127.0.0.1
+  localhost': 127.0.0.1       
+  ip6-localhost': ::1             
+  mtalk.google.com': 108.177.125.188
+  alt1-mtalk.google.com': 3.3.3.3
+  alt2-mtalk.google.com': 3.3.3.3
+  alt3-mtalk.google.com': 74.125.200.188
+  alt4-mtalk.google.com': 74.125.200.188
+  alt5-mtalk.google.com': 3.3.3.3
+  alt6-mtalk.google.com': 3.3.3.3
+  alt7-mtalk.google.com': 74.125.200.188
+  alt8-mtalk.google.com': 3.3.3.3
+tun:
+  enable: true
+  mtu: 1500
+  device: clash
+  stack: mixed
+  dns-hijack:
+  - any:53
+  auto-route: true
+  strict-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+tunnels:
+- tcp/udp,127.0.0.1:6553,8.8.8.8:53,PROXY
+dns:
+  enable: true
+  cache-algorithm: arc
+  prefer-h3: true
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: true
+  listen: 0.0.0.0:53
+  ipv6: true
+  defult-nameserver:
+    - 127.0.0.1:53
+    - tls://8.8.8.8
+    - 185.236.104.104
+    - tls://1.1.1.1
+    - tls://76.76.2.0
+    - tls://76.223.122.150
+    - tls://146.112.41.102
+    - tls://146.112.41.2
+    - tls://1.0.0.1
+  direct-nameserver:
+    - 1.1.1.1
+  nameserver:
+    - 127.0.0.1:53
+    - https://cloudflare-dns.com/dns-query#PROXY
+    - https://doh.flashstart.com/f17c9ee5
+    - https://ada.openbld.net/dns-query#PROXY
+    - https://freedns.controld.com/p0#PROXY
+    - https://rubyfish.cn/dns-query#PROXY
+    - https://all.dns.mullvad.net/dns-query#PROXY
+  proxy-server-nameserver:
+    - https://cloudflare-dns.com/dns-query:784
+    - https://ada.openbld.net/dns-query:784
+    - https://freedns.controld.com/p0:784
+  nameserver-policy:
+    "rule-set:social,nsfw,geolocation-!cn":
+      - https://8.8.8.8
+      - https://cloudflare-dns.com/dns-query
+      - https://ada.openbld.net/dns-query
+      - https://freedns.controld.com/p0
+    geosite:category-ads-all: rcode://refused
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  direct-nameserver-follow-policy: false
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "www.torrent.eu.org"
+    - "www.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - "+.ir"
+    - "+.10010.com"
+    - "+.chinaunicom.com"
+    - "+.baidu.com"
+    - "connect.rom.miui.com"
+    - "localhost.ptlogin2.qq.com"
+    - "dl.google.com"
+    - "+.stun.*.*"
+    - "+.stun.*.*.*"
+    - "+.stun.*.*.*.*"
+    - "+.stun.*.*.*.*.*"
+    - "lens.l.google.com"
+    - "*.n.n.srv.nintendo.net"
+    - "+.stun.playstation.net"
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - "router.asus.com"
+    - "localhost.sec.qq.com"
+    - "localhost.ptlogin2.qq.com"
+    - "+.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - "*.msftconnecttest.com"
+    - "+.lan"
+    - "+.cn"
+    - "+.10010.com"
+    - "+.chinaunicom.com"
+    - "+.baidu.com"
+    - "*.alipay.com"
+    - "*.alipayobjects.com"
+    - "*.jijifun.com"
+    - "connect.rom.miui.com"
+    - "localhost.ptlogin2.qq.com"
+    - "dl.google.com"
+    - "+.stun.*.*"
+    - "+.stun.*.*.*"
+    - "+.stun.*.*.*.*"
+    - "+.stun.*.*.*.*.*"
+    - "lens.l.google.com"
+    - "*.n.n.srv.nintendo.net"
+    - "+.stun.playstation.net"
+    - "*.mcdn.bilivideo.cn"
+    - "ntp.ntsc.ac.cn"
+  fallback:
+    - tcp://8.8.8.8
+    - tcp://1.1.1.1
+    - https://cloudflare-dns.com/dns-query
+    - https://ada.openbld.net/dns-query
+    - https://freedns.controld.com/p0
+proxy-providers:
+
+  A1:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://www.createporn.com/"
+      interval: 50
+      expected-status: 200
+proxies:
+  - name: redir-in
+    type: direct
+    port: 9797
+    server: 127.0.0.1
+proxy-groups:
+  - name: "PROXY"
+    type: "select"
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
+    proxies:
+      - "🎈Auto"
+      - "🎈fallback"
+      - "🇺🇸US🇺🇸"
+  - name: "🎈Auto"
+    type: "url-test"
+    url: "https://www.createporn.com/"
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    interval: 300
+    tolerance: 50000
+    exclude-type: "direct|http|socks5|redir-in"
+    include-all-providers: true
+    udp: false
+    hidden: true
+    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
+  - name: "🎈fallback"
+    type: "fallback"
+    url: "https://www.createporn.com/"
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    interval: 180
+    exclude-type: "direct|http|socks5|redir-in"
+    include-all-providers: true
+    udp: false
+    hidden: true
+    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+  - name: "🇺🇸US🇺🇸"
+    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
+    exclude-filter: "HK|Hong|TW|Tai|Taiwan|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|回国|校园|游戏|🇰🇷|韩国|韓|首尔|KR|Korea|回国|校园|游戏|🇦🇹|timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅|AT|GER|🇩🇪🇱🇻|🇩🇪"
+    type: "url-test"
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
+    interval: 300
+    tolerance: 5000
+    exclude-type: "socks5|http|direct|redir-in"
+    include-all-providers: true
+    hidden: true
+    url: "https://www.createporn.com/"
+  - name: "🎯 Direct"
+    type: "select"
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
+    proxies:
+      - "redir-in"
+      - "PROXY"
+rule-providers:
+  nsfw:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
+    interval: 30
+  social:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
+    interval: 30
+  ir:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
+    interval: 86400
+  ads:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
+    interval: 86400
+  malware:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
+    interval: 86400
+  phishing:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
+    interval: 86400
+  cryptominers:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
+    interval: 86400
+  apps:
+    type: http
+    format: yaml
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml"
+    interval: 86400
+  ircidr:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
+    interval: 86400
+  private:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
+    interval: 86400
+  irasn:
+    type: http
+    format: yaml
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
+    interval: 86400
+  geolocation-!cn:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
+    interval: 86400
+  AWA:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+    interval: 86400
+rules :
+  - DOMAIN-KEYWORD,soft98.ir,redir-in
+  - DOMAIN,soft98,redir-in
+  - DOMAIN-SUFFIX,soft98.ir,redir-in
+  - DOMAIN-KEYWORD,dl2soft98.82.ir,redir-in
+  - DOMAIN,dl2soft98.82,redir-in
+  - DOMAIN-SUFFIX,dl2soft98.82.ir,redir-in
+  - DOMAIN-SUFFIX,farsroid,redir-in
+  - DOMAIN-KEYWORD,farsroid.com,redir-in
+  - DOMAIN,farsroid.com,redir-in
+  - DOMAIN-SUFFIX,createporn.com,PROXY
+  - DOMAIN-KEYWORD,createporn,PROXY
+  - DOMAIN,createporn,PROXY
+  - DOMAIN,ad.com,REJECT
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
+  - PROCESS-NAME,com.samsung.android.location,REJECT,no-resolve
+  - PROCESS-NAME,com.android.localtransport,REJECT,no-resolve
+  - PROCESS-NAME,com.google.android.gms.location.history,REJECT,no-resolve
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
+  - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
+  - DOMAIN-SUFFIX,google.com,PROXY
+  - DOMAIN-KEYWORD,google,PROXY
+#  - IP-CIDR,127.0.0.0/8,,redir-in,no-resolve
+#  - IP-CIDR6,2620:0:2d0:200::7/32,PROXY
+#  - IP-SUFFIX,8.8.8.8/24,PROXY
+#  - SRC-IP-CIDR,192.168.1.201/32,,redir-in
+#  - SRC-IP-SUFFIX,192.168.1.201/8,,redir-in
+  - IN-PORT,7890,PROXY
+  - IN-PORT,7892,PROXY
+  - IN-PORT,7891,PROXY
+  - IN-TYPE,SOCKS/HTTP,PROXY
+  - IN-USER,mihomo,PROXY
+  - IN-NAME,ss,PROXY
+ # - PROCESS-PATH,/usr/bin/wget,PROXY
+#  - PROCESS-PATH,C:\Program Files\Google\Chrome\Application\chrome.exe,PROXY
+#  - PROCESS-NAME,curl,PROXY
+#  - PROCESS-NAME,chrome.exe,PROXY
+  - PROCESS-NAME,com.termux,PROXY
+  - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
+  - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
+  - NOT,((DOMAIN,google.com)),PROXY
+  - RULE-SET,private,redir-in,no-resolve
+  - RULE-SET,apps,redir-in
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,AWA,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,ir,redir-in
+  - RULE-SET,ircidr,redir-in
+  - RULE-SET,irasn,redir-in
+  - RULE-SET,social,PROXY,no-resolve
+  - RULE-SET,nsfw,PROXY,no-resolve
+  - RULE-SET,geolocation-!cn,PROXY
+  - GEOIP,ir,redir-in
+  - MATCH,PROXY,no-resolve
