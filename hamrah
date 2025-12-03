@@ -205,7 +205,7 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "https://www.createporn.com/"
+      url: "http://www.gstatic.com/generate_204"
       interval: 50
       expected-status: 200
 proxies:
@@ -223,7 +223,7 @@ proxy-groups:
       - "🇺🇸US🇺🇸"
   - name: "🎈Auto"
     type: "url-test"
-    url: "https://www.createporn.com/"
+    url: "http://www.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     interval: 300
     tolerance: 50000
@@ -234,7 +234,7 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
   - name: "🎈fallback"
     type: "fallback"
-    url: "https://www.createporn.com/"
+    url: "http://www.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     interval: 180
     exclude-type: "direct|http|socks5|redir-in"
@@ -252,7 +252,7 @@ proxy-groups:
     exclude-type: "socks5|http|direct|redir-in"
     include-all-providers: true
     hidden: true
-    url: "https://www.createporn.com/"
+    url: "http://www.gstatic.com/generate_204"
   - name: "🎯 Direct"
     type: "select"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
@@ -365,6 +365,13 @@ rules :
 #  - IP-SUFFIX,8.8.8.8/24,PROXY
 #  - SRC-IP-CIDR,192.168.1.201/32,,redir-in
 #  - SRC-IP-SUFFIX,192.168.1.201/8,,redir-in
+  - DOMAIN-SUFFIX,local,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,17.0.0.0/8,DIRECT
+  - IP-CIDR,100.64.0.0/10,DIRECT
   - IN-PORT,7890,PROXY
   - IN-PORT,7892,PROXY
   - IN-PORT,7891,PROXY
