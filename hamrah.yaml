@@ -204,7 +204,7 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "https://www.createporn.com/"
+      url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 50
       expected-status: 200
   A2:
@@ -214,7 +214,7 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "https://www.createporn.com/"
+      url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 50
       expected-status: 200
   A6:
@@ -224,7 +224,7 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "https://www.createporn.com/"
+      url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 50
       expected-status: 200
   A7:
@@ -234,7 +234,7 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "https://www.createporn.com/"
+      url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 50
       expected-status: 200
   A8:
@@ -244,7 +244,7 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "https://www.createporn.com/"
+      url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 50
       expected-status: 200
   A12:
@@ -254,7 +254,7 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "https://www.createporn.com/"
+      url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 50
       expected-status: 200 
   A13:
@@ -264,7 +264,7 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "https://www.createporn.com/"
+      url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 50
       expected-status: 200
 
@@ -275,7 +275,7 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "https://www.createporn.com/"
+      url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 50
       expected-status: 200
   A32:
@@ -285,7 +285,7 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "https://www.createporn.com/"
+      url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 50
       expected-status: 200
   A34:
@@ -295,7 +295,7 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "https://www.createporn.com/"
+      url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 50
       expected-status: 200
 proxies:
@@ -303,6 +303,8 @@ proxies:
     type: direct
     port: 9797
     server: 127.0.0.1
+  - name: DNS
+    type: dns
 proxy-groups:
   - name: "PROXY"
     type: "select"
@@ -313,7 +315,7 @@ proxy-groups:
       - "🇺🇸US🇺🇸"
   - name: "🎈Auto"
     type: "url-test"
-    url: "https://www.createporn.com/"
+    url: "https://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     interval: 300
     tolerance: 50000
@@ -324,7 +326,7 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
   - name: "🎈fallback"
     type: "fallback"
-    url: "https://www.createporn.com/"
+    url: "https://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     interval: 180
     exclude-type: "direct|http|socks5|redir-in"
@@ -342,12 +344,13 @@ proxy-groups:
     exclude-type: "socks5|http|direct|redir-in"
     include-all-providers: true
     hidden: true
-    url: "https://www.createporn.com/"
+    url: "https://connectivitycheck.gstatic.com/generate_204"
   - name: "🎯 Direct"
     type: "select"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
     proxies:
       - "redir-in"
+      - "DNS"
       - "PROXY"
 rule-providers:
   nsfw:
@@ -506,6 +509,7 @@ rules :
   - IN-PORT,7890,PROXY
   - IN-PORT,7892,PROXY
   - IN-PORT,7891,PROXY
+  - IN-PORT,53,DNS
   - IN-TYPE,SOCKS/HTTP,PROXY
   - IN-USER,mihomo,PROXY
   - IN-NAME,ss,PROXY
