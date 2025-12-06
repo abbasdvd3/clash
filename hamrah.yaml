@@ -79,6 +79,7 @@ hosts:
   alt6-mtalk.google.com': 3.3.3.3
   alt7-mtalk.google.com': 74.125.200.188
   alt8-mtalk.google.com': 3.3.3.3
+  
 tun:
   enable: true
   mtu: 4506
@@ -90,8 +91,37 @@ tun:
   strict-route: true
   auto-redirect: true
   auto-detect-interface: true
-tunnels:
-- tcp/udp,127.0.0.1:6553,8.8.8.8:53,PROXY
+  
+sniffer:
+  enable: true
+  parse-pure-ip: true
+  force-dns-mapping: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports:
+        - 80
+        - 443
+      override-destination: false
+    TLS:
+      ports:
+        - 443
+  skip-domain:
+    - +.push.apple.com
+  skip-dst-address:
+    - 91.105.192.0/23
+    - 91.108.4.0/22
+    - 91.108.8.0/21
+    - 91.108.16.0/21
+    - 91.108.56.0/22
+    - 95.161.64.0/20
+    - 149.154.160.0/20
+    - 185.76.151.0/24
+    - 2001:67c:4e8::/48
+    - 2001:b28:f23c::/47
+    - 2001:b28:f23f::/48
+    - 2a0a:f280:203::/48
+    
 dns:
   enable: true
   cache-algorithm: arc
@@ -108,11 +138,9 @@ dns:
     - tls://8.8.8.8
     - 185.236.104.104
     - tls://1.1.1.1
-    - tls://76.76.2.0
-    - tls://76.223.122.150
-    - tls://146.112.41.102
-    - tls://146.112.41.2
-    - tls://1.0.0.1
+    - 114.114.114.114
+    - 223.5.5.5
+    - 8.8.8.8
   direct-nameserver:
     - 1.1.1.1
     - system
@@ -121,21 +149,25 @@ dns:
     - tls://223.5.5.5:853
     - tls://223.6.6.6:853
     - 127.0.0.1:53
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
     - https://cloudflare-dns.com/dns-query#PROXY
     - https://doh.flashstart.com/f17c9ee5
     - https://ada.openbld.net/dns-query#PROXY
     - https://rubyfish.cn/dns-query#PROXY
     - https://all.dns.mullvad.net/dns-query#PROXY
   proxy-server-nameserver:
-    - https://cloudflare-dns.com/dns-query:784
-    - https://ada.openbld.net/dns-query:784
-    - https://freedns.controld.com/p0:784
+    - https://cloudflare-dns.com/dns-query
+    - https://ada.openbld.net/dns-query
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
   nameserver-policy:
     "rule-set:social,nsfw,geolocation-!cn":
       - https://8.8.8.8
       - https://cloudflare-dns.com/dns-query
       - https://ada.openbld.net/dns-query
-      - https://freedns.controld.com/p0
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
     geosite:category-ads-all: rcode://refused
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -202,6 +234,8 @@ dns:
     - https://ada.openbld.net/dns-query
     - https://doh.opendns.com/dns-query
     - https://dns11.quad9.net/dns-query
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
   fallback-filter:
       geoip: true
       geoip-code: ir
