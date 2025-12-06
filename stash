@@ -11,49 +11,78 @@ profile:
   store-selected: true
   store-fake-ip: true
 dns:
-  enable: true
-  ipv6: true
+  enable: false
+  ipv6: false
   enhanced-mode: fake-ip
-  use-system-hosts: false
-  cache-algorithm: arc
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-    - "*"
-    - "+.lan"
-    - "+.local"
+    - '*.lan'
+    - '*.local'
+    - 'localhost.ptlogin2.qq.com'
+    - '+.srv.nintendo.net'
+    - '+.stun.playstation.net'
+    - 'xbox.*.microsoft.com'
+    - '+.xboxlive.com'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
+    - '*.lan'
+    - 'speedtest.cros.wr.pvp.net'
+  use-hosts: false
+  use-system-hosts: true
+  respect-rules: true
   default-nameserver:
-    - https://1.1.1.1/dns-query
-    - https://1.0.0.1/dns-query
-    - https://208.67.222.222/dns-query
-    - https://208.67.220.220/dns-query
-    - https://194.242.2.2/dns-query
-    - https://194.242.2.3/dns-query
+    - 114.114.114.114
+    - 223.5.5.5
+    - 8.8.8.8
   nameserver:
-    - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-    - https://doh.360.cn/dns-query
-    - quic://dns.adguard.com:784
-hosts:
-  '*.clash.dev': 127.0.0.1
-  'alpha.clash.dev': '::1'
+    - https://dns.alidns.com/dns-query
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+  direct-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+sniffer:
+  enable: true
+  parse-pure-ip: true
+  force-dns-mapping: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports:
+        - 80
+        - 443
+      override-destination: false
+    TLS:
+      ports:
+        - 443
+  skip-domain:
+    - +.push.apple.com
+  skip-dst-address:
+    - 91.105.192.0/23
+    - 91.108.4.0/22
+    - 91.108.8.0/21
+    - 91.108.16.0/21
+    - 91.108.56.0/22
+    - 95.161.64.0/20
+    - 149.154.160.0/20
+    - 185.76.151.0/24
+    - 2001:67c:4e8::/48
+    - 2001:b28:f23c::/47
+    - 2001:b28:f23f::/48
+    - 2a0a:f280:203::/48
 
-######### 锚点 start #######
-# 策略组相关
 pr: &pr {type: select, proxies: [默认, 香港, hok, 台湾, ta, 日本, ja, 新加坡, singapore, 美国, states, 其它地区, 全部节点, 自动选择, 直连]}
-#这里是订阅更新和延迟测试相关的
 p: &p {type: http, interval: 360, health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 3}}
-######### 锚点 end #######
-
-  
-# url 里填写自己的订阅,名称不能重复
 proxy-providers:
   provider1:
     <<: *p
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/x"
-    path: "stash/provider1.yaml"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/vip"
   provider2:
     <<: *p
-    url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_META_IRAN-Direct.yml"
-    path: "stash/provider2.yaml"
+    url: "https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
 FilterHK: &FilterHK '^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
 FilterTW: &FilterTW '^(?=.*((?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
 FilterJP: &FilterJP '^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$'
@@ -66,17 +95,14 @@ FilterDE: &FilterDE '^(?=.*((?i)🇩🇪|德国|(\b(DE|Germany)\b)))(?!.*((?i)�
 FilterGame: &FilterGame '^(?=.*((?i)游戏|🎮|(\b(GAME)\b)))(?!.*((?i)回国|校园)).*$'
 FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$'
 
-# 策略组参数锚点
-# 锚点 - 时延优选参数 [每 6 秒一次惰性健康检查，容差 20ms，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
 UrlTest: &UrlTest {type: url-test, interval: 99, tolerance: 99, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, timeout: 200, max-failed-times: 3, hidden: true, include-all: true}
-# 锚点 - 故障转移参数 [每 6 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
+
 FallBack: &FallBack {type: fallback, interval: 99, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, timeout: 200, max-failed-times: 3, hidden: true, include-all: true}
-# 锚点 - 负载均衡参数 [每 6 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
+
 LoadBalance: &LoadBalance {type: load-balance, interval: 99, lazy: true, url: 'http://cp.cloudflare.com', disable-udp: false, strategy: consistent-hashing, timeout: 200, max-failed-times: 3, hidden: true, include-all: true}
-# 锚点 - 规则参数 [每小时更新一次订阅规则，更新规则时使用直连策略]
+
 RuleSet: &RuleSet {type: http, behavior: classical, interval: 3600, format: yaml, proxy: DIRECT}
 
-# 策略组
 proxy-groups: 
   - {name: auto, type: url-test, include-all: true, filter: *FilterGame, proxies: [line, select]}
   - {name: url-test, type: url-test, include-all: true, filter: *FilterAll}
@@ -103,7 +129,6 @@ proxy-groups:
   - {name: French, type: url-test, proxies: [⏱French, 🚥French, 🎛French]}
   - {name: German, type: url-test, proxies: [⏱German, 🚥German, 🎛German]}
 
-# 时延优选策略组
   - {name: ⏱Hong Kong, <<: *UrlTest, filter: *FilterHK}
   - {name: ⏱Taiwan, <<: *UrlTest, filter: *FilterTW}
   - {name: ⏱Japan, <<: *UrlTest, filter: *FilterJP}
@@ -114,7 +139,6 @@ proxy-groups:
   - {name: ⏱French, <<: *UrlTest, filter: *FilterFR}
   - {name: ⏱German, <<: *UrlTest, filter: *FilterDE}
 
-# 故障转移策略组
   - {name: 🚥Hong Kong, <<: *FallBack, filter: *FilterHK}
   - {name: 🚥Taiwan, <<: *FallBack, filter: *FilterTW}
   - {name: 🚥Japan, <<: *FallBack, filter: *FilterJP}
