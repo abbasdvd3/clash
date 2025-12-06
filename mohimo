@@ -1,22 +1,19 @@
 proxy-providers:
-
   provider1:
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/r"
-    path: "mohimo/provider1.yaml"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/x"
     type: http
     interval: 80
     health-check: {enable: true,url: "https://www.gstatic.com/generate_204", interval: 30}
-#    override:
-#      additional-prefix: "[provider2]"  
+    override:
+      additional-prefix: "[provider1]"  
 
   provider2:
-    url: "https://www.nameless13.com/sub?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2FSurfboardv2ray%2FTGParse%2Fmain%2Fsplitted%2Ftrojan&expand=true&rename=%60%E9%A6%99%E6%B8%AF%40%E6%B8%AF%60%60%E6%96%B0%E5%8A%A0%E5%9D%A1%40%E7%8B%AE%E5%9F%8E%60&emoji=true&list=false&udp=true&tfo=false&scv=false"
-    path: "mohimo/provider2.yaml"
+    url: "https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
     type: http
     interval: 80
     health-check: {enable: true,url: "https://www.gstatic.com/generate_204", interval: 30}
-#    override:
-#      additional-prefix: "[provider3]" 
+    override:
+      additional-prefix: "[provider2]" 
 
 mixed-port: 7890
 lan-allowed-ips:
@@ -60,26 +57,39 @@ geox-url:
 
 sniffer:
   enable: true
-  override-destination: false
+  parse-pure-ip: true
+  force-dns-mapping: true
+  override-destination: true
   sniff:
     HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
+      ports:
+        - 80
+        - 443
+      override-destination: false
     TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
+      ports:
+        - 443
+  skip-domain:
+    - +.push.apple.com
+  skip-dst-address:
+    - 91.105.192.0/23
+    - 91.108.4.0/22
+    - 91.108.8.0/21
+    - 91.108.16.0/21
+    - 91.108.56.0/22
+    - 95.161.64.0/20
+    - 149.154.160.0/20
+    - 185.76.151.0/24
+    - 2001:67c:4e8::/48
+    - 2001:b28:f23c::/47
+    - 2001:b28:f23f::/48
+    - 2a0a:f280:203::/48
 
 tun:
   enable: true
   stack: mixed
   dns-hijack:
-    - "any:53"
     - "tcp://any:53"
-    - "any:5353"
-    - "tcp://any:53"
-    - "tcp://8.8.8.8:53"
-    - "tcp://8.8.4.4:53"
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
@@ -368,13 +378,18 @@ rule-providers:
     interval: 86400
     format: yaml
     type: http
-
+proxies:
+  - name: "Direct"
+    type: direct
+    udp: true
+  - name: "DNS_Hijack"
+    type: dns
 proxy-groups:
   - name: GLOBAL
     type: select
     interval: 300
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
-    include-all-providers: true
+#    include-all-providers: true
 #    exclude-filter: Expire
     proxies:
       - PROXY
@@ -382,10 +397,8 @@ proxy-groups:
       - AIGC
       - US AUTO
   - name: PROXY
-    type: select
-    icon: 
-  #  include-all-providers: true
-#    exclude-filter: Expire
+    type: url-test
+    exclude-filter: Expire
     disable-udp: true
     proxies:
       - AUTO
@@ -397,8 +410,8 @@ proxy-groups:
     interval: 300
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
     include-all-providers: true
-#    exclude-filter: Expire
-#    tolerance: 50
+    exclude-filter: Expire
+    tolerance: 50
     lazy: true
 
   - name: AIGC
@@ -410,17 +423,23 @@ proxy-groups:
     
   - name: US AUTO
     type: url-test
-#    tolerance: 50
+    tolerance: 50
     lazy: true
     interval: 300
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
     include-all-providers: true
- #   exclude-filter: Expire
+    exclude-filter: Expire
     filter: (?i)美国|USA|🇺🇸
     
-
+  - name: local
+    type: select
+    icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+    proxies:
+      - Direct
+      - DNS_Hijack
+      - GLOBAL
 rules:
-  - "IP-CIDR,10.10.0.0/16,DIRECT"
+  - "IP-CIDR,10.10.0.0/16,local"
   - "RULE-SET,nsfw,GLOBAL"
   - "DOMAIN-SUFFIX,pornhub.com,GLOBAL"
   - "DOMAIN-SUFFIX,pornhubpremium.com,GLOBAL"
@@ -433,16 +452,16 @@ rules:
   - "RULE-SET,facebook,GLOBAL"
   - "RULE-SET,twitter,GLOBAL"
   - "RULE-SET,telegram,GLOBAL"
-  - "RULE-SET,private,DIRECT,no-resolve"
-  - "RULE-SET,apps,DIRECT"
+  - "RULE-SET,private,local,no-resolve"
+  - "RULE-SET,apps,local"
 #  - "RULE-SET,ads,REJECT"
 #  - "RULE-SET,malware,REJECT"
 #  - "RULE-SET,phishing,REJECT"
 #  - "RULE-SET,cryptominers,REJECT"
-  - "RULE-SET,ir,DIRECT"
-  - "RULE-SET,ircidr,DIRECT"
-  - "RULE-SET,irasn,DIRECT"
-  - "RULE-SET,private1,DIRECT"
+  - "RULE-SET,ir,local"
+  - "RULE-SET,ircidr,local"
+  - "RULE-SET,irasn,local"
+  - "RULE-SET,private1,local"
   - "RULE-SET,bing,GLOBAL"
   - "RULE-SET,copilot,GLOBAL"
   - "RULE-SET,bard,GLOBAL"
