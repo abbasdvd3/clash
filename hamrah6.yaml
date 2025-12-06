@@ -22,54 +22,64 @@ unified-delay: true
 keep-alive-interval: 15
 tcp-concurrent: true
 geodata-mode: true
-
 external-controller: 0.0.0.0:9090
 external-ui: ui
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 global-client-fingerprint: chrome
-
-
 dns:
   enable: true
+  prefer-h3: false
   listen: 0.0.0.0:1053
   ipv6: true
-  default-nameserver:
-    - 114.114.114.114:53
-    - 180.76.76.76:53
-    - 119.29.29.29:53
-    - 223.5.5.5:53
-    - 8.8.8.8:53
-    - 8.8.4.4:53
-    - 1.1.1.1:53
-    - 1.0.0.1:53
-  nameserver:
-    - 114.114.114.114
-    - 180.76.76.76:53
-    - 119.29.29.29:53
-    - 223.5.5.5:53
-    - 8.8.8.8:53
-    - 8.8.4.4:53
-    - 1.1.1.1:53
-    - 1.0.0.1:53
+  ipv6-timeout: 300
+  respect-rules: true
   enhanced-mode: fake-ip
-  fake-ip-range: 100.10.0.0/16
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
   fake-ip-filter:
-    - "*.lan"
+    - '*.lan'
+    - '*.local'
+    - 'localhost.ptlogin2.qq.com'
+    - '+.srv.nintendo.net'
+    - '+.stun.playstation.net'
+    - 'xbox.*.microsoft.com'
+    - '+.xboxlive.com'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
+    - '*.lan'
+    - 'speedtest.cros.wr.pvp.net'
+  default-nameserver:
+    - 119.29.29.29
+    - 223.6.6.6
+  direct-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  direct-nameserver-follow-policy: true
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  nameserver:
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+  nameserver-policy:
+    "rule-set:social,nsfw,geolocation-!cn":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+    "rule-set:private":
+      - system
 
 tun:
   enable: true
-  stack: system
-  auto-route: true
-  auto-detect-interface: true
+  stack: mixed
+  device: tun0
   dns-hijack:
-    - 114.114.114.114
-    - 180.76.76.76
-    - 119.29.29.29
-    - 223.5.5.5
-    - 8.8.8.8
-    - 8.8.4.4
-    - 1.1.1.1
-    - 1.0.0.1
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: false
+  auto-detect-interface: true
 
 profile:
   store-fake-ip: true
@@ -231,6 +241,48 @@ proxy-providers:
       lazy: true 
 
 rule-providers:
+  nsfw:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
+    interval: 30
+  social:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
+    interval: 30
+  ads:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
+    interval: 86400
+  malware:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
+    interval: 86400
+  phishing:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
+    interval: 86400
+  cryptominers:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
+    interval: 86400
+  geolocation-!cn:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
+    interval: 86400
   ir:
     type: http
     format: yaml
@@ -262,6 +314,13 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
     interval: 86400
 rules:
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,social,Proxy,no-resolve
+  - RULE-SET,nsfw,Proxy,no-resolve
+  - RULE-SET,geolocation-!cn,Proxy
   - GEOIP,IR,IR
   - GEOIP,private,IR,no-resolve
   - RULE-SET,private,IR,no-resolve
