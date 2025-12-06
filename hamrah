@@ -24,8 +24,8 @@ mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
 mode: rule
-ipv6: true
-allow-lan: true
+ipv6: false
+allow-lan: false
 log-level: debug
 bind-address: "*"
 lan-allowed-ips:
@@ -43,7 +43,7 @@ external-ui: ./dashboard
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 keep-alive-interval: 30
 find-process-mode: strict
-unified-delay: false
+unified-delay: true
 tcp-concurrent: true
 global-client-fingerprint: random
 geodata-mode: true
@@ -100,37 +100,40 @@ dns:
   use-system-hosts: true
   respect-rules: true
   listen: 0.0.0.0:53
-  ipv6: true
+  ipv6: false
   defult-nameserver:
     - 127.0.0.1:53
     - tls://8.8.8.8
-    - 185.236.104.104
+    - 172.67.214.246
+    - 104.21.83.62
     - tls://1.1.1.1
-    - tls://76.76.2.0
-    - tls://76.223.122.150
-    - tls://146.112.41.102
-    - tls://146.112.41.2
-    - tls://1.0.0.1
+    - 158.64.1.29
   direct-nameserver:
+    - system
     - 1.1.1.1
   nameserver:
+    - system
     - 127.0.0.1:53
     - https://cloudflare-dns.com/dns-query#PROXY
+    - https://sky.rethinkdns.com/dns-query
+    - https://dnspub.restena.lu/dns-query
     - https://doh.flashstart.com/f17c9ee5
     - https://ada.openbld.net/dns-query#PROXY
-    - https://freedns.controld.com/p0#PROXY
     - https://rubyfish.cn/dns-query#PROXY
     - https://all.dns.mullvad.net/dns-query#PROXY
   proxy-server-nameserver:
     - https://cloudflare-dns.com/dns-query:784
+    - https://sky.rethinkdns.com/dns-query
     - https://ada.openbld.net/dns-query:784
+    - https://dnspub.restena.lu/dns-query
     - https://freedns.controld.com/p0:784
   nameserver-policy:
     "rule-set:social,nsfw,geolocation-!cn":
-      - https://8.8.8.8
+      - https://8.8.8.8/dns-query
+      - https://sky.rethinkdns.com/dns-query
       - https://cloudflare-dns.com/dns-query
+      - https://dnspub.restena.lu/dns-query
       - https://ada.openbld.net/dns-query
-      - https://freedns.controld.com/p0
     geosite:category-ads-all: rcode://refused
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -193,9 +196,75 @@ dns:
   fallback:
     - tcp://8.8.8.8
     - tcp://1.1.1.1
+    - https://sky.rethinkdns.com/dns-query
     - https://cloudflare-dns.com/dns-query
+    - https://dnspub.restena.lu/dns-query
     - https://ada.openbld.net/dns-query
-    - https://freedns.controld.com/p0
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    geosite:                         
+      - social
+      - nsfw
+    ipcidr:
+     - 0.0.0.0/8
+     - 10.0.0.0/8
+     - 100.64.0.0/10
+     - 127.0.0.0/8
+     - 169.254.0.0/16
+     - 172.16.0.0/12
+     - 192.0.0.0/24
+     - 192.0.2.0/24
+     - 192.88.99.0/24
+     - 192.168.0.0/16
+     - 198.18.0.0/16
+     - 198.51.100.0/24
+     - 203.0.113.0/24
+     - 224.0.0.0/4
+     - 240.0.0.0/4
+     - 255.255.255.255/32
+     - ::1/128
+     - fc00::/7
+     - fe80::/10
+     - 39.102.194.95/32
+     - 182.43.124.6/32
+     - 101.35.177.86/32
+     - 116.89.243.8/32
+     - 119.28.87.227/32
+    domain:
+     - '+.xincache.com'
+     - 'www.gstatic.com'
+     - '+.ampproject.org'
+     - '+.appspot.com'
+     - '+.blogger.com'
+     - '+.google.com'
+     - '+.google.cn'
+     - '+.googleusercontent.com'
+     - '+.ggpht.com'
+     - '+.gmail.com'
+     - '+.gvt0.com'
+     - '+.gvt1.com'
+     - '+.gvt2.com'
+     - '+.gvt3.com'
+     - '+.youtu.be'
+     - '+.yt.be'
+     - '+.ytimg.com'
+     - '+.googlevideo.com'
+     - '+.youtube.com'
+     - '+.xn--ngstr-lra8j.com'
+     - '+.xn--flw351e.com'
+     - '+.xn--9kr7l.com'
+     - '+.xn--ggle-55da.com'
+     - '+.xn--gogl-0nd52e.com'
+     - '+.xn--gogl-1nd42e.com'
+     - '+.googleapis.com'
+     - '+.googleapis.cn'
+     - '+.gstatic.com'
+     - '+.gstatic.cn'
+     - '+.services.googleapis.cn'
+     - '+.services.googleapis.com'
+     - '+.connectivitycheck.gstatic.cn'
+     - '+.connectivitycheck.gstatic.com'
 proxy-providers:
 
   A1:
@@ -225,8 +294,6 @@ proxy-groups:
     type: "url-test"
     url: "http://www.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
-    interval: 300
-    tolerance: 50000
     exclude-type: "direct|http|socks5|redir-in"
     include-all-providers: true
     udp: false
@@ -236,7 +303,6 @@ proxy-groups:
     type: "fallback"
     url: "http://www.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
-    interval: 180
     exclude-type: "direct|http|socks5|redir-in"
     include-all-providers: true
     udp: false
