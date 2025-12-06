@@ -1,4 +1,78 @@
-
+port: 7892
+socks-port: 7891
+mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
+mode: rule
+ipv6: true
+allow-lan: true
+log-level: debug
+external-controller: "127.0.0.1:9090"
+external-controller-tls: "127.0.0.1:9091"
+external-ui: ./dashboard
+keep-alive-interval: 30
+find-process-mode: strict
+external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+unified-delay: false
+tcp-concurrent: true
+global-client-fingerprint: random
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  GeoIP: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
+  GeoSite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
+  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
+  ANS: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
+global-ua: chrome
+profile:
+  store-selected: true
+  store-fake-ip: true
+  
+dns:
+  nameserver:
+    - https://doh.pub/dns-query
+  fallback:
+    - https://8.8.8.8/dns-query
+  direct-nameserver:
+    - dhcp://system
+  nameserver-policy:
+    "geosite:ir,private":
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    geosite:
+      - social
+      - nsfw
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: false
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - +.v2ex.com
+  skip-domain:
+    - Mijia Cloud
+  skip-src-address:
+    - 192.168.0.3/32
+  skip-dst-address:
+    - 192.168.0.3/32
 proxy-providers:
   A41:
     type: http
