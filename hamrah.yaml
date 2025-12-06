@@ -81,7 +81,7 @@ hosts:
   alt8-mtalk.google.com': 3.3.3.3
 tun:
   enable: true
-  mtu: 1500
+  mtu: 4506
   device: clash
   stack: mixed
   dns-hijack:
@@ -103,6 +103,8 @@ dns:
   ipv6: true
   defult-nameserver:
     - 127.0.0.1:53
+    - tls://223.5.5.5:853
+    - tls://223.6.6.6:853
     - tls://8.8.8.8
     - 185.236.104.104
     - tls://1.1.1.1
@@ -113,12 +115,15 @@ dns:
     - tls://1.0.0.1
   direct-nameserver:
     - 1.1.1.1
+    - system
   nameserver:
+    - system
+    - tls://223.5.5.5:853
+    - tls://223.6.6.6:853
     - 127.0.0.1:53
     - https://cloudflare-dns.com/dns-query#PROXY
     - https://doh.flashstart.com/f17c9ee5
     - https://ada.openbld.net/dns-query#PROXY
-    - https://freedns.controld.com/p0#PROXY
     - https://rubyfish.cn/dns-query#PROXY
     - https://all.dns.mullvad.net/dns-query#PROXY
   proxy-server-nameserver:
@@ -191,11 +196,20 @@ dns:
     - "*.mcdn.bilivideo.cn"
     - "ntp.ntsc.ac.cn"
   fallback:
-    - tcp://8.8.8.8
-    - tcp://1.1.1.1
+    - tls://8.8.8.8
+    - tls://1.1.1.1
     - https://cloudflare-dns.com/dns-query
     - https://ada.openbld.net/dns-query
-    - https://freedns.controld.com/p0
+    - https://doh.opendns.com/dns-query
+    - https://dns11.quad9.net/dns-query
+  fallback-filter:
+      geoip: true
+      geoip-code: ir
+      ipcidr:
+        - 0.0.0.0/32
+        - 127.0.0.1/32
+        - '::/128'
+        - '::1/128'
 proxy-providers:
   A1:
     type: http
@@ -307,8 +321,9 @@ proxies:
     type: dns
 proxy-groups:
   - name: "PROXY"
-    type: "select"
+    type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
+    url: "https://connectivitycheck.gstatic.com/generate_204"
     proxies:
       - "🎈Auto"
       - "🎈fallback"
@@ -317,8 +332,8 @@ proxy-groups:
     type: "url-test"
     url: "https://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
-    interval: 300
-    tolerance: 50000
+ #   interval: 300
+ #   tolerance: 50000
     exclude-type: "direct|http|socks5|redir-in"
     include-all-providers: true
     udp: false
@@ -328,7 +343,7 @@ proxy-groups:
     type: "fallback"
     url: "https://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
-    interval: 180
+#    interval: 180
     exclude-type: "direct|http|socks5|redir-in"
     include-all-providers: true
     udp: false
@@ -339,8 +354,8 @@ proxy-groups:
     exclude-filter: "HK|Hong|TW|Tai|Taiwan|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|回国|校园|游戏|🇰🇷|韩国|韓|首尔|KR|Korea|回国|校园|游戏|🇦🇹|timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅|AT|GER|🇩🇪🇱🇻|🇩🇪"
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
-    interval: 300
-    tolerance: 5000
+ #   interval: 300
+ #   tolerance: 5000
     exclude-type: "socks5|http|direct|redir-in"
     include-all-providers: true
     hidden: true
