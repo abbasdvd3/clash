@@ -2,22 +2,22 @@ listeners:
 - name: redir-in
   type: redir
   port: 9797
-  listen: 0.0.0.0
+  listen: 127.0.0.1
   udp: false
 - name: mixed-in
   type: mixed
   port: 7890
-  listen: 0.0.0.0
+  listen: 127.0.0.1
   udp: false
 - name: socks-in
   type: socks
   port: 7891
-  listen: 0.0.0.0
+  listen: 127.0.0.1
   udp: false
 - name: http-in
   type: http
   port: 7892
-  listen: 0.0.0.0
+  listen: 127.0.0.1
 port: 7892
 socks-port: 7891
 mixed-port: 7890
@@ -96,8 +96,38 @@ tun:
   strict-route: true
   auto-redirect: true
   auto-detect-interface: true
+
+sniffer:
+  enable: true
+  parse-pure-ip: true
+  force-dns-mapping: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports:
+        - 80
+        - 443
+      override-destination: false
+    TLS:
+      ports:
+        - 443
+  skip-domain:
+    - +.push.apple.com
+  skip-dst-address:
+    - 91.105.192.0/23
+    - 91.108.4.0/22
+    - 91.108.8.0/21
+    - 91.108.16.0/21
+    - 91.108.56.0/22
+    - 95.161.64.0/20
+    - 149.154.160.0/20
+    - 185.76.151.0/24
+    - 2001:67c:4e8::/48
+    - 2001:b28:f23c::/47
+    - 2001:b28:f23f::/48
+    - 2a0a:f280:203::/48
 tunnels:
-- tcp/udp,127.0.0.1:6553,8.8.8.8:53,PROXY
+- tcp/udp,127.0.0.1:7890,8.8.8.8:53,PROXY
 dns:
   enable: true
   cache-algorithm: arc
