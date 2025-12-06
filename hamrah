@@ -61,24 +61,30 @@ profile:
   store-selected: true
   store-fake-ip: true
 hosts:
-  '*.clash.dev': 127.0.0.1
-  'alpha.clash.dev': '::1'
+  *.clash.dev: 127.0.0.1
+  alpha.clash.dev: '::1'
   test.com: [1.1.1.1, 2.2.2.2]
   baidu.com: google.com
-  ota.googlezip.net': 127.0.0.1
-  ota-cache1.googlezip.net': 127.0.0.1
-  ota-cache2.googlezip.net': 127.0.0.1
-  localhost': 127.0.0.1       
-  ip6-localhost': ::1             
+  ota.googlezip.net: 127.0.0.1
+  ota-cache1.googlezip.net: 127.0.0.1
+  ota-cache2.googlezip.net: 127.0.0.1
+  localhost: 127.0.0.1       
+  ip6-localhost: ::1             
   mtalk.google.com': 108.177.125.188
-  alt1-mtalk.google.com': 3.3.3.3
-  alt2-mtalk.google.com': 3.3.3.3
-  alt3-mtalk.google.com': 74.125.200.188
-  alt4-mtalk.google.com': 74.125.200.188
-  alt5-mtalk.google.com': 3.3.3.3
-  alt6-mtalk.google.com': 3.3.3.3
-  alt7-mtalk.google.com': 74.125.200.188
-  alt8-mtalk.google.com': 3.3.3.3
+  alt1-mtalk.google.com: 3.3.3.3
+  alt2-mtalk.google.com: 3.3.3.3
+  alt3-mtalk.google.com: 74.125.200.188
+  alt4-mtalk.google.com: 74.125.200.188
+  alt5-mtalk.google.com: 3.3.3.3
+  alt6-mtalk.google.com: 3.3.3.3
+  alt7-mtalk.google.com: 74.125.200.188
+  alt8-mtalk.google.com: 3.3.3.3
+  doh.pub: [1.12.12.12, 120.53.53.53, 2402:4e00::]
+  dns.alidns.com: [223.5.5.5, 223.6.6.6, 2400:3200::1, 2400:3200:baba::1]
+  dns.google: [8.8.8.8, 8.8.4.4, 2001:4860:4860::8888, 2001:4860:4860::8844]
+  one.one.one.one: [1.1.1.1, 1.0.0.1, 2606:4700:4700::1111, 2606:4700:4700::1001]
+  dns.18bit.cn: [42.51.13.218, 42.51.37.204, 47.109.110.36, 115.190.191.220]
+  dns.ipv4dns.com: [171.80.2.155, 171.80.2.166]
 tun:
   enable: true
   mtu: 4060
@@ -274,7 +280,17 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "http://www.gstatic.com/generate_204"
+      url: "https://1.1.1.1/cdn-cgi/trace"
+      interval: 50
+      expected-status: 200
+  A2:
+    type: http
+    url: "https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://1.1.1.1/cdn-cgi/trace"
       interval: 50
       expected-status: 200
 proxies:
@@ -292,7 +308,7 @@ proxy-groups:
   
   - name: "🎈Auto"
     type: "url-test"
-    url: "http://www.gstatic.com/generate_204"
+    url: "https://1.1.1.1/cdn-cgi/trace"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     exclude-type: "direct|http|socks5|redir-in"
     include-all-providers: true
@@ -301,7 +317,7 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
   - name: "🎈fallback"
     type: "fallback"
-    url: "http://www.gstatic.com/generate_204"
+    url: "https://1.1.1.1/cdn-cgi/trace"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     exclude-type: "direct|http|socks5|redir-in"
     include-all-providers: true
