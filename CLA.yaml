@@ -122,7 +122,10 @@ dns:
     - https://8.8.8.8/dns-query
     - tls://8.8.8.8:853
   fallback:
-    - tcp://8.8.8.8:53#DNS-Proxy # if set `remote-dns-resolve` to false, then enable it.
+    - tcp://8.8.8.8:53#DNS-Proxy
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query
+    - https://120.53.53.53/dns-query
   fake-ip-filter:
     - '*.lan'
     - '+.example.com'
@@ -134,9 +137,7 @@ dns:
     "geosite:ir":
       - https://8.8.4.4/dns-query#机场
       - https://1.0.0.1/dns-query#机场
- # proxy-server-nameserver:
-#    - https://223.5.5.5/dns-query
- #   - https://120.53.53.53/dns-query
+
 
 proxies:
   - {"name":"剩余流量：0\r","type":"ss","server":"rhsdrhwa.cfprefer1.xyz","port":45611,"password":"ca6fcb31-bd3d-471d-bcaa-aefce7a65ee7","cipher":"aes-256-gcm"}
