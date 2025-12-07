@@ -368,12 +368,12 @@ proxy-groups:
     hidden: true
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
     proxies:
-  - "🇺🇲"
-  - "🇭🇰"
-  - "🇯🇵"
-  - "tw"
-  - "🇸🇬"
-  - "🇰🇷"
+      - "🇺🇲"
+      - "🇭🇰"
+      - "🇯🇵"
+      - "🇹🇼"
+      - "🇸🇬"
+      - "🇰🇷"
   - name: "🇭🇰"
     type: "url-test"
     url: "https://1.1.1.1/cdn-cgi/trace"
@@ -396,7 +396,7 @@ proxy-groups:
     proxies:
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
 
-  - name: "tw"
+  - name: "🇹🇼"
     type: "url-test"
     url: "https://1.1.1.1/cdn-cgi/trace"
     include-all-providers: true
@@ -535,11 +535,11 @@ rules :
   - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
   - DOMAIN-SUFFIX,google.com,PROXY
   - DOMAIN-KEYWORD,google,PROXY
-  - IP-CIDR,127.0.0.0/8,,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR6,2620:0:2d0:200::7/32,PROXY
   - IP-SUFFIX,8.8.8.8/24,PROXY
-  - SRC-IP-CIDR,192.168.1.201/32,,DIRECT
-  - SRC-IP-SUFFIX,192.168.1.201/8,,DIRECT
+  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
+  - SRC-IP-SUFFIX,192.168.1.201/8,DIRECT
   - DOMAIN-SUFFIX,local,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
@@ -553,10 +553,9 @@ rules :
   - IN-TYPE,SOCKS/HTTP,PROXY
   - IN-USER,mihomo,PROXY
   - IN-NAME,ss,PROXY
- # - PROCESS-PATH,/usr/bin/wget,PROXY
-#  - PROCESS-PATH,C:\Program Files\Google\Chrome\Application\chrome.exe,PROXY
-#  - PROCESS-NAME,curl,PROXY
-#  - PROCESS-NAME,chrome.exe,PROXY
+  - PROCESS-PATH,C:\Program Files\Google\Chrome\Application\chrome.exe,PROXY
+  - PROCESS-NAME,curl,PROXY
+  - PROCESS-NAME,chrome.exe,PROXY
   - PROCESS-NAME,com.termux,PROXY
   - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
   - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
