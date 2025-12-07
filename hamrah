@@ -322,6 +322,20 @@ proxy-providers:
       url: "https://1.1.1.1/cdn-cgi/trace"
       interval: 50
       expected-status: 200
+  A66:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: "https://1.1.1.1/cdn-cgi/trace"
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A66 prefix |"
+      additional-suffix: "| test suffix"
 proxies:
   - name: redir-in
     type: direct
@@ -333,7 +347,7 @@ proxy-groups:
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
     proxies:
       - "🎈Auto"
-      - "🎈fallback"
+      - "🤖 AI"
   
   - name: "🎈Auto"
     type: "url-test"
@@ -344,16 +358,65 @@ proxy-groups:
     udp: false
     hidden: true
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
-  - name: "🎈fallback"
-    type: "fallback"
+
+  - name: "🤖 AI"
+    type: "url-test"
     url: "https://1.1.1.1/cdn-cgi/trace"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     exclude-type: "direct|http|socks5|redir-in"
-    include-all-providers: true
     udp: false
     hidden: true
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
-  
+    proxies:
+  - 🇺🇲
+  - 🇭🇰
+  - 🇯🇵
+  - tw
+  - 🇸🇬
+  - 🇰🇷
+  - name: 🇭🇰
+    type: "url-test"
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    include-all-providers: true
+    filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
+    proxies: 
+    use:
+
+  - name: 🇯🇵
+    type: "url-test"
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    include-all-providers: true
+    filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
+    proxies: 
+
+  - name: 🇺🇲
+    type: "url-test"
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    include-all-providers: true
+    proxies:
+    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
+
+  - name: tw
+    type: "url-test"
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    include-all-providers: true
+    filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
+    proxies:
+
+  - name: 🇸🇬
+    type: "url-test"
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    include-all-providers: true
+    filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
+    proxies: 
+
+  - name: 🇰🇷
+    type: "url-test"
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    include-all-providers: true
+    filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
+    proxies: 
+
   - name: "🎯 Direct"
     type: "select"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
@@ -440,15 +503,26 @@ rule-providers:
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
     interval: 86400
 rules :
-  - DOMAIN-KEYWORD,soft98.ir,redir-in
-  - DOMAIN,soft98,redir-in
-  - DOMAIN-SUFFIX,soft98.ir,redir-in
-  - DOMAIN-KEYWORD,dl2soft98.82.ir,redir-in
-  - DOMAIN,dl2soft98.82,redir-in
-  - DOMAIN-SUFFIX,dl2soft98.82.ir,redir-in
-  - DOMAIN-SUFFIX,farsroid,redir-in
-  - DOMAIN-KEYWORD,farsroid.com,redir-in
-  - DOMAIN,farsroid.com,redir-in
+  - DOMAIN-SUFFIX,openai.com,🤖 AI
+  - DOMAIN-SUFFIX,chatgpt.com,🤖 AI
+  - DOMAIN-SUFFIX,oaistatic.com,🤖 AI
+  - DOMAIN-SUFFIX,oaiusercontent.com,🤖 AI
+  - DOMAIN-KEYWORD,openai,🤖 AI
+  - DOMAIN-SUFFIX,anthropic.com,🤖 AI
+  - DOMAIN-SUFFIX,claude.ai,🤖 AI
+  - DOMAIN-SUFFIX,gemini.google.com,🤖 AI
+  - DOMAIN-SUFFIX,bard.google.com,🤖 AI
+  - DOMAIN-SUFFIX,perplexity.ai,🤖 AI
+  - DOMAIN-SUFFIX,midjourney.com,🤖 AI
+  - DOMAIN-KEYWORD,soft98.ir,🎯 Direct
+  - DOMAIN,soft98,🎯 Direct
+  - DOMAIN-SUFFIX,soft98.ir,🎯 Direct
+  - DOMAIN-KEYWORD,dl2soft98.82.ir,🎯 Direct
+  - DOMAIN,dl2soft98.82,🎯 Direct
+  - DOMAIN-SUFFIX,dl2soft98.82.ir,🎯 Direct
+  - DOMAIN-SUFFIX,farsroid,🎯 Direct
+  - DOMAIN-KEYWORD,farsroid.com,🎯 Direct
+  - DOMAIN,farsroid.com,🎯 Direct
   - DOMAIN-SUFFIX,createporn.com,PROXY
   - DOMAIN-KEYWORD,createporn,PROXY
   - DOMAIN,createporn,PROXY
@@ -461,11 +535,11 @@ rules :
   - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
   - DOMAIN-SUFFIX,google.com,PROXY
   - DOMAIN-KEYWORD,google,PROXY
-#  - IP-CIDR,127.0.0.0/8,,redir-in,no-resolve
-#  - IP-CIDR6,2620:0:2d0:200::7/32,PROXY
-#  - IP-SUFFIX,8.8.8.8/24,PROXY
-#  - SRC-IP-CIDR,192.168.1.201/32,,redir-in
-#  - SRC-IP-SUFFIX,192.168.1.201/8,,redir-in
+  - IP-CIDR,127.0.0.0/8,,DIRECT,no-resolve
+  - IP-CIDR6,2620:0:2d0:200::7/32,PROXY
+  - IP-SUFFIX,8.8.8.8/24,PROXY
+  - SRC-IP-CIDR,192.168.1.201/32,,DIRECT
+  - SRC-IP-SUFFIX,192.168.1.201/8,,DIRECT
   - DOMAIN-SUFFIX,local,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
@@ -487,18 +561,18 @@ rules :
   - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
   - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
   - NOT,((DOMAIN,google.com)),PROXY
-  - RULE-SET,private,redir-in,no-resolve
-  - RULE-SET,apps,redir-in
+  - RULE-SET,private,DIRECT,no-resolve
+  - RULE-SET,apps,🎯 Direct
   - RULE-SET,ads,REJECT
   - RULE-SET,malware,REJECT
   - RULE-SET,AWA,REJECT
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
-  - RULE-SET,ir,redir-in
-  - RULE-SET,ircidr,redir-in
-  - RULE-SET,irasn,redir-in
+  - RULE-SET,ir,🎯 Direct
+  - RULE-SET,ircidr,🎯 Direct
+  - RULE-SET,irasn,🎯 Direct
   - RULE-SET,social,PROXY,no-resolve
   - RULE-SET,nsfw,PROXY,no-resolve
   - RULE-SET,geolocation-!cn,PROXY
-  - GEOIP,ir,redir-in
+  - GEOIP,ir,🎯 Direct
   - MATCH,PROXY,no-resolve
