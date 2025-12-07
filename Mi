@@ -1,14 +1,45 @@
+port: 7892
+socks-port: 7891
 mixed-port: 7890
-allow-lan: false
+redir-port: 9797
+tproxy-port: 9898
 mode: rule
-log-level: info
-external-controller: 127.0.0.1:9090
 ipv6: true
+allow-lan: true
+log-level: debug
+bind-address: "*"
+lan-allowed-ips:
+- 0.0.0.0/0
+- ::/0
+lan-disallowed-ips:
+- 192.168.0.3/32
+skip-auth-prefixes:
+- 127.0.0.1/8
+- ::1/128
+external-controller: 0.0.0.0:9090
+external-controller-tls: 0.0.0.0:9091
+external-doh-server: /dns-query
+external-ui: ./dashboard
+external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
+keep-alive-interval: 30
+find-process-mode: strict
 unified-delay: false
 tcp-concurrent: true
+global-client-fingerprint: random
 geodata-mode: true
-geo-auto-update: false
+geodata-loader: standard
+geo-auto-update: true
 geo-update-interval: 24
+etag-support: true
+geox-url:
+  GeoIP: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
+  GeoSite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
+  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
+  ANS: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
+global-ua: clash.meta
+profile:
+  store-selected: true
+  store-fake-ip: true
 dns:
   enable: true
   listen: 0.0.0.0:53
@@ -7104,20 +7135,104 @@ proxy-groups:
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
   url: http://www.gstatic.com/generate_204
   interval: 300
-
+rule-providers:
+  nsfw:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
+    interval: 30
+  social:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
+    interval: 30
+  ir:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
+    interval: 86400
+  ads:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
+    interval: 86400
+  malware:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
+    interval: 86400
+  phishing:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
+    interval: 86400
+  cryptominers:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
+    interval: 86400
+  apps:
+    type: http
+    format: yaml
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml"
+    interval: 86400
+  ircidr:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
+    interval: 86400
+  private:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
+    interval: 86400
+  irasn:
+    type: http
+    format: yaml
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
+    interval: 86400
+  geolocation-!cn:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
+    interval: 86400
+  AWA:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+    interval: 86400
 rules:
+- RULE-SET,private,DIRECT,no-resolve
+- RULE-SET,apps🌍 IRAN
+- RULE-SET,ads,🛑 ADS
+- RULE-SET,malware,🛑 ADS
+- RULE-SET,AWA,🛑 ADS
+- RULE-SET,phishing,🛑 ADS
+- RULE-SET,cryptominers,🛑 ADS
+- RULE-SET,ir,🌍 IRAN
+- RULE-SET,ircidr,🌍 IRAN
+- RULE-SET,irasn,🌍 IRAN
+- RULE-SET,social,🚀 select,no-resolve
+- RULE-SET,nsfw,🚀 select,no-resolve
+- RULE-SET,geolocation-!cn,🚀 select
 - DOMAIN-SUFFIX,local,DIRECT
 - IP-CIDR,127.0.0.0/8,DIRECT
 - IP-CIDR,172.16.0.0/12,DIRECT
 - IP-CIDR,192.168.0.0/16,DIRECT
 - IP-CIDR,10.0.0.0/8,DIRECT
 - GEOSITE,category-ads-all,🛑 ADS
-- GEOSITE,ir,🌍 IRAN
 - GEOIP,ir,🌍 IRAN
-- GEOSITE,netflix,🎬 Netflix
-- GEOSITE,disney,📺 Disney+
-- GEOSITE,youtube,📹 YouTube
-- GEOSITE,spotify,🎵 Spotify
-- GEOSITE,telegram,📲 Telegram
-- GEOSITE,apple,🍎 Apple Services
 - MATCH,🐟 FINALL
