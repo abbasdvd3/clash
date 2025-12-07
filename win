@@ -19,7 +19,7 @@ proxy-groups:
     udp: false
     interval: 300
     tolerance: 5
-    url: http://cp.cloudflare.com/generate_204
+    url: "https://1.1.1.1/cdn-cgi/trace"
     exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
 
   - name: "🤖 AI"
@@ -110,11 +110,74 @@ proxy-groups:
     include-all-proxies: true
     include-all-providers: true
     exclude-type: "socks5|http|direct|redir-in"
-    url: http://cp.cloudflare.com/generate_204
+    url: "https://1.1.1.1/cdn-cgi/trace"
     
 
 rules:
-
+  - DOMAIN-KEYWORD,anthropic,🤖 AI,no-resolve
+  - DOMAIN-KEYWORD,claude,🤖 AI,no-resolve
+  - DOMAIN-KEYWORD,openai,🤖 AI,no-resolve
+  - DOMAIN,ai.google.dev,🤖 AI,no-resolve
+  - DOMAIN,aistudio.google.com,🤖 AI,no-resolve
+  - DOMAIN,api.githubcopilot.com,🤖 AI,no-resolve
+  - DOMAIN,api.groq.com,🤖 AI,no-resolve
+  - DOMAIN,api.together.xyz,🤖 AI,no-resolve
+  - DOMAIN,bard.google.com,🤖 AI,no-resolve
+  - DOMAIN,console.groq.com,🤖 AI,no-resolve
+  - DOMAIN,copilot-proxy.githubusercontent.com,🤖 AI,no-resolve
+  - DOMAIN,gemini.google.com,🤖 AI,no-resolve
+  - DOMAIN,generativelanguage.googleapis.com,🤖 AI,no-resolve
+  - DOMAIN,notebooklm.google.com,🤖 AI,no-resolve
+  - DOMAIN,sydney.bing.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,ai.azure.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,anthropic.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,auth0.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,bard.google.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,chatgpt.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,claude.ai,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,claude.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,claudeusercontent.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,client-api.arkoselabs.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,copilot.cloud.microsoft,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,copilot.microsoft.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,cursor.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,cursor.sh,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,events.statsigapi.net,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,featuregates.org,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,gemini.google.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,grazie.ai,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,grazie.aws.intellij.net,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,identrust.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,intercom.io,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,intercomcdn.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,jetbrains.ai,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,makersuite.google.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,meta.ai,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,mistral.ai,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,oaistatic.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,oaiusercontent.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,openai.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,perplexity.ai,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,sora.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,x.ai,🤖 AI,no-resolve
+  - DOMAIN-KEYWORD,openai,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,auth0.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,challenges.cloudflare.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,chatgpt.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,client-api.arkoselabs.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,events.statsigapi.net,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,featuregates.org,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,identrust.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,intercom.io,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,intercomcdn.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,oaistatic.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,oaiusercontent.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,openai.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,sentry.io,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,stripe.com,🤖 AI,no-resolve
+  - DOMAIN-SUFFIX,sora.com,🤖 AI,no-resolve
   - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
   - DOMAIN,ad.com,🛑 Reject
   - DOMAIN,www.icloud.com,🚀 PROXY
