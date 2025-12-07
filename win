@@ -9,18 +9,83 @@ proxy-groups:
     proxies:
       - 🎈 Auto
       - 🐟 Fallback
-
+      - 🤖 AI
 
   - name: 🎈 Auto
     type: url-test
     include-all-proxies: true
- #   include-all-providers: true
+    include-all-providers: true
     hidden: true
     udp: false
     interval: 300
     tolerance: 5
     url: http://cp.cloudflare.com/generate_204
     exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
+
+  - name: "🤖 AI"
+    type: "url-test"
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    exclude-type: "direct|http|socks5|redir-in"
+    udp: false
+    hidden: true
+    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+    proxies:
+      - "🇺🇲"
+      - "🇭🇰"
+      - "🇯🇵"
+      - "🇹🇼"
+      - "🇸🇬"
+      - "🇰🇷"
+
+  - name: "🇭🇰"
+    type: "url-test"
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    include-all-proxies: true
+    include-all-providers: true
+    filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
+    proxies: 
+    use:
+
+  - name: "🇯🇵"
+    type: "url-test"
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    include-all-proxies: true
+    include-all-providers: true
+    filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
+    proxies: 
+
+  - name: "🇺🇲"
+    type: "url-test"
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    include-all-proxies: true
+    include-all-providers: true
+    proxies:
+    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
+
+  - name: "🇹🇼"
+    type: "url-test"
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    include-all-proxies: true
+    include-all-providers: true
+    filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
+    proxies:
+
+  - name: "🇸🇬"
+    type: "url-test"
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    include-all-proxies: true
+    include-all-providers: true
+    filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
+    proxies: 
+
+  - name: "🇰🇷"
+    type: "url-test"
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    include-all-proxies: true
+    include-all-providers: true
+    filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
+    proxies: 
 
   - name: 🎯 Direct
     type: select
@@ -43,7 +108,7 @@ proxy-groups:
     interval: 180
     udp: false
     include-all-proxies: true
-  #  include-all-providers: true
+    include-all-providers: true
     exclude-type: "socks5|http|direct|redir-in"
     url: http://cp.cloudflare.com/generate_204
     
@@ -72,6 +137,122 @@ rules:
   - NOT,((DOMAIN,google.com)),🚀 PROXY
   - GEOIP,ir,🎯 Direct
   - MATCH,🚀 PROXY
+proxy-providers:
+  A1:
+    type: http
+    url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 50
+      expected-status: 200
+  A2:
+    type: http
+    url: "https://shadowmere.xyz/api/b64sub/"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 50
+      expected-status: 200
+  A6:
+    type: http
+    url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 50
+      expected-status: 200
+  A7:
+    type: http
+    url: "https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 50
+      expected-status: 200
+  A8:
+    type: http
+    url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 50
+      expected-status: 200
+  A12:
+    type: http
+    url: "https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 50
+      expected-status: 200 
+  A13:
+    type: http
+    url: "http://66.42.50.118:12580/clash/proxies"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 50
+      expected-status: 200
+
+  A29:
+    type: http
+    url: "https://config.v2cross.com/clashprofile/config" # https://raw.githubusercontent.com/mheidari98/.proxy/main/all
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 50
+      expected-status: 200
+  A32:
+    type: http
+    url: "https://proxypool.link/clash/proxies" # #https://raw.githubusercontent.com/dongchengjie/airport/main/subs/merged/tested_within.yaml" # https://raw.githubusercontent.com/PangTouY00/Auto_proxy/main/Long_term_subscription_num
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 50
+      expected-status: 200
+  A34:
+    type: http
+    url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 50
+      expected-status: 200
+  A66:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: "https://1.1.1.1/cdn-cgi/trace"
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A66 prefix |"
+      additional-suffix: "| test suffix"
 
 proxies:
   - {"name":"1","type":"ss","server":"46.183.217.204","port":990,"password":"ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=","cipher":"chacha20-ietf-poly1305"}
