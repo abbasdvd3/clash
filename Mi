@@ -6951,7 +6951,6 @@ proxy-groups:
 
 - name: url-test
   type: url-test
-  include-all-providers: true
   include-all-proxies: true
   proxies:
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
@@ -7041,91 +7040,12 @@ proxy-groups:
 
 - name: fallback
   type: fallback
-  include-all-providers: true
   include-all-proxies: true
   proxies:
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
   url: "https://connectivitycheck.gstatic.com/generate_204"
   interval: 30
-rule-providers:
-  nsfw:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
-    interval: 30
-  social:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
-    interval: 30
-  ir:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
-    interval: 86400
-  ads:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
-    interval: 86400
-  malware:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
-    interval: 86400
-  phishing:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
-    interval: 86400
-  cryptominers:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
-    interval: 86400
-  apps:
-    type: http
-    format: yaml
-    behavior: classical
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml"
-    interval: 86400
-  ircidr:
-    type: http
-    format: yaml
-    behavior: ipcidr
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
-    interval: 86400
-  private:
-    type: http
-    format: yaml
-    behavior: ipcidr
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
-    interval: 86400
-  irasn:
-    type: http
-    format: yaml
-    behavior: classical
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
-    interval: 86400
-  geolocation-!cn:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
-    interval: 86400
-  AWA:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
-    interval: 86400
+
 proxy-providers:
   A1:
     type: http
@@ -7316,25 +7236,11 @@ rules:
   - DOMAIN-SUFFIX,sentry.io,AI,no-resolve
   - DOMAIN-SUFFIX,stripe.com,AI,no-resolve
   - DOMAIN-SUFFIX,sora.com,AI,no-resolve
-  - RULE-SET,private,DIRECT,no-resolve
-  - RULE-SET,apps,🌍 IRAN
-  - RULE-SET,ads,🛑 ADS
-  - RULE-SET,malware,🛑 ADS
-  - RULE-SET,AWA,🛑 ADS
-  - RULE-SET,phishing,🛑 ADS
-  - RULE-SET,cryptominers,🛑 ADS
-  - RULE-SET,ir,🌍 IRAN
-  - RULE-SET,ircidr,🌍 IRAN
-  - RULE-SET,irasn,🌍 IRAN
-  - RULE-SET,social,🚀 select,no-resolve
-  - RULE-SET,nsfw,🚀 select,no-resolve
-  - RULE-SET,geolocation-!cn,🚀 select,no-resolve
   - DOMAIN-SUFFIX,local,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
-  - GEOSITE,category-ads-all,🛑 ADS
   - DOMAIN-SUFFIX,acl4.ssr,🌍 IRAN
   - DOMAIN-SUFFIX,ip6-localhost,🌍 IRAN
   - DOMAIN-SUFFIX,ip6-loopback,🌍 IRAN
@@ -7403,12 +7309,6 @@ rules:
   - DOMAIN-SUFFIX,FamilyDS.com,🌍 IRAN
   - DOMAIN-SUFFIX,FamilyDS.net,🌍 IRAN
   - DOMAIN-SUFFIX,FamilyDS.org,🌍 IRAN
-# 本碎片只包含常见广告关键字、广告联盟。无副作用，放心使用
-# 广告关键词
-# 广告联盟-国内****************
-# 广告联盟-国外****************
-# 垃圾站点****************
-# 运营商广告****************
   - DOMAIN-KEYWORD,admarvel,🛑 ADS
   - DOMAIN-KEYWORD,admaster,🛑 ADS
   - DOMAIN-KEYWORD,adsage,🛑 ADS
