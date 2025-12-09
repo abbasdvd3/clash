@@ -6951,6 +6951,7 @@ proxy-groups:
 
 - name: url-test
   type: url-test
+  include-all-providers: true
   include-all-proxies: true
   proxies:
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
@@ -7030,18 +7031,17 @@ proxy-groups:
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/color/adblock.png
 
 - name: 🐟 FINALL
-  type: select
-  include-all-proxies: true
+  type: url-test
   proxies:
   - 🚀 select
   - url-test
   - fallback
   - AI
-  - DIRECT
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Final.png
 
 - name: fallback
   type: fallback
+  include-all-providers: true
   include-all-proxies: true
   proxies:
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
@@ -7240,82 +7240,82 @@ proxy-providers:
       interval: 50
       expected-status: 200      
 rules:
-- DOMAIN-SUFFIX,openai.com,AI
-- DOMAIN-SUFFIX,chatgpt.com,AI
-- DOMAIN-SUFFIX,oaistatic.com,AI
-- DOMAIN-SUFFIX,oaiusercontent.com,AI
-- DOMAIN-KEYWORD,openai,AI
-- DOMAIN-SUFFIX,anthropic.com,AI
-- DOMAIN-SUFFIX,claude.ai,AI
-- DOMAIN-SUFFIX,gemini.google.com,AI
-- DOMAIN-SUFFIX,bard.google.com,AI
-- DOMAIN-SUFFIX,perplexity.ai,AI
-- DOMAIN-SUFFIX,midjourney.com,AI
-- DOMAIN-SUFFIX,netflix.com,AI
-- DOMAIN-KEYWORD,anthropic,AI
-- DOMAIN-KEYWORD,claude,AI
-- DOMAIN-KEYWORD,openai,AI
-- DOMAIN,ai.google.dev,AI
-- DOMAIN,aistudio.google.com,AI
-- DOMAIN,api.githubcopilot.com,AI
-- DOMAIN,api.groq.com,AI
-- DOMAIN,api.together.xyz,AI
-- DOMAIN,bard.google.com,AI
-- DOMAIN,console.groq.com,AI
-- DOMAIN,copilot-proxy.githubusercontent.com,AI
-- DOMAIN,gemini.google.com,AI
-- DOMAIN,generativelanguage.googleapis.com,AI
-- DOMAIN,notebooklm.google.com,AI
-- DOMAIN,sydney.bing.com,AI
-- DOMAIN-SUFFIX,ai.azure.com,AI
-- DOMAIN-SUFFIX,anthropic.com,AI
-- DOMAIN-SUFFIX,auth0.com,AI
-- DOMAIN-SUFFIX,bard.google.com,AI
-- DOMAIN-SUFFIX,chatgpt.com,AI
-- DOMAIN-SUFFIX,claude.ai,AI
-- DOMAIN-SUFFIX,claude.com,AI
-- DOMAIN-SUFFIX,claudeusercontent.com,AI
-- DOMAIN-SUFFIX,client-api.arkoselabs.com,AI
-- DOMAIN-SUFFIX,copilot.cloud.microsoft,AI
-- DOMAIN-SUFFIX,copilot.microsoft.com,AI
-- DOMAIN-SUFFIX,cursor.com,AI
-- DOMAIN-SUFFIX,cursor.sh,AI
-- DOMAIN-SUFFIX,events.statsigapi.net,AI
-- DOMAIN-SUFFIX,featuregates.org,AI
-- DOMAIN-SUFFIX,gemini.google.com,AI
-- DOMAIN-SUFFIX,grazie.ai,AI
-- DOMAIN-SUFFIX,grazie.aws.intellij.net,AI
-- DOMAIN-SUFFIX,identrust.com,AI
-- DOMAIN-SUFFIX,intercom.io,AI
-- DOMAIN-SUFFIX,intercomcdn.com,AI
-- DOMAIN-SUFFIX,jetbrains.ai,AI
-- DOMAIN-SUFFIX,makersuite.google.com,AI
-- DOMAIN-SUFFIX,meta.ai,AI
-- DOMAIN-SUFFIX,mistral.ai,AI
-- DOMAIN-SUFFIX,oaistatic.com,AI
-- DOMAIN-SUFFIX,oaiusercontent.com,AI
-- DOMAIN-SUFFIX,openai.com,AI
-- DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI
-- DOMAIN-SUFFIX,perplexity.ai,AI
-- DOMAIN-SUFFIX,sora.com,AI
-- DOMAIN-SUFFIX,x.ai,AI
-- DOMAIN-KEYWORD,openai,AI
-- DOMAIN-SUFFIX,auth0.com,AI
-- DOMAIN-SUFFIX,challenges.cloudflare.com,AI
-- DOMAIN-SUFFIX,chatgpt.com,AI
-- DOMAIN-SUFFIX,client-api.arkoselabs.com,AI
-- DOMAIN-SUFFIX,events.statsigapi.net,AI
-- DOMAIN-SUFFIX,featuregates.org,AI
-- DOMAIN-SUFFIX,identrust.com,AI
-- DOMAIN-SUFFIX,intercom.io,AI
-- DOMAIN-SUFFIX,intercomcdn.com,AI
-- DOMAIN-SUFFIX,oaistatic.com,AI
-- DOMAIN-SUFFIX,oaiusercontent.com,AI
-- DOMAIN-SUFFIX,openai.com,AI
-- DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI
-- DOMAIN-SUFFIX,sentry.io,AI
-- DOMAIN-SUFFIX,stripe.com,AI
-- DOMAIN-SUFFIX,sora.com,AI
+- DOMAIN-SUFFIX,openai.com,AI,no-resolve
+- DOMAIN-SUFFIX,chatgpt.com,AI,no-resolve
+- DOMAIN-SUFFIX,oaistatic.com,AI,no-resolve
+- DOMAIN-SUFFIX,oaiusercontent.com,AI,no-resolve
+- DOMAIN-KEYWORD,openai,AI,no-resolve
+- DOMAIN-SUFFIX,anthropic.com,AI,no-resolve
+- DOMAIN-SUFFIX,claude.ai,AI,no-resolve
+- DOMAIN-SUFFIX,gemini.google.com,AI,no-resolve
+- DOMAIN-SUFFIX,bard.google.com,AI,no-resolve
+- DOMAIN-SUFFIX,perplexity.ai,AI,no-resolve
+- DOMAIN-SUFFIX,midjourney.com,AI,no-resolve
+- DOMAIN-SUFFIX,netflix.com,AI,no-resolve
+- DOMAIN-KEYWORD,anthropic,AI,no-resolve
+- DOMAIN-KEYWORD,claude,AI,no-resolve
+- DOMAIN-KEYWORD,openai,AI,no-resolve
+- DOMAIN,AI.google.dev,AI,no-resolve
+- DOMAIN,aistudio.google.com,AI,no-resolve
+- DOMAIN,api.githubcopilot.com,AI,no-resolve
+- DOMAIN,api.groq.com,AI,no-resolve
+- DOMAIN,api.together.xyz,AI,no-resolve
+- DOMAIN,bard.google.com,AI,no-resolve
+- DOMAIN,console.groq.com,AI,no-resolve
+- DOMAIN,copilot-proxy.githubusercontent.com,AI,no-resolve
+- DOMAIN,gemini.google.com,AI,no-resolve
+- DOMAIN,generativelanguage.googleapis.com,AI,no-resolve
+- DOMAIN,notebooklm.google.com,AI,no-resolve
+- DOMAIN,sydney.bing.com,AI,no-resolve
+- DOMAIN-SUFFIX,AI.azure.com,AI,no-resolve
+- DOMAIN-SUFFIX,anthropic.com,AI,no-resolve
+- DOMAIN-SUFFIX,auth0.com,AI,no-resolve
+- DOMAIN-SUFFIX,bard.google.com,AI,no-resolve
+- DOMAIN-SUFFIX,chatgpt.com,AI,no-resolve
+- DOMAIN-SUFFIX,claude.ai,AI,no-resolve
+- DOMAIN-SUFFIX,claude.com,AI,no-resolve
+- DOMAIN-SUFFIX,claudeusercontent.com,AI,no-resolve
+- DOMAIN-SUFFIX,client-api.arkoselabs.com,AI,no-resolve
+- DOMAIN-SUFFIX,copilot.cloud.microsoft,AI,no-resolve
+- DOMAIN-SUFFIX,copilot.microsoft.com,AI,no-resolve
+- DOMAIN-SUFFIX,cursor.com,AI,no-resolve
+- DOMAIN-SUFFIX,cursor.sh,AI,no-resolve
+- DOMAIN-SUFFIX,events.statsigapi.net,AI,no-resolve
+- DOMAIN-SUFFIX,featuregates.org,AI,no-resolve
+- DOMAIN-SUFFIX,gemini.google.com,AI,no-resolve
+- DOMAIN-SUFFIX,grazie.ai,AI,no-resolve
+- DOMAIN-SUFFIX,grazie.aws.intellij.net,AI,no-resolve
+- DOMAIN-SUFFIX,identrust.com,AI,no-resolve
+- DOMAIN-SUFFIX,intercom.io,AI,no-resolve
+- DOMAIN-SUFFIX,intercomcdn.com,AI,no-resolve
+- DOMAIN-SUFFIX,jetbrains.ai,AI,no-resolve
+- DOMAIN-SUFFIX,makersuite.google.com,AI,no-resolve
+- DOMAIN-SUFFIX,meta.ai,AI,no-resolve
+- DOMAIN-SUFFIX,mistral.ai,AI,no-resolve
+- DOMAIN-SUFFIX,oaistatic.com,AI,no-resolve
+- DOMAIN-SUFFIX,oaiusercontent.com,AI,no-resolve
+- DOMAIN-SUFFIX,openai.com,AI,no-resolve
+- DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI,no-resolve
+- DOMAIN-SUFFIX,perplexity.ai,AI,no-resolve
+- DOMAIN-SUFFIX,sora.com,AI,no-resolve
+- DOMAIN-SUFFIX,x.ai,AI,no-resolve
+- DOMAIN-KEYWORD,openai,AI,no-resolve
+- DOMAIN-SUFFIX,auth0.com,AI,no-resolve
+- DOMAIN-SUFFIX,challenges.cloudflare.com,AI,no-resolve
+- DOMAIN-SUFFIX,chatgpt.com,AI,no-resolve
+- DOMAIN-SUFFIX,client-api.arkoselabs.com,AI,no-resolve
+- DOMAIN-SUFFIX,events.statsigapi.net,AI,no-resolve
+- DOMAIN-SUFFIX,featuregates.org,AI,no-resolve
+- DOMAIN-SUFFIX,identrust.com,AI,no-resolve
+- DOMAIN-SUFFIX,intercom.io,AI,no-resolve
+- DOMAIN-SUFFIX,intercomcdn.com,AI,no-resolve
+- DOMAIN-SUFFIX,oaistatic.com,AI,no-resolve
+- DOMAIN-SUFFIX,oaiusercontent.com,AI,no-resolve
+- DOMAIN-SUFFIX,openai.com,AI,no-resolve
+- DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI,no-resolve
+- DOMAIN-SUFFIX,sentry.io,AI,no-resolve
+- DOMAIN-SUFFIX,stripe.com,AI,no-resolve
+- DOMAIN-SUFFIX,sora.com,AI,no-resolve
 - RULE-SET,private,DIRECT,no-resolve
 - RULE-SET,apps,🌍 IRAN
 - RULE-SET,ads,🛑 ADS
@@ -7328,12 +7328,12 @@ rules:
 - RULE-SET,irasn,🌍 IRAN
 - RULE-SET,social,🚀 select,no-resolve
 - RULE-SET,nsfw,🚀 select,no-resolve
-- RULE-SET,geolocation-!cn,🚀 select
+- RULE-SET,geolocation-!cn,🚀 select,no-resolve
 - DOMAIN-SUFFIX,local,DIRECT
 - IP-CIDR,127.0.0.0/8,DIRECT
 - IP-CIDR,172.16.0.0/12,DIRECT
 - IP-CIDR,192.168.0.0/16,DIRECT
 - IP-CIDR,10.0.0.0/8,DIRECT
 - GEOSITE,category-ads-all,🛑 ADS
-- GEOIP,ir,🌍 IRAN
-- MATCH,🐟 FINALL
+- GEOIP,ir,🌍 IRAN,no-resolve
+- MATCH,🐟 FINALL,no-resolve
