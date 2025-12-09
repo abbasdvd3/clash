@@ -351,6 +351,17 @@ proxy-providers:
       url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 50
       expected-status: 200
+
+  A44:
+    type: http
+    url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 50
+      expected-status: 200      
 proxies:
   - name: redir-in
     type: direct
@@ -361,47 +372,75 @@ proxies:
 proxy-groups:
   - name: "PROXY"
     type: "url-test"
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
+    icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png"
     url: "https://connectivitycheck.gstatic.com/generate_204"
     proxies:
       - "🎈Auto"
       - "🎈fallback"
       - "🇺🇸US🇺🇸"
+      - "AI"
   - name: "🎈Auto"
     type: "url-test"
     url: "https://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
- #   interval: 300
- #   tolerance: 50000
+    interval: 300
+    tolerance: 50000
     exclude-type: "direct|http|socks5|redir-in"
     include-all-providers: true
     udp: false
     hidden: true
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
+    icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png"
+    
   - name: "🎈fallback"
     type: "fallback"
     url: "https://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
-#    interval: 180
+    interval: 180
     exclude-type: "direct|http|socks5|redir-in"
     include-all-providers: true
     udp: false
     hidden: true
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+    
   - name: "🇺🇸US🇺🇸"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     exclude-filter: "HK|Hong|TW|Tai|Taiwan|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|回国|校园|游戏|🇰🇷|韩国|韓|首尔|KR|Korea|回国|校园|游戏|🇦🇹|timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅|AT|GER|🇩🇪🇱🇻|🇩🇪"
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
- #   interval: 300
- #   tolerance: 5000
+    interval: 300
+    tolerance: 5000
     exclude-type: "socks5|http|direct|redir-in"
     include-all-providers: true
     hidden: true
     url: "https://connectivitycheck.gstatic.com/generate_204"
+    
+  - name: "🇺🇸US🇺🇸back"
+    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
+    exclude-filter: "HK|Hong|TW|Tai|Taiwan|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|回国|校园|游戏|🇰🇷|韩国|韓|首尔|KR|Korea|回国|校园|游戏|🇦🇹|timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅|AT|GER|🇩🇪🇱🇻|🇩🇪"
+    type: "fallback"
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
+    interval: 300
+    tolerance: 5000
+    exclude-type: "socks5|http|direct|redir-in"
+    include-all-providers: true
+    hidden: true
+    url: "https://connectivitycheck.gstatic.com/generate_204"
+    
+  - name: "AI"
+    type: "url-test"
+    url: "https://connectivitycheck.gstatic.com/generate_204"
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    interval: 3
+    tolerance: 5
+    hidden: true
+    icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Final.png"
+    proxies:
+      - "🇺🇸US🇺🇸back"
+      - "🇺🇸US🇺🇸"
+      
   - name: "🎯 Direct"
     type: "select"
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
+    icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png"
     proxies:
       - "redir-in"
       - "DNS"
@@ -486,18 +525,18 @@ rule-providers:
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
     interval: 86400
 rules :
-  - DOMAIN-KEYWORD,soft98.ir,redir-in
-  - DOMAIN,soft98,redir-in
-  - DOMAIN-SUFFIX,soft98.ir,redir-in
-  - DOMAIN-KEYWORD,dl2soft98.82.ir,redir-in
-  - DOMAIN,dl2soft98.82,redir-in
-  - DOMAIN-SUFFIX,dl2soft98.82.ir,redir-in
-  - DOMAIN-SUFFIX,farsroid,redir-in
-  - DOMAIN-KEYWORD,farsroid.com,redir-in
-  - DOMAIN,farsroid.com,redir-in
-  - DOMAIN-SUFFIX,createporn.com,PROXY
-  - DOMAIN-KEYWORD,createporn,PROXY
-  - DOMAIN,createporn,PROXY
+  - DOMAIN-KEYWORD,soft98.ir,🎯 Direct
+  - DOMAIN,soft98,🎯 Direct
+  - DOMAIN-SUFFIX,soft98.ir,🎯 Direct
+  - DOMAIN-KEYWORD,dl2soft98.82.ir,🎯 Direct
+  - DOMAIN,dl2soft98.82,🎯 Direct
+  - DOMAIN-SUFFIX,dl2soft98.82.ir,🎯 Direct
+  - DOMAIN-SUFFIX,farsroid,🎯 Direct
+  - DOMAIN-KEYWORD,farsroid.com,🎯 Direct
+  - DOMAIN,farsroid.com,🎯 Direct
+  - DOMAIN-SUFFIX,createporn.com,AI
+  - DOMAIN-KEYWORD,createporn,AI
+  - DOMAIN,createporn,AI
   - DOMAIN,ad.com,REJECT
   - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
   - PROCESS-NAME,com.samsung.android.location,REJECT,no-resolve
@@ -532,10 +571,10 @@ rules :
   - IP-CIDR,172.16.0.0/12,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
-  - DOMAIN-SUFFIX,openai.com,PROXY
-  - DOMAIN-SUFFIX,chatgpt.com,PROXY
-  - DOMAIN-SUFFIX,anthropic.com,PROXY
-  - DOMAIN-SUFFIX,claude.ai,PROXY
+  - DOMAIN-SUFFIX,openai.com,AI
+  - DOMAIN-SUFFIX,chatgpt.com,AI
+  - DOMAIN-SUFFIX,anthropic.com,AI
+  - DOMAIN-SUFFIX,claude.ai,AI
   - DOMAIN-SUFFIX,t.me,PROXY
   - DOMAIN-SUFFIX,telegram.org,PROXY
   - DOMAIN-SUFFIX,netflix.com,PROXY
@@ -544,20 +583,20 @@ rules :
   - DOMAIN-SUFFIX,apple.com,PROXY
   - DOMAIN-SUFFIX,icloud.com,PROXY
   - DOMAIN-SUFFIX,microsoft.com,PROXY
-  - DOMAIN-SUFFIX,windows.com,PROXY
-  - DOMAIN-SUFFIX,openai.com,PROXY
-  - DOMAIN-SUFFIX,chatgpt.com,PROXY
-  - DOMAIN-SUFFIX,oaistatic.com,PROXY
-  - DOMAIN-SUFFIX,oaiusercontent.com,PROXY
-  - DOMAIN-KEYWORD,openai,PROXY
-  - DOMAIN-SUFFIX,anthropic.com,PROXY
-  - DOMAIN-SUFFIX,claude.ai,PROXY
-  - DOMAIN-SUFFIX,gemini.google.com,PROXY
-  - DOMAIN-SUFFIX,bard.google.com,PROXY
-  - DOMAIN-SUFFIX,perplexity.ai,PROXY
-  - DOMAIN-SUFFIX,midjourney.com,PROXY
-  - DOMAIN-SUFFIX,netflix.com,PROXY
-  - DOMAIN-SUFFIX,disneyplus.com,PROXY
+  - DOMAIN-SUFFIX,windows.com,🇺🇸US🇺🇸
+  - DOMAIN-SUFFIX,openai.com,AI
+  - DOMAIN-SUFFIX,chatgpt.com,AI
+  - DOMAIN-SUFFIX,oaistatic.com,AI
+  - DOMAIN-SUFFIX,oaiusercontent.com,AI
+  - DOMAIN-KEYWORD,openai,AI
+  - DOMAIN-SUFFIX,anthropic.com,AI
+  - DOMAIN-SUFFIX,claude.ai,AI
+  - DOMAIN-SUFFIX,gemini.google.com,AI
+  - DOMAIN-SUFFIX,bard.google.com,AI
+  - DOMAIN-SUFFIX,perplexity.ai,AI
+  - DOMAIN-SUFFIX,midjourney.com,AI
+  - DOMAIN-SUFFIX,netflix.com,AI
+  - DOMAIN-SUFFIX,disneyplus.com,AI
   - DOMAIN-SUFFIX,youtube.com,PROXY
   - DOMAIN-SUFFIX,spotify.com,PROXY
   - IN-PORT,7890,PROXY
@@ -578,18 +617,18 @@ rules :
   - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
   - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
   - NOT,((DOMAIN,google.com)),PROXY
-  - RULE-SET,private,redir-in,no-resolve
-  - RULE-SET,apps,redir-in
+  - RULE-SET,private,🎯 Direct,no-resolve
+  - RULE-SET,apps,🎯 Direct
   - RULE-SET,ads,REJECT
   - RULE-SET,malware,REJECT
   - RULE-SET,AWA,REJECT
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
-  - RULE-SET,ir,redir-in
-  - RULE-SET,ircidr,redir-in
-  - RULE-SET,irasn,redir-in
-  - RULE-SET,social,PROXY,no-resolve
-  - RULE-SET,nsfw,PROXY,no-resolve
+  - RULE-SET,ir,🎯 Direct
+  - RULE-SET,ircidr,🎯 Direct
+  - RULE-SET,irasn,🎯 Direct
+  - RULE-SET,social,AI,no-resolve
+  - RULE-SET,nsfw,AI,no-resolve
   - RULE-SET,geolocation-!cn,PROXY
-  - GEOIP,ir,redir-in
+  - GEOIP,ir,🎯 Direct
   - MATCH,PROXY,no-resolve
