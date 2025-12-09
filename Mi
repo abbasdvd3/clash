@@ -6946,7 +6946,9 @@ proxy-groups:
   proxies:
   - url-test
   - fallback
+  - AI
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png
+
 - name: url-test
   type: url-test
   include-all-proxies: true
@@ -6955,6 +6957,7 @@ proxy-groups:
   url: http://www.gstatic.com/generate_204
   interval: 30
   tolerance: 50
+
 - name: 🎬 Netflix
   type: select
   proxies:
@@ -6962,6 +6965,7 @@ proxy-groups:
   - url-test
   - fallback
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Netflix.png
+
 - name: 📺 Disney+
   type: select
   proxies:
@@ -6969,6 +6973,7 @@ proxy-groups:
   - url-test
   - fallback
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Disney.png
+
 - name: 📹 YouTube
   type: select
   proxies:
@@ -6976,13 +6981,20 @@ proxy-groups:
   - url-test
   - fallback
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/YouTube.png
-- name: 🎵 Spotify
-  type: select
+
+- name: AI
+  type: url-test
+  filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|United States|USA|US|CA|PM|MX|PA|BM|GL|GD|CR|VG|VI|BR|CL|PE|CU|HT|AR|UY|PY|JM|SR|BS|GF|BZ|MS|AW|CW|SX|MF|BL|GP|MQ|AG|KN|TT|VC|CO|EC|VE|BO|GT|SV|PR|KY|HN|DM|BB|LC|FK|TC)$)).*$"
+  exclude-filter: "HK|Hong|TW|Tai|Taiwan|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|回国|校园|游戏|🇰🇷|韩国|韓|首尔|KR|Korea|回国|校园|游戏|🇦🇹|timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅|AT|GER|🇩🇪🇱🇻|🇩🇪" 
+  icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
+  interval: 30
+  tolerance: 50
+  exclude-type: "socks5|http|direct|redir-in"
+  include-all-providers: true
+  hidden: true
+  url: "https://connectivitycheck.gstatic.com/generate_204"
   proxies:
-  - 🚀 select
-  - url-test
-  - fallback
-  icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Spotify.png
+
 - name: 📲 Telegram
   type: select
   proxies:
@@ -6990,6 +7002,7 @@ proxy-groups:
   - url-test
   - fallback
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Telegram.png
+
 - name: 🍎 Apple Services
   type: select
   proxies:
@@ -6998,6 +7011,7 @@ proxy-groups:
   - url-test
   - fallback
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Apple.png
+
 - name: 🌍 IRAN
   type: select
   proxies:
@@ -7006,12 +7020,14 @@ proxy-groups:
   - url-test
   - fallback
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/China.png
+
 - name: 🛑 ADS
   type: select
   proxies:
   - REJECT
   - DIRECT
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/color/adblock.png
+
 - name: 🐟 FINALL
   type: select
   include-all-proxies: true
@@ -7019,8 +7035,10 @@ proxy-groups:
   - 🚀 select
   - url-test
   - fallback
+  - AI
   - DIRECT
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Final.png
+
 - name: fallback
   type: fallback
   include-all-proxies: true
@@ -7108,6 +7126,82 @@ rule-providers:
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
     interval: 86400
 rules:
+- DOMAIN-SUFFIX,openai.com,AI
+- DOMAIN-SUFFIX,chatgpt.com,AI
+- DOMAIN-SUFFIX,oaistatic.com,AI
+- DOMAIN-SUFFIX,oaiusercontent.com,AI
+- DOMAIN-KEYWORD,openai,AI
+- DOMAIN-SUFFIX,anthropic.com,AI
+- DOMAIN-SUFFIX,claude.ai,AI
+- DOMAIN-SUFFIX,gemini.google.com,AI
+- DOMAIN-SUFFIX,bard.google.com,AI
+- DOMAIN-SUFFIX,perplexity.ai,AI
+- DOMAIN-SUFFIX,midjourney.com,AI
+- DOMAIN-SUFFIX,netflix.com,AI
+- DOMAIN-KEYWORD,anthropic,AI
+- DOMAIN-KEYWORD,claude,AI
+- DOMAIN-KEYWORD,openai,AI
+- DOMAIN,ai.google.dev,AI
+- DOMAIN,aistudio.google.com,AI
+- DOMAIN,api.githubcopilot.com,AI
+- DOMAIN,api.groq.com,AI
+- DOMAIN,api.together.xyz,AI
+- DOMAIN,bard.google.com,AI
+- DOMAIN,console.groq.com,AI
+- DOMAIN,copilot-proxy.githubusercontent.com,AI
+- DOMAIN,gemini.google.com,AI
+- DOMAIN,generativelanguage.googleapis.com,AI
+- DOMAIN,notebooklm.google.com,AI
+- DOMAIN,sydney.bing.com,AI
+- DOMAIN-SUFFIX,ai.azure.com,AI
+- DOMAIN-SUFFIX,anthropic.com,AI
+- DOMAIN-SUFFIX,auth0.com,AI
+- DOMAIN-SUFFIX,bard.google.com,AI
+- DOMAIN-SUFFIX,chatgpt.com,AI
+- DOMAIN-SUFFIX,claude.ai,AI
+- DOMAIN-SUFFIX,claude.com,AI
+- DOMAIN-SUFFIX,claudeusercontent.com,AI
+- DOMAIN-SUFFIX,client-api.arkoselabs.com,AI
+- DOMAIN-SUFFIX,copilot.cloud.microsoft,AI
+- DOMAIN-SUFFIX,copilot.microsoft.com,AI
+- DOMAIN-SUFFIX,cursor.com,AI
+- DOMAIN-SUFFIX,cursor.sh,AI
+- DOMAIN-SUFFIX,events.statsigapi.net,AI
+- DOMAIN-SUFFIX,featuregates.org,AI
+- DOMAIN-SUFFIX,gemini.google.com,AI
+- DOMAIN-SUFFIX,grazie.ai,AI
+- DOMAIN-SUFFIX,grazie.aws.intellij.net,AI
+- DOMAIN-SUFFIX,identrust.com,AI
+- DOMAIN-SUFFIX,intercom.io,AI
+- DOMAIN-SUFFIX,intercomcdn.com,AI
+- DOMAIN-SUFFIX,jetbrains.ai,AI
+- DOMAIN-SUFFIX,makersuite.google.com,AI
+- DOMAIN-SUFFIX,meta.ai,AI
+- DOMAIN-SUFFIX,mistral.ai,AI
+- DOMAIN-SUFFIX,oaistatic.com,AI
+- DOMAIN-SUFFIX,oaiusercontent.com,AI
+- DOMAIN-SUFFIX,openai.com,AI
+- DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI
+- DOMAIN-SUFFIX,perplexity.ai,AI
+- DOMAIN-SUFFIX,sora.com,AI
+- DOMAIN-SUFFIX,x.ai,AI
+- DOMAIN-KEYWORD,openai,AI
+- DOMAIN-SUFFIX,auth0.com,AI
+- DOMAIN-SUFFIX,challenges.cloudflare.com,AI
+- DOMAIN-SUFFIX,chatgpt.com,AI
+- DOMAIN-SUFFIX,client-api.arkoselabs.com,AI
+- DOMAIN-SUFFIX,events.statsigapi.net,AI
+- DOMAIN-SUFFIX,featuregates.org,AI
+- DOMAIN-SUFFIX,identrust.com,AI
+- DOMAIN-SUFFIX,intercom.io,AI
+- DOMAIN-SUFFIX,intercomcdn.com,AI
+- DOMAIN-SUFFIX,oaistatic.com,AI
+- DOMAIN-SUFFIX,oaiusercontent.com,AI
+- DOMAIN-SUFFIX,openai.com,AI
+- DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI
+- DOMAIN-SUFFIX,sentry.io,AI
+- DOMAIN-SUFFIX,stripe.com,AI
+- DOMAIN-SUFFIX,sora.com,AI
 - RULE-SET,private,DIRECT,no-resolve
 - RULE-SET,apps,🌍 IRAN
 - RULE-SET,ads,🛑 ADS
