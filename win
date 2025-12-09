@@ -1,8 +1,26 @@
+port: 7890
+socks-port: 7891
+allow-lan: false
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+unified-delay: true
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  fallback:
+    - 8.8.8.8
+    - 1.1.1.1
 proxy-groups:
   - name: 🚀 PROXY
     type: url-test
 #    include-all-proxies: true
-    udp: false
+    udp: true
 #    interval: 300
   #  tolerance: 1
     exclude-type: "socks5|http|direct|redir-in" # |trojan|vmess
@@ -16,7 +34,7 @@ proxy-groups:
     include-all-proxies: true
     include-all-providers: true
     hidden: true
-    udp: false
+    udp: true
     interval: 300
     tolerance: 5
     url: "https://1.1.1.1/cdn-cgi/trace"
@@ -27,69 +45,60 @@ proxy-groups:
     url: "https://1.1.1.1/cdn-cgi/trace"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     exclude-type: "direct|http|socks5|redir-in"
-    udp: false
+    udp: true
     hidden: true
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
     proxies:
       - "🇺🇲"
-      - "🇭🇰"
-      - "🇯🇵"
-      - "🇹🇼"
-      - "🇸🇬"
-      - "🇰🇷"
+      - "🇭🇰 🇯🇵 🇹🇼 🇸🇬 🇰🇷"
+      - "africa"
+      - "eup"
+      - "africa"
 
-  - name: "🇭🇰"
+  - name: eup
+    type: url-test
+    filter: "FR|GB|GG|JE|DE|DK|NO|SE|FI|IS|CH|CZ|GR|NL|PL|ME|RU|UA|HU|LU|AT|IT|VA|BE|IE|LT|ES|PT|AD|MT|MC|BG|HR|MK|RS|CY|LV|MD|SK|EE|BY|RO|GI|SM|FO|AX|SI|AL|BA|LI"
+    exclude-filter: "duplicate|name|duplicatename|duplicate name|timeout|connection refused|Expired|If|Renewal"
+    include-all-providers: true
+    include-all-proxies: true
+    udp: true
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    interval: 300
+    tolerance: 50
+
+  - name: "🇭🇰 🇯🇵 🇹🇼 🇸🇬 🇰🇷"
     type: "url-test"
     url: "https://1.1.1.1/cdn-cgi/trace"
     include-all-proxies: true
     include-all-providers: true
-    filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
-    proxies: 
-    use:
+    filter: "HK|MO|TW|SG|MY|MV|KH|TH|MM|LA|VN|JP|KR|BT|BN|PH|ID|IN|MN|JO|IR|BH|OM|IL|PS|TR|NP|BD|LB|IQ|SY|AF|QA|KW|AE|AZ|AM|GE|PK|LK|SA|KZ|TJ|KG|UZ|🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港|🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日|🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET|🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]|🇰🇷|KO?R|Korea|首尔|韩|韓"
+    udp: true
+    interval: 300
+    tolerance: 50
 
-  - name: "🇯🇵"
-    type: "url-test"
-    url: "https://1.1.1.1/cdn-cgi/trace"
-    include-all-proxies: true
+  - name: "africa"
+    type: url-test
+    filter: "EG|GH|TG|ZA|BJ|SD|ML|CG|GA|TD|TN|LY|KE|RW|CV|AO|CM|BI|SO|DJ|GM|GN|LS|MW|NE|UG|YT|ZM|NG|MZ|MU|CI|TZ|ZW|SN|BW|NA|SL|SZ|LR|DZ|MG|GQ|BF|ER|ET|MR|CF|ST|RE"
+    exclude-filter: "duplicate|name|duplicatename|duplicate name|timeout|connection refused|Expired|If|Renewal"
     include-all-providers: true
-    filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
-    proxies: 
+    include-all-proxies: true
+    udp: true
+    url: "https://1.1.1.1/cdn-cgi/trace"
+    interval: 300
+    tolerance: 50
 
   - name: "🇺🇲"
     type: "url-test"
     url: "https://1.1.1.1/cdn-cgi/trace"
     include-all-proxies: true
     include-all-providers: true
-    proxies:
-    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
-
-  - name: "🇹🇼"
-    type: "url-test"
-    url: "https://1.1.1.1/cdn-cgi/trace"
-    include-all-proxies: true
-    include-all-providers: true
-    filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
-    proxies:
-
-  - name: "🇸🇬"
-    type: "url-test"
-    url: "https://1.1.1.1/cdn-cgi/trace"
-    include-all-proxies: true
-    include-all-providers: true
-    filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
-    proxies: 
-
-  - name: "🇰🇷"
-    type: "url-test"
-    url: "https://1.1.1.1/cdn-cgi/trace"
-    include-all-proxies: true
-    include-all-providers: true
-    filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
-    proxies: 
+    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|CA|PM|MX|PA|BM|GL|GD|CR|VG|VI|BR|CL|PE|CU|HT|AR|UY|PY|JM|SR|BS|GF|BZ|MS|AW|CW|SX|MF|BL|GP|MQ|AG|KN|TT|VC|CO|EC|VE|BO|GT|SV|PR|KY|HN|DM|BB|LC|FK|TC"
+    interval: 300
+    tolerance: 50
 
   - name: 🎯 Direct
     type: select
-    udp: false
+    udp: true
     proxies:
       - DIRECT
       - 🚀 PROXY
