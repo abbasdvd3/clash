@@ -523,6 +523,18 @@ rule-providers:
     behavior: domain
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
     interval: 86400
+  anti-AD:
+    type: http
+    behavior: domain
+    format: yaml
+    url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"
+    interval: 86400
+  anti-AD-white:
+    type: http
+    behavior: domain
+    format: yaml
+    url: "https://raw.githubusercontent.com/privacy-protection-tools/dead-horse/master/anti-ad-white-for-clash.yaml"
+    interval: 86400
 rules :
   - DOMAIN-KEYWORD,soft98.ir,🎯 Direct
   - DOMAIN,soft98,🎯 Direct
@@ -533,6 +545,8 @@ rules :
   - DOMAIN-SUFFIX,farsroid,🎯 Direct
   - DOMAIN-KEYWORD,farsroid.com,🎯 Direct
   - DOMAIN,farsroid.com,🎯 Direct
+  - RULE-SET,anti-AD-white,🎯 Direct
+  - RULE-SET,anti-AD,REJECT
   - DOMAIN-SUFFIX,createporn.com,AI
   - DOMAIN-KEYWORD,createporn,AI
   - DOMAIN,createporn,AI
