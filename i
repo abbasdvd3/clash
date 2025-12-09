@@ -6999,6 +6999,6 @@ proxy-groups:
   url: "https://connectivitycheck.gstatic.com/generate_204"
   interval: 30
 
-
+rules:
   - GEOIP,ir,🌍 IRAN,no-resolve
   - MATCH,🐟 FINAL
