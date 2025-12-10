@@ -18,6 +18,12 @@ listeners:
   type: http
   port: 7892
   listen: 0.0.0.0
+- name: tunnel-in
+  type: tunnel
+  port: 10816
+  listen: 0.0.0.0
+  network: [tcp, udp]
+  target: PROXY
 port: 7892
 socks-port: 7891
 mixed-port: 7890
@@ -60,6 +66,10 @@ global-ua: clash.meta
 profile:
   store-selected: true
   store-fake-ip: true
+experimental:
+  quic-go-disable-gso: false
+  quic-go-disable-ecn: false
+  
 hosts:
   alpha.clash.dev: ['::1']
   test.com: ['1.1.1.1', '2.2.2.2']
@@ -85,17 +95,61 @@ hosts:
   dns.18bit.cn: ['42.51.13.218', '42.51.37.204', '47.109.110.36', '115.190.191.220']
   dns.ipv4dns.com: ['171.80.2.155', '171.80.2.166']
   
+tunnels:
+- network: [tcp, udp]
+  address: 127.0.0.1:6553
+  target: 8.8.8.8:53
+  proxy: PROXY
 tun:
   enable: true
-  mtu: 4506
-  device: clash
-  stack: mixed
-  dns-hijack:
-  - any:53
+  stack: MiXED
   auto-route: true
-  strict-route: true
   auto-redirect: true
   auto-detect-interface: true
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  device: utun0
+  mtu: 4506
+  strict-route: true
+  gso: true
+  gso-max-size: 65536
+  udp-timeout: 300
+  iproute2-table-index: 2022
+  iproute2-rule-index: 9000
+  endpoint-independent-nat: false
+  route-address-set:
+    - ruleset-1
+  route-exclude-address-set:
+    - ruleset-2
+  route-address:
+    - 0.0.0.0/1
+    - 128.0.0.0/1
+    - "::/1"
+    - "8000::/1"
+  route-exclude-address:
+  - 192.168.0.0/16
+  - fc00::/7
+  include-interface:
+  - eth0
+  exclude-interface:
+  - eth1
+  include-uid:
+  - 0
+  include-uid-range:
+  - 1000:9999
+  exclude-uid:
+  - 1000
+  exclude-uid-range:
+  - 1000:9999
+  include-android-user:
+  - 0
+  - 10
+  include-package:
+  - com.android.chrome
+  exclude-package:
+  - com.android.captiveportallogin  
+
   
 sniffer:
   enable: true
@@ -113,7 +167,11 @@ sniffer:
         - 443
   skip-domain:
     - +.push.apple.com
+    - Mijia Cloud
+  skip-src-address:
+    - 192.168.0.3/32
   skip-dst-address:
+    - 192.168.0.3/32
     - 91.105.192.0/23
     - 91.108.4.0/22
     - 91.108.8.0/21
@@ -144,15 +202,17 @@ dns:
     - 185.236.104.104
     - tls://1.1.1.1
     - 114.114.114.114
-    - 223.5.5.5
+    - tls://223.5.5.5
+    - tls://223.6.6.6
     - 8.8.8.8
   direct-nameserver:
-    - 1.1.1.1
     - system
+    - dhcp://system
   nameserver:
-    - system
+    - https://doh.pub/dns-query
     - tls://223.5.5.5:853
     - tls://223.6.6.6:853
+    - 8.8.8.8
     - 127.0.0.1:53
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
@@ -173,9 +233,10 @@ dns:
       - https://ada.openbld.net/dns-query
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
-    geosite:category-ads-all: rcode://refused
+    geosite:category-ads-all: rcode://success
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+  fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
   direct-nameserver-follow-policy: false
   fake-ip-filter:
@@ -235,6 +296,9 @@ dns:
   fallback:
     - tls://8.8.8.8
     - tls://1.1.1.1
+    - tls://8.8.4.4
+    - tls://1.0.0.1
+    - https://8.8.8.8/dns-query
     - https://cloudflare-dns.com/dns-query
     - https://ada.openbld.net/dns-query
     - https://doh.opendns.com/dns-query
@@ -258,8 +322,22 @@ proxy-providers:
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
-      interval: 50
-      expected-status: 200
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      tfo: false
+      mptcp: false
+      udp: true
+      udp-over-tcp: false
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      dialer-proxy: PROXY
+      ip-version: ipv4-prefer
+      additional-prefix: "A1 prefix |"
+      additional-suffix: "| A1 suffix"
   A2:
     type: http
     url: "https://shadowmere.xyz/api/b64sub/"
@@ -268,9 +346,23 @@ proxy-providers:
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
-      interval: 50
-      expected-status: 200
-  A6:
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      tfo: false
+      mptcp: false
+      udp: true
+      udp-over-tcp: false
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      dialer-proxy: PROXY
+      ip-version: ipv4-prefer
+      additional-prefix: "A2 prefix |"
+      additional-suffix: "| A2 suffix"
+  A3:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
     interval: 300
@@ -278,9 +370,23 @@ proxy-providers:
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
-      interval: 50
-      expected-status: 200
-  A7:
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      tfo: false
+      mptcp: false
+      udp: true
+      udp-over-tcp: false
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      dialer-proxy: PROXY
+      ip-version: ipv4-prefer
+      additional-prefix: "A3 prefix |"
+      additional-suffix: "| A3 suffix"
+  A4:
     type: http
     url: "https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg"
     interval: 300
@@ -288,9 +394,23 @@ proxy-providers:
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
-      interval: 50
-      expected-status: 200
-  A8:
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      tfo: false
+      mptcp: false
+      udp: true
+      udp-over-tcp: false
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      dialer-proxy: PROXY
+      ip-version: ipv4-prefer
+      additional-prefix: "A4 prefix |"
+      additional-suffix: "| A4 suffix"
+  A5:
     type: http
     url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies"
     interval: 300
@@ -298,9 +418,23 @@ proxy-providers:
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
-      interval: 50
-      expected-status: 200
-  A12:
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      tfo: false
+      mptcp: false
+      udp: true
+      udp-over-tcp: false
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      dialer-proxy: PROXY
+      ip-version: ipv4-prefer
+      additional-prefix: "A5 prefix |"
+      additional-suffix: "| A5 suffix"
+  A6:
     type: http
     url: "https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
     interval: 300
@@ -308,9 +442,23 @@ proxy-providers:
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
-      interval: 50
-      expected-status: 200 
-  A13:
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      tfo: false
+      mptcp: false
+      udp: true
+      udp-over-tcp: false
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      dialer-proxy: PROXY
+      ip-version: ipv4-prefer
+      additional-prefix: "A6 prefix |"
+      additional-suffix: "| A6 suffix"
+  A7:
     type: http
     url: "http://66.42.50.118:12580/clash/proxies"
     interval: 300
@@ -318,10 +466,24 @@ proxy-providers:
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
-      interval: 50
-      expected-status: 200
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      tfo: false
+      mptcp: false
+      udp: true
+      udp-over-tcp: false
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      dialer-proxy: PROXY
+      ip-version: ipv4-prefer
+      additional-prefix: "A7 prefix |"
+      additional-suffix: "| A7 suffix"
 
-  A29:
+  A8:
     type: http
     url: "https://config.v2cross.com/clashprofile/config" # https://raw.githubusercontent.com/mheidari98/.proxy/main/all
     interval: 300
@@ -329,9 +491,23 @@ proxy-providers:
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
-      interval: 50
-      expected-status: 200
-  A32:
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      tfo: false
+      mptcp: false
+      udp: true
+      udp-over-tcp: false
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      dialer-proxy: PROXY
+      ip-version: ipv4-prefer
+      additional-prefix: "A8 prefix |"
+      additional-suffix: "| A8 suffix"
+  A9:
     type: http
     url: "https://proxypool.link/clash/proxies" # #https://raw.githubusercontent.com/dongchengjie/airport/main/subs/merged/tested_within.yaml" # https://raw.githubusercontent.com/PangTouY00/Auto_proxy/main/Long_term_subscription_num
     interval: 300
@@ -339,9 +515,23 @@ proxy-providers:
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
-      interval: 50
-      expected-status: 200
-  A34:
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      tfo: false
+      mptcp: false
+      udp: true
+      udp-over-tcp: false
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      dialer-proxy: PROXY
+      ip-version: ipv4-prefer
+      additional-prefix: "A9 prefix |"
+      additional-suffix: "| A9 suffix"
+  A10:
     type: http
     url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
     interval: 300
@@ -349,10 +539,24 @@ proxy-providers:
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
-      interval: 50
-      expected-status: 200
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      tfo: false
+      mptcp: false
+      udp: true
+      udp-over-tcp: false
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      dialer-proxy: PROXY
+      ip-version: ipv4-prefer
+      additional-prefix: "A10 prefix |"
+      additional-suffix: "| A10 suffix"
 
-  A44:
+  A11:
     type: http
     url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
     interval: 300
@@ -360,8 +564,22 @@ proxy-providers:
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
-      interval: 50
-      expected-status: 200      
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      tfo: false
+      mptcp: false
+      udp: true
+      udp-over-tcp: false
+      down: "50 Mbps"
+      up: "10 Mbps"
+      skip-cert-verify: true
+      dialer-proxy: PROXY
+      ip-version: ipv4-prefer
+      additional-prefix: "A11 prefix |"
+      additional-suffix: "| A11 suffix"     
 proxies:
   - name: redir-in
     type: direct
@@ -379,16 +597,16 @@ proxy-groups:
       - "🎈fallback"
       - "🇺🇸US🇺🇸"
       - "AI"
+      
   - name: "🎈Auto"
     type: "url-test"
     url: "https://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
-    interval: 30
-    tolerance: 5
+    tolerance: 10
     exclude-type: "direct|http|socks5|redir-in|trojan"
     include-all-providers: true
     udp: false
-    hidden: true
+    hidden: false
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png"
     
   - name: "🎈fallback"
@@ -399,7 +617,7 @@ proxy-groups:
     exclude-type: "direct|http|socks5|redir-in|trojan"
     include-all-providers: true
     udp: false
-    hidden: true
+    hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
     
   - name: "🇺🇸US🇺🇸"
@@ -407,11 +625,10 @@ proxy-groups:
     exclude-filter: "HK|Hong|TW|Tai|Taiwan|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|回国|校园|游戏|🇰🇷|韩国|韓|首尔|KR|Korea|回国|校园|游戏|🇦🇹|timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅|AT|GER|🇩🇪🇱🇻|🇩🇪"
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
-    interval: 30
-    tolerance: 5
+    tolerance: 10
     exclude-type: "socks5|http|direct|redir-in|trojan"
     include-all-providers: true
-    hidden: true
+    hidden: false
     url: "https://connectivitycheck.gstatic.com/generate_204"
     
   - name: "🇺🇸US🇺🇸back"
@@ -422,16 +639,15 @@ proxy-groups:
     interval: 18
     exclude-type: "socks5|http|direct|redir-in|trojan"
     include-all-providers: true
-    hidden: true
+    hidden: false
     url: "https://connectivitycheck.gstatic.com/generate_204"
     
   - name: "AI"
     type: "url-test"
     url: "https://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
-    interval: 3
-    tolerance: 5
-    hidden: true
+    tolerance: 10
+    hidden: false
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Final.png"
     proxies:
       - "🇺🇸US🇺🇸back"
@@ -444,49 +660,57 @@ proxy-groups:
       - "redir-in"
       - "DNS"
       - "PROXY"
+      
 rule-providers:
   nsfw:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
-    interval: 30
+    interval: 86400
+    size-limit: 0
   social:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
-    interval: 30
+    interval: 86400
+    size-limit: 0
   ir:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
     interval: 86400
+    size-limit: 0
   ads:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
     interval: 86400
+    size-limit: 0
   malware:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
     interval: 86400
+    size-limit: 0
   phishing:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
     interval: 86400
+    size-limit: 0
   cryptominers:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
     interval: 86400
+    size-limit: 0
   apps:
     type: http
     format: yaml
@@ -499,42 +723,50 @@ rule-providers:
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
     interval: 86400
+    size-limit: 0
   private:
     type: http
     format: yaml
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
     interval: 86400
+    size-limit: 0
   irasn:
     type: http
     format: yaml
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
     interval: 86400
+    size-limit: 0
   geolocation-!cn:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
     interval: 86400
+    size-limit: 0
   AWA:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
     interval: 86400
+    size-limit: 0
   anti-AD:
     type: http
     behavior: domain
     format: yaml
     url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"
     interval: 86400
+    size-limit: 0
   anti-AD-white:
     type: http
     behavior: domain
     format: yaml
     url: "https://raw.githubusercontent.com/privacy-protection-tools/dead-horse/master/anti-ad-white-for-clash.yaml"
     interval: 86400
+    size-limit: 0
+
 rules :
   - DOMAIN-KEYWORD,soft98.ir,🎯 Direct
   - DOMAIN,soft98,🎯 Direct
@@ -575,15 +807,15 @@ rules :
   - DOMAIN-SUFFIX,disneyplus.com,PROXY
   - DOMAIN-SUFFIX,hbo.com,PROXY
   - DOMAIN-SUFFIX,primevideo.com,PROXY
-  - DOMAIN-SUFFIX,cn,DIRECT
-  - DOMAIN-KEYWORD,-cn,DIRECT
-  - DOMAIN-SUFFIX,ir,DIRECT
-  - DOMAIN-KEYWORD,ir,DIRECT
-  - DOMAIN-SUFFIX,local,DIRECT
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - IP-CIDR,172.16.0.0/12,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  - IP-CIDR,10.0.0.0/8,DIRECT
+  - DOMAIN-SUFFIX,cn,🎯 Direct,no-resolve
+  - DOMAIN-KEYWORD,-cn,🎯 Direct,no-resolve
+  - DOMAIN-SUFFIX,ir,🎯 Direct,no-resolve
+  - DOMAIN-KEYWORD,ir,🎯 Direct,no-resolve
+  - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
+  - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,172.16.0.0/12,🎯 Direct,no-resolve
+  - IP-CIDR,192.168.0.0/16,🎯 Direct,no-resolve
+  - IP-CIDR,10.0.0.0/8,🎯 Direct,no-resolve
   - DOMAIN-SUFFIX,openai.com,AI
   - DOMAIN-SUFFIX,chatgpt.com,AI
   - DOMAIN-SUFFIX,anthropic.com,AI
@@ -677,19 +909,23 @@ rules :
   - DOMAIN-SUFFIX,youtube.com,PROXY
   - DOMAIN-SUFFIX,spotify.com,PROXY
   - IN-PORT,7890,PROXY
-  - IN-PORT,7892,PROXY
-  - IN-PORT,7891,PROXY
+#  - IN-PORT,7892,PROXY
+#  - IN-PORT,7891,PROXY
   - IN-PORT,53,DNS
+  - DST-PORT,80,DNS
+  - DST-PORT,443,DNS
   - IN-TYPE,SOCKS/HTTP,PROXY
   - IN-USER,mihomo,PROXY
   - IN-NAME,ss,PROXY
-  - DOMAIN-SUFFIX,local,DIRECT
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - IP-CIDR,172.16.0.0/12,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  - IP-CIDR,10.0.0.0/8,DIRECT
-  - IP-CIDR,17.0.0.0/8,DIRECT
-  - IP-CIDR,100.64.0.0/10,DIRECT
+  - NETWORK,udp,PROXY
+  - IP-SUFFIX,8.8.8.8/24,PROXY
+  - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
+  - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,172.16.0.0/12,🎯 Direct,no-resolve
+  - IP-CIDR,192.168.0.0/16,🎯 Direct,no-resolve
+  - IP-CIDR,10.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,17.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,100.64.0.0/10,🎯 Direct,no-resolve
   - PROCESS-NAME,com.termux,PROXY
   - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
   - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
