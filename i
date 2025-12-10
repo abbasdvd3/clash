@@ -6943,8 +6943,8 @@ proxy-groups:
 - name: 🚀 select
   type: url-test
   url: "https://connectivitycheck.gstatic.com/generate_204"
-  interval: 3
-  tolerance: 5
+  hidden: true
+  tolerance: 10
   proxies:
   - url-test
   - fallback
@@ -6955,11 +6955,10 @@ proxy-groups:
   type: url-test
   include-all-proxies: true
   exclude-type: "direct|http|socks5|redir-in|trojan"
-  proxies:
+  hidden: true
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
   url: "https://connectivitycheck.gstatic.com/generate_204"
-  interval: 30
-  tolerance: 5
+  tolerance: 10
 
 - name: AI
   type: url-test
@@ -6976,6 +6975,7 @@ proxy-groups:
 
 - name: 🌍 IRAN
   type: select
+  hidden: true
   proxies:
   - DIRECT
   - 🚀 select
@@ -6988,6 +6988,7 @@ proxy-groups:
   url: "https://connectivitycheck.gstatic.com/generate_204"
   interval: 3
   udp: true
+  hidden: true
   proxies:
   - 🚀 select
   - url-test
@@ -6999,6 +7000,7 @@ proxy-groups:
   type: fallback
   include-all-proxies: true
   exclude-type: "direct|http|socks5|redir-in|trojan"
+  hidden: true
   proxies:
   icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
   url: "https://connectivitycheck.gstatic.com/generate_204"
