@@ -1,0 +1,287 @@
+mixed-port: 7890
+allow-lan: false
+mode: rule
+ipv6: false
+log-level: info
+external-controller: 0.0.0.0:9090
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  ipv6: false
+  default-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+  nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 119.29.29.29
+    - 180.76.76.76
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - router.asus.com
+    - localhost.sec.qq.com
+    - localhost.ptlogin2.qq.com
+    - +.msftconnecttest.com
+tun:
+  enable: true
+  stack: system
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - 114.114.114.114
+    - 180.76.76.76
+    - 119.29.29.29
+    - 223.5.5.5
+    - 8.8.8.8
+    - 8.8.4.4
+    - 1.1.1.1
+    - 1.0.0.1
+
+
+proxies:
+  - type: vmess
+    name: vmess
+    server: 1.0.2.3
+    port: 2095
+    uuid: 18d96190-c10f-448f-a82a-2d36df5c3cde
+    alterId: 0
+    network: ws
+    cipher: auto
+    servername: baidu.com
+    ws-opts:
+      path: v2rayse.com/test
+      headers:
+        Host: baidu.com
+  - type: vless
+    name: DNet-USA4-1M-10GB975
+    server: usa4.mydnets.top
+    port: 8248
+    uuid: 14f01913-e3f7-4438-b714-daae365f6e4b
+    network: tcp
+    servername: speedtest.net
+proxy-groups:
+  - name: 🚀
+    type: select
+    proxies:
+      - ♻️
+      - vmess
+      - DNet-USA4-1M-10GB975
+  - name: ♻️
+    type: url-test
+    proxies:
+      - vmess
+      - DNet-USA4-1M-10GB975
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+  - name: 📲
+    type: select
+    proxies:
+      - 🚀
+      - ♻️
+  - name: 💬 Ai
+    type: select
+    proxies:
+      - 🚀
+      - ♻️
+  - name: 📺
+    type: select
+    proxies:
+      - 🚀
+      - ♻️
+  - name: 📢
+    type: select
+    proxies:
+      - 🚀
+      - ♻️
+  - name: 🍎
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀
+      - ♻️
+  - name: 🎯
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀
+      - ♻️
+  - name: 🛑
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🍃
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🐟
+    type: select
+    proxies:
+      - 🚀
+      - ♻️
+      - DIRECT
+rule-providers:
+  LocalAreaNetwork:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
+    interval: 86400
+  UnBan:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
+    interval: 86400
+  BanAD:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+    interval: 86400
+  BanProgramAD:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
+    interval: 86400
+  GoogleFCM:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
+    interval: 86400
+  GoogleCN:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
+    interval: 86400
+  SteamCN:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list
+    interval: 86400
+  Bing:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list
+    interval: 86400
+  OneDrive:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list
+    interval: 86400
+  Microsoft:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
+    interval: 86400
+  Apple:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
+    interval: 86400
+  Telegram:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
+    interval: 86400
+  AI:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list
+    interval: 86400
+  OpenAi:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
+    interval: 86400
+  YouTube:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list
+    interval: 86400
+  Netflix:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Netflix.list
+    interval: 86400
+  Bahamut:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bahamut.list
+    interval: 86400
+  BilibiliHMT:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list
+    interval: 86400
+  Bilibili:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bilibili.list
+    interval: 86400
+  ChinaMedia:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list
+    interval: 86400
+  ProxyMedia:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
+    interval: 86400
+  ProxyGFWlist:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
+    interval: 86400
+  ChinaDomain:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
+    interval: 86400
+  ChinaCompanyIp:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
+    interval: 86400
+  Download:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list
+    interval: 86400
+
+rules:
+  - RULE-SET,LocalAreaNetwork,🎯
+  - RULE-SET,UnBan,🎯
+  - RULE-SET,BanAD,🛑
+  - RULE-SET,BanProgramAD,🍃
+  - RULE-SET,GoogleFCM,📢
+  - RULE-SET,GoogleCN,🎯
+  - RULE-SET,SteamCN,🎯
+  - RULE-SET,Bing,📢
+  - RULE-SET,OneDrive,📢
+  - RULE-SET,Microsoft,📢
+  - RULE-SET,Apple,🍎
+  - RULE-SET,Telegram,📲
+  - RULE-SET,AI,💬 Ai
+  - RULE-SET,OpenAi,💬 Ai
+  - RULE-SET,YouTube,📺
+  - RULE-SET,Netflix,📺
+  - RULE-SET,Bahamut,📺
+  - RULE-SET,BilibiliHMT,📺
+  - RULE-SET,Bilibili,📺
+  - RULE-SET,ChinaMedia,📺
+  - RULE-SET,ProxyMedia,📺
+  - RULE-SET,ProxyGFWlist,🚀
+  - RULE-SET,ChinaDomain,🎯
+  - RULE-SET,ChinaCompanyIp,🎯
+  - RULE-SET,Download,🎯
+  - GEOIP,CN,🎯
+  - MATCH,🐟
