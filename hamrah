@@ -52,9 +52,9 @@ geo-auto-update: true
 geo-update-interval: 24
 etag-support: true
 geox-url:
-  GeoIP: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
-  GeoSite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
-  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
+  geoip: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
+  geosite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
+  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/Country.mmdb
   ANS: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
 global-ua: clash.meta
 profile:
@@ -508,6 +508,48 @@ rule-providers:
     behavior: domain
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
     interval: 86400
+  AI:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list"
+    interval: 86400
+    size-limit: 0
+  OpenAi:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list"
+    interval: 86400
+    size-limit: 0
+  GoogleFCM:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list"
+    interval: 86400
+    size-limit: 0
+  GoogleCNProxyIP:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list"
+    interval: 86400
+    size-limit: 0
+  GoogleCN:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list"
+    interval: 86400
+    size-limit: 0
+  YouTube:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list"
+    interval: 86400
+    size-limit: 0
+  Google:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list"
+    interval: 86400
+    size-limit: 0
 rules :
   - DOMAIN-SUFFIX,openai.com,🤖 AI
   - DOMAIN-SUFFIX,chatgpt.com,🤖 AI
@@ -529,9 +571,9 @@ rules :
   - DOMAIN-SUFFIX,farsroid,🎯 Direct
   - DOMAIN-KEYWORD,farsroid.com,🎯 Direct
   - DOMAIN,farsroid.com,🎯 Direct
-  - DOMAIN-SUFFIX,createporn.com,PROXY
-  - DOMAIN-KEYWORD,createporn,PROXY
-  - DOMAIN,createporn,PROXY
+  - DOMAIN-SUFFIX,createporn.com,🤖 AI
+  - DOMAIN-KEYWORD,createporn,🤖 AI
+  - DOMAIN,createporn,🤖 AI
   - DOMAIN,ad.com,REJECT
   - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
   - PROCESS-NAME,com.samsung.android.location,REJECT,no-resolve
@@ -539,20 +581,20 @@ rules :
   - PROCESS-NAME,com.google.android.gms.location.history,REJECT,no-resolve
   - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
   - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
-  - DOMAIN-SUFFIX,google.com,PROXY
-  - DOMAIN-KEYWORD,google,PROXY
+  - DOMAIN-SUFFIX,google.com,🤖 AI
+  - DOMAIN-KEYWORD,google,🤖 AI
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR6,2620:0:2d0:200::7/32,PROXY
-  - IP-SUFFIX,8.8.8.8/24,PROXY
-  - SRC-IP-CIDR,192.168.1.201/32,DIRECT
-  - SRC-IP-SUFFIX,192.168.1.201/8,DIRECT
-  - DOMAIN-SUFFIX,local,DIRECT
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - IP-CIDR,172.16.0.0/12,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  - IP-CIDR,10.0.0.0/8,DIRECT
-  - IP-CIDR,17.0.0.0/8,DIRECT
-  - IP-CIDR,100.64.0.0/10,DIRECT
+  - IP-SUFFIX,8.8.8.8/24,🤖 AI
+  - SRC-IP-CIDR,192.168.1.201/32,🎯 Direct
+  - SRC-IP-SUFFIX,192.168.1.201/8,🎯 Direct
+  - DOMAIN-SUFFIX,local,🎯 Direct
+  - IP-CIDR,127.0.0.0/8,🎯 Direct
+  - IP-CIDR,172.16.0.0/12,🎯 Direct
+  - IP-CIDR,192.168.0.0/16,🎯 Direct
+  - IP-CIDR,10.0.0.0/8,🎯 Direct
+  - IP-CIDR,17.0.0.0/8,🎯 Direct
+  - IP-CIDR,100.64.0.0/10,🎯 Direct
   - IN-PORT,7890,PROXY
   - IN-PORT,7892,PROXY
   - IN-PORT,7891,PROXY
@@ -566,7 +608,7 @@ rules :
   - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
   - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
   - NOT,((DOMAIN,google.com)),PROXY
-  - RULE-SET,private,DIRECT,no-resolve
+  - RULE-SET,private,🎯 Direct,no-resolve
   - RULE-SET,apps,🎯 Direct
   - RULE-SET,ads,REJECT
   - RULE-SET,malware,REJECT
@@ -580,4 +622,20 @@ rules :
   - RULE-SET,nsfw,PROXY,no-resolve
   - RULE-SET,geolocation-!cn,PROXY
   - GEOIP,ir,🎯 Direct
+  - RULE-SET,GoogleFCM,🤖 AI
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🤖 AI
+  - DOMAIN-SUFFIX,services.googleapis.cn,🤖 AI
+  - RULE-SET,GoogleCNProxyIP,🤖 AI
+  - RULE-SET,GoogleCN,🤖 AI
+  - RULE-SET,YouTube,🤖 AI
+  - RULE-SET,Google,🤖 AI
+  - GEOIP,google,🤖 AI
+  - GEOIP,openai,🤖 AI
+  - GEOIP,telegram,PROXY
+  - GEOIP,twitter,PROXY
+  - GEOIP,facebook,PROXY
+  - GEOIP,private,🎯 Direct,no-resolve
+  - GEOSITE,category-ads-all,REJECT
+  - GEOSITE,category-ir,🎯 Direct,no-resolve
+  - GEOSITE,ir,🎯 Direct
   - MATCH,PROXY,no-resolve
