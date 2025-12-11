@@ -3,17 +3,17 @@ listeners:
   type: redir
   port: 9797
   listen: 0.0.0.0
-  udp: false
+  udp: true
 - name: mixed-in
   type: mixed
   port: 7890
   listen: 0.0.0.0
-  udp: false
+  udp: true
 - name: socks-in
   type: socks
   port: 7891
   listen: 0.0.0.0
-  udp: false
+  udp: true
 - name: http-in
   type: http
   port: 7892
@@ -30,8 +30,8 @@ mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
 mode: rule
-ipv6: true
-allow-lan: true
+ipv6: false
+allow-lan: false
 log-level: debug
 bind-address: "*"
 lan-allowed-ips:
@@ -44,11 +44,20 @@ skip-auth-prefixes:
 - ::1/128:
 external-controller: 0.0.0.0:9090
 external-controller-tls: 0.0.0.0:9091
+external-controller-cors:
+  allow-private-network: true
+  allow-origins:
+  - tauri://localhost
+  - http://tauri.localhost
+  - https://yacd.metacubex.one
+  - https://metacubex.github.io
+  - https://board.zash.run.place
 external-doh-server: /dns-query
 external-ui: ./dashboard
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 keep-alive-interval: 30
 find-process-mode: strict
+
 unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: random
@@ -150,52 +159,41 @@ tun:
   exclude-package:
   - com.android.captiveportallogin  
 
-  
+
 sniffer:
   enable: true
-  parse-pure-ip: true
   force-dns-mapping: true
+  parse-pure-ip: true
   override-destination: true
   sniff:
     HTTP:
-      ports:
-        - 80
-        - 443
-      override-destination: false
+      ports: [80, 8080-8880]
+      override-destination: true
     TLS:
-      ports:
-        - 443
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - +.v2ex.com
   skip-domain:
-    - +.push.apple.com
     - Mijia Cloud
   skip-src-address:
     - 192.168.0.3/32
   skip-dst-address:
     - 192.168.0.3/32
-    - 91.105.192.0/23
-    - 91.108.4.0/22
-    - 91.108.8.0/21
-    - 91.108.16.0/21
-    - 91.108.56.0/22
-    - 95.161.64.0/20
-    - 149.154.160.0/20
-    - 185.76.151.0/24
-    - 2001:67c:4e8::/48
-    - 2001:b28:f23c::/47
-    - 2001:b28:f23f::/48
-    - 2a0a:f280:203::/48
     
 dns:
   enable: true
   cache-algorithm: arc
-  prefer-h3: true
+  prefer-h3: false
   use-hosts: true
   use-system-hosts: true
-  respect-rules: true
+  respect-rules: false
   listen: 0.0.0.0:53
-  ipv6: true
+  ipv6: false
   defult-nameserver:
-    - 127.0.0.1:53
+    - system
+    - dhcp://system
     - tls://223.5.5.5:853
     - tls://223.6.6.6:853
     - tls://8.8.8.8
@@ -206,6 +204,8 @@ dns:
     - tls://223.6.6.6
     - 8.8.8.8
   direct-nameserver:
+    - 8.8.8.8
+    - tls://1.1.1.1
     - system
     - dhcp://system
   nameserver:
@@ -213,7 +213,8 @@ dns:
     - tls://223.5.5.5:853
     - tls://223.6.6.6:853
     - 8.8.8.8
-    - 127.0.0.1:53
+    - system
+    - dhcp://system
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
     - https://cloudflare-dns.com/dns-query#PROXY
@@ -228,7 +229,7 @@ dns:
     - https://dns.alidns.com/dns-query
   nameserver-policy:
     "rule-set:social,nsfw,geolocation-!cn":
-      - https://8.8.8.8
+      - https://8.8.8.8/dns-query
       - https://cloudflare-dns.com/dns-query
       - https://ada.openbld.net/dns-query
       - https://doh.pub/dns-query
@@ -238,14 +239,13 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
-  direct-nameserver-follow-policy: false
+  direct-nameserver-follow-policy: true
   fake-ip-filter:
     - "*.lan"
     - "*.local"
     - "www.torrent.eu.org"
     - "www.msftconnecttest.com"
     - "*.msftncsi.com"
-    - "+.ir"
     - "+.10010.com"
     - "+.chinaunicom.com"
     - "+.baidu.com"
@@ -527,7 +527,7 @@ proxy-groups:
     url: "https://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     tolerance: 10
-    exclude-type: "direct|http|socks5|redir-in|trojan"
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
     include-all-providers: true
     udp: false
     hidden: false
@@ -538,7 +538,7 @@ proxy-groups:
     url: "https://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     interval: 18
-    exclude-type: "direct|http|socks5|redir-in|trojan"
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
     include-all-providers: true
     udp: false
     hidden: false
@@ -550,7 +550,7 @@ proxy-groups:
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
     tolerance: 10
-    exclude-type: "socks5|http|direct|redir-in|trojan"
+    exclude-type: "socks5|http|direct|redir-in|trojan|DNS"
     include-all-providers: true
     hidden: false
     url: "https://connectivitycheck.gstatic.com/generate_204"
@@ -561,7 +561,7 @@ proxy-groups:
     type: "fallback"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
     interval: 18
-    exclude-type: "socks5|http|direct|redir-in|trojan"
+    exclude-type: "socks5|http|direct|redir-in|trojan|DNS"
     include-all-providers: true
     hidden: false
     url: "https://connectivitycheck.gstatic.com/generate_204"
@@ -690,8 +690,56 @@ rule-providers:
     url: "https://raw.githubusercontent.com/privacy-protection-tools/dead-horse/master/anti-ad-white-for-clash.yaml"
     interval: 86400
     size-limit: 0
-
+  AI:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list"
+    interval: 86400
+    size-limit: 0
+  OpenAi:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list"
+    interval: 86400
+    size-limit: 0
+  GoogleFCM:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list"
+    interval: 86400
+    size-limit: 0
+  GoogleCNProxyIP:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list"
+    interval: 86400
+    size-limit: 0
+  GoogleCN:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list"
+    interval: 86400
+    size-limit: 0
+  YouTube:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list"
+    interval: 86400
+    size-limit: 0
+  Google:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list"
+    interval: 86400
+    size-limit: 0
 rules :
+  - RULE-SET,GoogleFCM,AI
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,AI
+  - DOMAIN-SUFFIX,services.googleapis.cn,AI
+  - RULE-SET,GoogleCNProxyIP,AI
+  - RULE-SET,GoogleCN,AI
+  - RULE-SET,YouTube,AI
+  - RULE-SET,Google,AI
   - DOMAIN-KEYWORD,soft98.ir,🎯 Direct
   - DOMAIN,soft98,🎯 Direct
   - DOMAIN-SUFFIX,soft98.ir,🎯 Direct
@@ -713,8 +761,8 @@ rules :
   - PROCESS-NAME,com.google.android.gms.location.history,REJECT,no-resolve
   - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
   - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
-  - DOMAIN-SUFFIX,google.com,PROXY
-  - DOMAIN-KEYWORD,google,PROXY
+  - DOMAIN-SUFFIX,google.com,AI
+  - DOMAIN-KEYWORD,google,AI
   - DOMAIN-SUFFIX,netflix.com,PROXY
   - DOMAIN-SUFFIX,netflix.net,PROXY
   - DOMAIN-SUFFIX,nflxext.com,PROXY
@@ -724,8 +772,8 @@ rules :
   - DOMAIN-SUFFIX,spotify.com,PROXY
   - DOMAIN-SUFFIX,scdn.co,PROXY
   - DOMAIN-SUFFIX,spoti.fi,PROXY
-  - DOMAIN-SUFFIX,youtube.com,PROXY
-  - DOMAIN-SUFFIX,googlevideo.com,PROXY
+  - DOMAIN-SUFFIX,youtube.com,AI
+  - DOMAIN-SUFFIX,googlevideo.com,AI
   - DOMAIN-SUFFIX,ytimg.com,PROXY
   - DOMAIN-SUFFIX,hulu.com,PROXY
   - DOMAIN-SUFFIX,disneyplus.com,PROXY
@@ -833,11 +881,11 @@ rules :
   - DOMAIN-SUFFIX,youtube.com,PROXY
   - DOMAIN-SUFFIX,spotify.com,PROXY
   - IN-PORT,7890,PROXY
-#  - IN-PORT,7892,PROXY
-#  - IN-PORT,7891,PROXY
-  - IN-PORT,53,DNS
-  - DST-PORT,80,DNS
-  - DST-PORT,443,DNS
+  - IN-PORT,7892,PROXY
+  - IN-PORT,7891,PROXY
+  - IN-PORT,53,DNS,no-resolve
+  - DST-PORT,80,DNS,no-resolve
+  - DST-PORT,443,DNS,no-resolve
   - IN-TYPE,SOCKS/HTTP,PROXY
   - IN-USER,mihomo,PROXY
   - IN-NAME,ss,PROXY
@@ -866,6 +914,6 @@ rules :
   - RULE-SET,irasn,🎯 Direct
   - RULE-SET,social,AI,no-resolve
   - RULE-SET,nsfw,AI,no-resolve
-  - RULE-SET,geolocation-!cn,PROXY
+  - RULE-SET,geolocation-!cn,AI
   - GEOIP,ir,🎯 Direct
-  - MATCH,PROXY,no-resolve
+  - MATCH,PROXY
