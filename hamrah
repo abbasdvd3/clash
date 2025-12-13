@@ -157,22 +157,20 @@ dns:
     - tls://223.5.5.5:853 
     - https://doh.pub/dns-query 
     - https://dns.alidns.com/dns-query#h3=true 
-    - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true 
-    - dhcp://en0 
+    - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true
     - quic://dns.adguard.com:784
-    - https://cloudflare-dns.com/dns-query#PROXY
+    - https://cloudflare-dns.com/dns-query
     - https://sky.rethinkdns.com/dns-query
     - https://dnspub.restena.lu/dns-query
     - https://doh.flashstart.com/f17c9ee5
-    - https://ada.openbld.net/dns-query#PROXY
+    - https://ada.openbld.net/dns-query
     - https://rubyfish.cn/dns-query#PROXY
-    - https://all.dns.mullvad.net/dns-query#PROXY
+    - https://all.dns.mullvad.net/dns-query
   proxy-server-nameserver:
     - https://cloudflare-dns.com/dns-query:784
     - https://sky.rethinkdns.com/dns-query
     - https://ada.openbld.net/dns-query:784
     - https://dnspub.restena.lu/dns-query
-    - https://freedns.controld.com/p0:784
   nameserver-policy:
     "rule-set:social,nsfw,geolocation-!cn":
       - https://8.8.8.8/dns-query
@@ -485,7 +483,7 @@ proxy-groups:
     url: "https://1.1.1.1/cdn-cgi/trace"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     exclude-type: "direct|http|socks5|redir-in|trojan"
-    udp: false
+    udp: true
     hidden: true
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
     proxies:
@@ -510,14 +508,14 @@ proxy-groups:
     include-all-providers: true
     exclude-type: "direct|http|socks5|redir-in|trojan"
     filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
-    proxies: 
+    udp: true
 
   - name: "🇺🇲"
     type: "url-test"
     url: "https://1.1.1.1/cdn-cgi/trace"
     include-all-providers: true
     exclude-type: "direct|http|socks5|redir-in|trojan"
-    proxies:
+    udp: true
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
 
   - name: "🇹🇼"
@@ -526,7 +524,7 @@ proxy-groups:
     include-all-providers: true
     exclude-type: "direct|http|socks5|redir-in|trojan"
     filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
-    proxies:
+    udp: true
 
   - name: "🇸🇬"
     type: "url-test"
@@ -534,7 +532,7 @@ proxy-groups:
     include-all-providers: true
     exclude-type: "direct|http|socks5|redir-in|trojan"
     filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
-    proxies: 
+    udp: true
 
   - name: "🇰🇷"
     type: "url-test"
@@ -542,7 +540,7 @@ proxy-groups:
     include-all-providers: true
     exclude-type: "direct|http|socks5|redir-in|trojan"
     filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
-    proxies: 
+    udp: true
 
   - name: "🎯 Direct"
     type: "select"
