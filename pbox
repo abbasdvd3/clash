@@ -9,13 +9,6 @@ global-client-fingerprint: chrome
 profile:
   store-selected: true
   store-fake-ip: true
-  smart-collector-size: 100
-
-
-
-lgbm-auto-update: true
-lgbm-update-interval: 72
-lgbm-url: "https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model.bin"
 
 dns:
   enable: true
@@ -64,25 +57,10 @@ proxy-groups:
   - name: 🐟
     type: select
     proxies:
-      - Smart Group
       - url-test
       - 🔯
       - 🔮
       - 🇺🇸
-  
-  - name: Smart Group
-    type: smart
-    policy-priority: "Premium:0.9;SG:1.3" 
-    uselightgbm: true
-    collectdata: true
-    sample-rate: 1
-    prefer-asn: true
-    hidden: true
-    udp: false
-    include-all-proxies: true
-    include-all-providers: true
-    exclude-type: "socks5|http|direct|redir-in|🇺🇸|🔮|�|url-test"
-    proxies:
 
   - name: 🔯
     type: fallback
