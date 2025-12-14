@@ -1,832 +1,2313 @@
 {
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "ui",
+      "secret": "",
+      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_download_detour": "direct",
+      "default_mode": "rule"
+    },
+    "cache_file": {
+      "enabled": true,
+      "store_fakeip": true,
+      "store_rdrc": true
+    }
+  },
+  "dns": {
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
+    "servers": [
+      {
+        "tag": "google",
+        "address": "tls://8.8.8.8"
+      },
+      {
+        "tag": "local",
+        "address": "https://223.5.5.5/dns-query",
+        "detour": "direct"
+      },
+      {
+        "tag": "fakeip",
+        "address": "fakeip"
+      }
+    ],
+    "rules": [
+      {
+        "domain": [
+          "cdn.jsdelivr.net"
+        ],
+        "server": "google"
+      },
+      {
+        "outbound": "any",
+        "server": "local"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "local"
+      },
+      {
+        "clash_mode": "global",
+        "server": "google"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "rule_set": "geosite-cn",
+        "server": "fakeip"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "server": "local"
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geosite-geolocation-!cn",
+            "invert": true
+          },
+          {
+            "rule_set": "geoip-cn"
+          }
+        ],
+        "server": "google",
+        "client_subnet": "114.114.114.114/24"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "fakeip"
+      }
+    ],
+    "independent_cache": true,
+    "strategy": "prefer_ipv4"
+  },
+  "inbounds": [
+    {
+      "tag": "tun-in",
+      "type": "tun",
+      "address": [
+        "172.19.0.0/30",
+        "fdfe:dcba:9876::0/126"
+      ],
+      "stack": "mixed",
+      "auto_route": true,
+      "auto_redirect": true,
+      "strict_route": true,
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 7890
+        }
+      }
+    },
+    {
+      "tag": "mixed-in",
+      "type": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 7890
+    }
+  ],
   "outbounds": [
     {
-      "type": "vless",
-      "tag": "Few01 § 0",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v01.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
+      "tag": "Proxy",
+      "type": "selector",
+      "outbounds": [
+        "auto",
+        "direct",
+        "112\r",
+        "🇺🇸 United States - Santa Clara 🌎 SS-TCP-NA 4⃣\r",
+        "v2cross.com_309\r",
+        "182\r",
+        "179\r",
+        "🇺🇸 美国|@stairnode\r",
+        "🇺🇸 美国2|@stairnode\r",
+        "1\r",
+        "5\r",
+        "6\r",
+        "9\r",
+        "10\r",
+        "13\r",
+        "22\r",
+        "👑@Amir_Alternative_Official -_- 119\r",
+        "36\r",
+        "37\r",
+        "38\r",
+        "39\r",
+        "43\r",
+        "44\r",
+        "56\r",
+        "72\r",
+        "76\r",
+        "79\r",
+        "82\r",
+        "84\r",
+        "85\r",
+        "87\r",
+        "88\r",
+        "89\r",
+        "94\r",
+        "95\r",
+        "98\r",
+        "99\r",
+        "101\r",
+        "104\r",
+        "105\r",
+        "107\r",
+        "109\r",
+        "111\r",
+        "113\r",
+        "114\r",
+        "117\r",
+        "126\r",
+        "127\r",
+        "216\r",
+        "v2cross.com_23\r",
+        "v2cross.com_121\r",
+        "v2cross.com_126\r",
+        "v2cross.com_158\r",
+        "v2cross.com_170\r",
+        "v2cross.com_221\r",
+        "v2cross.com_254\r",
+        "v2cross.com_270\r",
+        "v2cross.com_275\r",
+        "United States_1\r",
+        "United States_2\r",
+        "Panama\r",
+        "PE\r",
+        "🇵🇱_1068\r",
+        "🇵🇱_1069\r",
+        "🇵🇱_1978\r",
+        "RELAY🚩 | to.ruangguru.com-443 | 84.43ms\r\r",
+        "🇯🇵_JP_日本_tr_1040\r",
+        "🇷🇺_RU_hamrah_3\r",
+        "🇷🇺_RU_hamrah_148\r",
+        "🇷🇺_RU_hamrah_156\r",
+        "🇷🇺_hamrah_896\r",
+        "🇺🇸_hamrah_306\r",
+        "🇳🇱_荷兰_Hamrah_103\r",
+        "🇩🇪_德国_Hamrah_286\r",
+        "🇺🇸_美国_Hamrah_288\r",
+        "🇵🇱_PL_波兰_1443\r\r",
+        "🇵🇱_PL_波兰_1291\r\r",
+        "🇵🇱_PL_波兰_1574\r\r",
+        "🇵🇱_HAMRAH_52\r",
+        "🇵🇱_PL_波兰_1308\r\r",
+        "🇵🇱_HAMRAH_419\r",
+        "🇵🇱_HAMRAH_1003\r",
+        "🇵🇱_HAMRAH_1012\r",
+        "🇵🇱_HAMRAH_221\r",
+        "🇵🇱_HAMRAH_990\r",
+        "🇵🇱_HAMRAH_991\r",
+        "🇵🇱_HAMRAH_993\r",
+        "🇵🇱_HAMRAH_225\r",
+        "🇵🇱_PL_波兰_1549_5385\r",
+        "🇺🇸 US 19 → tg@nicevpn123\r",
+        "🇺🇸_hamrah_206\r",
+        "🇪🇪_hamrah_220\r",
+        "🇺🇸_US_美国_tr_1177\r",
+        "🇺🇸_US_hamrah_198\r",
+        "🇺🇸_hamrah_467\r",
+        "🇳🇱_iran_783\r\r",
+        "t_250\r",
+        "ira_1896\r",
+        "🔒 TR-TCP-NA 🇦🇺 AU-103.224.212.213:443\r\r",
+        "🇺🇸_美国_hamraH_213\r",
+        "🇬🇧_GB_p.All_2400\r",
+        "美国_US_🇺🇸_596\r",
+        "美国_US_🇺🇸_618\r",
+        "美国_US_🇺🇸_778\r",
+        "美国_US_🇺🇸_1123\r",
+        "美国_US_🇺🇸_1152\r",
+        "中国_CN_🇨🇳_1585\r",
+        "中国_CN_🇨🇳_1604\r",
+        "@MARAMBASHI 💙\r",
+        "🇷🇺@FreakConfig\r",
+        "t.me/OutlineVpnOfficial (9)\r",
+        "AB_68\r",
+        "AB_4097\r",
+        "AB_4303\r",
+        "AB_4273\r",
+        "AB_4307\r",
+        "AB_88\r",
+        "AB_4280\r",
+        "AB_4310\r",
+        "AB_103\r",
+        "AB_112\r",
+        "AB_120\r",
+        "AB_126\r",
+        "AB_127\r",
+        "AB_4092\r",
+        "AB_4094\r",
+        "AB_137\r",
+        "AB_4087\r",
+        "AB_4282\r",
+        "AB_4218\r",
+        "AB_812\r",
+        "AB_921\r",
+        "馃敟Join Telegram:@Farah_VPN馃煟_4\r",
+        "👑@Amir_Alternative_Official -_- 54\r",
+        "👑@Amir_Alternative_Official -_- 55\r",
+        "👑@Amir_Alternative_Official -_- 414\r",
+        "🇰🇷 机场推荐:dafei.de 韩国 01\r",
+        "MI_480\r",
+        "AB_4271\r",
+        "AB_4096\r",
+        "AB_4089\r",
+        "AB_4200\r",
+        "AB_4331\r",
+        "AB_4088\r",
+        "AB_80\r",
+        "AB_85\r",
+        "AB_87\r",
+        "AB_92\r",
+        "AB_100\r",
+        "AB_110\r",
+        "AB_113\r",
+        "AB_118\r",
+        "AB_125\r",
+        "AB_4099\r",
+        "AB_4093\r",
+        "AB_4086\r",
+        "AB_141\r",
+        "AB_4275\r",
+        "AB_4276\r",
+        "AB_4095\r",
+        "AB_766\r",
+        "AB_768\r",
+        "AB_4217\r",
+        "AB_780\r",
+        "AB_919\r",
+        "AB_4277\r",
+        "اتصال دائمی با سرور های چنل🍦@Outline_ir\r"
+      ]
     },
     {
-      "type": "vless",
-      "tag": "Few04 § 1",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v04.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
+      "tag": "auto",
+      "type": "urltest",
+      "outbounds": [
+        "112\r",
+        "🇺🇸 United States - Santa Clara 🌎 SS-TCP-NA 4⃣\r",
+        "v2cross.com_309\r",
+        "182\r",
+        "179\r",
+        "🇺🇸 美国|@stairnode\r",
+        "🇺🇸 美国2|@stairnode\r",
+        "1\r",
+        "5\r",
+        "6\r",
+        "9\r",
+        "10\r",
+        "13\r",
+        "22\r",
+        "👑@Amir_Alternative_Official -_- 119\r",
+        "36\r",
+        "37\r",
+        "38\r",
+        "39\r",
+        "43\r",
+        "44\r",
+        "56\r",
+        "72\r",
+        "76\r",
+        "79\r",
+        "82\r",
+        "84\r",
+        "85\r",
+        "87\r",
+        "88\r",
+        "89\r",
+        "94\r",
+        "95\r",
+        "98\r",
+        "99\r",
+        "101\r",
+        "104\r",
+        "105\r",
+        "107\r",
+        "109\r",
+        "111\r",
+        "113\r",
+        "114\r",
+        "117\r",
+        "126\r",
+        "127\r",
+        "216\r",
+        "v2cross.com_23\r",
+        "v2cross.com_121\r",
+        "v2cross.com_126\r",
+        "v2cross.com_158\r",
+        "v2cross.com_170\r",
+        "v2cross.com_221\r",
+        "v2cross.com_254\r",
+        "v2cross.com_270\r",
+        "v2cross.com_275\r",
+        "United States_1\r",
+        "United States_2\r",
+        "Panama\r",
+        "PE\r",
+        "🇵🇱_1068\r",
+        "🇵🇱_1069\r",
+        "🇵🇱_1978\r",
+        "RELAY🚩 | to.ruangguru.com-443 | 84.43ms\r\r",
+        "🇯🇵_JP_日本_tr_1040\r",
+        "🇷🇺_RU_hamrah_3\r",
+        "🇷🇺_RU_hamrah_148\r",
+        "🇷🇺_RU_hamrah_156\r",
+        "🇷🇺_hamrah_896\r",
+        "🇺🇸_hamrah_306\r",
+        "🇳🇱_荷兰_Hamrah_103\r",
+        "🇩🇪_德国_Hamrah_286\r",
+        "🇺🇸_美国_Hamrah_288\r",
+        "🇵🇱_PL_波兰_1443\r\r",
+        "🇵🇱_PL_波兰_1291\r\r",
+        "🇵🇱_PL_波兰_1574\r\r",
+        "🇵🇱_HAMRAH_52\r",
+        "🇵🇱_PL_波兰_1308\r\r",
+        "🇵🇱_HAMRAH_419\r",
+        "🇵🇱_HAMRAH_1003\r",
+        "🇵🇱_HAMRAH_1012\r",
+        "🇵🇱_HAMRAH_221\r",
+        "🇵🇱_HAMRAH_990\r",
+        "🇵🇱_HAMRAH_991\r",
+        "🇵🇱_HAMRAH_993\r",
+        "🇵🇱_HAMRAH_225\r",
+        "🇵🇱_PL_波兰_1549_5385\r",
+        "🇺🇸 US 19 → tg@nicevpn123\r",
+        "🇺🇸_hamrah_206\r",
+        "🇪🇪_hamrah_220\r",
+        "🇺🇸_US_美国_tr_1177\r",
+        "🇺🇸_US_hamrah_198\r",
+        "🇺🇸_hamrah_467\r",
+        "🇳🇱_iran_783\r\r",
+        "t_250\r",
+        "ira_1896\r",
+        "🔒 TR-TCP-NA 🇦🇺 AU-103.224.212.213:443\r\r",
+        "🇺🇸_美国_hamraH_213\r",
+        "🇬🇧_GB_p.All_2400\r",
+        "美国_US_🇺🇸_596\r",
+        "美国_US_🇺🇸_618\r",
+        "美国_US_🇺🇸_778\r",
+        "美国_US_🇺🇸_1123\r",
+        "美国_US_🇺🇸_1152\r",
+        "中国_CN_🇨🇳_1585\r",
+        "中国_CN_🇨🇳_1604\r",
+        "@MARAMBASHI 💙\r",
+        "🇷🇺@FreakConfig\r",
+        "t.me/OutlineVpnOfficial (9)\r",
+        "AB_68\r",
+        "AB_4097\r",
+        "AB_4303\r",
+        "AB_4273\r",
+        "AB_4307\r",
+        "AB_88\r",
+        "AB_4280\r",
+        "AB_4310\r",
+        "AB_103\r",
+        "AB_112\r",
+        "AB_120\r",
+        "AB_126\r",
+        "AB_127\r",
+        "AB_4092\r",
+        "AB_4094\r",
+        "AB_137\r",
+        "AB_4087\r",
+        "AB_4282\r",
+        "AB_4218\r",
+        "AB_812\r",
+        "AB_921\r",
+        "馃敟Join Telegram:@Farah_VPN馃煟_4\r",
+        "👑@Amir_Alternative_Official -_- 54\r",
+        "👑@Amir_Alternative_Official -_- 55\r",
+        "👑@Amir_Alternative_Official -_- 414\r",
+        "🇰🇷 机场推荐:dafei.de 韩国 01\r",
+        "MI_480\r",
+        "AB_4271\r",
+        "AB_4096\r",
+        "AB_4089\r",
+        "AB_4200\r",
+        "AB_4331\r",
+        "AB_4088\r",
+        "AB_80\r",
+        "AB_85\r",
+        "AB_87\r",
+        "AB_92\r",
+        "AB_100\r",
+        "AB_110\r",
+        "AB_113\r",
+        "AB_118\r",
+        "AB_125\r",
+        "AB_4099\r",
+        "AB_4093\r",
+        "AB_4086\r",
+        "AB_141\r",
+        "AB_4275\r",
+        "AB_4276\r",
+        "AB_4095\r",
+        "AB_766\r",
+        "AB_768\r",
+        "AB_4217\r",
+        "AB_780\r",
+        "AB_919\r",
+        "AB_4277\r",
+        "اتصال دائمی با سرور های چنل🍦@Outline_ir\r"
+      ],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50
     },
     {
-      "type": "vless",
-      "tag": "Few09 § 2",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v09.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
+      "type": "direct",
+      "tag": "direct"
     },
     {
-      "type": "vless",
-      "tag": "Few10 § 3",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v10.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
+      "type": "shadowsocks",
+      "tag": "112\r",
+      "server": "45.154.204.7",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
     },
     {
-      "type": "vless",
-      "tag": "Few11 § 4",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v11.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
+      "type": "shadowsocks",
+      "tag": "🇺🇸 United States - Santa Clara 🌎 SS-TCP-NA 4⃣\r",
+      "server": "71.19.148.143",
+      "server_port": 443,
+      "method": "chacha20-ietf-poly1305",
+      "password": "p78naCf2EfOlRSLTX0wFVx"
     },
     {
-      "type": "vless",
-      "tag": "Few14 § 5",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v14.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
+      "type": "shadowsocks",
+      "tag": "v2cross.com_309\r",
+      "server": "23.95.76.59",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
     },
     {
-      "type": "vless",
-      "tag": "new01 § 6",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "shadowsocks",
+      "tag": "182\r",
+      "server": "15.204.247.49",
+      "server_port": 12000,
+      "method": "aes-256-gcm",
+      "password": "8JCsPssfgS8tiRwiMlhARg=="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "179\r",
+      "server": "pupas-shirting-unsung.freesocks.work",
+      "server_port": 443,
+      "method": "chacha20-ietf-poly1305",
+      "password": "p78naCf2EfOlRSLTX0wFVx"
+    },
+    {
+      "type": "trojan",
+      "tag": "🇺🇸 美国|@stairnode\r",
+      "server": "160.16.106.144",
+      "server_port": 4054,
+      "password": "76d630f2af6619c4a5de0ef953df3c6a",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s01.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s01.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "www.nintendogames.net",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new02 § 7",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "🇺🇸 美国2|@stairnode\r",
+      "server": "160.16.89.176",
+      "server_port": 4054,
+      "password": "76d630f2af6619c4a5de0ef953df3c6a",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s02.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s02.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "www.nintendogames.net",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new14 § 8",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "shadowsocks",
+      "tag": "1\r",
+      "server": "46.183.217.204",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "5\r",
+      "server": "109.61.39.28",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "6\r",
+      "server": "188.214.157.30",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "9\r",
+      "server": "138.186.142.80",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "10\r",
+      "server": "197.140.29.76",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "13\r",
+      "server": "82.38.31.205",
+      "server_port": 8080,
+      "method": "chacha20-ietf-poly1305",
+      "password": "k1dBOmOB4oqi7Ump37a1bQ"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "22\r",
+      "server": "82.38.31.199",
+      "server_port": 8080,
+      "method": "chacha20-ietf-poly1305",
+      "password": "k1dBOmOB4oqi7Ump37a1bQ"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "👑@Amir_Alternative_Official -_- 119\r",
+      "server": "45.87.175.177",
+      "server_port": 8080,
+      "method": "chacha20-ietf-poly1305",
+      "password": "k1dBOmOB4oqi7Ump37a1bQ"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "36\r",
+      "server": "45.87.175.193",
+      "server_port": 8080,
+      "method": "chacha20-ietf-poly1305",
+      "password": "cvII85TrW6n0OGyfpHVS1u"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "37\r",
+      "server": "exchange.gameaurela.click",
+      "server_port": 52952,
+      "method": "chacha20-ietf-poly1305",
+      "password": "LMSNh21TrXjR2ok25Q2nE8ENT2zoBmPvka3RCCUAHZELCnWoekVjvaf89qwcRkdbxEfep2bc2aUtmnxqvF1ayQRez1JHjULj"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "38\r",
+      "server": "45.159.250.190",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "39\r",
+      "server": "156.38.168.58",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "43\r",
+      "server": "134.209.147.198",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "f8f7aCzcPKbsF8p3"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "44\r",
+      "server": "185.93.173.60",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "56\r",
+      "server": "95.174.68.33",
+      "server_port": 443,
+      "method": "chacha20-ietf-poly1305",
+      "password": "YzH4id7ZEyKpfy39F2YcOmzCsBklGwh8"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "72\r",
+      "server": "154.223.16.212",
+      "server_port": 989,
+      "method": "aes-256-cfb",
+      "password": "f8f7aCzcPKbsF8p3"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "76\r",
+      "server": "192.71.166.100",
+      "server_port": 989,
+      "method": "aes-256-cfb",
+      "password": "f8f7aCzcPKbsF8p3"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "79\r",
+      "server": "45.87.175.187",
+      "server_port": 8080,
+      "method": "chacha20-ietf-poly1305",
+      "password": "cvII85TrW6n0OGyfpHVS1u"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "82\r",
+      "server": "185.153.197.5",
+      "server_port": 989,
+      "method": "aes-256-cfb",
+      "password": "f8f7aCzcPKbsF8p3"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "84\r",
+      "server": "192.71.244.150",
+      "server_port": 989,
+      "method": "aes-256-cfb",
+      "password": "f8f7aCzcPKbsF8p3"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "85\r",
+      "server": "154.223.20.79",
+      "server_port": 989,
+      "method": "aes-256-cfb",
+      "password": "f8f7aCzcPKbsF8p3"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "87\r",
+      "server": "154.90.63.177",
+      "server_port": 989,
+      "method": "aes-256-cfb",
+      "password": "f8f7aCzcPKbsF8p3"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "88\r",
+      "server": "109.201.152.181",
+      "server_port": 443,
+      "method": "aes-128-cfb",
+      "password": "shadowsocks"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "89\r",
+      "server": "217.30.10.18",
+      "server_port": 9019,
+      "method": "aes-256-cfb",
+      "password": "GA9KzeEgvfxNrgmM"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "94\r",
+      "server": "136.244.100.113",
+      "server_port": 443,
+      "method": "chacha20-ietf-poly1305",
+      "password": "yODLXVLz2FWNTFeSSng3Fm"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "95\r",
+      "server": "173.234.29.2",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "98\r",
+      "server": "92.112.126.90",
+      "server_port": 443,
+      "method": "chacha20-ietf-poly1305",
+      "password": "9tqhMdIrTkgQ46PvhyAtMH"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "99\r",
+      "server": "91.148.135.31",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "101\r",
+      "server": "141.98.4.67",
+      "server_port": 52952,
+      "method": "chacha20-ietf-poly1305",
+      "password": "LMSNh21TrXjR2ok25Q2nE8ENT2zoBmPvka3RCCUAHZELCnWoekVjvaf89qwcRkdbxEfep2bc2aUtmnxqvF1ayQRez1JHjULj"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "104\r",
+      "server": "185.237.185.89",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "105\r",
+      "server": "38.54.59.107",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "107\r",
+      "server": "45.87.175.158",
+      "server_port": 8080,
+      "method": "chacha20-ietf-poly1305",
+      "password": "k1dBOmOB4oqi7Ump37a1bQ"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "109\r",
+      "server": "185.255.123.166",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "111\r",
+      "server": "37.235.56.69",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "113\r",
+      "server": "45.82.252.109",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "114\r",
+      "server": "45.15.185.70",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "117\r",
+      "server": "185.47.254.87",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "f8f7aCzcPKbsF8p3"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "126\r",
+      "server": "217.30.10.70",
+      "server_port": 9042,
+      "method": "aes-256-cfb",
+      "password": "S7KwUu7yBy58S3Ga"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "127\r",
+      "server": "46.183.184.60",
+      "server_port": 989,
+      "method": "aes-256-cfb",
+      "password": "f8f7aCzcPKbsF8p3"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "216\r",
+      "server": "38.54.59.180",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "v2cross.com_23\r",
+      "server": "82.38.31.179",
+      "server_port": 8080,
+      "method": "chacha20-ietf-poly1305",
+      "password": "k1dBOmOB4oqi7Ump37a1bQ"
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com_121\r",
+      "server": "198.57.27.27",
+      "server_port": 12990,
+      "password": "6pRjKQJ0CWyFtG.9",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s14.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s14.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new16 § 9",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "shadowsocks",
+      "tag": "v2cross.com_126\r",
+      "server": "82.38.31.187",
+      "server_port": 8080,
+      "method": "chacha20-ietf-poly1305",
+      "password": "k1dBOmOB4oqi7Ump37a1bQ"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "v2cross.com_158\r",
+      "server": "82.38.31.218",
+      "server_port": 8080,
+      "method": "chacha20-ietf-poly1305",
+      "password": "k1dBOmOB4oqi7Ump37a1bQ"
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com_170\r",
+      "server": "160.16.87.174",
+      "server_port": 3169,
+      "password": "79314e99f0a473fe86efc7827942ad00",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s16.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s16.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "www.nintendogames.net",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "Few02 § 10",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v02.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
+      "type": "shadowsocks",
+      "tag": "v2cross.com_221\r",
+      "server": "45.83.20.206",
+      "server_port": 443,
+      "method": "chacha20-ietf-poly1305",
+      "password": "g5RQoxQuVtnFv3Xxsa8edPisXNPnyWKy"
     },
     {
-      "type": "vless",
-      "tag": "Few17 § 11",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v17.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "Few19 § 12",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v19.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "Few20 § 13",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v20.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "Few21 § 14",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v21.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "Few23 § 15",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v23.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "new03 § 16",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "v2cross.com_254\r",
+      "server": "153.121.39.240",
+      "server_port": 4054,
+      "password": "79314e99f0a473fe86efc7827942ad00",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s03.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s03.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "www.nintendogames.net",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new06 § 17",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "shadowsocks",
+      "tag": "v2cross.com_270\r",
+      "server": "82.38.31.202",
+      "server_port": 8080,
+      "method": "chacha20-ietf-poly1305",
+      "password": "k1dBOmOB4oqi7Ump37a1bQ"
+    },
+    {
+      "type": "trojan",
+      "tag": "v2cross.com_275\r",
+      "server": "160.16.72.33",
+      "server_port": 3093,
+      "password": "79314e99f0a473fe86efc7827942ad00",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s06.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s06.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "www.nintendogames.net",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new08 § 18",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "shadowsocks",
+      "tag": "United States_1\r",
+      "server": "167.160.90.178",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "United States_2\r",
+      "server": "193.135.174.135",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "Panama\r",
+      "server": "138.186.142.81",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "PE\r",
+      "server": "138.186.143.32",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇵🇱_1068\r",
+      "server": "217.30.10.70",
+      "server_port": 9007,
+      "method": "aes-256-cfb",
+      "password": "kSPmvwdFzGMMW5pY"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇵🇱_1069\r",
+      "server": "217.30.10.70",
+      "server_port": 9026,
+      "method": "aes-256-cfb",
+      "password": "QWDDvVE9npNurQfA"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇵🇱_1978\r",
+      "server": "217.30.10.70",
+      "server_port": 9033,
+      "method": "aes-256-cfb",
+      "password": "UTJA57ypk2XKQpnm"
+    },
+    {
+      "type": "trojan",
+      "tag": "RELAY🚩 | to.ruangguru.com-443 | 84.43ms\r\r",
+      "server": "104.21.32.17",
+      "server_port": 443,
+      "password": "jagoanssh-Aweqdcc",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s08.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s08.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "to.ruangguru.com",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new10 § 19",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "🇯🇵_JP_日本_tr_1040\r",
+      "server": "49.212.204.123",
+      "server_port": 443,
+      "password": "18844%40zxcvbn",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s10.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s10.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new18 § 20",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "shadowsocks",
+      "tag": "🇷🇺_RU_hamrah_3\r",
+      "server": "217.30.10.18",
+      "server_port": 9038,
+      "method": "aes-256-cfb",
+      "password": "gYCYXfkUQEs2TaJQ"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇷🇺_RU_hamrah_148\r",
+      "server": "217.30.10.70",
+      "server_port": 9060,
+      "method": "aes-256-cfb",
+      "password": "ueLXVkvh4hckhErQ"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇷🇺_RU_hamrah_156\r",
+      "server": "217.30.10.70",
+      "server_port": 9041,
+      "method": "aes-256-cfb",
+      "password": "U6qnYRhfyDmn8sgn"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇷🇺_hamrah_896\r",
+      "server": "217.30.10.70",
+      "server_port": 9027,
+      "method": "aes-256-cfb",
+      "password": "EXN3S3eQpjE7EJu8"
+    },
+    {
+      "type": "trojan",
+      "tag": "🇺🇸_hamrah_306\r",
+      "server": "18.65.190.65",
+      "server_port": 443,
+      "password": "5c777277-17f2-4272-ae65-7bd00fa4fbaa",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s18.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s18.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "wel-jp.optage.moe",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "Few03 § 21",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v03.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "Few06 § 22",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v06.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "Few08 § 23",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v08.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "Few12 § 24",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v12.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
-    },
-    {
-      "type": "vless",
-      "tag": "new07 § 25",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "🇳🇱_荷兰_Hamrah_103\r",
+      "server": "45.154.214.159",
+      "server_port": 443,
+      "password": "share.mjj-home.com",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s07.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s07.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "api.mjj-home.com",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new21 § 26",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "🇩🇪_德国_Hamrah_286\r",
+      "server": "194.233.88.107",
+      "server_port": 443,
+      "password": "123456",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s21.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s21.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new23 § 27",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "🇺🇸_美国_Hamrah_288\r",
+      "server": "104.19.171.36",
+      "server_port": 443,
+      "password": "669d0ac7b5b64ebbb1abb75d5d540a5c",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s23.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s23.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "jobscareertoday.com",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "Few05 § 28",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v05.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
+      "type": "shadowsocks",
+      "tag": "🇵🇱_PL_波兰_1443\r\r",
+      "server": "217.30.10.18",
+      "server_port": 9070,
+      "method": "aes-256-cfb",
+      "password": "bf7v334KKDV3YDhH"
     },
     {
-      "type": "vless",
-      "tag": "Few07 § 29",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v07.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
+      "type": "shadowsocks",
+      "tag": "🇵🇱_PL_波兰_1291\r\r",
+      "server": "217.30.10.18",
+      "server_port": 9041,
+      "method": "aes-256-cfb",
+      "password": "U6qnYRhfyDmn8sgn"
     },
     {
-      "type": "vless",
-      "tag": "Few13 § 30",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v13.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
+      "type": "shadowsocks",
+      "tag": "🇵🇱_PL_波兰_1574\r\r",
+      "server": "217.30.10.18",
+      "server_port": 9014,
+      "method": "aes-256-cfb",
+      "password": "KnJGad3FqTvjqbaX"
     },
     {
-      "type": "vless",
-      "tag": "Few15 § 31",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v15.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
+      "type": "shadowsocks",
+      "tag": "🇵🇱_HAMRAH_52\r",
+      "server": "217.30.10.18",
+      "server_port": 9073,
+      "method": "aes-256-cfb",
+      "password": "daFYagqDdBdA6VTX"
     },
     {
-      "type": "vless",
-      "tag": "Few16 § 32",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v16.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
+      "type": "shadowsocks",
+      "tag": "🇵🇱_PL_波兰_1308\r\r",
+      "server": "217.30.10.18",
+      "server_port": 9094,
+      "method": "aes-256-cfb",
+      "password": "rpgbNnU9rDDU4aWZ"
     },
     {
-      "type": "vless",
-      "tag": "Few18 § 33",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v18.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
+      "type": "shadowsocks",
+      "tag": "🇵🇱_HAMRAH_419\r",
+      "server": "217.30.10.18",
+      "server_port": 9018,
+      "method": "aes-256-cfb",
+      "password": "fG2artUmHfNT2cX7"
     },
     {
-      "type": "vless",
-      "tag": "Few22 § 34",
-      "server": "hajlab.ucdavis.edu",
-      "server_port": 80,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.Ir.IkCoSaLeS.iR.D662599.v22.networkpro.net"
-        }
-      },
-      "packet_encoding": ""
+      "type": "shadowsocks",
+      "tag": "🇵🇱_HAMRAH_1003\r",
+      "server": "217.30.10.70",
+      "server_port": 9098,
+      "method": "aes-256-cfb",
+      "password": "aLpQtfEZe445QyHk"
     },
     {
-      "type": "vless",
-      "tag": "new04 § 35",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "shadowsocks",
+      "tag": "🇵🇱_HAMRAH_1012\r",
+      "server": "217.30.10.70",
+      "server_port": 9088,
+      "method": "aes-256-cfb",
+      "password": "f8npKgNzdkss2ytn"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇵🇱_HAMRAH_221\r",
+      "server": "217.30.10.70",
+      "server_port": 9019,
+      "method": "aes-256-cfb",
+      "password": "GA9KzeEgvfxNrgmM"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇵🇱_HAMRAH_990\r",
+      "server": "217.30.10.70",
+      "server_port": 9003,
+      "method": "aes-256-cfb",
+      "password": "JdmRK9gMEqFgs8nP"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇵🇱_HAMRAH_991\r",
+      "server": "217.30.10.70",
+      "server_port": 9057,
+      "method": "aes-256-cfb",
+      "password": "wjTugX3ZtHMB9c3Z"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇵🇱_HAMRAH_993\r",
+      "server": "217.30.10.70",
+      "server_port": 9064,
+      "method": "aes-256-cfb",
+      "password": "cp8pRSUAyLhTfVWH"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇵🇱_HAMRAH_225\r",
+      "server": "217.30.10.70",
+      "server_port": 9079,
+      "method": "aes-256-cfb",
+      "password": "TPqX8edgbAURcAMb"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇵🇱_PL_波兰_1549_5385\r",
+      "server": "217.30.10.70",
+      "server_port": 9038,
+      "method": "aes-256-cfb",
+      "password": "gYCYXfkUQEs2TaJQ"
+    },
+    {
+      "type": "trojan",
+      "tag": "🇺🇸 US 19 → tg@nicevpn123\r",
+      "server": "104.21.39.134",
+      "server_port": 443,
+      "password": "29ea82cf-f956-42b2-a5dc-35feea39e7ff",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s04.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s04.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "glc-tw1.windowsupdatea.com",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new05 § 36",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "🇺🇸_hamrah_206\r",
+      "server": "104.16.133.229",
+      "server_port": 443,
+      "password": "c46cdd67-aac9-4a8c-9ddb-8ba66ece9286",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s05.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s05.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "guolicheng.cc",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new09 § 37",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "🇪🇪_hamrah_220\r",
+      "server": "104.160.18.251",
+      "server_port": 443,
+      "password": "acb8ecf0960d4152a510bd7f72c699fa",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s09.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s09.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "cdn.cjhh.lol",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new11 § 38",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "🇺🇸_US_美国_tr_1177\r",
+      "server": "guolicheng.cc",
+      "server_port": 443,
+      "password": "c46cdd67-aac9-4a8c-9ddb-8ba66ece9286",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s11.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s11.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new12 § 39",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "🇺🇸_US_hamrah_198\r",
+      "server": "download1tw.windowsupdatea.com",
+      "server_port": 443,
+      "password": "29ea82cf-f956-42b2-a5dc-35feea39e7ff",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s12.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s12.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "glc-tw1.windowsupdatea.com",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new13 § 40",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "🇺🇸_hamrah_467\r",
+      "server": "104.16.192.158",
+      "server_port": 443,
+      "password": "f0eb8c92ce8946aaba856569cff1a16b",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s13.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s13.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "jobscareerforlawyers.com",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new15 § 41",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "🇳🇱_iran_783\r\r",
+      "server": "185.107.56.54",
+      "server_port": 443,
+      "password": "4863e1b2-ec2f-4c71-b862-ce533028e57e",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s15.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s15.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "trus.moonfree.top",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new17 § 42",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "t_250\r",
+      "server": "104.21.19.64",
+      "server_port": 443,
+      "password": "21c6c7cb-332b-4a0c-9ad7-dff9c3111442",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s17.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s17.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "us02web.zoom.us",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new19 § 43",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "ira_1896\r",
+      "server": "172.67.131.41",
+      "server_port": 443,
+      "password": "BO7e2KO_KlAjuJY-HYoabQ",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s19.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s19.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "n21-at.netzrun.com",
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new20 § 44",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "🔒 TR-TCP-NA 🇦🇺 AU-103.224.212.213:443\r\r",
+      "server": "103.224.212.213",
+      "server_port": 443,
+      "password": "7b561e94-42f3-4f92-979c-4cf97c328025",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s20.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s20.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "insecure": true,
+        "enabled": true
+      }
     },
     {
-      "type": "vless",
-      "tag": "new22 § 45",
-      "server": "whatismyipaddress.com",
-      "server_port": 2096,
-      "uuid": "6d3906a8-ef53-4d0b-b0be-8a537f281a70",
+      "type": "trojan",
+      "tag": "🇺🇸_美国_hamraH_213\r",
+      "server": "172.67.138.130",
+      "server_port": 443,
+      "password": "c46cdd67-aac9-4a8c-9ddb-8ba66ece9286",
+      "network": "tcp",
       "tls": {
-        "enabled": true,
-        "server_name": "wwwspeedtestnetwhiteberinsistomd6625996s22.ajaksserver.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "headers": {
-          "Host": "wwwspeedtestnetwhiteberinsistomd6625996s22.ajaksserver.ir"
-        }
-      },
-      "packet_encoding": ""
+        "server_name": "guolicheng.cc",
+        "insecure": true,
+        "enabled": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇬🇧_GB_p.All_2400\r",
+      "server": "185.44.76.188",
+      "server_port": 443,
+      "password": "8697fe6b-1lWNFc1RmRBNk5NQU5KSnga3fa58ac5a3ef0-b4ab-11eb-b65e-1239d0255272",
+      "network": "tcp",
+      "tls": {
+        "insecure": true,
+        "enabled": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "美国_US_🇺🇸_596\r",
+      "server": "104.21.41.21",
+      "server_port": 443,
+      "password": "0fcf6d00-db3e-11ee-a900-1239d0255272",
+      "network": "tcp",
+      "tls": {
+        "server_name": "fr1.test3.net",
+        "insecure": true,
+        "enabled": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "美国_US_🇺🇸_618\r",
+      "server": "162.159.153.2",
+      "server_port": 443,
+      "password": "242a3d8eee5e4ed1a6bfa4141d549a25",
+      "network": "tcp",
+      "tls": {
+        "server_name": "jobscareerforlawyers.com",
+        "insecure": true,
+        "enabled": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "美国_US_🇺🇸_778\r",
+      "server": "162.159.152.2",
+      "server_port": 443,
+      "password": "242a3d8eee5e4ed1a6bfa4141d549a25",
+      "network": "tcp",
+      "tls": {
+        "server_name": "jobscareerforlawyers.com",
+        "insecure": true,
+        "enabled": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "美国_US_🇺🇸_1123\r",
+      "server": "104.21.50.5",
+      "server_port": 443,
+      "password": "9yu6m5okr",
+      "network": "tcp",
+      "tls": {
+        "server_name": "production.tj.ojan.workers.dev",
+        "insecure": true,
+        "enabled": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "美国_US_🇺🇸_1152\r",
+      "server": "104.18.22.19",
+      "server_port": 443,
+      "password": "2cba4104747d49d18319e5ade1b93ab5",
+      "network": "tcp",
+      "tls": {
+        "server_name": "jobscareerforstudent.com",
+        "insecure": true,
+        "enabled": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "中国_CN_🇨🇳_1585\r",
+      "server": "official.taipeicitygovernment.biz.ua",
+      "server_port": 8443,
+      "password": "96983eb4-c8f1-316e-ab00-500014ed3d8b",
+      "network": "tcp",
+      "tls": {
+        "insecure": true,
+        "enabled": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "中国_CN_🇨🇳_1604\r",
+      "server": "official.taipeicitygovernment.net.ua",
+      "server_port": 8443,
+      "password": "96983eb4-c8f1-316e-ab00-500014ed3d8b",
+      "network": "tcp",
+      "tls": {
+        "insecure": true,
+        "enabled": true
+      }
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "@MARAMBASHI 💙\r",
+      "server": "23.95.76.147",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇷🇺@FreakConfig\r",
+      "server": "90.156.203.62",
+      "server_port": 5112,
+      "method": "chacha20-ietf-poly1305",
+      "password": "VVlAff77CnAU43Aoc5j15Y"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "t.me/OutlineVpnOfficial (9)\r",
+      "server": "38.54.57.90",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_68\r",
+      "server": "217.30.10.18",
+      "server_port": 9084,
+      "method": "aes-256-cfb",
+      "password": "c3NtHJ5ujV2tGDfj"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4097\r",
+      "server": "217.30.10.18",
+      "server_port": 9010,
+      "method": "aes-256-cfb",
+      "password": "f63gg8EruDnUrmz4"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4303\r",
+      "server": "217.30.10.70",
+      "server_port": 9070,
+      "method": "aes-256-cfb",
+      "password": "bf7v334KKDV3YDhH"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4273\r",
+      "server": "217.30.10.70",
+      "server_port": 9014,
+      "method": "aes-256-cfb",
+      "password": "KnJGad3FqTvjqbaX"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4307\r",
+      "server": "217.30.10.70",
+      "server_port": 9056,
+      "method": "aes-256-cfb",
+      "password": "rNBfNuuANFCAk7KB"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_88\r",
+      "server": "217.30.10.18",
+      "server_port": 9093,
+      "method": "aes-256-cfb",
+      "password": "wfLC2y7rzZyCmuyt"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4280\r",
+      "server": "217.30.10.70",
+      "server_port": 9011,
+      "method": "aes-256-cfb",
+      "password": "M3t2ZEQcMGRWBjRa"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4310\r",
+      "server": "217.30.10.70",
+      "server_port": 9084,
+      "method": "aes-256-cfb",
+      "password": "c3NtHJ5ujV2tGDfj"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_103\r",
+      "server": "217.30.10.18",
+      "server_port": 9056,
+      "method": "aes-256-cfb",
+      "password": "rNBfNuuANFCAk7KB"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_112\r",
+      "server": "68.183.235.122",
+      "server_port": 8080,
+      "method": "rc4-md5",
+      "password": "14fFPrbezE3HDZzsMOr6"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_120\r",
+      "server": "107.151.182.253",
+      "server_port": 8080,
+      "method": "rc4-md5",
+      "password": "14fFPrbezE3HDZzsMOr6"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_126\r",
+      "server": "128.199.172.224",
+      "server_port": 8080,
+      "method": "rc4-md5",
+      "password": "14fFPrbezE3HDZzsMOr6"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_127\r",
+      "server": "138.186.143.32",
+      "server_port": 989,
+      "method": "aes-256-cfb",
+      "password": "f8f7aCzcPKbsF8p3"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4092\r",
+      "server": "217.30.10.18",
+      "server_port": 9005,
+      "method": "aes-256-cfb",
+      "password": "ZET59LF6DvCC8KVt"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4094\r",
+      "server": "217.30.10.18",
+      "server_port": 9020,
+      "method": "aes-256-cfb",
+      "password": "BNmAXXxAHYpTRdzu"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_137\r",
+      "server": "103.149.183.10",
+      "server_port": 8388,
+      "method": "chacha20-ietf",
+      "password": "asd123456"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4087\r",
+      "server": "217.30.10.18",
+      "server_port": 9032,
+      "method": "aes-256-cfb",
+      "password": "UWZQeLRWnkqgkseq"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4282\r",
+      "server": "217.30.10.70",
+      "server_port": 9015,
+      "method": "aes-256-cfb",
+      "password": "ZpNDDKRu9MagNvaf"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4218\r",
+      "server": "217.30.10.18",
+      "server_port": 9015,
+      "method": "aes-256-cfb",
+      "password": "ZpNDDKRu9MagNvaf"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_812\r",
+      "server": "217.30.10.18",
+      "server_port": 9050,
+      "method": "aes-256-cfb",
+      "password": "FG5ddLsMPbV5CutE"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_921\r",
+      "server": "217.30.10.18",
+      "server_port": 9031,
+      "method": "aes-256-cfb",
+      "password": "BwcAUZk8hUFAkDGN"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "馃敟Join Telegram:@Farah_VPN馃煟_4\r",
+      "server": "154.223.20.79",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "👑@Amir_Alternative_Official -_- 54\r",
+      "server": "203.23.128.92",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "👑@Amir_Alternative_Official -_- 55\r",
+      "server": "38.60.192.176",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "👑@Amir_Alternative_Official -_- 414\r",
+      "server": "192.71.244.150",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "f8f7aCzcPKbsF8p3"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "🇰🇷 机场推荐:dafei.de 韩国 01\r",
+      "server": "p141.panda001.net",
+      "server_port": 4652,
+      "method": "aes-256-cfb",
+      "password": "qwerREWQ@@"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "MI_480\r",
+      "server": "62.100.205.100",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4271\r",
+      "server": "217.30.10.70",
+      "server_port": 9059,
+      "method": "aes-256-cfb",
+      "password": "9XwYyZsK8SNzQDtY"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4096\r",
+      "server": "217.30.10.18",
+      "server_port": 9042,
+      "method": "aes-256-cfb",
+      "password": "S7KwUu7yBy58S3Ga"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4089\r",
+      "server": "217.30.10.18",
+      "server_port": 9027,
+      "method": "aes-256-cfb",
+      "password": "EXN3S3eQpjE7EJu8"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4200\r",
+      "server": "217.30.10.18",
+      "server_port": 9007,
+      "method": "aes-256-cfb",
+      "password": "kSPmvwdFzGMMW5pY"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4331\r",
+      "server": "217.30.10.18",
+      "server_port": 9026,
+      "method": "aes-256-cfb",
+      "password": "QWDDvVE9npNurQfA"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4088\r",
+      "server": "217.30.10.18",
+      "server_port": 9097,
+      "method": "aes-256-cfb",
+      "password": "Sn5B7jTqr76aCJT8"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_80\r",
+      "server": "217.30.10.18",
+      "server_port": 9046,
+      "method": "aes-256-cfb",
+      "password": "NvS8N4Vf8qAGPSCL"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_85\r",
+      "server": "217.30.10.18",
+      "server_port": 9079,
+      "method": "aes-256-cfb",
+      "password": "TPqX8edgbAURcAMb"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_87\r",
+      "server": "217.30.10.18",
+      "server_port": 9053,
+      "method": "aes-256-cfb",
+      "password": "SBM7R883jBmnqe6C"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_92\r",
+      "server": "217.30.10.18",
+      "server_port": 9043,
+      "method": "aes-256-cfb",
+      "password": "HSZuyJQcWe8dxNdF"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_100\r",
+      "server": "217.30.10.18",
+      "server_port": 9006,
+      "method": "aes-256-cfb",
+      "password": "FAdUvMJUq5vDgKEq"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_110\r",
+      "server": "217.30.10.18",
+      "server_port": 9000,
+      "method": "aes-256-cfb",
+      "password": "a3GFYt36Sm82Vys9"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_113\r",
+      "server": "68.183.227.4",
+      "server_port": 8080,
+      "method": "rc4-md5",
+      "password": "14fFPrbezE3HDZzsMOr6"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_118\r",
+      "server": "103.141.221.200",
+      "server_port": 8388,
+      "method": "chacha20-ietf",
+      "password": "asd123456"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_125\r",
+      "server": "68.183.227.236",
+      "server_port": 8080,
+      "method": "rc4-md5",
+      "password": "14fFPrbezE3HDZzsMOr6"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4099\r",
+      "server": "217.30.10.18",
+      "server_port": 9011,
+      "method": "aes-256-cfb",
+      "password": "M3t2ZEQcMGRWBjRa"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4093\r",
+      "server": "217.30.10.18",
+      "server_port": 9045,
+      "method": "aes-256-cfb",
+      "password": "Lp27rqyJq72bZsqX"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4086\r",
+      "server": "217.30.10.18",
+      "server_port": 9024,
+      "method": "aes-256-cfb",
+      "password": "BejrQvtu9sqUeNuZ"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_141\r",
+      "server": "217.30.10.18",
+      "server_port": 9088,
+      "method": "aes-256-cfb",
+      "password": "f8npKgNzdkss2ytn"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4275\r",
+      "server": "217.30.10.70",
+      "server_port": 9020,
+      "method": "aes-256-cfb",
+      "password": "BNmAXXxAHYpTRdzu"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4276\r",
+      "server": "217.30.10.70",
+      "server_port": 9031,
+      "method": "aes-256-cfb",
+      "password": "BwcAUZk8hUFAkDGN"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4095\r",
+      "server": "217.30.10.18",
+      "server_port": 9037,
+      "method": "aes-256-cfb",
+      "password": "TN2YqghxeFDKZfLU"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_766\r",
+      "server": "217.30.10.18",
+      "server_port": 9025,
+      "method": "aes-256-cfb",
+      "password": "XPtzA9sCug3SPR4c"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_768\r",
+      "server": "217.30.10.18",
+      "server_port": 9057,
+      "method": "aes-256-cfb",
+      "password": "wjTugX3ZtHMB9c3Z"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4217\r",
+      "server": "217.30.10.18",
+      "server_port": 9008,
+      "method": "aes-256-cfb",
+      "password": "y9VURyNzJWNRYEGQ"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_780\r",
+      "server": "185.193.49.88",
+      "server_port": 989,
+      "method": "aes-256-cfb",
+      "password": "f8f7aCzcPKbsF8p3"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_919\r",
+      "server": "217.30.10.18",
+      "server_port": 9001,
+      "method": "aes-256-cfb",
+      "password": "UkXRsXvR6buDMG2Y"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "AB_4277\r",
+      "server": "217.30.10.70",
+      "server_port": 9045,
+      "method": "aes-256-cfb",
+      "password": "Lp27rqyJq72bZsqX"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "اتصال دائمی با سرور های چنل🍦@Outline_ir\r",
+      "server": "154.205.153.107",
+      "server_port": 990,
+      "method": "chacha20-ietf-poly1305",
+      "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
     }
-  ]
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "final": "Proxy",
+    "rules": [
+      {
+        "inbound": [
+          "tun-in",
+          "mixed-in"
+        ],
+        "action": "sniff"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 53
+          },
+          {
+            "protocol": "dns"
+          }
+        ],
+        "action": "hijack-dns"
+      },
+      {
+        "rule_set": "geosite-category-ads-all",
+        "clash_mode": "rule",
+        "action": "reject"
+      },
+      {
+        "rule_set": "geosite-category-ads-all",
+        "clash_mode": "global",
+        "outbound": "Proxy"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "Proxy"
+      },
+      {
+        "domain": [
+          "clash.razord.top",
+          "yacd.metacubex.one",
+          "yacd.haishan.me",
+          "d.metacubex.one"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-openai",
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": [
+          "geosite-youtube",
+          "geoip-google",
+          "geosite-google",
+          "geosite-github"
+        ],
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": [
+          "geoip-telegram",
+          "geosite-telegram"
+        ],
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": [
+          "geoip-twitter",
+          "geosite-twitter"
+        ],
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": [
+          "geoip-facebook",
+          "geosite-facebook"
+        ],
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": "geosite-bilibili",
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": "geosite-bahamut",
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": "geosite-spotify",
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": "geosite-tiktok",
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": [
+          "geoip-netflix",
+          "geosite-netflix"
+        ],
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": "geosite-disney",
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": [
+          "geoip-apple",
+          "geosite-apple",
+          "geosite-amazon"
+        ],
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": "geosite-microsoft",
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": [
+          "geosite-category-games",
+          "geosite-dmm"
+        ],
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": [
+          "geosite-hbo",
+          "geosite-primevideo"
+        ],
+        "outbound": "Proxy"
+      },
+      {
+        "rule_set": "geosite-geolocation-!cn",
+        "outbound": "Global"
+      },
+      {
+        "rule_set": [
+          "geoip-cn",
+          "geosite-cn"
+        ],
+        "outbound": "direct"
+      }
+    ],
+    "rule_set": [
+       {
+        "type": "remote",
+        "tag": "geosite-openai",
+        "format": "source",
+        "url": "https://testingcf.jsdelivr.net/gh/Toperlock/sing-box-geosite@main/rule/OpenAI.json",
+        "download_detour": "direct"
+       },
+       {
+        "tag": "geosite-category-ads-all",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-category-ads-all.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-youtube",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/youtube.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-google",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/google.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-google",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/google.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-github",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/github.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-telegram",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/telegram.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-telegram",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/telegram.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-twitter",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/twitter.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-twitter",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/twitter.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-facebook",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/facebook.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-facebook",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/facebook.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-bilibili",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bilibili.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-bahamut",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bahamut.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-spotify",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/spotify.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-tiktok",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/tiktok.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-netflix",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/netflix.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-netflix",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/netflix.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-disney",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/disney.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-apple",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geoip/apple.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-apple",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/apple.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-amazon",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/amazon.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-microsoft",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/microsoft.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-games",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-games.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-dmm",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/dmm.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-hbo",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/hbo.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-primevideo",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/primevideo.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-geolocation-!cn",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-cn",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+        "download_detour": "direct"
+      }
+    ]
+  }
 }
