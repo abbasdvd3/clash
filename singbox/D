@@ -3,53 +3,27 @@
     "level": "info",
     "timestamp": true
   },
-  "experimental": {
-    "clash_api": {
-      "external_controller": "127.0.0.1:9090",
-      "external_ui": "ui",
-      "secret": "",
-      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
-      "external_ui_download_detour": "direct",
-      "default_mode": "rule"
-    },
-    "cache_file": {
-      "enabled": true,
-      "store_fakeip": true,
-      "store_rdrc": true
-    }
-  },
   "dns": {
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
-    },
     "servers": [
       {
         "tag": "google",
-        "address": "tls://8.8.8.8"
+        "type": "tls",
+        "server": "8.8.8.8"
+        "detour": "Proxy"
       },
       {
         "tag": "local",
-        "address": "https://223.5.5.5/dns-query",
-        "detour": "direct"
+        "type": "udp",
+        "server": "223.5.5.5"
       },
       {
+        "type": "fakeip",
         "tag": "fakeip",
-        "address": "fakeip"
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
       }
     ],
     "rules": [
-      {
-        "domain": [
-          "cdn.jsdelivr.net"
-        ],
-        "server": "google"
-      },
-      {
-        "outbound": "any",
-        "server": "local"
-      },
       {
         "clash_mode": "direct",
         "server": "local"
@@ -82,8 +56,7 @@
             "rule_set": "geoip-cn"
           }
         ],
-        "server": "google",
-        "client_subnet": "114.114.114.114/24"
+        "server": "google"
       },
       {
         "query_type": [
@@ -104,9 +77,8 @@
         "172.19.0.0/30",
         "fdfe:dcba:9876::0/126"
       ],
-      "stack": "mixed",
+      "stack": "system",
       "auto_route": true,
-      "auto_redirect": true,
       "strict_route": true,
       "platform": {
         "http_proxy": {
@@ -467,9 +439,9 @@
         "AB_4277\r",
         "اتصال دائمی با سرور های چنل🍦@Outline_ir\r"
       ],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 50
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 500
     },
     {
       "type": "direct",
@@ -1943,9 +1915,14 @@
       "password": "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
     }
   ],
-  "route": {
-    "auto_detect_interface": true,
+ "route": {
     "final": "Proxy",
+    "find_process": true,
+    "auto_detect_interface": true,
+    "default_domain_resolver": {
+      "server": "local",
+      "strategy": "ipv4_only"
+    },
     "rules": [
       {
         "inbound": [
@@ -1966,16 +1943,6 @@
           }
         ],
         "action": "hijack-dns"
-      },
-      {
-        "rule_set": "geosite-category-ads-all",
-        "clash_mode": "rule",
-        "action": "reject"
-      },
-      {
-        "rule_set": "geosite-category-ads-all",
-        "clash_mode": "global",
-        "outbound": "Proxy"
       },
       {
         "clash_mode": "direct",
@@ -2013,6 +1980,12 @@
       },
       {
         "rule_set": [
+          "geosite-category-ads-all"
+        ],
+        "outbound": "REJECT"
+      },
+      {
+        "rule_set": [
           "geoip-telegram",
           "geosite-telegram"
         ],
@@ -2042,7 +2015,7 @@
       },
       {
         "rule_set": "geosite-spotify",
-        "outbound": "Proxy"
+        "outbound": "Spotify"
       },
       {
         "rule_set": "geosite-tiktok",
@@ -2057,7 +2030,7 @@
       },
       {
         "rule_set": "geosite-disney",
-        "outbound": "Proxy"
+        "outbound": "Proxy+"
       },
       {
         "rule_set": [
@@ -2087,7 +2060,7 @@
       },
       {
         "rule_set": "geosite-geolocation-!cn",
-        "outbound": "Global"
+        "outbound": "Proxy"
       },
       {
         "rule_set": [
@@ -2098,14 +2071,14 @@
       }
     ],
     "rule_set": [
-       {
+      {
         "type": "remote",
         "tag": "geosite-openai",
         "format": "source",
         "url": "https://testingcf.jsdelivr.net/gh/Toperlock/sing-box-geosite@main/rule/OpenAI.json",
         "download_detour": "direct"
-       },
-       {
+      },
+      {
         "tag": "geosite-category-ads-all",
         "type": "remote",
         "format": "binary",
@@ -2308,6 +2281,24 @@
         "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
         "download_detour": "direct"
       }
-    ]
+    ],
+    "final": "Proxy",
+    "auto_detect_interface": true,
+    "find_process": true,
+    "default_domain_resolver": "local"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "store_fakeip": true,
+      "store_rdrc": true
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "/dashboard",
+      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_download_detour": "direct",
+      "default_mode": "rule"
+    }
   }
 }
