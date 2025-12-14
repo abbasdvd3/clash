@@ -54,8 +54,7 @@ proxy-groups:
   proxies:
     - auto
     - manual
-    - DIRECT
-    - REJECT
+
 
 - name: manual
   type: select
@@ -66,6 +65,12 @@ proxy-groups:
   #filter: "🏁|🏴‍☠️|🚩"
   hidden: true
   include-all-providers: true
+- name: 🎯
+  type: select
+  proxies:
+    - DIRECT
+    - default
+    
 
 proxy-providers:
    
@@ -518,17 +523,17 @@ rule-providers:
 rules:
   - RULE-SET,private_ip,🎯,no-resolve
   - RULE-SET,github_domain,🕹 select
-  - RULE-SET,twitter_domain,📲
-  - RULE-SET,youtube_domain,📹
-  - RULE-SET,google_domain,📢
-  - RULE-SET,telegram_domain,📲
-  - RULE-SET,netflix_domain,📲
-  - RULE-SET,geolocation-!cn,🕹 select
+  - RULE-SET,twitter_domain,default
+  - RULE-SET,youtube_domain,default
+  - RULE-SET,google_domain,default
+  - RULE-SET,telegram_domain,default
+  - RULE-SET,netflix_domain,default
+  - RULE-SET,geolocation-!cn,default
 
-  - RULE-SET,google_ip,📢
-  - RULE-SET,netflix_ip,📲
-  - RULE-SET,telegram_ip,📲
-  - RULE-SET,twitter_ip,📲
+  - RULE-SET,google_ip,default
+  - RULE-SET,netflix_ip,default
+  - RULE-SET,telegram_ip,default
+  - RULE-SET,twitter_ip,default
 
   - RULE-SET,LocalAreaNetwork,🎯
   - RULE-SET,private,🎯,no-resolve
@@ -537,83 +542,82 @@ rules:
   - RULE-SET,ir,🎯
   - RULE-SET,ircidr,🎯
   - RULE-SET,irasn,🎯
-  - GEOIP,google,📢
+  - GEOIP,google,default
 #  - GEOIP,microsoft,Ⓜ️
 #  - GEOIP,bing,Ⓜ️
 #  - GEOIP,github,🕹 select
-  - GEOIP,facebook,📲
-  - GEOIP,twitter,📲
-  - GEOIP,telegram,📲
+  - GEOIP,facebook,default
+  - GEOIP,twitter,default
+  - GEOIP,telegram,default
  # - GEOIP,openai,💬 OpenAi
 
 
-  - RULE-SET,BanProgramAD,🍃
+  - RULE-SET,BanProgramAD,default
   
-  - RULE-SET,SteamCN,📢
-  - RULE-SET,GoogleCNProxyIP,📢
-  - RULE-SET,GoogleFCM,📢
-  - RULE-SET,GoogleCN,📢
-  - RULE-SET,Google1,📢
-  - RULE-SET,Google,📢
+  - RULE-SET,SteamCN,default
+  - RULE-SET,GoogleCNProxyIP,default
+  - RULE-SET,GoogleFCM,default
+  - RULE-SET,GoogleCN,default
+  - RULE-SET,Google1,default
+  - RULE-SET,Google,default
+
+  - RULE-SET,OneDrive,default
+  - RULE-SET,Microsoft,default
   
-  - RULE-SET,Bing,Ⓜ️
-  - RULE-SET,OneDrive,Ⓜ️
-  - RULE-SET,Microsoft,Ⓜ️
+  - RULE-SET,Apple,default
+  - RULE-SET,Samsung,default
   
-  - RULE-SET,Apple,🍎
-  - RULE-SET,Samsung,🍎
+  - RULE-SET,SpeedTest,default
   
-  - RULE-SET,SpeedTest,📡 IP
+  - RULE-SET,NSFW,default
+  - RULE-SET,Telegram,default
+  - RULE-SET,social,default
+  - RULE-SET,nsfw1,default
+  - RULE-SET,gfw,default
   
-  - RULE-SET,NSFW,📲
-  - RULE-SET,Telegram,📲
-  - RULE-SET,social,📲
-  - RULE-SET,nsfw1,📲
-  - RULE-SET,gfw,📲
-  
-  - RULE-SET,OpenAi,💬 OpenAi
-  - RULE-SET,NetEaseMusic,🎶
+  - RULE-SET,OpenAi,default
+  - RULE-SET,NetEaseMusic,default
 
 
-  - RULE-SET,Epic,🎮
-  - RULE-SET,Origin,🎮
-  - RULE-SET,Sony,🎮
-  - RULE-SET,Steam,🎮
-  - RULE-SET,Nintendo,🎮
+  - RULE-SET,Epic,default
+  - RULE-SET,Origin,default
+  - RULE-SET,Sony,default
+  - RULE-SET,Steam,default
+  - RULE-SET,Nintendo,default
   
-  - RULE-SET,YouTube,📹
+  - RULE-SET,YouTube,default
   
-  - RULE-SET,Netflix,🎥
+  - RULE-SET,Netflix,default
   
-  - RULE-SET,Bahamut,📺
-  - RULE-SET,BilibiliHMT,📺
-  - RULE-SET,Bilibili,📺2
-  - RULE-SET,ProxyGFWlist,🕹 select
-  - RULE-SET,Domestic,🕹 select
-  - RULE-SET,cloudflare,🕹 select
-  - RULE-SET,ChinaDomain,🕹 select
-  - RULE-SET,ChinaCompanyIp,🕹 select
-  - RULE-SET,Download,🕹 select  
-  - RULE-SET,ChinaMedia,🌏
-  - RULE-SET,ProxyMedia,🌍
+  - RULE-SET,Bahamut,default
+  - RULE-SET,BilibiliHMT,default
+  - RULE-SET,Bilibili,default
+  - RULE-SET,ProxyGFWlist,default
+  - RULE-SET,Domestic,default
+  - RULE-SET,cloudflare,default
+  - RULE-SET,ChinaDomain,default
+  - RULE-SET,ChinaCompanyIp,default
+  - RULE-SET,Download,default 
+  - RULE-SET,ChinaMedia,default
+  - RULE-SET,ProxyMedia,default
   - OR,((GEOSITE,private),(GEOIP,private,no-resolve),(RULE-SET,apps)),DIRECT
 
   - OR,((RULE-SET,category-ads-all),(RULE-SET,malware),(RULE-SET,phishing),(RULE-SET,cryptominers)),REJECT
   #- RULE-SET,nsfw,REJECT ## Pornography and gambling
-  - RULE-SET,ads,🛑
-  - RULE-SET,malware,🛑
-  - RULE-SET,phishing,🛑
-  - RULE-SET,cryptominers,🛑
-  - RULE-SET,Adblock1,🛑
-  - RULE-SET,DNS2,🛑
-  - RULE-SET,category-ads-all,🛑
-  - RULE-SET,BanAD,🛑
-  - RULE-SET,ChinaDNS,🛑
-  - RULE-SET,AdGuardSDNSFilterDirect,🛑
-  - RULE-SET,BlockHttpDNS,🛑
-  - RULE-SET,AdGuardSDNSFilter,🛑
-  - RULE-SET,DNS,🛑
-  - RULE-SET,AWA,🛑
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,Adblock1,REJECT
+  - RULE-SET,DNS2,REJECT
+  - RULE-SET,category-ads-all,REJECT
+  - RULE-SET,BanAD,REJECT
+  - RULE-SET,ChinaDNS,REJECT
+  - RULE-SET,AdGuardSDNSFilterDirect,REJECT
+  - RULE-SET,BlockHttpDNS,REJECT
+  - RULE-SET,AdGuardSDNSFilter,REJECT
+  - RULE-SET,DNS,REJECT
+  - RULE-SET,AWA,REJECT
   - RULE-SET,ir,DIRECT
   - OR,((DOMAIN-SUFFIX,d.metacubex.one),(DOMAIN-SUFFIX,yacd.haishan.me)),DIRECT ## Dashboards
   #- GEOSITE,category-games,DIRECT ## Gaming
@@ -624,5 +628,6 @@ rules:
   - RULE-SET,ircidr,DIRECT
 
   - MATCH,default
+
 
 
