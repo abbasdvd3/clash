@@ -434,7 +434,6 @@ proxy-providers:
       ip-version: ipv4-prefer
       additional-prefix: "A7 prefix |"
       additional-suffix: "| A7 suffix"
-
   A8:
     type: http
     url: "https://config.v2cross.com/clashprofile/config" # https://raw.githubusercontent.com/mheidari98/.proxy/main/all
@@ -486,7 +485,6 @@ proxy-providers:
       ip-version: ipv4-prefer
       additional-prefix: "A10 prefix |"
       additional-suffix: "| A10 suffix"
-
   A11:
     type: http
     url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
@@ -503,13 +501,31 @@ proxy-providers:
       dialer-proxy: PROXY
       ip-version: ipv4-prefer
       additional-prefix: "A11 prefix |"
-      additional-suffix: "| A11 suffix"     
+      additional-suffix: "| A11 suffix"
+  A12:
+    type: http
+    url: "https://raw.githubusercontent.com/ts-sf/fly/main/clash"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      udp: true
+      dialer-proxy: PROXY
+      ip-version: ipv4-prefer
+      additional-prefix: "A12 prefix |"
+      additional-suffix: "| A12 suffix" 
 
 proxy-groups:
   - name: "PROXY"
     type: "url-test"
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png"
     url: "https://connectivitycheck.gstatic.com/generate_204"
+    tolerance: 10
     proxies:
       - "🎈Auto"
       - "🎈fallback"
@@ -520,7 +536,7 @@ proxy-groups:
     type: "url-test"
     url: "https://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
-    tolerance: 10
+    tolerance: 0
     exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
     include-all-providers: true
     udp: true
@@ -543,7 +559,7 @@ proxy-groups:
     exclude-filter: "HK|Hong|TW|Tai|Taiwan|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|回国|校园|游戏|🇰🇷|韩国|韓|首尔|KR|Korea|回国|校园|游戏|🇦🇹|timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅|AT|GER|🇩🇪🇱🇻|🇩🇪"
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
-    tolerance: 10
+    tolerance: 0
     exclude-type: "socks5|http|direct|redir-in|trojan|DNS"
     include-all-providers: true
     hidden: false
@@ -564,7 +580,7 @@ proxy-groups:
     type: "url-test"
     url: "https://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
-    tolerance: 10
+    tolerance: 0
     hidden: false
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Final.png"
     proxies:
