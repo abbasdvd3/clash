@@ -700,15 +700,27 @@ rule-providers:
     url: "https://raw.githubusercontent.com/privacy-protection-tools/dead-horse/master/anti-ad-white-for-clash.yaml"
     interval: 86400
     size-limit: 0
-  AI:
+  category-ai-!cn:
     type: http
     behavior: domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.yaml"
+    interval: 86400
+    size-limit: 0
+  category-ai-cn:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.yaml"
+    interval: 86400
+    size-limit: 0
+  AI:
+    type: http
+    behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list"
     interval: 86400
     size-limit: 0
   OpenAi:
     type: http
-    behavior: domain
+    behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list"
     interval: 86400
     size-limit: 0
@@ -750,6 +762,8 @@ rules :
   - RULE-SET,GoogleCN,AI
   - RULE-SET,YouTube,AI
   - RULE-SET,Google,AI
+  - RULE-SET,category-ai-cn,AI
+  - RULE-SET,category-ai-!cn,AI
   - DOMAIN-KEYWORD,soft98.ir,🎯 Direct
   - DOMAIN,soft98,🎯 Direct
   - DOMAIN-SUFFIX,soft98.ir,🎯 Direct
