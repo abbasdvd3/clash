@@ -5,8 +5,8 @@ mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
 mode: rule
-ipv6: false
-allow-lan: false
+ipv6: true
+allow-lan: true
 log-level: debug
 bind-address: "*"
 lan-allowed-ips:
@@ -67,7 +67,7 @@ hosts:
   dns.ipv4dns.com: ['171.80.2.155', '171.80.2.166']
 tun:
   enable: true
-  mtu: 4060
+  mtu: 1400
   device: clash
   stack: mixed
   dns-hijack:
@@ -116,7 +116,7 @@ dns:
   use-system-hosts: true
   respect-rules: true
   listen: 0.0.0.0:53
-  ipv6: false
+  ipv6: true
   defult-nameserver:
     - system
     - 114.114.114.114
@@ -300,7 +300,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://1.1.1.1/cdn-cgi/trace"
+      url: "http://1.1.1.1/cdn-cgi/trace"
       interval: 300
       lazy: true
       expected-status: 100
@@ -310,7 +310,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://1.1.1.1/cdn-cgi/trace"
+      url: "http://1.1.1.1/cdn-cgi/trace"
       interval: 300
       lazy: true
       expected-status: 100
@@ -320,7 +320,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://1.1.1.1/cdn-cgi/trace"
+      url: "http://1.1.1.1/cdn-cgi/trace"
       interval: 300
       lazy: true
       expected-status: 100
@@ -331,7 +331,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://1.1.1.1/cdn-cgi/trace"
+      url: "http://1.1.1.1/cdn-cgi/trace"
       interval: 300
       lazy: true
       expected-status: 100
@@ -341,7 +341,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://1.1.1.1/cdn-cgi/trace"
+      url: "http://1.1.1.1/cdn-cgi/trace"
       interval: 300
       lazy: true
       expected-status: 100
@@ -351,7 +351,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://1.1.1.1/cdn-cgi/trace"
+      url: "http://1.1.1.1/cdn-cgi/trace"
       interval: 300
       lazy: true
       expected-status: 100
@@ -361,7 +361,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://1.1.1.1/cdn-cgi/trace"
+      url: "http://1.1.1.1/cdn-cgi/trace"
       interval: 300
       lazy: true
       expected-status: 100
@@ -371,7 +371,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://1.1.1.1/cdn-cgi/trace"
+      url: "http://1.1.1.1/cdn-cgi/trace"
       interval: 300
       lazy: true
       expected-status: 100
@@ -381,7 +381,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://1.1.1.1/cdn-cgi/trace"
+      url: "http://1.1.1.1/cdn-cgi/trace"
       interval: 300
       lazy: true
       expected-status: 100
@@ -391,7 +391,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://1.1.1.1/cdn-cgi/trace"
+      url: "http://1.1.1.1/cdn-cgi/trace"
       interval: 300
       lazy: true
       expected-status: 100
@@ -402,7 +402,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://1.1.1.1/cdn-cgi/trace"
+      url: "http://1.1.1.1/cdn-cgi/trace"
       interval: 300
       lazy: true
       expected-status: 100
@@ -412,7 +412,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://1.1.1.1/cdn-cgi/trace"
+      url: "http://1.1.1.1/cdn-cgi/trace"
       interval: 300
       lazy: true
       expected-status: 100
@@ -422,7 +422,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://1.1.1.1/cdn-cgi/trace"
+      url: "http://1.1.1.1/cdn-cgi/trace"
       interval: 300
       lazy: true
       expected-status: 100
@@ -432,7 +432,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://1.1.1.1/cdn-cgi/trace"
+      url: "http://1.1.1.1/cdn-cgi/trace"
       interval: 300
       lazy: true
       expected-status: 100
@@ -451,20 +451,18 @@ proxy-groups:
   
   - name: "🎈Auto"
     type: "url-test"
-    url: "https://1.1.1.1/cdn-cgi/trace"
+    url: "http://1.1.1.1/cdn-cgi/trace"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     exclude-type: "direct|http|socks5|redir-in|trojan"
-    udp: false
     hidden: true
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
     use:
       - "A1"
   - name: "🤖 AI"
     type: "url-test"
-    url: "https://1.1.1.1/cdn-cgi/trace"
+    url: "http://1.1.1.1/cdn-cgi/trace"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     exclude-type: "direct|http|socks5|redir-in|trojan"
-    udp: true
     hidden: true
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
     proxies:
@@ -476,7 +474,7 @@ proxy-groups:
       - "🇰🇷"
   - name: "🇭🇰"
     type: "url-test"
-    url: "https://1.1.1.1/cdn-cgi/trace"
+    url: "http://1.1.1.1/cdn-cgi/trace"
     include-all-providers: true
     exclude-type: "direct|http|socks5|redir-in|trojan"
     filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
@@ -485,43 +483,38 @@ proxy-groups:
 
   - name: "🇯🇵"
     type: "url-test"
-    url: "https://1.1.1.1/cdn-cgi/trace"
+    url: "http://1.1.1.1/cdn-cgi/trace"
     include-all-providers: true
     exclude-type: "direct|http|socks5|redir-in|trojan"
     filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
-    udp: true
 
   - name: "🇺🇲"
     type: "url-test"
-    url: "https://1.1.1.1/cdn-cgi/trace"
+    url: "http://1.1.1.1/cdn-cgi/trace"
     include-all-providers: true
     exclude-type: "direct|http|socks5|redir-in|trojan"
-    udp: true
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
 
   - name: "🇹🇼"
     type: "url-test"
-    url: "https://1.1.1.1/cdn-cgi/trace"
+    url: "http://1.1.1.1/cdn-cgi/trace"
     include-all-providers: true
     exclude-type: "direct|http|socks5|redir-in|trojan"
     filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
-    udp: true
 
   - name: "🇸🇬"
     type: "url-test"
-    url: "https://1.1.1.1/cdn-cgi/trace"
+    url: "http://1.1.1.1/cdn-cgi/trace"
     include-all-providers: true
     exclude-type: "direct|http|socks5|redir-in|trojan"
     filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
-    udp: true
 
   - name: "🇰🇷"
     type: "url-test"
-    url: "https://1.1.1.1/cdn-cgi/trace"
+    url: "http://1.1.1.1/cdn-cgi/trace"
     include-all-providers: true
     exclude-type: "direct|http|socks5|redir-in|trojan"
     filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
-    udp: true
 
   - name: "🎯 Direct"
     type: "select"
@@ -613,43 +606,43 @@ rule-providers:
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list"
     interval: 86400
-    size-limit: 0
+    
   OpenAi:
     type: http
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list"
     interval: 86400
-    size-limit: 0
+    
   GoogleFCM:
     type: http
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list"
     interval: 86400
-    size-limit: 0
+    
   GoogleCNProxyIP:
     type: http
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list"
     interval: 86400
-    size-limit: 0
+    
   GoogleCN:
     type: http
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list"
     interval: 86400
-    size-limit: 0
+    
   YouTube:
     type: http
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list"
     interval: 86400
-    size-limit: 0
+    
   Google:
     type: http
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list"
     interval: 86400
-    size-limit: 0
+    
 rules :
   - DOMAIN-SUFFIX,openai.com,🤖 AI
   - DOMAIN-SUFFIX,chatgpt.com,🤖 AI
