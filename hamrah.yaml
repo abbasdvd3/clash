@@ -1,37 +1,12 @@
-listeners:
-- name: redir-in
-  type: redir
-  port: 9797
-  listen: 0.0.0.0
-  udp: true
-- name: mixed-in
-  type: mixed
-  port: 7890
-  listen: 0.0.0.0
-  udp: true
-- name: socks-in
-  type: socks
-  port: 7891
-  listen: 0.0.0.0
-  udp: true
-- name: http-in
-  type: http
-  port: 7892
-  listen: 0.0.0.0
-- name: tunnel-in
-  type: tunnel
-  port: 10816
-  listen: 0.0.0.0
-  network: [tcp, udp]
-  target: PROXY
+
 port: 7892
 socks-port: 7891
 mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
 mode: rule
-ipv6: false
-allow-lan: false
+ipv6: true
+allow-lan: true
 log-level: debug
 bind-address: "*"
 lan-allowed-ips:
@@ -58,7 +33,7 @@ external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/downloa
 keep-alive-interval: 30
 find-process-mode: strict
 
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: random
 geodata-mode: true
@@ -116,10 +91,9 @@ tun:
   auto-redirect: true
   auto-detect-interface: true
   dns-hijack:
-    - any:53
-    - tcp://any:53
+    - 0.0.0.0:53
   device: utun0
-  mtu: 4506
+  mtu: 9000
   strict-route: true
   gso: true
   gso-max-size: 65536
@@ -185,10 +159,10 @@ sniffer:
 dns:
   enable: true
   cache-algorithm: arc
-  prefer-h3: false
-  use-hosts: true
-  use-system-hosts: true
-  respect-rules: true
+  prefer-h3: true
+  use-hosts: false
+  use-system-hosts: false
+  respect-rules: false
   listen: 0.0.0.0:53
   ipv6: false
   defult-nameserver:
@@ -536,7 +510,7 @@ proxy-groups:
     type: "url-test"
     url: "http://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
-    tolerance: 1
+    tolerance: 5000
     exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
     include-all-providers: true
     hidden: false
@@ -557,7 +531,7 @@ proxy-groups:
     exclude-filter: "HK|Hong|TW|Tai|Taiwan|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|回国|校园|游戏|🇰🇷|韩国|韓|首尔|KR|Korea|回国|校园|游戏|🇦🇹|timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅|AT|GER|🇩🇪🇱🇻|🇩🇪"
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
-    tolerance: 1
+    tolerance: 5000
     exclude-type: "socks5|http|direct|redir-in|trojan|DNS"
     include-all-providers: true
     hidden: false
@@ -578,7 +552,7 @@ proxy-groups:
     type: "url-test"
     url: "http://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
-    tolerance: 1
+    tolerance: 5000
     hidden: false
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Final.png"
     proxies:
@@ -600,49 +574,49 @@ rule-providers:
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
     interval: 86400
-    size-limit: 0
+    
   social:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
     interval: 86400
-    size-limit: 0
+    
   ir:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
     interval: 86400
-    size-limit: 0
+    
   ads:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
     interval: 86400
-    size-limit: 0
+    
   malware:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
     interval: 86400
-    size-limit: 0
+    
   phishing:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
     interval: 86400
-    size-limit: 0
+    
   cryptominers:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
     interval: 86400
-    size-limit: 0
+    
   apps:
     type: http
     format: yaml
@@ -655,103 +629,103 @@ rule-providers:
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
     interval: 86400
-    size-limit: 0
+    
   private:
     type: http
     format: yaml
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
     interval: 86400
-    size-limit: 0
+    
   irasn:
     type: http
     format: yaml
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
     interval: 86400
-    size-limit: 0
+    
   geolocation-!cn:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
     interval: 86400
-    size-limit: 0
+    
   AWA:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
     interval: 86400
-    size-limit: 0
+    
   anti-AD:
     type: http
     behavior: domain
     format: yaml
     url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"
     interval: 86400
-    size-limit: 0
+    
   anti-AD-white:
     type: http
     behavior: domain
     format: yaml
     url: "https://raw.githubusercontent.com/privacy-protection-tools/dead-horse/master/anti-ad-white-for-clash.yaml"
     interval: 86400
-    size-limit: 0
+    
   category-ai-!cn:
     type: http
     behavior: domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.yaml"
     interval: 86400
-    size-limit: 0
+    
   category-ai-cn:
     type: http
     behavior: domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.yaml"
     interval: 86400
-    size-limit: 0
+    
   AI:
     type: http
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list"
     interval: 86400
-    size-limit: 0
+    
   OpenAi:
     type: http
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list"
     interval: 86400
-    size-limit: 0
+    
   GoogleFCM:
     type: http
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list"
     interval: 86400
-    size-limit: 0
+    
   GoogleCNProxyIP:
     type: http
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list"
     interval: 86400
-    size-limit: 0
+    
   GoogleCN:
     type: http
     behavior: domain
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list"
     interval: 86400
-    size-limit: 0
+    
   YouTube:
     type: http
     behavior: domain
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list"
     interval: 86400
-    size-limit: 0
+    
   Google:
     type: http
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list"
     interval: 86400
-    size-limit: 0
+    
 rules :
   - RULE-SET,GoogleFCM,AI
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,AI
@@ -915,11 +889,11 @@ rules :
   - IP-SUFFIX,8.8.8.8/24,PROXY
   - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
   - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
-  - IP-CIDR,172.16.0.0/12,🎯 Direct,no-resolve
+  - IP-CIDR,172.16.0.0/12,PROXY,no-resolve
   - IP-CIDR,192.168.0.0/16,🎯 Direct,no-resolve
-  - IP-CIDR,10.0.0.0/8,🎯 Direct,no-resolve
-  - IP-CIDR,17.0.0.0/8,🎯 Direct,no-resolve
-  - IP-CIDR,100.64.0.0/10,🎯 Direct,no-resolve
+  - IP-CIDR,10.0.0.0/8,PROXY,no-resolve
+  - IP-CIDR,17.0.0.0/8,PROXY,no-resolve
+  - IP-CIDR,100.64.0.0/10,PROXY,no-resolve
   - PROCESS-NAME,com.termux,PROXY
   - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
   - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
