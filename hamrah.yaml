@@ -300,9 +300,7 @@ proxy-providers:
       timeout: 5000
       lazy: true
       expected-status: 204
-      udp: true
-      dialer-proxy: PROXY
-      ip-version: ipv4-prefer
+      
       additional-prefix: "A1 prefix |"
       additional-suffix: "| A1 suffix"
   A2:
@@ -317,9 +315,7 @@ proxy-providers:
       timeout: 5000
       lazy: true
       expected-status: 204
-      udp: true
-      dialer-proxy: PROXY
-      ip-version: ipv4-prefer
+      
       additional-prefix: "A2 prefix |"
       additional-suffix: "| A2 suffix"
   A3:
@@ -334,15 +330,13 @@ proxy-providers:
       timeout: 5000
       lazy: true
       expected-status: 204
-      udp: true
-      dialer-proxy: PROXY
-      ip-version: ipv4-prefer
+      
       additional-prefix: "A3 prefix |"
       additional-suffix: "| A3 suffix"
       
   A4:
     type: http
-    url: "https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg"
+    url: "https://raw.githubusercontent.com/itsyebekhe/PSG/main/subscriptions/clash/mix"
     interval: 300
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
@@ -352,9 +346,7 @@ proxy-providers:
       timeout: 5000
       lazy: true
       expected-status: 204
-      udp: true
-      dialer-proxy: PROXY
-      ip-version: ipv4-prefer
+      
       additional-prefix: "A4 prefix |"
       additional-suffix: "| A4 suffix"
   A5:
@@ -369,9 +361,7 @@ proxy-providers:
       timeout: 5000
       lazy: true
       expected-status: 204
-      udp: true
-      dialer-proxy: PROXY
-      ip-version: ipv4-prefer
+      
       additional-prefix: "A5 prefix |"
       additional-suffix: "| A5 suffix"
   A6:
@@ -386,9 +376,7 @@ proxy-providers:
       timeout: 5000
       lazy: true
       expected-status: 204
-      udp: true
-      dialer-proxy: PROXY
-      ip-version: ipv4-prefer
+      
       additional-prefix: "A6 prefix |"
       additional-suffix: "| A6 suffix"
   A7:
@@ -403,9 +391,7 @@ proxy-providers:
       timeout: 5000
       lazy: true
       expected-status: 204
-      udp: true
-      dialer-proxy: PROXY
-      ip-version: ipv4-prefer
+      
       additional-prefix: "A7 prefix |"
       additional-suffix: "| A7 suffix"
   A8:
@@ -420,9 +406,7 @@ proxy-providers:
       timeout: 5000
       lazy: true
       expected-status: 204
-      udp: true
-      dialer-proxy: PROXY
-      ip-version: ipv4-prefer
+      
       additional-prefix: "A8 prefix |"
       additional-suffix: "| A8 suffix"
   A9:
@@ -437,9 +421,7 @@ proxy-providers:
       timeout: 5000
       lazy: true
       expected-status: 204
-      udp: true
-      dialer-proxy: PROXY
-      ip-version: ipv4-prefer
+      
       additional-prefix: "A9 prefix |"
       additional-suffix: "| A9 suffix"
   A10:
@@ -454,14 +436,12 @@ proxy-providers:
       timeout: 5000
       lazy: true
       expected-status: 204
-      udp: true
-      dialer-proxy: PROXY
-      ip-version: ipv4-prefer
+      
       additional-prefix: "A10 prefix |"
       additional-suffix: "| A10 suffix"
   A11:
     type: http
-    url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
+    url: "https://gitlab.com/univstar1/v2ray/-/raw/main/data/clash/general.yaml"
     interval: 300
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
@@ -471,9 +451,7 @@ proxy-providers:
       timeout: 5000
       lazy: true
       expected-status: 204
-      udp: true
-      dialer-proxy: PROXY
-      ip-version: ipv4-prefer
+      
       additional-prefix: "A11 prefix |"
       additional-suffix: "| A11 suffix"
   A12:
@@ -488,9 +466,7 @@ proxy-providers:
       timeout: 5000
       lazy: true
       expected-status: 204
-      udp: true
-      dialer-proxy: PROXY
-      ip-version: ipv4-prefer
+      
       additional-prefix: "A12 prefix |"
       additional-suffix: "| A12 suffix" 
 
@@ -499,7 +475,8 @@ proxy-groups:
     type: "url-test"
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png"
     url: "http://connectivitycheck.gstatic.com/generate_204"
-    tolerance: 1
+    tolerance: 500
+    udp: false
     proxies:
       - "🎈Auto"
       - "🎈fallback"
