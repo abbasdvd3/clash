@@ -1,0 +1,1597 @@
+{
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "type": "tls",
+        "tag": "google",
+        "server": "8.8.8.8"
+      },
+      {
+        "type": "udp",
+        "tag": "local",
+        "server": "223.5.5.5"
+      },
+      {
+        "type": "fakeip",
+        "tag": "remote",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
+      }
+    ],
+    "rules": [
+      {
+        "outbound": "any",
+        "server": "local"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "remote"
+      }
+    ],
+    "strategy": "ipv4_only",
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 1081,
+      "sniff": true
+    },
+    {
+      "type": "tun",
+      "mtu": 9000,
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "system",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 1081
+        }
+      },
+      "sniff": true,
+      "inet4_address": "172.19.0.1/30"
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "select",
+      "outbounds": [
+        "auto",
+        "defaultName_1",
+        "defaultName_2",
+        "defaultName_3",
+        "defaultName_4",
+        "defaultName_5",
+        "defaultName_6",
+        "defaultName_7",
+        "defaultName_8",
+        "defaultName_9",
+        "defaultName_10",
+        "defaultName_11",
+        "defaultName_12",
+        "defaultName_13",
+        "defaultName_14",
+        "defaultName_15",
+        "defaultName_16",
+        "defaultName_17",
+        "defaultName_18",
+        "defaultName_19",
+        "defaultName_20",
+        "defaultName_21",
+        "defaultName_22",
+        "defaultName_23",
+        "defaultName_24",
+        "defaultName_25",
+        "defaultName_26",
+        "defaultName_27",
+        "defaultName_28",
+        "defaultName_29",
+        "defaultName_30",
+        "defaultName_31",
+        "defaultName_32",
+        "defaultName_33",
+        "defaultName_34",
+        "defaultName_35",
+        "defaultName_36",
+        "defaultName_37",
+        "defaultName_38",
+        "defaultName_39",
+        "defaultName_40",
+        "defaultName_41",
+        "defaultName_42",
+        "defaultName_43",
+        "defaultName_44",
+        "defaultName_45",
+        "defaultName_46",
+        "defaultName_47",
+        "defaultName_48",
+        "defaultName_49",
+        "defaultName_50",
+        "defaultName_51",
+        "defaultName_52",
+        "defaultName_53",
+        "defaultName_54",
+        "defaultName_55",
+        "defaultName_56",
+        "defaultName_57",
+        "defaultName_58",
+        "defaultName_59",
+        "defaultName_60",
+        "defaultName_61",
+        "defaultName_62",
+        "defaultName_63",
+        "defaultName_64",
+        "defaultName_65",
+        "defaultName_66",
+        "defaultName_67",
+        "defaultName_68",
+        "defaultName_69",
+        "defaultName_70",
+        "defaultName_71",
+        "defaultName_72",
+        "defaultName_73",
+        "defaultName_74",
+        "defaultName_75",
+        "defaultName_76",
+        "defaultName_77",
+        "defaultName_78",
+        "defaultName_79",
+        "defaultName_80",
+        "defaultName_81",
+        "defaultName_82",
+        "defaultName_83",
+        "defaultName_84",
+        "defaultName_85",
+        "defaultName_86",
+        "defaultName_87",
+        "defaultName_88",
+        "defaultName_89",
+        "defaultName_90",
+        "defaultName_91",
+        "defaultName_92",
+        "defaultName_93",
+        "defaultName_94",
+        "defaultName_95",
+        "defaultName_96",
+        "defaultName_97",
+        "defaultName_98",
+        "defaultName_99",
+        "defaultName_100",
+        "defaultName_101",
+        "defaultName_102",
+        "defaultName_103",
+        "defaultName_104",
+        "defaultName_105",
+        "defaultName_106",
+        "defaultName_107",
+        "defaultName_108",
+        "defaultName_109",
+        "defaultName_110",
+        "defaultName_111",
+        "defaultName_112",
+        "defaultName_113",
+        "defaultName_114",
+        "defaultName_115",
+        "defaultName_116",
+        "defaultName_117",
+        "defaultName_118",
+        "defaultName_119",
+        "defaultName_120",
+        "defaultName_121",
+        "defaultName_122",
+        "defaultName_123",
+        "defaultName_124",
+        "defaultName_125",
+        "defaultName_126",
+        "defaultName_127",
+        "defaultName_128",
+        "defaultName_129",
+        "defaultName_130",
+        "defaultName_131",
+        "defaultName_132",
+        "defaultName_133",
+        "defaultName_134",
+        "defaultName_135",
+        "defaultName_136",
+        "defaultName_137",
+        "defaultName_138",
+        "defaultName_139",
+        "defaultName_140",
+        "defaultName_141",
+        "defaultName_142",
+        "defaultName_143",
+        "defaultName_144",
+        "defaultName_145",
+        "defaultName_146",
+        "defaultName_147",
+        "defaultName_148",
+        "defaultName_149",
+        "defaultName_150",
+        "defaultName_151",
+        "defaultName_152",
+        "defaultName_153",
+        "defaultName_154",
+        "defaultName_155",
+        "defaultName_156",
+        "defaultName_157",
+        "defaultName_158",
+        "defaultName_159",
+        "defaultName_160",
+        "defaultName_161",
+        "defaultName_162",
+        "defaultName_163",
+        "defaultName_164",
+        "defaultName_165",
+        "defaultName_166",
+        "defaultName_167",
+        "defaultName_168",
+        "defaultName_169",
+        "defaultName_170",
+        "defaultName_171",
+        "defaultName_172",
+        "defaultName_173",
+        "defaultName_174",
+        "defaultName_175",
+        "defaultName_176",
+        "defaultName_177",
+        "defaultName_178",
+        "defaultName_179",
+        "defaultName_180"
+      ]
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "defaultName_1",
+        "defaultName_2",
+        "defaultName_3",
+        "defaultName_4",
+        "defaultName_5",
+        "defaultName_6",
+        "defaultName_7",
+        "defaultName_8",
+        "defaultName_9",
+        "defaultName_10",
+        "defaultName_11",
+        "defaultName_12",
+        "defaultName_13",
+        "defaultName_14",
+        "defaultName_15",
+        "defaultName_16",
+        "defaultName_17",
+        "defaultName_18",
+        "defaultName_19",
+        "defaultName_20",
+        "defaultName_21",
+        "defaultName_22",
+        "defaultName_23",
+        "defaultName_24",
+        "defaultName_25",
+        "defaultName_26",
+        "defaultName_27",
+        "defaultName_28",
+        "defaultName_29",
+        "defaultName_30",
+        "defaultName_31",
+        "defaultName_32",
+        "defaultName_33",
+        "defaultName_34",
+        "defaultName_35",
+        "defaultName_36",
+        "defaultName_37",
+        "defaultName_38",
+        "defaultName_39",
+        "defaultName_40",
+        "defaultName_41",
+        "defaultName_42",
+        "defaultName_43",
+        "defaultName_44",
+        "defaultName_45",
+        "defaultName_46",
+        "defaultName_47",
+        "defaultName_48",
+        "defaultName_49",
+        "defaultName_50",
+        "defaultName_51",
+        "defaultName_52",
+        "defaultName_53",
+        "defaultName_54",
+        "defaultName_55",
+        "defaultName_56",
+        "defaultName_57",
+        "defaultName_58",
+        "defaultName_59",
+        "defaultName_60",
+        "defaultName_61",
+        "defaultName_62",
+        "defaultName_63",
+        "defaultName_64",
+        "defaultName_65",
+        "defaultName_66",
+        "defaultName_67",
+        "defaultName_68",
+        "defaultName_69",
+        "defaultName_70",
+        "defaultName_71",
+        "defaultName_72",
+        "defaultName_73",
+        "defaultName_74",
+        "defaultName_75",
+        "defaultName_76",
+        "defaultName_77",
+        "defaultName_78",
+        "defaultName_79",
+        "defaultName_80",
+        "defaultName_81",
+        "defaultName_82",
+        "defaultName_83",
+        "defaultName_84",
+        "defaultName_85",
+        "defaultName_86",
+        "defaultName_87",
+        "defaultName_88",
+        "defaultName_89",
+        "defaultName_90",
+        "defaultName_91",
+        "defaultName_92",
+        "defaultName_93",
+        "defaultName_94",
+        "defaultName_95",
+        "defaultName_96",
+        "defaultName_97",
+        "defaultName_98",
+        "defaultName_99",
+        "defaultName_100",
+        "defaultName_101",
+        "defaultName_102",
+        "defaultName_103",
+        "defaultName_104",
+        "defaultName_105",
+        "defaultName_106",
+        "defaultName_107",
+        "defaultName_108",
+        "defaultName_109",
+        "defaultName_110",
+        "defaultName_111",
+        "defaultName_112",
+        "defaultName_113",
+        "defaultName_114",
+        "defaultName_115",
+        "defaultName_116",
+        "defaultName_117",
+        "defaultName_118",
+        "defaultName_119",
+        "defaultName_120",
+        "defaultName_121",
+        "defaultName_122",
+        "defaultName_123",
+        "defaultName_124",
+        "defaultName_125",
+        "defaultName_126",
+        "defaultName_127",
+        "defaultName_128",
+        "defaultName_129",
+        "defaultName_130",
+        "defaultName_131",
+        "defaultName_132",
+        "defaultName_133",
+        "defaultName_134",
+        "defaultName_135",
+        "defaultName_136",
+        "defaultName_137",
+        "defaultName_138",
+        "defaultName_139",
+        "defaultName_140",
+        "defaultName_141",
+        "defaultName_142",
+        "defaultName_143",
+        "defaultName_144",
+        "defaultName_145",
+        "defaultName_146",
+        "defaultName_147",
+        "defaultName_148",
+        "defaultName_149",
+        "defaultName_150",
+        "defaultName_151",
+        "defaultName_152",
+        "defaultName_153",
+        "defaultName_154",
+        "defaultName_155",
+        "defaultName_156",
+        "defaultName_157",
+        "defaultName_158",
+        "defaultName_159",
+        "defaultName_160",
+        "defaultName_161",
+        "defaultName_162",
+        "defaultName_163",
+        "defaultName_164",
+        "defaultName_165",
+        "defaultName_166",
+        "defaultName_167",
+        "defaultName_168",
+        "defaultName_169",
+        "defaultName_170",
+        "defaultName_171",
+        "defaultName_172",
+        "defaultName_173",
+        "defaultName_174",
+        "defaultName_175",
+        "defaultName_176",
+        "defaultName_177",
+        "defaultName_178",
+        "defaultName_179",
+        "defaultName_180"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "3m0s",
+      "tolerance": 500
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_1",
+      "server": "46.62.225.43",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_2",
+      "server": "8.212.177.126",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_3",
+      "server": "203.19.38.114",
+      "server_port": 1080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_4",
+      "server": "154.31.115.210",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_5",
+      "server": "197.221.234.149",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_6",
+      "server": "202.83.30.96",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_7",
+      "server": "176.100.1.170",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_8",
+      "server": "144.31.85.152",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_9",
+      "server": "212.114.194.78",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_10",
+      "server": "212.114.194.73",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_11",
+      "server": "23.190.168.41",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_12",
+      "server": "212.114.194.75",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_13",
+      "server": "81.177.111.146",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_14",
+      "server": "192.73.244.36",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_15",
+      "server": "8.213.151.128",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_16",
+      "server": "47.91.104.88",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_17",
+      "server": "154.17.228.122",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_18",
+      "server": "221.231.13.198",
+      "server_port": 1080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_19",
+      "server": "45.89.220.78",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_20",
+      "server": "14.103.168.150",
+      "server_port": 18080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_21",
+      "server": "62.113.119.14",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_22",
+      "server": "95.217.5.45",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_23",
+      "server": "172.237.73.24",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_24",
+      "server": "209.13.186.20",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_25",
+      "server": "120.240.110.145",
+      "server_port": 22222
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_26",
+      "server": "47.238.60.156",
+      "server_port": 45
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_27",
+      "server": "89.116.34.113",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_28",
+      "server": "8.130.74.114",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_29",
+      "server": "41.220.16.208",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_30",
+      "server": "47.81.14.7",
+      "server_port": 3129
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_31",
+      "server": "47.84.131.156",
+      "server_port": 8100
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_32",
+      "server": "156.146.56.234",
+      "server_port": 8081
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_33",
+      "server": "89.58.57.45",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_34",
+      "server": "39.185.41.193",
+      "server_port": 5911
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_35",
+      "server": "103.147.246.18",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_36",
+      "server": "95.173.218.72",
+      "server_port": 8082
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_37",
+      "server": "59.7.246.4",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_38",
+      "server": "8.219.229.53",
+      "server_port": 9080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_39",
+      "server": "8.209.96.245",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_40",
+      "server": "156.146.56.233",
+      "server_port": 8081
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_41",
+      "server": "82.153.217.169",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_42",
+      "server": "39.102.213.50",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_43",
+      "server": "8.220.205.172",
+      "server_port": 11
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_44",
+      "server": "8.215.3.250",
+      "server_port": 8119
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_45",
+      "server": "47.238.60.156",
+      "server_port": 9098
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_46",
+      "server": "12.50.107.220",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_47",
+      "server": "51.8.61.60",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_48",
+      "server": "45.59.186.60",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_49",
+      "server": "200.174.198.32",
+      "server_port": 8888
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_50",
+      "server": "154.31.113.209",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_51",
+      "server": "89.58.55.33",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_52",
+      "server": "154.3.236.202",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_53",
+      "server": "103.102.6.82",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_54",
+      "server": "52.229.30.3",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_55",
+      "server": "47.252.11.233",
+      "server_port": 9080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_56",
+      "server": "41.220.16.209",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_57",
+      "server": "202.191.127.106",
+      "server_port": 1121
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_58",
+      "server": "211.230.49.122",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_59",
+      "server": "45.88.0.115",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_60",
+      "server": "68.235.35.171",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_61",
+      "server": "101.47.17.165",
+      "server_port": 7890
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_62",
+      "server": "43.225.148.130",
+      "server_port": 1120
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_63",
+      "server": "47.243.92.199",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_64",
+      "server": "8.210.17.35",
+      "server_port": 8003
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_65",
+      "server": "202.21.115.178",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_66",
+      "server": "47.237.107.41",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_67",
+      "server": "200.59.191.232",
+      "server_port": 999
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_68",
+      "server": "118.137.63.17",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_69",
+      "server": "103.155.234.9",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_70",
+      "server": "8.213.156.191",
+      "server_port": 8008
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_71",
+      "server": "175.99.220.171",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_72",
+      "server": "209.97.150.167",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_73",
+      "server": "38.95.89.204",
+      "server_port": 999
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_74",
+      "server": "185.187.92.42",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_75",
+      "server": "212.114.194.72",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_76",
+      "server": "103.165.157.107",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_77",
+      "server": "197.221.249.197",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_78",
+      "server": "197.221.240.240",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_79",
+      "server": "197.221.240.247",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_80",
+      "server": "172.238.22.205",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_81",
+      "server": "138.68.60.8",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_82",
+      "server": "154.90.48.76",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_83",
+      "server": "193.43.159.200",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_84",
+      "server": "113.204.79.230",
+      "server_port": 9091
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_85",
+      "server": "121.40.231.103",
+      "server_port": 7890
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_86",
+      "server": "157.20.220.42",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_87",
+      "server": "102.68.128.210",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_88",
+      "server": "80.74.54.148",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_89",
+      "server": "126.209.2.229",
+      "server_port": 8082
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_90",
+      "server": "150.107.140.238",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_91",
+      "server": "59.153.16.214",
+      "server_port": 1120
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_92",
+      "server": "128.199.202.122",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_93",
+      "server": "117.141.243.124",
+      "server_port": 7890
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_94",
+      "server": "147.75.83.117",
+      "server_port": 443
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_95",
+      "server": "223.204.48.124",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_96",
+      "server": "59.6.25.118",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_97",
+      "server": "147.83.77.10",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_98",
+      "server": "36.138.53.26",
+      "server_port": 10017
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_99",
+      "server": "4.213.167.178",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_100",
+      "server": "162.223.90.144",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_101",
+      "server": "58.216.109.14",
+      "server_port": 800
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_102",
+      "server": "120.92.211.211",
+      "server_port": 7890
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_103",
+      "server": "47.104.27.165",
+      "server_port": 8443
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_104",
+      "server": "47.121.183.107",
+      "server_port": 20000
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_105",
+      "server": "47.238.134.126",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_106",
+      "server": "213.76.184.53",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_107",
+      "server": "95.173.218.66",
+      "server_port": 8082
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_108",
+      "server": "138.68.60.8",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_109",
+      "server": "185.129.117.221",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_110",
+      "server": "154.113.208.190",
+      "server_port": 8082
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_111",
+      "server": "47.104.198.111",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_112",
+      "server": "172.200.72.48",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_113",
+      "server": "43.225.151.30",
+      "server_port": 1121
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_114",
+      "server": "139.162.78.109",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_115",
+      "server": "71.60.160.245",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_116",
+      "server": "154.17.224.118",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_117",
+      "server": "212.114.194.72",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_118",
+      "server": "157.245.40.210",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_119",
+      "server": "176.126.164.213",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_120",
+      "server": "162.245.85.36",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_121",
+      "server": "154.61.76.24",
+      "server_port": 8081
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_122",
+      "server": "219.65.73.81",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_123",
+      "server": "82.115.60.51",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_124",
+      "server": "101.47.17.165",
+      "server_port": 7890
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_125",
+      "server": "103.138.145.34",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_126",
+      "server": "91.222.238.112",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_127",
+      "server": "154.3.236.202",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_128",
+      "server": "8.211.194.78",
+      "server_port": 5800
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_129",
+      "server": "147.83.77.10",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_130",
+      "server": "8.213.222.157",
+      "server_port": 3129
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_131",
+      "server": "8.213.222.157",
+      "server_port": 312
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_132",
+      "server": "45.174.176.161",
+      "server_port": 8088
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_133",
+      "server": "46.161.6.165",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_134",
+      "server": "139.162.78.109",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_135",
+      "server": "8.213.222.157",
+      "server_port": 4002
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_136",
+      "server": "23.247.136.254",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_137",
+      "server": "8.148.24.225",
+      "server_port": 9080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_138",
+      "server": "156.146.56.231",
+      "server_port": 8081
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_139",
+      "server": "39.102.213.187",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_140",
+      "server": "91.107.171.19",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_141",
+      "server": "174.138.119.88",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_142",
+      "server": "209.97.150.167",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_143",
+      "server": "120.25.189.254",
+      "server_port": 9098
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_144",
+      "server": "157.180.118.86",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_145",
+      "server": "121.43.109.88",
+      "server_port": 8047
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_146",
+      "server": "202.83.30.96",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_147",
+      "server": "47.56.110.204",
+      "server_port": 8989
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_148",
+      "server": "103.178.86.86",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_149",
+      "server": "89.116.88.19",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_150",
+      "server": "58.152.58.208",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_151",
+      "server": "48.210.225.96",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_152",
+      "server": "172.238.22.205",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_153",
+      "server": "156.146.56.240",
+      "server_port": 8081
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_154",
+      "server": "89.58.55.33",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_155",
+      "server": "139.99.237.62",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_156",
+      "server": "176.105.212.219",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_157",
+      "server": "68.235.35.171",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_158",
+      "server": "46.47.197.210",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_159",
+      "server": "38.54.9.151",
+      "server_port": 20
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_160",
+      "server": "51.16.209.246",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_161",
+      "server": "50.203.147.159",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_162",
+      "server": "176.126.103.194",
+      "server_port": 44214
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_163",
+      "server": "103.65.237.92",
+      "server_port": 5678
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_164",
+      "server": "8.220.140.243",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_165",
+      "server": "41.220.22.7",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_166",
+      "server": "74.176.195.135",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_167",
+      "server": "62.60.195.94",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_168",
+      "server": "82.180.132.69",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_169",
+      "server": "161.35.70.249",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_170",
+      "server": "38.3.162.129",
+      "server_port": 999
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_171",
+      "server": "211.230.49.122",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_172",
+      "server": "189.72.85.254",
+      "server_port": 8080
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_173",
+      "server": "209.13.186.20",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_174",
+      "server": "39.102.211.162",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_175",
+      "server": "213.142.156.97",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_176",
+      "server": "154.31.113.209",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_177",
+      "server": "168.195.177.10",
+      "server_port": 3128
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_178",
+      "server": "103.253.43.144",
+      "server_port": 80
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_179",
+      "server": "117.141.243.124",
+      "server_port": 7890
+    },
+    {
+      "type": "http",
+      "tag": "defaultName_180",
+      "server": "13.80.134.180",
+      "server_port": 80
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "protocol": "dns",
+        "outbound": "dns-out"
+      },
+      {
+        "rule_set": "geosite-category-ads-all",
+        "outbound": "block"
+      },
+      {
+        "rule_set": "geoip-cn",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "outbound": "direct"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+        "download_detour": "select"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-cn",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
+        "download_detour": "select"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-ads-all",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs",
+        "download_detour": "select"
+      }
+    ],
+    "final": "Proxy",
+    "auto_detect_interface": true,
+    "find_process": true,
+    "default_domain_resolver": "local"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "store_fakeip": true,
+      "store_rdrc": true
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "/dashboard",
+      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_download_detour": "direct",
+      "default_mode": "rule"
+    }
+  }
+}
