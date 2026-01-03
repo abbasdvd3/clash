@@ -47,37 +47,37 @@ proxy-groups:
 
   - name: ♻️ url-test
     type: url-test
-    url: http://speed.cloudflare.com/__down?bytes=20000000
+    url: https://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
     udp: true
-    interval: 1800
+    interval: 180
     tolerance: 100
     hidden: false
     proxies:
-    use:
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
 
   - name: 🚧 fallback
     type: fallback
-    url: http://speed.cloudflare.com/__down?bytes=20000000
+    url: https://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
     udp: true
-    interval: 1800
- #   tolerance: 10
+    interval: 180
+    tolerance: 10
     hidden: false
     proxies:
-    use:
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
 
   - name: ⚖️ load-balance
     type: load-balance
     strategy: round-robin
-    url: http://speed.cloudflare.com/__down?bytes=20000000
+    url: https://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
     udp: true
-    interval: 1800
+    interval: 180
     tolerance: 100
     hidden: false
     proxies:
-    use:
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
         
   - name: 🎯
     type: select
