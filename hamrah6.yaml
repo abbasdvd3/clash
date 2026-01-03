@@ -104,7 +104,8 @@ proxy-groups:
     type: url-test
     url: https://t1.geigei.gq/generate_204
     include-all-providers: true
-    interval: 1000
+    interval: 100
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
     filter: "America|United States|US|美国"
     lazy: true
 
@@ -112,7 +113,8 @@ proxy-groups:
     type: fallback
     url: https://t1.geigei.gq/generate_204
     include-all-providers: true
-    interval: 1800
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
+    interval: 180
     filter: "America|United States|US|美国"
     lazy: true
 
@@ -120,31 +122,35 @@ proxy-groups:
     type: url-test
     url: https://t1.geigei.gq/generate_204
     include-all-providers: true
-    interval: 1000
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
+    interval: 100
     lazy: true
     filter: "HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国"
     use: 
   - name: Geo-JP
     type: url-test
     url: https://t1.geigei.gq/generate_204
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
     include-all-providers: true
-    interval: 1000
+    interval: 100
     lazy: true
     filter: "Japan|JP|日本"
 
   - name: Geo-US
     type: url-test
     url: https://t1.geigei.gq/generate_204
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
     include-all-providers: true
-    interval: 1000
+    interval: 100
     lazy: true
     filter: "America|United States|US|美国"
  
   - name: Geo-CN
     type: url-test
     url: https://t1.geigei.gq/generate_204
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
     include-all-providers: true
-    interval: 1000
+    interval: 100
     lazy: true
     filter: "China|CN|中国"
   
