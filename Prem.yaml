@@ -90,18 +90,7 @@ proxy-providers:
       interval: 30
       url: "https://www.google.com/generate_204"
       
-  provider3:
-    type: http
-    url: "http://66.42.50.118:12580/clash/proxies"    
-    path: Prem/P3.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless"
-    health-check:
-      enable: true
-      interval: 30
-      url: "https://www.google.com/generate_204"
+
 proxies:
 proxy-groups:
   - name: PROXY
@@ -131,7 +120,7 @@ proxy-groups:
     use:
       - provider1
       - provider2
-      - provider3
+  #    - provider3
   #    - provider4
    #   - provider7
   #    - provider6
@@ -147,7 +136,7 @@ proxy-groups:
     use:
       - provider1
       - provider2
-      - provider3
+   #   - provider3
    #   - provider4
    #   - provider7
    #   - provider6
@@ -163,7 +152,7 @@ proxy-groups:
     use:
       - provider1
       - provider2
-      - provider3
+ #     - provider3
   #    - provider4
   #    - provider7
   #    - provider6
