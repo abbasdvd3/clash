@@ -31,7 +31,7 @@
       },
       {
         "clash_mode": "global",
-        "server": "google"
+        "server": "fakeip"
       },
       {
         "query_type": [
@@ -57,7 +57,7 @@
             "rule_set": "geoip-cn"
           }
         ],
-        "server": "google"
+        "server": "local"
       },
       {
         "query_type": [
@@ -15220,6 +15220,14 @@
         "outbound": "Proxy"
       },
       {
+        "ip_cidr": "10.10.34.0/24",
+        "outbound": "select"
+      },
+      {
+        "domain_suffix": ".ir",
+        "outbound": "direct"
+      },
+      {
         "rule_set": [
           "geoip-cn",
           "geosite-cn"
@@ -15418,6 +15426,7 @@
     "final": "Proxy",
     "find_process": true,
     "auto_detect_interface": true,
+    "override_android_vpn": true,
     "default_domain_resolver": {
       "server": "local",
       "strategy": "ipv4_only"
@@ -15434,6 +15443,16 @@
       "external_ui": "/dashboard",
       "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
       "external_ui_download_detour": "direct",
+      "access_control_allow_origin": [
+      "http://127.0.0.1",
+      "http://yacd.haishan.me",
+      "tauri://localhost",
+      "http://tauri.localhost",
+      "https://yacd.metacubex.one",
+      "https://metacubex.github.io",
+      "https://board.zash.run.place"
+      ],
+      "access_control_allow_private_network": true,
       "default_mode": "rule"
     }
   }
