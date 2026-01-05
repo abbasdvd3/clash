@@ -535,7 +535,7 @@ proxy-groups:
     type: "url-test"
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png"
     url: "https://connectivitycheck.gstatic.com/generate_204"
-    tolerance: 500
+    tolerance: 50
     udp: false
     proxies:
       - "🎈Auto"
@@ -547,9 +547,10 @@ proxy-groups:
     type: "url-test"
     url: "https://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
-    tolerance: 5000
+    tolerance: 50
     exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
     include-all-providers: true
+    
     hidden: false
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png"
     
@@ -560,6 +561,7 @@ proxy-groups:
     interval: 18
     exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
     include-all-providers: true
+    include-all-proxies: true
     hidden: false
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
     
@@ -568,9 +570,10 @@ proxy-groups:
     exclude-filter: "HK|Hong|TW|Tai|Taiwan|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|回国|校园|游戏|🇰🇷|韩国|韓|首尔|KR|Korea|回国|校园|游戏|🇦🇹|timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅|AT|GER|🇩🇪🇱🇻|🇩🇪"
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
-    tolerance: 5000
+    tolerance: 50
     exclude-type: "socks5|http|direct|redir-in|trojan|DNS"
     include-all-providers: true
+    include-all-proxies: true
     hidden: false
     url: "https://connectivitycheck.gstatic.com/generate_204"
     
@@ -582,6 +585,7 @@ proxy-groups:
     interval: 18
     exclude-type: "socks5|http|direct|redir-in|trojan|DNS"
     include-all-providers: true
+    include-all-proxies: true
     hidden: false
     url: "https://connectivitycheck.gstatic.com/generate_204"
     
@@ -589,7 +593,7 @@ proxy-groups:
     type: "url-test"
     url: "https://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
-    tolerance: 5000
+    tolerance: 5
     hidden: false
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Final.png"
     proxies:
@@ -818,9 +822,9 @@ rules :
   - DOMAIN-KEYWORD,ir,🎯 Direct,no-resolve
   - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
   - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
-  - IP-CIDR,172.16.0.0/12,🎯 Direct,no-resolve
-  - IP-CIDR,192.168.0.0/16,🎯 Direct,no-resolve
-  - IP-CIDR,10.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,172.16.0.0/12,🎯 Direct
+  - IP-CIDR,192.168.0.0/16,🎯 Direct
+  - IP-CIDR,10.0.0.0/8,PROXY
   - DOMAIN-SUFFIX,openai.com,AI
   - DOMAIN-SUFFIX,chatgpt.com,AI
   - DOMAIN-SUFFIX,anthropic.com,AI
@@ -925,12 +929,8 @@ rules :
   - NETWORK,udp,PROXY
   - IP-SUFFIX,8.8.8.8/24,PROXY
   - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
-  - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
-  - IP-CIDR,172.16.0.0/12,PROXY,no-resolve
-  - IP-CIDR,192.168.0.0/16,🎯 Direct,no-resolve
-  - IP-CIDR,10.0.0.0/8,PROXY,no-resolve
-  - IP-CIDR,17.0.0.0/8,PROXY,no-resolve
-  - IP-CIDR,100.64.0.0/10,PROXY,no-resolve
+  - IP-CIDR,10.0.0.0/8,PROXY
+  - IP-CIDR,100.64.0.0/10,PROXY
   - PROCESS-NAME,com.termux,PROXY
   - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
   - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
