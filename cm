@@ -1,297 +1,595 @@
-# port: 7890
-# socks-port: 7891
-# mixed-port: 7890
+port: 7892
+socks-port: 7891
+mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
-
-# rule 规则匹配
-# global 全局代理(需要在GLOBAL策略组选择代理/策略)
-# direct 全局直连
-# 此项拥有默认值，默认为规则模式
 mode: rule
+ipv6: true
 allow-lan: true
-# unified-delay: true
-bind-address: '*'
-
-# silent 静默，不输出
-# error 仅输出发生错误至无法使用的日志
-# warning 输出发生错误但不影响运行的日志，以及 error 级别内容
-# info 输出一般运行的内容，以及 error 和 warning 级别的日志
-# debug 尽可能的输出运行中所有的信息
-log-level: silent
-ipv6: false
-
-# 更改geoip使用文件,mmdb或者dat,true为dat
-# geodata-mode: true
-
-# 可选的加载模式如下
-# standard：标准加载器
-# memconservative：专为内存受限(小内存)设备优化的加载器(默认值)
-# geodata-loader: memconservative
-
-external-controller: 0.0.0.0:9090 
-# secret: "123456"
-external-ui: /data/adb/box/clash/dashboard
-# external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip" # 自定义外部用户界面下载地址 
-# tcp-concurrent: false
-
-# 目前仅用于 API 的 https
-# tls:
-  # certificate: string # 证书 PEM 格式，或者 证书的路径
-  # private-key: string # 证书对应的私钥 PEM 格式，或者私钥路径
-
-# 全局 TLS 指纹，优先低于 proxy 内的 client-fingerprint。
-# 目前支持开启 TLS 传输的 TCP/grpc/WS/HTTP , 支持协议有 VLESS,Vmess 和 trojan.
-# global-client-fingerprint: chrome
-# Note:
-# 可选："chrome", "firefox", "safari", "iOS", "android", "edge", "360"," qq", "random"
-# 若选择 "random", 则按 Cloudflare Radar 数据按概率生成一个现代浏览器指纹。
-
-# geox-url:
-  # mmdb: "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb"
-  # geoip: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat"
-  # geosite: "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat"
-
-# 控制是否让 Clash 去匹配进程
-# always 开启，强制匹配所有进程
-# strict 默认，由 Clash 判断是否开启
-# off 不匹配进程，推荐在路由器上使用此模式
-# find-process-mode: strict
-
+log-level: debug
+external-controller: "127.0.0.1:9090"
+external-controller-tls: "127.0.0.1:9091"
+external-ui: ./dashboard
+keep-alive-interval: 30
+find-process-mode: always
+external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+unified-delay: true
+tcp-concurrent: true
+global-client-fingerprint: random
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  GeoIP: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
+  GeoSite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
+  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
+  ANS: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
+global-ua: chrome
 profile:
   store-selected: true
-  # 储存 API 对策略组的选择，以供下次启动时使用
-  store-fake-ip: false
-  # 储存 fakeip 映射表，域名再次发生连接时，使用原有映射地址
-
-# sniffer:                           #【Meta专属】sniffer域名嗅探器
-  # enable: false                    # 嗅探器开关
-
-                                   # # 开启后对 redir-host 类型识别的流量进行强制嗅探
-                                   # # 包含 Tun、Redir 和 TProxy 或 DNS 为 redir-host
-  # # force-dns-mapping: false
-  # # parse-pure-ip: false           # 对所有未获取到域名的流量进行强制嗅探
-
-  # override-destination: false      # 是否使用嗅探结果作为实际访问,默认 true
-                                   # # 全局配置,优先级低于 sniffer.sniff 实际配置
-  # sniff: # TLS 默认如果不配置 ports 默认嗅探 443
-    # TLS:
-      # ports: [443, 8443]
-    # HTTP: # 需要嗅探的端口, 默认嗅探 80
-      # ports: [80, 8080-8880]
-      # override-destination: true # 可覆盖 sniffer.override-destination
-  # force-domain:
-    # - +.v2ex.com
-  # # 白名单,跳过嗅探结果
-  # skip-domain:
-    # - Mijia Cloud
-
+  store-fake-ip: true
+  
 tun:
-  enable: false
-  device: utun
-  mtu: 9000
-  stack: system # gvisor / lwip / system
+  enable: true
+  stack: system
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
   dns-hijack:
     - any:53
-    - tcp://any:53
-  auto-route: true
-  auto-detect-interface: true
-  # include_android_user:
-    # - 0
-    # - 10
-  # include_package:
-  # - com.android.chrome
-  # exclude_package:
-    # - com.whatsapp
+  device: utun0
+  mtu: 9000
+  strict-route: true
+  gso: true
+  gso-max-size: 65536
+  udp-timeout: 300
+  iproute2-table-index: 2022
+  iproute2-rule-index: 9000
+  endpoint-independent-nat: false
+  inet4-route-address:
+  - 0.0.0.0/1
+  - 128.0.0.0/1
+  inet6-route-address:
+  - "::/1"
+  - "8000::/1"
+  inet4-route-exclude-address:
+  - 192.168.0.0/16
+  inet6-route-exclude-address:
+  - fc00::/7
+  
+sniffer:
+  enable: true
+  sniffing:
+    - tls
+    - http
+  skip-domain:
+    - 'Mijia Cloud'
+    - 'dlg.io.mi.com'
+    - '+.apple.com'
+    - '*.baidu.com'
+  force-domain:
+    - '+'
+    - '+.google.com'
+  port-whitelist:
+    - 80
+    - 443
+    - 8000-9000
 
 dns:
   enable: true
-  # 可选值 true/false
-  # 是否解析 IPV6, 如为 false, 则回应 AAAA 的空解析
+  perfer-h3: true
   ipv6: true
-
-  # 可选值 true/false
-  # 是否开启 DOH 的 http/3
-  # prefer-h3: false
-
-  # 默认 dns, 用于解析 DNS 服务器 的域名
-  # 必须为 ip, 可为加密 dns
-  default-nameserver:
-    # - 114.114.114.114
-    - 8.8.8.8
-    # cloudflare
-    - 1.1.1.1
-    # - tls://223.5.5.5:853
-    # - https://223.5.5.5/dns-query
-
-  # dns 服务监听
-  listen: 0.0.0.0:1053
+#  ipv6-timeout: 300
+  listen: :53
   use-hosts: true
-
-  # 可选值 fake-ip / redir-host
-  # Clash 的 dns 处理模式
   enhanced-mode: fake-ip
-
-  # 格式为 ip/掩码
-  # fakeip 下的 IP 段设置，tun 网卡的默认 ip 也使用此值
   fake-ip-range: 198.18.0.1/16
-
-  # fakeip 过滤，以下地址不会下发 fakeip 映射用于连接
-  fake-ip-filter:
+  fake-ip-filter: 
     - '*.lan'
-    # - localhost.ptlogin2.qq.com
-
-  # 默认的域名解析服务器，如不配置 fallback/proxy-server-nameserver , 则所有域名都由 nameserver 解析
+    - '*.local'
+    - 'stun.*.*.*'
+    - 'stun.*.*'
+    - 'localhost.ptlogin2.qq.com'
+    - '*.msftncsi.com'
+    - '*.msftconnecttest.com'
+  nameserver-policy:
+    "geosite:ir":
+      - tls://dns.tuna.tsinghua.edu.cn:8853
+      - https://dns.tuna.tsinghua.edu.cn:8443/dns-query
+      - tls://dns.alidns.com:853
+      - https://dns.alidns.com/dns-query
+      - tls://dns.pub:853
+      - https://dns.pub/dns-query
+      - tls://dns.ipv6dns.com:853
+      - https://dns.ipv6dns.com/dns-query
+  default-nameserver:
+    - tls://101.6.6.6:8853
+    - tcp://101.6.6.6:8443/dns-query
+    - tls://223.5.5.5:853
+    - tcp://223.5.5.5/dns-query
+    - quic://94.140.14.140:784
+    - tls://94.140.14.140:853
+    - tcp://94.140.14.140/dns-query
+    - quic://94.140.14.141:784
+    - tls://94.140.14.141:853
+    - tcp://94.140.14.141/dns-query
+    - quic://[2a10:50c0::1:ff]:784
+    - tls://[2a10:50c0::1:ff]:853
+    - tcp://[2a10:50c0::1:ff]/dns-query
+    - quic://[2a10:50c0::2:ff]:784
+    - tls://[2a10:50c0::2:ff]:853
+    - tcp://[2a10:50c0::2:ff]/dns-query
+  proxy-server-nameserver:          
+    - quic://i.passcloud.xyz:784
+    - quic://a.passcloud.xyz:784
+    - tls://i.passcloud.xyz:853
+    - tls://a.passcloud.xyz:853
+    - https://i.passcloud.xyz/dns-query
+    - https://a.passcloud.xyz/dns-query
+    - tls://dns.cmrg.net:53053
+    - tls://dns.cmrg.net:443
+    - https://199.58.83.33/dns-query
+    - tls://199.58.83.33:443
+    - tls://199.58.83.33:53053
+    - https://162.159.36.1/dns-query
+    - https://162.159.46.1/dns-query
+    - tls://dns.tuna.tsinghua.edu.cn:8853
+    - https://dns.tuna.tsinghua.edu.cn:8443/dns-query
+    - quic://dns-unfiltered.adguard.com:784
+    - tls://dns-unfiltered.adguard.com:853
+    - https://dns-unfiltered.adguard.com/dns-query
+    - quic://94.140.14.140:784
+    - tls://94.140.14.140:853
+    - https://94.140.14.140/dns-query
+    - quic://94.140.14.141:784
+    - tls://94.140.14.141:853
+    - https://94.140.14.141/dns-query
+    - tls://edns.apad.pro:853
+    - https://edns.apad.pro:3306/dns-query
+    - tls://h2o.apad.pro:853
+    - https://h2o.apad.pro/dns-query
+    - https://doh.apad.pro/dns-query
+    - https://doh.apad.pro/cn-query
+    - tls://dns-nosec.quad9.net:853
+    - tls://dns10.quad9.net:853
+    - https://dns10.quad9.net:5053/dns-query
+    - https://dns10.quad9.net/dns-query
+    - quic://103.127.124.46:853
+    - quic://203.76.245.200:853
+    - quic://203.162.172.59:853
+    - quic://103.88.47.112:853
+    - quic://103.199.17.192:853
+    - quic://37.252.243.39:853
+    - quic://141.164.63.208:853
+    - quic://103.246.218.132:853
+    - quic://45.11.104.186:853
+    - quic://37.252.249.233:853
+    - https://103.127.124.46/dns-query
+    - https://203.76.245.200/dns-query
+    - https://203.162.172.59/dns-query
+    - https://103.88.47.112/dns-query
+    - https://103.199.17.192/dns-query
+    - https://37.252.243.39/dns-query
+    - https://141.164.63.208/dns-query
+    - https://103.246.218.132/dns-query
+    - https://45.11.104.186/dns-query
+    - https://37.252.249.233/dns-query
   nameserver:
-    # google
-    - 8.8.8.8
-    - 1.0.0.1
-  # proxy-server-nameserver:
-    # - https://doh.pub/dns-query
-
-  # 指定域名查询的解析服务器，可使用 geosite, 优先于 nameserver/fallback 查询
-  # Note: 并发查询，无法保证顺序，以下仅作为书写演示，建议根据自己需求写
-  # nameserver-policy:
-    # 'www.baidu.com': '114.114.114.114'
-    # '+.internal.crop.com': '10.0.0.1'
-    # 'geosite:cn': https://doh.pub/dns-query
-
-  # 后备域名解析服务器，一般情况下使用境外 DNS, 保证结果可信
-  # 配置 fallback后默认启用 fallback-filter,geoip-code为 cn
-  # fallback:
-    # - tls://8.8.4.4
-    # - tls://1.1.1.1
-
-  # 代理节点域名解析服务器，仅用于解析代理节点的域名
-  # proxy-server-nameserver:
-    # - https://doh.pub/dns-query
-
-  # fallback-filter
-  # 后备域名解析服务器筛选，满足条件的将使用 fallback结果或只使用 fallback解析
-  # fallback-filter:
-
-    # geoip
-    # 可选值为 true/false
-    # 是否启用 fallback filter
-    # geoip: true
-
-    # geoip-code
-    # 可选值为 国家缩写，默认值为 CN
-    # 除了 geoip-code 配置的国家 IP, 其他的 IP 结果会被视为污染
-    # geoip-code 配置的国家的结果会直接采用，否则将采用 fallback结果
-    # geoip-code: ID
-
-    # geosite
-    # 可选值为对于的 geosite 内包含的集合
-    # geosite 列表的内容被视为已污染，匹配到 geosite 的域名，将只使用 fallback解析，不去使用 nameserver
-    # geosite:
-      # - gfw
-
-    # ipcidr
-    # 书写内容为 IP/掩码
-    # 这些网段的结果会被视为污染，nameserver解析出这些结果时将会采用 fallback的解析结果
-    # ipcidr:
-      # - 240.0.0.0/4
-
-    # domain
-    # 这些域名被视为已污染，匹配到这些域名，会直接使用 fallback解析，不去使用 nameserver
-    # domain:
-      # - '+.google.com'
-      # - '+.facebook.com'
-      # - '+.youtube.com'
-
-# hosts:
-  # # block update system android
-  # 'ota.googlezip.net': 127.0.0.1
-  # 'ota-cache1.googlezip.net': 127.0.0.1
-  # 'ota-cache2.googlezip.net': 127.0.0.1
-
-proxies:
+    - dhcp://en0
+    - dhcp://WLAN
+    - dhcp://wlan
+    - 192.168.1.1
+    - quic://b.iqiq.io:784
+    - quic://h.iqiq.io:784
+    - quic://j.iqiq.io:784
+    - quic://c.passcloud.xyz:784
+    - quic://x.passcloud.xyz:784
+    - tls://b.iqiq.io:853
+    - tls://h.iqiq.io:853
+    - tls://j.iqiq.io:853
+    - tls://c.passcloud.xyz:853
+    - tls://x.passcloud.xyz:853
+    - tls://dns.ipv6dns.com:853
+    - https://dns.ipv6dns.com/dns-query
+    - tls://221.228.217.28:853
+    - https://221.228.217.28/dns-query
+    - tls://111.7.223.98:853
+    - https://111.7.223.98/dns-query
+    - tls://122.194.14.149:853
+    - https://122.194.14.149/dns-query
+    - tls://dns.alidns.com:853
+    - https://dns.alidns.com/dns-query
+    - tls://223.5.5.5:853
+    - https://223.5.5.5/dns-query
+    - tls://223.6.6.6:853
+    - https://223.6.6.6/dns-query#h3=true
+    - tls://dot.360.cn:853
+    - https://doh.360.cn/dns-query
+    - tls://dns.pub:853
+    - https://dns.pub/dns-query
+    - tls://120.53.53.53:853
+    - tls://1.12.12.12:853
+    - https://120.53.53.53/dns-query
+    - https://1.12.12.12/dns-query
+    - https://doh.360.cn/dns-query
+    - tls://dot.360.cn:853
+    - tls://dns.tuna.tsinghua.edu.cn:8853
+    - https://dns.tuna.tsinghua.edu.cn:8443/dns-query
+    - tls://101.6.6.6:8853
+    - https://101.6.6.6:8443/dns-query
+    - quic://ipv4-xtom-osa-1.edge.nextdns.io:853
+    - quic://ipv4-zepto-sel-1.edge.nextdns.io:853
+    - quic://ipv4-starry-osa-1.edge.nextdns.io:853
+    - quic://ipv4-anexia-han-1.edge.nextdns.io:853
+    - quic://ipv4-greencloud-han-1.edge.nextdns.io:853
+    - quic://ipv4-anexia-tpe-1.edge.nextdns.io:853
+    - quic://ipv4-vultr-sel-1.edge.nextdns.io:853
+    - quic://ipv4-imcloud-tpe-1.edge.nextdns.io:853
+    - quic://ipv4-zepto-hkg-1.edge.nextdns.io:853
+    - quic://ipv4-anexia-hkg-1.edge.nextdns.io:853
+    - quic://ipv4-zepto-tyo-1.edge.nextdns.io:853
+    - quic://ipv4-vultr-tyo-1.edge.nextdns.io:853
+    - tls://ipv4-xtom-osa-1.edge.nextdns.io:853
+    - tls://ipv4-zepto-sel-1.edge.nextdns.io:853
+    - tls://ipv4-starry-osa-1.edge.nextdns.io:853
+    - tls://ipv4-anexia-han-1.edge.nextdns.io:853
+    - tls://ipv4-greencloud-han-1.edge.nextdns.io:853
+    - tls://ipv4-anexia-tpe-1.edge.nextdns.io:853
+    - tls://ipv4-vultr-sel-1.edge.nextdns.io:853
+    - tls://ipv4-imcloud-tpe-1.edge.nextdns.io:853
+    - tls://ipv4-zepto-hkg-1.edge.nextdns.io:853
+    - tls://ipv4-anexia-hkg-1.edge.nextdns.io:853
+    - tls://ipv4-zepto-tyo-1.edge.nextdns.io:853
+    - tls://ipv4-vultr-tyo-1.edge.nextdns.io:853
+    - https://ipv4-xtom-osa-1.edge.nextdns.io/dns-query
+    - https://ipv4-zepto-sel-1.edge.nextdns.io/dns-query
+    - https://ipv4-starry-osa-1.edge.nextdns.io/dns-query
+    - https://ipv4-anexia-han-1.edge.nextdns.io/dns-query
+    - https://ipv4-greencloud-han-1.edge.nextdns.io/dns-query
+    - https://ipv4-anexia-tpe-1.edge.nextdns.io/dns-query
+    - https://ipv4-vultr-sel-1.edge.nextdns.io/dns-query
+    - https://ipv4-imcloud-tpe-1.edge.nextdns.io/dns-query
+    - https://ipv4-zepto-hkg-1.edge.nextdns.io/dns-query
+    - https://ipv4-anexia-hkg-1.edge.nextdns.io/dns-query
+    - https://ipv4-zepto-tyo-1.edge.nextdns.io/dns-query
+    - https://ipv4-vultr-tyo-1.edge.nextdns.io/dns-query
+    - quic://ipv6-zepto-sel-1.edge.nextdns.io:853
+    - quic://ipv6-anexia-han-1.edge.nextdns.io:853
+    - quic://ipv6-xtom-osa-1.edge.nextdns.io:853
+    - quic://ipv6-greencloud-han-1.edge.nextdns.io:853
+    - quic://ipv6-imcloud-tpe-1.edge.nextdns.io:853
+    - quic://ipv6-starry-osa-1.edge.nextdns.io:853
+    - quic://ipv6-vultr-sin-1.edge.nextdns.io:853
+    - quic://ipv6-anexia-tpe-1.edge.nextdns.io:853
+    - quic://ipv6-zepto-tyo-1.edge.nextdns.io:853
+    - quic://ipv6-vultr-tyo-1.edge.nextdns.io:853
+    - quic://ipv6-zepto-ist-1.edge.nextdns.io:853
+    - quic://ipv6-vultr-sel-1.edge.nextdns.io:853
+    - quic://ipv6-zepto-hkg-1.edge.nextdns.io:853
+    - quic://ipv6-anexia-hkg-1.edge.nextdns.io:853
+    - tls://ipv6-zepto-sel-1.edge.nextdns.io:853
+    - tls://ipv6-anexia-han-1.edge.nextdns.io:853
+    - tls://ipv6-xtom-osa-1.edge.nextdns.io:853
+    - tls://ipv6-greencloud-han-1.edge.nextdns.io:853
+    - tls://ipv6-imcloud-tpe-1.edge.nextdns.io:853
+    - tls://ipv6-starry-osa-1.edge.nextdns.io:853
+    - tls://ipv6-vultr-sin-1.edge.nextdns.io:853
+    - tls://ipv6-anexia-tpe-1.edge.nextdns.io:853
+    - tls://ipv6-zepto-tyo-1.edge.nextdns.io:853
+    - tls://ipv6-vultr-tyo-1.edge.nextdns.io:853
+    - tls://ipv6-zepto-ist-1.edge.nextdns.io:853
+    - tls://ipv6-vultr-sel-1.edge.nextdns.io:853
+    - tls://ipv6-zepto-hkg-1.edge.nextdns.io:853
+    - tls://ipv6-anexia-hkg-1.edge.nextdns.io:853
+    - https://ipv6-zepto-sel-1.edge.nextdns.io/dns-query
+    - https://ipv6-anexia-han-1.edge.nextdns.io/dns-query
+    - https://ipv6-xtom-osa-1.edge.nextdns.io/dns-query
+    - https://ipv6-greencloud-han-1.edge.nextdns.io/dns-query
+    - https://ipv6-imcloud-tpe-1.edge.nextdns.io/dns-query
+    - https://ipv6-starry-osa-1.edge.nextdns.io/dns-query
+    - https://ipv6-vultr-sin-1.edge.nextdns.io/dns-query
+    - https://ipv6-anexia-tpe-1.edge.nextdns.io/dns-query
+    - https://ipv6-zepto-tyo-1.edge.nextdns.io/dns-query
+    - https://ipv6-vultr-tyo-1.edge.nextdns.io/dns-query
+    - https://ipv6-zepto-ist-1.edge.nextdns.io/dns-query
+    - https://ipv6-vultr-sel-1.edge.nextdns.io/dns-query
+    - https://ipv6-zepto-hkg-1.edge.nextdns.io/dns-query
+    - https://ipv6-anexia-hkg-1.edge.nextdns.io/dns-query
+    - quic://dns.nextdns.io:853
+    - tls://dns.nextdns.io:853
+    - https://dns.nextdns.io/dns-query
+    - quic://45.90.28.55:853
+    - quic://45.90.30.55:853
+    - tls://45.90.28.55:853
+    - tls://45.90.30.55:853
+    - https://45.90.28.55/dns-query
+    - https://45.90.30.55/dns-query
+    - quic://45.90.28.0:853
+    - quic://45.90.30.0:853
+    - tls://45.90.28.0:853
+    - tls://45.90.30.0:853
+    - https://45.90.28.0/dns-query
+    - https://45.90.30.0/dns-query
+    - https://anycast.dns.nextdns.io/dns-query
+    - quic://dns-unfiltered.adguard.com:784
+    - tls://dns-unfiltered.adguard.com:853
+    - https://dns-unfiltered.adguard.com/dns-query
+    - quic://94.140.14.140:784
+    - tls://94.140.14.140:853
+    - https://94.140.14.140/dns-query
+    - quic://94.140.14.141:784
+    - tls://94.140.14.141:853
+    - https://94.140.14.141/dns-query
+    - quic://[2a10:50c0::1:ff]:784
+    - tls://[2a10:50c0::1:ff]:853
+    - https://[2a10:50c0::1:ff]/dns-query
+    - quic://[2a10:50c0::2:ff]:784
+    - tls://[2a10:50c0::2:ff]:853
+    - https://[2a10:50c0::2:ff]/dns-query
+    - https://dns-adguard.heinu.cf/dns-query
+    - https://dns-adguard.heinu.ga/dns-query
+  fallback: 
+    - tls://dns.cmrg.net:53053
+    - tls://dns.cmrg.net:443
+    - https://199.58.83.33/dns-query
+    - tls://199.58.83.33:443
+    - tls://199.58.83.33:53053
+    - tls://edns.apad.pro:853
+    - https://edns.apad.pro:3306/dns-query
+    - tls://h2o.apad.pro:853
+    - https://h2o.apad.pro/dns-query
+    - https://doh.apad.pro/dns-query
+    - https://doh.apad.pro/cn-query
+    - tls://1dot1dot1dot1.cloudflare-dns.com:853
+    - https://1dot1dot1dot1.cloudflare-dns.com/dns-query
+    - tls://dns.cloudflare-gateway.com:853
+    - https://dns.cloudflare-gateway.com/dns-query
+    - tls://1.1.1.1:853
+    - https://1.1.1.1/dns-query
+    - tls://1.0.0.1:853
+    - https://1.0.0.1/dns-query
+    - tls://[2606:4700:4700::1001]:853
+    - https://[2606:4700:4700::1001]/dns-query
+    - tls://[2606:4700:4700::1111]:853
+    - https://[2606:4700:4700::1111]/dns-query
+    - https://162.159.36.1/dns-query
+    - https://162.159.46.1/dns-query
+    - https://119dot29dot29dot29.cloudflare-dns.com/dns-query
+    - https://rubyfish.cn.cloudflare-dns.com/dns-query
+    - tls://dns.google:853
+    - https://dns.google/dns-query
+    - tls://8.8.8.8:853
+    - https://8.8.8.8/dns-query
+    - tls://8.8.4.4:853
+    - https://8.8.4.4/dns-query
+    - tls://[2001:4860:4860::8844]:853
+    - https://[2001:4860:4860::8844]/dns-query
+    - tls://[2001:4860:4860::8888]:853
+    - https://[2001:4860:4860::8888]/dns-query
+    - https://dns-google.heinu.cf/dns-query
+    - https://dns-google.heinu.ga/dns-query
+    - tls://dns-nosec.quad9.net:853
+    - tls://dns10.quad9.net:853
+    - https://dns10.quad9.net:5053/dns-query
+    - https://dns10.quad9.net/dns-query
+    - tls://dns12.quad9.net:853
+    - https://dns12.quad9.net:5053/dns-query
+    - https://dns12.quad9.net/dns-query
+    - tls://9.9.9.10:853
+    - tls://149.112.112.10:853
+    - https://9.9.9.10:5053/dns-query
+    - https://149.112.112.10:5053/dns-query
+    - https://9.9.9.10/dns-query
+    - https://149.112.112.10/dns-query
+    - tls://[2620:fe::10]:853
+    - tls://[2620:fe::fe:10]:853
+    - https://[2620:fe::10]:5053/dns-query
+    - https://[2620:fe::fe:10]:5053/dns-query
+    - https://[2620:fe::10]/dns-query
+    - https://[2620:fe::fe:10]/dns-query
+    - tls://9.9.9.12:853
+    - tls://149.112.112.12:853
+    - https://9.9.9.12:5053/dns-query
+    - https://149.112.112.12:5053/dns-query
+    - https://9.9.9.12/dns-query
+    - https://149.112.112.12/dns-query
+    - tls://[2620:fe::12]:853
+    - tls://[2620:fe::fe:12]:853
+    - https://[2620:fe::12]:5053/dns-query
+    - https://[2620:fe::fe:12]:5053/dns-query
+    - https://[2620:fe::12]/dns-query
+    - https://[2620:fe::fe:12]/dns-query
+    - tls://anycast.uncensoreddns.org:853
+    - https://anycast.uncensoreddns.org/dns-query
+    - tls://91.239.100.100:853
+    - https://91.239.100.100/dns-query
+    - tls://dns-tls.qis.io:853
+    - https://doh.qis.io/dns-query
+    - tls://12.159.2.159:853
+    - https://12.159.2.159/dns-query
+    - tls://doh.mullvad.net:853
+    - https://doh.mullvad.net/dns-query
+    - tls://194.242.2.2:853
+    - https://194.242.2.2/dns-query
+    - tls://193.19.108.2:853
+    - https://193.19.108.2/dns-query
+    - https://doh.opendns.com/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    geosite:                         
+      - social
+      - nsfw
+    ipcidr:
+     - 0.0.0.0/8
+     - 10.0.0.0/8
+     - 100.64.0.0/10
+     - 127.0.0.0/8
+     - 169.254.0.0/16
+     - 172.16.0.0/12
+     - 192.0.0.0/24
+     - 192.0.2.0/24
+     - 192.88.99.0/24
+     - 192.168.0.0/16
+     - 198.18.0.0/16
+     - 198.51.100.0/24
+     - 203.0.113.0/24
+     - 224.0.0.0/4
+     - 240.0.0.0/4
+     - 255.255.255.255/32
+     - ::1/128
+     - fc00::/7
+     - fe80::/10
+     - 39.102.194.95/32
+     - 182.43.124.6/32
+     - 101.35.177.86/32
+     - 116.89.243.8/32
+     - 119.28.87.227/32
+    domain:
+     - '+.xincache.com'
+     - 'www.gstatic.com'
+     - '+.ampproject.org'
+     - '+.appspot.com'
+     - '+.blogger.com'
+     - '+.google.com'
+     - '+.google.cn'
+     - '+.googleusercontent.com'
+     - '+.ggpht.com'
+     - '+.gmail.com'
+     - '+.gvt0.com'
+     - '+.gvt1.com'
+     - '+.gvt2.com'
+     - '+.gvt3.com'
+     - '+.youtu.be'
+     - '+.yt.be'
+     - '+.ytimg.com'
+     - '+.googlevideo.com'
+     - '+.youtube.com'
+     - '+.xn--ngstr-lra8j.com'
+     - '+.xn--flw351e.com'
+     - '+.xn--9kr7l.com'
+     - '+.xn--ggle-55da.com'
+     - '+.xn--gogl-0nd52e.com'
+     - '+.xn--gogl-1nd42e.com'
+     - '+.googleapis.com'
+     - '+.googleapis.cn'
+     - '+.gstatic.com'
+     - '+.gstatic.cn'
+     - '+.services.googleapis.cn'
+     - '+.services.googleapis.com'
+     - '+.connectivitycheck.gstatic.cn'
+     - '+.connectivitycheck.gstatic.com'
 proxy-groups:
   - name: "PROXY"
-    type: select
-    use:
-   
-   
+    type: "url-test"
+    icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png"
+    url: "https://connectivitycheck.gstatic.com/generate_204"
+    tolerance: 500
+    udp: true
     proxies:
-      - "FALLBACK"
-      - "URL-TEST"
-
-  - name: "FALLBACK"
-    type: fallback
-    use:
-
-      - "provide-cloud"
-
-  - name: "URL-TEST"
-    type: url-test
-    use:
- 
-      - "provide-cloud"
-
+      - "Auto"
+      - "fallback"
+      
+  - name: "Auto"
+    type: "url-test"
+    url: "https://connectivitycheck.gstatic.com/generate_204"
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    tolerance: 50
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
+    include-all-providers: true
+    hidden: true
+    icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png"
+    
+  - name: "fallback"
+    type: "fallback"
+    url: "https://connectivitycheck.gstatic.com/generate_204"
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    interval: 18
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS"
+    include-all-providers: true
+    hidden: true
+    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+    
+  - name: "🎯 Direct"
+    type: "select"
+    icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png"
+    proxies:
+      - "DIRECT"
+      - "PROXY"
 proxy-providers:
-
-  "provide-cloud":
+  A1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/s"
-    interval: 3600
-    path: ./provide/cloud.yml
-    # filter: 'xxx' # Supports regular expressions to filter by node name
-    # exclude-filter: 'ctb' # Supports regular expressions to exclude based on node name
-    # exclude-type: 'ss|http' # Does not support regular expressions, separated by '|', excluded by node type
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/P1"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 3600
-
-# rule-providers:
-  # block:
-    # type: http
-    # behavior: domain
-    # url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
-    # path: ./ruleset/block.yaml
-    # interval: 86400
-
-# clash.premium
-# script:
-  # shortcuts:
-    # quic: network == 'udp' and dst_port == 443
-    # youshit: network == 'udp' and ('youtube' in host or 'googlevideo' in host)
-
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1 prefix |"
+      additional-suffix: "| A1 suffix"
+  A2:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/Hamrah_v2ray"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A2 prefix |"
+      additional-suffix: "| A2 suffix"
+  A3:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A3 prefix |"
+      additional-suffix: "| A3 suffix"
 rules:
-  ## block ads
-  # - DOMAIN-SUFFIX,googlesyndication.com,PROXY
-  # - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
-  # - GEOSITE,category-ads-all,REJECT
-  # - RULE-SET,block,REJECT
-  # - SCRIPT,quic,REJECT
-  # - SCRIPT,youshit,REJECT
-
-  ## direct FCM
-  # - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),DIRECT
-  # - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),DIRECT
- 
-  ## block udp/quic YouTube
-  # - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
-  # - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
-
-  # # fix dnsleak
-  # - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
-  # - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
-  # - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
-  # - IP-CIDR6,::1/128,REJECT,no-resolve
-  
-  ## rules telegram
-  # - GEOIP,telegram,PROXY
-  # - GEOSITE,telegram,PROXY
-
-  ## direct ntp
-  # - AND,((NETWORK,UDP),(DST-PORT,123)),DIRECT
-  # - DST-PORT,123/136/137-139,DIRECT,udp
-
-  ## rules inner, recommended untuk non kuota reguler
-  # - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
-  # - IN-TYPE,inner,PROXY
-
-  ## final
+  - DOMAIN-SUFFIX,googlesyndication.com,PROXY
+  - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
+  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
+  - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
+  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
+  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
+  - IP-CIDR6,::1/128,REJECT,no-resolve
+  - GEOIP,telegram,PROXY
+  - GEOSITE,telegram,PROXY
+  - AND,((NETWORK,UDP),(DST-PORT,123)),🎯 Direct
+  - DST-PORT,123/136/137-139,DIRECT,udp
+  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
+  - IN-TYPE,inner,PROXY
   - MATCH,PROXY
