@@ -1,4 +1,57 @@
+mode: rule
+log-level: info
+mixed-port: 7890
+unified-delay: true
+tcp-concurrent: true
+find-process-mode: strict
+global-client-fingerprint: chrome
 
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  ipv6: true
+  default-nameserver:
+    - tls://8.8.4.4
+    - tls://64.212.106.84
+    - tls://9.9.9.9
+    - tls://66.28.0.45
+    - tls://7482.42.42
+    - tls://64.215.98.148
+  nameserver:
+    - 8.8.4.4
+    - 64.212.106.84
+    - 9.9.9.9
+    - 66.28.0.45
+    - 7482.42.42
+    - 64.215.98.148
+  nameserver-policy:
+    'geosite:google':
+      - system
+      - 180.76.76.76
+      - 223.5.5.5
+  proxy-server-nameserver:
+    - 180.76.76.76
+    - 202.175.3.3
+    - 223.5.5.5
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - router.asus.com
+    - localhost.sec.qq.com
+    - localhost.ptlogin2.qq.com
+    - +.msftconnecttest.com
 proxies:
 - name: '1_1'
   type: ss
