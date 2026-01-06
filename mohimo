@@ -26,7 +26,7 @@ skip-auth-prefixes:
 - ::1/128
 find-process-mode: always
 keep-alive-interval: 30
-ipv6: false
+ipv6: true
 log-level: debug
 allow-lan: true
 bind-address: "*"
@@ -40,7 +40,7 @@ profile:
   store-fake-ip: true
 geo-auto-update: true
 geo-update-interval: 24
-unified-delay: false
+unified-delay: true
 tcp-concurrent: true
 interface-name: ""
 global-client-fingerprint: chrome
@@ -166,214 +166,183 @@ rule-providers:
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/telegram.txt"
-    path: ruleset/telegram.txt
     interval: 86400
   twitter:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/twitter.txt"
-    path: ruleset/twitter.txt
     interval: 86400
   facebook:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/facebook.txt"
-    path: ruleset/facebook.txt
     interval: 86400
   github:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/github.txt"
-    path: ruleset/github.txt
     interval: 86400
   google:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/google.txt"
-    path: ruleset/google.txt
     interval: 86400
   nsfw:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.txt"
-    path: ruleset/nsfw.txt
     interval: 86400
   social:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.txt"
-    path: ruleset/social.txt
     interval: 86400
   Category-ads-all:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.txt"
-    path: ruleset/Category-ads-all.txt
     interval: 86400
   ir:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
-    path: ruleset/ir.txt
     interval: 86400
   ads:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.txt"
-    path: ruleset/ads.txt
     interval: 86400
   malware:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt"
-    path: ruleset/malware.txt
     interval: 86400
   phishing:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.txt"
-    path: ruleset/phishing.txt
     interval: 86400
   cryptominers:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.txt"
-    path: ruleset/cryptominers.txt
     interval: 86400
   apps:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.txt"
-    path: ruleset/apps.txt
     interval: 86400
   ircidr:
     type: http
     format: text
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
-    path: ruleset/ircidr.txt
     interval: 86400
   private:
     type: http
     format: text
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.txt"
-    path: ruleset/private.txt
     interval: 86400
   irasn:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.txt"
-    path: ruleset/irasn.txt
     interval: 86400
   private1:
     url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml"
-    path: ruleset/private1.yaml
     behavior: domain
     interval: 86400
     format: yaml
     type: http
   cn_domain:
     url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.yaml"
-    path: ruleset/cn_domain.yaml
     behavior: domain
     interval: 86400
     format: yaml
     type: http
   telegram_domain:
     url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.yaml"
-    path: ruleset/telegram_domain.yaml
     behavior: domain
     interval: 86400
     format: yaml
     type: http
   google_domain:
     url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.yaml"
-    path: ruleset/google_domain.yaml
     behavior: domain
     interval: 86400
     format: yaml
     type: http
   geolocation-!cn:
     url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
-    path: ruleset/geolocation-!cn.yaml
     behavior: domain
     interval: 86400
     format: yaml
     type: http
   cn_ip:
     url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.yaml"
-    path: ruleset/cn_ip.yaml
     behavior: ipcidr
     interval: 86400
     format: yaml
     type: http
   telegram_ip:
     url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.yaml"
-    path: ruleset/telegram_ip.yaml
     behavior: ipcidr
     interval: 86400
     format: yaml
     type: http
   google_ip:
     url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml"
-    path: ruleset/google_ip.yaml
     behavior: ipcidr
     interval: 86400
     format: yaml
     type: http
   bing:
     url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Bing/Bing.yaml"
-    path: ruleset/bing.yaml
     behavior: classical
     interval: 86400
     format: yaml
     type: http
   copilot:
     url: https://mirror.ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.yaml
-    path: ruleset/copilot.yaml
     behavior: classical
     interval: 86400
     format: yaml
     type: http
   claude:
     url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.yaml"
-    path: ruleset/claude.yaml
     behavior: classical
     interval: 86400
     format: yaml
     type: http
   bard:
     url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BardAI/BardAI.yaml"
-    path: ruleset/bard.yaml
     behavior: classical
     interval: 86400
     format: yaml
     type: http
   openai:
     url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml"
-    path: ruleset/openai.yaml
     behavior: classical
     interval: 86400
     format: yaml
     type: http
   steam:
     url: "https://mirror.ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.yaml"
-    path: ruleset/steam.yaml
     behavior: classical
     interval: 86400
     format: yaml
