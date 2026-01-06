@@ -67,7 +67,7 @@ proxy-providers:
   provider1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah" 
-    path: Prem2/p1.yaml
+    path: Prem/p1.yaml
     interval: 899
     proxy: DIRECT
     skip-cert-verify: true
@@ -90,13 +90,63 @@ proxy-providers:
       interval: 30
       url: "https://www.google.com/generate_204"
       
+  provider3:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/pp1.yaml" 
+    path: Prem/p3.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
+    health-check:
+      enable: true
+      interval: 30
+      url: "https://www.google.com/generate_204"
 
+  provider4:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/s"    
+    path: Prem/P4.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
+    health-check:
+      enable: true
+      interval: 30
+      url: "https://www.google.com/generate_204"
+      
+  provider5:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/a" 
+    path: Prem/p5.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
+    health-check:
+      enable: true
+      interval: 30
+      url: "https://www.google.com/generate_204"
+
+  provider6:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N"    
+    path: Prem/P6.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
+    health-check:
+      enable: true
+      interval: 30
+      url: "https://www.google.com/generate_204"      
 proxies:
 proxy-groups:
   - name: PROXY
     type: url-test
     url: "https://www.google.com/generate_204"
-    disable-udp: true
+    disable-udp: false
     interval: 100
     proxies:
       - url-test
@@ -113,22 +163,22 @@ proxy-groups:
   - name: fallback
     type: fallback
     url: "https://www.google.com/generate_204"
-    disable-udp: true
+    disable-udp: false
     interval: 180
     hidden: false
     proxies:
     use:
       - provider1
       - provider2
-  #    - provider3
-  #    - provider4
-   #   - provider7
-  #    - provider6
+      - provider3
+      - provider4
+      - provider5
+      - provider6
   #    - provider8
   - name: United+url-test
     type: url-test
     url: "https://www.google.com/generate_204"
-    disable-udp: true
+    disable-udp: false
  #   filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     interval: 300
 #    tolerance: 5000
@@ -136,32 +186,32 @@ proxy-groups:
     use:
       - provider1
       - provider2
-   #   - provider3
-   #   - provider4
-   #   - provider7
-   #   - provider6
+      - provider3
+      - provider4
+      - provider5
+      - provider6
    #   - provider8
 
   - name: url-test
     type: url-test
     url: "https://www.google.com/generate_204"
-    disable-udp: true
+    disable-udp: false
     interval: 99
 #    tolerance: 5000
     hidden: false
     use:
       - provider1
       - provider2
- #     - provider3
-  #    - provider4
-  #    - provider7
-  #    - provider6
+      - provider3
+      - provider4
+      - provider5
+      - provider6
   #    - provider8
 
     proxies: 
   - name: 🎯 DIRECT
     type: select
-    disable-udp: true
+    disable-udp: false
     proxies:
       - DIRECT
       - PROXY 
