@@ -53,7 +53,7 @@ proxy-providers:
   provider2:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/1"    
-    path: Prem/P2.yaml
+    path: Prem2/P2.yaml
     interval: 899
     proxy: DIRECT
     skip-cert-verify: true
@@ -62,7 +62,54 @@ proxy-providers:
       enable: true
       interval: 30
       url: "https://www.google.com/generate_204"
-
+  provider3:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/pp1.yaml" 
+    path: Prem2/p3.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
+    health-check:
+      enable: true
+      interval: 30
+      url: "https://www.google.com/generate_204"
+  provider4:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/s"    
+    path: Prem2/P4.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
+    health-check:
+      enable: true
+      interval: 30
+      url: "https://www.google.com/generate_204"  
+  provider5:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/a" 
+    path: Prem2/p5.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
+    health-check:
+      enable: true
+      interval: 30
+      url: "https://www.google.com/generate_204"
+  provider6:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N"    
+    path: Prem2/P6.yaml
+    interval: 899
+    proxy: DIRECT
+    skip-cert-verify: true
+    exclude-type: "vless"
+    health-check:
+      enable: true
+      interval: 30
+      url: "https://www.google.com/generate_204"     
 proxy-groups:
   - name: 'PRO'
     type: 'select'
@@ -85,10 +132,10 @@ proxy-groups:
     use: 
       - 'provider1'
       - 'provider2'
-   #   - 'provider3'
- #     - 'provider4'
- #     - 'provider5'
-
+      - 'provider3'
+      - 'provider4'
+      - 'provider5'
+      - 'provider6'
   - name: '⚡️ Fastest'
     type: 'url-test'
     tolerance: 500
@@ -99,9 +146,10 @@ proxy-groups:
     use: 
       - 'provider1'
       - 'provider2'
- #     - 'provider3'
- #     - 'provider4'
-  #    - 'provider5'
+      - 'provider3'
+      - 'provider4'
+      - 'provider5'
+      - 'provider6'
 
 
   - name: '📶 First Available'
@@ -112,9 +160,10 @@ proxy-groups:
     use: 
       - 'provider1'
       - 'provider2'
-#      - 'provider3'
- #     - 'provider4'
- #     - 'provider5'
+      - 'provider3'
+      - 'provider4'
+      - 'provider5'
+      - 'provider6'
 
     proxies:
   - name: '♻️ Load Balance'
@@ -126,21 +175,16 @@ proxy-groups:
     use: 
       - 'provider1'
       - 'provider2'
- #     - 'provider3'
-#      - 'provider4'
-  #    - 'provider5'
+      - 'provider3'
+      - 'provider4'
+      - 'provider5'
+      - 'provider6'
 
     proxies:
   - name: 'PROXY'
     type: 'select'
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     use: 
-#      - 'provider1'
-#      - 'provider2'
- #     - 'provider3'
- #     - 'provider4'
- #     - 'provider5'
-
     proxies:
       - 'PRO'
       - '⚡️ Fastest'
@@ -166,11 +210,10 @@ proxy-groups:
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     proxies:
     use: 
-
-      - 'provider2'
- #     - 'provider3'
- #     - 'provider4'
- #     - 'provider5'
+      - 'provider3'
+      - 'provider4'
+      - 'provider5'
+      - 'provider6'
 
   - name: 'IRAN'
     type: 'select'
