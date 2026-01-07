@@ -206,13 +206,194 @@ proxy-groups:
   - {name: 欧洲智能,  <<: *BaseSmart, filter: *FilterEU, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vmess|vless"}
   
 rules: 
-  - GEOSITE,category-httpdns-cn,REJECT-DROP
+#  - GEOSITE,category-httpdns-cn,REJECT-DROP
   - RULE-SET,AWAvenueAdsRule,REJECT
   - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT
+  - RULE-SET,GoogleFCM,人工智能
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,人工智能
+  - DOMAIN-SUFFIX,services.googleapis.cn,人工智能
+  - RULE-SET,GoogleCNProxyIP,人工智能
+  - RULE-SET,GoogleCN,人工智能
+  - RULE-SET,YouTube,人工智能
+  - RULE-SET,Google,人工智能
+  - RULE-SET,category-ai-cn,人工智能
+  - RULE-SET,category-ai-!cn,人工智能
+  - DOMAIN-KEYWORD,soft98.ir,直接连接
+  - DOMAIN,soft98,直接连接
+  - DOMAIN-SUFFIX,soft98.ir,直接连接
+  - DOMAIN-KEYWORD,dl2soft98.82.ir,直接连接
+  - DOMAIN,dl2soft98.82,直接连接
+  - DOMAIN-SUFFIX,dl2soft98.82.ir,直接连接
+  - DOMAIN-SUFFIX,farsroid,直接连接
+  - DOMAIN-KEYWORD,farsroid.com,直接连接
+  - DOMAIN,farsroid.com,直接连接
+  - RULE-SET,anti-AD-white,直接连接
+  - RULE-SET,anti-AD,REJECT
+  - DOMAIN-SUFFIX,createporn.com,人工智能
+  - DOMAIN-KEYWORD,createporn,人工智能
+  - DOMAIN,createporn,人工智能
+  - DOMAIN,ad.com,REJECT
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
+  - PROCESS-NAME,com.samsung.android.location,REJECT,no-resolve
+  - PROCESS-NAME,com.android.localtransport,REJECT,no-resolve
+  - PROCESS-NAME,com.google.android.gms.location.history,REJECT,no-resolve
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
+  - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
+  - DOMAIN-SUFFIX,google.com,人工智能
+  - DOMAIN-KEYWORD,google,人工智能
+  - DOMAIN-SUFFIX,netflix.com,国外流量
+  - DOMAIN-SUFFIX,netflix.net,国外流量
+  - DOMAIN-SUFFIX,nflxext.com,国外流量
+  - DOMAIN-SUFFIX,nflximg.com,国外流量
+  - DOMAIN-SUFFIX,nflxso.net,国外流量
+  - DOMAIN-SUFFIX,nflxvideo.net,国外流量
+  - DOMAIN-SUFFIX,spotify.com,国外流量
+  - DOMAIN-SUFFIX,scdn.co,国外流量
+  - DOMAIN-SUFFIX,spoti.fi,国外流量
+  - DOMAIN-SUFFIX,youtube.com,人工智能
+  - DOMAIN-SUFFIX,googlevideo.com,人工智能
+  - DOMAIN-SUFFIX,ytimg.com,国外流量
+  - DOMAIN-SUFFIX,hulu.com,国外流量
+  - DOMAIN-SUFFIX,disneyplus.com,国外流量
+  - DOMAIN-SUFFIX,hbo.com,国外流量
+  - DOMAIN-SUFFIX,primevideo.com,国外流量
+  - DOMAIN-SUFFIX,cn,直接连接,no-resolve
+  - DOMAIN-KEYWORD,-cn,直接连接,no-resolve
+  - DOMAIN-SUFFIX,ir,直接连接,no-resolve
+  - DOMAIN-KEYWORD,ir,直接连接,no-resolve
+  - DOMAIN-SUFFIX,local,直接连接,no-resolve
+  - IP-CIDR,127.0.0.0/8,直接连接,no-resolve
+  - IP-CIDR,172.16.0.0/12,直接连接
+  - IP-CIDR,192.168.0.0/16,直接连接
+  - IP-CIDR,10.0.0.0/8,国外流量
+  - DOMAIN-SUFFIX,openai.com,人工智能
+  - DOMAIN-SUFFIX,chatgpt.com,人工智能
+  - DOMAIN-SUFFIX,anthropic.com,人工智能
+  - DOMAIN-SUFFIX,claude.ai,人工智能
+  - DOMAIN-SUFFIX,t.me,国外流量
+  - DOMAIN-SUFFIX,telegram.org,国外流量
+  - DOMAIN-SUFFIX,netflix.com,国外流量
+  - DOMAIN-SUFFIX,youtube.com,国外流量
+  - DOMAIN-SUFFIX,disney.com,国外流量
+  - DOMAIN-SUFFIX,apple.com,国外流量
+  - DOMAIN-SUFFIX,icloud.com,国外流量
+  - DOMAIN-SUFFIX,microsoft.com,国外流量
+  - DOMAIN-SUFFIX,windows.com,国外流量
+  - DOMAIN-SUFFIX,openai.com,人工智能
+  - DOMAIN-SUFFIX,chatgpt.com,人工智能
+  - DOMAIN-SUFFIX,oaistatic.com,人工智能
+  - DOMAIN-SUFFIX,oaiusercontent.com,人工智能
+  - DOMAIN-KEYWORD,openai,人工智能
+  - DOMAIN-SUFFIX,anthropic.com,人工智能
+  - DOMAIN-SUFFIX,claude.ai,人工智能
+  - DOMAIN-SUFFIX,gemini.google.com,人工智能
+  - DOMAIN-SUFFIX,bard.google.com,人工智能
+  - DOMAIN-SUFFIX,perplexity.ai,人工智能
+  - DOMAIN-SUFFIX,midjourney.com,人工智能
+  - DOMAIN-SUFFIX,netflix.com,人工智能
+  - DOMAIN-KEYWORD,anthropic,人工智能
+  - DOMAIN-KEYWORD,claude,人工智能
+  - DOMAIN-KEYWORD,openai,人工智能
+  - DOMAIN,ai.google.dev,人工智能
+  - DOMAIN,aistudio.google.com,人工智能
+  - DOMAIN,api.githubcopilot.com,人工智能
+  - DOMAIN,api.groq.com,人工智能
+  - DOMAIN,api.together.xyz,人工智能
+  - DOMAIN,bard.google.com,人工智能
+  - DOMAIN,console.groq.com,人工智能
+  - DOMAIN,copilot-proxy.githubusercontent.com,人工智能
+  - DOMAIN,gemini.google.com,人工智能
+  - DOMAIN,generativelanguage.googleapis.com,人工智能
+  - DOMAIN,notebooklm.google.com,人工智能
+  - DOMAIN,sydney.bing.com,人工智能
+  - DOMAIN-SUFFIX,ai.azure.com,人工智能
+  - DOMAIN-SUFFIX,anthropic.com,人工智能
+  - DOMAIN-SUFFIX,auth0.com,人工智能
+  - DOMAIN-SUFFIX,bard.google.com,人工智能
+  - DOMAIN-SUFFIX,chatgpt.com,人工智能
+  - DOMAIN-SUFFIX,claude.ai,人工智能
+  - DOMAIN-SUFFIX,claude.com,人工智能
+  - DOMAIN-SUFFIX,claudeusercontent.com,人工智能
+  - DOMAIN-SUFFIX,client-api.arkoselabs.com,人工智能
+  - DOMAIN-SUFFIX,copilot.cloud.microsoft,人工智能
+  - DOMAIN-SUFFIX,copilot.microsoft.com,人工智能
+  - DOMAIN-SUFFIX,cursor.com,人工智能
+  - DOMAIN-SUFFIX,cursor.sh,人工智能
+  - DOMAIN-SUFFIX,events.statsigapi.net,人工智能
+  - DOMAIN-SUFFIX,featuregates.org,人工智能
+  - DOMAIN-SUFFIX,gemini.google.com,人工智能
+  - DOMAIN-SUFFIX,grazie.ai,人工智能
+  - DOMAIN-SUFFIX,grazie.aws.intellij.net,人工智能
+  - DOMAIN-SUFFIX,identrust.com,人工智能
+  - DOMAIN-SUFFIX,intercom.io,人工智能
+  - DOMAIN-SUFFIX,intercomcdn.com,人工智能
+  - DOMAIN-SUFFIX,jetbrains.ai,人工智能
+  - DOMAIN-SUFFIX,makersuite.google.com,人工智能
+  - DOMAIN-SUFFIX,meta.ai,人工智能
+  - DOMAIN-SUFFIX,mistral.ai,人工智能
+  - DOMAIN-SUFFIX,oaistatic.com,人工智能
+  - DOMAIN-SUFFIX,oaiusercontent.com,人工智能
+  - DOMAIN-SUFFIX,openai.com,人工智能
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,人工智能
+  - DOMAIN-SUFFIX,perplexity.ai,人工智能
+  - DOMAIN-SUFFIX,sora.com,人工智能
+  - DOMAIN-SUFFIX,x.ai,人工智能
+  - DOMAIN-KEYWORD,openai,人工智能
+  - DOMAIN-SUFFIX,auth0.com,人工智能
+  - DOMAIN-SUFFIX,challenges.cloudflare.com,人工智能
+  - DOMAIN-SUFFIX,chatgpt.com,人工智能
+  - DOMAIN-SUFFIX,client-api.arkoselabs.com,人工智能
+  - DOMAIN-SUFFIX,events.statsigapi.net,人工智能
+  - DOMAIN-SUFFIX,featuregates.org,人工智能
+  - DOMAIN-SUFFIX,identrust.com,人工智能
+  - DOMAIN-SUFFIX,intercom.io,人工智能
+  - DOMAIN-SUFFIX,intercomcdn.com,人工智能
+  - DOMAIN-SUFFIX,oaistatic.com,人工智能
+  - DOMAIN-SUFFIX,oaiusercontent.com,人工智能
+  - DOMAIN-SUFFIX,openai.com,人工智能
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,人工智能
+  - DOMAIN-SUFFIX,sentry.io,人工智能
+  - DOMAIN-SUFFIX,stripe.com,人工智能
+  - DOMAIN-SUFFIX,sora.com,人工智能
+  - DOMAIN-SUFFIX,disneyplus.com,人工智能
+  - DOMAIN-SUFFIX,youtube.com,国外流量
+  - DOMAIN-SUFFIX,spotify.com,国外流量
+  - IN-PORT,7890,国外流量
+  - IN-PORT,7892,国外流量
+  - IN-PORT,7891,国外流量
+  - IN-PORT,53,DNS,no-resolve
+  - DST-PORT,80,国外流量,no-resolve
+  - DST-PORT,443,国外流量,no-resolve
+  - IN-TYPE,SOCKS/HTTP,国外流量
+  - IN-USER,mihomo,国外流量
+  - IN-NAME,ss,国外流量
+  - NETWORK,udp,国外流量
+  - IP-SUFFIX,8.8.8.8/24,国外流量
+  - DOMAIN-SUFFIX,local,直接连接,no-resolve
+  - IP-CIDR,10.0.0.0/8,国外流量
+  - IP-CIDR,100.64.0.0/10,国外流量
+  - PROCESS-NAME,com.termux,国外流量
+  - AND,((DOMAIN,google.com),(NETWORK,UDP)),国外流量
+  - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
+  - NOT,((DOMAIN,google.com)),国外流量
+  - RULE-SET,private,直接连接,no-resolve
+  - RULE-SET,apps,直接连接
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,AWA,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,ir,直接连接
+  - RULE-SET,ircidr,直接连接
+  - RULE-SET,irasn,直接连接
+  - RULE-SET,social,人工智能,no-resolve
+  - RULE-SET,nsfw,人工智能,no-resolve
+  - RULE-SET,geolocation-!cn,人工智能
+  - GeoIP,ir,直接连接
   - RULE-SET,Private,直接连接
   - RULE-SET,Direct,直接连接
   - RULE-SET,XPTV,直接连接
-  - RULE-SET,AI,人工智能
+  - RULE-SET,人工智能,人工智能
   - RULE-SET,Telegram,社交平台
   - RULE-SET,SocialMedia,社交平台
   - RULE-SET,Emby,国际媒体
@@ -231,7 +412,8 @@ rules:
   - MATCH,兜底流量
 BehaviorDN: &BehaviorDN {type: http, behavior: domain, format: mrs, interval: 86400}
 BehaviorIP: &BehaviorIP {type: http, behavior: ipcidr, format: mrs, interval: 86400}
-
+BehaviorDN1: &BehaviorDN {type: http, behavior: domain, format: yaml, interval: 86400}
+BehaviorIP2: &BehaviorIP {type: http, behavior: ipcidr, format: yaml, interval: 86400}
 rule-providers: 
   Private:        {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Private.mrs}
   Direct:         {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Direct.mrs}
@@ -255,5 +437,28 @@ rule-providers:
   ProxyIP:        {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Proxy.mrs} 
   ChinaIP:        {<<: *BehaviorIP, url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr..mrs}
 
-  # 广告规则
-  AWAvenueAdsRule:    {type: http, behavior: classical, format: yaml, interval: 86400, url: https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash-Classical.yaml}
+  nsfw:           {<<: *BehaviorDN1, url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml}
+  social:         {<<: *BehaviorDN1, url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml}
+  ir:             {<<: *BehaviorDN1, url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml}
+  ads:            {<<: *BehaviorDN1, url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml}
+  malware:        {<<: *BehaviorDN1, url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml}
+  phishing:       {<<: *BehaviorDN1, url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml}
+  cryptominers:   {<<: *BehaviorDN1, url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml}
+  apps:           {<<: *BehaviorDN1, url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml}
+  ircidr:         {<<: *BehaviorIP1, url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml}
+  private::       {<<: *BehaviorIP1, url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml}
+  irasn:          {<<: *BehaviorIP1, url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml}
+  geolocation-!cn:{<<: *BehaviorDN1, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml}
+  AWA:            {<<: *BehaviorDN1, url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml}
+  anti-AD:        {<<: *BehaviorDN1, url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml}
+  anti-AD-white:  {<<: *BehaviorDN1, url: https://raw.githubusercontent.com/privacy-protection-tools/dead-horse/master/anti-ad-white-for-clash.yaml}
+  category-ai-!cn:{<<: *BehaviorDN1, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.yaml}
+  category-ai-cn: {<<: *BehaviorDN1, url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.yaml}
+  AWAvenueAdsRule:{type: http, behavior: classical, format: yaml, interval: 86400, url: https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash-Classical.yaml}
+  Google:         {type: http, behavior: classical, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list}
+  AI:             {type: http, behavior: classical, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list}
+  OpenAi:         {type: http, behavior: classical, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list}
+  GoogleFCM:      {type: http, behavior: classical, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list}
+  GoogleCNProxyIP:{type: http, behavior: classical, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list}
+  GoogleCN:       {type: http, behavior: classical, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list}
+  YouTube:        {type: http, behavior: classical, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list}
