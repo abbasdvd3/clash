@@ -1,12 +1,5 @@
-# 名称: OneSmart Core for ColorOS
-# 版本: v1.0.0
-# 更新: Gvisor堆栈 + 严格路由(ColorOS 热点修复) + DNS精细化分流 + Hosts加速
-
-# ==================== 锚点配置 (OneSmart 原版) ====================
 BaseProvider: &BaseProvider {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: 'https://www.google.com/generate_204', interval: 300}, filter: '^(?!.*(群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'}
-
 BaseSmart: &BaseSmart {type: smart, interval: 200, lazy: true, url: 'https://www.google.com/generate_204', hidden: false, uselightgbm: true}
-
 FilterHK: &FilterHK '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))(?!.*(排除1|排除2|5x)).*$'
 FilterSG: &FilterSG '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?!.*(排除1|排除2|5x)).*$'
 FilterJP: &FilterJP '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?!.*(排除1|排除2|5x)).*$'
@@ -16,12 +9,9 @@ FilterTW: &FilterTW '^(?=.*(?i)(台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH))(?!.*(
 FilterEU: &FilterEU '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*(排除1|排除2|5x)).*$'
 FilterOT: &FilterOT '^(?!.*(DIRECT|直接连接|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))'
 FilterAL: &FilterAL '^(?!.*(DIRECT|直接连接|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'
-
 SelectAL: &SelectAL {type: select, proxies: [香港智能, 台湾智能, 日本智能, 狮城智能, 韩国智能, 美国智能, 欧洲智能, 手动选择, 直接连接]}
 OneSmart: &OneSmart {type: select, proxies: [一键智能, 香港智能, 台湾智能, 日本智能, 狮城智能, 韩国智能, 美国智能, 欧洲智能, 手动选择, 直接连接]}
 SelectDC: &SelectDC {type: select, proxies: [直接连接, 一键智能, 香港智能, 台湾智能, 日本智能, 狮城智能, 韩国智能, 美国智能, 欧洲智能, 手动选择]}
-
-# ==================== 代理提供者 ====================
 proxy-providers:
   优质服务商: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml', override: {additional-prefix: '[优] '}}
   备用服务商: {<<: *BaseProvider, url: 'https://shadowmere.xyz/api/b64sub/', override: {additional-prefix: '[备] '}}
@@ -68,7 +58,6 @@ proxy-providers:
   优质服务商43: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/chongdong1230/dxz/main/clash', override: {additional-prefix: '[优] '}}
   备用服务商44: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/zhlx2835/freefq/main/clash.yaml', override: {additional-prefix: '[备] '}}
 
-# ==================== 核心配置 ====================
 mode: rule
 mixed-port: 7890
 ipv6: true
@@ -108,7 +97,6 @@ geox-url:
 profile:
   store-selected: true
   store-fake-ip: true
-
 sniffer:
   enable: true
   sniff:
@@ -148,7 +136,6 @@ tun:
   exclude-uid: []
   exclude-package: []
 
-# ==================== DNS 配置 ====================
 dns:
   enable: true
   ipv6: true
@@ -170,7 +157,7 @@ dns:
     "geosite:ir,private,apple,": 
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
-    "geosite:geolocation-!cn,gfw,google,youtube,telegram,twitter,netflix": 
+    "RULE-SET:geolocation-!cn,gfw,google,youtube,telegram,twitter,netflix": 
       - "https://1.1.1.1/dns-query#国外流量"
       - "https://8.8.8.8/dns-query#国外流量"
   fake-ip-filter:
@@ -214,7 +201,7 @@ rules:
   - DOMAIN-SUFFIX,services.googleapis.cn,人工智能
   - RULE-SET,GoogleCNProxyIP,人工智能
   - RULE-SET,GoogleCN,人工智能
-  - RULE-SET,YouTube,人工智能
+  - RULE-SET,YouTube1,人工智能
   - RULE-SET,Google,人工智能
   - RULE-SET,category-ai-cn,人工智能
   - RULE-SET,category-ai-!cn,人工智能
@@ -376,7 +363,7 @@ rules:
   - AND,((DOMAIN,google.com),(NETWORK,UDP)),国外流量
   - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
   - NOT,((DOMAIN,google.com)),国外流量
-  - RULE-SET,private,直接连接,no-resolve
+  - RULE-SET,private1,直接连接,no-resolve
   - RULE-SET,apps,直接连接
   - RULE-SET,ads,REJECT
   - RULE-SET,malware,REJECT
@@ -441,7 +428,7 @@ rule-providers:
   cryptominers:   {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml}
   apps:           {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml}
   ircidr:         {type: http, behavior: ipcidr, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml}
-  private::       {type: http, behavior: ipcidr, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml}
+  private1:       {type: http, behavior: ipcidr, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml}
   irasn:          {type: http, behavior: ipcidr, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml}
   geolocation-!cn:{type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml}
   AWA:            {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml}
@@ -451,10 +438,10 @@ rule-providers:
   category-ai-cn: {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.yaml}
   AWAvenueAdsRule:{type: http, behavior: classical, format: yaml, interval: 86400, url: https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash-Classical.yaml}
   Google:         {type: http, behavior: domain, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list}
-  AI:             {type: http, behavior: domain, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list}
+  AI1:             {type: http, behavior: domain, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list}
   OpenAi:         {type: http, behavior: domain, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list}
   GoogleFCM:      {type: http, behavior: domain, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list}
   GoogleCNProxyIP:{type: http, behavior: domain, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list}
   GoogleCN:       {type: http, behavior: domain, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list}
-  YouTube:        {type: http, behavior: classical, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list}
+  YouTube1:        {type: http, behavior: classical, format: txt, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list}
  
