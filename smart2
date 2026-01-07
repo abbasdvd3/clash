@@ -1,0 +1,2959 @@
+port: 7892
+socks-port: 7891
+mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
+mode: rule
+ipv6: true
+allow-lan: true
+log-level: debug
+bind-address: "*"
+lan-allowed-ips:
+- 0.0.0.0/0
+- ::/0
+lan-disallowed-ips:
+- 192.168.0.3/32
+skip-auth-prefixes:
+- 127.0.0.1/8
+- ::1/128
+external-controller: 0.0.0.0:9090
+external-controller-tls: 0.0.0.0:9091
+external-doh-server: /dns-query
+external-ui: dashboard
+external-ui-name: ui
+external-ui-url: "https://github.com//Zephyruso/zashboard/releases/latest/download/dist.zip"
+keep-alive-interval: 30
+disable-keep-alive: false
+keep-alive-idle: 15
+find-process-mode: strict
+unified-delay: true
+tcp-concurrent: true
+global-client-fingerprint: random
+geodata-mode: true
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 24
+etag-support: true
+geox-url:
+  geoip: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
+  geosite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
+  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/Country.mmdb
+global-ua: clash.meta
+profile:
+  store-selected: true
+  store-fake-ip: true
+hosts:
+  alpha.clash.dev: ['::1']
+  test.com: ['1.1.1.1', '2.2.2.2']
+  baidu.com: ['google.com']
+  ota.googlezip.net: ['127.0.0.1']
+  ota-cache1.googlezip.net: ['127.0.0.1']
+  ota-cache2.googlezip.net: ['127.0.0.1']
+  localhost: ['127.0.0.1']
+  ip6-localhost: ['::1']
+  mtalk.google.com: ['108.177.125.188']
+  alt1-mtalk.google.com: ['3.3.3.3']
+  alt2-mtalk.google.com: ['3.3.3.3']
+  alt3-mtalk.google.com: ['74.125.200.188']
+  alt4-mtalk.google.com: ['74.125.200.188']
+  alt5-mtalk.google.com: ['3.3.3.3']
+  alt6-mtalk.google.com: ['3.3.3.3']
+  alt7-mtalk.google.com: ['74.125.200.188']
+  alt8-mtalk.google.com: ['3.3.3.3']
+  doh.pub: ['1.12.12.12', '120.53.53.53', '2402:4e00::']
+  dns.alidns.com: ['223.5.5.5', '223.6.6.6', '2400:3200::1', '2400:3200:baba::1']
+  dns.google: ['8.8.8.8', '8.8.4.4', '2001:4860:4860::8888', '2001:4860:4860::8844']
+  one.one.one.one: ['1.1.1.1', '1.0.0.1', '2606:4700:4700::1111', '2606:4700:4700::1001']
+  dns.18bit.cn: ['42.51.13.218', '42.51.37.204', '47.109.110.36', '115.190.191.220']
+  dns.ipv4dns.com: ['171.80.2.155', '171.80.2.166']
+tun:
+  enable: true
+  mtu: 1400
+  device: clash
+  stack: mixed
+  dns-hijack:
+  - 0.0.0.0:53
+  auto-route: true
+  strict-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+sniffer:
+  enable: true
+  parse-pure-ip: true
+  force-dns-mapping: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports:
+        - 80
+        - 443
+      override-destination: false
+    TLS:
+      ports:
+        - 443
+  skip-domain:
+    - +.push.apple.com
+  skip-dst-address:
+    - 91.105.192.0/23
+    - 91.108.4.0/22
+    - 91.108.8.0/21
+    - 91.108.16.0/21
+    - 91.108.56.0/22
+    - 95.161.64.0/20
+    - 149.154.160.0/20
+    - 185.76.151.0/24
+    - 2001:67c:4e8::/48
+    - 2001:b28:f23c::/47
+    - 2001:b28:f23f::/48
+    - 2a0a:f280:203::/48
+tunnels:
+- tcp/udp,127.0.0.1:7890,8.8.8.8:53,PROXY
+dns:
+  enable: true
+  cache-algorithm: arc
+  prefer-h3: true
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: true
+  listen: 0.0.0.0:53
+  ipv6: true
+  direct-nameserver:
+    - system
+    - 1.1.1.1
+  nameserver:
+    - system
+    - 114.114.114.114
+    - 8.8.8.8 
+    - tls://223.5.5.5:853 
+    - https://doh.pub/dns-query 
+    - https://dns.alidns.com/dns-query#h3=true 
+    - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true
+    - quic://dns.adguard.com:784
+    - https://cloudflare-dns.com/dns-query
+    - https://sky.rethinkdns.com/dns-query
+    - https://dnspub.restena.lu/dns-query
+    - https://doh.flashstart.com/f17c9ee5
+    - https://ada.openbld.net/dns-query
+    - https://rubyfish.cn/dns-query#PROXY
+    - https://all.dns.mullvad.net/dns-query
+  proxy-server-nameserver:
+    - https://cloudflare-dns.com/dns-query:784
+    - https://sky.rethinkdns.com/dns-query
+    - https://ada.openbld.net/dns-query:784
+    - https://dnspub.restena.lu/dns-query
+  nameserver-policy:
+    "rule-set:social,nsfw,geolocation-!cn":
+      - https://8.8.8.8/dns-query
+      - https://sky.rethinkdns.com/dns-query
+      - https://cloudflare-dns.com/dns-query
+      - https://dnspub.restena.lu/dns-query
+      - https://ada.openbld.net/dns-query
+    "geoip:ir,google,openai":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+    "geosite:category-ads-all": rcode://success
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  direct-nameserver-follow-policy: false
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "www.torrent.eu.org"
+    - "www.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - "+.10010.com"
+    - "+.chinaunicom.com"
+    - "+.baidu.com"
+    - "connect.rom.miui.com"
+    - "localhost.ptlogin2.qq.com"
+    - "dl.google.com"
+    - "+.stun.*.*"
+    - "+.stun.*.*.*"
+    - "+.stun.*.*.*.*"
+    - "+.stun.*.*.*.*.*"
+    - "lens.l.google.com"
+    - "*.n.n.srv.nintendo.net"
+    - "+.stun.playstation.net"
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - "router.asus.com"
+    - "localhost.sec.qq.com"
+    - "localhost.ptlogin2.qq.com"
+    - "+.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - "*.msftconnecttest.com"
+    - "+.lan"
+    - "+.cn"
+    - "+.10010.com"
+    - "+.chinaunicom.com"
+    - "+.baidu.com"
+    - "*.alipay.com"
+    - "*.alipayobjects.com"
+    - "*.jijifun.com"
+    - "connect.rom.miui.com"
+    - "localhost.ptlogin2.qq.com"
+    - "dl.google.com"
+    - "+.stun.*.*"
+    - "+.stun.*.*.*"
+    - "+.stun.*.*.*.*"
+    - "+.stun.*.*.*.*.*"
+    - "lens.l.google.com"
+    - "*.n.n.srv.nintendo.net"
+    - "+.stun.playstation.net"
+    - "*.mcdn.bilivideo.cn"
+    - "ntp.ntsc.ac.cn"
+  fallback:
+    - tcp://8.8.8.8
+    - tcp://1.1.1.1
+    - https://sky.rethinkdns.com/dns-query
+    - https://cloudflare-dns.com/dns-query
+    - https://dnspub.restena.lu/dns-query
+    - https://ada.openbld.net/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    geosite:                         
+      - social
+      - nsfw
+    ipcidr:
+     - 0.0.0.0/8
+     - 10.0.0.0/8
+     - 100.64.0.0/10
+     - 127.0.0.0/8
+     - 169.254.0.0/16
+     - 172.16.0.0/12
+     - 192.0.0.0/24
+     - 192.0.2.0/24
+     - 192.88.99.0/24
+     - 192.168.0.0/16
+     - 198.18.0.0/16
+     - 198.51.100.0/24
+     - 203.0.113.0/24
+     - 224.0.0.0/4
+     - 240.0.0.0/4
+     - 255.255.255.255/32
+     - ::1/128
+     - fc00::/7
+     - fe80::/10
+     - 39.102.194.95/32
+     - 182.43.124.6/32
+     - 101.35.177.86/32
+     - 116.89.243.8/32
+     - 119.28.87.227/32
+    domain:
+     - '+.xincache.com'
+     - 'www.gstatic.com'
+     - '+.ampproject.org'
+     - '+.appspot.com'
+     - '+.blogger.com'
+     - '+.google.com'
+     - '+.google.cn'
+     - '+.googleusercontent.com'
+     - '+.ggpht.com'
+     - '+.gmail.com'
+     - '+.gvt0.com'
+     - '+.gvt1.com'
+     - '+.gvt2.com'
+     - '+.gvt3.com'
+     - '+.youtu.be'
+     - '+.yt.be'
+     - '+.ytimg.com'
+     - '+.googlevideo.com'
+     - '+.youtube.com'
+     - '+.xn--ngstr-lra8j.com'
+     - '+.xn--flw351e.com'
+     - '+.xn--9kr7l.com'
+     - '+.xn--ggle-55da.com'
+     - '+.xn--gogl-0nd52e.com'
+     - '+.xn--gogl-1nd42e.com'
+     - '+.googleapis.com'
+     - '+.googleapis.cn'
+     - '+.gstatic.com'
+     - '+.gstatic.cn'
+     - '+.services.googleapis.cn'
+     - '+.services.googleapis.com'
+     - '+.connectivitycheck.gstatic.cn'
+     - '+.connectivitycheck.gstatic.com'
+proxy-providers:
+  A1:
+    type: http
+    url: "https://raw.githubusercontent.com/tbbatbb/Proxy/master/dist/clash.config.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1 prefix |"
+      additional-suffix: "| A1 suffix"
+  A2:
+    type: http
+    url: "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A2 prefix |"
+      additional-suffix: "| A2 suffix"
+  A3:
+    type: http
+    url: "https://raw.githubusercontent.com/aiboboxx/clashfree/main/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A3 prefix |"
+      additional-suffix: "| A3 suffix"
+  A4:
+    type: http
+    url: "https://raw.githubusercontent.com/ssrsub/ssr/master/Clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A4 prefix |"
+      additional-suffix: "| A4 suffix"
+  A5:
+    type: http
+    url: "https://config.v2cross.com/clashprofile/config"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A5 prefix |"
+      additional-suffix: "| A5 suffix"
+  A6:
+    type: http
+    url: "https://raw.githubusercontent.com/ssrsub/ssr/master/Clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A6 prefix |"
+      additional-suffix: "| A6 suffix"
+  A7:
+    type: http
+    url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_META_IRAN-Direct.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A7 prefix |"
+      additional-suffix: "| A7 suffix"
+  A8:
+    type: http
+    url: "https://raw.githubusercontent.com/tbbatbb/Proxy/master/dist/clash.config.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A8 prefix |"
+      additional-suffix: "| A8 suffix"
+  A9:
+    type: http
+    url: "https://raw.githubusercontent.com/Alvin9999/pac2/master/clash/1/config.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A9 prefix |"
+      additional-suffix: "| A9 suffix" 
+  A10:
+    type: http
+    url: "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A10 prefix |"
+      additional-suffix: "| A10 suffix"  
+  A11:
+    type: http
+    url: "https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A11 prefix |"
+      additional-suffix: "| A11 suffix"  
+  A12:
+    type: http
+    url: "https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A12 prefix |"
+      additional-suffix: "| A12 suffix"
+  A13:
+    type: http
+    url: "https://raw.githubusercontent.com/vveg26/get_proxy/main/dist/clash.config.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A13 prefix |"
+      additional-suffix: "| A13 suffix"
+  A14:
+    type: http
+    url: "https://raw.githubusercontent.com/vveg26/chromego_merge/main/sub/merged_proxies.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A14 prefix |"
+      additional-suffix: "| A14 suffix"
+  A15:
+    type: http
+    url: "https://raw.githubusercontent.com/lcx12901/v2ray-/master/sspool.herokuapp.com/yzcloud.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A15 prefix |"
+      additional-suffix: "| A15 suffix"
+  A16:
+    type: http
+    url: "https://raw.githubusercontent.com/lcx12901/v2ray-/master/sspool.herokuapp.com/yzcloud2.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A16 prefix |"
+      additional-suffix: "| A16 suffix"
+  A17:
+    type: http
+    url: "https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/changfengoss.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A17 prefix |"
+      additional-suffix: "| A17 suffix"
+  A18:
+    type: http
+    url: "https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/combine.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A18 prefix |"
+      additional-suffix: "| A18 suffix"
+  A19:
+    type: http
+    url: "https://raw.githubusercontent.com/bingoYB/node_processing/main/dist/all.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A19 prefix |"
+      additional-suffix: "| A19 suffix"
+  A20:
+    type: http
+    url: "https://raw.githubusercontent.com/itxve/fetch-clash-node/main/node/ClashNode.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A20 prefix |"
+      additional-suffix: "| A20 suffix"
+  A21:
+    type: http
+    url: "https://raw.githubusercontent.com/YasserDivaR/pr0xy/main/winformClash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1 prefix |"
+      additional-suffix: "| A1 suffix"
+  A22:
+    type: http
+    url: "https://raw.githubusercontent.com/sh3d0ww02f/sh3d0ww02f.github.io/main/clash1.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A22 prefix |"
+      additional-suffix: "| A22 suffix"
+  A23:
+    type: http
+    url: "https://raw.githubusercontent.com/obscure1990/freeVM/master/snippets/nodes.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A23 prefix |"
+      additional-suffix: "| A23 suffix"
+  A24:
+    type: http
+    url: "https://raw.githubusercontent.com/sun9426/sun9426.github.io/main/subscribe/Clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A24 prefix |"
+      additional-suffix: "| A24 suffix"
+  A25:
+    type: http
+    url: "https://raw.githubusercontent.com/itxve/fetch-clash-node/main/node/ClashNode.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A25 prefix |"
+      additional-suffix: "| A25 suffix"
+  A26:
+    type: http
+    url: "https://raw.githubusercontent.com/sh3d0ww02f/sh3d0ww02f.github.io/main/clash1.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A26 prefix |"
+      additional-suffix: "| A26 suffix"
+  A27:
+    type: http
+    url: "https://raw.githubusercontent.com/igeekshare/GeekshareFreeNode/main/clash/Geekshare.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A27 prefix |"
+      additional-suffix: "| A27 suffix"
+  A28:
+    type: http
+    url: "https://raw.githubusercontent.com/learnhard-cn/free_proxy_ss/main/clash/clash.provider.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A28 prefix |"
+      additional-suffix: "| A28 suffix"
+  A29:
+    type: http
+    url: "https://raw.githubusercontent.com/learnhard-cn/free_proxy_ss/main/clash/config.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A29 prefix |"
+      additional-suffix: "| A29 suffix"
+  A31:
+    type: http
+    url: "https://raw.githubusercontent.com/jw853355718/clash_233/master/config.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A31 prefix |"
+      additional-suffix: "| A31 suffix"
+  A32:
+    type: http
+    url: "https://raw.githubusercontent.com/BUTUbird/ClashPoint/main/application.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A32 prefix |"
+      additional-suffix: "| A32 suffix"
+  A33:
+    type: http
+    url: "https://raw.githubusercontent.com/vpei/free-node-1/main/o/proxies.txt"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A33 prefix |"
+      additional-suffix: "| A33 suffix"
+  A34:
+    type: http
+    url: "https://raw.githubusercontent.com/du5/free/master/file/0909/Clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A34 prefix |"
+      additional-suffix: "| A34 suffix"
+  A35:
+    type: http
+    url: "https://raw.githubusercontent.com/oslook/clash-freenode/main/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A35 prefix |"
+      additional-suffix: "| A35 suffix"
+  A36:
+    type: http
+    url: "https://raw.githubusercontent.com/jw853355718/clash_233/master/config.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A36 prefix |"
+      additional-suffix: "| A36 suffix"
+  A37:
+    type: http
+    url: "https://raw.githubusercontent.com/kevin-wud/v2ray-node/main/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A37 prefix |"
+      additional-suffix: "| A37 suffix"
+  A38:
+    type: http
+    url: "https://raw.githubusercontent.com/nasheep/FreeNode/main/clash/PlayLab"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A38 prefix |"
+      additional-suffix: "| A38 suffix"
+  A39:
+    type: http
+    url: "https://raw.githubusercontent.com/tony0392/clash/main/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A39 prefix |"
+      additional-suffix: "| A39 suffix"
+  AQ1:
+    type: http
+    url: "https://raw.githubusercontent.com/zhlx2835/freefq/main/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1Q prefix |"
+      additional-suffix: "| A1Q suffix"
+  AW1:
+    type: http
+    url: "https://raw.githubusercontent.com/Junely/clash/main/template3.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AW1 prefix |"
+      additional-suffix: "| AW1 suffix"
+  AE1:
+    type: http
+    url: "https://raw.githubusercontent.com/misersun/config003/main/config_all_quest.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AE1 prefix |"
+      additional-suffix: "| AE1 suffix"
+  AR1:
+    type: http
+    url: "https://raw.githubusercontent.com/misersun/config003/main/config_all.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AR1 prefix |"
+      additional-suffix: "| AR1 suffix"
+  AT1:
+    type: http
+    url: "https://raw.githubusercontent.com/renyige1314/CLASH/main/CLASH"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AT1 prefix |"
+      additional-suffix: "| AT1 suffix"
+  AY1:
+    type: http
+    url: "https://raw.githubusercontent.com/69z1zfw2fly/fly/main/2.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AY1 prefix |"
+      additional-suffix: "| AY1 suffix"
+  AU1:
+    type: http
+    url: "https://raw.githubusercontent.com/Flik6/getNode/main/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AU1 prefix |"
+      additional-suffix: "| AU1 suffix"
+  AI1:
+    type: http
+    url: "https://raw.githubusercontent.com/free18/v2ray/main/Clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AI1 prefix |"
+      additional-suffix: "| AI1 suffix"
+  AO1:
+    type: http
+    url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AO1 prefix |"
+      additional-suffix: "| AO1 suffix"
+
+  AP1:
+    type: http
+    url: "https://raw.githubusercontent.com/shbioc/clash/main/aaa01.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AP1 prefix |"
+      additional-suffix: "| AP1 suffix"
+  AA1:
+    type: http
+    url: "https://raw.githubusercontent.com/ssrsub/ssr/master/Clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AA1 prefix |"
+      additional-suffix: "| AA1 suffix"
+  AS1:
+    type: http
+    url: "https://raw.githubusercontent.com/9Fork/openit/main/Clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AS1 prefix |"
+      additional-suffix: "| AS1 suffix"
+  AD1:
+    type: http
+    url: "https://raw.githubusercontent.com/aiboboxx/clashfree/main/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AD1 prefix |"
+      additional-suffix: "| AD1 suffix"
+  AF1:
+    type: http
+    url: "https://raw.githubusercontent.com/rxsweet/proxies/main/sub/rx.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AF1 prefix |"
+      additional-suffix: "| AF1 suffix"
+  AG1:
+    type: http
+    url: "https://raw.githubusercontent.com/rxsweet/proxies/main/sub/srx.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AG1 prefix |"
+      additional-suffix: "| AG1 suffix"
+  AH1:
+    type: http
+    url: "https://raw.githubusercontent.com/rxsweet/proxies/main/sub/free.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AH1 prefix |"
+      additional-suffix: "| AH1 suffix"
+  AJ1:
+    type: http
+    url: "https://raw.githubusercontent.com/rxsweet/proxies/main/sub/sources/dynamicAll.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AJ1 prefix |"
+      additional-suffix: "| AJ1 suffix"
+  AK1:
+    type: http
+    url: "https://raw.githubusercontent.com/rxsweet/proxies/main/sub/sources/miningAll.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AK1 prefix |"
+      additional-suffix: "| AK1 suffix"
+  AL1:
+    type: http
+    url: "https://raw.githubusercontent.com/imboys/proxyForClash/refs/heads/master/free%20proxy.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AL1 prefix |"
+      additional-suffix: "| AL1 suffix"
+  AZ1:
+    type: http
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/yudou66.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AZ1 prefix |"
+      additional-suffix: "| AZ1 suffix"
+  AX1:
+    type: http
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/wenode.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AX1 prefix |"
+      additional-suffix: "| AX1 suffix"
+  AC1:
+    type: http
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/nodefree.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AC1 prefix |"
+      additional-suffix: "| AC1 suffix"
+  AV1:
+    type: http
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/nodev2ray.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AV1 prefix |"
+      additional-suffix: "| AV1 suffix"
+  AB1:
+    type: http
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/ndnode.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AB1 prefix |"
+      additional-suffix: "| AB1 suffix"
+  AN1:
+    type: http
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/clashmeta.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AN1 prefix |"
+      additional-suffix: "| AN1 suffix"
+  AM1:
+    type: http
+    url: "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/v2rayshare.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AM1 prefix |"
+      additional-suffix: "| AM1 suffix"
+  A1M:
+    type: http
+    url: "https://raw.githubusercontent.com/cxr9912/cxr2022/refs/heads/main/free.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1M prefix |"
+      additional-suffix: "| A1M suffix"
+  A1N:
+    type: http
+    url: "https://raw.githubusercontent.com/cxr9912/cxr2022/refs/heads/main/aaaaaaaa.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1N prefix |"
+      additional-suffix: "| A1N suffix"
+
+  A1B:
+    type: http
+    url: "https://raw.githubusercontent.com/cxr9912/cxr2022/main/ss.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1B prefix |"
+      additional-suffix: "| A1B suffix"
+  A1V:
+    type: http
+    url: "https://raw.githubusercontent.com/cxr9912/cxr2022/main/ssr.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1V prefix |"
+      additional-suffix: "| A1V suffix"
+  A1C:
+    type: http
+    url: "https://raw.githubusercontent.com/cxr9912/cxr2022/main/free.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1C prefix |"
+      additional-suffix: "| A1C suffix"
+  A1X:
+    type: http
+    url: "https://raw.githubusercontent.com/cxr9912/cxr2022/main/vmess.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1X prefix |"
+      additional-suffix: "| A1X suffix"
+  A1Z:
+    type: http
+    url: "https://raw.githubusercontent.com/cxr9912/cxr2022/main/mix.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1Z prefix |"
+      additional-suffix: "| A1Z suffix"
+  A1L:
+    type: http
+    url: "https://raw.githubusercontent.com/moneyfly1/sublist/main/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1L prefix |"
+      additional-suffix: "| A1L suffix"
+  A1K:
+    type: http
+    url: "https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/Clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1K prefix |"
+      additional-suffix: "| A1K suffix"
+  A1J:
+    type: http
+    url: "https://raw.githubusercontent.com/shbioc/clash/main/aaa01.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1J prefix |"
+      additional-suffix: "| A1J suffix"
+
+  A1HH:
+    type: http
+    url: "https://raw.githubusercontent.com/pojiezhiyuanjun/2023/master/0804clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1HH prefix |"
+      additional-suffix: "| A1HH suffix"
+  A1G:
+    type: http
+    url: "https://raw.githubusercontent.com/freenodes/freenodes/main/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1G prefix |"
+      additional-suffix: "| A1G suffix"
+  A1F:
+    type: http
+    url: "https://raw.githubusercontent.com/moneyfly1/sublist/main/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1F prefix |"
+      additional-suffix: "| A1F suffix"
+  A1D:
+    type: http
+    url: "https://raw.githubusercontent.com/freebaipiao/freebaipiao/main/jiassweetoy3.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1D prefix |"
+      additional-suffix: "| A1D suffix"
+  RA1SS:
+    type: http
+    url: "https://raw.githubusercontent.com/gooooooooooooogle/Clash-Config/main/Clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "RA1SS prefix |"
+      additional-suffix: "| RA1SS suffix"
+
+  AA1S:
+    type: http
+    url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AA1S prefix |"
+      additional-suffix: "| AA1S suffix"
+  BA1S:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/ainita.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "BA1S prefix |"
+      additional-suffix: "| BA1S suffix"
+  RRR:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/amin_o__o_bitplatform.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "RRR prefix |"
+      additional-suffix: "| RRR suffix"
+  TTT:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/hamedp-71/Sub_Checker_Creator_final.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "TTT prefix |"
+      additional-suffix: "| TTT suffix"
+  EEE:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/hamedp-71/Trojan_hp.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "EEE prefix |"
+      additional-suffix: "| EEE suffix"
+  Att1:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/MatinGhanbari_v2ray-configs-super-sub.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "Att1 prefix |"
+      additional-suffix: "| Att1 suffix"
+  ABB1:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/namira.dev.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "ABB1 prefix |"
+      additional-suffix: "| ABB1 suffix"
+  ANN1:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/yebekhe/vpn-fail.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "ANN1 prefix |"
+      additional-suffix: "| ANN1 suffix"
+  AMM1:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/gheychiamoozesh.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AMM1 prefix |"
+      additional-suffix: "| AMM1 suffix"
+  AKK1:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/the3rf_com_sub_php.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AKK1 prefix |"
+      additional-suffix: "| AKK1 suffix"
+  ALLL1:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/F0rc3Run_XX.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "ALLL1 prefix |"
+      additional-suffix: "| ALLL1 suffix"
+  APPP1:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/shatakvpn.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "APPP1 prefix |"
+      additional-suffix: "| APPP1 suffix"
+  AUU1:
+    type: http
+    url: "https://raw.githubusercontent.com/WilliamStar007/ClashX-V2Ray-TopFreeProxy/main/combine/clash.config.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AUU1 prefix |"
+      additional-suffix: "| AUU1 suffix"
+  AFFF1:
+    type: http
+    url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AFFF1 prefix |"
+      additional-suffix: "| AFFF1 suffix"
+  A1W2:
+    type: http
+    url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1W2 prefix |"
+      additional-suffix: "| A1W2 suffix"
+  A11C:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/free-config/refs/heads/main/free-mihomo-sub/MahsaNetConfigTopic.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A11C prefix |"
+      additional-suffix: "| A11C suffix"
+  A1C1:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/FreedomGuard/Finder_configs.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1C1 prefix |"
+      additional-suffix: "| A1C1 suffix"
+  1CA1:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/ebrasha/lite.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "1CA1 prefix |"
+      additional-suffix: "| 1CA1 suffix"
+  A11C1C:
+    type: http
+    url: "https://raw.githubusercontent.com/Misaka-blog/chromego_merge/main/sub/merged_proxies_new.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A11C1C prefix |"
+      additional-suffix: "| A11C1C suffix"
+  AA11C1C1:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/66.42.50.118.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AA11C1C1 prefix |"
+      additional-suffix: "| AA11C1C1 suffix"
+  AAA11C1C11:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/Barabama/clashmeta.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AAA11C1C11 prefix |"
+      additional-suffix: "| AAA11C1C11 suffix"
+  AAAA11C1C111:
+    type: http
+    url: "https://raw.githubusercontent.com/10ium/free-config/refs/heads/main/dnsforgame/shecan.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AAAA11C1C111 prefix |"
+      additional-suffix: "| AAAA11C1C111 suffix"
+  A1AAA11C1C11:
+    type: http
+    url: "https://bitbucket.org/huwo1/proxy_nodes/raw/f31ca9ec67b84071515729ff45b011b6b09c10f2/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1AAA11C1C11 prefix |"
+      additional-suffix: "| A1AAA11C1C11 suffix"
+  AiAAA11C1C111:
+    type: http
+    url: ""
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AiAAA11C1C111 prefix |"
+      additional-suffix: "| AiAAA11C1C111 suffix"
+  AAA11C1C1AAA11C1C111:
+    type: http
+    url: "https://github.com/mahdibland/V2RayAggregator/raw/master/sub/sub_merge_yaml.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AAA11C1C1AAA11C1C111 prefix |"
+      additional-suffix: "| AAA11C1C1AAA11C1C111 suffix"
+  A1AAA11C1C1AAA11C1C111:
+    type: http
+    url: "https://github.com/MrMohebi/xray-proxy-grabber-telegram/raw/master/collected-proxies/clash-meta/all.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1AAA11C1C1AAA11C1C111 prefix |"
+      additional-suffix: "| A1AAA11C1C1AAA11C1C111 suffix"
+  AAA11C1C1AAA11C1C111A1:
+    type: http
+    url: "https://raw.githubusercontent.com/mlabalabala/v2ray-node/main/nodefree4clash.txt"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AAA11C1C1AAA11C1C111A1 prefix |"
+      additional-suffix: "| AAA11C1C1AAA11C1C111A1 suffix"
+  A1AAA11C1C1AAA11C1C111A1:
+    type: http
+    url: "https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1AAA11C1C1AAA11C1C111A1 prefix |"
+      additional-suffix: "| A1AAA11C1C1AAA11C1C111A1 suffix"
+  A1A1AAA11C1C1AAA11C1C111A1:
+    type: http
+    url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_base64_Sub.txt"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1A1AAA11C1C1AAA11C1C111A1 prefix |"
+      additional-suffix: "| A1A1AAA11C1C1AAA11C1C111A1 suffix"
+  A1A1A1AAA11C1C1AAA11C1C111A1:
+    type: http
+    url: "https://github.com/vxiaov/free_proxy_ss/raw/main/clash/clash.provider.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1A1A1AAA11C1C1AAA11C1C111A1 prefix |"
+      additional-suffix: "| A1A1A1AAA11C1C1AAA11C1C111A1 suffix"
+  A1A1A1A1AAA11C1C1AAA11C1C111A1:
+    type: http
+    url: "https://github.com/NiREvil/vless/blob/main/sub/clash-meta.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1A1A1A1AAA11C1C1AAA11C1C111A1 prefix |"
+      additional-suffix: "| A1A1A1A1AAA11C1C1AAA11C1C111A1 suffix"
+  A1A1A1A1A1AAA11C1C1AAA11C1C111A1:
+    type: http
+    url: "https://github.com/LonUp/NodeList/raw/main/Clash/Node/Latest.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1A1A1A1A1AAA11C1C1AAA11C1C111A1 prefix |"
+      additional-suffix: "| A1A1A1A1A1AAA11C1C1AAA11C1C111A1 suffix"
+  A1A1A1A1A1AAA11C1C1AAA11C1C111A1gg:
+    type: http
+    url: "https://gitlab.com/univstar1/v2ray/-/raw/main/data/clash/general.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1A1A1A1A1AAA11C1C1AAA11C1C111A1gg prefix |"
+      additional-suffix: "| A1A1A1A1A1AAA11C1C1AAA11C1C111A1gg suffix"
+  A1A1A1A1A1AAA11C1C1AAA11C1CA1:
+    type: http
+    url: "https://freevpnspy.githubrowcontent.com/2024/08/20240802_novless.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1A1A1A1A1AAA11C1C1AAA11C1CA1 prefix |"
+      additional-suffix: "| A1A1A1A1A1AAA11C1C1AAA11C1CA1 suffix"
+  qqA1A1A1A1AAA11C1C1AAA11C1C111A1:
+    type: http
+    url: "https://freevpnspy.githubrowcontent.com/2024/08/20240802_vless.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "qqA1A1A1A1AAA11C1C1AAA11C1C111A1 prefix |"
+      additional-suffix: "| qqA1A1A1A1AAA11C1C1AAA11C1C111A1 suffix"
+  A1A1A1A1A1AAA11C1C1AAA11C1C111A1oo:
+    type: http
+    url: "https://raw.githubusercontent.com/chongdong1230/dxz/main/clash"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1A1A1A1A1AAA11C1C1AAA11C1C111A1oo prefix |"
+      additional-suffix: "| A1A1A1A1A1AAA11C1C1AAA11C1C111A1oo suffix"
+  AA1A1A1A1A1AAA11C1C1AAA11C1C111A11xx:
+    type: http
+    url: "https://raw.githubusercontent.com/itsyebekhe/PSG/main/subscriptions/clash/mix"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "AA1A1A1A1A1AAA11C1C1AAA11C1C111A11xx prefix |"
+      additional-suffix: "| AA1A1A1A1A1AAA11C1C1AAA11C1C111A11xx suffix"
+  A1A1A1A1A1AAA11C1C1AAA11C1C111A1A1rr:
+    type: http
+    url: "https://sub.pmsub.me/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "A1A1A1A1A1AAA11C1C1AAA11C1C111A1A1rr prefix |"
+      additional-suffix: "| A1A1A1A1A1AAA11C1C1AAA11C1C111A1A1rr suffix"
+
+  DDFDDA1:
+    type: http
+    url: "https://sub.pmsub.me/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "DDFDDA1 prefix |"
+      additional-suffix: "| DDFDDA1 suffix"
+  ADDFDDA11:
+    type: http
+    url: "https://anaer.github.io/Sub/clash.yaml"
+    interval: 300
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    health-check:
+      enable: true
+      url: "https://connectivitycheck.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      additional-prefix: "ADDFDDA11 prefix |"
+      additional-suffix: "| ADDFDDA11 suffix"
+proxies:
+  - name: redir-in
+    type: direct
+    port: 9797
+    server: 127.0.0.1
+proxy-groups:
+  - name: "PROXY"
+    type: "smart"
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
+    proxies:
+      - "🎈Auto"
+      - "🤖 AI"
+  
+  - name: "🎈Auto"
+    type: "smart"
+    url: "http://1.1.1.1/cdn-cgi/trace"
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
+    use:
+      - "A1"
+  - name: "🤖 AI"
+    type: "smart"
+    url: "http://1.1.1.1/cdn-cgi/trace"
+    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+    proxies:
+      - "🇺🇲"
+      - "🇭🇰"
+      - "🇯🇵"
+      - "🇹🇼"
+      - "🇸🇬"
+      - "🇰🇷"
+  - name: "🇭🇰"
+    type: "smart"
+    url: "http://1.1.1.1/cdn-cgi/trace"
+    include-all-providers: true
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
+    proxies: 
+    use:
+
+  - name: "🇯🇵"
+    type: "smart"
+    url: "http://1.1.1.1/cdn-cgi/trace"
+    include-all-providers: true
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
+
+  - name: "🇺🇲"
+    type: "smart"
+    url: "http://1.1.1.1/cdn-cgi/trace"
+    include-all-providers: true
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
+
+  - name: "🇹🇼"
+    type: "smart"
+    url: "http://1.1.1.1/cdn-cgi/trace"
+    include-all-providers: true
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
+
+  - name: "🇸🇬"
+    type: "smart"
+    url: "http://1.1.1.1/cdn-cgi/trace"
+    include-all-providers: true
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
+
+  - name: "🇰🇷"
+    type: "smart"
+    url: "http://1.1.1.1/cdn-cgi/trace"
+    include-all-providers: true
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
+
+  - name: "🎯 Direct"
+    type: "select"
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
+    proxies:
+      - "redir-in"
+      - "PROXY"
+rule-providers:
+  nsfw:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
+    interval: 30
+  social:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
+    interval: 30
+  ir:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
+    interval: 86400
+  ads:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
+    interval: 86400
+  malware:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
+    interval: 86400
+  phishing:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
+    interval: 86400
+  cryptominers:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
+    interval: 86400
+  apps:
+    type: http
+    format: yaml
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml"
+    interval: 86400
+  ircidr:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
+    interval: 86400
+  private:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
+    interval: 86400
+  irasn:
+    type: http
+    format: yaml
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
+    interval: 86400
+  geolocation-!cn:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
+    interval: 86400
+  AWA:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+    interval: 86400
+  AI:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list"
+    interval: 86400
+    
+  OpenAi:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list"
+    interval: 86400
+    
+  GoogleFCM:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list"
+    interval: 86400
+    
+  GoogleCNProxyIP:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list"
+    interval: 86400
+    
+  GoogleCN:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list"
+    interval: 86400
+    
+  YouTube:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list"
+    interval: 86400
+    
+  Google:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list"
+    interval: 86400
+    
+rules :
+  - DOMAIN-SUFFIX,openai.com,🤖 AI
+  - DOMAIN-SUFFIX,chatgpt.com,🤖 AI
+  - DOMAIN-SUFFIX,oaistatic.com,🤖 AI
+  - DOMAIN-SUFFIX,oaiusercontent.com,🤖 AI
+  - DOMAIN-KEYWORD,openai,🤖 AI
+  - DOMAIN-SUFFIX,anthropic.com,🤖 AI
+  - DOMAIN-SUFFIX,claude.ai,🤖 AI
+  - DOMAIN-SUFFIX,gemini.google.com,🤖 AI
+  - DOMAIN-SUFFIX,bard.google.com,🤖 AI
+  - DOMAIN-SUFFIX,perplexity.ai,🤖 AI
+  - DOMAIN-SUFFIX,midjourney.com,🤖 AI
+  - DOMAIN-KEYWORD,soft98.ir,🎯 Direct
+  - DOMAIN,soft98,🎯 Direct
+  - DOMAIN-SUFFIX,soft98.ir,🎯 Direct
+  - DOMAIN-KEYWORD,dl2soft98.82.ir,🎯 Direct
+  - DOMAIN,dl2soft98.82,🎯 Direct
+  - DOMAIN-SUFFIX,dl2soft98.82.ir,🎯 Direct
+  - DOMAIN-SUFFIX,farsroid,🎯 Direct
+  - DOMAIN-KEYWORD,farsroid.com,🎯 Direct
+  - DOMAIN,farsroid.com,🎯 Direct
+  - DOMAIN-SUFFIX,createporn.com,🤖 AI
+  - DOMAIN-KEYWORD,createporn,🤖 AI
+  - DOMAIN,createporn,🤖 AI
+  - DOMAIN,ad.com,REJECT
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
+  - PROCESS-NAME,com.samsung.android.location,REJECT,no-resolve
+  - PROCESS-NAME,com.android.localtransport,REJECT,no-resolve
+  - PROCESS-NAME,com.google.android.gms.location.history,REJECT,no-resolve
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
+  - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
+  - DOMAIN-SUFFIX,google.com,🤖 AI
+  - DOMAIN-KEYWORD,google,🤖 AI
+  - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR6,2620:0:2d0:200::7/32,PROXY
+  - IP-SUFFIX,8.8.8.8/24,🤖 AI
+  - SRC-IP-CIDR,192.168.1.201/32,🎯 Direct
+  - SRC-IP-SUFFIX,192.168.1.201/8,🎯 Direct
+  - DOMAIN-SUFFIX,local,🎯 Direct
+  - IP-CIDR,127.0.0.0/8,🎯 Direct
+  - IP-CIDR,172.16.0.0/12,🎯 Direct
+  - IP-CIDR,192.168.0.0/16,🎯 Direct
+  - IN-PORT,7890,PROXY
+  - IN-PORT,7892,PROXY
+  - IN-PORT,7891,PROXY
+  - IN-TYPE,SOCKS/HTTP,PROXY
+  - IN-USER,mihomo,PROXY
+  - IN-NAME,ss,PROXY
+  - PROCESS-PATH,C:\Program Files\Google\Chrome\Application\chrome.exe,PROXY
+  - PROCESS-NAME,curl,PROXY
+  - PROCESS-NAME,chrome.exe,PROXY
+  - PROCESS-NAME,com.termux,PROXY
+  - AND,((DOMAIN,google.com),(NETWORK,UDP)),🤖 AI
+  - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
+  - NOT,((DOMAIN,google.com)),🤖 AI
+  - RULE-SET,private,🎯 Direct,no-resolve
+  - RULE-SET,apps,🎯 Direct
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,AWA,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,ir,🎯 Direct
+  - RULE-SET,ircidr,🎯 Direct
+  - RULE-SET,irasn,🎯 Direct
+  - RULE-SET,social,PROXY,no-resolve
+  - RULE-SET,nsfw,PROXY,no-resolve
+  - RULE-SET,geolocation-!cn,PROXY
+  - GEOIP,ir,🎯 Direct
+  - RULE-SET,GoogleFCM,🤖 AI
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🤖 AI
+  - DOMAIN-SUFFIX,services.googleapis.cn,🤖 AI
+  - RULE-SET,GoogleCNProxyIP,🤖 AI
+  - RULE-SET,GoogleCN,🤖 AI
+  - RULE-SET,YouTube,🤖 AI
+  - RULE-SET,Google,🤖 AI
+  - GEOIP,google,🤖 AI
+  - GEOIP,telegram,PROXY
+  - GEOIP,twitter,PROXY
+  - GEOIP,facebook,PROXY
+  - GEOIP,private,🎯 Direct,no-resolve
+  - GEOSITE,category-ads-all,REJECT
+  - GEOSITE,category-ir,🎯 Direct,no-resolve
+  - GEOSITE,ir,🎯 Direct
+  - MATCH,PROXY
