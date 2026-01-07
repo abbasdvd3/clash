@@ -501,3 +501,506 @@ rule-providers:
   GoogleCN:          {type: http, behavior: domain, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list}
   YouTube1:          {type: http, behavior: classical, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list}
   AWAdsRule:         {type: http, behavior: classical, format: yaml, interval: 86400, url: https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash-Classical.yaml}
+BaseProvider: &BaseProvider {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: 'https://www.google.com/generate_204', interval: 300}, filter: '^(?!.*(群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'}
+BaseSmart: &BaseSmart {type: smart, interval: 200, lazy: true, url: 'https://www.google.com/generate_204', hidden: false, uselightgbm: true}
+FilterHK: &FilterHK '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))(?!.*(排除1|排除2|5x)).*$'
+FilterSG: &FilterSG '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?!.*(排除1|排除2|5x)).*$'
+FilterJP: &FilterJP '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?!.*(排除1|排除2|5x)).*$'
+FilterKR: &FilterKR '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))(?!.*(排除1|排除2|5x)).*$'
+FilterUS: &FilterUS '^(?=.*(?i)(美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?!.*(排除1|排除2|5x)).*$'
+FilterTW: &FilterTW '^(?=.*(?i)(台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH))(?!.*(排除1|排除2|5x)).*$'
+FilterEU: &FilterEU '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*(排除1|排除2|5x)).*$'
+FilterOT: &FilterOT '^(?!.*(DIRECT|Direct|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))'
+FilterAL: &FilterAL '^(?!.*(DIRECT|Direct|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'
+SelectAL: &SelectAL {type: select, proxies: [Hong_Kong, Taiwan, Japan, Singapore, Korea, United_States, European, Clubhouse, Direct]}
+OneSmart: &OneSmart {type: select, proxies: [mihomo, Hong_Kong, Taiwan, Japan, Singapore, Korea, United_States, European, Clubhouse, Direct]}
+SelectDC: &SelectDC {type: select, proxies: [Direct, mihomo, Hong_Kong, Taiwan, Japan, Singapore, Korea, United_States, European, Clubhouse]}
+proxy-providers:
+  优质服务商: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商: {<<: *BaseProvider, url: 'https://shadowmere.xyz/api/b64sub/', override: {additional-prefix: '[备] '}}
+  优质服务商3: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity', override: {additional-prefix: '[优] '}}
+  备用服务商4: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N', override: {additional-prefix: '[备] '}}
+  优质服务商5: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Junely/clash/main/template3.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商6: {<<: *BaseProvider, url: 'https://proxypool1999.banyunxiaoxi.icu/clash/proxies', override: {additional-prefix: '[备] '}}
+  优质服务商7: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/misersun/config003/main/config_all.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商8: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml', override: {additional-prefix: '[备] '}}
+  优质服务商9: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/renyige1314/CLASH/main/CLASH', override: {additional-prefix: '[优] '}}
+  备用服务商10: {<<: *BaseProvider, url: 'http://66.42.50.118:12580/clash/proxies', override: {additional-prefix: '[备] '}}
+  优质服务商11: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/69z1zfw2fly/fly/main/2.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商12: {<<: *BaseProvider, url: 'https://proxypool.link/clash/proxies', override: {additional-prefix: '[备] '}}
+  优质服务商13: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商14: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml', override: {additional-prefix: '[备] '}}
+  优质服务商15: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/shbioc/clash/main/aaa01.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商16: {<<: *BaseProvider, url: 'https://anaer.github.io/Sub/proxies.yaml', override: {additional-prefix: '[备] '}}
+  优质服务商17: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/yudou66.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商18: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/ts-sf/fly/main/clash', override: {additional-prefix: '[备] '}}
+  优质服务商19: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/Clash.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商20: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/combine.yaml', override: {additional-prefix: '[备] '}}
+  优质服务商21: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpnclashfa-backup/subconverter/refs/heads/main/output_configs/clash/ainita.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商22: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/bingoYB/node_processing/main/dist/all.yaml', override: {additional-prefix: '[备] '}}
+  优质服务商23: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpnclashfa-backup/subconverter/refs/heads/main/output_configs/clash/MatinGhanbari_v2ray-configs-super-sub.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商24: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/itxve/fetch-clash-node/main/node/ClashNode.yaml', override: {additional-prefix: '[备] '}}
+  优质服务商25: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpnclashfa-backup/subconverter/refs/heads/main/output_configs/clash/gheychiamoozesh.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商26: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/YasserDivaR/pr0xy/main/winformClash.yaml', override: {additional-prefix: '[备] '}}
+  优质服务商27: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpnclashfa-https://raw.githubusercontent.com/vpnclashfa-backup/subconverter/refs/heads/main/output_configs/clash/the3rf_com_sub_php.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商28: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/itxve/fetch-clash-node/main/node/ClashNode.yaml', override: {additional-prefix: '[备] '}}
+  优质服务商29: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/shatakvpn.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商30: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/sun9426/sun9426.github.io/main/subscribe/Clash.yaml', override: {additional-prefix: '[备] '}}
+  优质服务商31: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/WilliamStar007/ClashX-V2Ray-TopFreeProxy/main/combine/clash.config.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商32: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/igeekshare/GeekshareFreeNode/main/clash/Geekshare.yaml', override: {additional-prefix: '[备] '}}
+  优质服务商33: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商34: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/BUTUbird/ClashPoint/main/application.yaml', override: {additional-prefix: '[备] '}}
+  优质服务商35: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商36: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpei/free-node-1/main/o/proxies.txt', override: {additional-prefix: '[备] '}}
+  优质服务商37: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Misaka-blog/chromego_merge/main/sub/merged_proxies_new.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商38: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/kevin-wud/v2ray-node/main/clash.yaml', override: {additional-prefix: '[备] '}}
+  优质服务商39: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml', override: {additional-prefix: '[优] '}}
+  备用服务商40: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/tony0392/clash/main/clash.yaml', override: {additional-prefix: '[备] '}}
+  优质服务商41: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt', override: {additional-prefix: '[优] '}}
+  备用服务商42: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/nasheep/FreeNode/main/clash/PlayLab', override: {additional-prefix: '[备] '}}
+  优质服务商43: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/chongdong1230/dxz/main/clash', override: {additional-prefix: '[优] '}}
+  备用服务商44: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/zhlx2835/freefq/main/clash.yaml', override: {additional-prefix: '[备] '}}
+mode: rule
+mixed-port: 7890
+ipv6: true
+allow-lan: true
+unified-delay: true
+tcp-concurrent: true
+log-level: error
+bind-address: '*'
+find-process-mode: strict
+global-client-fingerprint: chrome
+keep-alive-interval: 30
+keep-alive-idle: 15
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
+authentication:
+skip-auth-prefixes:
+  - 127.0.0.1/8
+  - ::1/128
+external-controller-cors:
+  allow-private-network: true
+  allow-origins:
+  - http://tauri.localhost
+  - https://yacd.metacubex.one
+  - https://metacubex.github.io
+  - https://board.zash.run.place
+external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+external-ui-name: zashboard
+external-ui: zashboard
+external-controller: 127.0.0.1:9090
+secret: 
+geox-url:
+  GeoIP: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
+  GeoSite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
+  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb
+  ANS: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb
+profile:
+  store-selected: true
+  store-fake-ip: true
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+    - "+.heytap.com"
+    - "+.oppo.com"
+hosts:
+  doh.pub: [1.12.12.21, 120.53.53.53, 1.12.12.12]
+  dot.pub: [1.12.12.21, 120.53.53.53, 1.12.12.12]
+  "*.alidns.com": [223.5.5.5, 223.6.6.6, 2400:3200::1, 2400:3200:baba::1]
+  dns.google: [8.8.8.8, 8.8.4.4, 2001:4860:4860::8888, 2001:4860:4860::8844]
+  cloudflare-dns.com: [1.1.1.1, 1.0.0.1, 2606:4700:4700::1111, 2606:4700:4700::1001]
+tun:
+  enable: true
+  stack: gvisor  
+  device: Meta
+  mtu: 9000
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  strict-route: true        
+  endpoint-independent-nat: true
+  exclude-uid: []
+  exclude-package: []
+dns:
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  cache-algorithm: arc
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  nameserver-policy:
+    "geosite:ir,private": 
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+    "RULE-SET:geolocation-!cn,nsfw,social": 
+      - "https://1.1.1.1/dns-query#Global"
+      - "https://8.8.8.8/dns-query#Global"
+  fake-ip-filter:
+    - rule-set:Direct
+    - rule-set:Private
+    - rule-set:China
+    - "+.lan"
+    - "+.local"
+    - "+.market.xiaomi.com"
+    - "+.heytap.com"
+    - "+.oppo.com"
+    - "xbox.*.microsoft.com"
+    - "+.xboxlive.com"
+    - "localhost.ptlogin2.qq.com"
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    geosite:                         
+      - social
+      - nsfw
+    ipcidr:
+     - 0.0.0.0/8
+     - 10.0.0.0/8
+     - 100.64.0.0/10
+     - 127.0.0.0/8
+     - 169.254.0.0/16
+     - 172.16.0.0/12
+     - 192.0.0.0/24
+     - 192.0.2.0/24
+     - 192.88.99.0/24
+     - 192.168.0.0/16
+     - 198.18.0.0/16
+     - 198.51.100.0/24
+     - 203.0.113.0/24
+     - 224.0.0.0/4
+     - 240.0.0.0/4
+     - 255.255.255.255/32
+     - ::1/128
+     - fc00::/7
+     - fe80::/10
+     - 39.102.194.95/32
+     - 182.43.124.6/32
+     - 101.35.177.86/32
+     - 116.89.243.8/32
+     - 119.28.87.227/32
+    domain:
+     - '+.xincache.com'
+     - 'www.gstatic.com'
+     - '+.ampproject.org'
+     - '+.appspot.com'
+     - '+.blogger.com'
+     - '+.google.com'
+     - '+.google.cn'
+     - '+.googleusercontent.com'
+     - '+.ggpht.com'
+     - '+.gmail.com'
+     - '+.gvt0.com'
+     - '+.gvt1.com'
+     - '+.gvt2.com'
+     - '+.gvt3.com'
+     - '+.youtu.be'
+     - '+.yt.be'
+     - '+.ytimg.com'
+     - '+.googlevideo.com'
+     - '+.youtube.com'
+     - '+.xn--ngstr-lra8j.com'
+     - '+.xn--flw351e.com'
+     - '+.xn--9kr7l.com'
+     - '+.xn--ggle-55da.com'
+     - '+.xn--gogl-0nd52e.com'
+     - '+.xn--gogl-1nd42e.com'
+     - '+.googleapis.com'
+     - '+.googleapis.cn'
+     - '+.gstatic.com'
+     - '+.gstatic.cn'
+     - '+.services.googleapis.cn'
+     - '+.services.googleapis.com'
+     - '+.connectivitycheck.gstatic.cn'
+     - '+.connectivitycheck.gstatic.com'
+proxy-groups:
+  - {name: mihomo,  <<: *SelectAL, icon: https://git.imee.me/https://github.com/666OS/YYDS/raw/main/mihomo/image/mihomo.png}
+  - {name: AI,  <<: *OneSmart, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
+  - {name: PBS,  <<: *OneSmart, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/PBS.png} 
+  - {name: Media,  <<: *OneSmart, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/DomesticMedia.png}
+  - {name: Global,  <<: *OneSmart, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png}
+  - {name: IRAN,  <<: *SelectDC, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/China.png}
+  - {name: Final,  <<: *OneSmart, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
+  - {name: Clubhouse,  type: select, include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
+  - {name: Direct,  type: select, proxies: [DIRECT], hidden: false, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Direct.png}
+
+  - {name: Hong_Kong,  <<: *BaseSmart, filter: *FilterHK, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vmess|vless"}
+  - {name: Taiwan,  <<: *BaseSmart, filter: *FilterTW, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vmess|vless"}
+  - {name: Japan,  <<: *BaseSmart, filter: *FilterJP, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vmess|vless"}
+  - {name: Singapore,  <<: *BaseSmart, filter: *FilterSG, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vmess|vless"}
+  - {name: Korea,  <<: *BaseSmart, filter: *FilterKR, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vmess|vless"}
+  - {name: United_States,  <<: *BaseSmart, filter: *FilterUS, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vmess|vless"}
+  - {name: European,  <<: *BaseSmart, filter: *FilterEU, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vmess|vless"}
+rules: 
+  - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT
+  - DOMAIN-KEYWORD,soft98.ir,Direct
+  - DOMAIN,soft98,Direct
+  - DOMAIN-SUFFIX,soft98.ir,Direct
+  - DOMAIN-KEYWORD,dl2soft98.82.ir,Direct
+  - DOMAIN,dl2soft98.82,Direct
+  - DOMAIN-SUFFIX,dl2soft98.82.ir,Direct
+  - DOMAIN-SUFFIX,farsroid,Direct
+  - DOMAIN-KEYWORD,farsroid.com,Direct
+  - DOMAIN,farsroid.com,Direct
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,AI
+  - DOMAIN-SUFFIX,services.googleapis.cn,AI
+  - DOMAIN-SUFFIX,createporn.com,AI
+  - DOMAIN-KEYWORD,createporn,AI
+  - DOMAIN,createporn,AI
+  - DOMAIN,ad.com,REJECT
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
+  - PROCESS-NAME,com.samsung.android.location,REJECT,no-resolve
+  - PROCESS-NAME,com.android.localtransport,REJECT,no-resolve
+  - PROCESS-NAME,com.google.android.gms.location.history,REJECT,no-resolve
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
+  - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
+  - DOMAIN-SUFFIX,google.com,AI
+  - DOMAIN-KEYWORD,google,AI
+  - DOMAIN-SUFFIX,netflix.com,Global
+  - DOMAIN-SUFFIX,netflix.net,Global
+  - DOMAIN-SUFFIX,nflxext.com,Global
+  - DOMAIN-SUFFIX,nflximg.com,Global
+  - DOMAIN-SUFFIX,nflxso.net,Global
+  - DOMAIN-SUFFIX,nflxvideo.net,Global
+  - DOMAIN-SUFFIX,spotify.com,Global
+  - DOMAIN-SUFFIX,scdn.co,Global
+  - DOMAIN-SUFFIX,spoti.fi,Global
+  - DOMAIN-SUFFIX,youtube.com,AI
+  - DOMAIN-SUFFIX,googlevideo.com,AI
+  - DOMAIN-SUFFIX,ytimg.com,Global
+  - DOMAIN-SUFFIX,hulu.com,Global
+  - DOMAIN-SUFFIX,disneyplus.com,Global
+  - DOMAIN-SUFFIX,hbo.com,Global
+  - DOMAIN-SUFFIX,primevideo.com,Global
+  - DOMAIN-SUFFIX,cn,Direct,no-resolve
+  - DOMAIN-KEYWORD,-cn,Direct,no-resolve
+  - DOMAIN-SUFFIX,ir,Direct,no-resolve
+  - DOMAIN-KEYWORD,ir,Direct,no-resolve
+  - DOMAIN-SUFFIX,local,Direct,no-resolve
+  - IP-CIDR,127.0.0.0/8,Direct,no-resolve
+  - IP-CIDR,172.16.0.0/12,Direct
+  - IP-CIDR,192.168.0.0/16,Direct
+  - IP-CIDR,10.0.0.0/8,Global
+  - DOMAIN-SUFFIX,openai.com,AI
+  - DOMAIN-SUFFIX,chatgpt.com,AI
+  - DOMAIN-SUFFIX,anthropic.com,AI
+  - DOMAIN-SUFFIX,claude.ai,AI
+  - DOMAIN-SUFFIX,t.me,Global
+  - DOMAIN-SUFFIX,telegram.org,Global
+  - DOMAIN-SUFFIX,netflix.com,Global
+  - DOMAIN-SUFFIX,youtube.com,Global
+  - DOMAIN-SUFFIX,disney.com,Global
+  - DOMAIN-SUFFIX,apple.com,Global
+  - DOMAIN-SUFFIX,icloud.com,Global
+  - DOMAIN-SUFFIX,microsoft.com,Global
+  - DOMAIN-SUFFIX,windows.com,Global
+  - DOMAIN-SUFFIX,openai.com,AI
+  - DOMAIN-SUFFIX,chatgpt.com,AI
+  - DOMAIN-SUFFIX,oaistatic.com,AI
+  - DOMAIN-SUFFIX,oaiusercontent.com,AI
+  - DOMAIN-KEYWORD,openai,AI
+  - DOMAIN-SUFFIX,anthropic.com,AI
+  - DOMAIN-SUFFIX,claude.ai,AI
+  - DOMAIN-SUFFIX,gemini.google.com,AI
+  - DOMAIN-SUFFIX,bard.google.com,AI
+  - DOMAIN-SUFFIX,perplexity.ai,AI
+  - DOMAIN-SUFFIX,midjourney.com,AI
+  - DOMAIN-SUFFIX,netflix.com,AI
+  - DOMAIN-KEYWORD,anthropic,AI
+  - DOMAIN-KEYWORD,claude,AI
+  - DOMAIN-KEYWORD,openai,AI
+  - DOMAIN,ai.google.dev,AI
+  - DOMAIN,aistudio.google.com,AI
+  - DOMAIN,api.githubcopilot.com,AI
+  - DOMAIN,api.groq.com,AI
+  - DOMAIN,api.together.xyz,AI
+  - DOMAIN,bard.google.com,AI
+  - DOMAIN,console.groq.com,AI
+  - DOMAIN,copilot-proxy.githubusercontent.com,AI
+  - DOMAIN,gemini.google.com,AI
+  - DOMAIN,generativelanguage.googleapis.com,AI
+  - DOMAIN,notebooklm.google.com,AI
+  - DOMAIN,sydney.bing.com,AI
+  - DOMAIN-SUFFIX,ai.azure.com,AI
+  - DOMAIN-SUFFIX,anthropic.com,AI
+  - DOMAIN-SUFFIX,auth0.com,AI
+  - DOMAIN-SUFFIX,bard.google.com,AI
+  - DOMAIN-SUFFIX,chatgpt.com,AI
+  - DOMAIN-SUFFIX,claude.ai,AI
+  - DOMAIN-SUFFIX,claude.com,AI
+  - DOMAIN-SUFFIX,claudeusercontent.com,AI
+  - DOMAIN-SUFFIX,client-api.arkoselabs.com,AI
+  - DOMAIN-SUFFIX,copilot.cloud.microsoft,AI
+  - DOMAIN-SUFFIX,copilot.microsoft.com,AI
+  - DOMAIN-SUFFIX,cursor.com,AI
+  - DOMAIN-SUFFIX,cursor.sh,AI
+  - DOMAIN-SUFFIX,events.statsigapi.net,AI
+  - DOMAIN-SUFFIX,featuregates.org,AI
+  - DOMAIN-SUFFIX,gemini.google.com,AI
+  - DOMAIN-SUFFIX,grazie.ai,AI
+  - DOMAIN-SUFFIX,grazie.aws.intellij.net,AI
+  - DOMAIN-SUFFIX,identrust.com,AI
+  - DOMAIN-SUFFIX,intercom.io,AI
+  - DOMAIN-SUFFIX,intercomcdn.com,AI
+  - DOMAIN-SUFFIX,jetbrains.ai,AI
+  - DOMAIN-SUFFIX,makersuite.google.com,AI
+  - DOMAIN-SUFFIX,meta.ai,AI
+  - DOMAIN-SUFFIX,mistral.ai,AI
+  - DOMAIN-SUFFIX,oaistatic.com,AI
+  - DOMAIN-SUFFIX,oaiusercontent.com,AI
+  - DOMAIN-SUFFIX,openai.com,AI
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI
+  - DOMAIN-SUFFIX,perplexity.ai,AI
+  - DOMAIN-SUFFIX,sora.com,AI
+  - DOMAIN-SUFFIX,x.ai,AI
+  - DOMAIN-KEYWORD,openai,AI
+  - DOMAIN-SUFFIX,auth0.com,AI
+  - DOMAIN-SUFFIX,challenges.cloudflare.com,AI
+  - DOMAIN-SUFFIX,chatgpt.com,AI
+  - DOMAIN-SUFFIX,client-api.arkoselabs.com,AI
+  - DOMAIN-SUFFIX,events.statsigapi.net,AI
+  - DOMAIN-SUFFIX,featuregates.org,AI
+  - DOMAIN-SUFFIX,identrust.com,AI
+  - DOMAIN-SUFFIX,intercom.io,AI
+  - DOMAIN-SUFFIX,intercomcdn.com,AI
+  - DOMAIN-SUFFIX,oaistatic.com,AI
+  - DOMAIN-SUFFIX,oaiusercontent.com,AI
+  - DOMAIN-SUFFIX,openai.com,AI
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI
+  - DOMAIN-SUFFIX,sentry.io,AI
+  - DOMAIN-SUFFIX,stripe.com,AI
+  - DOMAIN-SUFFIX,sora.com,AI
+  - DOMAIN-SUFFIX,disneyplus.com,AI
+  - DOMAIN-SUFFIX,youtube.com,Global
+  - DOMAIN-SUFFIX,spotify.com,Global
+  - IN-PORT,7890,Global
+  - IN-PORT,7892,Global
+  - IN-PORT,7891,Global
+#  - IN-PORT,53,DNS,no-resolve
+  - DST-PORT,80,Global,no-resolve
+  - DST-PORT,443,Global,no-resolve
+  - IN-TYPE,SOCKS/HTTP,Global
+  - IN-USER,mihomo,Global
+  - IN-NAME,ss,Global
+  - NETWORK,udp,Global
+  - IP-SUFFIX,8.8.8.8/24,Global
+  - DOMAIN-SUFFIX,local,Direct,no-resolve
+  - IP-CIDR,10.0.0.0/8,Global
+  - IP-CIDR,100.64.0.0/10,Global
+  - PROCESS-NAME,com.termux,Global
+  - AND,((DOMAIN,google.com),(NETWORK,UDP)),Global
+  - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
+  - NOT,((DOMAIN,google.com)),Global
+  - RULE-SET,AWAdsRule,REJECT
+  - RULE-SET,GoogleFCM,AI
+  - RULE-SET,GoogleCNProxyIP,AI
+  - RULE-SET,GoogleCN,AI
+  - RULE-SET,YouTube1,AI
+  - RULE-SET,Google,AI
+  - RULE-SET,category-ai-cn,AI
+  - RULE-SET,category-ai-!cn,AI
+  - RULE-SET,anti-AD-white,Direct
+  - RULE-SET,anti-AD,REJECT
+  - RULE-SET,private1,Direct,no-resolve
+  - RULE-SET,apps,Direct
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,AWA,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,ir,Direct
+  - RULE-SET,ircidr,Direct
+  - RULE-SET,irasn,Direct
+  - RULE-SET,social,AI,no-resolve
+  - RULE-SET,nsfw,AI,no-resolve
+  - RULE-SET,geolocation-!cn,AI
+  - GeoIP,ir,Direct
+  - RULE-SET,Private,Direct
+  - RULE-SET,Direct,Direct
+  - RULE-SET,XPTV,Direct
+  - RULE-SET,AI,AI
+  - RULE-SET,Telegram,PBS
+  - RULE-SET,SocialMedia,PBS
+  - RULE-SET,Emby,Media
+  - RULE-SET,Streaming,Media
+  - RULE-SET,Proxy,Global
+  - RULE-SET,China,IRAN
+  - RULE-SET,PrivateIP,Direct,no-resolve
+  - RULE-SET,XPTVIP,Direct,no-resolve
+  - RULE-SET,AIIP,AI,no-resolve
+  - RULE-SET,TelegramIP,PBS,no-resolve
+  - RULE-SET,SocialMediaIP,PBS,no-resolve
+  - RULE-SET,EmbyIP,Media,no-resolve
+  - RULE-SET,StreamingIP,Media,no-resolve
+  - RULE-SET,ProxyIP,Global,no-resolve
+  - RULE-SET,ChinaIP,IRAN,no-resolve
+  - MATCH,Final
+BehaviorDN: &BehaviorDN {type: http, behavior: domain, format: mrs, interval: 86400}
+BehaviorIP: &BehaviorIP {type: http, behavior: ipcidr, format: mrs, interval: 86400}
+rule-providers: 
+  Private:           {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Private.mrs}
+  Direct:            {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Direct.mrs}
+  AI:                {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/AI.mrs}  
+  Telegram:          {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Telegram.mrs}
+  SocialMedia:       {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/SocialMedia.mrs}
+  XPTV:              {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/XPTV.mrs}  
+  Emby:              {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Emby.mrs}
+  Streaming:         {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Streaming.mrs}  
+  Proxy:             {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Proxy.mrs}
+  China:             {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/China.mrs}
+  PrivateIP:         {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Private.mrs}
+  AIIP:              {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/AI.mrs}
+  TelegramIP:        {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Telegram.mrs}  
+  SocialMediaIP:     {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/SocialMedia.mrs}  
+  XPTVIP:            {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/XPTV.mrs}
+  EmbyIP:            {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Emby.mrs}
+  StreamingIP:       {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Streaming.mrs}  
+  ProxyIP:           {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Proxy.mrs} 
+  ChinaIP:           {<<: *BehaviorIP, url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr..mrs}
+  nsfw:              {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml}
+  social:            {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml}
+  ir:                {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml}
+  ads:               {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml}
+  malware:           {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml}
+  phishing:          {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml}
+  cryptominers:      {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml}
+  apps:              {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml}
+  ircidr:            {type: http, behavior: ipcidr, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml}
+  private1:          {type: http, behavior: ipcidr, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml}
+  irasn:             {type: http, behavior: ipcidr, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml}
+  geolocation-!cn:   {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml}
+  AWA:               {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml}
+  anti-AD:           {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml}
+  anti-AD-white:     {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/privacy-protection-tools/dead-horse/master/anti-ad-white-for-clash.yaml}
+  category-ai-!cn:   {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.yaml}
+  category-ai-cn:    {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.yaml}
+  Google:            {type: http, behavior: domain, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list}
+  AI1:               {type: http, behavior: domain, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list}
+  OpenAi:            {type: http, behavior: domain, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list}
+  GoogleFCM:         {type: http, behavior: domain, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list}
+  GoogleCNProxyIP:   {type: http, behavior: domain, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list}
+  GoogleCN:          {type: http, behavior: domain, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list}
+  YouTube1:          {type: http, behavior: classical, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list}
+  AWAdsRule:         {type: http, behavior: classical, format: yaml, interval: 86400, url: https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash-Classical.yaml}
