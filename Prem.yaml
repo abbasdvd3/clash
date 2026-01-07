@@ -164,6 +164,7 @@ proxy-groups:
     type: fallback
     url: "https://www.google.com/generate_204"
     disable-udp: true
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
     interval: 180
     hidden: false
     proxies:
@@ -179,9 +180,9 @@ proxy-groups:
     type: url-test
     url: "https://www.google.com/generate_204"
     disable-udp: true
- #   filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
     interval: 300
-#    tolerance: 5000
+    tolerance: 500
     hidden: true
     use:
       - provider1
@@ -195,9 +196,10 @@ proxy-groups:
   - name: url-test
     type: url-test
     url: "https://www.google.com/generate_204"
+    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
     disable-udp: true
     interval: 99
-#    tolerance: 5000
+    tolerance: 500
     hidden: false
     use:
       - provider1
