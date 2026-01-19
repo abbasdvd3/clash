@@ -70,8 +70,8 @@ dns:
 proxies:
 proxy-groups:
   - name: 🕹 select
-    type: url-test
-  #  include-all-providers: true
+    type: select
+    include-all-providers: true
     proxies:
       - ♻️ url-test
       - 🚧 fallback
@@ -85,7 +85,7 @@ proxy-groups:
     interval: 300
     hidden: false
     proxies:
-    use:
+
   - name: 🚧 fallback
     type: fallback
     url: https://speed.cloudflare.com/__down?bytes=20000000
@@ -94,7 +94,7 @@ proxy-groups:
     interval: 180
     hidden: false
     proxies:
-    use:
+
       
   - name: ⚖️ load-balance
     type: load-balance
@@ -314,6 +314,7 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,🕹 select
   - MATCH,🕹 select
+
 
 
 
