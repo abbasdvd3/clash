@@ -51,6 +51,8 @@ proxy-groups:
 
 - name: default
   type: select
+  exclude-type: "direct|redir-in|DNS"
+  include-all-providers: true
   proxies:
     - auto
     - manual
@@ -62,7 +64,7 @@ proxy-groups:
 
 - name: auto
   type: url-test
-  #filter: "🏁|🏴‍☠️|🚩"
+  exclude-type: "direct|redir-in|DNS"
   hidden: true
   include-all-providers: true
 - name: 🎯
@@ -597,6 +599,7 @@ rules:
   - OR,((DOMAIN-SUFFIX,d.metacubex.one),(DOMAIN-SUFFIX,yacd.haishan.me)),DIRECT
   - RULE-SET,ircidr,DIRECT
   - MATCH,default
+
 
 
 
