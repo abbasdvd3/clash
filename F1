@@ -363,14 +363,12 @@ proxies:
     routing-mark: 1234
 proxy-groups:
   - name: "PROXY"
-    type: "url-test"
+    type: "select"
     url: "https://www.google.com/"
     hidden: false
-    interval: 15
- #   tolerance: 500000
- #   include-all-providers: true
- #   include-all-proxies: true
-    exclude-type: "direct|Shadowsocks|Shadowsocksr|vless|trojan|vmess|socks5|http"
+    include-all-providers: true
+    include-all-proxies: true
+    exclude-type: "direct|redir-in|DNS"
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png"
     proxies:
       - "🎈Auto"
@@ -390,7 +388,7 @@ proxy-groups:
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     interval: 200
-    exclude-type: "direct|http|socks5"
+    exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     hidden: true
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Global.png"
@@ -401,7 +399,7 @@ proxy-groups:
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     interval: 100
-    exclude-type: "direct|http|socks5"
+    exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     hidden: true
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
@@ -413,7 +411,7 @@ proxy-groups:
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
     interval: 200
 #    tolerance: 5000
-    exclude-type: "direct|http|socks5"
+    exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     hidden: true
     url: "http://www.google.com/"
