@@ -356,10 +356,10 @@ proxies:
 proxy-groups:
   - name: GLOBAL
     type: select
-    interval: 300
+    exclude-type: "direct|redir-in|DNS"
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
-#    include-all-providers: true
-#    exclude-filter: Expire
+    include-all-providers: true
+    exclude-filter: Expire
     proxies:
       - PROXY
       - AUTO
@@ -379,6 +379,7 @@ proxy-groups:
     interval: 300
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
     include-all-providers: true
+    exclude-type: "direct|redir-in|DNS"
     exclude-filter: Expire
     tolerance: 50
     lazy: true
@@ -388,6 +389,7 @@ proxy-groups:
     type: fallback
     interval: 180
     include-all-providers: true
+    exclude-type: "direct|redir-in|DNS"
     proxies:
     
   - name: US AUTO
@@ -398,6 +400,7 @@ proxy-groups:
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
     include-all-providers: true
     exclude-filter: Expire
+    exclude-type: "direct|redir-in|DNS"
     filter: (?i)美国|USA|🇺🇸
     
   - name: local
