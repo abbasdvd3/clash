@@ -38,8 +38,8 @@ dns:
 proxies:
 proxy-groups:
   - name: 🕹
-    type: url-test
-  #  include-all-providers: true
+    type: select
+    include-all-providers: true
     proxies:
       - ♻️ url-test
       - 🚧 fallback
@@ -49,35 +49,32 @@ proxy-groups:
     type: url-test
     url: https://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
-    udp: true
     interval: 180
     tolerance: 100
     hidden: false
     proxies:
-    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    exclude-type: exclude-type: "direct|redir-in|DNS"
 
   - name: 🚧 fallback
     type: fallback
     url: https://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
-    udp: true
     interval: 180
     tolerance: 10
     hidden: false
     proxies:
-    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    exclude-type: exclude-type: "direct|redir-in|DNS"
 
   - name: ⚖️ load-balance
     type: load-balance
     strategy: round-robin
     url: https://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
-    udp: true
     interval: 180
     tolerance: 100
     hidden: false
     proxies:
-    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    exclude-type: exclude-type: "direct|redir-in|DNS"
         
   - name: 🎯
     type: select
