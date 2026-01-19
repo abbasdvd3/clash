@@ -1,7064 +1,5435 @@
+port: 7892
+socks-port: 7891
 mode: rule
-log-level: info
-mixed-port: 7890
-unified-delay: true
-tcp-concurrent: true
-find-process-mode: strict
-global-client-fingerprint: chrome
+ipv6: true
+allow-lan: true
+log-level: debug
+external-controller: "127.0.0.1:9090"
 
-profile:
-  store-selected: true
-  store-fake-ip: true
+proxy-providers:
+  A1:
+    type: http
+    url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A1 prefix |"
+      additional-suffix: "| test suffix"
+    
+  A2:
+    type: http
+    url: "https://shadowmere.xyz/api/b64sub/"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A2 prefix |"
+      additional-suffix: "| test suffix"
+    
+  A6:
+    type: http
+    url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A6 prefix |"
+      additional-suffix: "| test suffix"
 
-dns:
-  enable: true
-  listen: 0.0.0.0:53
-  ipv6: true
-  default-nameserver:
-    - tls://8.8.4.4
-    - tls://64.212.106.84
-    - tls://9.9.9.9
-    - tls://66.28.0.45
-    - tls://7482.42.42
-    - tls://64.215.98.148
-  nameserver:
-    - 8.8.4.4
-    - 64.212.106.84
-    - 9.9.9.9
-    - 66.28.0.45
-    - 7482.42.42
-    - 64.215.98.148
-  nameserver-policy:
-    'geosite:google':
-      - system
-      - 180.76.76.76
-      - 223.5.5.5
-  proxy-server-nameserver:
-    - 180.76.76.76
-    - 202.175.3.3
-    - 223.5.5.5
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - "*.lan"
-    - "*.localdomain"
-    - "*.example"
-    - "*.invalid"
-    - "*.localhost"
-    - "*.test"
-    - "*.local"
-    - "*.home.arpa"
-    - router.asus.com
-    - localhost.sec.qq.com
-    - localhost.ptlogin2.qq.com
-    - +.msftconnecttest.com
-proxies:
-- name: '1_1'
-  type: ss
-  server: 46.183.217.204
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '2_2'
-  type: ss
-  server: 82.38.31.214
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: '3_3'
-  type: vmess
-  server: 57.129.24.124
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-    headers:
-      Host: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
-  udp: true
-- name: '4_4'
-  type: vmess
-  server: 82.198.246.97
-  port: 180
-  uuid: d13fc2f5-3e05-4795-81eb-44143a09e552
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  udp: true
-- name: '5_5'
-  type: ss
-  server: 109.61.39.28
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '6_6'
-  type: ss
-  server: 188.214.157.30
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: 🇩🇪 7_7
-  type: vmess
-  server: 8bswhv.teeoomboom.de
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: 8bswhv.teeoomboom.de
-  udp: true
-- name: '8_8'
-  type: ss
-  server: 188.116.22.96
-  port: 5003
-  cipher: aes-256-gcm
-  password: g5MeD6Ft3CWlJId
-  udp: true
-- name: '9_9'
-  type: ss
-  server: 138.186.142.80
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '10_10'
-  type: ss
-  server: 197.140.29.76
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '11_11'
-  type: ss
-  server: 144.217.164.29
-  port: 12000
-  cipher: aes-256-gcm
-  password: 8JCsPssfgS8tiRwiMlhARg==
-  udp: true
-- name: '12_12'
-  type: trojan
-  server: 160.16.85.138
-  port: 4492
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '13_13'
-  type: ss
-  server: 82.38.31.205
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: '14_14'
-  type: trojan
-  server: 153.121.65.212
-  port: 5156
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '15_15'
-  type: trojan
-  server: 153.121.51.147
-  port: 5156
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '16_16'
-  type: trojan
-  server: 112.120.31.179
-  port: 443
-  password: BxceQaOe
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '17_17'
-  type: trojan
-  server: 160.16.82.24
-  port: 2145
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '18_18'
-  type: vmess
-  server: 23.162.200.227
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-  udp: true
-- name: '19_19'
-  type: trojan
-  server: 160.16.151.196
-  port: 127
-  password: 2cf6d686799e6fa95316394064f26c0a
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '20_20'
-  type: ss
-  server: 185.39.204.189
-  port: 34085
-  cipher: chacha20-ietf-poly1305
-  password: depjSbjv2Uql6W4Vge7sDf
-  udp: true
-- name: 🇩🇪 21_21
-  type: vmess
-  server: tzr4q0.teeoomboom.de
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: tzr4q0.teeoomboom.de
-  udp: true
-- name: '22_22'
-  type: ss
-  server: 82.38.31.199
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: 🇩🇪 23_23
-  type: vmess
-  server: t6759w.teeoomboom.de
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: t6759w.teeoomboom.de
-  udp: true
-- name: '24_24'
-  type: vmess
-  server: 15.235.50.172
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-    headers:
-      Host: baradiha.com
-  udp: true
-- name: '25_25'
-  type: trojan
-  server: 160.16.233.76
-  port: 4012
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '26_26'
-  type: ss
-  server: 154.16.10.201
-  port: 10012
-  cipher: chacha20-ietf-poly1305
-  password: 09acfaf3-7d18-4bb2-9f41-177a403ac89a
-  udp: true
-- name: '27_27'
-  type: trojan
-  server: 16.162.87.79
-  port: 2173
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '28_28'
-  type: vmess
-  server: 47.238.71.166
-  port: 3721
-  uuid: 0b3da6e0-2a41-49e4-8bee-cfa705d448fc
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: '29_29'
-  type: vmess
-  server: 47.250.45.234
-  port: 8613
-  uuid: 80039b4d-bac0-4f89-82c7-54fad3b0a1ea
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /arki
-    early-data-header-name: Sec-WebSocket-Protocol
-    max-early-data: 2048
-  udp: true
-- name: '30_30'
-  type: ss
-  server: 45.87.175.177
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: cvII85TrW6n0OGyfpHVS1u
-  udp: true
-- name: '31_31'
-  type: vmess
-  server: 47.238.71.166
-  port: 4728
-  uuid: 001a840d-6472-4374-95d7-a15a016a26cd
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: '32_32'
-  type: trojan
-  server: 160.16.227.93
-  port: 1924
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '33_33'
-  type: vmess
-  server: 131.196.252.59
-  port: 20521
-  uuid: 5809911a-a16e-43d3-90b0-2c94cfc2035e
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: '34_34'
-  type: vmess
-  server: 45.136.12.37
-  port: 20521
-  uuid: 090d0bd9-f9c4-4c3b-8aae-ffa678765935
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: '35_35'
-  type: trojan
-  server: 18.183.209.234
-  port: 2569
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '36_36'
-  type: ss
-  server: 45.87.175.193
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: cvII85TrW6n0OGyfpHVS1u
-  udp: true
-- name: 🇦🇺 37_37
-  type: ss
-  server: exchange.gameaurela.click
-  port: 52952
-  cipher: chacha20-ietf-poly1305
-  password: LMSNh21TrXjR2ok25Q2nE8ENT2zoBmPvka3RCCUAHZELCnWoekVjvaf89qwcRkdbxEfep2bc2aUtmnxqvF1ayQRez1JHjULj
-  udp: true
-- name: '38_38'
-  type: ss
-  server: 45.159.250.190
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '39_39'
-  type: ss
-  server: 156.38.168.58
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '40_40'
-  type: ss
-  server: 89.46.239.231
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: 🇩🇪 41_41
-  type: vmess
-  server: xyst5w.teeoomboom.de
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /video/g5petez.m3u8
-  udp: true
-- name: '42_42'
-  type: ss
-  server: 57.128.214.100
-  port: 12000
-  cipher: aes-256-gcm
-  password: 8JCsPssfgS8tiRwiMlhARg==
-  udp: true
-- name: '43_43'
-  type: ss
-  server: 134.209.147.198
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '44_44'
-  type: ss
-  server: 185.93.173.60
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '45_45'
-  type: trojan
-  server: 153.121.51.221
-  port: 1821
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '47_46'
-  type: vmess
-  server: 5.231.56.98
-  port: 3721
-  uuid: 5f2f0765-f331-4d1e-8560-d2fb533dd6fe
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: '51_47'
-  type: trojan
-  server: 160.16.212.152
-  port: 2145
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '56_48'
-  type: ss
-  server: 95.174.68.33
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: YzH4id7ZEyKpfy39F2YcOmzCsBklGwh8
-  udp: true
-- name: '58_49'
-  type: vmess
-  server: 15.235.83.228
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-    headers:
-      Host: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
-  udp: true
-- name: '59_50'
-  type: trojan
-  server: 160.16.107.37
-  port: 3093
-  password: 2cf6d686799e6fa95316394064f26c0a
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '60_51'
-  type: vmess
-  server: 216.227.168.157
-  port: 45294
-  uuid: 469e0b31-30c3-4dab-800d-711232634ce1
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  udp: true
-- name: '61_52'
-  type: ss
-  server: 78.40.116.178
-  port: 34094
-  cipher: chacha20-ietf-poly1305
-  password: yo6h9qkhwz8UJoTZCRtoSi
-  udp: true
-- name: '62_53'
-  type: vmess
-  server: v10.hdacd.com
-  port: 30807
-  uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  udp: true
-- name: 🇫🇷 63_54
-  type: ss
-  server: switcher-nick-croquet.freesocks.work
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: RFK38Cg7APneSB5cWDcpbm
-  udp: true
-- name: '65_55'
-  type: vmess
-  server: 57.129.25.22
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-    headers:
-      Host: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
-  udp: true
-- name: '70_56'
-  type: vmess
-  server: 57.129.25.25
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-    headers:
-      Host: f.khilei.com
-  udp: true
-- name: '72_57'
-  type: ss
-  server: 154.223.16.212
-  port: 989
-  cipher: aes-256-cfb
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '73_58'
-  type: ss
-  server: 102.207.216.176
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '75_59'
-  type: ss
-  server: 37.143.129.230
-  port: 989
-  cipher: aes-256-cfb
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '76_60'
-  type: ss
-  server: 192.71.166.100
-  port: 989
-  cipher: aes-256-cfb
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '79_61'
-  type: ss
-  server: 45.87.175.187
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: cvII85TrW6n0OGyfpHVS1u
-  udp: true
-- name: '82_62'
-  type: ss
-  server: 185.153.197.5
-  port: 989
-  cipher: aes-256-cfb
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '84_63'
-  type: ss
-  server: 192.71.244.150
-  port: 989
-  cipher: aes-256-cfb
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '85_64'
-  type: ss
-  server: 154.223.20.79
-  port: 989
-  cipher: aes-256-cfb
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '87_65'
-  type: ss
-  server: 154.90.63.177
-  port: 989
-  cipher: aes-256-cfb
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '88_66'
-  type: ss
-  server: 109.201.152.181
-  port: 443
-  cipher: aes-128-cfb
-  password: shadowsocks
-  udp: true
-- name: '89_67'
-  type: ss
-  server: 217.30.10.18
-  port: 9019
-  cipher: aes-256-cfb
-  password: GA9KzeEgvfxNrgmM
-  udp: true
-- name: '90_68'
-  type: ss
-  server: 217.30.10.18
-  port: 9060
-  cipher: aes-256-cfb
-  password: ueLXVkvh4hckhErQ
-  udp: true
-- name: '92_69'
-  type: vmess
-  server: 15.235.83.227
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-    headers:
-      Host: mankadmu.com
-  udp: true
-- name: '94_70'
-  type: ss
-  server: 136.244.100.113
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: yODLXVLz2FWNTFeSSng3Fm
-  udp: true
-- name: '95_71'
-  type: ss
-  server: 173.234.29.2
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '96_72'
-  type: vmess
-  server: 57.129.24.125
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-    headers:
-      Host: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
-  udp: true
-- name: '97_73'
-  type: vmess
-  server: 57.129.28.69
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-    headers:
-      Host: baradiha.com
-  udp: true
-- name: '98_74'
-  type: ss
-  server: 92.112.126.90
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: 9tqhMdIrTkgQ46PvhyAtMH
-  udp: true
-- name: '99_75'
-  type: ss
-  server: 91.148.135.31
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '100_76'
-  type: vmess
-  server: 66.253.7.178
-  port: 20521
-  uuid: d24c499b-3b25-441e-9c6e-b12421a91041
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: '101_77'
-  type: ss
-  server: 141.98.4.67
-  port: 52952
-  cipher: chacha20-ietf-poly1305
-  password: LMSNh21TrXjR2ok25Q2nE8ENT2zoBmPvka3RCCUAHZELCnWoekVjvaf89qwcRkdbxEfep2bc2aUtmnxqvF1ayQRez1JHjULj
-  udp: true
-- name: '103_78'
-  type: ss
-  server: 171.22.254.129
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '104_79'
-  type: ss
-  server: 185.237.185.89
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '105_80'
-  type: ss
-  server: 38.54.59.107
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '107_81'
-  type: ss
-  server: 45.87.175.158
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: '108_82'
-  type: ss
-  server: 176.126.83.158
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '109_83'
-  type: ss
-  server: 185.255.123.166
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '110_84'
-  type: ss
-  server: 154.205.146.153
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '111_85'
-  type: ss
-  server: 37.235.56.69
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '112_86'
-  type: ss
-  server: 45.154.204.7
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '113_87'
-  type: ss
-  server: 45.82.252.109
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '114_88'
-  type: ss
-  server: 45.15.185.70
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '116_89'
-  type: ss
-  server: 171.22.254.17
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '117_90'
-  type: ss
-  server: 185.47.254.87
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '120_91'
-  type: vmess
-  server: 8.210.134.183
-  port: 3721
-  uuid: e72f5c6b-220f-40b3-a115-2d81473458cf
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: '121_92'
-  type: vmess
-  server: 8.217.176.108
-  port: 3721
-  uuid: 7836c516-70be-4cde-a4bd-7e225989241a
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: '122_93'
-  type: ss
-  server: 217.30.10.70
-  port: 9043
-  cipher: aes-256-cfb
-  password: HSZuyJQcWe8dxNdF
-  udp: true
-- name: '123_94'
-  type: ss
-  server: 5.188.181.201
-  port: 9011
-  cipher: aes-256-cfb
-  password: M3t2ZEQcMGRWBjRa
-  udp: true
-- name: '124_95'
-  type: ss
-  server: 5.188.181.201
-  port: 9025
-  cipher: aes-256-cfb
-  password: XPtzA9sCug3SPR4c
-  udp: true
-- name: '125_96'
-  type: ss
-  server: 5.188.181.201
-  port: 9029
-  cipher: aes-256-cfb
-  password: dU3DSNS8wYPXzEKw
-  udp: true
-- name: '126_97'
-  type: ss
-  server: 217.30.10.70
-  port: 9042
-  cipher: aes-256-cfb
-  password: S7KwUu7yBy58S3Ga
-  udp: true
-- name: '127_98'
-  type: ss
-  server: 46.183.184.60
-  port: 989
-  cipher: aes-256-cfb
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '128_99'
-  type: ss
-  server: 5.188.181.201
-  port: 9027
-  cipher: aes-256-cfb
-  password: EXN3S3eQpjE7EJu8
-  udp: true
-- name: '129_100'
-  type: ss
-  server: 171.22.254.17
-  port: 989
-  cipher: aes-256-cfb
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: 🇭🇰 130_101
-  type: vmess
-  server: 580abbb4-suvds0-sv5llu-1ldl3.hk3.p5pv.com
-  port: 80
-  uuid: fd224a6c-addc-11ed-a8bf-f23c91cfbbc9
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: 🇮🇪 131_102
-  type: ss
-  server: series-a2-mec.varzesh360.co
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: u17T3BvpYaaiuW2c
-  udp: true
-- name: '132_103'
-  type: ss
-  server: 104.192.226.106
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '133_104'
-  type: ss
-  server: 45.87.175.197
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: '134_105'
-  type: ss
-  server: 45.83.131.43
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: HfAiyrdFbKJuKIQkGjvJrDFefmH8YDSC
-  udp: true
-- name: '135_106'
-  type: ss
-  server: 193.29.139.202
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: oZIoA69Q8yhcQV8ka3Pa3A
-  udp: true
-- name: '136_107'
-  type: ss
-  server: 45.87.175.181
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: cvII85TrW6n0OGyfpHVS1u
-  udp: true
-- name: '137_108'
-  type: ss
-  server: 45.87.175.69
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: oZIoA69Q8yhcQV8ka3Pa3A
-  udp: true
-- name: '138_109'
-  type: ss
-  server: 213.159.67.124
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: mbhqsStnFQT1cTZYCdsmkugGUC6GT6rp
-  udp: true
-- name: '139_110'
-  type: ss
-  server: 45.87.175.92
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: oZIoA69Q8yhcQV8ka3Pa3A
-  udp: true
-- name: '140_111'
-  type: ss
-  server: 151.242.251.153
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: QCXDxuDlTTMD7jtgHUjIoj
-  udp: true
-- name: '141_112'
-  type: ss
-  server: 185.247.184.27
-  port: 42203
-  cipher: chacha20-ietf-poly1305
-  password: yDAMsX678XsjsESR4UJlAI
-  udp: true
-- name: '142_113'
-  type: ss
-  server: 45.87.175.178
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: 1RWwXhwfAB5gAEozU4G2Pg
-  udp: true
-- name: 🇨🇦 143_114
-  type: ss
-  server: ca225.vpnbook.com
-  port: 80
-  cipher: chacha20-ietf-poly1305
-  password: JIhN6rBKkaEboLNXVSv5rq
-  udp: true
-- name: '144_115'
-  type: ss
-  server: 38.165.233.18
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '145_116'
-  type: ss
-  server: 213.109.147.242
-  port: 62685
-  cipher: chacha20-ietf-poly1305
-  password: VpKABcOpNNA0l5G2AVOmw8
-  udp: true
-- name: '146_117'
-  type: ss
-  server: 134.255.210.49
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '147_118'
-  type: ss
-  server: 103.163.218.2
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '148_119'
-  type: ss
-  server: 45.87.175.155
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: '149_120'
-  type: ss
-  server: 45.87.175.164
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: 1RWwXhwfAB5gAEozU4G2Pg
-  udp: true
-- name: '150_121'
-  type: ss
-  server: 45.87.175.157
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: 4a2rfixophdjffa8KVA4Aa
-  udp: true
-- name: 🇪🇸 151_122
-  type: ss
-  server: beesyar.org
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: QCXDxuDlTTMD7jtgHUjIoj
-  udp: true
-- name: '153_123'
-  type: ss
-  server: 141.98.101.178
-  port: 443
-  cipher: aes-128-gcm
-  password: shadowsocks
-  udp: true
-- name: '154_124'
-  type: ss
-  server: 103.75.118.125
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: XLOrvLWkCBBBxLqSEe9S8lnC5PLsNfRh
-  udp: true
-- name: '155_125'
-  type: ss
-  server: 213.176.16.71
-  port: 4966
-  cipher: chacha20-ietf-poly1305
-  password: lXOVjEMsx00jeOQzHsQrkL
-  udp: true
-- name: '156_126'
-  type: ss
-  server: 45.87.175.166
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: 1RWwXhwfAB5gAEozU4G2Pg
-  udp: true
-- name: '157_127'
-  type: ss
-  server: 45.87.175.166
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: 1RWwXhwfAB5gAEozU4G2Pg
-  udp: true
-- name: '158_128'
-  type: ss
-  server: 45.154.206.192
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '159_129'
-  type: ss
-  server: 45.87.175.171
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: cvII85TrW6n0OGyfpHVS1u
-  udp: true
-- name: '160_130'
-  type: ss
-  server: 193.29.139.157
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: 4a2rfixophdjffa8KVA4Aa
-  udp: true
-- name: '161_131'
-  type: ss
-  server: 154.205.159.100
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '162_132'
-  type: ss
-  server: 193.29.139.251
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: oZIoA69Q8yhcQV8ka3Pa3A
-  udp: true
-- name: '163_133'
-  type: ss
-  server: 103.111.114.29
-  port: 57456
-  cipher: chacha20-ietf-poly1305
-  password: 360e21d21977dc11
-  udp: true
-- name: '164_134'
-  type: ss
-  server: 185.156.110.92
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: gXOXk2FJwsz9P6nXIICuDNOqF9gWX1dn
-  udp: true
-- name: '165_135'
-  type: ss
-  server: 151.242.251.131
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: QCXDxuDlTTMD7jtgHUjIoj
-  udp: true
-- name: '166_136'
-  type: ss
-  server: 45.87.175.154
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: 4a2rfixophdjffa8KVA4Aa
-  udp: true
-- name: '167_137'
-  type: ss
-  server: 45.87.175.35
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: oZIoA69Q8yhcQV8ka3Pa3A
-  udp: true
-- name: '168_138'
-  type: ss
-  server: 64.74.163.130
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '169_139'
-  type: ss
-  server: 45.87.175.188
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: 1RWwXhwfAB5gAEozU4G2Pg
-  udp: true
-- name: '170_140'
-  type: ss
-  server: 223.165.4.173
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '171_141'
-  type: ss
-  server: 193.29.139.179
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: cvII85TrW6n0OGyfpHVS1u
-  udp: true
-- name: '172_142'
-  type: ss
-  server: 45.87.175.199
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: QCXDxuDlTTMD7jtgHUjIoj
-  udp: true
-- name: '173_143'
-  type: ss
-  server: 188.214.157.58
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '174_144'
-  type: ss
-  server: 51.195.119.47
-  port: 1080
-  cipher: chacha20-ietf-poly1305
-  password: qXvO7zYU7KeaB0Md7DQLow
-  udp: true
-- name: '175_145'
-  type: ss
-  server: 23.95.72.81
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: UAMVtHm54uahd6SiN5WcD16rsPSdabPG
-  udp: true
-- name: '176_146'
-  type: ss
-  server: 45.87.175.58
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: oZIoA69Q8yhcQV8ka3Pa3A
-  udp: true
-- name: '177_147'
-  type: ss
-  server: 156.146.38.167
-  port: 443
-  cipher: aes-128-gcm
-  password: shadowsocks
-  udp: true
-- name: '178_148'
-  type: ss
-  server: 185.47.253.227
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: 🇫🇷 179_149
-  type: ss
-  server: pupas-shirting-unsung.freesocks.work
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: p78naCf2EfOlRSLTX0wFVx
-  udp: true
-- name: '180_150'
-  type: ss
-  server: 195.181.160.6
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '181_151'
-  type: ss
-  server: 45.87.175.192
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: 1RWwXhwfAB5gAEozU4G2Pg
-  udp: true
-- name: '182_152'
-  type: ss
-  server: 15.204.247.49
-  port: 12000
-  cipher: aes-256-gcm
-  password: 8JCsPssfgS8tiRwiMlhARg==
-  udp: true
-- name: '184_153'
-  type: ss
-  server: 141.164.45.187
-  port: 7001
-  cipher: aes-256-gcm
-  password: RexnBgU7EV5ADxG
-  udp: true
-- name: '185_154'
-  type: ss
-  server: 151.242.251.133
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: '186_155'
-  type: ss
-  server: 45.87.175.174
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: '187_156'
-  type: ss
-  server: 167.150.100.115
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: pJtDFXMfdW9VNdJpaf4e2LfFkXdWgxrz
-  udp: true
-- name: '188_157'
-  type: ss
-  server: 185.123.101.241
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '189_158'
-  type: ss
-  server: 151.242.251.144
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: 4a2rfixophdjffa8KVA4Aa
-  udp: true
-- name: '190_159'
-  type: ss
-  server: 151.242.251.137
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: o5osZg269v5zHpYjr1xY9s
-  udp: true
-- name: '191_160'
-  type: ss
-  server: 45.87.175.28
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: oZIoA69Q8yhcQV8ka3Pa3A
-  udp: true
-- name: '192_161'
-  type: ss
-  server: 193.29.139.189
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: QCXDxuDlTTMD7jtgHUjIoj
-  udp: true
-- name: '193_162'
-  type: ss
-  server: 151.242.251.142
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: '194_163'
-  type: ss
-  server: 193.29.139.217
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: QCXDxuDlTTMD7jtgHUjIoj
-  udp: true
-- name: '196_164'
-  type: ss
-  server: 212.102.54.45
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '197_165'
-  type: ss
-  server: 23.95.75.146
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: NDRySIABARbErNIVsCNVkyYAHiBzhveT
-  udp: true
-- name: '198_166'
-  type: ss
-  server: 146.19.49.251
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: ODfxioK0VkKxTdpVQJ4rv8HglAu0vzv6
-  udp: true
-- name: '199_167'
-  type: ss
-  server: 37.143.130.203
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '200_168'
-  type: ss
-  server: 142.4.216.225
-  port: 80
-  cipher: chacha20-ietf-poly1305
-  password: JIhN6rBKkaEboLNXVSv5rq
-  udp: true
-- name: '201_169'
-  type: ss
-  server: 38.54.45.129
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '202_170'
-  type: ss
-  server: 149.22.87.204
-  port: 443
-  cipher: aes-128-gcm
-  password: shadowsocks
-  udp: true
-- name: '203_171'
-  type: ss
-  server: 156.146.38.170
-  port: 443
-  cipher: aes-128-gcm
-  password: shadowsocks
-  udp: true
-- name: '204_172'
-  type: ss
-  server: 213.159.66.206
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: pl2XtR0pzwknQOGwewbwXtPYDw1zn9Vu
-  udp: true
-- name: '205_173'
-  type: ss
-  server: 203.23.128.33
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '206_174'
-  type: ss
-  server: 79.127.233.170
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '207_175'
-  type: ss
-  server: 185.47.255.22
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '208_176'
-  type: ss
-  server: 151.242.251.147
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: QCXDxuDlTTMD7jtgHUjIoj
-  udp: true
-- name: '209_177'
-  type: ss
-  server: 151.242.251.152
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: '210_178'
-  type: ss
-  server: 45.158.171.70
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: oZIoA69Q8yhcQV8ka3Pa3A
-  udp: true
-- name: '211_179'
-  type: ss
-  server: 185.126.237.38
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: f8f7aCzcPKbsF8p3
-  udp: true
-- name: '213_180'
-  type: ss
-  server: 45.87.175.65
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: oZIoA69Q8yhcQV8ka3Pa3A
-  udp: true
-- name: '214_181'
-  type: ss
-  server: 45.158.171.66
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: oZIoA69Q8yhcQV8ka3Pa3A
-  udp: true
-- name: '215_182'
-  type: ss
-  server: 193.29.139.227
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: QCXDxuDlTTMD7jtgHUjIoj
-  udp: true
-- name: '216_183'
-  type: ss
-  server: 38.54.59.180
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: '217_184'
-  type: ss
-  server: 45.14.245.2
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: 17ZDORWIliQHuO6WRGHChXYMzdRtAYVP
-  udp: true
-- name: '220_185'
-  type: ss
-  server: 208.67.105.196
-  port: 42029
-  cipher: chacha20-ietf-poly1305
-  password: SjdGCHwafjktt1rzpGxTKYTvVBWb8Xa6E5DTr6MzbdHQSwvpLiDczj3n6MBjy2uyFSzgqgvCWsDQmpM4VQzfPzyGYF58wdyD
-  udp: true
-- name: '221_186'
-  type: vmess
-  server: 62.146.235.193
-  port: 28011
-  uuid: cfc5a87f-3c13-4e25-b556-176cdd6b5c6a
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  udp: true
-- name: '222_187'
-  type: vmess
-  server: 8.218.17.136
-  port: 4728
-  uuid: a0e050ca-6d37-452f-bf5c-3e4e475ef36b
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: '223_188'
-  type: vmess
-  server: 57.129.59.199
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: kampong.org
-  udp: true
-- name: '224_189'
-  type: vmess
-  server: 146.59.55.50
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-    headers:
-      Host: o.metuji.com
-  udp: true
-- name: '225_190'
-  type: vmess
-  server: 15.235.85.156
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: kampong.org
-  udp: true
-- name: '228_191'
-  type: vmess
-  server: 15.235.85.147
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: pelang.org
-  udp: true
-- name: 🇩🇪 229_192
-  type: vmess
-  server: v2ray.codefyinc.com
-  port: 443
-  uuid: 2c981164-9b93-4bca-94ff-b78d3f8498d7
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /vmessws
-    headers:
-      Host: v2ray.codefyinc.com
-  udp: true
-- name: '230_193'
-  type: vmess
-  server: 51.79.102.253
-  port: 80
-  uuid: 58fe1542-5290-40ad-815a-77707a81afe5
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /IOebhLMhl1CTbFHbL95myfRX2
-  udp: true
-- name: '231_194'
-  type: vmess
-  server: 134.195.198.147
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-  udp: true
-- name: '232_195'
-  type: vmess
-  server: 57.129.24.130
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: serkat.org
-  udp: true
-- name: '233_196'
-  type: vmess
-  server: cf.fovi.tk
-  port: 443
-  uuid: bf67437e-6c90-45ca-abc2-c7240a5ce2aa
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /eisasqa
-    headers:
-      Host: foxlux.fovi.tk
-  udp: true
-- name: 🇨🇳 234_197
-  type: vmess
-  server: n1748490466.kzxds.cn
-  port: 443
-  uuid: 789ce45e-a936-405c-9ec8-22c915e55788
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: n1748490466.kzxds.cn
-  udp: true
-- name: 🇮🇪 235_198
-  type: vmess
-  server: n1761296893.lie5d.cyou
-  port: 443
-  uuid: 40f088bf-ed4b-4630-860f-45ed12c75ff7
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: n1761296893.lie5d.cyou
-  udp: true
-- name: '236_199'
-  type: vmess
-  server: 15.204.64.211
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: kampong.org
-  udp: true
-- name: '237_200'
-  type: vmess
-  server: 45.32.45.45
-  port: 14760
-  uuid: dbf7a6e4-d518-4f9b-a55e-27ef892ffac1
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  udp: true
-- name: '238_201'
-  type: vmess
-  server: 38.12.83.217
-  port: 30002
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  udp: true
-- name: '239_202'
-  type: vmess
-  server: 57.128.189.253
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-    headers:
-      Host: kapelleng.com
-  udp: true
-- name: '240_203'
-  type: vmess
-  server: 141.94.155.229
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: pelang.org
-  udp: true
-- name: '241_204'
-  type: vmess
-  server: 216.173.69.250
-  port: 8443
-  uuid: 91382092-2330-455b-8a1c-9c129cfe661a
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: google.com
-  udp: true
-- name: '242_205'
-  type: vmess
-  server: 57.129.25.23
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: yichueng.org
-  udp: true
-- name: '243_206'
-  type: vmess
-  server: 45.89.107.51
-  port: 20521
-  uuid: 3dbaa5c3-f493-4ad1-9c5d-8525f4962a6c
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: '245_207'
-  type: vmess
-  server: 69.84.182.108
-  port: 2053
-  uuid: 3f330ee6-641b-442f-841d-8747fe1d47db
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /profile/sharenode
-    headers:
-      Host: cdn-node-oss-86.paofu.de
-  udp: true
-- name: '247_208'
-  type: vmess
-  server: 2001:bc8:32d7:302::10
-  port: 44579
-  uuid: 8e34e170-13ae-4892-9d20-05962acc9f84
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /?BIA_TELEGRAM@AZARBAYJAB1_AZARBAYJAB1_AZARBAYJAB1_AZARBAYJAB1
-    headers:
-      Host: AZERB.NET
-  udp: true
-- name: '249_209'
-  type: vmess
-  server: n1744454501.4u9ma.icu
-  port: 443
-  uuid: bed7b743-6bf8-46a2-b346-c60e60919220
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: n1744454501.4u9ma.icu
-  udp: true
-- name: '250_210'
-  type: vmess
-  server: 15.235.41.200
-  port: 80
-  uuid: 58fe1542-5290-40ad-815a-77707a81afe5
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /IOebhLMhl1CTbFHbL95myfRX2
-  udp: true
-- name: '251_211'
-  type: vmess
-  server: 146.56.112.110
-  port: 8888
-  uuid: e7c302f3-90d6-42dd-9d7d-94a3683a3707
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  udp: true
-- name: '252_212'
-  type: vmess
-  server: 57.129.24.131
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: kampong.org
-  udp: true
-- name: '253_213'
-  type: vmess
-  server: 57.129.64.157
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: lammaland.org
-  udp: true
-- name: '255_214'
-  type: vmess
-  server: 57.129.28.64
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: serkat.org
-  udp: true
-- name: '256_215'
-  type: vmess
-  server: 148.113.176.192
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: fapeng.org
-  udp: true
-- name: '257_216'
-  type: vmess
-  server: 141.94.155.224
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: fapeng.org
-  udp: true
-- name: 🇩🇪 258_217
-  type: vmess
-  server: node4.rtxconfigz.com
-  port: 443
-  uuid: 44e57485-eccc-46ef-808f-cd17ac810018
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /@Malinda6104
-    headers:
-      Host: node4.rtxconfigz.com
-  udp: true
-- name: '260_218'
-  type: vmess
-  server: 8.218.199.111
-  port: 8080
-  uuid: f55db42d-ee52-4a47-880b-6f7b123ab222
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: '261_219'
-  type: vmess
-  server: 8.217.92.110
-  port: 20522
-  uuid: 31e1f90f-0218-4097-91f9-a42df9b3334a
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /telegram_@sswia
-  udp: true
-- name: '262_220'
-  type: vmess
-  server: 193.124.24.247
-  port: 6506
-  uuid: c53d41d1-7d56-43ce-9994-408780c6476a
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  udp: true
-- name: '263_221'
-  type: vmess
-  server: 51.68.191.233
-  port: 80
-  uuid: f0eda072-9ae8-494c-a495-215fa5729467
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /vmess/
-    headers:
-      Host: 51.68.191.233
-  udp: true
-- name: '264_222'
-  type: vmess
-  server: 57.129.25.20
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: 57.129.25.20
-  udp: true
-- name: '265_223'
-  type: vmess
-  server: 209.126.84.189
-  port: 443
-  uuid: 2c981164-9b93-4bca-94ff-b78d3f8498d7
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /vmessws
-    headers:
-      Host: 209.126.84.189
-  udp: true
-- name: 🇨🇳 266_224
-  type: vmess
-  server: hkt.gotochinatown.net
-  port: 80
-  uuid: 1b9c460e-f026-11ef-b737-f23c91cfbbc9
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: 🇩🇪 268_225
-  type: vmess
-  server: vc.fly.dev
-  port: 443
-  uuid: 35379219-6535-4f2e-a4fe-3e44f61e0eee
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /vc
-    headers:
-      Host: vc.fly.dev
-  udp: true
-- name: '269_226'
-  type: vmess
-  server: t1.620720.xyz
-  port: 8443
-  uuid: 516d8a7a-3f0b-41d3-bad0-246116381516
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: t1.620720.xyz
-  udp: true
-- name: '270_227'
-  type: vmess
-  server: 131.186.63.89
-  port: 11655
-  uuid: 4bf075f5-4d5e-4d39-f5ab-b32a86250f0e
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /aa
-    headers:
-      Host: hk.nbee.pp.ua
-  udp: true
-- name: '271_228'
-  type: vmess
-  server: 57.129.64.199
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: pelang.org
-  udp: true
-- name: '272_229'
-  type: vmess
-  server: 8.217.21.237
-  port: 26998
-  uuid: 248b7151-e940-4a68-b734-e206b0fa1d9a
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /arki
-    early-data-header-name: Sec-WebSocket-Protocol
-    max-early-data: 2048
-  udp: true
-- name: 🇮🇪 273_230
-  type: vmess
-  server: n1761296886.lie5d.cyou
-  port: 443
-  uuid: 697ece59-37c9-4a61-b986-705cad56057b
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: n1761296886.lie5d.cyou
-  udp: true
-- name: '274_231'
-  type: vmess
-  server: 57.128.189.222
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: lammaland.org
-  udp: true
-- name: '275_232'
-  type: vmess
-  server: 45.231.132.46
-  port: 45979
-  uuid: 23bdf6df-c482-46d0-c0f4-5a98d534ea11
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /test
-  udp: true
-- name: '276_233'
-  type: vmess
-  server: 69.84.182.18
-  port: 2053
-  uuid: 3f330ee6-641b-442f-841d-8747fe1d47db
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /profile/sharenode
-    headers:
-      Host: cdn-node-oss-86.paofu.de
-  udp: true
-- name: '277_234'
-  type: vmess
-  server: 57.129.28.213
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: fapeng.org
-  udp: true
-- name: '278_235'
-  type: vmess
-  server: 89.31.120.192
-  port: 443
-  uuid: 44537595-9ccc-4b83-8936-5f9ad3229019
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  udp: true
-- name: '279_236'
-  type: vmess
-  server: 91.134.8.93
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: pelang.org
-  udp: true
-- name: '281_237'
-  type: vmess
-  server: 165.140.216.141
-  port: 443
-  uuid: e7d72a8d-26f2-4b54-b366-0c43e0bcba7d
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  udp: true
-- name: '282_238'
-  type: vmess
-  server: 8.218.17.136
-  port: 3721
-  uuid: 33755eb3-5c12-4ca7-b86e-6f1aa6e7ce27
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: '283_239'
-  type: vmess
-  server: sy4.620720.xyz
-  port: 443
-  uuid: 516d8a7a-3f0b-41d3-bad0-246116381516
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: sy4.620720.xyz
-  udp: true
-- name: '284_240'
-  type: vmess
-  server: 8.217.176.108
-  port: 4728
-  uuid: 467a5630-3c54-413b-8cc6-deac067bc18c
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: '285_241'
-  type: vmess
-  server: 154.21.201.83
-  port: 443
-  uuid: 4bf075f5-4d5e-4d39-f5ab-b32a86250f0e
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /aa
-    headers:
-      Host: hk.nbee.pp.ua
-  udp: true
-- name: '286_242'
-  type: vmess
-  server: 141.95.126.134
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: jamekk.org
-  udp: true
-- name: '287_243'
-  type: vmess
-  server: 57.129.59.193
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-    headers:
-      Host: serkat.org
-  udp: true
-- name: '288_244'
-  type: vmess
-  server: 57.129.28.65
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-    headers:
-      Host: kapelleng.com
-  udp: true
-- name: '289_245'
-  type: vmess
-  server: 57.128.189.240
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-  udp: true
-- name: '290_246'
-  type: vmess
-  server: 15.204.103.7
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: lammaland.org
-  udp: true
-- name: '291_247'
-  type: vmess
-  server: 57.129.59.201
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: kampong.org
-  udp: true
-- name: '295_248'
-  type: vmess
-  server: 57.129.64.238
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-    headers:
-      Host: kapelleng.com
-  udp: true
-- name: 🇺🇸 296_249
-  type: vmess
-  server: ebc.zoom.us
-  port: 8443
-  uuid: 44e57485-eccc-46ef-808f-cd17ac810018
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /@Malinda6104
-    headers:
-      Host: node4.rtxconfigz.com
-  udp: true
-- name: '297_250'
-  type: vmess
-  server: 57.128.189.143
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: lammaland.org
-  udp: true
-- name: '298_251'
-  type: vmess
-  server: 57.129.28.212
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: fapeng.org
-  udp: true
-- name: '300_252'
-  type: vmess
-  server: 38.99.82.193
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-    headers:
-      Host: tilebani.com
-  udp: true
-- name: 🇮🇪 301_253
-  type: vmess
-  server: n1744453320.lie5d.cyou
-  port: 443
-  uuid: 8889a08a-09f8-4c97-bed2-df31b62fcf23
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: 🇮🇪 302_254
-  type: vmess
-  server: n1744453319.lie5d.cyou
-  port: 443
-  uuid: 6928af97-a23e-408c-956e-5cd2207f3557
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: n1744453319.lie5d.cyou
-  udp: true
-- name: '303_255'
-  type: vmess
-  server: 172.111.146.64
-  port: 80
-  uuid: 05b8c783-7f59-47f9-9923-06a465679f6a
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /vmess/
-  udp: true
-- name: '304_256'
-  type: vmess
-  server: 85.195.101.122
-  port: 40878
-  uuid: f3d4167e-b15e-4e46-82e9-9286ef93fda7
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  udp: true
-- name: '305_257'
-  type: trojan
-  server: 153.121.67.215
-  port: 2145
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '307_258'
-  type: trojan
-  server: 160.16.236.32
-  port: 2760
-  password: 2cf6d686799e6fa95316394064f26c0a
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '308_259'
-  type: trojan
-  server: 160.16.144.208
-  port: 3093
-  password: 2cf6d686799e6fa95316394064f26c0a
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '309_260'
-  type: trojan
-  server: 58.152.53.22
-  port: 443
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇸🇬 310_261
-  type: trojan
-  server: jp3.t.sgateway.link
-  port: 5223
-  password: Q9gofGxinwLv0TfDfdKmdttdPGxrhKQS
-  sni: pod-jp-z1.psusercontent.com
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '312_262'
-  type: trojan
-  server: 153.121.53.187
-  port: 2145
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '313_263'
-  type: trojan
-  server: 3.113.21.213
-  port: 2890
-  password: 2cf6d686799e6fa95316394064f26c0a
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '314_264'
-  type: trojan
-  server: 38.180.191.251
-  port: 443
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '316_265'
-  type: trojan
-  server: 160.16.57.238
-  port: 3169
-  password: 2cf6d686799e6fa95316394064f26c0a
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '317_266'
-  type: trojan
-  server: 37.18.14.33
-  port: 443
-  password: Qzy7tgpRhu
-  sni: m.vk.com
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '318_267'
-  type: trojan
-  server: 58.152.110.92
-  port: 443
-  password: dd2f25b4c70689de8bc0f7fa9d6591cb
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇺🇸 319_268
-  type: trojan
-  server: usiys.southbyte.xyz
-  port: 5897
-  password: fg20mtCFHy
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '320_269'
-  type: trojan
-  server: 37.252.5.75
-  port: 443
-  password: 3208e968-b862-4e2e-ad90-2b49e7ce7afb
-  sni: joss.gpj1.web.id
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /Free-VPN-CF-Geo-Project/37.252.5.75
-    headers:
-      Host: joss.gpj1.web.id
-  udp: true
-- name: 🇸🇬 321_270
-  type: trojan
-  server: psg2-ag.t.sgateway.link
-  port: 5223
-  password: Q9gofGxinwLv0TfDfdKmdttdPGxrhKQS
-  sni: pod-kr-g1.psusercontent.com
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '322_271'
-  type: trojan
-  server: 91.192.102.92
-  port: 443
-  password: 8d047125-8467-4724-bb62-ef64405dca78
-  sni: joss.gpj1.web.id
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /Free-VPN-CF-Geo-Project/91.192.102.92
-    headers:
-      Host: joss.gpj1.web.id
-  udp: true
-- name: 🇸🇬 323_272
-  type: trojan
-  server: kr3.t.sgateway.link
-  port: 5223
-  password: Q9gofGxinwLv0TfDfdKmdttdPGxrhKQS
-  sni: pod-kr-z1.psusercontent.com
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇮🇩 325_273
-  type: trojan
-  server: joss.gpj1.web.id
-  port: 443
-  password: 6e6191a3-9a93-4617-859a-8d0ea0fce937
-  sni: joss.gpj1.web.id
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /Free-VPN-CF-Geo-Project/81.91.214.85
-    headers:
-      Host: joss.gpj1.web.id
-  udp: true
-- name: '326_274'
-  type: trojan
-  server: 34.22.190.30
-  port: 443
-  password: 29ca24a5-e8aa-4cbd-9bcb-f96aba1d6f15
-  sni: joss.gpj1.web.id
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /Free-VPN-CF-Geo-Project/34.22.190.30
-    headers:
-      Host: joss.gpj1.web.id
-  udp: true
-- name: '327_275'
-  type: trojan
-  server: 45.86.229.28
-  port: 443
-  password: 9ccc3e1d-3df5-4348-aa05-738310149cc3
-  sni: joss.gpj1.web.id
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /Free-VPN-CF-Geo-Project/45.86.229.28
-    headers:
-      Host: joss.gpj1.web.id
-  udp: true
-- name: '328_276'
-  type: trojan
-  server: 69.28.82.253
-  port: 443
-  password: 8001fbf7-4b59-4415-a4bd-8bfded02c9c6
-  sni: joss.gpj1.web.id
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /Free-VPN-CF-Geo-Project/69.28.82.253
-    headers:
-      Host: joss.gpj1.web.id
-  udp: true
-- name: '330_277'
-  type: trojan
-  server: 86.107.197.239
-  port: 443
-  password: e683d757-b855-44c3-b0b6-22586444914a
-  sni: joss.gpj1.web.id
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /Free-VPN-CF-Geo-Project/86.107.197.239
-    headers:
-      Host: joss.gpj1.web.id
-  udp: true
-- name: '331_278'
-  type: trojan
-  server: 96.9.213.108
-  port: 12646
-  password: G9CHhXltVx
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 334_279
-  type: trojan
-  server: hk3.t.sgateway.link
-  port: 5223
-  password: Q9gofGxinwLv0TfDfdKmdttdPGxrhKQS
-  sni: pod-hk-z1.psusercontent.com
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '335_280'
-  type: trojan
-  server: 38.180.249.177
-  port: 8443
-  password: installshield
-  sni: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '337_281'
-  type: trojan
-  server: 47.89.150.45
-  port: 21575
-  password: abb96ae5-8337-4719-b300-fc3b2efbd14d
-  sni: joss.gpj1.web.id
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /Free-VPN-CF-Geo-Project/47.89.150.45=21575
-    headers:
-      Host: joss.gpj1.web.id
-  udp: true
-- name: '338_282'
-  type: trojan
-  server: 160.16.81.84
-  port: 1331
-  password: dd2f25b4c70689de8bc0f7fa9d6591cb
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '339_283'
-  type: trojan
-  server: 160.16.81.84
-  port: 3169
-  password: dd2f25b4c70689de8bc0f7fa9d6591cb
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '341_284'
-  type: trojan
-  server: 160.16.81.84
-  port: 2890
-  password: dd2f25b4c70689de8bc0f7fa9d6591cb
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '342_285'
-  type: trojan
-  server: 160.16.81.84
-  port: 702
-  password: dd2f25b4c70689de8bc0f7fa9d6591cb
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: '343_286'
-  type: vmess
-  server: 166.108.232.40
-  port: 8009
-  uuid: a9a0b976-3850-4461-b3e8-cb1d6a7875be
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  udp: true
-- name: 🇭🇰 v2cross.com_1_287
-  type: vmess
-  server: 73cc68dd-sv0xs0-t76x2i-wj6v.hk3.p5pv.com
-  port: 80
-  uuid: 847c03b2-0a9d-11eb-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_2_288
-  type: vmess
-  server: 8b31a356-sv2sg0-tb224g-1h0r9.hk3.p5pv.com
-  port: 80
-  uuid: 9bfd0dde-957e-11ec-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_3_289
-  type: vmess
-  server: 8002e6d4-t6t0g0-tonrqx-1khwf.hk3.p5pv.com
-  port: 80
-  uuid: 92bd8c68-6434-11ee-b644-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_4_290
-  type: vmess
-  server: 6e61a730-t6r5s0-tb016b-1m7l4.hkt.gotochinatown.net
-  port: 80
-  uuid: bd515574-3b10-11ee-ac14-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_5_291
-  type: vmess
-  server: 146.59.118.250
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: lammaland.org
-  udp: true
-- name: 🇺🇸 v2cross.com_6_292
-  type: trojan
-  server: kuame.missionsec.us
-  port: 443
-  password: FDIypSwe64a3DA7un2R8DFjYXZO3NS05gKZTTOC8SxO0Fy3cqYg3EaFDA3ABaEYKNx39D
-  sni: kuame.missionsec.us
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_7_293
-  type: vmess
-  server: 172.235.33.114
-  port: 10001
-  uuid: 442a3923-eca1-4af0-b3ff-24a7ce0af68f
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  udp: true
-- name: v2cross.com_8_294
-  type: vmess
-  server: 47.244.120.197
-  port: 36703
-  uuid: 45b83519-9c4f-4052-a11b-02e017b636d4
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /arki
-    early-data-header-name: Sec-WebSocket-Protocol
-    max-early-data: 2048
-  udp: true
-- name: 🇭🇰 v2cross.com_9_295
-  type: vmess
-  server: adee9fb8-t6ngg0-tdahby-1tnab.hk3.p5pv.com
-  port: 80
-  uuid: ca9c0c54-1513-11f0-8a7b-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_10_296
-  type: trojan
-  server: 160.16.151.196
-  port: 2890
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_11_297
-  type: ss
-  server: 109.71.246.210
-  port: 56689
-  cipher: chacha20-ietf-poly1305
-  password: YQCSKoCF3QazW8YlvDBWA4
-  udp: true
-- name: 🇭🇰 v2cross.com_12_298
-  type: vmess
-  server: 5e4f31de-sv0xs0-sv0wpw-17xo8.hk3.p5pv.com
-  port: 80
-  uuid: b4e40aa2-74a1-11ed-b0b5-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_13_299
-  type: vmess
-  server: c7e6deaa-t6r5s0-tm23vf-1jk6u.hkt.gotochinatown.net
-  port: 80
-  uuid: 45bc25b2-1a10-11ed-91c0-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_14_300
-  type: ss
-  server: 89.46.233.148
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: XeGAcwaviWxXzg87AwvnE6gWbhHHGwwB
-  udp: true
-- name: 🇨🇳 v2cross.com_15_301
-  type: vmess
-  server: ebc00a3a-t6r5s0-tn57fp-5ifr.hkt.gotochinatown.net
-  port: 80
-  uuid: ecfab6c8-df5b-11ed-98a7-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_16_302
-  type: vmess
-  server: 7bdf5f2f-sv2sg0-t2p691-1s4hc.hk3.p5pv.com
-  port: 80
-  uuid: aafedc64-9c23-11ef-a79f-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_17_303
-  type: vmess
-  server: 12988683-sv2sg0-t2whio-1jcwu.hk3.p5pv.com
-  port: 80
-  uuid: f93486ce-cc84-11ed-9e98-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_18_304
-  type: ss
-  server: 94.131.104.147
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: 6VAcll4P8xPTUVVtHeST3onRmLoVIBSU
-  udp: true
-- name: 🇨🇳 v2cross.com_19_305
-  type: vmess
-  server: 6512b515-t6r5s0-t7qy26-14g76.hkt.gotochinatown.net
-  port: 80
-  uuid: 4729b4c8-1790-11eb-8684-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_20_306
-  type: trojan
-  server: 160.16.57.238
-  port: 4054
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_21_307
-  type: vmess
-  server: 47.242.140.52
-  port: 9756
-  uuid: c77628dd-51e7-4996-a408-aaab8baaf79e
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /arki
-    early-data-header-name: Sec-WebSocket-Protocol
-    max-early-data: 2048
-  udp: true
-- name: 🇭🇰 v2cross.com_22_308
-  type: vmess
-  server: d6732c26-sv8cg0-sxxbmq-1szgv.hk3.p5pv.com
-  port: 80
-  uuid: 448aff24-b2e6-11ef-97e0-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_23_309
-  type: ss
-  server: 82.38.31.179
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: v2cross.com_24_310
-  type: vmess
-  server: 146.59.85.226
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: pelang.org
-  udp: true
-- name: v2cross.com_25_311
-  type: vmess
-  server: 146.59.70.146
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: yichueng.org
-  udp: true
-- name: 🇭🇰 v2cross.com_26_312
-  type: vmess
-  server: 364bc431-sv2sg0-t17ajj-1n7d9.hk3.p5pv.com
-  port: 80
-  uuid: 48e51dfa-db8f-11ed-a23f-f23c91369f2d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_27_313
-  type: vmess
-  server: b1601217-sv2sg0-tcdlur-1qwom.hk3.p5pv.com
-  port: 80
-  uuid: 8d0ec7cc-eefa-11ee-9b59-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_28_314
-  type: vmess
-  server: 954e8f8f-sv4n40-svs488-n09f.hk3.p5pv.com
-  port: 80
-  uuid: 89b0ea8c-806b-11ed-94ba-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_29_315
-  type: vmess
-  server: 99561b94-sv0xs0-t5cryd-4w8.hk3.p5pv.com
-  port: 80
-  uuid: ba7a37e3-033a-e1ab-06f6-9027aa4630f5
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_30_316
-  type: vmess
-  server: e1d5ad80-svc1s0-sxv7gp-8rja.hk3.p5pv.com
-  port: 80
-  uuid: d18bcaf4-1323-11ec-a0fc-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_31_317
-  type: vmess
-  server: 6706475c-t6ngg0-tbnk1n-ueq.hk3.p5pv.com
-  port: 80
-  uuid: 91df5a86-fcdd-11ef-94aa-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_32_318
-  type: vmess
-  server: 93afb0e3-t6ngg0-tnt75r-1k8ga.hk3.p5pv.com
-  port: 80
-  uuid: f860f2da-5035-11ed-bb74-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_33_319
-  type: vmess
-  server: 5d45d440-t6t0g0-t83wtx-2rrb.hk3.p5pv.com
-  port: 80
-  uuid: ba64cdc5-c79a-326d-8e63-6903be8183a1
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_34_320
-  type: vmess
-  server: 5c4dc91c-sv2sg0-tbnucr-1thfv.hk3.p5pv.com
-  port: 80
-  uuid: 0a4d1c88-fb3a-11ef-8c3f-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_35_321
-  type: trojan
-  server: 160.16.236.32
-  port: 4054
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_36_322
-  type: vmess
-  server: 38.14.99.163
-  port: 59807
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  udp: true
-- name: v2cross.com_37_323
-  type: vmess
-  server: 141.94.155.228
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: kampong.org
-  udp: true
-- name: 🇭🇰 v2cross.com_38_324
-  type: vmess
-  server: 6bdf8f31-sv2sg0-tdh9w7-ahsb.hk3.p5pv.com
-  port: 80
-  uuid: 2e42c1ee-aaaa-11ec-bb74-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_39_325
-  type: vmess
-  server: 57.129.28.214
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: kampong.org
-  udp: true
-- name: 🇭🇰 v2cross.com_40_326
-  type: vmess
-  server: 5b2c09e0-suvds0-t2oosc-xm0q.hk3.p5pv.com
-  port: 80
-  uuid: 3437f34e-1b77-11eb-8684-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: 🇿🇦 v2cross.com_41_327
-  type: vmess
-  server: 3h-kazakhstan1.09vpn.com
-  port: 80
-  uuid: 567f4be5-12ab-42e1-b8d9-db6fd1fdd31c
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /vmess/
-    headers:
-      Host: 3h-kazakhstan1.09vpn.com
-  udp: true
-- name: 🇭🇰 v2cross.com_42_328
-  type: vmess
-  server: 30451d6f-sv2sg0-t8ivpf-z65w.hk3.p5pv.com
-  port: 80
-  uuid: a2313fba-74a6-11ed-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_43_329
-  type: trojan
-  server: 160.16.214.6
-  port: 2760
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_44_330
-  type: vmess
-  server: fn.130519.xyz
-  port: 8443
-  uuid: 19aebb35-b458-4d0c-b767-2adb39e6bb02
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /19aebb35-b458-4d0c-b767-2adb39e6bb02-vm
-    headers:
-      Host: deji.186507.xyz
-  udp: true
-- name: 🇭🇰 v2cross.com_45_331
-  type: vmess
-  server: 860cd745-t6ngg0-tbc0ig-1ssud.hk3.p5pv.com
-  port: 80
-  uuid: e6aa39b6-f0b5-11ef-bca1-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_46_332
-  type: vmess
-  server: 6d010e37-sva740-sxv7gp-8rja.hk3.p5pv.com
-  port: 80
-  uuid: d18bcaf4-1323-11ec-a0fc-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_47_333
-  type: vmess
-  server: 7f074f62-sv6hs0-tdh9w7-ahsb.hk3.p5pv.com
-  port: 80
-  uuid: 2e42c1ee-aaaa-11ec-bb74-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_48_334
-  type: vmess
-  server: 10cd2f16-sv2sg0-t7hu58-1q1la.hk3.p5pv.com
-  port: 80
-  uuid: 25b46954-9a33-11ee-8b86-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_49_335
-  type: vmess
-  server: ca69a094-t6ngg0-tc61cs-1tja8.hk3.p5pv.com
-  port: 80
-  uuid: d2f0bee2-02f1-11f0-8eb0-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_50_336
-  type: vmess
-  server: 6e1d5f2b-sv0xs0-tdh9w7-ahsb.hk3.p5pv.com
-  port: 80
-  uuid: 2e42c1ee-aaaa-11ec-bb74-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_51_337
-  type: vmess
-  server: f9865d1a-t6r5s0-t7x08i-1i87l.hk3.p5pv.com
-  port: 80
-  uuid: 40d572ec-7f67-11ed-bf1f-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_52_338
-  type: vmess
-  server: 34013157-sunz40-taz53d-1j0y6.hk3.p5pv.com
-  port: 80
-  uuid: 1cce7df2-251c-11ee-9409-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: 34013157-sunz40-taz53d-1j0y6.hk3.p5pv.com
-  udp: true
-- name: 🇭🇰 v2cross.com_53_339
-  type: vmess
-  server: 6bbeaaf6-sv4n40-t8tsp0-1szmi.hk3.p5pv.com
-  port: 80
-  uuid: ba151628-b3a2-11ef-bdb9-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_54_340
-  type: ss
-  server: 213.159.76.21
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: pNqnYf3kHesOpCchRvUZxfwTafRsOj7g
-  udp: true
-- name: v2cross.com_55_341
-  type: vmess
-  server: 57.128.189.211
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: yichueng.org
-  udp: true
-- name: 🇨🇳 v2cross.com_56_342
-  type: vmess
-  server: f8c38428-t6r5s0-t8jzg2-1hd7v.hkt.gotochinatown.net
-  port: 80
-  uuid: f73c64bc-9e8c-11ec-bd7c-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_57_343
-  type: vmess
-  server: fcc53408-t6ngg0-tb74a6-1q9g2.hk3.p5pv.com
-  port: 80
-  uuid: 9d80dd14-ac44-11ee-a116-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_58_344
-  type: vmess
-  server: 365d017c-t6ngg0-tozbjw-1462e.hk3.p5pv.com
-  port: 80
-  uuid: a6cf58d6-14d1-11eb-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_59_345
-  type: vmess
-  server: de080c01-t6r5s0-t7scm6-1o20w.hkt.gotochinatown.net
-  port: 80
-  uuid: d70a9508-5477-11ef-bf61-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_60_346
-  type: vmess
-  server: 20fb6c47-t6r5s0-tifnix-1ro8s.hk3.p5pv.com
-  port: 80
-  uuid: a18ef18e-293a-11ef-b76e-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_61_347
-  type: vmess
-  server: b40b1edb-t6r5s0-tm3dx0-1r9dt.hkt.gotochinatown.net
-  port: 80
-  uuid: de003c72-0157-11ef-86da-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_62_348
-  type: vmess
-  server: bbafdaf1-t6ngg0-t71mow-4cl7.hk3.p5pv.com
-  port: 80
-  uuid: 7c129766-8656-11ea-8fc9-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_63_349
-  type: vmess
-  server: 38.14.99.179
-  port: 59807
-  uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  udp: true
-- name: 🇭🇰 v2cross.com_64_350
-  type: vmess
-  server: d5dc60aa-t0kxs0-t1nwsn-1la2q.hk3.p5pv.com
-  port: 80
-  uuid: 431026c8-7397-11ed-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_65_351
-  type: vmess
-  server: 82.197.69.131
-  port: 39674
-  uuid: 5a89386a-827b-4f54-8778-2f1b5122c6ef
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  udp: true
-- name: 🇭🇰 v2cross.com_66_352
-  type: vmess
-  server: 0afadb4a-sv4n40-tc61cs-1tja8.hk3.p5pv.com
-  port: 80
-  uuid: d2f0bee2-02f1-11f0-8eb0-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_67_353
-  type: vmess
-  server: df6d95ef-t6ngg0-tcinla-hrtf.hk3.p5pv.com
-  port: 80
-  uuid: 0da8651e-e1f6-11ec-bd7c-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_68_354
-  type: vmess
-  server: f42f46ca-sv0xs0-sv37gm-81nv.hk3.p5pv.com
-  port: 80
-  uuid: 47e91fb6-25b8-df52-bc18-3cdc8548192f
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_69_355
-  type: vmess
-  server: 3646649a-t6r5s0-t7uinf-i8ie.hk3.p5pv.com
-  port: 80
-  uuid: 990e8f34-bd4f-11ef-bdb9-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_70_356
-  type: ss
-  server: 45.138.157.162
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: qFAJdBEqsI71jaSML67nHoPBCGhX94uk
-  udp: true
-- name: 🇭🇰 v2cross.com_71_357
-  type: vmess
-  server: f5a39ef1-sz8sg0-szi8d6-1ro8s.hk3.p5pv.com
-  port: 80
-  uuid: a18ef18e-293a-11ef-b76e-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_72_358
-  type: vmess
-  server: 9984b70d-sv4n40-sx16xo-1j3zm.hk3.p5pv.com
-  port: 80
-  uuid: 6ce63b80-8b5b-11ef-b635-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_73_359
-  type: trojan
-  server: 5.188.108.13
-  port: 11790
-  password: . QAJot50sDi6mvb
-  sni: runningshoes.purpletornado.click
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_74_360
-  type: vmess
-  server: 580f353d-t6ngg0-tbrhck-1thqb.hk3.p5pv.com
-  port: 80
-  uuid: 4f4c6876-fcf6-11ef-94aa-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_75_361
-  type: vmess
-  server: f0364aea-t13gg0-t1rksu-1ssud.hk3.p5pv.com
-  port: 80
-  uuid: e6aa39b6-f0b5-11ef-bca1-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_76_362
-  type: trojan
-  server: 160.16.131.243
-  port: 127
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_77_363
-  type: trojan
-  server: 58.152.110.154
-  port: 443
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_78_364
-  type: vmess
-  server: 68.183.178.131
-  port: 58607
-  uuid: c11c32cb-27b3-4afa-c0f3-fb250aa4959e
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: www.12333.monster
-  udp: true
-- name: v2cross.com_79_365
-  type: vmess
-  server: 216.227.168.157
-  port: 45242
-  uuid: 469e0b31-30c3-4dab-800d-711232634ce1
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  udp: true
-- name: 🇭🇰 v2cross.com_80_366
-  type: vmess
-  server: f01acfee-t6ngg0-t7bo2t-1psmw.hk3.p5pv.com
-  port: 80
-  uuid: 42bb6d36-97c7-11ee-be7f-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_81_367
-  type: vmess
-  server: b2d5cb20-sv2sg0-t7qy26-14g76.hk3.p5pv.com
-  port: 80
-  uuid: 4729b4c8-1790-11eb-8684-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_82_368
-  type: vmess
-  server: 50385003-t6t0g0-t8wh4m-1hpo0.hk3.p5pv.com
-  port: 80
-  uuid: c3dc8d26-ab2b-11ec-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_83_369
-  type: vmess
-  server: 5f0f42e9-sv4n40-t7udc0-1pqhp.hk3.p5pv.com
-  port: 80
-  uuid: b02327ac-a49a-11ef-a673-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_84_370
-  type: trojan
-  server: 38.96.254.102
-  port: 18509
-  password: .ie4rghJuMkcf0oF
-  sni: shoppingmall.electricbanana.click
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_85_371
-  type: vmess
-  server: 457a1492-sv4n40-t6kzbp-1h5u7.hk3.p5pv.com
-  port: 80
-  uuid: e3fdbd22-8c17-11ee-ace4-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_86_372
-  type: trojan
-  server: 153.121.65.107
-  port: 3169
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_87_373
-  type: vmess
-  server: 8ae4848c-szjwg0-t44yvp-155d9.hk3.p5pv.com
-  port: 80
-  uuid: 34f0cf42-0f8a-11ec-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: 8ae4848c-szjwg0-t44yvp-155d9.hk3.p5pv.com
-  udp: true
-- name: 🇭🇰 v2cross.com_88_374
-  type: vmess
-  server: 4bbf82ea-t0bog0-ta64ri-1qzi1.hk3.p5pv.com
-  port: 80
-  uuid: 8f99107c-f091-11ee-9935-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: 4bbf82ea-t0bog0-ta64ri-1qzi1.hk3.p5pv.com
-  udp: true
-- name: 🇭🇰 v2cross.com_89_375
-  type: vmess
-  server: 03cdf699-t5d5s0-t6tn6w-jjv2.hk3.p5pv.com
-  port: 80
-  uuid: 31676725-b0fd-fed2-c857-2da8ce5a6e4f
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_90_376
-  type: vmess
-  server: 547393ea-sv2sg0-t8tsp0-1szmi.hk3.p5pv.com
-  port: 80
-  uuid: ba151628-b3a2-11ef-bdb9-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_91_377
-  type: vmess
-  server: 0225a877-t66sg0-t7n4ch-1rfon.hkt.gotochinatown.net
-  port: 80
-  uuid: aed1cc24-351d-11ef-ba52-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_92_378
-  type: vmess
-  server: 8ad47030-sv2sg0-t5wcb1-13x18.hk3.p5pv.com
-  port: 80
-  uuid: e4499a62-0cfe-11eb-ad8c-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_93_379
-  type: vmess
-  server: 1af9d95c-t6ngg0-tasftf-duku.hk3.p5pv.com
-  port: 80
-  uuid: 8e0f8ef2-5fe3-11ec-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_94_380
-  type: vmess
-  server: 04e4679b-sv2sg0-swfla6-1rdqg.hk3.p5pv.com
-  port: 80
-  uuid: 2b57ec48-0da4-11ef-8f35-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_95_381
-  type: vmess
-  server: 2ffa8a44-t6r5s0-t7kvg3-1mij.hk3.p5pv.com
-  port: 80
-  uuid: c2c634e8-ab9e-11ef-97e0-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_96_382
-  type: vmess
-  server: 69958490-t6r5s0-tct1rd-1o0ch.hkt.gotochinatown.net
-  port: 80
-  uuid: d49e545e-0daf-11ee-a91f-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_97_383
-  type: trojan
-  server: 153.121.51.29
-  port: 127
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_98_384
-  type: vmess
-  server: 6d66420e-t6ngg0-tfj0we-u6bc.hk3.p5pv.com
-  port: 80
-  uuid: 21747146-3507-11ed-bb74-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_99_385
-  type: vmess
-  server: 50a12fd9-t6r5s0-tkn6t8-1i3g8.hkt.gotochinatown.net
-  port: 80
-  uuid: 437cef58-f10b-11ef-8eaf-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_100_386
-  type: vmess
-  server: 57.129.25.26
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: yichueng.org
-  udp: true
-- name: 🇭🇰 v2cross.com_101_387
-  type: vmess
-  server: 3f54bee7-sv4n40-tbpu76-1thmd.hk3.p5pv.com
-  port: 80
-  uuid: 2d8c38cc-fc12-11ef-94aa-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_102_388
-  type: ss
-  server: 185.103.110.67
-  port: 18282
-  cipher: aes-128-gcm
-  password: 1z6g07dsgi2jv8s8jss4
-  udp: true
-- name: 🇭🇰 v2cross.com_103_389
-  type: vmess
-  server: a274eeb3-t6ngg0-tlpfci-1jdha.hk3.p5pv.com
-  port: 80
-  uuid: de629d50-1711-11ed-bd7c-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_104_390
-  type: vmess
-  server: 7a2912ee-sv0xs0-sypj6z-1rk9y.hk3.p5pv.com
-  port: 80
-  uuid: 88f6e3c4-1d01-11ef-812c-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_105_391
-  type: vmess
-  server: 87a8ce25-sv2sg0-tbicd9-1go3q.hk3.p5pv.com
-  port: 80
-  uuid: 19dd9c70-e4a5-11ed-8347-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: 87a8ce25-sv2sg0-tbicd9-1go3q.hk3.p5pv.com
-  udp: true
-- name: 🇭🇰 v2cross.com_106_392
-  type: vmess
-  server: 234b7356-szyps0-tiqsce-t6fv.hk3.p5pv.com
-  port: 80
-  uuid: af7ddbb2-3567-11ec-bd7c-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_107_393
-  type: vmess
-  server: 08bf2fff-t6uv40-tfjz9x-1t5n1.hk3.p5pv.com
-  port: 80
-  uuid: ea800f9e-ca6c-11ef-8e74-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_108_394
-  type: trojan
-  server: 160.16.124.55
-  port: 2760
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_109_395
-  type: vmess
-  server: 659ce73e-sv2sg0-tcsjnd-1tff5.hk3.p5pv.com
-  port: 80
-  uuid: dfb6b402-f422-11ef-80e5-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_110_396
-  type: vmess
-  server: da79a8fd-sv4n40-t71mow-4cl7.hk3.p5pv.com
-  port: 80
-  uuid: 7c129766-8656-11ea-8fc9-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_111_397
-  type: vmess
-  server: c9d5a7ad-t6uv40-t83wtx-2rrb.hk3.p5pv.com
-  port: 80
-  uuid: ba64cdc5-c79a-326d-8e63-6903be8183a1
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇸🇪 v2cross.com_112_398
-  type: vmess
-  server: seoul03.zgjok.com
-  port: 443
-  uuid: 72a0dac4-9689-4a57-b164-5c65bfa94772
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: seoul03.zgjok.com
-  udp: true
-- name: v2cross.com_113_399
-  type: ss
-  server: 45.83.22.118
-  port: 8443
-  cipher: aes-256-gcm
-  password: 6af24790-76c9-49d3-bbe0-01285239e57d
-  udp: true
-- name: v2cross.com_114_400
-  type: vmess
-  server: 91.134.8.100
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: kampong.org
-  udp: true
-- name: 🇭🇰 v2cross.com_115_401
-  type: vmess
-  server: cf9c1166-sv2sg0-tcp4th-1c4g6.hk3.p5pv.com
-  port: 80
-  uuid: 676c67c6-5e73-11ee-9a79-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_116_402
-  type: vmess
-  server: 80f0806d-szg740-t41p4y-1hpo0.hk3.p5pv.com
-  port: 80
-  uuid: c3dc8d26-ab2b-11ec-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_117_403
-  type: vmess
-  server: 697dc551-t1i9s0-tm53cm-1ol97.hk3.p5pv.com
-  port: 80
-  uuid: 93fb69fc-77cf-11ee-85ee-f23c91369f2d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: 🇨🇳 v2cross.com_118_404
-  type: vmess
-  server: 2a249690-t6r5s0-tcq5zn-19qpt.hkt.gotochinatown.net
-  port: 80
-  uuid: 4b9ca118-7fab-11eb-bd3a-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_119_405
-  type: trojan
-  server: 160.16.130.66
-  port: 3093
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_120_406
-  type: vmess
-  server: 3be014a6-sv0xs0-svpmdc-nx3b.hk3.p5pv.com
-  port: 80
-  uuid: 32315324-cf6b-11ed-979b-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_121_407
-  type: trojan
-  server: 198.57.27.27
-  port: 12990
-  password: 6pRjKQJ0CWyFtG.9
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_122_408
-  type: vmess
-  server: c036d21f-t15b40-tgl02u-1jr1u.hk3.p5pv.com
-  port: 80
-  uuid: 2c01eae6-0b6a-11ee-a058-f23c91369f2d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_123_409
-  type: vmess
-  server: b6308b41-t6r5s0-t6py8y-44k4.hk3.p5pv.com
-  port: 80
-  uuid: c5eb2c2c-bc1d-11ed-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_124_410
-  type: vmess
-  server: 231ec29c-t6r5s0-t9uin7-19ord.hk3.p5pv.com
-  port: 80
-  uuid: dcdb1278-4b7d-11ed-bb74-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_125_411
-  type: vmess
-  server: a818614b-sv0xs0-t2p691-1s4hc.hk3.p5pv.com
-  port: 80
-  uuid: aafedc64-9c23-11ef-a79f-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_126_412
-  type: ss
-  server: 82.38.31.187
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: 🇨🇳 v2cross.com_127_413
-  type: vmess
-  server: c558c52a-t6r5s0-tc61cs-1tja8.hkt.gotochinatown.net
-  port: 80
-  uuid: d2f0bee2-02f1-11f0-8eb0-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_128_414
-  type: vmess
-  server: 865c5c01-sv4n40-t65a3e-tqgz.hk3.p5pv.com
-  port: 80
-  uuid: 88da0d21-b25d-11ec-b9f7-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_129_415
-  type: vmess
-  server: 57.128.216.125
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: kampong.org
-  udp: true
-- name: v2cross.com_130_416
-  type: ss
-  server: 107.174.114.71
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: 595HLF3fHUuw0McM51tpvPygSIB1uf4D
-  udp: true
-- name: 🇭🇰 v2cross.com_131_417
-  type: vmess
-  server: 73256a3a-t53wg0-teivih-1rz31.hk3.p5pv.com
-  port: 80
-  uuid: 7699767c-44ae-11ef-80c7-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: 73256a3a-t53wg0-teivih-1rz31.hk3.p5pv.com
-  udp: true
-- name: v2cross.com_132_418
-  type: ss
-  server: 87.121.162.249
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: JGv616hMWdjfuZ00jYfq7XkBHJZrOBrg
-  udp: true
-- name: v2cross.com_133_419
-  type: trojan
-  server: 58.152.30.120
-  port: 443
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_134_420
-  type: vmess
-  server: 91.134.8.88
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: lammaland.org
-  udp: true
-- name: 🇭🇰 v2cross.com_135_421
-  type: vmess
-  server: 6c8122aa-sv4n40-t917sa-12ach.hk3.p5pv.com
-  port: 80
-  uuid: fc5ba91a-acd7-11ef-97e0-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_136_422
-  type: trojan
-  server: 70.34.218.149
-  port: 11930
-  password: BaeSzHdfJIR13l67
-  sni: softpillow.silentrocket.click
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_137_423
-  type: vmess
-  server: 55ccc14b-t6ngg0-t6k5ga-1bonh.hk3.p5pv.com
-  port: 80
-  uuid: e8a960d8-14f5-11ec-a0fc-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_138_424
-  type: vmess
-  server: 303e6664-t6r5s0-t7vzvm-1j0a4.hkt.gotochinatown.net
-  port: 80
-  uuid: 4eedcde6-d16a-11ef-973a-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_139_425
-  type: vmess
-  server: 57.129.28.216
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: fapeng.org
-  udp: true
-- name: 🇭🇰 v2cross.com_140_426
-  type: vmess
-  server: 3b06c9c0-sv2sg0-sypj6z-1rk9y.hk3.p5pv.com
-  port: 80
-  uuid: 88f6e3c4-1d01-11ef-812c-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_141_427
-  type: vmess
-  server: c764b8be-t6r5s0-tcop2n-tl32.hk3.p5pv.com
-  port: 80
-  uuid: 5c02ab88-7b9c-11ea-8fc9-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_142_428
-  type: vmess
-  server: a0ae8f27-sv4n40-sw5wi7-ufc0.hk3.p5pv.com
-  port: 80
-  uuid: 22308988-8548-11ea-a22e-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_143_429
-  type: trojan
-  server: 160.16.63.16
-  port: 4054
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_144_430
-  type: vmess
-  server: 87c9b99c-t6r5s0-t99b5n-1hhyy.hk3.p5pv.com
-  port: 80
-  uuid: c594c7ec-8b10-11ef-a2b8-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_145_431
-  type: trojan
-  server: 160.16.107.37
-  port: 507
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_146_432
-  type: vmess
-  server: bfce8c8d-sva740-tbe46y-1la7v.hk3.p5pv.com
-  port: 80
-  uuid: 460749c2-bcef-11ee-89fc-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: bfce8c8d-sva740-tbe46y-1la7v.hk3.p5pv.com
-  udp: true
-- name: 🇭🇰 v2cross.com_147_433
-  type: vmess
-  server: f41f235c-t6ngg0-tnbkh1-1ejce.hk3.p5pv.com
-  port: 80
-  uuid: e534d120-d32f-11ef-bdb9-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_148_434
-  type: trojan
-  server: 219.79.186.107
-  port: 443
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_149_435
-  type: vmess
-  server: 22eb9be5-t6r5s0-t7fl9b-1q16i.hk3.p5pv.com
-  port: 80
-  uuid: 94614d84-9986-11ee-be7f-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_150_436
-  type: vmess
-  server: 57.129.28.63
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: fapeng.org
-  udp: true
-- name: v2cross.com_151_437
-  type: trojan
-  server: 160.16.131.243
-  port: 2890
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_152_438
-  type: trojan
-  server: 58.152.25.20
-  port: 443
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_153_439
-  type: trojan
-  server: 43.198.90.142
-  port: 2673
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_154_440
-  type: vmess
-  server: a8775a8c-t6r5s0-tcinla-hrtf.hk3.p5pv.com
-  port: 80
-  uuid: 0da8651e-e1f6-11ec-bd7c-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_155_441
-  type: ss
-  server: 45.89.55.173
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: ixPymFma6P7U41wk9MNP7znPnvax3mjd
-  udp: true
-- name: v2cross.com_156_442
-  type: vmess
-  server: 57.129.28.215
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: serkat.org
-  udp: true
-- name: v2cross.com_157_443
-  type: trojan
-  server: 47.242.225.242
-  port: 443
-  password: 92690597d6298061459918a371e8d77d
-  sni: hezijiasuqi.com
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_158_444
-  type: ss
-  server: 82.38.31.218
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: 🇭🇰 v2cross.com_159_445
-  type: vmess
-  server: b6c120cb-t6r5s0-tdahby-1tnab.hk3.p5pv.com
-  port: 80
-  uuid: ca9c0c54-1513-11f0-8a7b-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_160_446
-  type: ss
-  server: 95.164.10.228
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: SDaFISr3Gfm6YkBSSrFIEwwWjEEU7Xbo
-  udp: true
-- name: v2cross.com_161_447
-  type: trojan
-  server: 13.37.111.9
-  port: 22222
-  password: telegram-id-privatevpns
-  sni: trojan.burgerip.co.uk
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_162_448
-  type: vmess
-  server: 45e91290-t6uv40-tg8syu-1nyy5.hk3.p5pv.com
-  port: 80
-  uuid: 8f7cb770-1305-11ee-b107-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_163_449
-  type: vmess
-  server: cb3806c0-t6ngg0-tonrqx-1khwf.hk3.p5pv.com
-  port: 80
-  uuid: 92bd8c68-6434-11ee-b644-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_164_450
-  type: vmess
-  server: bca6ef41-sv4n40-t5wcb1-13x18.hk3.p5pv.com
-  port: 80
-  uuid: e4499a62-0cfe-11eb-ad8c-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_165_451
-  type: ss
-  server: 95.164.116.33
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: pQmnC03JObbPhdh5FBJHgD6jnTLchsRA
-  udp: true
-- name: 🇭🇰 v2cross.com_166_452
-  type: vmess
-  server: 4a9b5eb9-sva740-sveyey-44k4.hk3.p5pv.com
-  port: 80
-  uuid: c5eb2c2c-bc1d-11ed-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_167_453
-  type: ss
-  server: 95.111.222.113
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: SVt6ZiWzRI1Yxeig4xBZwiJOt6ceXwGa
-  udp: true
-- name: 🇭🇰 v2cross.com_168_454
-  type: vmess
-  server: 93933a41-sv0xs0-t1jamc-1fvdh.hk3.p5pv.com
-  port: 80
-  uuid: 9e1ddc04-073b-11ed-bd7c-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_169_455
-  type: vmess
-  server: 923f7324-t6ngg0-t7n4ch-1rfon.hk3.p5pv.com
-  port: 80
-  uuid: aed1cc24-351d-11ef-ba52-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_170_456
-  type: trojan
-  server: 160.16.87.174
-  port: 3169
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇨🇳 v2cross.com_171_457
-  type: vmess
-  server: a92636eb-t6r5s0-tbac1z-1j3zm.hkt.gotochinatown.net
-  port: 80
-  uuid: 6ce63b80-8b5b-11ef-b635-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_172_458
-  type: vmess
-  server: 103.127.218.91
-  port: 54693
-  uuid: 1cef03ad-6343-408c-8121-cbd1fda2ee9d
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /1cef03ad
-  udp: true
-- name: v2cross.com_173_459
-  type: trojan
-  server: 160.16.81.84
-  port: 2760
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_174_460
-  type: vmess
-  server: bcad1ab1-sv0xs0-t61ki5-1smhu.hk3.p5pv.com
-  port: 80
-  uuid: 62f2374c-891b-11ef-a3f6-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_175_461
-  type: vmess
-  server: 216.227.168.157
-  port: 45258
-  uuid: 469e0b31-30c3-4dab-800d-711232634ce1
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  udp: true
-- name: 🇭🇰 v2cross.com_176_462
-  type: vmess
-  server: 0a5bf1be-t6ngg0-t99b5n-1hhyy.hk3.p5pv.com
-  port: 80
-  uuid: c594c7ec-8b10-11ef-a2b8-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_177_463
-  type: vmess
-  server: 6b961a0a-sv4n40-t83wtx-2rrb.hk3.p5pv.com
-  port: 80
-  uuid: ba64cdc5-c79a-326d-8e63-6903be8183a1
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_178_464
-  type: vmess
-  server: 6e00b582-t6r5s0-t917sa-12ach.hkt.gotochinatown.net
-  port: 80
-  uuid: fc5ba91a-acd7-11ef-97e0-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_179_465
-  type: vmess
-  server: 04165a49-sv2sg0-t5cryd-4w8.hk3.p5pv.com
-  port: 80
-  uuid: ba7a37e3-033a-e1ab-06f6-9027aa4630f5
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_180_466
-  type: trojan
-  server: 153.121.65.107
-  port: 1331
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_181_467
-  type: ss
-  server: 193.29.139.140
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: oZIoA69Q8yhcQV8ka3Pa3A
-  udp: true
-- name: 🇭🇰 v2cross.com_182_468
-  type: vmess
-  server: c85c9054-t13gg0-t4ixjm-1hhyy.hk3.p5pv.com
-  port: 80
-  uuid: c594c7ec-8b10-11ef-a2b8-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_183_469
-  type: vmess
-  server: 49a50ffd-t6r5s0-tamumc-1lkbs.hkt.gotochinatown.net
-  port: 80
-  uuid: 5a4c13ae-6673-11ee-a149-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_184_470
-  type: trojan
-  server: 160.16.150.76
-  port: 1596
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_185_471
-  type: ss
-  server: 65.21.243.22
-  port: 31348
-  cipher: chacha20-ietf-poly1305
-  password: mZGUFWMAlfWqI4vP58zw9DAHxR8TZLndKkvRgHHFa9eqWdnx
-  udp: true
-- name: 🇨🇳 v2cross.com_186_472
-  type: vmess
-  server: 4f7c7632-t63340-t7hjku-1rgxu.hkt.gotochinatown.net
-  port: 80
-  uuid: ea93064c-176c-11f0-885d-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_187_473
-  type: vmess
-  server: e49d5f63-t6t0g0-tgl02u-1jr1u.hk3.p5pv.com
-  port: 80
-  uuid: 2c01eae6-0b6a-11ee-a058-f23c91369f2d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_188_474
-  type: vmess
-  server: 7fdab67a-sv2sg0-tct1rd-1o0ch.hk3.p5pv.com
-  port: 80
-  uuid: d49e545e-0daf-11ee-a91f-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_189_475
-  type: vmess
-  server: 7c1bd545-sz8sg0-t0opzi-19xg1.hk3.p5pv.com
-  port: 80
-  uuid: e1dee7c0-cff7-11eb-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_190_476
-  type: trojan
-  server: 58.152.53.8
-  port: 443
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇨🇳 v2cross.com_191_477
-  type: vmess
-  server: fe5f0a7d-t6r5s0-tpftcp-13x18.hkt.gotochinatown.net
-  port: 80
-  uuid: e4499a62-0cfe-11eb-ad8c-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_192_478
-  type: vmess
-  server: 2071ea61-sv0xs0-sylfil-1gcq2.hk3.p5pv.com
-  port: 80
-  uuid: 759bf004-6137-11ec-bd7c-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_193_479
-  type: vmess
-  server: 7e18e4e8-t6r5s0-tfj0we-u6bc.hkt.gotochinatown.net
-  port: 80
-  uuid: 21747146-3507-11ed-bb74-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_194_480
-  type: trojan
-  server: 160.16.144.208
-  port: 3145
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_195_481
-  type: vmess
-  server: 0af112c9-sv2sg0-swbdgq-1iddy.hk3.p5pv.com
-  port: 80
-  uuid: e168c43e-c6d9-11ed-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_196_482
-  type: trojan
-  server: 153.121.44.99
-  port: 507
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_197_483
-  type: trojan
-  server: 160.16.214.6
-  port: 4054
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇨🇳 v2cross.com_198_484
-  type: vmess
-  server: 4b0c7cf5-t6r5s0-t7fl9b-1q16i.hkt.gotochinatown.net
-  port: 80
-  uuid: 94614d84-9986-11ee-be7f-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_199_485
-  type: vmess
-  server: afcad98a-t6ngg0-t7eqjm-m0b9.hk3.p5pv.com
-  port: 80
-  uuid: bb85e074-b0c2-11ea-ad28-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_200_486
-  type: vmess
-  server: 38.107.234.57
-  port: 80
-  uuid: 567f4be5-12ab-42e1-b8d9-db6fd1fdd31c
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /vmess/
-  udp: true
-- name: 🇭🇰 v2cross.com_201_487
-  type: vmess
-  server: bd77ce9f-t6r5s0-tm23vf-1jk6u.hk3.p5pv.com
-  port: 80
-  uuid: 45bc25b2-1a10-11ed-91c0-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_202_488
-  type: ss
-  server: 45.87.175.22
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: oZIoA69Q8yhcQV8ka3Pa3A
-  udp: true
-- name: v2cross.com_203_489
-  type: vmess
-  server: 173.249.209.146
-  port: 20086
-  uuid: 3935c2dc-dbb0-43f7-b367-fe89abe87fdf
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: 🇭🇰 v2cross.com_204_490
-  type: vmess
-  server: 35edea2d-t6r5s0-teivih-1rz31.hk3.p5pv.com
-  port: 80
-  uuid: 7699767c-44ae-11ef-80c7-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_205_491
-  type: ss
-  server: 193.29.139.240
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: oZIoA69Q8yhcQV8ka3Pa3A
-  udp: true
-- name: 🇭🇰 v2cross.com_206_492
-  type: vmess
-  server: 0f64e685-sv0xs0-svwnuh-1t4wg.hk3.p5pv.com
-  port: 80
-  uuid: 1b13e20c-e778-11ef-907f-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_207_493
-  type: vmess
-  server: d444ebc1-t6r5s0-t7mzec-yjq0.hk3.p5pv.com
-  port: 80
-  uuid: 25b2699a-e18e-11ec-8e69-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_208_494
-  type: vmess
-  server: 450eafad-t6r5s0-tan99f-1rdqg.hk3.p5pv.com
-  port: 80
-  uuid: 2b57ec48-0da4-11ef-8f35-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_209_495
-  type: vmess
-  server: 98e590b8-t0kxs0-t5xs0q-1462e.hk3.p5pv.com
-  port: 80
-  uuid: a6cf58d6-14d1-11eb-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_210_496
-  type: vmess
-  server: e0349a52-sv8cg0-t7uinf-i8ie.hk3.p5pv.com
-  port: 80
-  uuid: 990e8f34-bd4f-11ef-bdb9-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_211_497
-  type: vmess
-  server: 88788ee2-sv4n40-t61ki5-1smhu.hk3.p5pv.com
-  port: 80
-  uuid: 62f2374c-891b-11ef-a3f6-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_212_498
-  type: ss
-  server: 89.221.225.15
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: yCbQ4bry4otfifK7oel71NaXpPL9pYJb
-  udp: true
-- name: 🇭🇰 v2cross.com_213_499
-  type: vmess
-  server: 53d9eb19-t6ngg0-tcsjnd-1tff5.hk3.p5pv.com
-  port: 80
-  uuid: dfb6b402-f422-11ef-80e5-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_214_500
-  type: vmess
-  server: 940e6f36-sva740-tbmeud-1th9y.hk3.p5pv.com
-  port: 80
-  uuid: 12a81f5a-fa9e-11ef-8400-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_215_501
-  type: vmess
-  server: 2bc8c2b4-sv0xs0-tcr97d-2b2n.hk3.p5pv.com
-  port: 80
-  uuid: fcd39788-ca23-11ed-86e2-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_216_502
-  type: vmess
-  server: 91.134.8.101
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /linkvws
-  udp: true
-- name: v2cross.com_217_503
-  type: vmess
-  server: 74.117.196.232
-  port: 37934
-  uuid: c6e0562f-7ad1-40fb-a255-26194b2de84a
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /speedtest
-  udp: true
-- name: 🇭🇰 v2cross.com_218_504
-  type: vmess
-  server: 7beca07b-sv2sg0-sx16xo-1j3zm.hk3.p5pv.com
-  port: 80
-  uuid: 6ce63b80-8b5b-11ef-b635-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_219_505
-  type: vmess
-  server: b8ffcda3-sv2sg0-sv37gm-81nv.hk3.p5pv.com
-  port: 80
-  uuid: 47e91fb6-25b8-df52-bc18-3cdc8548192f
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_220_506
-  type: ss
-  server: 38.54.20.59
-  port: 8881
-  cipher: aes-256-gcm
-  password: kDWvXYZoTBcGkC4
-  udp: true
-- name: v2cross.com_221_507
-  type: ss
-  server: 45.83.20.206
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: g5RQoxQuVtnFv3Xxsa8edPisXNPnyWKy
-  udp: true
-- name: 🇭🇰 v2cross.com_222_508
-  type: vmess
-  server: ac9735cb-t6t0g0-tkn6t8-1i3g8.hk3.p5pv.com
-  port: 80
-  uuid: 437cef58-f10b-11ef-8eaf-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_223_509
-  type: vmess
-  server: 4e98a33d-t6ngg0-t7u86c-1s2ks.hk3.p5pv.com
-  port: 80
-  uuid: a664d16a-4e47-11ef-9d7e-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_224_510
-  type: vmess
-  server: b8355a46-t6g1s0-t7vzvm-1j0a4.hkt.gotochinatown.net
-  port: 80
-  uuid: 4eedcde6-d16a-11ef-973a-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_225_511
-  type: ss
-  server: 103.106.3.82
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: 4SaCIazlgumYkM8FkPzlmwjpyWBDZFBk
-  udp: true
-- name: 🇨🇳 v2cross.com_226_512
-  type: vmess
-  server: eb552654-t6r5s0-te0v28-1mh67.hkt.gotochinatown.net
-  port: 80
-  uuid: e1c7fbbc-96b6-11ef-8563-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_227_513
-  type: vmess
-  server: e0eb93d9-t6t0g0-th9kx9-1os43.hk3.p5pv.com
-  port: 80
-  uuid: 96c798f6-4645-11ee-b8a1-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_228_514
-  type: trojan
-  server: 160.16.68.250
-  port: 1596
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_229_515
-  type: vmess
-  server: 9d27188f-t00kg0-t9byd7-1jfvb.hk3.p5pv.com
-  port: 80
-  uuid: 06b2ac52-fcc6-11ec-bb74-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_230_516
-  type: ss
-  server: 45.139.26.173
-  port: 57456
-  cipher: chacha20-ietf-poly1305
-  password: d3837224ed465f00
-  udp: true
-- name: 🇨🇳 v2cross.com_231_517
-  type: vmess
-  server: c68734da-t6r5s0-to8xn3-l4nv.hkt.gotochinatown.net
-  port: 80
-  uuid: 1469e09e-027c-11ec-a0fc-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_232_518
-  type: ss
-  server: clr.ducks.tel
-  port: 17846
-  cipher: chacha20-ietf-poly1305
-  password: '907560230'
-  udp: true
-- name: 🇭🇰 v2cross.com_233_519
-  type: vmess
-  server: 7f4d8652-t6ngg0-t9lc3n-z93q.hk3.p5pv.com
-  port: 80
-  uuid: 40639730-e027-11ea-87ad-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_234_520
-  type: trojan
-  server: 160.16.81.84
-  port: 4054
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_235_521
-  type: vmess
-  server: ff973be1-t6r5s0-tcr97d-2b2n.hk3.p5pv.com
-  port: 80
-  uuid: fcd39788-ca23-11ed-86e2-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_236_522
-  type: vmess
-  server: eb328762-t6ngg0-t85e8f-141tv.hk3.p5pv.com
-  port: 80
-  uuid: bd77bfe8-e0f3-11ec-bd7c-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_237_523
-  type: vmess
-  server: 78a79eef-t6ngg0-t7om7n-luwe.hk3.p5pv.com
-  port: 80
-  uuid: a2b0fd2b-716f-0df8-d4e2-03a1c00e5f1a
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_238_524
-  type: vmess
-  server: 272ffc58-sv2sg0-t4v3jz-1k8ga.hk3.p5pv.com
-  port: 80
-  uuid: f860f2da-5035-11ed-bb74-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_239_525
-  type: vmess
-  server: 418446e2-sv2sg0-t2nkut-jx5r.hk3.p5pv.com
-  port: 80
-  uuid: 73bfcc1c-5814-5f2a-b43a-3ef6af011db8
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_240_526
-  type: vmess
-  server: 2ba4eb78-t6r5s0-taxf6m-ieln.hkt.gotochinatown.net
-  port: 80
-  uuid: f5c0eda2-4b97-11ed-bd7c-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_241_527
-  type: vmess
-  server: 00704a99-t6ngg0-toa9ad-4w8.hk3.p5pv.com
-  port: 80
-  uuid: ba7a37e3-033a-e1ab-06f6-9027aa4630f5
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_242_528
-  type: vmess
-  server: a90aea40-t6ngg0-tc2sod-1tizo.hk3.p5pv.com
-  port: 80
-  uuid: bf36227c-0191-11f0-aee1-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_243_529
-  type: vmess
-  server: c92d9037-sunz40-suqjqq-1pr35.hk3.p5pv.com
-  port: 80
-  uuid: 6b7c1278-ff9d-11ee-84ca-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: 🇭🇰 v2cross.com_244_530
-  type: vmess
-  server: c25c61db-sv2sg0-tbpu76-1thmd.hk3.p5pv.com
-  port: 80
-  uuid: 2d8c38cc-fc12-11ef-94aa-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_245_531
-  type: vmess
-  server: 00711758-sva740-tbrhck-1thqb.hk3.p5pv.com
-  port: 80
-  uuid: 4f4c6876-fcf6-11ef-94aa-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_246_532
-  type: ss
-  server: clr.ducks.tel
-  port: 17847
-  cipher: chacha20-ietf-poly1305
-  password: '907560230'
-  udp: true
-- name: 🇭🇰 v2cross.com_247_533
-  type: vmess
-  server: c5b331f6-t6ngg0-taksay-1tcuf.hk3.p5pv.com
-  port: 80
-  uuid: 3952a514-eaa7-11ef-97da-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_248_534
-  type: ss
-  server: 178.23.190.238
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: uo7EbtqIwgZXXHmMv5LbLcOxptyPlNkh
-  udp: true
-- name: 🇭🇰 v2cross.com_249_535
-  type: vmess
-  server: 1b6c49f6-sv2sg0-tcmken-19les.hk3.p5pv.com
-  port: 80
-  uuid: d095ecc6-7b69-11eb-b77b-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_250_536
-  type: vmess
-  server: 024a2f7b-sv0xs0-t2whio-1jcwu.hk3.p5pv.com
-  port: 80
-  uuid: f93486ce-cc84-11ed-9e98-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇿🇦 v2cross.com_251_537
-  type: vmess
-  server: hgtrojan.zabc.net
-  port: 2083
-  uuid: e6395c20-4571-4b34-d6b1-55a5d36e49ea
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /e6395c20
-    headers:
-      Host: hgtrojan.zabc.net
-  udp: true
-- name: 🇭🇰 v2cross.com_252_538
-  type: vmess
-  server: 7e4f0a72-t6ngg0-tk5ls1-z7a1.hk3.p5pv.com
-  port: 80
-  uuid: 3bd247a8-993e-11ec-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_253_539
-  type: vmess
-  server: a05447bd-t5d5s0-t6z0et-1t60o.hk3.p5pv.com
-  port: 80
-  uuid: ce481c6e-f4c8-11ef-bbb0-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_254_540
-  type: trojan
-  server: 153.121.39.240
-  port: 4054
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_255_541
-  type: ss
-  server: clr.ducks.tel
-  port: 17844
-  cipher: chacha20-ietf-poly1305
-  password: '907560230'
-  udp: true
-- name: 🇨🇳 v2cross.com_256_542
-  type: vmess
-  server: 1e55ac41-t6r5s0-tiuylw-46gc.hkt.gotochinatown.net
-  port: 80
-  uuid: 225d1cca-d744-11ef-b790-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_257_543
-  type: vmess
-  server: eabe4766-t6r5s0-tds6bp-1hzyr.hkt.gotochinatown.net
-  port: 80
-  uuid: 3be8cba8-b721-11ec-8b04-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_258_544
-  type: vmess
-  server: 477806fa-t6r5s0-t7u86c-1s2ks.hk3.p5pv.com
-  port: 80
-  uuid: a664d16a-4e47-11ef-9d7e-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_259_545
-  type: vmess
-  server: f51a53a1-sv0xs0-swbdgq-1iddy.hk3.p5pv.com
-  port: 80
-  uuid: e168c43e-c6d9-11ed-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_260_546
-  type: vmess
-  server: 45ab9d15-t6ngg0-tdps9l-155d9.hk3.p5pv.com
-  port: 80
-  uuid: 34f0cf42-0f8a-11ec-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_261_547
-  type: vmess
-  server: a58b4c29-sv4n40-syfj90-1r9dt.hk3.p5pv.com
-  port: 80
-  uuid: de003c72-0157-11ef-86da-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_262_548
-  type: vmess
-  server: c50b00e0-t6ngg0-t7c251-nx3b.hk3.p5pv.com
-  port: 80
-  uuid: 32315324-cf6b-11ed-979b-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_263_549
-  type: vmess
-  server: b2e67d54-t6r5s0-tc5odo-1mh85.hk3.p5pv.com
-  port: 80
-  uuid: cf7331fa-bfeb-11ed-a807-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_264_550
-  type: vmess
-  server: c5765779-sv2sg0-syu0n5-1hd7v.hk3.p5pv.com
-  port: 80
-  uuid: f73c64bc-9e8c-11ec-bd7c-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_265_551
-  type: trojan
-  server: 160.16.116.227
-  port: 2890
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_266_552
-  type: trojan
-  server: 160.16.124.55
-  port: 4054
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_267_553
-  type: trojan
-  server: 58.152.25.242
-  port: 443
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_268_554
-  type: vmess
-  server: 3aa1ddf0-t6r5s0-tkgk4w-1fvdh.hk3.p5pv.com
-  port: 80
-  uuid: 9e1ddc04-073b-11ed-bd7c-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_269_555
-  type: vmess
-  server: 47089305-t6ngg0-t7do2j-1swry.hk3.p5pv.com
-  port: 80
-  uuid: 8a5d58a0-c50e-11ef-a46e-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_270_556
-  type: ss
-  server: 82.38.31.202
-  port: 8080
-  cipher: chacha20-ietf-poly1305
-  password: k1dBOmOB4oqi7Ump37a1bQ
-  udp: true
-- name: 🇭🇰 v2cross.com_271_557
-  type: vmess
-  server: 73d73acd-sv2sg0-t7bo2t-1psmw.hk3.p5pv.com
-  port: 80
-  uuid: 42bb6d36-97c7-11ee-be7f-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_272_558
-  type: vmess
-  server: a179ba1d-t6ngg0-t6tn6w-jjv2.hk3.p5pv.com
-  port: 80
-  uuid: 31676725-b0fd-fed2-c857-2da8ce5a6e4f
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_273_559
-  type: vmess
-  server: 336fc607-t6ngg0-t85gkc-115d8.hk3.p5pv.com
-  port: 80
-  uuid: 20482402-7f76-11ed-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_274_560
-  type: vmess
-  server: 545ee93d-t6r5s0-tc2sod-1tizo.hk3.p5pv.com
-  port: 80
-  uuid: bf36227c-0191-11f0-aee1-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_275_561
-  type: trojan
-  server: 160.16.72.33
-  port: 3093
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_276_562
-  type: vmess
-  server: 57.129.59.195
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: kampong.org
-  udp: true
-- name: 🇨🇳 v2cross.com_277_563
-  type: vmess
-  server: 918259a8-t4jj40-tnbkh1-1ejce.hkt.gotochinatown.net
-  port: 80
-  uuid: e534d120-d32f-11ef-bdb9-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: 918259a8-t4jj40-tnbkh1-1ejce.hkt.gotochinatown.net
-  udp: true
-- name: 🇭🇰 v2cross.com_278_564
-  type: vmess
-  server: 4bfcbe52-t6r5s0-tbnk1n-ueq.hk3.p5pv.com
-  port: 80
-  uuid: 91df5a86-fcdd-11ef-94aa-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇨🇳 v2cross.com_279_565
-  type: vmess
-  server: b47d7c47-t6r5s0-tk5ls1-z7a1.hkt.gotochinatown.net
-  port: 80
-  uuid: 3bd247a8-993e-11ec-a8bf-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_280_566
-  type: vmess
-  server: 7b1dbdd1-t6ngg0-t917sa-12ach.hk3.p5pv.com
-  port: 80
-  uuid: fc5ba91a-acd7-11ef-97e0-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_281_567
-  type: vmess
-  server: dfed4efb-t4n8g0-t636g9-luwe.hk3.p5pv.com
-  port: 80
-  uuid: a2b0fd2b-716f-0df8-d4e2-03a1c00e5f1a
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_282_568
-  type: vmess
-  server: 91.134.8.102
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: serkat.org
-  udp: true
-- name: 🇭🇰 v2cross.com_283_569
-  type: vmess
-  server: be944a17-sv4n40-t4qa9y-g43g.hk3.p5pv.com
-  port: 80
-  uuid: 6ddb6a68-d5f5-ca30-3943-cf0c9876d50c
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_284_570
-  type: vmess
-  server: 57.129.25.24
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: pelang.org
-  udp: true
-- name: 🇭🇰 v2cross.com_285_571
-  type: vmess
-  server: 77d7b6e4-sv2sg0-sw5wi7-ufc0.hk3.p5pv.com
-  port: 80
-  uuid: 22308988-8548-11ea-a22e-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_286_572
-  type: vmess
-  server: 91.134.8.92
-  port: 443
-  uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-  alterId: 0
-  cipher: auto
-  tls: true
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: linkvws
-    headers:
-      Host: yichueng.org
-  udp: true
-- name: 🇭🇰 v2cross.com_287_573
-  type: vmess
-  server: da79f07b-sv0xs0-t7hu58-1q1la.hk3.p5pv.com
-  port: 80
-  uuid: 25b46954-9a33-11ee-8b86-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇭🇰 v2cross.com_288_574
-  type: vmess
-  server: d12dcb0e-sv2sg0-t917sa-12ach.hk3.p5pv.com
-  port: 80
-  uuid: fc5ba91a-acd7-11ef-97e0-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: v2cross.com_289_575
-  type: vmess
-  server: 51.79.103.76
-  port: 80
-  uuid: 58fe1542-5290-40ad-815a-77707a81afe5
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /IOebhLMhl1CTbFHbL95myfRX2
-    headers:
-      Host: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
-  udp: true
-- name: 🇲🇴 Moldova_576
-  type: ss
-  server: 176.123.1.175
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: 🇸🇬 Singapore_577
-  type: ss
-  server: 156.59.243.6
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: 🇪🇸 United+States_1_578
-  type: ss
-  server: 167.160.90.178
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: 🇮🇳 Argentina_579
-  type: ss
-  server: 190.103.176.32
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: 🇪🇸 United+States_2_580
-  type: ss
-  server: 193.135.174.135
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: 🇪🇸 United+States_3_581
-  type: ss
-  server: 38.89.142.56
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: 🇦🇷 Armenia_582
-  type: ss
-  server: 45.15.126.19
-  port: 443
-  cipher: chacha20-ietf-poly1305
-  password: 6Ts2ZDTQAf3hkFoB8AFufDwsGrlF4e2t
-  udp: true
-- name: Panama_583
-  type: ss
-  server: 138.186.142.81
-  port: 990
-  cipher: chacha20-ietf-poly1305
-  password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  udp: true
-- name: 🇭🇰 Hong Kong_1_584
-  type: vmess
-  server: 06e6b075-sum4g0-sx1cxx-1tfjk.hk3.p5pv.com
-  port: 80
-  uuid: 49396d98-f4b4-11ef-8c3f-f23c913c8d2b
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: broadcastlv.chat.bilibili.com
-  udp: true
-- name: 🇺🇸 United States_1_585
-  type: vmess
-  server: 156.238.238.194
-  port: 47296
-  uuid: 0524236a-e217-4cf3-9223-968a290ffce7
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: 🇭🇰 Hong Kong_2_586
-  type: vmess
-  server: 47.242.140.52
-  port: 48219
-  uuid: 006893c6-79b1-4c44-94ff-b8bbea065f1f
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /arki
-    early-data-header-name: Sec-WebSocket-Protocol
-    max-early-data: 2048
-  udp: true
-- name: 🇭🇰 Hong Kong_3_587
-  type: vmess
-  server: 47.243.213.247
-  port: 53860
-  uuid: 63f2dca7-434c-444c-a9a1-130b377218c5
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /arki
-    early-data-header-name: Sec-WebSocket-Protocol
-    max-early-data: 2048
-  udp: true
-- name: 🇺🇸 United States_2_588
-  type: vmess
-  server: 216.227.168.157
-  port: 45266
-  uuid: 469e0b31-30c3-4dab-800d-711232634ce1
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  udp: true
-- name: 🇺🇸 United States_3_589
-  type: vmess
-  server: 216.227.168.157
-  port: 45287
-  uuid: 469e0b31-30c3-4dab-800d-711232634ce1
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  udp: true
-- name: 🇫🇷 France_590
-  type: vmess
-  server: 57.129.132.223
-  port: 80
-  uuid: a25cbf11-2908-4a1b-a3a8-9a571777dca3
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /vmess/
-    headers:
-      Host: google.com
-  udp: true
-- name: 🇭🇰 Hong Kong_4_591
-  type: vmess
-  server: 47.242.140.52
-  port: 34815
-  uuid: 1a46b66c-6ba9-4e9c-aa0b-0ebac2b69e32
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /arki
-    early-data-header-name: Sec-WebSocket-Protocol
-    max-early-data: 2048
-  udp: true
-- name: 🇩🇪 United+States_4_592
-  type: trojan
-  server: koma-yt.pages.dev
-  port: 8443
-  password: 8r<[9'l6hAO#8ZQi
-  sni: Koma-YT.PAGeS.Dev
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /tro8sFW1S91B6sZrM1
-  udp: true
-- name: 🇯🇵 Japan_593
-  type: trojan
-  server: 160.16.70.180
-  port: 1331
-  password: 79314e99f0a473fe86efc7827942ad00
-  sni: www.nintendogames.net
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_290_594
-  type: trojan
-  server: 95.40.76.44
-  port: 2673
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_291_595
-  type: trojan
-  server: 58.152.18.95
-  port: 443
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: 🇭🇰 v2cross.com_292_596
-  type: vmess
-  server: 6bbacbda-t1ekg0-t2uo6p-yjq0.hk3.p5pv.com
-  port: 80
-  uuid: 25b2699a-e18e-11ec-8e69-f23c91cfbbc9
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: 6bbacbda-t1ekg0-t2uo6p-yjq0.hk3.p5pv.com
-  udp: true
-- name: v2cross.com_293_597
-  type: vmess
-  server: 47.242.238.231
-  port: 16470
-  uuid: 89240c7e-d221-4042-a726-5dcbcf79c130
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /arki
-    early-data-header-name: Sec-WebSocket-Protocol
-    max-early-data: 2048
-  udp: true
-- name: v2cross.com_294_598
-  type: trojan
-  server: 219.79.165.186
-  port: 443
-  password: BxceQaOe
-  sni: t.me/ripaojiedian
-  skip-cert-verify: true
-  network: tcp
-  udp: true
-- name: v2cross.com_295_599
-  type: vmess
-  server: 47.243.51.237
-  port: 52801
-  uuid: ef93f413-9039-4ddb-aefb-2490287df55a
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /arki
-    early-data-header-name: Sec-WebSocket-Protocol
-    max-early-data: 2048
-  udp: true
-- name: 🇭🇰 v2cross.com_296_600
-  type: vmess
-  server: 6de4b9d4-suk9s0-t8ro7t-1ey07.hk3.p5pv.com
-  port: 80
-  uuid: 203d1d64-3313-11ed-bb74-f23c9164ca5d
-  alterId: 2
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-  udp: true
-- name: v2cross.com_297_601
-  type: ss
-  server: 5.188.36.93
-  port: 31348
-  cipher: chacha20-ietf-poly1305
-  password: nYRhTCZdQLExK6ewVHgHS2mlv4FCysKyeyTTfhRdEgdeeRN0
-  udp: true
-- name: v2cross.com_298_602
-  type: vmess
-  server: 47.243.12.217
-  port: 57526
-  uuid: 7fad3c4e-8fe6-4803-b737-91a9472c1fd4
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /arki
-    early-data-header-name: Sec-WebSocket-Protocol
-    max-early-data: 2048
-  udp: true
-- name: v2cross.com_299_603
-  type: vmess
-  server: 47.243.241.93
-  port: 62195
-  uuid: 73f10380-0c4d-4ffc-9b0d-0a75020d3636
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /arki
-    early-data-header-name: Sec-WebSocket-Protocol
-    max-early-data: 2048
-  udp: true
-- name: v2cross.com_300_604
-  type: vmess
-  server: 47.242.125.104
-  port: 36294
-  uuid: b4201b90-1b33-42f1-bdc0-9ce276a403f8
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /arki
-    early-data-header-name: Sec-WebSocket-Protocol
-    max-early-data: 2048
-  udp: true
-- name: v2cross.com_301_605
-  type: vmess
-  server: 47.242.125.104
-  port: 22739
-  uuid: d769d708-2250-402b-b8a7-4419a158bb52
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /arki
-    early-data-header-name: Sec-WebSocket-Protocol
-    max-early-data: 2048
-  udp: true
+  A7:
+    type: http
+    url: "https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/Jsnzkpg"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A7 prefix |"
+      additional-suffix: "| test suffix"
+
+  A8:
+    type: http
+    url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A8 prefix |"
+      additional-suffix: "| test suffix"
+
+  A9:
+    type: http
+    url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-2.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A9 prefix |"
+      additional-suffix: "| test suffix"
+
+  A10:
+    type: http
+    url: "https://raw.githubusercontent.com/Misaka-blog/chromego_merge/main/sub/merged_proxies_new.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A10 prefix |"
+      additional-suffix: "| test suffix"
+
+  A11:
+    type: http
+    url: "http://141.147.161.50:12580/clash/proxies"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A11 prefix |"
+      additional-suffix: "| test suffix"
+
+  A12:
+    type: http
+    url: "http://155.248.172.106:12580/clash/proxies"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A12 prefix |"
+      additional-suffix: "| test suffix"
+      
+  A13:
+    type: http
+    url: "http://66.42.50.118:12580/clash/proxies"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A13 prefix |"
+      additional-suffix: "| test suffix"
+
+  A14:
+    type: http
+    url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A14 prefix |"
+      additional-suffix: "| test suffix"
+  A15:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/10.yaml" #https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A15 prefix |"
+      additional-suffix: "| test suffix"
+  A16:
+    type: http
+    url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list_raw.txt"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A16 prefix |"
+      additional-suffix: "| test suffix"
+    
+  A22:
+    type: http
+    url: "https://raw.githubusercontent.com/yaney01/Yaney01/main/README.md"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A22 prefix |"
+      additional-suffix: "| test suffix"
+    
+  A66:
+    type: http
+    url: "https://raw.githubusercontent.com/HakurouKen/free-node/main/public"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A66 prefix |"
+      additional-suffix: "| test suffix"
+
+  A77:
+    type: http
+    url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/actives.txt"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A77 prefix |"
+      additional-suffix: "| test suffix"
+
+  A88:
+    type: http
+    url: "https://raw.githubusercontent.com/shabane/kamaji/master/hub/merged.txt"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A88 prefix |"
+      additional-suffix: "| test suffix"
+
+  A99:
+    type: http
+    url: "https://raw.githubusercontent.com/markbang/chromegopacs/main/hy2pac.txt"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A99 prefix |"
+      additional-suffix: "| test suffix"
+
+  A100:
+    type: http
+    url: "https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A100 prefix |"
+      additional-suffix: "| test suffix"
+
+  A111:
+    type: http
+    url: "https://raw.githubusercontent.com/abshare/abshare.github.io/main/README.md"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A111 prefix |"
+      additional-suffix: "| test suffix"
+
+  A122:
+    type: http
+    url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A122 prefix |"
+      additional-suffix: "| test suffix"
+      
+  A133:
+    type: http
+    url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A133 prefix |"
+      additional-suffix: "| test suffix"
+
+  A144:
+    type: http
+    url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A14 prefix |"
+      additional-suffix: "| test suffix"
+  A155:
+    type: http
+    url: "https://raw.githubusercontent.com/aiboboxx/clashfree/main/clash.yml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A155 prefix |"
+      additional-suffix: "| test suffix"
+  A101:
+    type: http
+    url: "https://raw.githubusercontent.com/mheidari98/.proxy/main/all"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A101 prefix |"
+      additional-suffix: "| test suffix"
+    
+  A102:
+    type: http
+    url: "https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/Clash.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A102 prefix |"
+      additional-suffix: "| test suffix"
+    
+  A106:
+    type: http
+    url: "https://raw.githubusercontent.com/ts-sf/fly/main/clash"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A106 prefix |"
+      additional-suffix: "| test suffix"
+
+  A107:
+    type: http
+    url: "https://raw.githubusercontent.com/PangTouY00/Auto_proxy/main/Long_term_subscription_num"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A107 prefix |"
+      additional-suffix: "| test suffix"
+
+  A108:
+    type: http
+    url: "https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A108 prefix |"
+      additional-suffix: "| test suffix"
+
+  A109:
+    type: http
+    url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A109 prefix |"
+      additional-suffix: "| test suffix"
+
+  A110:
+    type: http
+    url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "A110 prefix |"
+      additional-suffix: "| test suffix"
+  AA108:
+    type: http
+    url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "AA108 prefix |"
+      additional-suffix: "| test suffix"
+
+  AA109:
+    type: http
+    url: "https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt"
+    interval: 86400
+    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 100
+    override:
+      additional-prefix: "AA109 prefix |"
+      additional-suffix: "| test suffix"
 proxy-groups:
-- name: 🚀 select
-  type: url-test
-  url: "https://connectivitycheck.gstatic.com/generate_204"
-  hidden: true
-  tolerance: 10
-  proxies:
-  - url-test
-  - fallback
-  - AI
-  icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png
+  - name: "PROXY"
+    type: "select"
+    exclude-type: "direct"
+    include-all-providers: true
+    include-all-proxies: true
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
+    proxies:
+      - "🎈Auto"
+      - "🎈fallback"
+  - name: "🎈Auto"
+    type: "url-test"
+    url: "https://www.youtube.com"
+    interval: 200
+    tolerance: 500
+    exclude-type: "direct"
+    include-all-providers: true
+    include-all-proxies: true
+    hidden: false
+    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
 
-- name: url-test
-  type: url-test
-  include-all-proxies: true
-  exclude-type: "direct|http|socks5|redir-in|trojan"
-  hidden: true
-  icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
-  url: "https://connectivitycheck.gstatic.com/generate_204"
-  tolerance: 10
+  - name: "🎈fallback"
+    type: "fallback"
+    url: "https://www.youtube.com"
+    interval: 100
+    tolerance: 500
+    exclude-type: "direct"
+    include-all-providers: true
+    include-all-proxies: true
+    hidden: false
+    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
 
-- name: AI
-  type: url-test
-  filter: "美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|United|States|USA|US|CA|PM|MX|PA|BM|GL|GD|CR|VG|VI|BR|CL|PE|CU|HT|AR|UY|PY|JM|SR|BS|GF|BZ|MS|AW|CW|SX|MF|BL|GP|MQ|AG|KN|TT|VC|CO|EC|VE|BO|GT|SV|PR|KY|HN|DM|BB|LC|FK|TC"
-  exclude-filter: "HK|Hong|TW|Tai|Taiwan|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|回国|校园|游戏|🇰🇷|韩国|韓|首尔|KR|Korea|回国|校园|游戏|🇦🇹|timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅|AT|GER|🇩🇪🇱🇻|🇩🇪" 
-  icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
-  exclude-type: "direct|http|socks5|redir-in|trojan"
-  interval: 30
-  tolerance: 5
-  include-all-proxies: true
-  hidden: true
-  url: "https://connectivitycheck.gstatic.com/generate_204"
-  proxies:
-
-- name: 🌍 IRAN
-  type: select
-  hidden: true
-  proxies:
-  - DIRECT
-  - 🚀 select
-  - url-test
-  - fallback
-  icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/China.png
-
-- name: 🐟 FINAL
-  type: url-test
-  url: "https://connectivitycheck.gstatic.com/generate_204"
-  interval: 3
-  udp: true
-  hidden: true
-  proxies:
-  - 🚀 select
-  - url-test
-  - fallback
-  - AI
-  icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Final.png
-
-- name: fallback
-  type: fallback
-  include-all-proxies: true
-  exclude-type: "direct|http|socks5|redir-in|trojan"
-  hidden: true
-  proxies:
-  icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
-  url: "https://connectivitycheck.gstatic.com/generate_204"
-  interval: 30
+    
+  - name: "🎯 Direct"
+    type: "select"
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
+    proxies:
+      - "DIRECT"
+      - "PROXY"
+    
+    
 
 rules:
-  - GEOIP,ir,🌍 IRAN,no-resolve
-  - MATCH,🐟 FINAL
+  - DOMAIN-SUFFIX,acl4.ssr,🎯 Direct
+  - DOMAIN-SUFFIX,ip6-localhost,🎯 Direct
+  - DOMAIN-SUFFIX,ip6-loopback,🎯 Direct
+  - DOMAIN-SUFFIX,lan,🎯 Direct
+  - DOMAIN-SUFFIX,local,🎯 Direct
+  - DOMAIN-SUFFIX,localhost,🎯 Direct
+  - IP-CIDR,0.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,10.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,100.64.0.0/10,🎯 Direct,no-resolve
+  - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,172.16.0.0/12,🎯 Direct,no-resolve
+  - IP-CIDR,192.168.0.0/16,🎯 Direct,no-resolve
+  - IP-CIDR,198.18.0.0/16,🎯 Direct,no-resolve
+  - IP-CIDR,224.0.0.0/4,🎯 Direct,no-resolve
+  - IP-CIDR6,::1/128,🎯 Direct,no-resolve
+  - IP-CIDR6,fc00::/7,🎯 Direct,no-resolve
+  - IP-CIDR6,fe80::/10,🎯 Direct,no-resolve
+  - IP-CIDR6,fd00::/8,🎯 Direct,no-resolve
+  - DOMAIN,instant.arubanetworks.com,🎯 Direct
+  - DOMAIN,setmeup.arubanetworks.com,🎯 Direct
+  - DOMAIN,router.asus.com,🎯 Direct
+  - DOMAIN,www.asusrouter.com,🎯 Direct
+  - DOMAIN-SUFFIX,hiwifi.com,🎯 Direct
+  - DOMAIN-SUFFIX,leike.cc,🎯 Direct
+  - DOMAIN-SUFFIX,miwifi.com,🎯 Direct
+  - DOMAIN-SUFFIX,my.router,🎯 Direct
+  - DOMAIN-SUFFIX,p.to,🎯 Direct
+  - DOMAIN-SUFFIX,peiluyou.com,🎯 Direct
+  - DOMAIN-SUFFIX,phicomm.me,🎯 Direct
+  - DOMAIN-SUFFIX,router.ctc,🎯 Direct
+  - DOMAIN-SUFFIX,routerlogin.com,🎯 Direct
+  - DOMAIN-SUFFIX,tendawifi.com,🎯 Direct
+  - DOMAIN-SUFFIX,zte.home,🎯 Direct
+  - DOMAIN-SUFFIX,tplogin.cn,🎯 Direct
+  - DOMAIN-SUFFIX,wifi.cmcc,🎯 Direct
+  - MATCH,PROXY
+proxies:
+    - down: ""
+      fingerprint: ""
+      name: px-04
+      obfs: ""
+      obfs-password: ""
+      password: linux.do
+      port: "443"
+      server: ""
+      skip-cert-verify: true
+      type: hysteria2
+      up: ""
+    - down: ""
+      fingerprint: ""
+      name: px-03
+      obfs: ""
+      obfs-password: '@JavidnamanIran-Javid-SHAH-KingRezaPahlavi'
+      password: b4bd0613-ff7c-4f2f-954d-185915e6ddad
+      port: "35000"
+      server: 206.71.158.41
+      skip-cert-verify: true
+      sni: api.kermanshahi.org
+      type: hysteria2
+      up: ""
+    - down: ""
+      fingerprint: ""
+      name: px
+      obfs: ""
+      obfs-password: Telegram-->@Ln2Ray
+      password: Telegram--%3E%40Ln2Ray
+      port: "45000"
+      server: 206.71.158.23
+      skip-cert-verify: true
+      sni: gavazn.55994421.xyz
+      type: hysteria2
+      up: ""
+    - down: ""
+      fingerprint: ""
+      name: px-17
+      obfs: ""
+      obfs-password: ""
+      password: Yet-Another-Public-Config-1
+      port: "443"
+      server: ""
+      skip-cert-verify: true
+      type: hysteria2
+      up: ""
+    - down: ""
+      fingerprint: ""
+      name: px-01
+      obfs: ""
+      obfs-password: '@JavidnamanIran-Javid-SHAH-KingRezaPahlavi'
+      password: b4bd0613-ff7c-4f2f-954d-185915e6ddad
+      port: "35000"
+      server: 206.71.158.40
+      skip-cert-verify: true
+      sni: api.kermanshahi.org
+      type: hysteria2
+      up: ""
+    - encryption: none
+      name: px-31
+      network: ws
+      port: "2095"
+      server: 104.17.135.117
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 86c50e3a-5b87-49dd-bd20-03c7f2735e40
+      ws-opts:
+        headers:
+            Host: snippets.pusytroller.cf
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36
+        path: /
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-34
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: 4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik
+        short-id: d8c6b58bcbb0c323
+      server: 95.163.250.213
+      servername: max.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 62770d79-dc4d-07d0-b01c-ea30399725aa
+      xudp: true
+    - down: ""
+      fingerprint: ""
+      name: px-02
+      obfs: ""
+      obfs-password: Yet-Another-Public-Config-1
+      password: Yet-Another-Public-Config-1
+      port: "36400"
+      server: 206.71.158.37
+      skip-cert-verify: true
+      sni: YAPC-1.afshin.ir
+      type: hysteria2
+      up: ""
+    - down: ""
+      fingerprint: ""
+      name: px-18
+      obfs: ""
+      obfs-password: ""
+      password: Telegram--%3E%40Ln2Ray
+      port: "443"
+      server: ""
+      skip-cert-verify: true
+      type: hysteria2
+      up: ""
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-37
+      network: tcp
+      port: "40443"
+      reality-opts:
+        public-key: DG904eM7xGecwV_nhjX73c-7g_fGEv8BgjbeAmTE8Bs
+        short-id: 505c94b8c65afb0a
+      server: 185.191.117.224
+      servername: pimg.mycdn.me
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 63d62292-0e4d-4b3e-b506-94bf53733b5a
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-39
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: IU2t096hBC7gAQ_rY1qwYsAtgiegzYI6loivZJxpx1E
+        short-id: 28e1270764a2464b
+      server: 45.139.27.86
+      servername: alisa.kosmolet.xyz
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 613725ab-ca86-4d54-852e-a0bf45e812de
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-32
+      network: tcp
+      port: "45886"
+      reality-opts:
+        public-key: zJeLZDPHoHMcAzBJh38tSavofNlkBrpADFx9jVVPil0
+        short-id: 94f9
+      server: 5.182.36.56
+      servername: yahoo.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 8338171d-2ea7-4015-bdea-492f3d5d4e60
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      grpc-opts:
+        grpc-service-name: grpc
+      name: px-40
+      network: grpc
+      port: "8443"
+      reality-opts:
+        public-key: J5ITJbg5FQFembAfkogKHHQB6DigsFXQxK7xu-QMWUs
+        short-id: 6b2f4e6ac9b1d2f0
+      server: 51.250.68.167
+      servername: ads.x5.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5c83b272-47db-4ef1-b8c5-4f7d0886608b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-41
+      network: tcp
+      port: "7443"
+      reality-opts:
+        public-key: J5ITJbg5FQFembAfkogKHHQB6DigsFXQxK7xu-QMWUs
+        short-id: a20d3ed244c76426
+      server: 51.250.39.121
+      servername: ads.x5.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5c83b272-47db-4ef1-b8c5-4f7d0886608b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-42
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+        short-id: ""
+      server: 51.250.93.152
+      servername: ya.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: d684cb56-e4b8-4453-8a7b-a1ad8c81935a
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      grpc-opts:
+        grpc-service-name: grpc
+      name: px-43
+      network: grpc
+      port: "8443"
+      reality-opts:
+        public-key: J5ITJbg5FQFembAfkogKHHQB6DigsFXQxK7xu-QMWUs
+        short-id: 6b2f4e6ac9b1d2f0
+      server: 51.250.27.132
+      servername: ads.x5.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5c83b272-47db-4ef1-b8c5-4f7d0886608b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-44
+      network: tcp
+      port: "40443"
+      reality-opts:
+        public-key: DG904eM7xGecwV_nhjX73c-7g_fGEv8BgjbeAmTE8Bs
+        short-id: 505c94b8c65afb0a
+      server: 185.191.118.232
+      servername: pimg.mycdn.me
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 63d62292-0e4d-4b3e-b506-94bf53733b5a
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-45
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: FkmYFobwxLMLEktYXywmjthuEYCZggITsxwPNasTKUg
+        short-id: 6354585c37827955
+      server: 176.108.242.76
+      servername: www.vkvideo.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 4371ad14-b981-4699-bedf-83fb79bde3e6
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      grpc-opts:
+        grpc-service-name: grpc
+      name: px-46
+      network: grpc
+      port: "8443"
+      reality-opts:
+        public-key: J5ITJbg5FQFembAfkogKHHQB6DigsFXQxK7xu-QMWUs
+        short-id: 6b2f4e6ac9b1d2f0
+      server: 51.250.2.19
+      servername: ads.x5.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5c83b272-47db-4ef1-b8c5-4f7d0886608b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-47
+      network: tcp
+      port: "40443"
+      reality-opts:
+        public-key: DG904eM7xGecwV_nhjX73c-7g_fGEv8BgjbeAmTE8Bs
+        short-id: 505c94b8c65afb0a
+      server: 84.32.49.216
+      servername: pimg.mycdn.me
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 63d62292-0e4d-4b3e-b506-94bf53733b5a
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      grpc-opts:
+        grpc-service-name: grpc
+      name: px-48
+      network: grpc
+      port: "8443"
+      reality-opts:
+        public-key: J5ITJbg5FQFembAfkogKHHQB6DigsFXQxK7xu-QMWUs
+        short-id: 6b2f4e6ac9b1d2f0
+      server: 51.250.75.212
+      servername: ads.x5.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5c83b272-47db-4ef1-b8c5-4f7d0886608b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-49
+      network: tcp
+      port: "4249"
+      reality-opts:
+        public-key: J5ITJbg5FQFembAfkogKHHQB6DigsFXQxK7xu-QMWUs
+        short-id: a20d3ed244c76426
+      server: 51.250.27.132
+      servername: api-maps.yandex.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5c83b272-47db-4ef1-b8c5-4f7d0886608b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-50
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: -uB8zIro9WM-NPpiSlOLWHouzZVXibfmT-MxwkacoQ0
+        short-id: a67894cec8a930c4
+      server: 45.144.51.14
+      servername: aneta.kosmolet.xyz
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 613725ab-ca86-4d54-852e-a0bf45e812de
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-51
+      network: tcp
+      port: "7443"
+      reality-opts:
+        public-key: J5ITJbg5FQFembAfkogKHHQB6DigsFXQxK7xu-QMWUs
+        short-id: a20d3ed244c76426
+      server: 51.250.75.212
+      servername: ads.x5.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5c83b272-47db-4ef1-b8c5-4f7d0886608b
+      xudp: true
+    - client-fingerprint: firefox
+      encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-52
+      network: tcp
+      port: "6491"
+      reality-opts:
+        public-key: y6JSkggQ__RA_nmCJpX1_ddSQC6vzDUPaN7KyvjVuic
+        short-id: ""
+      server: fn.aftabix.com
+      servername: refersion.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: caf7161a-f6dc-58e0-9f0f-724aa3c66d8b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-53
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+        short-id: ""
+      server: 193.233.254.42
+      servername: de.reality.tv123.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: d684cb56-e4b8-4453-8a7b-a1ad8c81935a
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-54
+      network: tcp
+      port: "40443"
+      reality-opts:
+        public-key: DG904eM7xGecwV_nhjX73c-7g_fGEv8BgjbeAmTE8Bs
+        short-id: 505c94b8c65afb0a
+      server: 84.32.49.230
+      servername: pimg.mycdn.me
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 63d62292-0e4d-4b3e-b506-94bf53733b5a
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-55
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: IU2t096hBC7gAQ_rY1qwYsAtgiegzYI6loivZJxpx1E
+        short-id: 28e1270764a2464b
+      server: 45.139.26.33
+      servername: alisa.kosmolet.xyz
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 613725ab-ca86-4d54-852e-a0bf45e812de
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-56
+      network: tcp
+      port: "1488"
+      reality-opts:
+        public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+        short-id: 6ba85179e30d4fc2
+      server: 51.250.16.178
+      servername: ads.x5.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: cc5be457-024a-4bd1-b769-90973ba5b06e
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-57
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+        short-id: ""
+      server: 45.144.52.37
+      servername: fi.reality.tv123.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: d684cb56-e4b8-4453-8a7b-a1ad8c81935a
+      xudp: true
+    - client-fingerprint: qq
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-58
+      network: tcp
+      port: "7443"
+      reality-opts:
+        public-key: DG904eM7xGecwV_nhjX73c-7g_fGEv8BgjbeAmTE8Bs
+        short-id: 505c94b8c65afb0a
+      server: balanced-rus-bridge.velvetvpn.xyz
+      servername: yandex.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 63d62292-0e4d-4b3e-b506-94bf53733b5a
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-59
+      network: tcp
+      port: "7443"
+      reality-opts:
+        public-key: DG904eM7xGecwV_nhjX73c-7g_fGEv8BgjbeAmTE8Bs
+        short-id: 505c94b8c65afb0a
+      server: 95.182.110.140
+      servername: yandex.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 63d62292-0e4d-4b3e-b506-94bf53733b5a
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-60
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+        short-id: ""
+      server: 45.139.78.132
+      servername: fi.reality.tv123.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: d684cb56-e4b8-4453-8a7b-a1ad8c81935a
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-61
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: IU2t096hBC7gAQ_rY1qwYsAtgiegzYI6loivZJxpx1E
+        short-id: 28e1270764a2464b
+      server: 217.198.12.29
+      servername: alisa.kosmolet.xyz
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 613725ab-ca86-4d54-852e-a0bf45e812de
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      grpc-opts:
+        grpc-service-name: grpc
+      name: px-62
+      network: grpc
+      port: "8443"
+      reality-opts:
+        public-key: J5ITJbg5FQFembAfkogKHHQB6DigsFXQxK7xu-QMWUs
+        short-id: 6b2f4e6ac9b1d2f0
+      server: 51.250.21.184
+      servername: ads.x5.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5c83b272-47db-4ef1-b8c5-4f7d0886608b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-63
+      network: tcp
+      port: "7443"
+      reality-opts:
+        public-key: DG904eM7xGecwV_nhjX73c-7g_fGEv8BgjbeAmTE8Bs
+        short-id: 505c94b8c65afb0a
+      server: 95.182.110.115
+      servername: yandex.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 63d62292-0e4d-4b3e-b506-94bf53733b5a
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      grpc-opts:
+        grpc-service-name: grpc
+      name: px-64
+      network: grpc
+      port: "22955"
+      reality-opts:
+        public-key: 9Mt_Y8J_qDb1khlieWnhDSAq-kGtLHw6aOKgkAzOMms
+        short-id: 6ba85179e30d4fc2
+      server: dfg.octopusss.net
+      servername: one-piece.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 63f92f3c-447c-4283-80b9-0af8e164cdad
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-65
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+        short-id: ""
+      server: 176.98.177.145
+      servername: fi.reality.tv123.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: d684cb56-e4b8-4453-8a7b-a1ad8c81935a
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-66
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: IU2t096hBC7gAQ_rY1qwYsAtgiegzYI6loivZJxpx1E
+        short-id: 28e1270764a2464b
+      server: 185.152.93.158
+      servername: alisa.kosmolet.xyz
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 613725ab-ca86-4d54-852e-a0bf45e812de
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-67
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: 4tgpfnEvkdOoG1jGnODdaIglbQqGDauXokKhFBEvJxk
+        short-id: "8133508795292229"
+      server: 91.217.10.233
+      servername: aigul.kosmolet.xyz
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 613725ab-ca86-4d54-852e-a0bf45e812de
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-68
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: cA3-aAVa0dZXMKbzXj5nLUyxB1AdgrOVU8UU_mJ67EA
+        short-id: c78d9525a558f9f9
+      server: 104.167.197.79
+      servername: ashley.kosmolet.xyz
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 613725ab-ca86-4d54-852e-a0bf45e812de
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-69
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: mLmBhbVFfNuo2eUgBh6r9-5Koz9mUCn3aSzlR6IejUg
+        short-id: 48720c
+      server: 91.147.92.153
+      servername: hls-svod.itunes.apple.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5c90ba85-fa28-4437-8561-4fab86beccaa
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-70
+      network: tcp
+      port: "4249"
+      reality-opts:
+        public-key: uWicR5hgESYN55kBb5OQhaounsEkhPKsLZDU0sNKcEQ
+        short-id: a20d3ed244c76426
+      server: 51.250.104.227
+      servername: api-maps.yandex.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5c83b272-47db-4ef1-b8c5-4f7d0886608b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-71
+      network: tcp
+      port: "4249"
+      reality-opts:
+        public-key: koPEXma6Cn65z3Rka3DCtp-UPwmAFFs9Wii9M4ewxBI
+        short-id: a20d3ed244c76426
+      server: 84.201.161.178
+      servername: api-maps.yandex.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5c83b272-47db-4ef1-b8c5-4f7d0886608b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-72
+      network: tcp
+      port: "42082"
+      reality-opts:
+        public-key: WQw0vAqB3VdXmSYbpKjKdC_e06bbgieUml2lvF2fPkA
+        short-id: 592d
+      server: 103.229.96.164
+      servername: google.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: ed4ac5b7-9814-465a-9b1d-afa2172c283b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-73
+      network: tcp
+      port: "39801"
+      reality-opts:
+        public-key: wKoJrQPBxzgS_tCyDp2RLH2gvabUodsfnfxIG1wY-ng
+        short-id: 3c531d06bded7450
+      server: 52.77.208.165
+      servername: google.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: c9f044aa-7ec0-4510-b39b-a90357856cf2
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-74
+      network: tcp
+      port: "41579"
+      reality-opts:
+        public-key: 3W_eKpL975AF7oI-mkgVtf2iK954luxwaT6C41re0RI
+        short-id: 2efb6c97c1
+      server: 161.248.63.15
+      servername: www.icloud.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: f64cdd9d-57c3-45b2-e999-c46006719646
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-76
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: vnjp7zIK2H3CGdjSis_79KXqS6IG-opmpbETPUD-EC8
+        short-id: 15affa0af66dfc79
+      server: 158.160.53.57
+      servername: api-maps.yandex.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 3d29bd40-5f23-4024-aab6-17258cd55a7e
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-75
+      network: tcp
+      port: "2443"
+      reality-opts:
+        public-key: vnjp7zIK2H3CGdjSis_79KXqS6IG-opmpbETPUD-EC8
+        short-id: 15affa0af66dfc79
+      server: 51.250.96.217
+      servername: ads.x5.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 779a7110-0b01-486e-9056-eb22f3bb58f1
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-77
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: IU2t096hBC7gAQ_rY1qwYsAtgiegzYI6loivZJxpx1E
+        short-id: 28e1270764a2464b
+      server: 45.139.26.133
+      servername: alisa.kosmolet.xyz
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 613725ab-ca86-4d54-852e-a0bf45e812de
+      xudp: true
+    - encryption: none
+      name: px-79
+      network: ws
+      port: "8080"
+      server: 198.50.119.86
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: e2be0db4-4110-42eb-bca1-ba8df0897319
+      ws-opts:
+        headers:
+            Host: telewebion.com
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36
+        path: /39427/Nextlife
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-78
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: fdw3RhTEan_ZYiBDFzP6bP2cBBWHiE0z0gu85JH38GE
+        short-id: 1e28103829cd69b6
+      server: 103.111.115.161
+      servername: www.microsoft.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: adab9268-f742-407b-8cbc-cf0b643c5e9f
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-80
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: pc_Dy8al9BxyKWfpoGUO5aF3PEhAVYHTPvRG78lD8F8
+        short-id: ""
+      server: 144.31.14.162
+      servername: yandex.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: c16a6021-2466-40d8-b506-e68d8a8ce3b4
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-81
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: RHUQAGJ_MYNKsZt2XO_DATEm1cQh0Rdpz83DTCGSKl0
+        short-id: 42439faf
+      server: 217.198.12.6
+      servername: 0ru84.tcpdoor.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: c5c9d8ec-6c95-4f84-a395-de41ef895f34
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-82
+      network: tcp
+      port: "7443"
+      reality-opts:
+        public-key: J5ITJbg5FQFembAfkogKHHQB6DigsFXQxK7xu-QMWUs
+        short-id: a20d3ed244c76426
+      server: 51.250.110.247
+      servername: ads.x5.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5c83b272-47db-4ef1-b8c5-4f7d0886608b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-83
+      network: tcp
+      port: "5444"
+      reality-opts:
+        public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+        short-id: 6ba85179e30d4fc2
+      server: 78.159.247.74
+      servername: max.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 9c4dd65a-7158-4db7-bcef-4b44fb9941f0
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-84
+      network: tcp
+      port: "1488"
+      reality-opts:
+        public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+        short-id: ""
+      server: 51.250.98.101
+      servername: ads.x5.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: cc5be457-024a-4bd1-b769-90973ba5b06e
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-85
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: WvNaAxI0W__qfUKbtysH4IwF155YENlv3PG6crCmPkA
+        short-id: ""
+      server: 77.83.245.220
+      servername: mailru.ookcdn.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: eb162ab1-a006-4931-b1b3-8fc88a22b10e
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-86
+      network: tcp
+      port: "47365"
+      reality-opts:
+        public-key: OS3kmYquxfONWW-d97YxQU_kH-Vc-sy2ehpvtS02LTI
+        short-id: ee95bdc46f0b8e14
+      server: 103.219.193.54
+      servername: www.microsoft.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 2c503f75-1dc8-4c0c-ba07-a11a9d085840
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-87
+      network: tcp
+      port: "28190"
+      reality-opts:
+        public-key: ZJRnFU-1s1JOnO8E9uZ7b00l1fPEh63fGRbdBANFRno
+        short-id: ""
+      server: 159.89.87.21
+      servername: aws.amazon.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 14c80e0e-f7ce-4991-94fc-99a1db4a9b1e
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-88
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: vnjp7zIK2H3CGdjSis_79KXqS6IG-opmpbETPUD-EC8
+        short-id: 15affa0af66dfc79
+      server: 158.160.107.136
+      servername: api-maps.yandex.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 7cebdc43-d3f3-4e62-8d58-e614f6fedb67
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-89
+      network: grpc
+      port: "1500"
+      reality-opts:
+        public-key: VQxVgczORkbSNdDrkNOYs6zMBINpViztTKDuWCeQsVE
+        short-id: 775eb6408888248e
+      server: 81.208.170.142
+      servername: www.ebay.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: e332f028-d343-5b44-8016-b3130f39e133
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-90
+      network: tcp
+      port: "3443"
+      reality-opts:
+        public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+        short-id: 6ba85179e30d4fc2
+      server: 217.13.111.70
+      servername: api-maps.yandex.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 292e75fc-5a8a-40c4-b937-407c2400a42e
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-33
+      network: tcp
+      port: "8443"
+      reality-opts:
+        public-key: bPN2gQ-96uG3DZONnduotvwViMDsUsN2XZnRkzXcMxk
+        short-id: edc87d796657fbe5
+      server: 217.16.16.251
+      servername: eh.vk.vom
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: d63129ab-04a5-4797-8a70-84f4ab610ca9
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-92
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: aO2tx4kfUpQWIvT5bO7lH6G1GDfnrThtSFigLJXDens
+        short-id: 370dd394052f2386
+      server: 51.210.86.236
+      servername: tgju.org
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 1d868010-64bb-4f38-8f9e-0affe9ed64bf
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-93
+      network: tcp
+      port: "57516"
+      reality-opts:
+        public-key: ScCsL43AFwGSI8WvpjhAE6Y9PguU49ZLbwF-6YTbrTo
+        short-id: c1765dd26b1e70
+      server: 87.121.86.31
+      servername: google.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: de2708c5-6e8e-4582-85ed-98f2554e5208
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-94
+      network: tcp
+      port: "3443"
+      reality-opts:
+        public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+        short-id: ""
+      server: 217.13.104.101
+      servername: api-maps.yandex.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 292e75fc-5a8a-40c4-b937-407c2400a42e
+      xudp: true
+    - client-fingerprint: firefox
+      encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-95
+      network: tcp
+      port: "2255"
+      reality-opts:
+        public-key: Cs7yLk8XXPksSjf6GB1JFYyFICqWVL3nL-10K7jQ7xc
+        short-id: 983c9303725c67
+      server: free1.barayekhudam.ir
+      servername: radar.arvancloud.ir
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 02b320ce-09f8-4cb5-9c46-9024f5585881
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      grpc-opts:
+        grpc-service-name: grpc
+      name: px-96
+      network: grpc
+      port: "8443"
+      reality-opts:
+        public-key: J5ITJbg5FQFembAfkogKHHQB6DigsFXQxK7xu-QMWUs
+        short-id: 6b2f4e6ac9b1d2f0
+      server: 89.208.228.167
+      servername: ads.x5.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5c83b272-47db-4ef1-b8c5-4f7d0886608b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-97
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: wBrGfTI9PaFf966aN6KaCY0cL6QRLlop4nzNa6bJsiQ
+        short-id: 9f35da6c9412b832
+      server: 185.112.59.3
+      servername: google.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: a384c715-aeb5-45e8-859b-f687ca6c083f
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-98
+      network: tcp
+      port: "22404"
+      reality-opts:
+        public-key: JA3iMT6_Xo0S98GIbTLB5eoHES3lbZkYrOfSReZZolM
+        short-id: a8dbd116
+      server: 23.26.156.219
+      servername: apple.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 3b5a37f3-58e0-4768-a716-246b1177152b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-100
+      network: tcp
+      port: "8443"
+      reality-opts:
+        public-key: 7zd9mJilgjOrg_ohtw23Vmio-pdnYqeP_r-kiWt87Cg
+        short-id: 8ba12e75110b7a9c
+      server: 83.166.236.240
+      servername: tradingview.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5901de00-34f2-4625-ba89-15a0e76f560e
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-99
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: euR8poucesDF-UxANxJ7Uqg1t4cfiDtAzAQcTVhRQCE
+        short-id: 140d8b3989bf5116
+      server: 45.144.51.22
+      servername: github.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 6c49485f-843c-4e96-abfe-046bc473c7b0
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-101
+      network: tcp
+      port: "30297"
+      reality-opts:
+        public-key: j07H9kYduVQkwjQw-7PW0um-0FUeCNe9J70oLv8I03I
+        short-id: 626617b8f5c8
+      server: 83.219.97.166
+      servername: google.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: f3b47775-edd2-42f8-94ac-9d315ae5463d
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: px-102
+      network: ws
+      port: "8443"
+      server: 104.21.3.219
+      servername: ovhwuxian.pai50288.uk
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 57ba2ab1-a283-42eb-82ee-dc3561a805b8
+      ws-opts:
+        headers:
+            Host: ovhwuxian.pai50288.uk
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36
+        path: /57ba2ab1
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-103
+      network: tcp
+      port: "51258"
+      reality-opts:
+        public-key: fQRGR6Kmzq7PMMQqkizkQCABa4VdPawdyVD__qAAuiw
+        short-id: c0aed2176b
+      server: 23.88.3.239
+      servername: cdn-download2.refersion.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 209d287d-a922-4534-8be0-d2b2f4cb15a9
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: px-104
+      network: ws
+      port: "2053"
+      server: 8.47.69.0
+      servername: sni.111000.dynv6.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 1a25f8ad-cad2-4e93-b5bf-34e42bcac02a
+      ws-opts:
+        headers:
+            Host: sni.111000.dynv6.net
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+        path: /
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-105
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+        short-id: ""
+      server: 217.198.13.50
+      servername: de.reality.tv123.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: d684cb56-e4b8-4453-8a7b-a1ad8c81935a
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@Filter_breaker'
+      password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
+      port: "990"
+      server: 79.127.200.169
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: All--@V2rayAlpha-7
+      password: ef720f5b791a60f7
+      port: "11201"
+      server: 54.37.77.212
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - client-fingerprint: chrome
+      encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-106
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: Wg_prcp8fAsUrveCKVqBsk_8mWuKurQb-0N3H1e35mk
+        short-id: bb3b14db
+      server: 81.19.141.144
+      servername: cdnjs.cloudflare.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: c5c9d8ec-6c95-4f84-a395-de41ef895f34
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: All--@V2rayAlpha-4
+      password: 85d3d8ccba287d3e
+      port: "20939"
+      server: 135.125.245.131
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@zeshtobad'
+      password: ca5efd5cf9e947ad
+      port: "11201"
+      server: 54.36.116.190
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-107
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: Ir8aVlMrWZv9xjSbcYXdZJ7F6BaNNNz0rtrX7SgzF1w
+        short-id: 03f19541765dff24
+      server: 185.239.50.16
+      servername: free.dlntch.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: d7af1bfd-3dea-4a46-9b54-524462f6645b
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: All--@V2rayAlpha-3
+      password: 9f99180fc9211c40
+      port: "27797"
+      server: 51.161.80.138
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@zeshtobad-01'
+      password: f0669fb16446e528
+      port: "11201"
+      server: 54.36.118.33
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - down: ""
+      fingerprint: ""
+      name: px-108
+      obfs: ""
+      obfs-password: Yet-Another-Public-Config-1
+      password: Yet-Another-Public-Config-1
+      port: "35200"
+      server: 206.71.158.37
+      skip-cert-verify: true
+      sni: YAPC-1.afshin.ir
+      type: hysteria2
+      up: ""
+    - down: ""
+      fingerprint: ""
+      name: px-109
+      obfs: ""
+      obfs-password: Yet-Another-Public-Config-1
+      password: Yet-Another-Public-Config-1
+      port: "36600"
+      server: 206.71.158.37
+      skip-cert-verify: true
+      sni: YAPC-1.afshin.ir
+      type: hysteria2
+      up: ""
+    - cipher: chacha20-ietf-poly1305
+      name: '@zeshtobad-02'
+      password: 823cdb94a457faee
+      port: "11201"
+      server: 141.95.109.160
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - down: ""
+      fingerprint: ""
+      name: px-110
+      obfs: ""
+      obfs-password: Yet-Another-Public-Config-1
+      password: Yet-Another-Public-Config-1
+      port: "36300"
+      server: 206.71.158.37
+      skip-cert-verify: true
+      sni: YAPC-1.afshin.ir
+      type: hysteria2
+      up: ""
+    - cipher: chacha20-ietf-poly1305
+      name: '@zeshtobad-03'
+      password: 9bfee1388e960537
+      port: "11201"
+      server: 51.89.117.154
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@zeshtobad-04'
+      password: d974573beb3f30d4
+      port: "11201"
+      server: 57.128.30.201
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@'
+      password: 317f13c5c2ebdea3
+      port: "11204"
+      server: 5.188.227.18
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@-01'
+      password: 317f13c5c2ebdea3
+      port: "11205"
+      server: 5.188.227.18
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - client-fingerprint: chrome
+      name: Telegram
+      network: ws
+      password: humanity
+      port: "443"
+      server: www.calmlunch.com
+      skip-cert-verify: true
+      sni: www.calmlunch.com
+      type: trojan
+      udp: true
+      ws-opts:
+        headers:
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36
+        path: /assignment
+    - cipher: chacha20-ietf-poly1305
+      name: '@-02'
+      password: d27faed8a9b98bd0
+      port: "11201"
+      server: 163.171.137.72
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@-03'
+      password: 317f13c5c2ebdea3
+      port: "11201"
+      server: 5.188.227.18
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@-04'
+      password: 317f13c5c2ebdea3
+      port: "11203"
+      server: 5.188.227.18
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: BESTIIVPNBOT
+      password: 4a2rfixophdjffa8KVA4Aa
+      port: "8080"
+      server: 193.29.139.157
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-111
+      network: grpc
+      port: "8880"
+      server: 40.160.14.104
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 6251f84e-9c02-4140-921c-6b47d394fb96
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-91
+      network: tcp
+      port: "3443"
+      reality-opts:
+        public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+        short-id: 6ba85179e30d4fc2
+      server: 151.236.93.44
+      servername: ir-2.ozone.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: dfd30304-9c58-4ff4-8ba0-b70af154fbc9
+      xudp: true
+    - alterId: 0
+      cipher: auto
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: https://t.me/V2raNG_DA
+      network: tcp
+      port: "45653"
+      server: 94.232.247.165
+      skip-cert-verify: true
+      type: vmess
+      udp: true
+      uuid: 9e91d19a-c73f-4276-adbc-b337c374259c
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: BESTIIVPNBOT-01
+      password: 7a63df1a001759bf
+      port: "11201"
+      server: 51.89.118.58
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: BESTIIVPNBOT-02
+      password: oZIoA69Q8yhcQV8ka3Pa3A
+      port: "8080"
+      server: 45.87.175.22
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@v2FreeHub'
+      password: 865bc80919a484a5
+      port: "11201"
+      server: 57.129.89.142
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@v2FreeHub-01'
+      password: a3027c931ae07bce
+      port: "27130"
+      server: 57.129.69.122
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@v2FreeHub-02'
+      password: ef33c53f6e9e3c1b
+      port: "10026"
+      server: 85.239.232.127
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@v2FreeHub-03'
+      password: 32a9a16d8a041c98
+      port: "11201"
+      server: 163.171.181.30
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - encryption: none
+      name: px-112
+      network: ws
+      port: "2052"
+      server: 62.60.176.237
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: c88811ea-fead-4e2d-b34d-7d8725896304
+      ws-opts:
+        path: Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-19
+      network: tcp
+      port: "7443"
+      reality-opts:
+        public-key: J5ITJbg5FQFembAfkogKHHQB6DigsFXQxK7xu-QMWUs
+        short-id: a20d3ed244c76426
+      server: 51.250.97.251
+      servername: ads.x5.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 5c83b272-47db-4ef1-b8c5-4f7d0886608b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-38
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+        short-id: ""
+      server: ru-msk-yan-1gbit-01.sssrvpn.pro
+      servername: api-maps.yandex.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: d684cb56-e4b8-4453-8a7b-a1ad8c81935a
+      xudp: true
+    - down: ""
+      fingerprint: ""
+      name: px-05
+      obfs: ""
+      obfs-password: '@JavidnamanIran-Javid-SHAH-KingRezaPahlavi'
+      password: b4bd0613-ff7c-4f2f-954d-185915e6ddad
+      port: "35000"
+      server: 77.90.41.197
+      skip-cert-verify: true
+      sni: api.kermanshahi.org
+      type: hysteria2
+      up: ""
+    - client-fingerprint: chrome
+      encryption: none
+      name: "4"
+      network: ws
+      port: "443"
+      server: 134.122.61.31
+      servername: joss.gvpn2.web.id
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 98bdfa8a-bcc7-4dc9-b6fd-a5e5b3076435
+      ws-opts:
+        headers:
+            Host: joss.gvpn2.web.id
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36
+        path: /Free-VPN-CF-Geo-Project/NL187
+      xudp: true
+    - encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-20
+      network: tcp
+      port: "3001"
+      server: 103.90.75.252
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 61757901-3818-46c7-8482-683fa7f6ba10
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: Telegram-02
+      network: grpc
+      port: "8880"
+      server: pqh29v3.globalfymain.com
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 8dc7722c-2767-4eea-a28b-2f8daacc07e3
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: BESTIIVPNBOT-04
+      password: cvII85TrW6n0OGyfpHVS1u
+      port: "8080"
+      server: 45.87.175.177
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-114
+      password: 82f3a83f1556c0e3
+      port: "29757"
+      server: 57.129.129.247
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - alterId: 0
+      cipher: auto
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: BESTIIVPNBOT-03
+      network: tcp
+      port: "443"
+      server: 217.69.5.32
+      skip-cert-verify: true
+      type: vmess
+      udp: true
+      uuid: ec4c349c-b3c6-4cff-be63-01eaad1dc098
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: IR--@V2rayAlpha-2
+      password: 10f90af92b6c1a74
+      port: "11201"
+      server: 141.95.109.94
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: IR--@V2rayAlpha-3
+      password: 74918bc801d53a4b
+      port: "11201"
+      server: 57.130.28.148
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - down: ""
+      fingerprint: ""
+      name: px-06
+      obfs: ""
+      obfs-password: ""
+      password: freehomesvpnmahsa3
+      port: "16396"
+      server: donate1.mahsa.homes
+      skip-cert-verify: true
+      sni: www.google.com
+      type: hysteria2
+      up: ""
+    - client-fingerprint: chrome
+      encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: BESTIIVPNBOT-05
+      network: tcp
+      port: "20329"
+      reality-opts:
+        public-key: Lj3MXlg16CTFHtU88acSS-ACfGnwJ_xkU6dC6k8OeDo
+        short-id: 4602ee9f9f36
+      server: 45.12.143.191
+      servername: yahoo.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: e105e56a-5f81-41a2-ab44-bfffc9b00674
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-117
+      password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
+      port: "990"
+      server: 62.100.205.100
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: px-116
+      network: ws
+      port: "443"
+      server: api.dark-coffe.com
+      servername: GfV5t2331T.sMaRtTeChZaAl.InFo
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 7e58699f-1d5d-4f6b-b181-cb74f0ad9509
+      ws-opts:
+        headers:
+            Host: GfV5t2331T.sMaRtTeChZaAl.InFo
+            User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36
+        path: /
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-118
+      password: 1b5d1bff76cae87c
+      port: "11201"
+      server: 141.95.105.96
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: IR--@V2rayAlpha-5
+      password: f54cdee10f8b25ce
+      port: "11201"
+      server: 57.129.95.38
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - client-fingerprint: chrome
+      encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-119
+      network: tcp
+      port: "59374"
+      reality-opts:
+        public-key: ZsswZuBV8bEGQWFrpShCilSytnDUj0kwHFhTSLXzOwc
+        short-id: d21e7c
+      server: 95.164.85.109
+      servername: yahoo.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: bfc78cd8-5951-4803-8d6c-4cedef8cd420
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-120
+      network: tcp
+      port: "23576"
+      reality-opts:
+        public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+        short-id: "01"
+      server: 57.129.53.180
+      servername: fuck.rkn
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: BESTIIVPNBOT-06
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: gZGVp5PUdafgsmi1gawa1yLuha_XhXRc_W9SvPiGmTY
+        short-id: 7cad5040
+      server: 188.34.193.153
+      servername: www.cloudflare.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 309fa273-6579-4cb2-9143-7cad50401eba
+      xudp: true
+    - client-fingerprint: chrome
+      name: BESTIIVPNBOT-07
+      network: ws
+      password: zWFjJENcljZm
+      port: "443"
+      server: usa.visa.com
+      skip-cert-verify: true
+      sni: vahidqaz-7o61u7.vahidqaz.workers.dev
+      type: trojan
+      udp: true
+      ws-opts:
+        headers:
+            User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+        path: /?ed=2560
+    - cipher: chacha20-ietf-poly1305
+      name: BESTIIVPNBOT-08
+      password: k1dBOmOB4oqi7Ump37a1bQ
+      port: "8080"
+      server: 82.38.31.217
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: BESTIIVPNBOT-10
+      password: f8f7aCzcPKbsF8p3
+      port: "990"
+      server: 185.126.237.38
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - alterId: 0
+      cipher: auto
+      name: BESTIIVPNBOT-09
+      network: ws
+      port: "80"
+      server: 15.235.41.200
+      skip-cert-verify: true
+      type: vmess
+      udp: true
+      uuid: 58fe1542-5290-40ad-815a-77707a81afe5
+      ws-opts:
+        path: /IOebhLMhl1CTbFHbL95myfRX2
+      xudp: true
+    - client-fingerprint: chrome
+      name: BESTIIVPNBOT-11
+      network: ws
+      password: 87d1bfd4-574e-4c96-ad42-0426f27461ff
+      port: "443"
+      server: cf.090227.xyz
+      skip-cert-verify: true
+      sni: _acme-challenge.2go.cloudns.be
+      type: trojan
+      udp: true
+      ws-opts:
+        headers:
+            User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; ANE-LX3 Build/HUAWEIANE-LX3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36
+        path: /
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-21
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: UgCLC1JdwUh-hgpvSfndN1tuH98620gziTq2UB0gOjI
+        short-id: a369bfe440aba1a2
+      server: 83.147.18.219
+      servername: allison.kosmolet.xyz
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 613725ab-ca86-4d54-852e-a0bf45e812de
+      xudp: true
+    - encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-121
+      network: tcp
+      port: "48129"
+      server: 85.195.101.122
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: b338a8f4-9aa3-4e1d-b6b7-5efed8ae038b
+      xudp: true
+    - client-fingerprint: chrome
+      name: px-122
+      network: ws
+      password: 87d1bfd4-574e-4c96-ad42-0426f27461ff
+      port: "443"
+      server: store.ubi.com
+      skip-cert-verify: true
+      sni: _acme-challenge.2go.cloudns.be
+      type: trojan
+      udp: true
+      ws-opts:
+        headers:
+            User-Agent: Mozilla/5.0 (Linux; Android 5.1.1; SM-J120M Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36
+        path: /?ed
+    - cipher: chacha20-ietf-poly1305
+      name: hamedp71-01
+      password: f8f7aCzcPKbsF8p3
+      port: "990"
+      server: 195.181.160.6
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: BESTIIVPNBOT-12
+      network: tcp
+      port: "8443"
+      reality-opts:
+        public-key: gZGVp5PUdafgsmi1gawa1yLuha_XhXRc_W9SvPiGmTY
+        short-id: 7cad5040
+      server: 45.89.107.200
+      servername: www.cloudflare.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 309fa273-6579-4cb2-9143-7cad50401eba
+      xudp: true
+    - client-fingerprint: firefox
+      encryption: none
+      name: BESTIIVPNBOT-13
+      network: ws
+      port: "8443"
+      server: ip-range.coin.name.ng
+      servername: hzr27.sepiol.name.NG
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: ccbe6b7c-9264-40c4-8bc1-ef8f6205d7a4
+      ws-opts:
+        headers:
+            Host: hzr27.sepiol.name.NG
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36
+        path: /
+      xudp: true
+    - alpn:
+        - h3
+        - h2
+      client-fingerprint: firefox
+      encryption: none
+      name: BESTIIVPNBOT-14
+      network: ws
+      port: "8443"
+      server: ip-range.web3.name.ng
+      servername: hzr50.sepiol.name.ng
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: ccbe6b7c-9264-40c4-8bc1-ef8f6205d7a4
+      ws-opts:
+        headers:
+            Host: hzr50.sepiol.name.ng
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
+        path: /
+      xudp: true
+    - alpn:
+        - h3
+        - h2
+      client-fingerprint: chrome
+      encryption: none
+      name: BESTIIVPNBOT-15
+      network: ws
+      port: "443"
+      server: 104.21.43.168
+      servername: Ggjd.digikala.lat
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: b2744521-78b7-4c24-86f2-4f751d1cb7bf
+      ws-opts:
+        headers:
+            Host: private.digikala.lat
+            User-Agent: Mozilla/5.0 (Linux; Android 7.0; Moto G (5) Build/NPPS25.137-93-14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36
+        path: /
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: Telegram-03
+      network: tcp
+      port: "23576"
+      reality-opts:
+        public-key: 1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s
+        short-id: "01"
+      server: 15.204.97.149
+      servername: fuck.rkn
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: '@Enzewa_Network'
+      network: ws
+      port: "443"
+      server: 167.235.86.236
+      servername: sni.111000.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 1a25f8ad-cad2-4e93-b5bf-34e42bcac02a
+      ws-opts:
+        headers:
+            Host: sni.111000.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: Telegram-04
+      password: da060a8de3467174
+      port: "10013"
+      server: 57.128.190.212
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@v2FreeHub-04'
+      password: 11e520ccbe7365eb
+      port: "11201"
+      server: 45.82.102.204
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: hamedp71-02
+      password: oZIoA69Q8yhcQV8ka3Pa3A
+      port: "8080"
+      server: 193.29.139.151
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: '@Geek_Spot'
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: bn4nV9O7aOI_pzbJsgqnyYxPX8a7efYDXqrYbxsL6V8
+        short-id: ""
+      server: 91.186.217.108
+      servername: pinova.io
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: fc0e82dd-531a-4ac1-9ebc-b68ffeab7912
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      grpc-opts:
+        grpc-service-name: dropbox.com
+      name: px-123
+      network: grpc
+      port: "49000"
+      reality-opts:
+        public-key: 2K2NO2jXF45pA0-eUobqo-gnur61TadbWD4B93Zl_Vc
+        short-id: 170f8a2036
+      server: 43.250.54.155
+      servername: google.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 160e9c18-c548-42bf-9c00-905aed8ef96f
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@Geek_Spot-01'
+      password: 59fa5541d1d9ccce
+      port: "11201"
+      server: 141.95.104.30
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - down: ""
+      fingerprint: ""
+      name: px-07
+      obfs: ""
+      obfs-password: ""
+      password: dongtaiwang.com
+      port: "443"
+      server: ""
+      skip-cert-verify: true
+      type: hysteria2
+      up: ""
+    - cipher: chacha20-ietf-poly1305
+      name: '@Geek_Spot-02'
+      password: f19e359a2f0c4f5f
+      port: "11201"
+      server: 51.68.83.117
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@Geek_Spot`'
+      password: 54c303c2866c8399
+      port: "11201"
+      server: 141.95.105.216
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-124
+      network: grpc
+      port: "443"
+      server: 65.109.178.83
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 7b148add-4438-426e-a583-50f11e7bd0e4
+      xudp: true
+    - encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: '@-05'
+      network: tcp
+      port: "50904"
+      server: doprax.fxgoldensignals.com
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: d4795cd9-cd7b-4cea-edfb-20cdcca5837b
+      xudp: true
+    - encryption: none
+      name: '@-06'
+      network: xhttp
+      port: "38231"
+      server: doprax.fxgoldensignals.com
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: a22be179-d210-4313-e499-8530a577b8b7
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: '@-07'
+      network: grpc
+      port: "58153"
+      server: doprax.fxgoldensignals.com
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 14fe2c89-af11-4b7d-cc08-9641f0f2d8ee
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: '@Geek_Spot-03'
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: gZGVp5PUdafgsmi1gawa1yLuha_XhXRc_W9SvPiGmTY
+        short-id: 7cad5040
+      server: 46.62.128.207
+      servername: www.cloudflare.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 309fa273-6579-4cb2-9143-7cad50401eba
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-125
+      network: grpc
+      port: "8880"
+      server: 45.82.251.98
+      servername: /?---@Azarbayjab1_Net---@Azarbayjab1_Net---@azarbayjab1_Net---@azarbayjab1_Net---@Azarbayjab1_Net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 8dc7722c-2767-4eea-a28b-2f8daacc07e3
+      xudp: true
+    - alterId: 0
+      cipher: auto
+      name: Telegram-05
+      network: ws
+      port: "8080"
+      server: 172.67.204.84
+      skip-cert-verify: true
+      type: vmess
+      udp: true
+      uuid: nasnet
+      ws-opts:
+        headers:
+            Host: nasnet-511952424.mcitel.co
+            User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+        path: /nasnet/cdn
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      grpc-opts:
+        grpc-service-name: grpc
+      name: '@Golestan_VPN'
+      network: grpc
+      port: "22955"
+      reality-opts:
+        public-key: 9Mt_Y8J_qDb1khlieWnhDSAq-kGtLHw6aOKgkAzOMms
+        short-id: 6ba85179e30d4fc2
+      server: octopusss5.info
+      servername: one-piece.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 63f92f3c-447c-4283-80b9-0af8e164cdad
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: Telegram-06
+      network: grpc
+      port: "443"
+      server: 91.107.148.79
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 7b148add-4438-426e-a583-50f11e7bd0e4
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: BESTIIVPNBOT-17
+      password: S2QudBxi0vRySw4YRLloPq
+      port: "55702"
+      server: 77.238.224.29
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - client-fingerprint: chrome
+      encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: BESTIIVPNBOT-16
+      network: tcp
+      port: "18278"
+      reality-opts:
+        public-key: 8Fglzc7t2LS4r1vQWlVMNe_EsFdhMawlxeDacbhmiAg
+        short-id: f0
+      server: 45.89.109.25
+      servername: yahoo.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 7a30b7fc-4868-4d1d-84b8-16a3d3df0139
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: WiFi-@V2rayAlpha-40
+      password: 15b0573830081d01
+      port: "11201"
+      server: 51.89.119.213
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-26
+      network: tcp
+      port: "8443"
+      reality-opts:
+        public-key: 73XglR9lOaXBISd7mGgTEP60v28mz8pmCDivcDAF_WU
+        short-id: "68"
+      server: 87.242.101.25
+      servername: pimg.mycdn.me
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: da4ac193-dea1-0014-b357-1e22e273963e
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: BESTIIVPNBOT-18
+      network: tcp
+      port: "45448"
+      reality-opts:
+        public-key: MmEVCRy11fz67vYJQWyA2a_ZPMBzv2le2cus1XSSI0E
+        short-id: 958639bf55e679
+      server: 94.131.8.19
+      servername: yahoo.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 96fcf8cc-535d-46c4-b8f9-76058df48e3b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-22
+      network: tcp
+      port: "443"
+      server: 65.108.231.185
+      servername: api.avito.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 440766d1-858f-4719-84f5-c2de6f6227b2
+      xudp: true
+    - encryption: none
+      name: '@Enzewa_Network-01'
+      network: ws
+      port: "80"
+      server: 146.75.119.82
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 74542945-0d84-4797-a56e-e7f31b84c5be
+      ws-opts:
+        headers:
+            Host: welcomtofreeboarders.com
+            User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
+        path: /ws/?ed=2048/@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz@AzadMarz/?2048
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      name: '@V2raysCollector'
+      network: ws
+      password: XZ|P5}oQVc8V
+      port: "443"
+      server: 188.114.96.3
+      skip-cert-verify: true
+      sni: 004.eLecTrOCELLco-cf-004.WorkeRs.DEv
+      type: trojan
+      udp: true
+      ws-opts:
+        headers:
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+        path: /eyJqdW5rIjoiQng3QkdTTklpbGdldG0iLCJwcm90b2NvbCI6InRyIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6WyI0NS4xMzUuMTY1LjI0NSIsIjExNi4yMDMuNTguMTY1Il19?ed=2560
+    - alpn:
+        - h2
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: WiFi-@V2rayAlpha-27
+      network: tcp
+      port: "443"
+      server: nasnet-146198073-direct.iranpress.co
+      servername: nasnet-146198073-direct.iranpress.co
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: nasnet
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: px-129
+      network: ws
+      port: "2096"
+      server: www.speedtest.net
+      servername: DiGIkALaA.dpdns.ORG
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 2fb8808b-b94c-42ea-9dd2-cd77d2efcc8d
+      ws-opts:
+        headers:
+            Host: digikalaa.dpdns.org
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+        path: /eyJqdW5rIjoidDZLaDRBMWhpIiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOltdfQ==?ed=2560
+      xudp: true
+    - client-fingerprint: chrome
+      name: '@Kia_Net'
+      password: wp9IsiY82uQhcmgNC1eoBM
+      port: "12420"
+      server: 80.173.231.254
+      skip-cert-verify: true
+      sni: www.semanticstaplegun.click
+      type: trojan
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: '@Kia_Net-01'
+      password: 595HLF3fHUuw0McM51tpvPygSIB1uf4D
+      port: "443"
+      server: 107.174.114.71
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-130
+      network: tcp
+      port: "4443"
+      reality-opts:
+        public-key: 5XB_N3ATilH-6tp_MXht-84_y5YaJnx_Z7MbuY2otHE
+        short-id: aa7e96542880027a
+      server: 5.181.21.101
+      servername: github.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 3f688b2a-373a-4be1-846d-b159404b73b2
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-131
+      network: tcp
+      port: "4443"
+      reality-opts:
+        public-key: 5XB_N3ATilH-6tp_MXht-84_y5YaJnx_Z7MbuY2otHE
+        short-id: aa7e96542880027a
+      server: 45.82.255.32
+      servername: github.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 3f688b2a-373a-4be1-846d-b159404b73b2
+      xudp: true
+    - alterId: 0
+      cipher: auto
+      client-fingerprint: chrome
+      name: '@Kia_Net-02'
+      network: ws
+      port: "2096"
+      server: dv4.789900.xyz
+      servername: dv4.789900.xyz
+      skip-cert-verify: true
+      tls: true
+      type: vmess
+      udp: true
+      uuid: 0c8f3e29-4ec9-4ba6-a6ef-4487873f5d05
+      ws-opts:
+        headers:
+            Host: dv4.789900.xyz
+            User-Agent: Mozilla/5.0 (Linux; Android 6.0; vivo 1610 Build/MMB29M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.124 Mobile Safari/537.36
+        path: /0c8f3e29-4ec9-4ba6-a6ef-4487873f5d05-vm
+      xudp: true
+    - cipher: aes-256-gcm
+      name: '@Kia_Net-03'
+      password: vEY+Etsv/KTEM3vq
+      port: "8388"
+      server: 167.17.179.87
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-132
+      network: tcp
+      port: "4443"
+      reality-opts:
+        public-key: 5XB_N3ATilH-6tp_MXht-84_y5YaJnx_Z7MbuY2otHE
+        short-id: aa7e96542880027a
+      server: 86.104.74.158
+      servername: github.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 3f688b2a-373a-4be1-846d-b159404b73b2
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-133
+      network: tcp
+      port: "4443"
+      reality-opts:
+        public-key: 5XB_N3ATilH-6tp_MXht-84_y5YaJnx_Z7MbuY2otHE
+        short-id: aa7e96542880027a
+      server: 5.180.45.176
+      servername: github.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 3f688b2a-373a-4be1-846d-b159404b73b2
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-134
+      network: tcp
+      port: "4443"
+      reality-opts:
+        public-key: 5XB_N3ATilH-6tp_MXht-84_y5YaJnx_Z7MbuY2otHE
+        short-id: aa7e96542880027a
+      server: 45.82.14.32
+      servername: github.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 3f688b2a-373a-4be1-846d-b159404b73b2
+      xudp: true
+    - encryption: none
+      name: px-128
+      network: ws
+      port: "2095"
+      server: 104.16.142.237
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 00000000-0000-0000-0000-000000000000
+      ws-opts:
+        headers:
+            Host: fangbinxingnmsl.pusytroller.cf
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36
+        path: /
+      xudp: true
+    - down: ""
+      fingerprint: ""
+      name: px-08
+      obfs: ""
+      obfs-password: Yet-Another-Public-Config-1
+      password: Yet-Another-Public-Config-1
+      port: "36300"
+      server: yapc-1.adamhayward.co.uk
+      skip-cert-verify: true
+      sni: YAPC-1.afshin.ir
+      type: hysteria2
+      up: ""
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-27
+      network: tcp
+      port: "8443"
+      reality-opts:
+        public-key: 73XglR9lOaXBISd7mGgTEP60v28mz8pmCDivcDAF_WU
+        short-id: "68"
+      server: 45.155.204.211
+      servername: pimg.mycdn.me
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: da4ac193-dea1-0014-b357-1e22e273963e
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-28
+      network: tcp
+      port: "8443"
+      reality-opts:
+        public-key: 73XglR9lOaXBISd7mGgTEP60v28mz8pmCDivcDAF_WU
+        short-id: "68"
+      server: 176.108.252.229
+      servername: pimg.mycdn.me
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: da4ac193-dea1-0014-b357-1e22e273963e
+      xudp: true
+    - encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-29
+      network: tcp
+      port: "2053"
+      server: 92.60.70.36
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 08c7f096-d057-4d53-82fd-c739d372887b
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-30
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: FkmYFobwxLMLEktYXywmjthuEYCZggITsxwPNasTKUg
+        short-id: 17802e8ff84f12df
+      server: 51.250.65.209
+      servername: ads.x5.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 4371ad14-b981-4699-bedf-83fb79bde3e6
+      xudp: true
+    - down: ""
+      fingerprint: ""
+      name: px-10
+      obfs: ""
+      obfs-password: ""
+      password: dongtaiwang.com
+      port: "443"
+      server: ""
+      skip-cert-verify: true
+      type: hysteria2
+      up: ""
+    - down: ""
+      fingerprint: ""
+      name: px-11
+      obfs: ""
+      obfs-password: NDhhNmY5YTY0MGYzOTgxYQ==
+      password: 4077295f-4d0c-4130-af89-66cfef13ea6f
+      port: "443"
+      server: 85.209.53.170
+      skip-cert-verify: true
+      type: hysteria2
+      up: ""
+    - cipher: chacha20-ietf-poly1305
+      name: px-115
+      password: o5osZg269v5zHpYjr1xY9s
+      port: "8080"
+      server: 151.242.251.137
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - down: ""
+      fingerprint: ""
+      name: px-12
+      obfs: ""
+      obfs-password: ""
+      password: freehomesvpnchannel3
+      port: "46914"
+      server: channel2.saghetalaie.homes
+      skip-cert-verify: true
+      sni: www.google.com
+      type: hysteria2
+      up: ""
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      name: px-147
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: J_jQq9-SWQZjiMhuPaFV7V2MaJ4pkKgVRaz7x6tmvy8
+        short-id: 16895459a2c7768d
+      server: 212.41.11.152
+      servername: ru.sfasti.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 1a6fe500-59da-4598-8576-256f06765ffb
+      xudp: true
+    - alpn:
+        - h3
+        - h2
+      client-fingerprint: chrome
+      encryption: none
+      name: px-146
+      network: ws
+      port: "8443"
+      server: 104.26.6.89
+      servername: YjF03nNq0B.sOlEnTrAa.InFo
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: e999db7a-1b17-4da6-bc37-c9fa24af2e93
+      ws-opts:
+        headers:
+            Host: YjF03nNq0B.sOlEnTrAa.InFo
+            User-Agent: Mozilla/5.0 (Linux; Android 5.1; HUAWEI CUN-L22 Build/HUAWEICUN-L22; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36
+        path: /
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-148
+      network: grpc
+      port: "8880"
+      server: 45.140.147.74
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: df0680ca-e43c-498d-ed86-8e196eedd012
+      xudp: true
+    - alpn:
+        - h3
+        - h2
+      client-fingerprint: chrome
+      encryption: none
+      name: px-149
+      network: ws
+      port: "443"
+      server: ipw.gfdv54cvghhgfhgj-njhgj64.info
+      servername: M84tG1gGw0.SoLeNtRaA.iNfO
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: e999db7a-1b17-4da6-bc37-c9fa24af2e93
+      ws-opts:
+        headers:
+            Host: M84tG1gGw0.SoLeNtRaA.iNfO
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36
+        path: /
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: px-150
+      network: ws
+      port: "443"
+      server: 104.18.35.85
+      servername: cf.vless.sandesh.fr
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 060a8fe8-7175-4ded-94a5-d9808bc645b6
+      ws-opts:
+        headers:
+            Host: cf.vless.sandesh.fr
+            User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.17 (KHTML, like Gecko) Chrome/10.0.649.0 Safari/534.17
+        path: /
+      xudp: true
+    - alpn:
+        - ""
+      alterId: "0"
+      cipher: auto
+      name: "\U0001F310 Random Location"
+      network: ws
+      port: "443"
+      server: yichueng.org
+      servername: yichueng.org
+      skip-cert-verify: true
+      tls: true
+      type: vmess
+      udp: true
+      uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+      ws-opts:
+        headers:
+            Host: yichueng.org
+        path: linkvws
+      xudp: true
+    - down: ""
+      fingerprint: ""
+      name: px-13
+      obfs: ""
+      obfs-password: ""
+      password: sysadmin.sysadmin
+      port: "444"
+      server: 167.234.249.46
+      skip-cert-verify: true
+      sni: a.961229.xyz
+      type: hysteria2
+      up: ""
+    - alpn:
+        - h2
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: px-153
+      network: ws
+      port: "443"
+      server: 172.66.40.99
+      servername: www.dollardoon.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 0261c8f9-413a-455b-942b-3713c6b0084a
+      ws-opts:
+        headers:
+            Host: www.dollardoon.com
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36
+        path: /@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7@V2RAYFAST_7?ed=2048
+      xudp: true
+    - alpn:
+        - ""
+      alterId: "0"
+      cipher: auto
+      name: "\U0001F1E8\U0001F1E6 Canada"
+      network: ws
+      port: "443"
+      server: 15.235.83.228
+      servername: lammaland.org
+      skip-cert-verify: true
+      tls: true
+      type: vmess
+      udp: true
+      uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+      ws-opts:
+        headers:
+            Host: lammaland.org
+        path: linkvws
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-135
+      network: tcp
+      port: "4443"
+      reality-opts:
+        public-key: 5XB_N3ATilH-6tp_MXht-84_y5YaJnx_Z7MbuY2otHE
+        short-id: aa7e96542880027a
+      server: 103.35.190.51
+      servername: github.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 3f688b2a-373a-4be1-846d-b159404b73b2
+      xudp: true
+    - down: ""
+      fingerprint: ""
+      name: px-14
+      obfs: ""
+      obfs-password: ""
+      password: b4bd0613-ff7c-4f2f-954d-185915e6ddad
+      port: "443"
+      server: ""
+      skip-cert-verify: true
+      type: hysteria2
+      up: ""
+    - encryption: none
+      name: px-155
+      network: tcp
+      port: "46964"
+      server: 159.223.209.139
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 4bb35928-40bb-4bf3-95f1-9efdc4169147
+      xudp: true
+    - encryption: none
+      name: px-156
+      network: tcp
+      port: "45323"
+      server: 165.22.200.45
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 3e3cec72-9eb4-4aa2-834d-b3c641ef1e6d
+      xudp: true
+    - alpn:
+        - h3
+        - h2
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: px-157
+      network: ws
+      port: "2095"
+      server: bm.boulvarmoein.shop
+      servername: bm.boulvarmoein.shop
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: bm.boulvarmoein.shop
+      ws-opts:
+        headers:
+            Host: bm.boulvarmoein.shop
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36
+        path: /Telegram@v2rayng_76=?ed=2560
+      xudp: true
+    - encryption: none
+      name: px-158
+      network: tcp
+      port: "41856"
+      server: 206.189.135.13
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 895a39fb-6c32-49af-b04d-efecc1f6c5fb
+      xudp: true
+    - encryption: none
+      name: px-159
+      network: tcp
+      port: "37548"
+      server: 139.59.46.188
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 976191fd-e929-467e-98b4-1349f58907d5
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: px-160
+      network: ws
+      port: "443"
+      server: 104.21.36.57
+      servername: black.fullmargintraders.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 0cc731b9-0375-4590-aeaa-7e2611a149fe
+      ws-opts:
+        headers:
+            Host: black.fullmargintraders.com
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36
+        path: /wsv/0cc731b9-0375-4590-aeaa-7e2611a149fe
+      xudp: true
+    - encryption: none
+      name: px-161
+      network: tcp
+      port: "31855"
+      server: 139.59.58.120
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 5661d93b-d932-4afa-97d1-c2ac455644d3
+      xudp: true
+    - encryption: none
+      name: px-162
+      network: tcp
+      port: "20651"
+      server: 170.64.154.27
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: dda40179-f8b0-44a1-9926-bb64e7a767a7
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-163
+      network: grpc
+      port: "8880"
+      server: 638928668169310838.rasht-drc-tusabp.info
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: df0680ca-e43c-498d-ed86-8e196eedd012
+      xudp: true
+    - encryption: none
+      name: px-164
+      network: tcp
+      port: "16529"
+      server: 192.142.53.38
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: d2d42f0d-5090-4901-bb7d-8ce85cfb8142
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-136
+      network: tcp
+      port: "4443"
+      reality-opts:
+        public-key: 5XB_N3ATilH-6tp_MXht-84_y5YaJnx_Z7MbuY2otHE
+        short-id: aa7e96542880027a
+      server: 45.89.105.24
+      servername: github.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 3f688b2a-373a-4be1-846d-b159404b73b2
+      xudp: true
+    - client-fingerprint: chrome
+      name: px-23
+      password: ZblhWr0mqMakCPg.N
+      port: "36158"
+      server: 212.193.18.144
+      skip-cert-verify: true
+      sni: api.avito.ru
+      type: trojan
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-166
+      password: oZIoA69Q8yhcQV8ka3Pa3A
+      port: "8080"
+      server: 103.104.247.47
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-165
+      network: grpc
+      port: "8880"
+      server: 45.82.251.114
+      servername: pqh25v1.vetdomok.shop
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: e4824193-4f54-453b-d037-88368e85ef0e
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-167
+      password: QCXDxuDlTTMD7jtgHUjIoj
+      port: "8080"
+      server: 45.87.175.175
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-168
+      network: grpc
+      port: "8880"
+      server: 195.42.233.125
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: df0680ca-e43c-498d-ed86-8e196eedd012
+      xudp: true
+    - alpn:
+        - h2
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      name: px-169
+      network: tcp
+      port: "443"
+      server: 45.15.167.13
+      servername: 1lpxy6haqm-451516713-direct.zamam.co
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 1lpxy6haqm
+      xudp: true
+    - alpn:
+        - ""
+      alterId: "0"
+      cipher: auto
+      name: "\U0001F1EB\U0001F1F7\U0001F1E9\U0001F1EA OVH"
+      network: ws
+      port: "443"
+      server: serkat.org
+      servername: serkat.org
+      skip-cert-verify: true
+      tls: true
+      type: vmess
+      udp: true
+      uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+      ws-opts:
+        headers:
+            Host: serkat.org
+        path: linkvws
+      xudp: true
+    - encryption: none
+      name: px-170
+      network: ws
+      port: "80"
+      server: narrow-passenger.oneeat.co
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 5a12794b-2125-46d7-a748-927a989faa04
+      ws-opts:
+        path: /
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-171
+      network: grpc
+      port: "8880"
+      server: 638929396024910159.lisbon-drc-dcrabj.info
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: df0680ca-e43c-498d-ed86-8e196eedd012
+      xudp: true
+    - encryption: none
+      name: px-172
+      network: ws
+      port: "80"
+      server: sweeT-coMBInATIOn.SeOtooLsFORyOU.co.Uk
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 05020a61-3c0c-4ead-b256-7851ff905a75
+      ws-opts:
+        path: /
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: px-173
+      network: tcp
+      port: "38339"
+      reality-opts:
+        public-key: o0MFuznHh_Wztg0FTAMhFXm3hjAqOJAJIIVNn-_A9WA
+        short-id: e16883e511
+      server: kz.accesspoints.cloakify.app
+      servername: dl.google.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 481c5606-b586-44d7-bc2e-d8ef30d67f62
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ZEDMODEON-ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON
+      name: px-174
+      network: grpc
+      port: "25365"
+      server: 141.227.178.165
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 919526f8-86c8-4f43-b5f7-91eea1368bad
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: px-175
+      network: ws
+      port: "8443"
+      server: ovhwuxian.pai50288.uk
+      servername: ovhwuxian.pai50288.uk
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 57ba2ab1-a283-42eb-82ee-dc3561a805b8
+      ws-opts:
+        headers:
+            Host: ovhwuxian.pai50288.uk
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+        path: /57ba2ab1
+      xudp: true
+    - alpn:
+        - h2
+        - http/1.1
+      client-fingerprint: randomized
+      encryption: none
+      flow: xtls-rprx-vision
+      name: px-176
+      network: tcp
+      port: "443"
+      server: 1lpxy6haqm-451516713-direct.zamam.co
+      servername: 1lpxy6haqm-451516713-direct.zamam.co
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 1lpxy6haqm
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-177
+      network: grpc
+      port: "37321"
+      server: 192.142.53.38
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 4914cac8-d4f7-4ffe-9c58-1117c9cb1887
+      xudp: true
+    - alpn:
+        - ""
+      alterId: "0"
+      cipher: auto
+      name: "\U0001F1ED\U0001F1F0 Hong Kong هنگ کنگ"
+      network: ws
+      port: "54809"
+      server: 8.210.140.23
+      skip-cert-verify: true
+      tls: false
+      type: vmess
+      udp: true
+      uuid: fde73daf-cc67-42f3-9935-35b132b01abd
+      ws-opts:
+        early-data-header-name: Sec-WebSocket-Protocol
+        headers: {}
+        max-early-data: 2048
+        path: /arki
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-137
+      network: tcp
+      port: "4443"
+      reality-opts:
+        public-key: 5XB_N3ATilH-6tp_MXht-84_y5YaJnx_Z7MbuY2otHE
+        short-id: aa7e96542880027a
+      server: 45.82.246.114
+      servername: github.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 3f688b2a-373a-4be1-846d-b159404b73b2
+      xudp: true
+    - alpn:
+        - ""
+      alterId: "0"
+      cipher: auto
+      name: "\U0001F1ED\U0001F1F0 Hong Kong"
+      network: ws
+      port: "36968"
+      server: 47.83.18.10
+      skip-cert-verify: true
+      tls: false
+      type: vmess
+      udp: true
+      uuid: 176bf1dd-647f-4c09-892e-5f9223dc8617
+      ws-opts:
+        early-data-header-name: Sec-WebSocket-Protocol
+        headers: {}
+        max-early-data: 2048
+        path: /arki
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-180
+      password: Nk9asglDzHzjktVzTkvhaA
+      port: "443"
+      server: arxfw2b78fi2q9hzylhn.freesocks.work
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - encryption: none
+      name: px-178
+      network: tcp
+      port: "25023"
+      server: 64.225.9.191
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 6bb4d50a-56f9-47d5-8ce8-d8b7fe9aa474
+      xudp: true
+    - encryption: none
+      name: px-179
+      network: tcp
+      port: "29500"
+      server: 89.44.242.222
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 888a20e2-fc3f-4f52-973c-36a6386225b8
+      xudp: true
+    - encryption: none
+      name: px-182
+      network: tcp
+      port: "57996"
+      server: 64.227.41.160
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: ff3685d5-f031-46d3-88c0-0b6b0d1f1558
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: px-181
+      network: ws
+      port: "8443"
+      server: 104.21.3.219
+      servername: ovhwuxian.pai50288.uk
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 57ba2ab1-a283-42eb-82ee-dc3561a805b8
+      ws-opts:
+        headers:
+            Host: ovhwuxian.pai50288.uk
+            User-Agent: Mozilla/5.0 (Linux; Android 6.0.1; Redmi 4A Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.3112.116 Mobile Safari/537.36
+        path: /57ba2ab1
+      xudp: true
+    - alpn:
+        - ""
+      alterId: "0"
+      cipher: auto
+      name: "\U0001F1FB\U0001F1F3 ویتنام"
+      network: ws
+      port: "20086"
+      server: 161.248.30.3
+      skip-cert-verify: true
+      tls: false
+      type: vmess
+      udp: true
+      uuid: 1006a928-2021-4a3b-beb5-d5853c6281c5
+      ws-opts:
+        headers: {}
+        path: /
+      xudp: true
+    - encryption: none
+      name: px-183
+      network: ws
+      port: "80"
+      server: 45.82.245.173
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 1dbfb57c-164e-47c5-9355-8e0c429e7b99
+      ws-opts:
+        headers:
+            Host: '---@External_Net---@External_Net---@External_Net---@External_Net---@External_Net'
+            User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.76 Safari/537.36
+        path: /vless/
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      name: px-184
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: J_jQq9-SWQZjiMhuPaFV7V2MaJ4pkKgVRaz7x6tmvy8
+        short-id: 16895459a2c7768d
+      server: 94.26.228.10
+      servername: ru.sfasti.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 1a6fe500-59da-4598-8576-256f06765ffb
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-185
+      network: grpc
+      port: "8880"
+      server: 45.82.251.180
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: e4824193-4f54-453b-d037-88368e85ef0e
+      xudp: true
+    - encryption: none
+      name: px-188
+      network: tcp
+      port: "12794"
+      server: 45.88.183.156
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 08704c01-7edb-454a-98a2-328ccb9936fa
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      name: px-186
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: YNGotlyAx3ELUmi4lxOUjiEDmibqf1pPUTE9o3YYT2Y
+        short-id: ""
+      server: 5.181.171.2
+      servername: speed.cloudflare.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: a87bf8a2-17a4-3054-b51e-876b5f1d0f24
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      name: px-187
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: YNGotlyAx3ELUmi4lxOUjiEDmibqf1pPUTE9o3YYT2Y
+        short-id: ""
+      server: 5.181.171.2
+      servername: speed.cloudflare.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: a87bf8a2-17a4-3054-b51e-876b5f1d0f24
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-189
+      password: 51yloQC8D9w1Wae7FHtI65
+      port: "48172"
+      server: 135.225.124.80
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-190
+      password: b2EJuconC460KllN
+      port: "443"
+      server: azjnac1.uksouth.cloudapp.azure.com
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - client-fingerprint: chrome
+      encryption: none
+      grpc-opts:
+        grpc-service-name: Telegram-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers
+      name: px-191
+      network: grpc
+      port: "443"
+      reality-opts:
+        public-key: UrGT7bAn2UND3kx81QHACf_6qReN8V6_o70kZerONk4
+        short-id: 1c547814
+      server: 91.99.168.213
+      servername: miro.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 14eba471-4623-4ed1-b937-f5b2206749bf
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-192
+      network: grpc
+      port: "8880"
+      server: 638930382260455538.ahvaz-drc-tusabt.info
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: df0680ca-e43c-498d-ed86-8e196eedd012
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-193
+      password: 51yloQC8D9w1Wae7FHtI65
+      port: "48172"
+      server: 135.225.124.80
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - encryption: none
+      name: px-194
+      network: ws
+      port: "80"
+      server: ov-france2.09vpn.com
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 2a2d5f5d-6acb-438f-ba25-f3cbc6614b63
+      ws-opts:
+        path: /vless/
+      xudp: true
+    - encryption: none
+      name: px-195
+      network: ws
+      port: "80"
+      server: fearless-change.oneeat.co
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: b055036a-2d81-4d46-ab18-4e1898b58cec
+      ws-opts:
+        path: /
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-198
+      password: 51yloQC8D9w1Wae7FHtI65
+      port: "48172"
+      server: 4.223.106.151
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-197
+      network: grpc
+      port: "8880"
+      server: 185.231.205.99
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: df0680ca-e43c-498d-ed86-8e196eedd012
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-199
+      network: grpc
+      port: "8880"
+      server: 185.236.232.223
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: e4824193-4f54-453b-d037-88368e85ef0e
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      name: px-200
+      network: tcp
+      port: "44443"
+      reality-opts:
+        public-key: XHjKkrNBYXOaamOx8IUCrwX0zp5dAQRVErHiQ5bwAEQ
+        short-id: ""
+      server: hybrid.arvancloud.online
+      servername: www.speedtest.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 53fff6cc-b4ec-43e8-ade5-e0c42972fc33
+      xudp: true
+    - down: ""
+      fingerprint: ""
+      name: px-15
+      obfs: ""
+      obfs-password: Yet-Another-Public-Config-1
+      password: Yet-Another-Public-Config-1
+      port: "35000"
+      server: 206.71.158.37
+      skip-cert-verify: true
+      sni: YAPC-1.afshin.ir
+      type: hysteria2
+      up: ""
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      name: px-201
+      network: tcp
+      port: "44443"
+      reality-opts:
+        public-key: XHjKkrNBYXOaamOx8IUCrwX0zp5dAQRVErHiQ5bwAEQ
+        short-id: ""
+      server: 193.151.135.21
+      servername: www.speedtest.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 53fff6cc-b4ec-43e8-ade5-e0c42972fc33
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-203
+      network: grpc
+      port: "8880"
+      server: public18v7.fastipsport.com
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: e4824193-4f54-453b-d037-88368e85ef0e
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      grpc-opts:
+        grpc-service-name: Telegram-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers-@HELIX_Servers
+      name: px-204
+      network: grpc
+      port: "443"
+      reality-opts:
+        public-key: UrGT7bAn2UND3kx81QHACf_6qReN8V6_o70kZerONk4
+        short-id: 1c547814
+      server: magazine.sentry-warrunner.xyz
+      servername: miro.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 14eba471-4623-4ed1-b937-f5b2206749bf
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-205
+      network: grpc
+      port: "8880"
+      server: pqh27v4.waipdirect.shop
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: e4824193-4f54-453b-d037-88368e85ef0e
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-24
+      network: tcp
+      port: "8443"
+      reality-opts:
+        public-key: 73XglR9lOaXBISd7mGgTEP60v28mz8pmCDivcDAF_WU
+        short-id: "68"
+      server: 95.174.93.50
+      servername: pimg.mycdn.me
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: da4ac193-dea1-0014-b357-1e22e273963e
+      xudp: true
+    - encryption: none
+      name: px-206
+      network: ws
+      port: "54567"
+      server: ir.fxgoldensignals.com
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 44cb3f8c-57a4-4f2b-a0ae-d9121e54a598
+      ws-opts:
+        path: /54567/mvfkvk
+      xudp: true
+    - alpn:
+        - h3
+        - h2
+      client-fingerprint: chrome
+      encryption: none
+      name: px-207
+      network: ws
+      port: "443"
+      server: ipw.gfdv54cvghhgfhgj-njhgj64.info
+      servername: I78nThHk0Q.sOlEnTrAa.InFo
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: e999db7a-1b17-4da6-bc37-c9fa24af2e93
+      ws-opts:
+        headers:
+            Host: I78nThHk0Q.sOlEnTrAa.InFo
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
+        path: /
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: px-208
+      network: ws
+      port: "8443"
+      server: ovhwuxian.pai50288.uk
+      servername: ovhwuxian.pai50288.uk
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 57ba2ab1-a283-42eb-82ee-dc3561a805b8
+      ws-opts:
+        headers:
+            Host: ovhwuxian.pai50288.uk
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36
+        path: /57ba2ab1
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: px-209
+      network: tcp
+      port: "33094"
+      reality-opts:
+        public-key: 35JazACyPS6LcDwpGibneEeMzkzGYWf4KTG_Oqp0oBE
+        short-id: 29489194da0d5d
+      server: 195.93.253.49
+      servername: yahoo.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 6f8923d9-f812-4ca6-b93a-8f9227bf2eab
+      xudp: true
+    - client-fingerprint: firefox
+      encryption: none
+      flow: xtls-rprx-vision
+      name: px-210
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: J_jQq9-SWQZjiMhuPaFV7V2MaJ4pkKgVRaz7x6tmvy8
+        short-id: 16895459a2c7768d
+      server: 80.249.131.7
+      servername: wa.sfasti.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: d4e4c02a-d969-47a6-ba0f-3d433fdac206
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-25
+      network: tcp
+      port: "8443"
+      reality-opts:
+        public-key: 73XglR9lOaXBISd7mGgTEP60v28mz8pmCDivcDAF_WU
+        short-id: "68"
+      server: 45.155.204.101
+      servername: pimg.mycdn.me
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: da4ac193-dea1-0014-b357-1e22e273963e
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: randomized
+      encryption: none
+      name: Telegram-08
+      network: ws
+      port: "443"
+      server: fk31lndm4w8uj0yp1drwltdtdko6y-cu.pages.dev
+      servername: fk31lnDM4W8UJ0yP1dRwlTDTDKo6y-cU.PaGeS.DeV
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 826f524a-cea1-4e44-9b49-3381d13b7593
+      ws-opts:
+        headers:
+            Host: fk31lndm4w8uj0yp1drwltdtdko6y-cu.pages.dev
+            User-Agent: Mozilla/5.0 (Linux; Android 5.1; A37f Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.93 Mobile Safari/537.36
+        path: /XHPTFMTFoBNv6IV6
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-216
+      password: 51yloQC8D9w1Wae7FHtI65
+      port: "48172"
+      server: 4.223.106.151
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - down: ""
+      fingerprint: ""
+      name: px-16
+      obfs: ""
+      obfs-password: ""
+      password: 71504eaf-29ac-4190-89d1-dd9ce2c9ee14
+      port: "443"
+      server: ""
+      skip-cert-verify: true
+      type: hysteria2
+      up: ""
+    - cipher: chacha20-ietf-poly1305
+      name: px-217
+      password: oZIoA69Q8yhcQV8ka3Pa3A
+      port: "8080"
+      server: 45.87.175.28
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: randomized
+      encryption: none
+      name: px-138
+      network: ws
+      port: "443"
+      server: fk31lndm4w8uj0yp1drwltdtdko6y-cu.pages.dev
+      servername: fk31lnDM4W8UJ0yP1dRwlTDTDKo6y-cU.PaGeS.DeV
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 826f524a-cea1-4e44-9b49-3381d13b7593
+      ws-opts:
+        headers:
+            Host: fk31lndm4w8uj0yp1drwltdtdko6y-cu.pages.dev
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36
+        path: /XHPTFMTFoBNv6IV6
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-219
+      network: grpc
+      port: "8880"
+      server: 185.231.205.99
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: df0680ca-e43c-498d-ed86-8e196eedd012
+      xudp: true
+    - encryption: none
+      name: px-220
+      network: ws
+      port: "80"
+      server: fearless-change.oneeat.co
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: b055036a-2d81-4d46-ab18-4e1898b58cec
+      ws-opts:
+        path: /
+      xudp: true
+    - encryption: none
+      name: px-218
+      network: ws
+      port: "80"
+      server: handsome-device.oneeat.co
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 2ad87f95-7a0b-4018-8497-5ecaac2f0ddf
+      ws-opts:
+        path: /
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-222
+      password: 360e21d21977dc11
+      port: "57456"
+      server: 104.167.197.25
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: px-221
+      network: ws
+      port: "443"
+      server: 45.128.54.17
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 297df885-9161-46cb-94d4-90a8a8489645
+      ws-opts:
+        path: /dahuqpws
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-223
+      password: Nk9asglDzHzjktVzTkvhaA
+      port: "443"
+      server: 160.19.78.75
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: px-224
+      network: tcp
+      port: "38339"
+      reality-opts:
+        public-key: o0MFuznHh_Wztg0FTAMhFXm3hjAqOJAJIIVNn-_A9WA
+        short-id: e16883e511
+      server: 176.120.72.63
+      servername: dl.google.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 481c5606-b586-44d7-bc2e-d8ef30d67f62
+      xudp: true
+    - encryption: none
+      name: px-225
+      network: ws
+      port: "443"
+      server: 127.0.0.1
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 00000000-0000-0000-0000-000000000000
+      ws-opts:
+        path: /
+      xudp: true
+    - encryption: none
+      name: '@Ken0Tim'
+      network: ws
+      port: "80"
+      server: oon.visaups.ir
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 087d8602-503b-4091-9f05-44c20792083c
+      ws-opts:
+        headers:
+            Host: oon.visaups.ir
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36
+        path: /
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-35
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+        short-id: ""
+      server: 158.160.135.161
+      servername: cdnv-img.perekrestok.ru
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: d684cb56-e4b8-4453-8a7b-a1ad8c81935a
+      xudp: true
+    - down: ""
+      fingerprint: ""
+      name: px-229
+      obfs: ""
+      obfs-password: ""
+      password: 9f73c619627d6a5d
+      port: "443"
+      server: 66.245.192.15
+      skip-cert-verify: true
+      type: hysteria2
+      up: ""
+    - cipher: chacha20-ietf-poly1305
+      name: px-113
+      password: a10bd25b21995e56
+      port: "40266"
+      server: 135.125.219.2
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - down: ""
+      fingerprint: ""
+      name: '>>@oneclickvpnkeys::US-01'
+      obfs: ""
+      obfs-password: ""
+      password: 6286105c-fb6d-11ef-be96-f23c93136cb3
+      port: "1743"
+      server: 227fd503-t4ssg0-t5vo4i-4550.la.shifen.uk
+      skip-cert-verify: true
+      sni: 227fd503-t4ssg0-t5vo4i-4550.la.shifen.uk
+      type: hysteria2
+      up: ""
+    - down: ""
+      fingerprint: ""
+      name: '>>@oneclickvpnkeys::NL'
+      obfs: ""
+      obfs-password: ""
+      password: dongtaiwang.com
+      port: "33550"
+      server: 89.144.35.25
+      skip-cert-verify: true
+      sni: apple.com
+      type: hysteria2
+      up: ""
+    - client-fingerprint: chrome
+      encryption: none
+      http-opts:
+        headers: {}
+        path:
+            - /
+      name: px-36
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: jlnKFP7eXy5fFjmH1HD8_3A-AKbraZvJMwPE03BRuhQ
+        short-id: 9d8307f6
+      server: 37.9.54.98
+      servername: download.cdn.yandex.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: c5c9d8ec-6c95-4f84-a395-de41ef895f34
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-211
+      network: grpc
+      port: "8880"
+      server: 185.236.232.123
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: e4824193-4f54-453b-d037-88368e85ef0e
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: Telegram-01
+      network: grpc
+      port: "443"
+      server: 91.107.244.15
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 7b148add-4438-426e-a583-50f11e7bd0e4
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-212
+      password: 51yloQC8D9w1Wae7FHtI65
+      port: "48172"
+      server: 4.223.100.248
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: '@HiByeVPNN'
+      network: grpc
+      port: "41647"
+      server: 91.107.173.252
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: e50fa46f-20c6-4c0d-fa0e-d9ffd92df36f
+      xudp: true
+    - alpn:
+        - ""
+      alterId: "0"
+      cipher: auto
+      name: "\U0001F1EB\U0001F1F7 France Fast"
+      network: ws
+      port: "443"
+      server: fapeng.org
+      servername: fapeng.org
+      skip-cert-verify: true
+      tls: true
+      type: vmess
+      udp: true
+      uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+      ws-opts:
+        headers:
+            Host: fapeng.org
+        path: linkvws
+      xudp: true
+    - encryption: none
+      name: px-126
+      network: ws
+      port: "2095"
+      server: lg.tehdrantolidi.ir
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: e927758e-3149-450b-b9a0-45321c946315
+      ws-opts:
+        headers:
+            Host: hiifof.parsvpskm.fun
+            User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.63 Safari/537.36
+        path: /?ed=2095TELEGRAM-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-VPN_SKY-
+        v2ray-http-upgrade: true
+        v2ray-http-upgrade-fast-open: true
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-213
+      network: grpc
+      port: "8880"
+      server: pqh30v8.waipdirect.shop
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: e4824193-4f54-453b-d037-88368e85ef0e
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: Telegram-07
+      network: grpc
+      port: "443"
+      server: 104.21.86.253
+      servername: pqh27v1.carwashipdir.shop
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: e4824193-4f54-453b-d037-88368e85ef0e
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      name: px-214
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: YNGotlyAx3ELUmi4lxOUjiEDmibqf1pPUTE9o3YYT2Y
+        short-id: ""
+      server: 5.181.171.2
+      servername: speed.cloudflare.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 8e6acce9-8b56-7190-d491-7d84f8189e26
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: px-127
+      network: ws
+      port: "443"
+      server: betty.ns.cloudflare.com
+      servername: 639031180460930556.altima-amsjq.info
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: d851e68a-af64-4dfc-a85a-7ffad2483230
+      ws-opts:
+        headers:
+            Host: 639031180460930556.altima-amsjq.info
+            User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
+        path: /oqxdqtws
+      xudp: true
+    - cipher: chacha20-ietf-poly1305
+      name: px-215
+      password: f8f7aCzcPKbsF8p3
+      port: "990"
+      server: 176.103.53.105
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - congestion-controller: bbr
+      name: px-240
+      password: Mahsaamini
+      port: "443"
+      server: 64.176.191.133
+      skip-cert-verify: true
+      type: tuic
+      udp: true
+      udp-relay-mode: native
+      uuid: d1bb3aae-ace9-4b0f-9ae5-85ab73acbb43
+    - down: ""
+      fingerprint: ""
+      name: '>>@oneclickvpnkeys::US'
+      obfs: ""
+      obfs-password: ""
+      password: 17cdeb6c-f046-11ee-bdac-f23c93141fad
+      port: "1743"
+      server: c37b0be5n-t3kyo0-t3lvgh-2gok.la.shifen.uk
+      skip-cert-verify: true
+      sni: c37b0be5-t3kyo0-t3lvgh-2gok.la.shifen.uk
+      type: hysteria2
+      up: ""
+    - encryption: none
+      name: px-142
+      network: h2
+      port: "26430"
+      server: movaghat60.goldspeed.org
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: eff8ff53-41bf-4ef0-a920-4be2c46a6bad
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: randomized
+      encryption: none
+      name: px-139
+      network: ws
+      port: "443"
+      server: www.speedtest.net
+      servername: FK31lnDM4w8UJ0YP1dRWLtdtDKO6Y-cu.pages.dEv
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 826f524a-cea1-4e44-9b49-3381d13b7593
+      ws-opts:
+        headers:
+            Host: fk31lndm4w8uj0yp1drwltdtdko6y-cu.pages.dev
+            User-Agent: Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36
+        path: /kDPocrIW3Ice02v4
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: randomized
+      encryption: none
+      name: px-140
+      network: ws
+      port: "443"
+      server: 172.66.46.247
+      servername: fk31lnDM4W8uJ0Yp1drWlTdTdkO6Y-Cu.pages.deV
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 826f524a-cea1-4e44-9b49-3381d13b7593
+      ws-opts:
+        headers:
+            Host: fk31lndm4w8uj0yp1drwltdtdko6y-cu.pages.dev
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36
+        path: /laGekhA1Q1IhSqJe
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: randomized
+      encryption: none
+      name: px-141
+      network: ws
+      port: "443"
+      server: 172.66.45.9
+      servername: fk31LnDm4W8uj0yP1dRwLTDTdKo6Y-cu.pAGES.dEv
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 826f524a-cea1-4e44-9b49-3381d13b7593
+      ws-opts:
+        headers:
+            Host: fk31lndm4w8uj0yp1drwltdtdko6y-cu.pages.dev
+            User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36
+        path: /gL8gLANdh881Nj22
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      flow: xtls-rprx-vision
+      name: px-144
+      network: tcp
+      port: "443"
+      reality-opts:
+        public-key: BhTJ3phnq-Z-10aFKSsj1lzhA8mULR4L6leE4-0WTAs
+        short-id: ""
+      server: deu196.unboundaccess.org
+      servername: www.bing.com
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: f788e136-b245-4617-9d41-b505c7f41ef9
+      xudp: true
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-143
+      network: grpc
+      port: "8880"
+      server: 185.236.232.189
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: e4824193-4f54-453b-d037-88368e85ef0e
+      xudp: true
+    - congestion-controller: bbr
+      name: px-226
+      password: crivAv10hAdr-fop4Lne
+      port: "443"
+      server: 70.34.197.98
+      skip-cert-verify: true
+      type: tuic
+      udp: true
+      uuid: 87bc1693-8860-41d7-acf4-e6edf49abbbb
+    - alpn:
+        - h3
+      congestion-controller: bbr
+      name: px-230
+      password: 1a42eec6-40f7-4952-afeb-021fe4471207
+      port: "8443"
+      server: hk4-cvm-ultra.alma-learning.top
+      skip-cert-verify: true
+      sni: Aef.hKbU.EdU.HK
+      type: tuic
+      udp: true
+      udp-relay-mode: native
+      uuid: 1a42eec6-40f7-4952-afeb-021fe4471207
+    - alpn:
+        - h3
+      congestion-controller: cubic
+      name: Tuic3
+      password: 2f77527e-678c-4af6-9a0a-30823885bd53
+      port: "54773"
+      server: 134.209.28.89.sslip.io
+      skip-cert-verify: true
+      sni: 134.209.28.89.sslip.io
+      type: tuic
+      udp: true
+      udp-relay-mode: native
+      uuid: 2f77527e-678c-4af6-9a0a-30823885bd53
+    - congestion-controller: bbr
+      name: px-228
+      password: crivAv10hAdr-fop4Lne
+      port: "443"
+      server: 70.34.208.3
+      skip-cert-verify: true
+      type: tuic
+      udp: true
+      uuid: 87bc1693-8860-41d7-acf4-e6edf49abbbb
+    - alpn:
+        - h3
+      congestion-controller: cubic
+      name: px-231
+      password: 2f77527e-678c-4af6-9a0a-30823885bd53
+      port: "54773"
+      server: 134.209.28.89
+      skip-cert-verify: true
+      sni: 134.209.28.89.sslip.io
+      type: tuic
+      udp: true
+      udp-relay-mode: native
+      uuid: 2f77527e-678c-4af6-9a0a-30823885bd53
+    - encryption: none
+      grpc-opts:
+        grpc-service-name: ""
+      name: px-145
+      network: grpc
+      port: "8880"
+      server: 185.236.232.223
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: e4824193-4f54-453b-d037-88368e85ef0e
+      xudp: true
+    - alpn:
+        - h3
+      congestion-controller: bbr
+      name: px-232
+      password: e7b1c11f0d40cc95
+      port: "443"
+      server: 209.250.254.198
+      skip-cert-verify: true
+      sni: www.apple.com
+      type: tuic
+      udp: true
+      udp-relay-mode: native
+      uuid: 38e38f61-b1dd-4b34-90d0-f6222fd7393f
+    - alpn:
+        - h3
+        - http/1.1
+      congestion-controller: bbr
+      name: px-233
+      password: siEk2SjZFG
+      port: "2087"
+      server: 31.58.214.130
+      skip-cert-verify: true
+      sni: ghasem.kotlet.org
+      type: tuic
+      udp: true
+      uuid: 3cf62ed3-f3b4-4c4a-b371-0829d506338f
+    - alpn:
+        - h3
+        - spdy/3.1
+      congestion-controller: bbr
+      name: px-234
+      password: FRebRlCrO+huXaprEwr6
+      port: "443"
+      server: 70.34.198.64
+      skip-cert-verify: true
+      sni: www.apple.com
+      type: tuic
+      udp: true
+      udp-relay-mode: native
+      uuid: 6313c68a-472b-4999-ba33-094a55ea7549
+    - alpn:
+        - h3
+      congestion-controller: cubic
+      name: px-237
+      password: 7a1bb499-31d8-4c6b-9dcc-c66b31e63622
+      port: "20320"
+      server: 31.57.228.213
+      skip-cert-verify: true
+      sni: persiatm.services
+      type: tuic
+      udp: true
+      udp-relay-mode: native
+      uuid: 7a1bb499-31d8-4c6b-9dcc-c66b31e63622
+    - alpn:
+        - h3
+      congestion-controller: bbr
+      name: px-238
+      password: 7c81d0a8-8e23-44d4-94b5-56d33b7af07d
+      port: "52849"
+      server: 31.25.237.9
+      skip-cert-verify: true
+      sni: www.bing.com
+      type: tuic
+      udp: true
+      udp-relay-mode: native
+      uuid: 7c81d0a8-8e23-44d4-94b5-56d33b7af07d
+    - alpn:
+        - h3
+      congestion-controller: cubic
+      name: px-235
+      password: 6b389472-9094-4c8a-a780-3d371b2eade5
+      port: "35403"
+      server: 45.76.82.254
+      skip-cert-verify: true
+      sni: vkvd127.mycdn.me
+      type: tuic
+      udp: true
+      udp-relay-mode: native
+      uuid: 6b389472-9094-4c8a-a780-3d371b2eade5
+    - congestion-controller: bbr
+      name: px-239
+      password: Mahsaamini
+      port: "443"
+      server: 64.176.186.193
+      skip-cert-verify: true
+      type: tuic
+      udp: true
+      udp-relay-mode: native
+      uuid: d1bb3aae-ace9-4b0f-9ae5-85ab73acbb43
+    - alpn:
+        - h3
+      congestion-controller: bbr
+      name: px-236
+      password: dongtaiwang.com
+      port: "11227"
+      server: 64.110.25.10
+      skip-cert-verify: true
+      sni: bing.com
+      type: tuic
+      udp: true
+      udp-relay-mode: native
+      uuid: 764b539f-2d3c-4772-9731-5ebf6984af98
+    - cipher: chacha20-ietf-poly1305
+      name: hamedp71
+      password: 75782921a8e70802
+      port: "18550"
+      server: 195.7.6.160
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - congestion-controller: bbr
+      name: px-227
+      password: e7b1c11f0d40cc95
+      port: "443"
+      server: 136.244.88.153
+      skip-cert-verify: true
+      type: tuic
+      udp: true
+      uuid: 38e38f61-b1dd-4b34-90d0-f6222fd7393f
+    - client-fingerprint: chrome
+      encryption: none
+      name: '@Daily_Configs'
+      network: ws
+      port: "443"
+      server: pavosilene.qzz.io
+      servername: pavosilene.qzz.io
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 3ceb7c2b-8aed-41b3-ad42-ba1e1a69bae5
+      ws-opts:
+        path: /79.141.170.138:443
+      xudp: true
