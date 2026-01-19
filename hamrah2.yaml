@@ -84,7 +84,7 @@ proxy-groups:
     include-all-providers: true
     exclude-type: "direct|redir-in|DNS"
     interval: 300
-    hidden: false
+    hidden: true
     proxies:
 
   - name: 🚧 fallback
@@ -93,7 +93,7 @@ proxy-groups:
     include-all-providers: true
     exclude-type: "direct|redir-in|DNS"
     interval: 180
-    hidden: false
+    hidden: true
     proxies:
 
       
@@ -104,7 +104,7 @@ proxy-groups:
     include-all-providers: true
     exclude-type: "direct|redir-in|DNS"
     interval: 180
-    hidden: false
+    hidden: true
     proxies:
     use:
 
@@ -315,6 +315,7 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,🕹 select
   - MATCH,🕹 select
+
 
 
 
