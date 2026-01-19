@@ -551,11 +551,10 @@ proxy-providers:
       additional-suffix: "| test suffix"
 proxy-groups:
   - name: "PROXY"
-    type: "url-test"
+    type: "select"
     url: "http://www.google.com/generate_204"
-    hidden: false
-    interval: 150
-    tolerance: 5
+    include-all-providers: true
+    include-all-proxies: true
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
     proxies:
       - "🎈Auto"
@@ -568,7 +567,7 @@ proxy-groups:
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     interval: 280
     tolerance: 500
-    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     include-all-proxies: true
     hidden: false
@@ -580,7 +579,7 @@ proxy-groups:
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     interval: 180
-    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     include-all-proxies: true
     hidden: false
