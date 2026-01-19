@@ -56,6 +56,9 @@ dns:
 proxy-groups:
   - name: 🐟
     type: select
+    exclude-type: "direct|redir-in|DNS"
+    include-all-proxies: true
+    include-all-providers: true
     proxies:
       - url-test
       - 🔯
@@ -67,7 +70,7 @@ proxy-groups:
     url: https://testmy.net/latency?addr=twitch.com
     interval: 300
     tolerance: 50
-    exclude-type: "socks5|http|direct|redir-in|🇺🇸|🔮|�|url-test"
+    exclude-type: "direct|redir-in|DNS"
     include-all-proxies: true
     include-all-providers: true
 
@@ -75,7 +78,7 @@ proxy-groups:
     type: load-balance
     strategy: consistent-hashing
     url: https://testmy.net/latency?addr=twitch.com
-    exclude-type: "socks5|http|direct|redir-in|🇺🇸|🔮|�|url-test"
+    exclude-type: "direct|redir-in|DNS"
     interval: 300
     tolerance: 50
     include-all-proxies: true
@@ -88,7 +91,7 @@ proxy-groups:
     tolerance: 80
     include-all-proxies: true
     include-all-providers: true
-    exclude-type: "socks5|http|direct|redir-in|🇺🇸|🔮|�|url-test"
+    exclude-type: "direct|redir-in|DNS"
     filter: "(?i)美|us|unitedstates|united states"
 
   - name: url-test
@@ -99,7 +102,7 @@ proxy-groups:
     udp: false
     include-all-proxies: true
     include-all-providers: true
-    exclude-type: "socks5|http|direct|redir-in|🇺🇸|🔮|�|url-test"
+    exclude-type: "direct|redir-in|DNS"
     proxies:
     
     
