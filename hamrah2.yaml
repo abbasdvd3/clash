@@ -81,7 +81,7 @@ proxy-groups:
     type: url-test
     url: https://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
-    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    exclude-type: exclude-type: "direct|redir-in|DNS"
     interval: 300
     hidden: false
     proxies:
@@ -90,7 +90,7 @@ proxy-groups:
     type: fallback
     url: https://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
-    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    exclude-type: exclude-type: "direct|redir-in|DNS"
     interval: 180
     hidden: false
     proxies:
@@ -101,7 +101,7 @@ proxy-groups:
     strategy: round-robin
     url: https://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
-    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    exclude-type: exclude-type: "direct|redir-in|DNS"
     interval: 180
     hidden: false
     proxies:
@@ -314,6 +314,7 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,🕹 select
   - MATCH,🕹 select
+
 
 
 
