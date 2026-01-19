@@ -85,8 +85,7 @@ proxy-groups:
     interval: 180
     exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
-    proxies:
-    use:
+    hidden: true
 
   - name: ♻️ url-test
     type: fallback
@@ -94,15 +93,14 @@ proxy-groups:
     include-all-providers: true
     exclude-type: "direct|redir-in|DNS"
     nodeGroupType: 0
-    proxies:
-    use:
-      - provider1
-      - provider2
+    hidden: true
+
   - name: 🚧 fallback
     type: fallback
     url: https://fiber.google.com/speedtest/generate_204
     exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
+    hidden: true
     nodeGroupType: 0
     proxies:
       - 🇭🇰 
@@ -117,8 +115,7 @@ proxy-groups:
     exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     nodeGroupType: 0
-    proxies:
-    use:
+    hidden: true
   
   - name: 🎯
     type: select
@@ -133,8 +130,7 @@ proxy-groups:
     exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
-    proxies: 
-    use:
+    hidden: true
 
   - name: 🇯🇵
     type: fallback
@@ -142,17 +138,15 @@ proxy-groups:
     exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
-    proxies: 
-    use:
+    hidden: true
 
   - name: 🇺🇲
     type: fallback
     url: https://fiber.google.com/speedtest/generate_204
     exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
-    proxies:
+    hidden: true
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
-    use:
 
   - name: 🇨🇳
     type: fallback
@@ -160,8 +154,7 @@ proxy-groups:
     exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
-    proxies: 
-    use:
+    hidden: true
 
   - name: 🇸🇬
     type: fallback
@@ -169,8 +162,7 @@ proxy-groups:
     exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
-    proxies: 
-    use:
+    hidden: true
 
   - name: 🇰🇷
     type: fallback
@@ -178,8 +170,7 @@ proxy-groups:
     exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
-    proxies: 
-    use:
+    hidden: true
 
       
 proxy-providers:
