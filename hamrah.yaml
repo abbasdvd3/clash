@@ -33,7 +33,7 @@ external-ui-name: xd
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 keep-alive-interval: 30
 find-process-mode: strict
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: random
 geodata-mode: true
@@ -160,11 +160,11 @@ dns:
   enable: true
   cache-algorithm: arc
   prefer-h3: true
-  use-hosts: false
-  use-system-hosts: false
-  respect-rules: false
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: true
   listen: 0.0.0.0:53
-  ipv6: false
+  ipv6: true
   defult-nameserver:
     - system
     - dhcp://system
@@ -292,12 +292,11 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
     interval: 300
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 300
-      timeout: 5000
+      timeout: 50
       lazy: true
       expected-status: 204
       header:
@@ -312,12 +311,11 @@ proxy-providers:
     type: http
     url: "https://shadowmere.xyz/api/b64sub/"
     interval: 300
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 300
-      timeout: 5000
+      timeout: 50
       lazy: true
       expected-status: 204
       header:
@@ -332,12 +330,11 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity"
     interval: 300
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 300
-      timeout: 5000
+      timeout: 50
       lazy: true
       expected-status: 204
       header:
@@ -353,12 +350,11 @@ proxy-providers:
     type: http     
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N"  # https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/refs/heads/Jsnzkpg/Jsnzkpg
     interval: 300
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 300
-      timeout: 5000
+      timeout: 50
       lazy: true
       expected-status: 204
       header:
@@ -373,12 +369,11 @@ proxy-providers:
     type: http
     url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies"
     interval: 300
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 300
-      timeout: 5000
+      timeout: 50
       lazy: true
       expected-status: 204
       header:
@@ -393,12 +388,11 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
     interval: 300
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 300
-      timeout: 5000
+      timeout: 50
       lazy: true
       expected-status: 204
       header:
@@ -413,12 +407,11 @@ proxy-providers:
     type: http
     url: "http://66.42.50.118:12580/clash/proxies"
     interval: 300
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 300
-      timeout: 5000
+      timeout: 50
       lazy: true
       expected-status: 204
       header:
@@ -433,12 +426,11 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x" # https://raw.githubusercontent.com/mheidari98/.proxy/main/all # https://config.v2cross.com/clashprofile/config
     interval: 300
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 300
-      timeout: 5000
+      timeout: 50
       lazy: true
       expected-status: 204
       header:
@@ -453,7 +445,6 @@ proxy-providers:
     type: http
     url: "https://proxypool.link/clash/proxies" # #https://raw.githubusercontent.com/dongchengjie/airport/main/subs/merged/tested_within.yaml" # https://raw.githubusercontent.com/PangTouY00/Auto_proxy/main/Long_term_subscription_num
     interval: 300
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
@@ -473,7 +464,6 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
     interval: 300
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
@@ -493,12 +483,11 @@ proxy-providers:
     type: http
     url: "https://anaer.github.io/Sub/proxies.yaml" #https://anaer.github.io/Sub/proxies.yaml
     interval: 300
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 300
-      timeout: 5000
+      timeout: 50
       lazy: true
       expected-status: 204
       header:
@@ -513,12 +502,11 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/ts-sf/fly/main/clash"
     interval: 300
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
       url: "https://connectivitycheck.gstatic.com/generate_204"
       interval: 300
-      timeout: 5000
+      timeout: 50
       lazy: true
       expected-status: 204
       header:
@@ -532,11 +520,11 @@ proxy-providers:
 
 proxy-groups:
   - name: "PROXY"
-    type: "select"
+    type: "url-test"
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png"
-    include-all-providers: true
-    include-all-proxies: true
-    exclude-type: "direct|redir-in|trojan|DNS"
+ #   include-all-providers: true
+  #  include-all-proxies: true
+    exclude-type: "direct|redir-in|DNS"
     proxies:
       - "🎈Auto"
       - "🎈fallback"
@@ -546,19 +534,18 @@ proxy-groups:
   - name: "🎈Auto"
     type: "url-test"
     url: "http://connectivitycheck.gstatic.com/generate_204"
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     tolerance: 50
-    exclude-type: "direct|redir-in|trojan|DNS"
+    exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
+    include-all-proxies: true
     hidden: true
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png"
     
   - name: "🎈fallback"
     type: "fallback"
     url: "https://connectivitycheck.gstatic.com/generate_204"
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     interval: 18
-    exclude-type: "direct|redir-in|trojan|DNS"
+    exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     include-all-proxies: true
     hidden: true
@@ -566,11 +553,11 @@ proxy-groups:
     
   - name: "🇺🇸US🇺🇸"
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|CA|PM|MX|PA|BM|GL|GD|CR|VG|VI|BR|CL|PE|CU|HT|AR|UY|PY|JM|SR|BS|GF|BZ|MS|AW|CW|SX|MF|BL|GP|MQ|AG|KN|TT|VC|CO|EC|VE|BO|GT|SV|PR|KY|HN|DM|BB|LC|FK|TC"
-    exclude-filter: "HK|Hong|TW|Tai|Taiwan|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|回国|校园|游戏|🇰🇷|韩国|韓|首尔|KR|Korea|回国|校园|游戏|🇦🇹|timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅|AT|GER|🇩🇪🇱🇻|🇩🇪"
+   # exclude-filter: "HK|Hong|TW|Tai|Taiwan|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|回国|校园|游戏|🇰🇷|韩国|韓|首尔|KR|Korea|回国|校园|游戏|🇦🇹|timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅|AT|GER|🇩🇪🇱🇻|🇩🇪"
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
     tolerance: 50
-    exclude-type: "direct|redir-in|trojan|DNS"
+    exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     include-all-proxies: true
     hidden: true
@@ -582,7 +569,7 @@ proxy-groups:
     type: "fallback"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
     interval: 18
-    exclude-type: "direct|redir-in|trojan|DNS"
+    exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     include-all-proxies: true
     hidden: true
@@ -591,7 +578,6 @@ proxy-groups:
   - name: "AI"
     type: "url-test"
     url: "http://connectivitycheck.gstatic.com/generate_204"
-    exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     tolerance: 5
     hidden: true
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Final.png"
