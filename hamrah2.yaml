@@ -71,7 +71,7 @@ proxies:
 proxy-groups:
   - name: 🕹 select
     type: select
-    include-all-providers: true
+  #  include-all-providers: true
     exclude-type: "direct|redir-in|DNS"
     proxies:
       - ♻️ url-test
@@ -315,6 +315,7 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,🕹 select
   - MATCH,🕹 select
+
 
 
 
