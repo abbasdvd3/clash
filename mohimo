@@ -3,7 +3,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/x"
     type: http
     interval: 80
-    health-check: {enable: true,url: "https://www.gstatic.com/generate_204", interval: 30}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204", interval: 30}
     override:
       additional-prefix: "[provider1]"  
 
@@ -11,7 +11,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
     type: http
     interval: 80
-    health-check: {enable: true,url: "https://www.gstatic.com/generate_204", interval: 30}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204", interval: 30}
     override:
       additional-prefix: "[provider2]" 
 
@@ -40,7 +40,7 @@ profile:
   store-fake-ip: true
 geo-auto-update: true
 geo-update-interval: 24
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 interface-name: ""
 global-client-fingerprint: chrome
@@ -53,37 +53,6 @@ geox-url:
   geosite: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat"
   mmdb: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/geoip.metadb"
   asn: "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/geolite2/GeoLite2-ASN.mmdb"
-
-
-sniffer:
-  enable: true
-  parse-pure-ip: true
-  force-dns-mapping: true
-  override-destination: true
-  sniff:
-    HTTP:
-      ports:
-        - 80
-        - 443
-      override-destination: false
-    TLS:
-      ports:
-        - 443
-  skip-domain:
-    - +.push.apple.com
-  skip-dst-address:
-    - 91.105.192.0/23
-    - 91.108.4.0/22
-    - 91.108.8.0/21
-    - 91.108.16.0/21
-    - 91.108.56.0/22
-    - 95.161.64.0/20
-    - 149.154.160.0/20
-    - 185.76.151.0/24
-    - 2001:67c:4e8::/48
-    - 2001:b28:f23c::/47
-    - 2001:b28:f23f::/48
-    - 2a0a:f280:203::/48
 
 tun:
   enable: true
@@ -356,7 +325,7 @@ proxies:
 proxy-groups:
   - name: GLOBAL
     type: select
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|trojan|DNS"
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
     include-all-providers: true
     exclude-filter: Expire
@@ -366,9 +335,9 @@ proxy-groups:
       - AIGC
       - US AUTO
   - name: PROXY
-    type: url-test
+    type: select
     exclude-filter: Expire
-    disable-udp: true
+    "direct|redir-in|trojan|DNS"
     proxies:
       - AUTO
       - AIGC
@@ -379,7 +348,7 @@ proxy-groups:
     interval: 300
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|trojan|DNS"
     exclude-filter: Expire
     tolerance: 50
     lazy: true
@@ -389,7 +358,7 @@ proxy-groups:
     type: fallback
     interval: 180
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|trojan|DNS"
     proxies:
     
   - name: US AUTO
@@ -400,7 +369,7 @@ proxy-groups:
     icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
     include-all-providers: true
     exclude-filter: Expire
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|trojan|DNS"
     filter: (?i)美国|USA|🇺🇸
     
   - name: local
