@@ -14,7 +14,7 @@ log-level: info
 external-controller: '127.0.0.1:9090'
 dns:
   enable: false
-  ipv6: false
+  ipv6: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
@@ -51,12 +51,11 @@ proxy-groups:
 
 - name: default
   type: select
-  exclude-type: "direct|redir-in|DNS"
+  exclude-type: "direct|redir-in|trojan|DNS"
   include-all-providers: true
   proxies:
     - auto
     - manual
-
 
 - name: manual
   type: select
@@ -64,7 +63,7 @@ proxy-groups:
 
 - name: auto
   type: url-test
-  exclude-type: "direct|redir-in|DNS"
+  exclude-type: "direct|redir-in|trojan|DNS"
   hidden: true
   include-all-providers: true
 - name: 🎯
@@ -599,6 +598,7 @@ rules:
   - OR,((DOMAIN-SUFFIX,d.metacubex.one),(DOMAIN-SUFFIX,yacd.haishan.me)),DIRECT
   - RULE-SET,ircidr,DIRECT
   - MATCH,default
+
 
 
 
