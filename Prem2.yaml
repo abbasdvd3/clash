@@ -49,7 +49,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 30
-      url: "https://www.google.com/generate_204"
+      url: "http://www.gstatic.com/generate_204"
   provider2:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/1"    
@@ -61,7 +61,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 30
-      url: "https://www.google.com/generate_204"
+      url: "http://www.gstatic.com/generate_204"
   provider3:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/pp1.yaml" 
@@ -73,7 +73,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 30
-      url: "https://www.google.com/generate_204"
+      url: "http://www.gstatic.com/generate_204"
   provider4:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/s"    
@@ -85,7 +85,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 30
-      url: "https://www.google.com/generate_204"  
+      url: "http://www.gstatic.com/generate_204"  
   provider5:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/a" 
@@ -97,7 +97,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 30
-      url: "https://www.google.com/generate_204"
+      url: "http://www.gstatic.com/generate_204"
   provider6:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N"    
@@ -109,13 +109,17 @@ proxy-providers:
     health-check:
       enable: true
       interval: 30
-      url: "https://www.google.com/generate_204"     
+      url: "http://www.gstatic.com/generate_204"     
 proxy-groups:
   - name: 'PRO'
     type: 'select'
     use: 
- #     - 'provider1'
-  #    - 'provider2'
+      - 'provider1'
+      - 'provider2'
+      - 'provider3'
+      - 'provider4'
+      - 'provider5'
+      - 'provider6'
     proxies:
       - '⚡️ Fastest'
       - '📶 First Available'
@@ -124,10 +128,9 @@ proxy-groups:
       - '⚡️relay'
   - name: '⚡️relay'
     type: 'url-test'
-    tolerance: 500
-    url: 'https://www.google.com/generate_204'
+    tolerance: 50
+    url: 'http://www.gstatic.com/generate_204'
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 5000
     proxies:
     use: 
       - 'provider1'
@@ -138,10 +141,10 @@ proxy-groups:
       - 'provider6'
   - name: '⚡️ Fastest'
     type: 'url-test'
-    tolerance: 500
-    url: 'https://www.google.com/generate_204'
+    tolerance: 50
+    url: 'http://www.gstatic.com/generate_204'
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    interval: 5000
+    interval: 300
     proxies:
     use: 
       - 'provider1'
@@ -154,7 +157,7 @@ proxy-groups:
 
   - name: '📶 First Available'
     type: 'fallback'
-    url: 'https://www.google.com/generate_204'
+    url: 'http://www.gstatic.com/generate_204'
     interval: 180
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     use: 
@@ -168,8 +171,8 @@ proxy-groups:
     proxies:
   - name: '♻️ Load Balance'
     type: 'load-balance'
-    url: 'https://www.google.com/generate_204'
-    interval: 500
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 50
     strategy: 'consistent-hashing'
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     use: 
@@ -203,8 +206,8 @@ proxy-groups:
       - '⚡️relay'
   - name: 'United'
     type: 'url-test'
-    url: 'https://www.google.com/generate_204'
-    interval: 500
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
     tolerance: 100
  #   filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
