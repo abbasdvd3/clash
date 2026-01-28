@@ -16,7 +16,7 @@ external-ui: ./dashboard
 keep-alive-interval: 30
 find-process-mode: strict
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: random
 geodata-mode: true
@@ -88,9 +88,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A41 prefix |"
-      additional-suffix: "| test suffix"
 
   A441:
     type: http
@@ -103,9 +100,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A441 prefix |"
-      additional-suffix: "| test suffix"
 
   A1:
     type: http
@@ -133,9 +127,7 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A2 prefix |"
-      additional-suffix: "| test suffix"
+
     
   A6:
     type: http
@@ -148,9 +140,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A6 prefix |"
-      additional-suffix: "| test suffix"
 
   A7:
     type: http
@@ -163,9 +152,7 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A7 prefix |"
-      additional-suffix: "| test suffix"
+  
 
   A8:
     type: http
@@ -178,9 +165,7 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A8 prefix |"
-      additional-suffix: "| test suffix"
+   
 
   A9:
     type: http
@@ -193,9 +178,7 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A9 prefix |"
-      additional-suffix: "| test suffix"
+   
 
   A10:
     type: http
@@ -223,9 +206,7 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A11 prefix |"
-      additional-suffix: "| test suffix"
+
 
   A12:
     type: http
@@ -253,9 +234,7 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A13 prefix |"
-      additional-suffix: "| test suffix"
+
 
   A14:
     type: http
@@ -268,9 +247,7 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A14 prefix |"
-      additional-suffix: "| test suffix"
+  
   A15:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/h.yaml" #https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt
@@ -282,9 +259,7 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A15 prefix |"
-      additional-suffix: "| test suffix"
+
   A16:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/all"
@@ -296,9 +271,7 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A16 prefix |"
-      additional-suffix: "| test suffix"
+
     
   A22:
     type: http
@@ -311,9 +284,7 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A22 prefix |"
-      additional-suffix: "| test suffix"
+
     
   A66:
     type: http
@@ -326,9 +297,7 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A66 prefix |"
-      additional-suffix: "| test suffix"
+
 
   A77:
     type: http
@@ -341,9 +310,7 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A77 prefix |"
-      additional-suffix: "| test suffix"
+
 
   A88:
     type: http
@@ -356,9 +323,7 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A88 prefix |"
-      additional-suffix: "| test suffix"
+
 proxies:
 - name: "IRAN"
   type: direct
@@ -377,7 +342,6 @@ proxy-groups:
     proxies:
       - "🎈Auto"
       - "🎈fallback"
-      - "🇺🇸US🇺🇸"
 
   - name: "🎈Auto"
     type: "url-test"
@@ -386,7 +350,7 @@ proxy-groups:
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     interval: 200
     tolerance: 50000
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     hidden: true
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Global.png"
@@ -397,7 +361,7 @@ proxy-groups:
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     interval: 100
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     hidden: true
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
@@ -409,7 +373,7 @@ proxy-groups:
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
     interval: 200
     tolerance: 5000
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     hidden: true
     url: "http://www.google.com/"
