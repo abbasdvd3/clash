@@ -6,37 +6,7 @@ allow-lan: true
 log-level: debug
 external-controller: "127.0.0.1:9090"
 
-proxy-providers:
-  A1:
-    type: http
-    url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
-    interval: 86400
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      lazy: true
-      expected-status: 100
-    override:
-      additional-prefix: "A1 prefix |"
-      additional-suffix: "| test suffix"
-    
-  A2:
-    type: http
-    url: "https://shadowmere.xyz/api/b64sub/"
-    interval: 86400
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      lazy: true
-      expected-status: 100
-    override:
-      additional-prefix: "A2 prefix |"
-      additional-suffix: "| test suffix"
-    
+
 proxy-groups:
   - name: "PROXY"
     type: "select"
