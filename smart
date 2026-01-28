@@ -243,13 +243,13 @@ proxy-groups:
   - {name: Clubhouse,  type: select, include-all: true, filter: *FilterAL, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
   - {name: Direct,  type: select, proxies: [DIRECT], hidden: false, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Direct.png}
 
-  - {name: Hong_Kong,  <<: *BaseSmart, filter: *FilterHK, include-all: true, exclude-type: "direct|redir-in|trojan|DNS", icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"}
-  - {name: Taiwan,  <<: *BaseSmart, filter: *FilterTW, include-all: true, exclude-type: "direct|redir-in|trojan|DNS", icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"}
-  - {name: Japan,  <<: *BaseSmart, filter: *FilterJP, include-all: true, exclude-type: "direct|redir-in|trojan|DNS", icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"}
-  - {name: Singapore,  <<: *BaseSmart, filter: *FilterSG, include-all: true, exclude-type: "direct|redir-in|trojan|DNS", icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"}
-  - {name: Korea,  <<: *BaseSmart, filter: *FilterKR, include-all: true, exclude-type: "direct|redir-in|trojan|DNS", icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"}
-  - {name: United_States,  <<: *BaseSmart, filter: *FilterUS, include-all: true, exclude-type: "direct|redir-in|trojan|DNS", icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"}
-  - {name: European,  <<: *BaseSmart, filter: *FilterEU, include-all: true, exclude-type: "direct|redir-in|trojan|DNS", icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png, exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"}
+  - {name: Hong_Kong,  <<: *BaseSmart, filter: *FilterHK, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png, exclude-type: "direct|redir-in|trojan|DNS"}
+  - {name: Taiwan,  <<: *BaseSmart, filter: *FilterTW, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png, exclude-type: "direct|redir-in|trojan|DNS"}
+  - {name: Japan,  <<: *BaseSmart, filter: *FilterJP, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png, exclude-type: "direct|redir-in|trojan|DNS"}
+  - {name: Singapore,  <<: *BaseSmart, filter: *FilterSG, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png, exclude-type: "direct|redir-in|trojan|DNS"}
+  - {name: Korea,  <<: *BaseSmart, filter: *FilterKR, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png, exclude-type: "direct|redir-in|trojan|DNS"}
+  - {name: United_States,  <<: *BaseSmart, filter: *FilterUS, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png, exclude-type: "direct|redir-in|trojan|DNS"}
+  - {name: European,  <<: *BaseSmart, filter: *FilterEU, include-all: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png, exclude-type: "direct|redir-in|trojan|DNS"}
 rules: 
   - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT
   - DOMAIN-KEYWORD,soft98.ir,Direct
