@@ -18,7 +18,7 @@ ipv6: true
 log-level: info
 find-process-mode: always
 enable-process: true
-unified-delay: true
+unified-delay: false
 keep-alive-interval: 15
 tcp-concurrent: true
 geodata-mode: true
@@ -95,7 +95,7 @@ proxies:
 proxy-groups:
   - name: Proxy
     type: select
-  #  include-all-providers: true
+    include-all-providers: true
     exclude-type: "direct|redir-in|DNS"
     hidden: true
     proxies:
@@ -104,19 +104,19 @@ proxy-groups:
       - Geo-US
   - name: Auto
     type: url-test
-    url: https://t1.geigei.gq/generate_204
+    url: http://www.gstatic.com/generate_204
     include-all-providers: true
     hidden: true
     interval: 100
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|trojan|DNS"
     filter: "America|United States|US|美国"
     lazy: true
 
   - name: fallback
     type: fallback
-    url: https://t1.geigei.gq/generate_204
+    url: http://www.gstatic.com/generate_204
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|trojan|DNS"
     hidden: true
     interval: 180
     filter: "America|United States|US|美国"
@@ -124,9 +124,9 @@ proxy-groups:
 
   - name: Geo-SG
     type: url-test
-    url: https://t1.geigei.gq/generate_204
+    url: http://www.gstatic.com/generate_204
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|trojan|DNS"
     hidden: true
     interval: 100
     lazy: true
@@ -134,8 +134,8 @@ proxy-groups:
     use: 
   - name: Geo-JP
     type: url-test
-    url: https://t1.geigei.gq/generate_204
-    exclude-type: "direct|redir-in|DNS"
+    url: http://www.gstatic.com/generate_204
+    exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     hidden: true
     interval: 100
@@ -144,8 +144,8 @@ proxy-groups:
 
   - name: Geo-US
     type: url-test
-    url: https://t1.geigei.gq/generate_204
-    exclude-type: "direct|redir-in|DNS"
+    url: http://www.gstatic.com/generate_204
+    exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     hidden: true
     interval: 100
@@ -154,8 +154,8 @@ proxy-groups:
  
   - name: Geo-CN
     type: url-test
-    url: https://t1.geigei.gq/generate_204
-    exclude-type: "direct|redir-in|DNS"
+    url: http://www.gstatic.com/generate_204
+    exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     hidden: true
     interval: 100
@@ -184,7 +184,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 300
-      url: https://t1.geigei.gq/generate_204
+      url: http://www.gstatic.com/generate_204
       lazy: true 
 
   Subscription-2:
@@ -195,7 +195,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 300
-      url: https://t1.geigei.gq/generate_204
+      url: http://www.gstatic.com/generate_204
       lazy: true 
 
   Subscription-3:
@@ -206,7 +206,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 300
-      url: https://t1.geigei.gq/generate_204
+      url: http://www.gstatic.com/generate_204
       lazy: true 
 
   Subscription-4:
@@ -217,7 +217,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 300
-      url: https://t1.geigei.gq/generate_204
+      url: http://www.gstatic.com/generate_204
       lazy: true 
 
   Subscription-5:
@@ -228,7 +228,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 300
-      url: https://t1.geigei.gq/generate_204
+      url: http://www.gstatic.com/generate_204
       lazy: true 
 
   Subscription-6:
@@ -239,7 +239,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 300
-      url: https://t1.geigei.gq/generate_204
+      url: http://www.gstatic.com/generate_204
       lazy: true 
 
   Subscription-7:
@@ -250,7 +250,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 300
-      url: https://t1.geigei.gq/generate_204
+      url: http://www.gstatic.com/generate_204
       lazy: true 
 
 rule-providers:
