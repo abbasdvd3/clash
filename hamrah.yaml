@@ -522,7 +522,7 @@ proxy-groups:
   - name: "PROXY"
     type: "select"
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png"
-    include-all-providers: true
+#    include-all-providers: true
     include-all-proxies: true
     exclude-type: "direct|redir-in|DNS|trojan"
     proxies:
@@ -587,7 +587,7 @@ proxy-groups:
     type: "select"
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png"
     proxies:
-      - "redir-in"
+      - "DIRECT"
       - "DNS"
       - "PROXY"
       
@@ -934,1449 +934,775 @@ rules :
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
 proxies:
-  - name: redir-in
-    type: direct
-    port: 9797
-    server: 127.0.0.1
-  - name: DNS
-    type: dns
-  - type: ss
-    name: 美国_US_🇺🇸
-    server: 94.131.123.236
-    port: 5223
-    cipher: chacha20-ietf-poly1305
-    password: 3IJj3PFglv7UJNkX9ugR59
-  - type: ss
-    name: 英国_GB_🇬🇧
-    server: 82.38.31.214
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 立陶宛_LT_🇱🇹
-    server: 45.87.175.158
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 土耳其_TR_🇹🇷
-    server: 83.217.9.17
-    port: 25232
-    cipher: chacha20-ietf-poly1305
-    password: YHtXD4pojvormVWRiHgIfv
-  - type: ss
-    name: 巴拉圭_PY_🇵🇾
-    server: 45.83.20.206
-    port: 443
-    cipher: chacha20-ietf-poly1305
-    password: g5RQoxQuVtnFv3Xxsa8edPisXNPnyWKy
-  - type: ss
-    name: 英国_GB_🇬🇧_1
-    server: 82.38.31.205
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: trojan
-    name: 法国_FR_🇫🇷
-    server: 15.237.153.133
-    port: 22222
-    password: telegram-id-privatevpns
-    network: tcp
-    sni: trojan.burgerip.co.uk
-    tls: true
-  - type: ss
-    name: 英国_GB_🇬🇧_2
-    server: 82.38.31.179
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: vmess
-    name: 德国_DE_🇩🇪
-    server: 57.129.24.125
-    port: 443
-    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: aveiror.com
-    ws-opts:
-      path: /linkvws
-      headers:
-        Host: aveiror.com
-    tls: true
-  - type: ss
-    name: 匈牙利_HU_🇭🇺
-    server: 109.61.39.28
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 摩洛哥_MA_🇲🇦
-    server: 188.214.157.30
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 南非_ZA_🇿🇦
-    server: 156.38.168.58
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 美国_US_🇺🇸_1
-    server: 23.95.76.59
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: vmess
-    name: 法国_FR_🇫🇷_1
-    server: 57.129.25.25
-    port: 443
-    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: f.khilei.com
-    ws-opts:
-      path: /linkvws
-      headers:
-        Host: f.khilei.com
-    tls: true
-  - type: ss
-    name: 塞浦路斯_CY_🇨🇾
-    server: 91.148.135.31
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 哈萨克斯坦_KZ_🇰🇿
-    server: 45.159.250.190
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 印度_IN_🇮🇳
-    server: 134.209.147.198
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: f8f7aCzcPKbsF8p3
-  - type: ss
-    name: 巴拿马_PA_🇵🇦
-    server: 138.186.142.80
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 玻利维亚_BO_🇧🇴
-    server: 185.93.173.60
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: vmess
-    name: 加拿大_CA_🇨🇦
-    server: 15.235.83.228
-    port: 443
-    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
-    ws-opts:
-      path: /linkvws
-      headers:
-        Host: wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc
-    tls: true
-  - type: ss
-    name: 巴拿马_PA_🇵🇦_1
-    server: 138.186.142.81
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 美国_US_🇺🇸_2
-    server: 15.204.247.49
-    port: 12000
-    cipher: aes-256-gcm
-    password: 8JCsPssfgS8tiRwiMlhARg==
-  - type: ss
-    name: 哈萨克斯坦_KZ_🇰🇿_1
-    server: 94.198.220.183
-    port: 64674
-    cipher: chacha20-ietf-poly1305
-    password: s8LbJCgUiGXeCKVc63tHJP
-  - type: ss
-    name: 美国_US_🇺🇸_3
-    server: 69.30.251.122
-    port: 51004
-    cipher: chacha20-ietf-poly1305
-    password: 245f2c1d-a317-45a8-b230-e420566a7f62
-  - type: vmess
-    name: 中国台湾省_TW_🇹🇼
-    server: 103.127.218.91
-    port: 54693
-    uuid: 1cef03ad-6343-408c-8121-cbd1fda2ee9d
-    alterId: 0
-    network: ws
-    cipher: auto
-    ws-opts:
-      path: /1cef03ad
-  - type: vmess
-    name: 马来西亚_MY_🇲🇾
-    server: 47.250.45.234
-    port: 8613
-    uuid: 80039b4d-bac0-4f89-82c7-54fad3b0a1ea
-    alterId: 0
-    network: ws
-    cipher: auto
-    ws-opts:
-      path: /arki?ed=2048
-  - type: ss
-    name: 柬埔寨_KH_🇰🇭
-    server: 38.54.4.87
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 阿尔及利亚_DZ_🇩🇿
-    server: 197.140.29.76
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_1
-    server: 45.87.175.187
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 英国_GB_🇬🇧_3
-    server: 82.38.31.210
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 摩洛哥_MA_🇲🇦_1
-    server: 154.70.207.97
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: vmess
-    name: 香港_HK_🇭🇰
-    server: hkt.gotochinatown.net
-    port: 80
-    uuid: d70a9508-5477-11ef-bf61-f23c913c8d2b
-    alterId: 0
-    network: ws
-    cipher: auto
-    ws-opts:
-      path: /
-  - type: trojan
-    name: 日本_JP_🇯🇵
-    server: 13.112.81.124
-    port: 3169
-    password: 76d630f2af6619c4a5de0ef953df3c6a
-    network: tcp
-    sni: www.nintendogames.net
-    tls: true
-  - type: trojan
-    name: 香港_HK_🇭🇰_1
-    server: 58.152.18.71
-    port: 443
-    password: 76d630f2af6619c4a5de0ef953df3c6a
-    network: tcp
-    sni: www.nintendogames.net
-    tls: true
-  - type: vmess
-    name: 香港_HK_🇭🇰_2
-    server: 5bf9e2f8-t15b40-t6eg6k-1pckg.hk3.p5pv.com
-    port: 80
-    uuid: 526a1128-7487-11ee-9bca-f23c913c8d2b
-    alterId: 0
-    network: ws
-    cipher: auto
-    ws-opts:
-      path: /
-  - type: vmess
-    name: 加拿大_CA_🇨🇦_1
-    server: 23.162.200.227
-    port: 443
-    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-    alterId: 0
-    network: ws
-    cipher: auto
-    ws-opts:
-      path: /linkvws
-    tls: true
-  - type: ss
-    name: 美国_US_🇺🇸_4
-    server: 173.234.29.2
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: vmess
-    name: 香港_HK_🇭🇰_3
-    server: 400ce9b6-t6ngg0-tamumc-1lkbs.hk3.p5pv.com
-    port: 80
-    uuid: 5a4c13ae-6673-11ee-a149-f23c9164ca5d
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: 400ce9b6-t6ngg0-tamumc-1lkbs.hk3.p5pv.com
-    ws-opts:
-      path: /
-      headers:
-        Host: 400ce9b6-t6ngg0-tamumc-1lkbs.hk3.p5pv.com
-  - type: ss
-    name: 加拿大_CA_🇨🇦_2
-    server: 144.217.164.29
-    port: 12000
-    cipher: aes-256-gcm
-    password: 8JCsPssfgS8tiRwiMlhARg==
-  - type: vmess
-    name: 韩国_KR_🇰🇷
-    server: 49.128.204.85
-    port: 16629
-    uuid: 2c78877c-6472-45da-ae89-9b9d6e3ec5e6
-    alterId: 0
-    network: ws
-    cipher: auto
-    ws-opts:
-      path: /sfgjmero45
-  - type: trojan
-    name: 日本_JP_🇯🇵_1
-    server: 160.16.233.76
-    port: 507
-    password: 76d630f2af6619c4a5de0ef953df3c6a
-    network: tcp
-    sni: www.nintendogames.net
-    tls: true
-  - type: vmess
-    name: 香港_HK_🇭🇰_4
-    server: 918259a8-t4jj40-tnbkh1-1ejce.hkt.gotochinatown.net
-    port: 80
-    uuid: e534d120-d32f-11ef-bdb9-f23c91cfbbc9
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: 918259a8-t4jj40-tnbkh1-1ejce.hkt.gotochinatown.net
-    ws-opts:
-      path: /
-      headers:
-        Host: 918259a8-t4jj40-tnbkh1-1ejce.hkt.gotochinatown.net
-  - type: ss
-    name: 英国_GB_🇬🇧_4
-    server: 82.38.31.202
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: vmess
-    name: 加拿大_CA_🇨🇦_3
-    server: 15.235.83.227
-    port: 443
-    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: mankadmu.com
-    ws-opts:
-      path: /linkvws
-      headers:
-        Host: mankadmu.com
-    tls: true
-  - type: ss
-    name: 拉脱维亚_LV_🇱🇻
-    server: 46.183.217.204
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 加拿大_CA_🇨🇦_4
-    server: 45.154.204.7
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: vmess
-    name: 未知
-    server: hgtrojan.zabc.net
-    port: 2083
-    uuid: e6395c20-4571-4b34-d6b1-55a5d36e49ea
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: hgtrojan.zabc.net
-    ws-opts:
-      path: /e6395c20
-      headers:
-        Host: hgtrojan.zabc.net
-    tls: true
-  - type: vmess
-    name: 加拿大_CA_🇨🇦_5
-    server: 15.235.50.172
-    port: 443
-    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: baradiha.com
-    ws-opts:
-      path: /linkvws
-      headers:
-        Host: baradiha.com
-    tls: true
-  - type: vmess
-    name: 香港_HK_🇭🇰_5
-    server: v10.hdacd.com
-    port: 30807
-    uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
-    alterId: 0
-    network: tcp
-    cipher: auto
-  - type: ss
-    name: 英国_GB_🇬🇧_5
-    server: 82.38.31.218
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 阿联酋_AE_🇦🇪
-    server: 95.174.68.33
-    port: 443
-    cipher: chacha20-ietf-poly1305
-    password: YzH4id7ZEyKpfy39F2YcOmzCsBklGwh8
-  - type: ss
-    name: 英国_GB_🇬🇧_6
-    server: 82.38.31.199
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: vmess
-    name: 韩国_KR_🇰🇷_1
-    server: seoul03.zgjok.com
-    port: 443
-    uuid: 72a0dac4-9689-4a57-b164-5c65bfa94772
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: seoul03.zgjok.com
-    ws-opts:
-      path: /
-      headers:
-        Host: seoul03.zgjok.com
-    tls: true
-  - type: ss
-    name: 英国_GB_🇬🇧_7
-    server: 82.38.31.187
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_2
-    server: 45.87.175.158
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_3
-    server: 45.87.175.177
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 斯洛文尼亚_SI_🇸🇮
-    server: 192.71.244.150
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: f8f7aCzcPKbsF8p3
-  - type: ss
-    name: 奥地利_AT_🇦🇹
-    server: 37.235.56.69
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 摩洛哥_MA_🇲🇦_2
-    server: 154.70.207.97
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 美国_US_🇺🇸_5
-    server: 173.234.29.2
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 美国_US_🇺🇸_6
-    server: 141.98.4.67
-    port: 52952
-    cipher: chacha20-ietf-poly1305
-    password: LMSNh21TrXjR2ok25Q2nE8ENT2zoBmPvka3RCCUAHZELCnWoekVjvaf89qwcRkdbxEfep2bc2aUtmnxqvF1ayQRez1JHjULj
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_4
-    server: 45.87.175.187
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_5
-    server: 45.87.175.193
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 摩洛哥_MA_🇲🇦_3
-    server: 188.214.157.30
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 匈牙利_HU_🇭🇺_1
-    server: 109.61.39.28
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 南非_ZA_🇿🇦_1
-    server: 156.38.168.58
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 美国_US_🇺🇸_7
-    server: 15.204.247.49
-    port: 12000
-    cipher: aes-256-gcm
-    password: 8JCsPssfgS8tiRwiMlhARg==
-  - type: vmess
-    name: 法国_FR_🇫🇷_2
-    server: 57.129.25.25
-    port: 443
-    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: f.khilei.com
-    ws-opts:
-      path: /linkvws
-      headers:
-        Host: f.khilei.com
-    tls: true
-  - type: ss
-    name: 塞浦路斯_CY_🇨🇾_1
-    server: 91.148.135.31
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 危地马拉_GT_🇬🇹
-    server: 185.47.254.87
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: f8f7aCzcPKbsF8p3
-  - type: ss
-    name: 尼日利亚_NG_🇳🇬
-    server: 185.255.123.166
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 意大利_IT_🇮🇹
-    server: 176.126.83.158
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 印度_IN_🇮🇳_1
-    server: 134.209.147.198
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: f8f7aCzcPKbsF8p3
-  - type: ss
-    name: 美国_US_🇺🇸_8
-    server: 23.95.76.147
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 哈萨克斯坦_KZ_🇰🇿_2
-    server: 45.159.250.190
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 秘鲁_PE_🇵🇪
-    server: 138.186.143.32
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 巴拿马_PA_🇵🇦_2
-    server: 138.186.142.80
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: vmess
-    name: 法国_FR_🇫🇷_3
-    server: 57.129.25.22
-    port: 443
-    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: o.metuji.com
-    ws-opts:
-      path: /linkvws
-      headers:
-        Host: o.metuji.com
-    tls: true
-  - type: ss
-    name: 哥伦比亚_CO_🇨🇴
-    server: 45.82.252.109
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 加拿大_CA_🇨🇦_6
-    server: 45.154.204.7
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 玻利维亚_BO_🇧🇴_1
-    server: 185.93.173.60
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 英国_GB_🇬🇧_8
-    server: 62.100.205.100
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: vmess
-    name: 加拿大_CA_🇨🇦_7
-    server: 23.162.200.227
-    port: 443
-    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-    alterId: 0
-    network: ws
-    cipher: auto
-    ws-opts:
-      path: /linkvws
-    tls: true
-  - type: ss
-    name: 荷兰_NL_🇳🇱
-    server: 136.244.100.113
-    port: 443
-    cipher: chacha20-ietf-poly1305
-    password: yODLXVLz2FWNTFeSSng3Fm
-  - type: ss
-    name: 中国台湾省_TW_🇹🇼_1
-    server: 154.223.20.79
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 香港_HK_🇭🇰_6
-    server: 203.23.128.92
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: vmess
-    name: 中国台湾省_TW_🇹🇼_2
-    server: 103.127.218.91
-    port: 54693
-    uuid: 1cef03ad-6343-408c-8121-cbd1fda2ee9d
-    alterId: 0
-    network: ws
-    cipher: auto
-    ws-opts:
-      path: /1cef03ad
-  - type: ss
-    name: 阿尔及利亚_DZ_🇩🇿_1
-    server: 197.140.29.76
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 埃及_EG_🇪🇬
-    server: 38.54.59.107
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 巴西_BR_🇧🇷
-    server: 38.54.57.90
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 加拿大_CA_🇨🇦_8
-    server: 144.217.164.29
-    port: 12000
-    cipher: aes-256-gcm
-    password: 8JCsPssfgS8tiRwiMlhARg==
-  - type: ss
-    name: 巴西_BR_🇧🇷_1
-    server: 45.15.185.70
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 乌克兰_UA_🇺🇦
-    server: 92.112.126.90
-    port: 443
-    cipher: chacha20-ietf-poly1305
-    password: 9tqhMdIrTkgQ46PvhyAtMH
-  - type: vmess
-    name: 加拿大_CA_🇨🇦_9
-    server: 15.235.83.227
-    port: 443
-    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
-    alterId: 0
-    network: ws
-    cipher: auto
-    servername: mankadmu.com
-    ws-opts:
-      path: /linkvws
-      headers:
-        Host: mankadmu.com
-    tls: true
-  - type: ss
-    name: 拉脱维亚_LV_🇱🇻_1
-    server: 46.183.217.204
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 柬埔寨_KH_🇰🇭_1
-    server: 38.54.4.65
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 塞舌尔_SC_🇸🇨
-    server: 154.205.153.107
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 马耳他_MT_🇲🇹
-    server: 171.22.254.129
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 马耳他_MT_🇲🇹_1
-    server: 171.22.254.17
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: f8f7aCzcPKbsF8p3
-  - type: vmess
-    name: 美国_US_🇺🇸_9
-    server: 149.30.232.103
-    port: 15097
-    uuid: 460908b8-de16-42e9-bd0d-191522ab92a5
-    alterId: 0
-    network: ws
-    cipher: auto
-    ws-opts:
-      path: /arki?ed=2048
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_6
-    server: 185.237.185.89
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 美国_US_🇺🇸_10
-    server: 167.160.90.178
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 泰国_TH_🇹🇭
-    server: 119.59.127.129
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_7
-    server: 45.87.175.158
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 美国_US_🇺🇸_11
-    server: 23.95.76.59
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 加拿大_CA_🇨🇦_10
-    server: 45.154.204.7
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 巴拿马_PA_🇵🇦_3
-    server: 138.186.142.80
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 美国_US_🇺🇸_12
-    server: 167.160.90.178
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 塞浦路斯_CY_🇨🇾_2
-    server: 91.148.135.31
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_8
-    server: 45.87.175.193
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_9
-    server: 45.87.175.187
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_10
-    server: 45.87.175.177
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 英国_GB_🇬🇧_9
-    server: 82.38.31.179
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 阿联酋_AE_🇦🇪_1
-    server: 95.174.68.33
-    port: 443
-    cipher: chacha20-ietf-poly1305
-    password: YzH4id7ZEyKpfy39F2YcOmzCsBklGwh8
-  - type: ss
-    name: 摩洛哥_MA_🇲🇦_4
-    server: 188.214.157.30
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 英国_GB_🇬🇧_10
-    server: 82.38.31.199
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 哈萨克斯坦_KZ_🇰🇿_3
-    server: 45.159.250.190
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 匈牙利_HU_🇭🇺_2
-    server: 109.61.39.28
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 玻利维亚_BO_🇧🇴_2
-    server: 185.93.173.60
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 南非_ZA_🇿🇦_2
-    server: 156.38.168.58
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 英国_GB_🇬🇧_11
-    server: 82.38.31.218
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: vmess
-    name: 英国_GB_🇬🇧_12
-    server: 82.198.246.97
-    port: 180
-    uuid: d13fc2f5-3e05-4795-81eb-44143a09e552
-    alterId: 0
-    network: tcp
-    cipher: auto
-  - type: ss
-    name: 英国_GB_🇬🇧_13
-    server: 82.38.31.205
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 美国_US_🇺🇸_13
-    server: 173.234.29.2
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 英国_GB_🇬🇧_14
-    server: 82.38.31.210
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 阿尔及利亚_DZ_🇩🇿_2
-    server: 197.140.29.76
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 南非_ZA_🇿🇦_3
-    server: 156.38.168.58
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 荷兰_NL_🇳🇱_1
-    server: 136.244.100.113
-    port: 443
-    cipher: chacha20-ietf-poly1305
-    password: yODLXVLz2FWNTFeSSng3Fm
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_11
-    server: 45.87.175.187
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 巴拿马_PA_🇵🇦_4
-    server: 138.186.142.81
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 哈萨克斯坦_KZ_🇰🇿_4
-    server: 45.159.250.190
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_12
-    server: 45.87.175.158
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 阿联酋_AE_🇦🇪_2
-    server: 95.174.68.33
-    port: 443
-    cipher: chacha20-ietf-poly1305
-    password: YzH4id7ZEyKpfy39F2YcOmzCsBklGwh8
-  - type: ss
-    name: 英国_GB_🇬🇧_15
-    server: 82.38.31.210
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 英国_GB_🇬🇧_16
-    server: 82.38.31.202
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 匈牙利_HU_🇭🇺_3
-    server: 109.61.39.28
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 美国_US_🇺🇸_14
-    server: 173.234.29.2
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 拉脱维亚_LV_🇱🇻_2
-    server: 46.183.217.204
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 英国_GB_🇬🇧_17
-    server: 82.38.31.214
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 塞浦路斯_CY_🇨🇾_3
-    server: 91.148.135.31
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 英国_GB_🇬🇧_18
-    server: 82.38.31.205
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: vmess
-    name: 香港_HK_🇭🇰_7
-    server: 47.243.51.237
-    port: 27165
-    uuid: be5f65df-e104-4e2a-9391-d10454da7df1
-    alterId: 0
-    network: ws
-    cipher: auto
-    ws-opts:
-      path: /arki?ed=2048
-  - type: vmess
-    name: 英国_GB_🇬🇧_19
-    server: 82.198.246.97
-    port: 180
-    uuid: d13fc2f5-3e05-4795-81eb-44143a09e552
-    alterId: 0
-    network: tcp
-    cipher: auto
-  - type: vmess
-    name: 中国台湾省_TW_🇹🇼_3
-    server: 103.127.218.91
-    port: 54693
-    uuid: 1cef03ad-6343-408c-8121-cbd1fda2ee9d
-    alterId: 0
-    network: ws
-    cipher: auto
-    ws-opts:
-      path: /1cef03ad
-  - type: ss
-    name: 英国_GB_🇬🇧_20
-    server: 82.38.31.205
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 英国_GB_🇬🇧_21
-    server: 82.38.31.179
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 阿联酋_AE_🇦🇪_3
-    server: 95.174.68.33
-    port: 443
-    cipher: chacha20-ietf-poly1305
-    password: YzH4id7ZEyKpfy39F2YcOmzCsBklGwh8
-  - type: ss
-    name: 美国_US_🇺🇸_15
-    server: 173.234.29.2
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_13
-    server: 45.87.175.158
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: vmess
-    name: 英国_GB_🇬🇧_22
-    server: 82.198.246.97
-    port: 180
-    uuid: d13fc2f5-3e05-4795-81eb-44143a09e552
-    alterId: 0
-    network: tcp
-    cipher: auto
-  - type: ss
-    name: 摩洛哥_MA_🇲🇦_5
-    server: 188.214.157.30
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 美国_US_🇺🇸_16
-    server: 23.95.76.59
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 匈牙利_HU_🇭🇺_4
-    server: 109.61.39.28
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 塞浦路斯_CY_🇨🇾_4
-    server: 91.148.135.31
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_14
-    server: 45.87.175.187
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 巴拿马_PA_🇵🇦_5
-    server: 138.186.142.81
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 巴拿马_PA_🇵🇦_6
-    server: 138.186.142.80
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: vmess
-    name: 中国台湾省_TW_🇹🇼_4
-    server: 103.127.218.91
-    port: 54693
-    uuid: 1cef03ad-6343-408c-8121-cbd1fda2ee9d
-    alterId: 0
-    network: ws
-    cipher: auto
-    ws-opts:
-      path: /1cef03ad
-  - type: ss
-    name: 哈萨克斯坦_KZ_🇰🇿_5
-    server: 45.159.250.190
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 英国_GB_🇬🇧_23
-    server: 82.38.31.187
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 拉脱维亚_LV_🇱🇻_3
-    server: 46.183.217.204
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_15
-    server: 45.87.175.193
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 英国_GB_🇬🇧_24
-    server: 82.38.31.199
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 英国_GB_🇬🇧_25
-    server: 82.38.31.202
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: k1dBOmOB4oqi7Ump37a1bQ
-  - type: ss
-    name: 南非_ZA_🇿🇦_4
-    server: 156.38.168.58
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_16
-    server: 45.87.175.177
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: vmess
-    name: 马来西亚_MY_🇲🇾_1
-    server: 47.250.45.234
-    port: 43063
-    uuid: c77f48f5-4be3-4461-b52b-49998e7b897b
-    alterId: 0
-    network: ws
-    cipher: auto
-    ws-opts:
-      path: /arki?ed=2048
-  - type: hysteria2
-    name: 美国_US_🇺🇸_17
-    server: 206.71.158.40
-    port: 35000
-    password: b4bd0613-ff7c-4f2f-954d-185915e6ddad
-    obfs: salamander
-    obfs-password: "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi"
-    sni: api.kermanshahi.org
-  - type: hysteria2
-    name: 美国_US_🇺🇸_18
-    server: 206.71.158.41
-    port: 35000
-    password: b4bd0613-ff7c-4f2f-954d-185915e6ddad
-    obfs: salamander
-    obfs-password: "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi"
-    sni: api.kermanshahi.org
-  - type: hysteria2
-    name: 德国_DE_🇩🇪_1
-    server: 77.90.41.197
-    port: 35000
-    password: b4bd0613-ff7c-4f2f-954d-185915e6ddad
-    obfs: salamander
-    obfs-password: "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi"
-    sni: api.kermanshahi.org
-  - type: hysteria2
-    name: 美国_US_🇺🇸_19
-    server: 206.71.158.23
-    port: 45000
-    password: Telegram-->@Ln2Ray
-    obfs: salamander
-    obfs-password: Telegram-->@Ln2Ray
-    sni: gavazn.55994421.xyz
-  - type: hysteria2
-    name: 美国_US_🇺🇸_20
-    server: gavazn.lnmarketplace.net
-    port: 45000
-    password: Telegram-->@Ln2Ray
-    obfs: salamander
-    obfs-password: Telegram-->@Ln2Ray
-    sni: gavazn.55994421.xyz
-  - type: hysteria2
-    name: 美国_US_🇺🇸_21
-    server: 206.71.158.37
-    port: 35000
-    password: Yet-Another-Public-Config-1
-    obfs: salamander
-    obfs-password: Yet-Another-Public-Config-1
-    sni: YAPC-1.afshin.ir
-  - type: ss
-    name: 意大利_IT_🇮🇹_1
-    server: 176.126.83.158
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 马耳他_MT_🇲🇹_2
-    server: 171.22.254.129
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 哈萨克斯坦_KZ_🇰🇿_6
-    server: 45.159.250.190
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 巴拿马_PA_🇵🇦_7
-    server: 138.186.142.80
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 秘鲁_PE_🇵🇪_1
-    server: 138.186.143.32
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 南非_ZA_🇿🇦_5
-    server: 156.38.168.58
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: hysteria2
-    name: 美国_US_🇺🇸_22
-    server: 206.71.158.37
-    port: 36300
-    password: Yet-Another-Public-Config-1
-    obfs: salamander
-    obfs-password: Yet-Another-Public-Config-1
-    sni: YAPC-1.afshin.ir
-  - type: hysteria2
-    name: 美国_US_🇺🇸_23
-    server: 206.71.158.37
-    port: 35200
-    password: Yet-Another-Public-Config-1
-    obfs: salamander
-    obfs-password: Yet-Another-Public-Config-1
-    sni: YAPC-1.afshin.ir
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_17
-    server: 45.87.175.177
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 拉脱维亚_LV_🇱🇻_4
-    server: 46.183.217.204
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 摩洛哥_MA_🇲🇦_6
-    server: 188.214.157.30
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 美国_US_🇺🇸_24
-    server: 23.95.76.147
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 加拿大_CA_🇨🇦_11
-    server: 45.154.204.7
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 危地马拉_GT_🇬🇹_1
-    server: 185.47.254.87
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: f8f7aCzcPKbsF8p3
-  - type: ss
-    name: 俄罗斯_RU_🇷🇺
-    server: 90.156.203.62
-    port: 5112
-    cipher: chacha20-ietf-poly1305
-    password: VVlAff77CnAU43Aoc5j15Y
-  - type: ss
-    name: 哥伦比亚_CO_🇨🇴_1
-    server: 45.82.252.109
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 巴西_BR_🇧🇷_2
-    server: 38.54.57.90
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 乌克兰_UA_🇺🇦_1
-    server: 92.112.126.90
-    port: 443
-    cipher: chacha20-ietf-poly1305
-    password: 9tqhMdIrTkgQ46PvhyAtMH
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_18
-    server: 185.237.185.89
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: vmess
-    name: 德国_DE_🇩🇪_2
-    server: 5.231.56.98
-    port: 3721
-    uuid: 5f2f0765-f331-4d1e-8560-d2fb533dd6fe
-    alterId: 0
-    network: ws
-    cipher: auto
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_19
-    server: 45.87.175.193
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 塞浦路斯_CY_🇨🇾_5
-    server: 91.148.135.31
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 美国_US_🇺🇸_25
-    server: 141.98.4.67
-    port: 52952
-    cipher: chacha20-ietf-poly1305
-    password: LMSNh21TrXjR2ok25Q2nE8ENT2zoBmPvka3RCCUAHZELCnWoekVjvaf89qwcRkdbxEfep2bc2aUtmnxqvF1ayQRez1JHjULj
-  - type: ss
-    name: 尼日利亚_NG_🇳🇬_1
-    server: 185.255.123.166
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 泰国_TH_🇹🇭_1
-    server: 119.59.127.129
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 奥地利_AT_🇦🇹_1
-    server: 37.235.56.69
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 香港_HK_🇭🇰_8
-    server: 203.23.128.92
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 巴西_BR_🇧🇷_3
-    server: 45.15.185.70
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: vmess
-    name: 中国台湾省_TW_🇹🇼_5
-    server: 103.127.218.91
-    port: 54693
-    uuid: 1cef03ad-6343-408c-8121-cbd1fda2ee9d
-    alterId: 0
-    network: ws
-    cipher: auto
-    ws-opts:
-      path: /1cef03ad
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_20
-    server: 45.87.175.187
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_21
-    server: 45.87.175.177
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 立陶宛_LT_🇱🇹_22
-    server: 45.87.175.193
-    port: 8080
-    cipher: chacha20-ietf-poly1305
-    password: cvII85TrW6n0OGyfpHVS1u
-  - type: ss
-    name: 拉脱维亚_LV_🇱🇻_5
-    server: 46.183.217.204
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 匈牙利_HU_🇭🇺_5
-    server: 109.61.39.28
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 玻利维亚_BO_🇧🇴_3
-    server: 185.93.173.60
-    port: 990
-    cipher: chacha20-ietf-poly1305
-    password: ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44=
-  - type: ss
-    name: 阿联酋_AE_🇦🇪_4
-    server: 95.174.68.33
-    port: 443
-    cipher: chacha20-ietf-poly1305
-    password: YzH4id7ZEyKpfy39F2YcOmzCsBklGwh8
+    - name: DNS
+      type: dns
+    - cipher: aes-128-cfb
+      name: "\U0001F1F3\U0001F1F1 NL | SS | @netfreedom0 #1"
+      password: shadowsocks
+      port: "443"
+      server: 109.201.152.181
+      skip-cert-verify: true
+      type: ss
+      udp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: "\U0001F4CDTelegram = @V2WRAY\U00013102\U00013183"
+      network: ws
+      port: "8443"
+      server: 104.17.162.123
+      servername: r4fnviw9jl4i4rx.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83f03646-fb28-44cc-9d2c-8853f6c09285
+      ws-opts:
+        headers:
+            Host: r4fnviw9jl4i4rx.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - h2
+      client-fingerprint: chrome
+      encryption: none
+      name: "\U0001F4CDTelegram = @V2WRAY\U00013102\U00013183-01"
+      network: xhttp
+      port: "443"
+      server: statue.lnmarketplace.net
+      servername: statue.lnmarketplace.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 7c63f43f-f526-49bb-b5c8-2be26e11ef00
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: 'تلگرام: یام‌یام پروکسی | YamYamProxy'
+      network: ws
+      port: "8443"
+      server: 172.64.145.38
+      servername: xfjd79v2tjscrm6jqo.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: bb8c74a1-abc1-4511-b100-9876e30cb65c
+      ws-opts:
+        headers:
+            Host: xfjd79v2tjscrm6jqo.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Linux; Android 7.0; SM-G570M Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - encryption: none
+      name: "@i10VPN \U0001F680| با ما متصل بمون⚡-01"
+      network: ws
+      port: "8880"
+      server: cls.1mrsub.site
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 1221ce8d-3fb2-44d0-aae1-9fd00b7d5975
+      ws-opts:
+        headers:
+            Host: cl2.1mrsub.site
+            User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36
+        path: /mrvpvn
+        v2ray-http-upgrade: true
+        v2ray-http-upgrade-fast-open: true
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: '@Spotify_Porteghali 3819'
+      network: ws
+      port: "8443"
+      server: 104.17.163.123
+      servername: vjv62pggz1658fuliaf9lri7rra85l8utox0kjtogve4whop.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83adcc98-ac23-4e51-9ae0-788a73fd9939
+      ws-opts:
+        headers:
+            Host: vjv62pggz1658fuliaf9lri7rra85l8utox0kjtogve4whop.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: "@i10VPN \U0001F680| با ما متصل بمون⚡-02"
+      network: ws
+      port: "8443"
+      server: 104.17.163.123
+      servername: vjv62pggz1658fuliaf9lri7rra85l8utox0kjtogve4whop.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83adcc98-ac23-4e51-9ae0-788a73fd9939
+      ws-opts:
+        headers:
+            Host: vjv62pggz1658fuliaf9lri7rra85l8utox0kjtogve4whop.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: Config 5 - @lebertad-01
+      network: ws
+      port: "8443"
+      server: 104.17.163.123
+      servername: vjv62pggz1658fuliaf9lri7rra85l8utox0kjtogve4whop.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83adcc98-ac23-4e51-9ae0-788a73fd9939
+      ws-opts:
+        headers:
+            Host: vjv62pggz1658fuliaf9lri7rra85l8utox0kjtogve4whop.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: hjk
+      network: ws
+      port: "8443"
+      server: 104.17.162.123
+      servername: r4fnviw9jl4i4rx.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83f03646-fb28-44cc-9d2c-8853f6c09285
+      ws-opts:
+        headers:
+            Host: r4fnviw9jl4i4rx.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31
+        path: /
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: ⚡Telegram = @SOSkeyNET-03
+      network: ws
+      port: "8443"
+      server: 104.17.162.123
+      servername: r4fnviw9jl4i4rx.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83f03646-fb28-44cc-9d2c-8853f6c09285
+      ws-opts:
+        headers:
+            Host: r4fnviw9jl4i4rx.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
+        path: /
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: ⚡Telegram = @SOSkeyNET-04
+      network: ws
+      port: "8443"
+      server: 104.17.162.123
+      servername: r4fnviw9jl4i4rx.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83f03646-fb28-44cc-9d2c-8853f6c09285
+      ws-opts:
+        headers:
+            Host: r4fnviw9jl4i4rx.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36
+        path: /
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: '@YamYamProxy'
+      network: ws
+      port: "8443"
+      server: 104.17.162.123
+      servername: r4fnviw9jl4i4rx.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83f03646-fb28-44cc-9d2c-8853f6c09285
+      ws-opts:
+        headers:
+            Host: r4fnviw9jl4i4rx.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: "@i10VPN \U0001F680| با ما متصل بمون⚡-03"
+      network: ws
+      port: "8443"
+      server: 104.17.162.123
+      servername: r4fnviw9jl4i4rx.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83f03646-fb28-44cc-9d2c-8853f6c09285
+      ws-opts:
+        headers:
+            Host: r4fnviw9jl4i4rx.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: "\U0001F1EB\U0001F1F4@SimChin_iR جوین شید"
+      network: ws
+      port: "8443"
+      server: 104.17.162.123
+      servername: r4fnviw9jl4i4rx.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83f03646-fb28-44cc-9d2c-8853f6c09285
+      ws-opts:
+        headers:
+            Host: r4fnviw9jl4i4rx.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.17 (KHTML, like Gecko) Chrome/10.0.649.0 Safari/534.17
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: px-03
+      network: ws
+      port: "8443"
+      server: 104.17.165.123
+      servername: gx8rw8fz783ncefn332y7uyfsvb59o820mryrxu1cj19jiuuur.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: f85f60b1-2b96-49e9-8bde-b656d1516df0
+      ws-opts:
+        headers:
+            Host: gx8rw8fz783ncefn332y7uyfsvb59o820mryrxu1cj19jiuuur.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: ⚡Telegram = @prrofile_purple-01
+      network: ws
+      port: "443"
+      server: 66.81.247.155
+      servername: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 4525c260-df3c-4f62-b8f1-f4f5f305694b
+      ws-opts:
+        headers:
+            Host: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36
+        path: /?ed
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: '@icv2ray'
+      network: ws
+      port: "8443"
+      server: 104.17.162.123
+      servername: r4fnviw9jl4i4rx.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83f03646-fb28-44cc-9d2c-8853f6c09285
+      ws-opts:
+        headers:
+            Host: r4fnviw9jl4i4rx.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: ⚡Telegram = @SOSkeyNET-02
+      network: ws
+      port: "8443"
+      server: 104.17.165.123
+      servername: gx8rw8fz783ncefn332y7uyfsvb59o820mryrxu1cj19jiuuur.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: f85f60b1-2b96-49e9-8bde-b656d1516df0
+      ws-opts:
+        headers:
+            Host: gx8rw8fz783ncefn332y7uyfsvb59o820mryrxu1cj19jiuuur.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: Config 1 - @lebertad
+      network: ws
+      port: "8443"
+      server: 104.17.162.123
+      servername: r4fnviw9jl4i4rx.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83f03646-fb28-44cc-9d2c-8853f6c09285
+      ws-opts:
+        headers:
+            Host: r4fnviw9jl4i4rx.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+        path: /?ed=?ed=512
+      xudp: true
+    - alpn:
+        - h2
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: 'channel : @freedomofinfor'
+      network: xhttp
+      port: "2096"
+      server: top.imlast2.com
+      servername: god1.alireza031.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: f9929a13-f491-4dc3-b86c-9b8357051476
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: px
+      network: ws
+      port: "8443"
+      server: 104.17.162.123
+      servername: 6nwf5rauksz8126xm.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 8f1a15bf-a352-4c32-aee2-957039a6847b
+      ws-opts:
+        headers:
+            Host: 6nwf5rauksz8126xm.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: ⚡Telegram = @prrofile_purple
+      network: ws
+      port: "443"
+      server: 66.81.247.155
+      servername: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 4525c260-df3c-4f62-b8f1-f4f5f305694b
+      ws-opts:
+        headers:
+            Host: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Linux; Android 8.0.0; FIG-LX3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36
+        path: /?ed=#TELEGRAM-MARAMBASHI_MARAMBASHI_MARAMBASHI_MARAMBASHI_MARAMBASHI?ed=512
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: Config 2 - @lebertad
+      network: ws
+      port: "8443"
+      server: 104.17.162.123
+      servername: 6nwf5rauksz8126xm.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 8f1a15bf-a352-4c32-aee2-957039a6847b
+      ws-opts:
+        headers:
+            Host: 6nwf5rauksz8126xm.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: px-04
+      network: ws
+      port: "8443"
+      server: 104.17.163.123
+      servername: vjv62pggz1658fuliaf9lri7rra85l8utox0kjtogve4whop.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83adcc98-ac23-4e51-9ae0-788a73fd9939
+      ws-opts:
+        headers:
+            Host: vjv62pggz1658fuliaf9lri7rra85l8utox0kjtogve4whop.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: ⚡Telegram = @SOSkeyNET
+      network: ws
+      port: "8443"
+      server: 172.64.145.38
+      servername: vyznthvt7f5fr.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 9e685fe3-e0f9-482d-939c-200a3f89b363
+      ws-opts:
+        headers:
+            Host: vyznthvt7f5fr.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Linux; Android 6.0.1; SM-G532M Build/MMB29T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36
+        path: /?ed=2560fp=chrome
+      xudp: true
+    - encryption: none
+      name: "@YamYamProxy \U0001F49C"
+      network: h2
+      port: "8443"
+      server: ititan.murix.me
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: b3aea537-5661-43fb-b753-00aba09275cd
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: "r♡ya@V2rayBaaz◇⃟\U0001F49C"
+      network: ws
+      port: "443"
+      server: 66.81.247.155
+      servername: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 4525c260-df3c-4f62-b8f1-f4f5f305694b
+      ws-opts:
+        headers:
+            Host: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Linux; Android 5.1.1; SM-J120M Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: px-01
+      network: ws
+      port: "8443"
+      server: 172.64.145.38
+      servername: xfjd79v2tjscrm6jqo.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: bb8c74a1-abc1-4511-b100-9876e30cb65c
+      ws-opts:
+        headers:
+            Host: xfjd79v2tjscrm6jqo.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: '@filembad'
+      network: ws
+      port: "443"
+      server: 66.81.247.155
+      servername: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 4525c260-df3c-4f62-b8f1-f4f5f305694b
+      ws-opts:
+        headers:
+            Host: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Linux; Android 6.0.1; CPH1607 Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.111 Mobile Safari/537.36
+        path: /?ed=512
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: px-02
+      network: ws
+      port: "8443"
+      server: 172.64.145.38
+      servername: xfjd79v2tjscrm6jqo.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: bb8c74a1-abc1-4511-b100-9876e30cb65c
+      ws-opts:
+        headers:
+            Host: xfjd79v2tjscrm6jqo.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Linux; Android 6.0; vivo 1610 Build/MMB29M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.124 Mobile Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: ⚡Telegram = @SOSkeyNET-05
+      network: ws
+      port: "8443"
+      server: 104.17.162.123
+      servername: r4fnviw9jl4i4rx.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83f03646-fb28-44cc-9d2c-8853f6c09285
+      ws-opts:
+        headers:
+            Host: r4fnviw9jl4i4rx.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: Config 2 - @lebertad-01
+      network: ws
+      port: "8443"
+      server: 172.64.145.38
+      servername: xfjd79v2tjscrm6jqo.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: bb8c74a1-abc1-4511-b100-9876e30cb65c
+      ws-opts:
+        headers:
+            Host: xfjd79v2tjscrm6jqo.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: ⚡Telegram = @SOSkeyNET-01
+      network: ws
+      port: "8443"
+      server: 172.64.145.38
+      servername: xfjd79v2tjscrm6jqo.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: bb8c74a1-abc1-4511-b100-9876e30cb65c
+      ws-opts:
+        headers:
+            Host: xfjd79v2tjscrm6jqo.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: ConfigV2RayNG
+      network: ws
+      port: "8443"
+      server: 104.17.162.123
+      servername: r4fnviw9jl4i4rx.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 83f03646-fb28-44cc-9d2c-8853f6c09285
+      ws-opts:
+        headers:
+            Host: r4fnviw9jl4i4rx.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: ConfigV2RayNG-01
+      network: ws
+      port: "443"
+      server: 66.81.247.155
+      servername: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 4525c260-df3c-4f62-b8f1-f4f5f305694b
+      ws-opts:
+        headers:
+            Host: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: Config 1 - @lebertad-01
+      network: ws
+      port: "8443"
+      server: 104.17.165.123
+      servername: gx8rw8fz783ncefn332y7uyfsvb59o820mryrxu1cj19jiuuur.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: f85f60b1-2b96-49e9-8bde-b656d1516df0
+      ws-opts:
+        headers:
+            Host: gx8rw8fz783ncefn332y7uyfsvb59o820mryrxu1cj19jiuuur.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Linux; Android 5.1; HUAWEI CUN-L22 Build/HUAWEICUN-L22; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - alpn:
+        - http/1.1
+      client-fingerprint: chrome
+      encryption: none
+      name: "@i10VPN \U0001F680| با ما متصل بمون⚡"
+      network: ws
+      port: "8443"
+      server: 172.64.145.38
+      servername: xfjd79v2tjscrm6jqo.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: bb8c74a1-abc1-4511-b100-9876e30cb65c
+      ws-opts:
+        headers:
+            Host: xfjd79v2tjscrm6jqo.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: ✅سرورها بیشتردرکانالsirarm1n@✅
+      network: ws
+      port: "443"
+      server: 66.81.247.155
+      servername: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 4525c260-df3c-4f62-b8f1-f4f5f305694b
+      ws-opts:
+        headers:
+            Host: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36
+        path: /?ed=512
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: telegram @mtmvpn
+      network: ws
+      port: "443"
+      server: 66.81.247.155
+      servername: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 4525c260-df3c-4f62-b8f1-f4f5f305694b
+      ws-opts:
+        headers:
+            Host: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - client-fingerprint: chrome
+      encryption: none
+      name: "♾️\U0001D5DD\U0001D5FC\U0001D5F6\U0001D5FB➠\U0001F194️@ATLAS_V2VPN\U0001F193️\U0001F6DC\U0001F537️161\U0001F310\U0001F195️"
+      network: ws
+      port: "443"
+      server: 66.81.247.155
+      servername: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+      skip-cert-verify: true
+      tls: true
+      type: vless
+      udp: true
+      uuid: 4525c260-df3c-4f62-b8f1-f4f5f305694b
+      ws-opts:
+        headers:
+            Host: yyzsuabw9e3qd5ud7ihi5dxm96oglnsvr83cjojnm1efncfhr9ucordq.zjde5.de5.net
+            User-Agent: Mozilla/5.0 (Linux; Android 7.0; Moto C Build/NRD90M.059) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36
+        path: /?ed=2560
+      xudp: true
+    - encryption: none
+      name: Config 5 - @lebertad
+      network: h2
+      port: "1517"
+      server: er1.v-sub.site
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 73176aa7-6d4d-45bd-bdb1-b7495b0eca01
+      xudp: true
+    - encryption: none
+      name: Config 3 - @lebertad
+      network: h2
+      port: "1517"
+      server: er4.v-sub.site
+      skip-cert-verify: true
+      type: vless
+      udp: true
+      uuid: 73176aa7-6d4d-45bd-bdb1-b7495b0eca01
+      xudp: true
