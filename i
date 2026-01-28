@@ -40,7 +40,7 @@ proxy-providers:
 proxy-groups:
   - name: "PROXY"
     type: "select"
-    exclude-type: "direct"
+    exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     include-all-proxies: true
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
@@ -52,7 +52,7 @@ proxy-groups:
     url: "https://www.youtube.com"
     interval: 200
     tolerance: 500
-    exclude-type: "direct"
+    exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     include-all-proxies: true
     hidden: false
@@ -62,8 +62,7 @@ proxy-groups:
     type: "fallback"
     url: "https://www.youtube.com"
     interval: 100
-    tolerance: 500
-    exclude-type: "direct"
+    exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     include-all-proxies: true
     hidden: false
