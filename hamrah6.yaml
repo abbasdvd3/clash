@@ -70,17 +70,6 @@ dns:
     "rule-set:ir":
       - system
 
-tun:
-  enable: true
-  stack: mixed
-  device: tun0
-  dns-hijack:
-    - "any:53"
-    - "tcp://any:53"
-  auto-route: true
-  auto-redirect: false
-  auto-detect-interface: true
-
 profile:
   store-fake-ip: true
   store-selected: true
@@ -97,7 +86,6 @@ proxy-groups:
     type: url-test
   #  include-all-providers: true
     exclude-type: "direct|redir-in|trojan|DNS"
-    hidden: true
     proxies:
       - Auto
       - fallback
@@ -110,7 +98,6 @@ proxy-groups:
     interval: 100
     exclude-type: "direct|redir-in|trojan|DNS"
     filter: "America|United States|US|美国"
-    lazy: false
 
   - name: fallback
     type: fallback
@@ -120,7 +107,6 @@ proxy-groups:
     hidden: true
     interval: 180
     filter: "America|United States|US|美国"
-    lazy: false
 
   - name: Geo-SG
     type: url-test
@@ -128,7 +114,7 @@ proxy-groups:
     include-all-providers: true
     exclude-type: "direct|redir-in|trojan|DNS"
     hidden: true
-    interval: 100
+    interval: 10
     lazy: false
     filter: "HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国"
     use: 
@@ -138,8 +124,7 @@ proxy-groups:
     exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     hidden: true
-    interval: 100
-    lazy: false
+    interval: 10
     filter: "Japan|JP|日本"
 
   - name: Geo-US
@@ -158,7 +143,7 @@ proxy-groups:
     exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     hidden: true
-    interval: 100
+    interval: 10
     lazy: false
     filter: "China|CN|中国"
   
