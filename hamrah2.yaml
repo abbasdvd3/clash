@@ -70,8 +70,8 @@ dns:
 proxies:
 proxy-groups:
   - name: 🕹 select
-    type: select
-    include-all-providers: true
+    type: url-test
+  #  include-all-providers: true
     exclude-type: "direct|redir-in|DNS|trojan"
     proxies:
       - ♻️ url-test
@@ -80,7 +80,7 @@ proxy-groups:
 
   - name: ♻️ url-test
     type: url-test
-    url: https://speed.cloudflare.com/__down?bytes=20000000
+    url: http://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
     exclude-type: "direct|redir-in|DNS|trojan"
     interval: 300
@@ -89,7 +89,7 @@ proxy-groups:
 
   - name: 🚧 fallback
     type: fallback
-    url: https://speed.cloudflare.com/__down?bytes=20000000
+    url: http://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
     exclude-type: "direct|redir-in|DNS|trojan"
     interval: 180
@@ -100,7 +100,7 @@ proxy-groups:
   - name: ⚖️ load-balance
     type: load-balance
     strategy: round-robin
-    url: https://speed.cloudflare.com/__down?bytes=20000000
+    url: http://speed.cloudflare.com/__down?bytes=20000000
     include-all-providers: true
     exclude-type: "direct|redir-in|DNS|trojan"
     interval: 180
@@ -315,6 +315,7 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,🕹 select
   - MATCH,🕹 select
+
 
 
 
