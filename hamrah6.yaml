@@ -94,9 +94,9 @@ proxies:
     udp: false
 proxy-groups:
   - name: Proxy
-    type: select
-    include-all-providers: true
-    exclude-type: "direct|redir-in|DNS"
+    type: url-test
+  #  include-all-providers: true
+    exclude-type: "direct|redir-in|trojan|DNS"
     hidden: true
     proxies:
       - Auto
@@ -110,7 +110,7 @@ proxy-groups:
     interval: 100
     exclude-type: "direct|redir-in|trojan|DNS"
     filter: "America|United States|US|美国"
-    lazy: true
+    lazy: false
 
   - name: fallback
     type: fallback
@@ -120,7 +120,7 @@ proxy-groups:
     hidden: true
     interval: 180
     filter: "America|United States|US|美国"
-    lazy: true
+    lazy: false
 
   - name: Geo-SG
     type: url-test
@@ -129,7 +129,7 @@ proxy-groups:
     exclude-type: "direct|redir-in|trojan|DNS"
     hidden: true
     interval: 100
-    lazy: true
+    lazy: false
     filter: "HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国"
     use: 
   - name: Geo-JP
@@ -139,7 +139,7 @@ proxy-groups:
     include-all-providers: true
     hidden: true
     interval: 100
-    lazy: true
+    lazy: false
     filter: "Japan|JP|日本"
 
   - name: Geo-US
@@ -149,7 +149,7 @@ proxy-groups:
     include-all-providers: true
     hidden: true
     interval: 100
-    lazy: true
+    lazy: false
     filter: "America|United States|US|美国"
  
   - name: Geo-CN
@@ -159,7 +159,7 @@ proxy-groups:
     include-all-providers: true
     hidden: true
     interval: 100
-    lazy: true
+    lazy: false
     filter: "China|CN|中国"
   
   - name: Social
@@ -185,7 +185,7 @@ proxy-providers:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: true 
+      lazy: false 
 
   Subscription-2:
     type: http
@@ -196,7 +196,7 @@ proxy-providers:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: true 
+      lazy: false 
 
   Subscription-3:
     type: http
@@ -207,7 +207,7 @@ proxy-providers:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: true 
+      lazy: false 
 
   Subscription-4:
     type: http
@@ -218,7 +218,7 @@ proxy-providers:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: true 
+      lazy: false 
 
   Subscription-5:
     type: http
@@ -229,7 +229,7 @@ proxy-providers:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: true 
+      lazy: false 
 
   Subscription-6:
     type: http
@@ -240,7 +240,7 @@ proxy-providers:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: true 
+      lazy: false 
 
   Subscription-7:
     type: http
@@ -251,7 +251,7 @@ proxy-providers:
       enable: true
       interval: 300
       url: http://www.gstatic.com/generate_204
-      lazy: true 
+      lazy: false 
 
 rule-providers:
   nsfw:
