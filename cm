@@ -13,7 +13,7 @@ external-ui: ./dashboard
 keep-alive-interval: 30
 find-process-mode: always
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: random
 geodata-mode: true
@@ -481,18 +481,16 @@ dns:
      - '+.connectivitycheck.gstatic.com'
 proxy-groups:
   - name: "PROXY"
-    type: "url-test"
+    type: "select"
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png"
-    url: "https://connectivitycheck.gstatic.com/generate_204"
-    tolerance: 500
-    udp: true
+    include-all-providers: true
     proxies:
       - "Auto"
       - "fallback"
       
   - name: "Auto"
     type: "url-test"
-    url: "https://connectivitycheck.gstatic.com/generate_204"
+    url: "http://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     tolerance: 50
     exclude-type: "direct|redir-in|DNS"
@@ -502,7 +500,7 @@ proxy-groups:
     
   - name: "fallback"
     type: "fallback"
-    url: "https://connectivitycheck.gstatic.com/generate_204"
+    url: "http://connectivitycheck.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     interval: 18
     exclude-type: "direct|redir-in|DNS"
@@ -524,7 +522,7 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 5000
       lazy: true
@@ -544,7 +542,7 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 5000
       lazy: true
@@ -564,7 +562,7 @@ proxy-providers:
     exclude-filter: "timeout|connection refused|Expired|If|Renewal"
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 5000
       lazy: true
