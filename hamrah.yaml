@@ -294,7 +294,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 50
       lazy: true
@@ -313,7 +313,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 50
       lazy: true
@@ -332,7 +332,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 50
       lazy: true
@@ -352,7 +352,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 50
       lazy: true
@@ -371,7 +371,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 50
       lazy: true
@@ -390,7 +390,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 50
       lazy: true
@@ -409,7 +409,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 50
       lazy: true
@@ -428,7 +428,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 50
       lazy: true
@@ -447,7 +447,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 5000
       lazy: true
@@ -466,7 +466,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 5000
       lazy: true
@@ -485,7 +485,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 50
       lazy: true
@@ -504,7 +504,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: "https://connectivitycheck.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
       interval: 300
       timeout: 50
       lazy: true
@@ -520,11 +520,11 @@ proxy-providers:
 
 proxy-groups:
   - name: "PROXY"
-    type: "url-test"
+    type: "select"
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png"
- #   include-all-providers: true
-  #  include-all-proxies: true
-    exclude-type: "direct|redir-in|DNS"
+    include-all-providers: true
+    include-all-proxies: true
+    exclude-type: "direct|redir-in|DNS|trojan"
     proxies:
       - "🎈Auto"
       - "🎈fallback"
@@ -535,7 +535,7 @@ proxy-groups:
     type: "url-test"
     url: "http://connectivitycheck.gstatic.com/generate_204"
     tolerance: 50
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     include-all-proxies: true
     hidden: true
@@ -543,9 +543,9 @@ proxy-groups:
     
   - name: "🎈fallback"
     type: "fallback"
-    url: "https://connectivitycheck.gstatic.com/generate_204"
-    interval: 18
-    exclude-type: "direct|redir-in|DNS"
+    url: "http://connectivitycheck.gstatic.com/generate_204"
+    interval: 180
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     include-all-proxies: true
     hidden: true
@@ -553,11 +553,10 @@ proxy-groups:
     
   - name: "🇺🇸US🇺🇸"
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|CA|PM|MX|PA|BM|GL|GD|CR|VG|VI|BR|CL|PE|CU|HT|AR|UY|PY|JM|SR|BS|GF|BZ|MS|AW|CW|SX|MF|BL|GP|MQ|AG|KN|TT|VC|CO|EC|VE|BO|GT|SV|PR|KY|HN|DM|BB|LC|FK|TC"
-   # exclude-filter: "HK|Hong|TW|Tai|Taiwan|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|回国|校园|游戏|🇰🇷|韩国|韓|首尔|KR|Korea|回国|校园|游戏|🇦🇹|timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅|AT|GER|🇩🇪🇱🇻|🇩🇪"
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
     tolerance: 50
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     include-all-proxies: true
     hidden: true
@@ -565,11 +564,10 @@ proxy-groups:
     
   - name: "🇺🇸US🇺🇸back"
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|CA|PM|MX|PA|BM|GL|GD|CR|VG|VI|BR|CL|PE|CU|HT|AR|UY|PY|JM|SR|BS|GF|BZ|MS|AW|CW|SX|MF|BL|GP|MQ|AG|KN|TT|VC|CO|EC|VE|BO|GT|SV|PR|KY|HN|DM|BB|LC|FK|TC"
-    exclude-filter: "HK|Hong|TW|Tai|Taiwan|🇯🇵|日本|川日|东京|大阪|泉日|埼玉|JP|Japan|🇸🇬|新加坡|狮|SG|Singapore|回国|校园|游戏|🇰🇷|韩国|韓|首尔|KR|Korea|回国|校园|游戏|🇦🇹|timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅|AT|GER|🇩🇪🇱🇻|🇩🇪"
     type: "fallback"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
     interval: 18
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     include-all-proxies: true
     hidden: true
