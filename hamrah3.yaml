@@ -5,7 +5,7 @@ redir-port: 9797
 tproxy-port: 9898
 mode: rule
 allow-lan: true
-unified-delay: true
+unified-delay: false
 bind-address: '*'
 log-level: debug
 ipv6: true
@@ -64,10 +64,10 @@ proxies:
 proxy-groups:
   - name: 🕹 select
     type: select
- #   include-all-providers: true
-    url: https://fiber.google.com/speedtest/generate_104
+    include-all-providers: true
+    url: http://www.gstatic.com/generate_204
     nodeGroupType: 0
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|DNS|trojan"
     proxies:
       - ♻️ url-test
       - 🚧 fallback
@@ -81,24 +81,24 @@ proxy-groups:
       - 🇰🇷 
   - name: ✈️
     type: fallback
-    url: https://fiber.google.com/speedtest/generate_204
+    url: http://www.gstatic.com/generate_204
     interval: 180
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     hidden: true
 
   - name: ♻️ url-test
     type: fallback
-    url: https://fiber.google.com/speedtest/generate_204
+    url: http://www.gstatic.com/generate_204
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|DNS|trojan"
     nodeGroupType: 0
     hidden: true
 
   - name: 🚧 fallback
     type: fallback
-    url: https://fiber.google.com/speedtest/generate_204
-    exclude-type: "direct|redir-in|DNS"
+    url: http://www.gstatic.com/generate_204
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     hidden: true
     nodeGroupType: 0
@@ -111,8 +111,8 @@ proxy-groups:
       - 🇰🇷 
   - name: ⚖️ load-balance
     type: fallback
-    url: https://fiber.google.com/speedtest/generate_204
-    exclude-type: "direct|redir-in|DNS"
+    url: http://www.gstatic.com/generate_204
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     nodeGroupType: 0
     hidden: true
@@ -126,48 +126,48 @@ proxy-groups:
       
   - name: 🇭🇰
     type: fallback
-    url: https://fiber.google.com/speedtest/generate_204
-    exclude-type: "direct|redir-in|DNS"
+    url: http://www.gstatic.com/generate_204
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
     hidden: true
 
   - name: 🇯🇵
     type: fallback
-    url: https://fiber.google.com/speedtest/generate_204
-    exclude-type: "direct|redir-in|DNS"
+    url: http://www.gstatic.com/generate_204
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
     hidden: true
 
   - name: 🇺🇲
     type: fallback
-    url: https://fiber.google.com/speedtest/generate_204
-    exclude-type: "direct|redir-in|DNS"
+    url: http://www.gstatic.com/generate_204
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     hidden: true
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
 
   - name: 🇨🇳
     type: fallback
-    url: https://fiber.google.com/speedtest/generate_204
-    exclude-type: "direct|redir-in|DNS"
+    url: http://www.gstatic.com/generate_204
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
     hidden: true
 
   - name: 🇸🇬
     type: fallback
-    url: https://fiber.google.com/speedtest/generate_204
-    exclude-type: "direct|redir-in|DNS"
+    url: http://www.gstatic.com/generate_204
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
     hidden: true
 
   - name: 🇰🇷
     type: fallback
-    url: https://fiber.google.com/speedtest/generate_204
-    exclude-type: "direct|redir-in|DNS"
+    url: http://www.gstatic.com/generate_204
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
     hidden: true
@@ -179,7 +179,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/Misaka-blog/chromego_merge/main/sub/merged_proxies_new.yaml"    
     interval: 3600
     proxies: DIRECT
-    health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-prefix: "[provider1]"
 
@@ -188,7 +188,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/x"
     interval: 3600
     proxies: DIRECT
-    health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-prefix: "[provider2]"
        
@@ -197,7 +197,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/hysteria"    
     interval: 3600
     proxies: DIRECT
-    health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-prefix: "[provider3]"
 
@@ -206,7 +206,7 @@ proxy-providers:
     url: "https://cdn.jsdelivr.net/gh/vxiaov/free_proxies@main/clash/clash.provider.yaml"
     interval: 3600
     proxies: DIRECT
-    health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-prefix: "[provider4]"
        
@@ -215,7 +215,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/shadowsocks"    
     interval: 3600
     proxies: DIRECT
-    health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-prefix: "[provider5]"
 
@@ -224,7 +224,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
     interval: 3600
     proxies: DIRECT
-    health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-prefix: "[provider6]"
        
@@ -233,7 +233,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/Vauth/node/main/Main"    
     interval: 3600
     proxies: DIRECT
-    health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-prefix: "[provider7]"
 
@@ -242,7 +242,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/WilliamStar007/ClashX-V2Ray-TopFreeProxy/main/combine/clash.config.yaml"
     interval: 3600
     proxies: DIRECT
-    health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-prefix: "[provider8]"
       
@@ -251,7 +251,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_base64_Sub.txt"    
     interval: 3600
     proxies: DIRECT
-    health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-prefix: "[provider9]"
 
@@ -260,7 +260,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml"
     interval: 3600
     proxies: DIRECT
-    health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-prefix: "[provider10]"
       
@@ -270,7 +270,7 @@ proxy-providers:
     interval: 3600
     path: h3/provider11.yaml
     proxies: DIRECT
-    health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-prefix: "[provider11]"
 
@@ -279,7 +279,7 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml"
     interval: 3600
     proxies: DIRECT
-    health-check: {enable: true,url: "https://fiber.google.com/speedtest/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-prefix: "[provider12]"
 rule-providers:
