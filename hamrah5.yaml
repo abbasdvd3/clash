@@ -55,8 +55,8 @@ dns:
     - https://dns.google/dns-query
 proxy-groups:
   - name: Mismatch
-    type: select
-    include-all-providers: true
+    type: url-test
+#    include-all-providers: true
     exclude-type: "direct|redir-in|DNS|trojan"
     proxies:
       - Auto
@@ -77,7 +77,7 @@ proxy-groups:
     hidden: true
     tolerance: 9
     exclude-type: "direct|redir-in|DNS|trojan"
-    url: https://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
       
   - name: Autofallback
     type: fallback
@@ -85,14 +85,14 @@ proxy-groups:
     hidden: true
     include-all-providers: true
     exclude-type: "direct|redir-in|trojan|DNS"
-    url: https://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
 
   - name: Geo-HK
     type: url-test
     interval: 100
     tolerance: 99
     hidden: true
-    url: https://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
     exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     filter: "HongKong|HK|香港"
@@ -102,7 +102,7 @@ proxy-groups:
     interval: 100
     tolerance: 99
     hidden: true
-    url: https://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
     exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     filter: "Taiwan|TW|台湾"
@@ -112,7 +112,7 @@ proxy-groups:
     interval: 100
     tolerance: 99
     hidden: true
-    url: https://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
     exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     filter: "Singapore|SG|新加坡"
@@ -122,7 +122,7 @@ proxy-groups:
     interval: 100
     tolerance: 99
     hidden: true
-    url: https://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
     exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     filter: "Japan|JP|日本"
@@ -132,7 +132,7 @@ proxy-groups:
     interval: 100
     tolerance: 99
     hidden: true
-    url: https://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
     exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     filter: "America|United States|US|美国"
@@ -142,7 +142,7 @@ proxy-groups:
     interval: 100
     tolerance: 99
     hidden: true
-    url: https://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
     exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     filter: "Britain|England|UK|英国"
@@ -152,7 +152,7 @@ proxy-groups:
     interval: 100
     tolerance: 99
     hidden: true
-    url: https://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
     exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     filter: "Germany|Deutsch|DE|德国"
@@ -162,7 +162,7 @@ proxy-groups:
     interval: 100
     tolerance: 99
     hidden: true
-    url: https://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
     exclude-type: "direct|redir-in|trojan|DNS"
     include-all-providers: true
     disable-dns: true
@@ -179,42 +179,42 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/hamrah.yaml" # replace this URL with your provider's subscription link
     proxies: DIRECT
     interval: 600
-    health-check: {enable: true,url: "https://cp.cloudflare.com/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://cp.cloudflare.com/generate_204",interval: 300}
 
   Subscription-2:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/1.yaml"  # https://raw.githubusercontent.com/hkpc/V2ray-Configs/main/All_Configs_base64_Sub.txt # replace this URL with your provider's subscription link
     proxies: DIRECT
     interval: 600
-    health-check: {enable: true,url: "https://cp.cloudflare.com/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://cp.cloudflare.com/generate_204",interval: 300}
 
   Subscription-3:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/Vfarid-fix/main/sub64" # replace this URL with your provider's subscription link
     proxies: DIRECT
     interval: 600
-    health-check: {enable: true,url: "https://cp.cloudflare.com/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://cp.cloudflare.com/generate_204",interval: 300}
 
   Subscription-4:
     type: http
     url: "https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/master/Eternity" # replace this URL with your provider's subscription link
     proxies: DIRECT
     interval: 600
-    health-check: {enable: true,url: "https://cp.cloudflare.com/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://cp.cloudflare.com/generate_204",interval: 300}
 
   Subscription-5:
     type: http
     url: "https://raw.githubusercontent.com/chfchf0306/jeidian4.18/main/4.18" # replace this URL with your provider's subscription link
     proxies: DIRECT
     interval: 600
-    health-check: {enable: true,url: "https://cp.cloudflare.com/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://cp.cloudflare.com/generate_204",interval: 300}
 
   Subscription-6:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/P1" # https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_base64_Sub.txt" # replace this URL with your provider's subscription link
     proxies: DIRECT
     interval: 600
-    health-check: {enable: true,url: "https://cp.cloudflare.com/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://cp.cloudflare.com/generate_204",interval: 300}
 
 rule-providers:
   ir:
