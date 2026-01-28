@@ -1,7 +1,7 @@
 mode: rule
 log-level: info
 mixed-port: 10000
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 find-process-mode: strict
 global-client-fingerprint: chrome
@@ -56,7 +56,7 @@ dns:
 proxy-groups:
   - name: 🐟
     type: select
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|trojan|DNS"
     include-all-proxies: true
     include-all-providers: true
     proxies:
@@ -67,18 +67,18 @@ proxy-groups:
 
   - name: 🔯
     type: fallback
-    url: https://testmy.net/latency?addr=twitch.com
+    url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|trojan|DNS"
     include-all-proxies: true
     include-all-providers: true
 
   - name: 🔮
     type: load-balance
     strategy: consistent-hashing
-    url: https://testmy.net/latency?addr=twitch.com
-    exclude-type: "direct|redir-in|DNS"
+    url: http://www.gstatic.com/generate_204
+    exclude-type: "direct|redir-in|trojan|DNS"
     interval: 300
     tolerance: 50
     include-all-proxies: true
@@ -86,23 +86,22 @@ proxy-groups:
 
   - name: 🇺🇸
     type: url-test
-    url: https://testmy.net/latency?addr=twitch.com
+    url: http://www.gstatic.com/generate_204
     interval: 600
     tolerance: 80
     include-all-proxies: true
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|trojan|DNS"
     filter: "(?i)美|us|unitedstates|united states"
 
   - name: url-test
     type: url-test
-    url: https://testmy.net/latency?addr=twitch.com
+    url: http://www.gstatic.com/generate_204
     interval: 300
     hidden: true
-    udp: false
     include-all-proxies: true
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|trojan|DNS"
     proxies:
     
     
@@ -126,7 +125,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A1 prefix |"
@@ -139,7 +138,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A2 prefix |"
@@ -151,7 +150,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A3 prefix |"
@@ -164,7 +163,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A4 prefix |"
@@ -176,7 +175,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A5 prefix |"
@@ -189,7 +188,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A6 prefix |"
@@ -202,7 +201,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A7 prefix |"
@@ -215,7 +214,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A8 prefix |"
@@ -228,7 +227,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A9 prefix |"
@@ -241,7 +240,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A10 prefix |"
@@ -255,7 +254,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A12 prefix |"
@@ -268,7 +267,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A13 prefix |"
@@ -281,7 +280,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A14 prefix |"
@@ -295,7 +294,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A18 prefix |"
@@ -308,7 +307,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A19 prefix |"
@@ -321,7 +320,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A20 prefix |"
@@ -334,7 +333,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A21 prefix |"
@@ -347,7 +346,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A22 prefix |"
@@ -361,7 +360,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A25 prefix |"
@@ -374,7 +373,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A26 prefix |"
@@ -387,7 +386,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A27 prefix |"
@@ -400,7 +399,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A28 prefix |"
@@ -413,7 +412,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A29 prefix |"
@@ -426,7 +425,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A30 prefix |"
@@ -439,7 +438,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A31 prefix |"
@@ -453,7 +452,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:  #     additional-prefix: "A32 prefix |"
@@ -466,7 +465,7 @@ proxy-providers:
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
-      url: https://testmy.net/latency?addr=twitch.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 100
  #   override:
