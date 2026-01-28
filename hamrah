@@ -27,7 +27,7 @@ keep-alive-interval: 30
 disable-keep-alive: false
 keep-alive-idle: 15
 find-process-mode: strict
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: random
 geodata-mode: true
@@ -70,7 +70,7 @@ hosts:
   dns.ipv4dns.com: ['171.80.2.155', '171.80.2.166']
 tun:
   enable: true
-  mtu: 1400
+  mtu: 1500
   device: clash
   stack: mixed
   dns-hijack:
@@ -79,40 +79,6 @@ tun:
   strict-route: true
   auto-redirect: true
   auto-detect-interface: true
-
-sniffer:
-  enable: true
-  parse-pure-ip: true
-  force-dns-mapping: true
-  override-destination: true
-  sniff:
-    HTTP:
-      ports:
-        - 80
-        - 443
-      override-destination: false
-    TLS:
-      ports:
-        - 443
-  skip-domain:
-    - +.push.apple.com
-  skip-dst-address:
-    - 91.105.192.0/23
-    - 91.108.4.0/22
-    - 91.108.8.0/21
-    - 91.108.16.0/21
-    - 91.108.56.0/22
-    - 95.161.64.0/20
-    - 149.154.160.0/20
-    - 185.76.151.0/24
-    - 2001:67c:4e8::/48
-    - 2001:b28:f23c::/47
-    - 2001:b28:f23f::/48
-    - 2a0a:f280:203::/48
-tunnels:
-- tcp/udp,127.0.0.1:7890,8.8.8.8:53,PROXY
-
-
 dns:
   enable: true
   cache-algorithm: arc
@@ -287,7 +253,6 @@ dns:
      - '+.connectivitycheck.gstatic.cn'
      - '+.connectivitycheck.gstatic.com'
 proxy-providers:
-
   A1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/vip"
@@ -439,7 +404,7 @@ proxy-groups:
   - name: "PROXY"
     type: "select"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
-  #  include-all-providers: true
+    include-all-providers: true
     exclude-type: "direct|redir-in|DNS"
     hidden: true
     proxies:
