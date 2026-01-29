@@ -70,8 +70,8 @@ dns:
 proxies:
 proxy-groups:
   - name: 🕹 select
-    type: url-test
-  #  include-all-providers: true
+    type: select
+    include-all-providers: true
     exclude-type: "direct|redir-in|DNS|trojan"
     proxies:
       - ♻️ url-test
@@ -315,6 +315,7 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,🕹 select
   - MATCH,🕹 select
+
 
 
 
