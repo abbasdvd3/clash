@@ -38,10 +38,7 @@ dns:
 proxies:
 proxy-groups:
   - name: 🕹
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    type: select
     exclude-type: "direct|redir-in|DNS|trojan"
     proxies:
       - ♻️ url-test
@@ -52,15 +49,15 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
-    interval: 300
-    tolerance: 50
+    interval: 30
+    tolerance: 10
     exclude-type: "direct|redir-in|DNS|trojan"
 
   - name: 🚧 fallback
     type: fallback
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
-    interval: 180
+    interval: 18
     exclude-type: "direct|redir-in|DNS|trojan"
 
   - name: ⚖️ load-balance
@@ -68,7 +65,7 @@ proxy-groups:
     strategy: round-robin
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
-    interval: 180
+    interval: 18
     tolerance: 10
     exclude-type: "direct|redir-in|DNS|trojan"
         
