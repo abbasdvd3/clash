@@ -79,83 +79,6 @@ hosts:
   dns.18bit.cn: ['42.51.13.218', '42.51.37.204', '47.109.110.36', '115.190.191.220']
   dns.ipv4dns.com: ['171.80.2.155', '171.80.2.166']
   
-tunnels:
-- network: [tcp, udp]
-  address: 127.0.0.1:6553
-  target: 8.8.8.8:53
-  proxy: PROXY
-tun:
-  enable: true
-  stack: MiXED
-  auto-route: true
-  auto-redirect: true
-  auto-detect-interface: true
-  dns-hijack:
-    - 0.0.0.0:53
-  device: utun0
-  mtu: 9000
-  strict-route: true
-  gso: true
-  gso-max-size: 65536
-  udp-timeout: 300
-  iproute2-table-index: 2022
-  iproute2-rule-index: 9000
-  endpoint-independent-nat: false
-  route-address-set:
-    - ruleset-1
-  route-exclude-address-set:
-    - ruleset-2
-  route-address:
-    - 0.0.0.0/1
-    - 128.0.0.0/1
-    - "::/1"
-    - "8000::/1"
-  route-exclude-address:
-  - 192.168.0.0/16
-  - fc00::/7
-  include-interface:
-  - eth0
-  exclude-interface:
-  - eth1
-  include-uid:
-  - 0
-  include-uid-range:
-  - 1000:9999
-  exclude-uid:
-  - 1000
-  exclude-uid-range:
-  - 1000:9999
-  include-android-user:
-  - 0
-  - 10
-  include-package:
-  - com.android.chrome
-  exclude-package:
-  - com.android.captiveportallogin  
-
-
-sniffer:
-  enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
-  override-destination: true
-  sniff:
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-    TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  force-domain:
-    - +.v2ex.com
-  skip-domain:
-    - Mijia Cloud
-  skip-src-address:
-    - 192.168.0.3/32
-  skip-dst-address:
-    - 192.168.0.3/32
-    
 dns:
   enable: true
   cache-algorithm: arc
@@ -167,7 +90,6 @@ dns:
   ipv6: true
   defult-nameserver:
     - system
-    - dhcp://system
     - tls://223.5.5.5:853
     - tls://223.6.6.6:853
     - tls://8.8.8.8
@@ -181,14 +103,12 @@ dns:
     - 8.8.8.8
     - tls://1.1.1.1
     - system
-    - dhcp://system
   nameserver:
     - https://doh.pub/dns-query
     - tls://223.5.5.5:853
     - tls://223.6.6.6:853
     - 8.8.8.8
     - system
-    - dhcp://system
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
     - https://cloudflare-dns.com/dns-query#PROXY
@@ -534,7 +454,8 @@ proxy-groups:
   - name: "🎈Auto"
     type: "url-test"
     url: "http://www.gstatic.com/generate_204"
-    tolerance: 500
+    tolerance: 50
+    interval: 300
     exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     include-all-proxies: true
@@ -556,6 +477,7 @@ proxy-groups:
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
     tolerance: 50
+    interval: 300
     exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     include-all-proxies: true
@@ -566,7 +488,7 @@ proxy-groups:
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|CA|PM|MX|PA|BM|GL|GD|CR|VG|VI|BR|CL|PE|CU|HT|AR|UY|PY|JM|SR|BS|GF|BZ|MS|AW|CW|SX|MF|BL|GP|MQ|AG|KN|TT|VC|CO|EC|VE|BO|GT|SV|PR|KY|HN|DM|BB|LC|FK|TC"
     type: "fallback"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
-    interval: 18
+    interval: 180
     exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     include-all-proxies: true
@@ -576,7 +498,7 @@ proxy-groups:
   - name: "AI"
     type: "url-test"
     url: "http://www.gstatic.com/generate_204"
-    tolerance: 5
+    tolerance: 50
     hidden: true
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Final.png"
     proxies:
