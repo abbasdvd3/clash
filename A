@@ -552,7 +552,7 @@ proxy-providers:
 proxy-groups:
   - name: "PROXY"
     type: "select"
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     include-all-proxies: true
     hidden: true
@@ -563,12 +563,12 @@ proxy-groups:
 
   - name: "🎈Auto"
     type: "url-test"
-    url: "https://www.google.com/generate_204"
+    url: "http://www.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     interval: 280
     tolerance: 500
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     include-all-proxies: true
     hidden: true
@@ -576,11 +576,11 @@ proxy-groups:
 
   - name: "🎈fallback"
     type: "fallback"
-    url: "https://www.google.com/generate_204"
+    url: "http://www.gstatic.com/generate_204"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     interval: 180
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     include-all-proxies: true
     hidden: true
