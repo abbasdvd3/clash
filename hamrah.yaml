@@ -203,10 +203,68 @@ dns:
       geoip: true
       geoip-code: ir
       ipcidr:
-        - 0.0.0.0/32
-        - 127.0.0.1/32
+        - '0.0.0.0/32'
+        - '127.0.0.1/32'
         - '::/128'
         - '::1/128'
+        - '0.0.0.0/8'
+        - '10.0.0.0/8'
+        - '100.64.0.0/10'
+        - '127.0.0.0/8'
+        - '169.254.0.0/16'
+        - '172.16.0.0/12'
+        - '192.0.0.0/24'
+        - '192.0.2.0/24'
+        - '192.88.99.0/24'
+        - '192.168.0.0/16'
+        - '198.18.0.0/16'
+        - '198.51.100.0/24'
+        - '203.0.113.0/24'
+        - '224.0.0.0/4'
+        - '240.0.0.0/4'
+        - '255.255.255.255/32'
+        - '::1/128'
+        - 'fc00::/7'
+        - 'fe80::/10'
+        - '39.102.194.95/32'
+        - '182.43.124.6/32'
+        - '101.35.177.86/32'
+        - '116.89.243.8/32'
+        - '119.28.87.227/32'
+    domain:
+        - '+.xincache.com'
+        - 'www.gstatic.com'
+        - '+.ampproject.org'
+        - '+.appspot.com'
+        - '+.blogger.com'
+        - '+.google.com'
+        - '+.google.cn'
+        - '+.googleusercontent.com'
+        - '+.ggpht.com'
+        - '+.gmail.com'
+        - '+.gvt0.com'
+        - '+.gvt1.com'
+        - '+.gvt2.com'
+        - '+.gvt3.com'
+        - '+.youtu.be'
+        - '+.yt.be'
+        - '+.ytimg.com'
+        - '+.googlevideo.com'
+        - '+.youtube.com'
+        - '+.xn--ngstr-lra8j.com'
+        - '+.xn--flw351e.com'
+        - '+.xn--9kr7l.com'
+        - '+.xn--ggle-55da.com'
+        - '+.xn--gogl-0nd52e.com'
+        - '+.xn--gogl-1nd42e.com'
+        - '+.googleapis.com'
+        - '+.googleapis.cn'
+        - '+.gstatic.com'
+        - '+.gstatic.cn'
+        - '+.services.googleapis.cn'
+        - '+.services.googleapis.com'
+        - '+.connectivitycheck.gstatic.cn'
+        - '+.connectivitycheck.gstatic.com'
 proxy-providers:
   A1:
     type: http
@@ -460,7 +518,7 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png"
     include-all-providers: true
     include-all-proxies: true
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: "direct|redir-in|DNS"
     proxies:
       - "🎈Auto"
       - "🎈fallback"
@@ -472,7 +530,7 @@ proxy-groups:
     url: "http://cp.cloudflare.com/"
     tolerance: 500
     interval: 300
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     include-all-proxies: true
     hidden: true
@@ -482,7 +540,7 @@ proxy-groups:
     type: "fallback"
     url: "http://cp.cloudflare.com/"
     interval: 180
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     include-all-proxies: true
     hidden: true
@@ -494,7 +552,7 @@ proxy-groups:
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
     tolerance: 500
     interval: 300
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: "direct|redir-in|DNS" #|trojan
     include-all-providers: true
     include-all-proxies: true
     hidden: true
@@ -505,7 +563,7 @@ proxy-groups:
     type: "fallback"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
     interval: 180
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     include-all-proxies: true
     hidden: true
@@ -536,49 +594,42 @@ rule-providers:
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
     interval: 86400
-    
   social:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
     interval: 86400
-    
   ir:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
     interval: 86400
-    
   ads:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
     interval: 86400
-    
   malware:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
     interval: 86400
-    
   phishing:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
     interval: 86400
-    
   cryptominers:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
     interval: 86400
-    
   apps:
     type: http
     format: yaml
@@ -591,97 +642,82 @@ rule-providers:
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
     interval: 86400
-    
   private:
     type: http
     format: yaml
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
     interval: 86400
-    
   irasn:
     type: http
     format: yaml
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
     interval: 86400
-    
   geolocation-!cn:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
     interval: 86400
-    
   AWA:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
-    interval: 86400
-    
+    interval: 86400 
   anti-AD:
     type: http
     behavior: domain
     format: yaml
     url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"
     interval: 86400
-    
   anti-AD-white:
     type: http
     behavior: domain
     format: yaml
     url: "https://raw.githubusercontent.com/privacy-protection-tools/dead-horse/master/anti-ad-white-for-clash.yaml"
     interval: 86400
-    
   category-ai-!cn:
     type: http
     behavior: domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.yaml"
     interval: 86400
-    
   category-ai-cn:
     type: http
     behavior: domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.yaml"
     interval: 86400
-    
   AI:
     type: http
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list"
     interval: 86400
-    
   OpenAi:
     type: http
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list"
     interval: 86400
-    
   GoogleFCM:
     type: http
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list"
     interval: 86400
-    
   GoogleCNProxyIP:
     type: http
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list"
     interval: 86400
-    
   GoogleCN:
     type: http
     behavior: domain
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list"
     interval: 86400
-    
   YouTube:
     type: http
     behavior: domain
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list"
     interval: 86400
-    
   Google:
     type: http
     behavior: classical
