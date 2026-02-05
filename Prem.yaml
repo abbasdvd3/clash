@@ -80,6 +80,7 @@ proxies:
 proxy-groups:
   - name: PROXY
     type: select
+    disable-udp: true
     proxies:
       - url-test
       - United+url-test
@@ -94,7 +95,8 @@ proxy-groups:
   - name: fallback
     type: fallback
     url: "http://www.gstatic.com/generate_204"
-    exclude-type: "direct|redir-in|trojan|DNS|vless"
+    exclude-type: "direct|redir-in|DNS|vless"
+    disable-udp: true
     interval: 180
     proxies:
     use:
@@ -107,9 +109,10 @@ proxy-groups:
   - name: United+url-test
     type: url-test
     url: "http://www.gstatic.com/generate_204"
-    exclude-type: "direct|redir-in|trojan|DNS|vless"
+    exclude-type: "direct|redir-in|DNS|vless"
+    disable-udp: true
     interval: 300
-    tolerance: 500
+    tolerance: 10
     hidden: true
     use:
       - provider1
@@ -121,9 +124,10 @@ proxy-groups:
   - name: url-test
     type: url-test
     url: "http://www.gstatic.com/generate_204"
-    exclude-type: "direct|redir-in|trojan|DNS|vless"
+    exclude-type: "direct|redir-in|DNS|vless"
+    disable-udp: true
     interval: 99
-    tolerance: 500
+    tolerance: 100
     hidden: false
     use:
       - provider1
@@ -153,7 +157,20 @@ rules:
   - GEOIP,telegram,PROXY
   - GEOIP,google,PROXY
   - GEOIP,facebook,PROXY
-#  - GEOIP,CN,🎯 DIRECT
+  - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,REJECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,REJECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,169.254.0.0/16,REJECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,REJECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,REJECT,no-resolve
+  - IP-CIDR,198.18.0.0/16,REJECT,no-resolve
+  - IP-CIDR,224.0.0.0/4,REJECT,no-resolve
+  - IP-CIDR6,::1/128,REJECT,no-resolve
+  - IP-CIDR6,fc00::/7,REJECT,no-resolve
+  - IP-CIDR6,fe80::/10,REJECT,no-resolve
+  - IP-CIDR6,fd00::/8,REJECT,no-resolve
   - DOMAIN-SUFFIX,fast.com,🎯 DIRECT
   - DOMAIN-SUFFIX,speedtest.net,🎯 DIRECT
   - PROCESS-NAME,com.tomclaw.appsend,DIRECT
