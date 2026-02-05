@@ -66,7 +66,7 @@ proxy-providers:
 
   provider1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/p.hamrah" 
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/p.all" 
     path: Prem/p1.yaml
     interval: 899
     proxy: DIRECT
@@ -75,72 +75,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 30
-      url: "http://www.gstatic.com/generate_204"
-
-  provider2:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/1"    
-    path: Prem/P2.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless"
-    health-check:
-      enable: true
-      interval: 30
-      url: "http://www.gstatic.com/generate_204"
-      
-  provider3:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/pp1.yaml" 
-    path: Prem/p3.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless"
-    health-check:
-      enable: true
-      interval: 30
-      url: "http://www.gstatic.com/generate_204"
-
-  provider4:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/s"    
-    path: Prem/P4.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless"
-    health-check:
-      enable: true
-      interval: 30
-      url: "http://www.gstatic.com/generate_204"
-      
-  provider5:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/vless/a" 
-    path: Prem/p5.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless"
-    health-check:
-      enable: true
-      interval: 30
-      url: "http://www.gstatic.com/generate_204"
-
-  provider6:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N"    
-    path: Prem/P6.yaml
-    interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless"
-    health-check:
-      enable: true
-      interval: 30
-      url: "http://www.gstatic.com/generate_204"      
+      url: "http://www.gstatic.com/generate_204"   
 proxies:
 proxy-groups:
   - name: PROXY
@@ -151,11 +86,11 @@ proxy-groups:
       - fallback
     use:
       - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
+  #    - provider2
+ #     - provider3
+ #     - provider4
+ #     - provider5
+ #     - provider6
   - name: fallback
     type: fallback
     url: "http://www.gstatic.com/generate_204"
@@ -164,11 +99,11 @@ proxy-groups:
     proxies:
     use:
       - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
+  #    - provider2
+ #     - provider3
+ #     - provider4
+ #     - provider5
+ #     - provider6
   - name: United+url-test
     type: url-test
     url: "http://www.gstatic.com/generate_204"
@@ -178,11 +113,11 @@ proxy-groups:
     hidden: true
     use:
       - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
+  #    - provider2
+ #     - provider3
+ #     - provider4
+ #     - provider5
+ #     - provider6
   - name: url-test
     type: url-test
     url: "http://www.gstatic.com/generate_204"
@@ -192,11 +127,11 @@ proxy-groups:
     hidden: false
     use:
       - provider1
-      - provider2
-      - provider3
-      - provider4
-      - provider5
-      - provider6
+  #    - provider2
+ #     - provider3
+ #     - provider4
+ #     - provider5
+ #     - provider6
     proxies: 
   - name: 🎯 DIRECT
     type: select
