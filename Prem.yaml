@@ -48,34 +48,44 @@ dns:
       - +.googleapis.cn
       - +.googleapis.com
       - +.gvt1.com
-tun:
-  enable: true
-  stack: system
-  auto-route: true
-  auto-detect-interface: true
-  dns-hijack:
-    - 114.114.114.114
-    - 180.76.76.76
-    - 119.29.29.29
-    - 223.5.5.5
-    - 8.8.8.8
-    - 8.8.4.4
-    - 1.1.1.1
-    - 1.0.0.1
 proxy-providers:
-
   provider1:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/p.all" 
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/p.all
     path: Prem/p1.yaml
     interval: 899
-    proxy: DIRECT
-    skip-cert-verify: true
-    exclude-type: "vless"
     health-check:
       enable: true
       interval: 30
-      url: "http://www.gstatic.com/generate_204"   
+      url: http://www.gstatic.com/generate_204
+  provider2:
+    type: http
+    url: https://raw.githubusercontent.com/lagzian/SS-Collector/main/vmess_clash.yaml
+    path: Prem/P2.yaml
+    interval: 899
+    health-check:
+      enable: true
+      interval: 30
+      url: http://www.gstatic.com/generate_204
+  provider3:
+    type: http
+    url: https://raw.githubusercontent.com/pojiezhiyuanjun/freev2/master/1225clash.yml    
+    path: Prem/P3.yaml
+    interval: 899
+    health-check:
+      enable: true
+      interval: 30
+      url: http://www.gstatic.com/generate_204
+  provider8:
+    type: http
+    url: https://raw.githubusercontent.com/lagzian/SS-Collector/main/vmess_tvc_clash.yaml
+    path: Prem/p8.yaml
+    interval: 899
+    health-check:
+      enable: true
+      interval: 30
+      url: http://www.gstatic.com/generate_204
+
 proxies:
 proxy-groups:
   - name: PROXY
@@ -87,59 +97,50 @@ proxy-groups:
       - fallback
     use:
       - provider1
-  #    - provider2
- #     - provider3
+      - provider2
+      - provider3
  #     - provider4
  #     - provider5
  #     - provider6
   - name: fallback
     type: fallback
-    url: "http://www.gstatic.com/generate_204"
-    exclude-type: "direct|redir-in|DNS|vless"
-    disable-udp: true
+    url: http://www.gstatic.com/generate_204
     interval: 180
     proxies:
     use:
       - provider1
-  #    - provider2
- #     - provider3
+      - provider2
+      - provider3
  #     - provider4
  #     - provider5
  #     - provider6
   - name: United+url-test
     type: url-test
-    url: "http://www.gstatic.com/generate_204"
-    exclude-type: "direct|redir-in|DNS|vless"
-    disable-udp: true
+    url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 10
-    hidden: true
+    tolerance: 50
     use:
       - provider1
-  #    - provider2
- #     - provider3
+      - provider2
+      - provider3
  #     - provider4
  #     - provider5
  #     - provider6
   - name: url-test
     type: url-test
-    url: "http://www.gstatic.com/generate_204"
-    exclude-type: "direct|redir-in|DNS|vless"
-    disable-udp: true
+    url: http://www.gstatic.com/generate_204
     interval: 99
     tolerance: 100
-    hidden: false
     use:
       - provider1
-  #    - provider2
- #     - provider3
+      - provider2
+      - provider3
  #     - provider4
  #     - provider5
  #     - provider6
     proxies: 
   - name: 🎯 DIRECT
     type: select
-    disable-udp: true
     proxies:
       - DIRECT
       - PROXY 
@@ -157,20 +158,20 @@ rules:
   - GEOIP,telegram,PROXY
   - GEOIP,google,PROXY
   - GEOIP,facebook,PROXY
-  - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
-  - IP-CIDR,10.0.0.0/8,REJECT,no-resolve
-  - IP-CIDR,100.64.0.0/10,REJECT,no-resolve
+  - IP-CIDR,0.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,169.254.0.0/16,REJECT,no-resolve
-  - IP-CIDR,172.16.0.0/12,REJECT,no-resolve
-  - IP-CIDR,192.168.0.0/16,REJECT,no-resolve
-  - IP-CIDR,198.18.0.0/16,REJECT,no-resolve
-  - IP-CIDR,224.0.0.0/4,REJECT,no-resolve
-  - IP-CIDR6,::1/128,REJECT,no-resolve
-  - IP-CIDR6,fc00::/7,REJECT,no-resolve
-  - IP-CIDR6,fe80::/10,REJECT,no-resolve
-  - IP-CIDR6,fd00::/8,REJECT,no-resolve
+  - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,198.18.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
+  - IP-CIDR6,fc00::/7,DIRECT,no-resolve
+  - IP-CIDR6,fe80::/10,DIRECT,no-resolve
+  - IP-CIDR6,fd00::/8,DIRECT,no-resolve
   - DOMAIN-SUFFIX,fast.com,🎯 DIRECT
   - DOMAIN-SUFFIX,speedtest.net,🎯 DIRECT
   - PROCESS-NAME,com.tomclaw.appsend,DIRECT
