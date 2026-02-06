@@ -256,7 +256,7 @@ proxy-groups:
       - 🟡fallback🟡
       - 🔴load-balance🔴
   - name: 🟢Auto🟢
-    type: smart
+    type: url-test
     url: http://cp.cloudflare.com/generate_204
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
@@ -884,4 +884,5 @@ rules :
   - RULE-SET,geolocation-!cn,PROXY
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
