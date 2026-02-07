@@ -730,17 +730,15 @@ rule-providers:
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list"
     interval: 86400
-    
+  YouTube:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list"
+    interval: 86400    
 rules :
   - RULE-SET,GoogleFCM,PROXY
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
   - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
-  - RULE-SET,GoogleCNProxyIP,PROXY
-  - RULE-SET,GoogleCN,PROXY
-  - RULE-SET,YouTube,PROXY
-  - RULE-SET,Google,PROXY
-  - RULE-SET,category-ai-cn,PROXY
-  - RULE-SET,category-ai-!cn,PROXY
   - DOMAIN-KEYWORD,soft98.ir,🎯 Direct
   - DOMAIN,soft98,🎯 Direct
   - DOMAIN-SUFFIX,soft98.ir,🎯 Direct
@@ -750,8 +748,6 @@ rules :
   - DOMAIN-SUFFIX,farsroid,🎯 Direct
   - DOMAIN-KEYWORD,farsroid.com,🎯 Direct
   - DOMAIN,farsroid.com,🎯 Direct
-  - RULE-SET,anti-AD-white,🎯 Direct
-  - RULE-SET,anti-AD,REJECT
   - DOMAIN-SUFFIX,createporn.com,PROXY
   - DOMAIN-KEYWORD,createporn,PROXY
   - DOMAIN,createporn,PROXY
@@ -921,11 +917,13 @@ rules :
   - RULE-SET,social,PROXY,no-resolve
   - RULE-SET,nsfw,PROXY,no-resolve
   - RULE-SET,geolocation-!cn,PROXY
+  - RULE-SET,anti-AD-white,🎯 Direct
+  - RULE-SET,anti-AD,REJECT
+  - RULE-SET,GoogleCNProxyIP,PROXY
+  - RULE-SET,GoogleCN,PROXY
+  - RULE-SET,YouTube,PROXY
+  - RULE-SET,Google,PROXY
+  - RULE-SET,category-ai-cn,PROXY
+  - RULE-SET,category-ai-!cn,PROXY
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
-
-
-
-
-
-
