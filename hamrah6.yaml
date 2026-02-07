@@ -84,8 +84,8 @@ proxies:
 proxy-groups:
   - name: Proxy
     type: select
-    include-all-providers: true
-    exclude-type: direct|redir-in|DNS|Shadowsocks|ShadowsocksR
+ #   include-all-providers: true
+    exclude-type: direct|redir-in|DNS
     proxies:
       - Auto
       - fallback
@@ -96,14 +96,14 @@ proxy-groups:
     include-all-providers: true
     hidden: true
     interval: 100
-    exclude-type: direct|redir-in|DNS|Shadowsocks|ShadowsocksR
+    exclude-type: direct|redir-in|DNS
     filter: "America|United States|US|美国"
 
   - name: fallback
     type: fallback
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
-    exclude-type: direct|redir-in|DNS|Shadowsocks|ShadowsocksR
+    exclude-type: direct|redir-in|DNS
     hidden: true
     interval: 180
     filter: "America|United States|US|美国"
@@ -112,7 +112,7 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
-    exclude-type: direct|redir-in|DNS|Shadowsocks|ShadowsocksR
+    exclude-type: direct|redir-in|DNS
     hidden: true
     interval: 10
     lazy: false
@@ -121,7 +121,7 @@ proxy-groups:
   - name: Geo-JP
     type: url-test
     url: http://www.gstatic.com/generate_204
-    exclude-type: direct|redir-in|DNS|Shadowsocks|ShadowsocksR
+    exclude-type: direct|redir-in|DNS
     include-all-providers: true
     hidden: true
     interval: 10
@@ -130,7 +130,7 @@ proxy-groups:
   - name: Geo-US
     type: url-test
     url: http://www.gstatic.com/generate_204
-    exclude-type: direct|redir-in|DNS|Shadowsocks|ShadowsocksR
+    exclude-type: direct|redir-in|DNS
     include-all-providers: true
     hidden: true
     interval: 100
@@ -140,7 +140,7 @@ proxy-groups:
   - name: Geo-CN
     type: url-test
     url: http://www.gstatic.com/generate_204
-    exclude-type: direct|redir-in|DNS|Shadowsocks|ShadowsocksR
+    exclude-type: direct|redir-in|DNS
     include-all-providers: true
     hidden: true
     interval: 10
