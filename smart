@@ -1,4 +1,4 @@
-BaseProvider: &BaseProvider {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: 'http://www.gstatic.com/generate_204', interval: 300}, filter: '^(?!.*(群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'}
+BaseProvider: &BaseProvider {type: http, interval: 864, proxy: DIRECT, health-check: {enable: true, url: 'http://www.gstatic.com/generate_204', interval: 300}, filter: '^(?!.*(群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'}
 BaseSmart: &BaseSmart {type: smart, interval: 200, lazy: true, url: 'http://www.gstatic.com/generate_204', hidden: false, uselightgbm: true}
 FilterHK: &FilterHK '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))(?!.*(排除1|排除2|5x)).*$'
 FilterSG: &FilterSG '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?!.*(排除1|排除2|5x)).*$'
@@ -13,50 +13,50 @@ SelectAL: &SelectAL {type: select, proxies: [Hong_Kong, Taiwan, Japan, Singapore
 OneSmart: &OneSmart {type: select, proxies: [mihomo, Hong_Kong, Taiwan, Japan, Singapore, Korea, United_States, European, Clubhouse]}
 SelectDC: &SelectDC {type: select, proxies: [Direct, mihomo, Hong_Kong, Taiwan, Japan, Singapore, Korea, United_States, European, Clubhouse]}
 proxy-providers:
-  优质服务商: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商: {<<: *BaseProvider, url: 'https://shadowmere.xyz/api/b64sub/', override: {additional-prefix: '[备] '}}
-  优质服务商3: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity', override: {additional-prefix: '[优] '}}
-  备用服务商4: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N', override: {additional-prefix: '[备] '}}
-  优质服务商5: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Junely/clash/main/template3.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商6: {<<: *BaseProvider, url: 'https://proxypool1999.banyunxiaoxi.icu/clash/proxies', override: {additional-prefix: '[备] '}}
-  优质服务商7: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/misersun/config003/main/config_all.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商8: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml', override: {additional-prefix: '[备] '}}
-  优质服务商9: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/renyige1314/CLASH/main/CLASH', override: {additional-prefix: '[优] '}}
-  备用服务商10: {<<: *BaseProvider, url: 'http://66.42.50.118:12580/clash/proxies', override: {additional-prefix: '[备] '}}
-  优质服务商11: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/69z1zfw2fly/fly/main/2.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商12: {<<: *BaseProvider, url: 'https://proxypool.link/clash/proxies', override: {additional-prefix: '[备] '}}
-  优质服务商13: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商14: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml', override: {additional-prefix: '[备] '}}
-  优质服务商15: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/shbioc/clash/main/aaa01.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商16: {<<: *BaseProvider, url: 'https://anaer.github.io/Sub/proxies.yaml', override: {additional-prefix: '[备] '}}
-  优质服务商17: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/yudou66.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商18: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/ts-sf/fly/main/clash', override: {additional-prefix: '[备] '}}
-  优质服务商19: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/Clash.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商20: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/combine.yaml', override: {additional-prefix: '[备] '}}
-  优质服务商21: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpnclashfa-backup/subconverter/refs/heads/main/output_configs/clash/ainita.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商22: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/bingoYB/node_processing/main/dist/all.yaml', override: {additional-prefix: '[备] '}}
-  优质服务商23: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpnclashfa-backup/subconverter/refs/heads/main/output_configs/clash/MatinGhanbari_v2ray-configs-super-sub.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商24: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/itxve/fetch-clash-node/main/node/ClashNode.yaml', override: {additional-prefix: '[备] '}}
-  优质服务商25: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpnclashfa-backup/subconverter/refs/heads/main/output_configs/clash/gheychiamoozesh.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商26: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/YasserDivaR/pr0xy/main/winformClash.yaml', override: {additional-prefix: '[备] '}}
-  优质服务商27: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpnclashfa-https://raw.githubusercontent.com/vpnclashfa-backup/subconverter/refs/heads/main/output_configs/clash/the3rf_com_sub_php.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商28: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/itxve/fetch-clash-node/main/node/ClashNode.yaml', override: {additional-prefix: '[备] '}}
-  优质服务商29: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/shatakvpn.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商30: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/sun9426/sun9426.github.io/main/subscribe/Clash.yaml', override: {additional-prefix: '[备] '}}
-  优质服务商31: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/WilliamStar007/ClashX-V2Ray-TopFreeProxy/main/combine/clash.config.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商32: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/igeekshare/GeekshareFreeNode/main/clash/Geekshare.yaml', override: {additional-prefix: '[备] '}}
-  优质服务商33: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商34: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/BUTUbird/ClashPoint/main/application.yaml', override: {additional-prefix: '[备] '}}
-  优质服务商35: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商36: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpei/free-node-1/main/o/proxies.txt', override: {additional-prefix: '[备] '}}
-  优质服务商37: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Misaka-blog/chromego_merge/main/sub/merged_proxies_new.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商38: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/kevin-wud/v2ray-node/main/clash.yaml', override: {additional-prefix: '[备] '}}
-  优质服务商39: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml', override: {additional-prefix: '[优] '}}
-  备用服务商40: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/tony0392/clash/main/clash.yaml', override: {additional-prefix: '[备] '}}
-  优质服务商41: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt', override: {additional-prefix: '[优] '}}
-  备用服务商42: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/nasheep/FreeNode/main/clash/PlayLab', override: {additional-prefix: '[备] '}}
-  优质服务商43: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/chongdong1230/dxz/main/clash', override: {additional-prefix: '[优] '}}
-  备用服务商44: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/zhlx2835/freefq/main/clash.yaml', override: {additional-prefix: '[备] '}}
+  优质服务商: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml'}
+  备用服务商: {<<: *BaseProvider, url: 'https://shadowmere.xyz/api/b64sub/'}
+  优质服务商3: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Surfboardv2ray/v2ray-worker-sub/refs/heads/master/Eternity'}
+  备用服务商4: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N'}
+  优质服务商5: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Junely/clash/main/template3.yaml'}
+  备用服务商6: {<<: *BaseProvider, url: 'https://proxypool1999.banyunxiaoxi.icu/clash/proxies'}
+  优质服务商7: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/misersun/config003/main/config_all.yaml'}
+  备用服务商8: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml'}
+  优质服务商9: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/renyige1314/CLASH/main/CLASH'}
+  备用服务商10: {<<: *BaseProvider, url: 'http://66.42.50.118:12580/clash/proxies'}
+  优质服务商11: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/69z1zfw2fly/fly/main/2.yaml'}
+  备用服务商12: {<<: *BaseProvider, url: 'https://proxypool.link/clash/proxies'}
+  优质服务商13: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml'}
+  备用服务商14: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml'}
+  优质服务商15: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/shbioc/clash/main/aaa01.yaml'}
+  备用服务商16: {<<: *BaseProvider, url: 'https://anaer.github.io/Sub/proxies.yaml'}
+  优质服务商17: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/yudou66.yaml'}
+  备用服务商18: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/ts-sf/fly/main/clash'}
+  优质服务商19: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/Clash.yaml'}
+  备用服务商20: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/ronghuaxueleng/get_v2/main/pub/combine.yaml'}
+  优质服务商21: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpnclashfa-backup/subconverter/refs/heads/main/output_configs/clash/ainita.yaml'}
+  备用服务商22: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/bingoYB/node_processing/main/dist/all.yaml'}
+  优质服务商23: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpnclashfa-backup/subconverter/refs/heads/main/output_configs/clash/MatinGhanbari_v2ray-configs-super-sub.yaml'}
+  备用服务商24: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/itxve/fetch-clash-node/main/node/ClashNode.yaml'}
+  优质服务商25: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpnclashfa-backup/subconverter/refs/heads/main/output_configs/clash/gheychiamoozesh.yaml'}
+  备用服务商26: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/YasserDivaR/pr0xy/main/winformClash.yaml'}
+  优质服务商27: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpnclashfa-https://raw.githubusercontent.com/vpnclashfa-backup/subconverter/refs/heads/main/output_configs/clash/the3rf_com_sub_php.yaml'}
+  备用服务商28: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/itxve/fetch-clash-node/main/node/ClashNode.yaml'}
+  优质服务商29: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/shatakvpn.yaml'}
+  备用服务商30: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/sun9426/sun9426.github.io/main/subscribe/Clash.yaml'}
+  优质服务商31: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/WilliamStar007/ClashX-V2Ray-TopFreeProxy/main/combine/clash.config.yaml'}
+  备用服务商32: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/igeekshare/GeekshareFreeNode/main/clash/Geekshare.yaml'}
+  优质服务商33: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml'}
+  备用服务商34: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/BUTUbird/ClashPoint/main/application.yaml'}
+  优质服务商35: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml'}
+  备用服务商36: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/vpei/free-node-1/main/o/proxies.txt'}
+  优质服务商37: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Misaka-blog/chromego_merge/main/sub/merged_proxies_new.yaml'}
+  备用服务商38: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/kevin-wud/v2ray-node/main/clash.yaml'}
+  优质服务商39: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml'}
+  备用服务商40: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/tony0392/clash/main/clash.yaml'}
+  优质服务商41: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt'}
+  备用服务商42: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/nasheep/FreeNode/main/clash/PlayLab'}
+  优质服务商43: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/chongdong1230/dxz/main/clash'}
+  备用服务商44: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/zhlx2835/freefq/main/clash.yaml'}
 mode: rule
 mixed-port: 7890
 ipv6: true
@@ -275,22 +275,22 @@ rules:
   - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
   - DOMAIN-SUFFIX,google.com,AI
   - DOMAIN-KEYWORD,google,AI
-  - DOMAIN-SUFFIX,netflix.com,Global
-  - DOMAIN-SUFFIX,netflix.net,Global
-  - DOMAIN-SUFFIX,nflxext.com,Global
-  - DOMAIN-SUFFIX,nflximg.com,Global
-  - DOMAIN-SUFFIX,nflxso.net,Global
-  - DOMAIN-SUFFIX,nflxvideo.net,Global
-  - DOMAIN-SUFFIX,spotify.com,Global
-  - DOMAIN-SUFFIX,scdn.co,Global
-  - DOMAIN-SUFFIX,spoti.fi,Global
+  - DOMAIN-SUFFIX,netflix.com,mihomo
+  - DOMAIN-SUFFIX,netflix.net,mihomo
+  - DOMAIN-SUFFIX,nflxext.com,mihomo
+  - DOMAIN-SUFFIX,nflximg.com,mihomo
+  - DOMAIN-SUFFIX,nflxso.net,mihomo
+  - DOMAIN-SUFFIX,nflxvideo.net,mihomo
+  - DOMAIN-SUFFIX,spotify.com,mihomo
+  - DOMAIN-SUFFIX,scdn.co,mihomo
+  - DOMAIN-SUFFIX,spoti.fi,mihomo
   - DOMAIN-SUFFIX,youtube.com,AI
   - DOMAIN-SUFFIX,googlevideo.com,AI
-  - DOMAIN-SUFFIX,ytimg.com,Global
-  - DOMAIN-SUFFIX,hulu.com,Global
-  - DOMAIN-SUFFIX,disneyplus.com,Global
-  - DOMAIN-SUFFIX,hbo.com,Global
-  - DOMAIN-SUFFIX,primevideo.com,Global
+  - DOMAIN-SUFFIX,ytimg.com,mihomo
+  - DOMAIN-SUFFIX,hulu.com,mihomo
+  - DOMAIN-SUFFIX,disneyplus.com,mihomo
+  - DOMAIN-SUFFIX,hbo.com,mihomo
+  - DOMAIN-SUFFIX,primevideo.com,mihomo
   - DOMAIN-SUFFIX,cn,Direct,no-resolve
   - DOMAIN-KEYWORD,-cn,Direct,no-resolve
   - DOMAIN-SUFFIX,ir,Direct,no-resolve
@@ -299,20 +299,20 @@ rules:
   - IP-CIDR,127.0.0.0/8,Direct,no-resolve
   - IP-CIDR,172.16.0.0/12,Direct
   - IP-CIDR,192.168.0.0/16,Direct
-  - IP-CIDR,10.0.0.0/8,Global
+  - IP-CIDR,10.0.0.0/8,mihomo
   - DOMAIN-SUFFIX,openai.com,AI
   - DOMAIN-SUFFIX,chatgpt.com,AI
   - DOMAIN-SUFFIX,anthropic.com,AI
   - DOMAIN-SUFFIX,claude.ai,AI
-  - DOMAIN-SUFFIX,t.me,Global
-  - DOMAIN-SUFFIX,telegram.org,Global
-  - DOMAIN-SUFFIX,netflix.com,Global
-  - DOMAIN-SUFFIX,youtube.com,Global
-  - DOMAIN-SUFFIX,disney.com,Global
-  - DOMAIN-SUFFIX,apple.com,Global
-  - DOMAIN-SUFFIX,icloud.com,Global
-  - DOMAIN-SUFFIX,microsoft.com,Global
-  - DOMAIN-SUFFIX,windows.com,Global
+  - DOMAIN-SUFFIX,t.me,mihomo
+  - DOMAIN-SUFFIX,telegram.org,mihomo
+  - DOMAIN-SUFFIX,netflix.com,mihomo
+  - DOMAIN-SUFFIX,youtube.com,mihomo
+  - DOMAIN-SUFFIX,disney.com,mihomo
+  - DOMAIN-SUFFIX,apple.com,mihomo
+  - DOMAIN-SUFFIX,icloud.com,mihomo
+  - DOMAIN-SUFFIX,microsoft.com,mihomo
+  - DOMAIN-SUFFIX,windows.com,mihomo
   - DOMAIN-SUFFIX,openai.com,AI
   - DOMAIN-SUFFIX,chatgpt.com,AI
   - DOMAIN-SUFFIX,oaistatic.com,AI
@@ -390,26 +390,26 @@ rules:
   - DOMAIN-SUFFIX,stripe.com,AI
   - DOMAIN-SUFFIX,sora.com,AI
   - DOMAIN-SUFFIX,disneyplus.com,AI
-  - DOMAIN-SUFFIX,youtube.com,Global
-  - DOMAIN-SUFFIX,spotify.com,Global
-  - IN-PORT,7890,Global
-  - IN-PORT,7892,Global
-  - IN-PORT,7891,Global
+  - DOMAIN-SUFFIX,youtube.com,mihomo
+  - DOMAIN-SUFFIX,spotify.com,mihomo
+  - IN-PORT,7890,mihomo
+  - IN-PORT,7892,mihomo
+  - IN-PORT,7891,mihomo
 #  - IN-PORT,53,DNS,no-resolve
-  - DST-PORT,80,Global,no-resolve
-  - DST-PORT,443,Global,no-resolve
-  - IN-TYPE,SOCKS/HTTP,Global
-  - IN-USER,mihomo,Global
-  - IN-NAME,ss,Global
-  - NETWORK,udp,Global
-  - IP-SUFFIX,8.8.8.8/24,Global
+  - DST-PORT,80,mihomo,no-resolve
+  - DST-PORT,443,mihomo,no-resolve
+  - IN-TYPE,SOCKS/HTTP,mihomo
+  - IN-USER,mihomo,mihomo
+  - IN-NAME,ss,mihomo
+  - NETWORK,udp,mihomo
+  - IP-SUFFIX,8.8.8.8/24,mihomo
   - DOMAIN-SUFFIX,local,Direct,no-resolve
-  - IP-CIDR,10.0.0.0/8,Global
-  - IP-CIDR,100.64.0.0/10,Global
-  - PROCESS-NAME,com.termux,Global
-  - AND,((DOMAIN,google.com),(NETWORK,UDP)),Global
+  - IP-CIDR,10.0.0.0/8,mihomo
+  - IP-CIDR,100.64.0.0/10,mihomo
+  - PROCESS-NAME,com.termux,mihomo
+  - AND,((DOMAIN,google.com),(NETWORK,UDP)),mihomo
   - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
-  - NOT,((DOMAIN,google.com)),Global
+  - NOT,((DOMAIN,google.com)),mihomo
   - RULE-SET,AWAdsRule,REJECT
   - RULE-SET,GoogleFCM,AI
   - RULE-SET,GoogleCNProxyIP,AI
@@ -442,7 +442,7 @@ rules:
   - RULE-SET,SocialMedia,PBS
   - RULE-SET,Emby,Media
   - RULE-SET,Streaming,Media
-  - RULE-SET,Proxy,Global
+  - RULE-SET,Proxy,mihomo
   - RULE-SET,China,IRAN
   - RULE-SET,PrivateIP,Direct,no-resolve
   - RULE-SET,XPTVIP,Direct,no-resolve
@@ -451,7 +451,7 @@ rules:
   - RULE-SET,SocialMediaIP,PBS,no-resolve
   - RULE-SET,EmbyIP,Media,no-resolve
   - RULE-SET,StreamingIP,Media,no-resolve
-  - RULE-SET,ProxyIP,Global,no-resolve
+  - RULE-SET,ProxyIP,mihomo,no-resolve
   - RULE-SET,ChinaIP,IRAN,no-resolve
   - MATCH,Final
 BehaviorDN: &BehaviorDN {type: http, behavior: domain, format: mrs, interval: 86400}
