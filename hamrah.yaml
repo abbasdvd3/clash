@@ -725,11 +725,6 @@ rule-providers:
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list"
     interval: 86400
-  GoogleCN:
-    type: http
-    behavior: domain
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list"
-    interval: 86400
   YouTube:
     type: http
     behavior: domain
@@ -919,11 +914,21 @@ rules :
   - RULE-SET,ir,🎯 Direct
   - RULE-SET,ircidr,🎯 Direct
   - RULE-SET,irasn,🎯 Direct
+  - RULE-SET,LocalAreaNetwork,🎯 Direct
+  - RULE-SET,BanAD,REJECT
+  - RULE-SET,BanProgramAD,REJECT
+  - RULE-SET,SteamCN,PROXY
+  - RULE-SET,Microsoft,PROXY
+  - RULE-SET,Apple,PROXY
+  - RULE-SET,ProxyMedia,PROXY
+  - RULE-SET,Telegram,PROXY
+  - RULE-SET,ProxyLite,PROXY
   - RULE-SET,social,PROXY,no-resolve
   - RULE-SET,nsfw,PROXY,no-resolve
   - RULE-SET,geolocation-!cn,PROXY
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
 
 
