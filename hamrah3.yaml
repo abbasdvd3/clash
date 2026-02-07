@@ -64,13 +64,11 @@ proxies:
 proxy-groups:
   - name: 🕹 select
     type: select
-#    include-all-providers: true
     url: http://www.gstatic.com/generate_204
     nodeGroupType: 0
     exclude-type: "direct|redir-in|DNS|trojan"
     proxies:
       - ✈️
-
   - name: ✈️
     type: fallback
     url: http://www.gstatic.com/generate_204
@@ -78,17 +76,12 @@ proxy-groups:
     exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     hidden: true
-  
   - name: 🎯
     type: select
     interface-name: ""
     proxies:
       - DIRECT
       - 🕹 select
-      
-
-
-      
 proxy-providers:
   provider1:
     type: http
@@ -96,70 +89,60 @@ proxy-providers:
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
-
   provider2:
     type: http
     url: "https://muma16fx.netlify.app/"
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
-       
   provider3:
     type: http
     url: "https://9527521.xyz/pubconfig/YCw0l6R3PoDbGFq5"    
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
-
   provider4:
     type: http
     url: "https://cdn.jsdelivr.net/gh/vxiaov/free_proxies@main/clash/clash.provider.yaml"
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
-       
   provider5:
     type: http
     url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies"    
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
-
   provider6:
     type: http
     url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
-       
   provider7:
     type: http
     url: "https://proxypool.link/clash/proxies"    
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
-
   provider8:
     type: http
     url: "https://raw.githubusercontent.com/WilliamStar007/ClashX-V2Ray-TopFreeProxy/main/combine/clash.config.yaml"
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
-      
   provider9:
     type: http
     url: "https://anaer.github.io/Sub/proxies.yaml"    
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
-
   provider10:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml"
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
-      
   provider11:
     type: http
     url: "http://66.42.50.118:12580/clash/proxies"    
@@ -167,7 +150,6 @@ proxy-providers:
     path: h3/provider11.yaml
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
-
   provider12:
     type: http
     url: "https://weoknow.com/data/dayupdate/1/z1.txt"
@@ -199,7 +181,6 @@ rule-providers:
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
     interval: 86400
-
 rules:
   - RULE-SET,private,DIRECT,no-resolve
   - RULE-SET,ir,DIRECT
