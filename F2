@@ -85,7 +85,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-
   A441:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/2.yaml"
@@ -96,8 +95,7 @@ proxy-providers:
       url: http://cp.cloudflare.com/
       interval: 300
       lazy: true
-      expected-status: 100
-
+      expected-status: 10
   A1:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/vip"
@@ -108,11 +106,7 @@ proxy-providers:
       url: http://cp.cloudflare.com/
       interval: 300
       lazy: true
-      expected-status: 100
-    override:
-      additional-prefix: "A1 prefix |"
-      additional-suffix: "| test suffix"
-    
+      expected-status: 100 
   A2:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/v"
@@ -124,8 +118,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-
-    
   A6:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/t"
@@ -137,7 +129,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-
   A7:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/s"
@@ -148,9 +139,6 @@ proxy-providers:
       url: http://cp.cloudflare.com/
       interval: 300
       lazy: true
-      expected-status: 100
-  
-
   A8:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/r"
@@ -162,8 +150,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-   
-
   A9:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/pp1.yaml"
@@ -174,9 +160,6 @@ proxy-providers:
       url: http://cp.cloudflare.com/
       interval: 300
       lazy: true
-      expected-status: 100
-   
-
   A10:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/p.hamrah"
@@ -188,10 +171,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A10 prefix |"
-      additional-suffix: "| test suffix"
-
   A11:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/p.all"
@@ -203,8 +182,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-
-
   A12:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/j.yaml"
@@ -216,10 +193,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-    override:
-      additional-prefix: "A12 prefix |"
-      additional-suffix: "| test suffix"
-      
   A13:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/i"
@@ -231,8 +204,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-
-
   A14:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/hamrah"
@@ -244,7 +215,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-  
   A15:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/h.yaml" #https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt
@@ -256,7 +226,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-
   A16:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/all"
@@ -268,8 +237,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-
-    
   A22:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/a"
@@ -281,8 +248,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-
-    
   A66:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N"
@@ -294,8 +259,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-
-
   A77:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/MTN"
@@ -307,8 +270,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-
-
   A88:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/MCI"
@@ -320,7 +281,6 @@ proxy-providers:
       interval: 300
       lazy: true
       expected-status: 100
-
 proxies:
 - name: "IRAN"
   type: direct
@@ -332,8 +292,6 @@ proxy-groups:
   - name: "PROXY"
     type: "select"
     hidden: false
-    include-all-providers: true
-    include-all-proxies: true
     exclude-type: "direct|redir-in|DNS"
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png"
     proxies:
@@ -345,8 +303,6 @@ proxy-groups:
     url: "http://cp.cloudflare.com/"
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    interval: 200
-    tolerance: 500
     exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     hidden: true
@@ -356,7 +312,6 @@ proxy-groups:
     type: "fallback"
     url: "http://cp.cloudflare.com/"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    interval: 100
     exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     hidden: true
@@ -367,8 +322,6 @@ proxy-groups:
     exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
-    interval: 200
-    tolerance: 5000
     exclude-type: "direct|redir-in|DNS|trojan"
     include-all-providers: true
     hidden: true
