@@ -242,11 +242,11 @@ dns:
         - '+.connectivitycheck.gstatic.com'
 proxy-groups:
   - name: PROXY
-    type: select
+    type: url-test
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
-    include-all: true
+   # include-all: true
     disable-udp: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Ssh
+  #  exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Ssh
     interval: 300
     timeout: 5000
     max-failed-times: 4
@@ -258,7 +258,7 @@ proxy-groups:
   - name: 🟢Auto🟢
     type: url-test
     url: http://cp.cloudflare.com/generate_204
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
     disable-udp: true
     interval: 300
@@ -272,7 +272,7 @@ proxy-groups:
   - name: 🟡fallback🟡
     type: fallback
     url: http://cp.cloudflare.com/generate_204
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
     disable-udp: true
     interval: 100
@@ -345,7 +345,7 @@ proxy-providers:
 #       additional-suffix: "| A2 suffix"
   A3:
     type: http
-    url: ""
+    url: "https://proxypool.link/clash/proxies"
     path: ./proxies/A3.yaml
     interval: 300
     health-check:
@@ -386,7 +386,7 @@ proxy-providers:
 #       additional-suffix: "| A4 suffix"
   A5:
     type: http
-    url: "" # https://proxypool1999.banyunxiaoxi.icu/clash/proxies
+    url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies"
     path: ./proxies/A5.yaml
     interval: 300
     health-check:
@@ -426,7 +426,7 @@ proxy-providers:
 #       additional-suffix: "| A6 suffix"
   A7:
     type: http
-    url: "" # http://66.42.50.118:12580/clash/proxies
+    url: "https://config.v2cross.com/clashprofile/config"
     path: ./proxies/A7.yaml
     interval: 300
     health-check:
@@ -446,7 +446,7 @@ proxy-providers:
 #       additional-suffix: "| A7 suffix"
   A8:
     type: http
-    url: "" # https://raw.githubusercontent.com/mheidari98/.proxy/main/all # https://config.v2cross.com/clashprofile/config
+    url: "https://pxypool.131433.xyz/clash/proxies" # https://raw.githubusercontent.com/mheidari98/.proxy/main/all # 
     path: ./proxies/A8.yaml
     interval: 300
     health-check:
@@ -526,7 +526,7 @@ proxy-providers:
 #       additional-suffix: "| A11 suffix"
   A12:
     type: http
-    url: "" # https://raw.githubusercontent.com/ts-sf/fly/main/clash
+    url: "http://weoknow.com/data/dayupdate/1/z1.txt" # https://raw.githubusercontent.com/ts-sf/fly/main/clash
     path: ./proxies/A12.yaml
     interval: 300
     health-check:
@@ -565,6 +565,46 @@ proxy-providers:
 
       
 rule-providers:
+  LocalAreaNetwork:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/LocalAreaNetwork.list"
+  BanAD:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanAD.list"
+  BanProgramAD:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanProgramAD.list"
+  GoogleCN:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/GoogleCN.list"
+  SteamCN:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Ruleset/SteamCN.list"
+  Microsoft:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Microsoft.list"
+  Apple:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Apple.list"
+  ProxyMedia:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/ProxyMedia.list"
+  Telegram:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Telegram.list"
+  ProxyLite:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/ProxyLite.list"
   nsfw:
     type: http
     format: yaml
@@ -884,6 +924,7 @@ rules :
   - RULE-SET,geolocation-!cn,PROXY
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
 
 
