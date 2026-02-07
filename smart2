@@ -52,46 +52,40 @@ dns:
   respect-rules: true
   listen: 0.0.0.0:53
   ipv6: true
+  default-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 1.1.1.1
+    - 8.8.8.8
+  nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 119.29.29.29
+    - 180.76.76.76
+    - system
+    - 1.1.1.1
+    - 8.8.8.8
   direct-nameserver:
     - system
     - 1.1.1.1
-  nameserver:
-    - system
-    - 114.114.114.114
-    - 8.8.8.8 
-    - tls://223.5.5.5:853 
-    - https://doh.pub/dns-query 
-    - https://dns.alidns.com/dns-query#h3=true 
-    - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true
-    - quic://dns.adguard.com:784
-    - https://cloudflare-dns.com/dns-query
-    - https://sky.rethinkdns.com/dns-query
-    - https://dnspub.restena.lu/dns-query
-    - https://doh.flashstart.com/f17c9ee5
-    - https://ada.openbld.net/dns-query
-    - https://rubyfish.cn/dns-query#PROXY
-    - https://all.dns.mullvad.net/dns-query
+    - 8.8.8.8
   proxy-server-nameserver:
     - https://cloudflare-dns.com/dns-query:784
-    - https://sky.rethinkdns.com/dns-query
-    - https://ada.openbld.net/dns-query:784
-    - https://dnspub.restena.lu/dns-query
-  nameserver-policy:
-    "rule-set:social,nsfw,geolocation-!cn":
-      - https://8.8.8.8/dns-query
-      - https://sky.rethinkdns.com/dns-query
-      - https://cloudflare-dns.com/dns-query
-      - https://dnspub.restena.lu/dns-query
-      - https://ada.openbld.net/dns-query
-    "geoip:ir,google,openai":
-      - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
-    "geosite:category-ads-all": rcode://success
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter-mode: blacklist
-  direct-nameserver-follow-policy: false
   fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - router.asus.com
+    - localhost.sec.qq.com
+    - localhost.ptlogin2.qq.com
+    - +.msftconnecttest.com
     - "*.lan"
     - "*.local"
     - "www.torrent.eu.org"
@@ -144,78 +138,6 @@ dns:
     - "+.stun.playstation.net"
     - "*.mcdn.bilivideo.cn"
     - "ntp.ntsc.ac.cn"
-  fallback:
-    - tcp://8.8.8.8
-    - tcp://1.1.1.1
-    - https://sky.rethinkdns.com/dns-query
-    - https://cloudflare-dns.com/dns-query
-    - https://dnspub.restena.lu/dns-query
-    - https://ada.openbld.net/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: ir
-    geosite:                         
-      - social
-      - nsfw
-    ipcidr:
-     - 0.0.0.0/8
-     - 10.0.0.0/8
-     - 100.64.0.0/10
-     - 127.0.0.0/8
-     - 169.254.0.0/16
-     - 172.16.0.0/12
-     - 192.0.0.0/24
-     - 192.0.2.0/24
-     - 192.88.99.0/24
-     - 192.168.0.0/16
-     - 198.18.0.0/16
-     - 198.51.100.0/24
-     - 203.0.113.0/24
-     - 224.0.0.0/4
-     - 240.0.0.0/4
-     - 255.255.255.255/32
-     - ::1/128
-     - fc00::/7
-     - fe80::/10
-     - 39.102.194.95/32
-     - 182.43.124.6/32
-     - 101.35.177.86/32
-     - 116.89.243.8/32
-     - 119.28.87.227/32
-    domain:
-     - '+.xincache.com'
-     - 'www.gstatic.com'
-     - '+.ampproject.org'
-     - '+.appspot.com'
-     - '+.blogger.com'
-     - '+.google.com'
-     - '+.google.cn'
-     - '+.googleusercontent.com'
-     - '+.ggpht.com'
-     - '+.gmail.com'
-     - '+.gvt0.com'
-     - '+.gvt1.com'
-     - '+.gvt2.com'
-     - '+.gvt3.com'
-     - '+.youtu.be'
-     - '+.yt.be'
-     - '+.ytimg.com'
-     - '+.googlevideo.com'
-     - '+.youtube.com'
-     - '+.xn--ngstr-lra8j.com'
-     - '+.xn--flw351e.com'
-     - '+.xn--9kr7l.com'
-     - '+.xn--ggle-55da.com'
-     - '+.xn--gogl-0nd52e.com'
-     - '+.xn--gogl-1nd42e.com'
-     - '+.googleapis.com'
-     - '+.googleapis.cn'
-     - '+.gstatic.com'
-     - '+.gstatic.cn'
-     - '+.services.googleapis.cn'
-     - '+.services.googleapis.com'
-     - '+.connectivitycheck.gstatic.cn'
-     - '+.connectivitycheck.gstatic.com'
 proxy-providers:
   A1:
     type: http
@@ -2624,15 +2546,13 @@ proxy-groups:
     type: "smart"
     url: "http://www.gstatic.com/generate_204"
     include-all-providers: true
-    interval: 180
-    tolerance: 50
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
 
   - name: "🤖 AI"
     type: "smart"
     url: "http://www.gstatic.com/generate_204"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
     proxies:
       - "🇺🇲"
@@ -2645,55 +2565,42 @@ proxy-groups:
     type: "smart"
     url: "http://www.gstatic.com/generate_204"
     include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
-    interval: 180
-    tolerance: 50 
-    use:
 
   - name: "🇯🇵"
     type: "smart"
     url: "http://www.gstatic.com/generate_204"
-    interval: 180
-    tolerance: 50
     include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
 
   - name: "🇺🇲"
     type: "smart"
     url: "http://www.gstatic.com/generate_204"
-    interval: 180
-    tolerance: 50
     include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
 
   - name: "🇹🇼"
     type: "smart"
     url: "http://www.gstatic.com/generate_204"
-    interval: 180
-    tolerance: 50
     include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
 
   - name: "🇸🇬"
     type: "smart"
     url: "http://www.gstatic.com/generate_204"
-    interval: 180
-    tolerance: 50
     include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
 
   - name: "🇰🇷"
     type: "smart"
     url: "http://www.gstatic.com/generate_204"
-    interval: 180
-    tolerance: 50
     include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
 
   - name: "🎯 Direct"
@@ -2824,17 +2731,17 @@ rule-providers:
     interval: 86400
     
 rules :
-  - DOMAIN-SUFFIX,openai.com,🤖 AI
-  - DOMAIN-SUFFIX,chatgpt.com,🤖 AI
-  - DOMAIN-SUFFIX,oaistatic.com,🤖 AI
-  - DOMAIN-SUFFIX,oaiusercontent.com,🤖 AI
-  - DOMAIN-KEYWORD,openai,🤖 AI
-  - DOMAIN-SUFFIX,anthropic.com,🤖 AI
-  - DOMAIN-SUFFIX,claude.ai,🤖 AI
-  - DOMAIN-SUFFIX,gemini.google.com,🤖 AI
-  - DOMAIN-SUFFIX,bard.google.com,🤖 AI
-  - DOMAIN-SUFFIX,perplexity.ai,🤖 AI
-  - DOMAIN-SUFFIX,midjourney.com,🤖 AI
+  - DOMAIN-SUFFIX,openai.com,PROXY
+  - DOMAIN-SUFFIX,chatgpt.com,PROXY
+  - DOMAIN-SUFFIX,oaistatic.com,PROXY
+  - DOMAIN-SUFFIX,oaiusercontent.com,PROXY
+  - DOMAIN-KEYWORD,openai,PROXY
+  - DOMAIN-SUFFIX,anthropic.com,PROXY
+  - DOMAIN-SUFFIX,claude.ai,PROXY
+  - DOMAIN-SUFFIX,gemini.google.com,PROXY
+  - DOMAIN-SUFFIX,bard.google.com,PROXY
+  - DOMAIN-SUFFIX,perplexity.ai,PROXY
+  - DOMAIN-SUFFIX,midjourney.com,PROXY
   - DOMAIN-KEYWORD,soft98.ir,🎯 Direct
   - DOMAIN,soft98,🎯 Direct
   - DOMAIN-SUFFIX,soft98.ir,🎯 Direct
@@ -2844,9 +2751,9 @@ rules :
   - DOMAIN-SUFFIX,farsroid,🎯 Direct
   - DOMAIN-KEYWORD,farsroid.com,🎯 Direct
   - DOMAIN,farsroid.com,🎯 Direct
-  - DOMAIN-SUFFIX,createporn.com,🤖 AI
-  - DOMAIN-KEYWORD,createporn,🤖 AI
-  - DOMAIN,createporn,🤖 AI
+  - DOMAIN-SUFFIX,createporn.com,PROXY
+  - DOMAIN-KEYWORD,createporn,PROXY
+  - DOMAIN,createporn,PROXY
   - DOMAIN,ad.com,REJECT
   - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
   - PROCESS-NAME,com.samsung.android.location,REJECT,no-resolve
@@ -2854,11 +2761,11 @@ rules :
   - PROCESS-NAME,com.google.android.gms.location.history,REJECT,no-resolve
   - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
   - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
-  - DOMAIN-SUFFIX,google.com,🤖 AI
-  - DOMAIN-KEYWORD,google,🤖 AI
+  - DOMAIN-SUFFIX,google.com,PROXY
+  - DOMAIN-KEYWORD,google,PROXY
   - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
   - IP-CIDR6,2620:0:2d0:200::7/32,PROXY
-  - IP-SUFFIX,8.8.8.8/24,🤖 AI
+  - IP-SUFFIX,8.8.8.8/24,PROXY
   - SRC-IP-CIDR,192.168.1.201/32,🎯 Direct
   - SRC-IP-SUFFIX,192.168.1.201/8,🎯 Direct
   - DOMAIN-SUFFIX,local,🎯 Direct
@@ -2875,9 +2782,9 @@ rules :
   - PROCESS-NAME,curl,PROXY
   - PROCESS-NAME,chrome.exe,PROXY
   - PROCESS-NAME,com.termux,PROXY
-  - AND,((DOMAIN,google.com),(NETWORK,UDP)),🤖 AI
-  - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
-  - NOT,((DOMAIN,google.com)),🤖 AI
+  - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
+  - OR,((NETWORK,UDP),(DOMAIN,google.com)),PROXY
+  - NOT,((DOMAIN,google.com)),PROXY
   - RULE-SET,private,🎯 Direct,no-resolve
   - RULE-SET,apps,🎯 Direct
   - RULE-SET,ads,REJECT
@@ -2888,18 +2795,18 @@ rules :
   - RULE-SET,ir,🎯 Direct
   - RULE-SET,ircidr,🎯 Direct
   - RULE-SET,irasn,🎯 Direct
-  - RULE-SET,social,PROXY,no-resolve
-  - RULE-SET,nsfw,PROXY,no-resolve
+  - RULE-SET,social,PROXY
+  - RULE-SET,nsfw,PROXY
   - RULE-SET,geolocation-!cn,PROXY
   - GEOIP,ir,🎯 Direct
-  - RULE-SET,GoogleFCM,🤖 AI
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🤖 AI
-  - DOMAIN-SUFFIX,services.googleapis.cn,🤖 AI
-  - RULE-SET,GoogleCNProxyIP,🤖 AI
-  - RULE-SET,GoogleCN,🤖 AI
-  - RULE-SET,YouTube,🤖 AI
-  - RULE-SET,Google,🤖 AI
-  - GEOIP,google,🤖 AI
+  - RULE-SET,GoogleFCM,PROXY
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
+  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
+  - RULE-SET,GoogleCNProxyIP,PROXY
+  - RULE-SET,GoogleCN,PROXY
+  - RULE-SET,YouTube,PROXY
+  - RULE-SET,Google,PROXY
+  - GEOIP,google,PROXY
   - GEOIP,telegram,PROXY
   - GEOIP,twitter,PROXY
   - GEOIP,facebook,PROXY
@@ -2907,4 +2814,4 @@ rules :
   - GEOSITE,category-ads-all,REJECT
   - GEOSITE,category-ir,🎯 Direct,no-resolve
   - GEOSITE,ir,🎯 Direct
-  - MATCH,PROXY
+  - MATCH, 
