@@ -521,7 +521,7 @@ proxy-providers:
 #       additional-suffix: "| A11 suffix"
   A12:
     type: http
-    url: "http://weoknow.com/data/dayupdate/1/z1.txt" # https://raw.githubusercontent.com/ts-sf/fly/main/clash
+    url: "http://weoknow.com/data/dayupdate/1/z1.text" # https://raw.githubusercontent.com/ts-sf/fly/main/clash
     path: ./proxies/A12.yaml
     interval: 300
     health-check:
@@ -562,115 +562,115 @@ proxy-providers:
 rule-providers:
   reject1:
     type: http
-    format: txt
+    format: text
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.text"
     interval: 86400
   icloud1:
     type: http
-    format: txt
+    format: text
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.text"
     interval: 86400
   apple1:
     type: http
-    format: txt
+    format: text
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.text"
     interval: 86400
   google1:
     type: http
-    format: txt
+    format: text
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.text"
     interval: 86400
   proxy1:
     type: http
-    format: txt
+    format: text
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.text"
     interval: 86400
   direct1:
     type: http
-    format: txt
+    format: text
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.text"
     interval: 86400
   private1:
     type: http
-    format: txt
+    format: text
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.text"
     interval: 86400
   gfw1:
     type: http
-    format: txt
+    format: text
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.text"
     interval: 86400
   telegramcidr:
     type: http
-    format: txt
+    format: text
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.text"
     interval: 86400
   LocalAreaNetwork:
     type: http
-    format: txt
+    format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/LocalAreaNetwork.list"
     interval: 86400
   BanAD:
     type: http
-    format: txt
+    format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanAD.list"
     interval: 86400
   BanProgramAD:
     type: http
-    format: txt
+    format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanProgramAD.list"
     interval: 86400
   GoogleCN:
     type: http
-    format: txt
+    format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/GoogleCN.list"
     interval: 86400
   SteamCN:
     type: http
-    format: txt
+    format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Ruleset/SteamCN.list"
     interval: 86400
   Microsoft:
     type: http
-    format: txt
+    format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Microsoft.list"
     interval: 86400
   Apple:
     type: http
-    format: txt
+    format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Apple.list"
     interval: 86400
   ProxyMedia:
     type: http
-    format: txt
+    format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/ProxyMedia.list"
     interval: 86400
   Telegram:
     type: http
-    format: txt
+    format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Telegram.list"
     interval: 86400
   ProxyLite:
     type: http
-    format: txt
+    format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/ProxyLite.list"
     interval: 86400
@@ -766,11 +766,13 @@ rule-providers:
     interval: 86400
   category-ai-!cn:
     type: http
+    format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.yaml"
     interval: 86400
   category-ai-cn:
     type: http
+    format: yaml
     behavior: classical
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.yaml"
     interval: 86400
@@ -782,31 +784,31 @@ rule-providers:
     interval: 86400
   OpenAi:
     type: http
-    format: txt
+    format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list"
     interval: 86400
   GoogleFCM:
     type: http
-    format: txt
+    format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list"
     interval: 86400
   GoogleCNProxyIP:
     type: http
-    format: txt
+    format: text
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list"
     interval: 86400
   Google:
     type: http
-    format: txt
+    format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list"
     interval: 86400
   YouTube:
     type: http
-    format: txt
+    format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list"
     interval: 86400
@@ -1013,5 +1015,6 @@ rules :
   - RULE-SET,category-ai-!cn,PROXY
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
 
