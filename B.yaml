@@ -1,4 +1,3 @@
-
 port: 7891
 socks-port: 7892
 mixed-port: 7890
@@ -53,7 +52,6 @@ linters:
     - govet
     - gci
     - staticcheck
-
 linters-settings:
   gci:
     sections:
@@ -175,7 +173,6 @@ dns:
     ipcidr:
       - 240.0.0.0/4
       - 0.0.0.0/32
-
 tun:    
   enable: true
   device: utun
@@ -211,7 +208,6 @@ tun:
   - 192.168.0.0/16
   inet6-route-exclude-address:
   - fc00::/7
-
 sniffer:                
   enable: true              
   force-dns-mapping: false
@@ -241,11 +237,9 @@ sniffer:
   port-whitelist:
     - "80"
     - "443"
-  
 profile:
   store-selected: true
   store-fake-ip: true
-
 proxies:
   - name: "ایران"
     type: "direct"
@@ -257,7 +251,6 @@ proxies:
   - name: "dns"
     type: "dns"
 
-    
   - name: "http"
     type: "http"
     server: "127.0.0.1"
@@ -268,19 +261,14 @@ proxy-groups:
   - name: "PROXY"
     type: "select"
     url: "https://lab.skk.moe/test-204"
-    interval: 180
-    tolerance: 60
     lazy: true
     timeout: 5000
     max-failed-times: 5
     disable-udp: true
     interface-name: ""
     routing-mark: 11451
-    include-all: false
-    include-all-proxies: false
-    include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    exclude-type: "direct|redir-in|trojan|DNS"
     expected-status: 204
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Google_Search.png
@@ -302,7 +290,7 @@ proxy-groups:
     include-all-proxies: true
     include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    exclude-type: "direct|redir-in|trojan|DNS"
     expected-status: 204
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/YouTube.png
@@ -324,7 +312,7 @@ proxy-groups:
     include-all-proxies: true
     include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    exclude-type: "direct|redir-in|trojan|DNS"
     expected-status: 204
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Panda.png
@@ -342,7 +330,7 @@ proxy-groups:
     include-all-proxies: false
 #    include-all-providers: true
     exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    exclude-type: "direct|http|socks5|redir-in|trojan|DNS|shadosocks|shadosocksr|vless"
+    exclude-type: "direct|redir-in|trojan|DNS"
     expected-status: 204
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png
@@ -602,6 +590,7 @@ sub-rules:
     - IP-CIDR,1.1.1.1/32,REJECT
     - IP-CIDR,8.8.8.8/32,FINAL
     - DOMAIN,dns.alidns.com,REJECT
+
 
 
 
