@@ -105,7 +105,7 @@ LoadBalance: &LoadBalance {type: load-balance, interval: 99, lazy: true, url: 'h
 RuleSet: &RuleSet {type: http, behavior: classical, interval: 3600, format: yaml, proxy: DIRECT}
 
 proxy-groups: 
-  - {name: auto, type: url-test, include-all: true, filter: *FilterGame, proxies: [line, select]}
+  - {name: auto, type: url-test, filter: *FilterGame, proxies: [line, select]}
   - {name: url-test, type: url-test, include-all: true, filter: *FilterAll}
   - {name: select, type: select, include-all: true, filter: *FilterAll, proxies: [url-test]}
   - {name: AI, type: url-test, include-all: true, filter: *FilterAll}
