@@ -565,6 +565,42 @@ proxy-providers:
 
       
 rule-providers:
+  reject1:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+  icloud1:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+  apple1:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+  google1:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+  proxy1:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+  direct1:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+  private1:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+  gfw1:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
   LocalAreaNetwork:
     type: http
     behavior: classical
@@ -736,6 +772,17 @@ rule-providers:
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list"
     interval: 86400    
 rules :
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - RULE-SET,reject1,REJECT
+  - RULE-SET,icloud1,PROXY
+  - RULE-SET,apple1,PROXY
+  - RULE-SET,google1,PROXY
+  - RULE-SET,proxy1,PROXY
+  - RULE-SET,direct1,🎯 Direct
+  - RULE-SET,private1,🎯 Direct
+  - RULE-SET,gfw1,PROXY
+  - RULE-SET,telegramcidr,PROXY
   - RULE-SET,GoogleFCM,PROXY
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
   - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
@@ -927,3 +974,4 @@ rules :
   - RULE-SET,category-ai-!cn,PROXY
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
