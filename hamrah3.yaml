@@ -65,20 +65,21 @@ proxy-groups:
   - name: 🕹 select
     type: url-test
     url: http://www.gstatic.com/generate_204
+    disable-udp: true
     nodeGroupType: 0
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: "direct|redir-in|DNS"
     proxies:
       - ✈️
   - name: ✈️
     type: fallback
     url: http://www.gstatic.com/generate_204
+    disable-udp: true
     interval: 180
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: "direct|redir-in|DNS"
     include-all-providers: true
     hidden: true
   - name: 🎯
     type: select
-    interface-name: ""
     proxies:
       - DIRECT
       - 🕹 select
