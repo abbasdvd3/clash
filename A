@@ -116,6 +116,166 @@ proxy-groups:
     proxies:
       - "DIRECT"
       - "PROXY"
+  - name: 🛑 Reject
+    type: select
+    disable-udp: true
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    proxies:
+      - "RejectDrop"
+      - "DIRECT"
+      - "PROXY"
+rules:
+  - RULE-SET,private,🎯 Direct,no-resolve
+  - RULE-SET,apps,🎯 Direct
+  - RULE-SET,ads,🛑 Reject
+  - RULE-SET,malware,🛑 Reject
+  - RULE-SET,phishing,🛑 Reject
+  - RULE-SET,cryptominers,🛑 Reject
+  - RULE-SET,ir,🎯 Direct
+  - RULE-SET,ircidr,🎯 Direct
+  - RULE-SET,irasn,🎯 Direct
+  - RULE-SET,social,PROXY
+  - RULE-SET,nsfw,PROXY
+  - RULE-SET,LocalAreaNetwork,🎯 Direct,no-resolve
+  - RULE-SET,BanAD,🛑 Reject
+  - RULE-SET,BanProgramAD,🛑 Reject
+  - RULE-SET,GoogleCN,PROXY
+  - RULE-SET,UnBan,PROXY
+  - RULE-SET,BanAD,🛑 Reject
+  - RULE-SET,BanProgramAD,🛑 Reject
+  - RULE-SET,BanEasyList,🛑 Reject
+  - RULE-SET,BanEasyListChina,🛑 Reject
+  - RULE-SET,BanEasyPrivacy,🛑 Reject
+  - RULE-SET,AI,PROXY
+  - RULE-SET,GoogleFCM,PROXY
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
+  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
+  - RULE-SET,GoogleCNProxyIP,PROXY
+  - RULE-SET,GoogleCN,PROXY
+  - RULE-SET,YouTube,PROXY
+  - RULE-SET,Google,PROXY
+  - RULE-SET,Microsoft,PROXY
+  - RULE-SET,Apple,PROXY
+  - RULE-SET,Telegram,PROXY
+  - RULE-SET,ProxyMedia,PROXY
+  - DOMAIN-SUFFIX,v2rayse.com,PROXY
+  - DOMAIN-SUFFIX,cff.pw,PROXY
+  - DOMAIN-SUFFIX,vpnse.org,PROXY
+  - DOMAIN-SUFFIX,cfmem.com,PROXY
+  - RULE-SET,ProxyGFWlist,PROXY
+  - RULE-SET,ChinaDomain,PROXY
+  - RULE-SET,ChinaCompanyIp,PROXY
+  - GEOIP,ir,🎯 Direct,no-resolve
+  - DOMAIN,googleadservices.com,PROXY
+  - DST-PORT,80,PROXY
+  - SRC-PORT,443,PROXY
+  - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
+  - RULE-SET,category-ads-all,🛑 Reject
+  - DOMAIN-SUFFIX,achat-followers-instagram.com,PROXY
+  - DOMAIN-SUFFIX,acheter-followers-instagram.com,PROXY
+  - DOMAIN-SUFFIX,acheterdesfollowersinstagram.com,PROXY
+  - DOMAIN-SUFFIX,acheterfollowersinstagram.com,PROXY
+  - DOMAIN-SUFFIX,bookstagram.com,PROXY
+  - DOMAIN-SUFFIX,carstagram.com,PROXY
+  - DOMAIN-SUFFIX,cdninstagram.com,PROXY
+  - DOMAIN-SUFFIX,chickstagram.com,PROXY
+  - DOMAIN-SUFFIX,ig.me,PROXY
+  - DOMAIN-SUFFIX,igcdn.com,PROXY
+  - DOMAIN-SUFFIX,igsonar.com,PROXY
+  - DOMAIN-SUFFIX,igtv.com,PROXY
+  - DOMAIN-SUFFIX,imstagram.com,PROXY
+  - DOMAIN-SUFFIX,imtagram.com,PROXY
+  - DOMAIN-SUFFIX,instaadder.com,PROXY
+  - DOMAIN-SUFFIX,instachecker.com,PROXY
+  - DOMAIN-SUFFIX,instafallow.com,PROXY
+  - DOMAIN-SUFFIX,instafollower.com,PROXY
+  - DOMAIN-SUFFIX,instagainer.com,PROXY
+  - DOMAIN-SUFFIX,instagda.com,PROXY
+  - DOMAIN-SUFFIX,instagify.com,PROXY
+  - DOMAIN-SUFFIX,instagmania.com,PROXY
+  - DOMAIN-SUFFIX,instagor.com,PROXY
+  - DOMAIN-SUFFIX,instagram-brand.com,PROXY
+  - DOMAIN-SUFFIX,instagram-engineering.com,PROXY
+  - DOMAIN-SUFFIX,instagram-help.com,PROXY
+  - DOMAIN-SUFFIX,instagram-press.com,PROXY
+  - DOMAIN-SUFFIX,instagram-press.net,PROXY
+  - DOMAIN-SUFFIX,instagram.com,PROXY
+  - DOMAIN-SUFFIX,instagramci.com,PROXY
+  - DOMAIN-SUFFIX,instagramcn.com,PROXY
+  - DOMAIN-SUFFIX,instagramdi.com,PROXY
+  - DOMAIN-SUFFIX,instagramhashtags.net,PROXY
+  - DOMAIN-SUFFIX,instagramhilecim.com,PROXY
+  - DOMAIN-SUFFIX,instagramhilesi.org,PROXY
+  - DOMAIN-SUFFIX,instagramium.com,PROXY
+  - DOMAIN-SUFFIX,instagramizlenme.com,PROXY
+  - DOMAIN-SUFFIX,instagramkusu.com,PROXY
+  - DOMAIN-SUFFIX,instagramlogin.com,PROXY
+  - DOMAIN-SUFFIX,instagramm.com,PROXY
+  - DOMAIN-SUFFIX,instagramn.com,PROXY
+  - DOMAIN-SUFFIX,instagrampartners.com,PROXY
+  - DOMAIN-SUFFIX,instagramphoto.com,PROXY
+  - DOMAIN-SUFFIX,instagramq.com,PROXY
+  - DOMAIN-SUFFIX,instagramsepeti.com,PROXY
+  - DOMAIN-SUFFIX,instagramtakipcisatinal.net,PROXY
+  - DOMAIN-SUFFIX,instagramtakiphilesi.com,PROXY
+  - DOMAIN-SUFFIX,instagramtips.com,PROXY
+  - DOMAIN-SUFFIX,instagramtr.com,PROXY
+  - DOMAIN-SUFFIX,instagran.com,PROXY
+  - DOMAIN-SUFFIX,instagranm.com,PROXY
+  - DOMAIN-SUFFIX,instagrem.com,PROXY
+  - DOMAIN-SUFFIX,instagrm.com,PROXY
+  - DOMAIN-SUFFIX,instagtram.com,PROXY
+  - DOMAIN-SUFFIX,instagy.com,PROXY
+  - DOMAIN-SUFFIX,instamgram.com,PROXY
+  - DOMAIN-SUFFIX,instangram.com,PROXY
+  - DOMAIN-SUFFIX,instanttelegram.com,PROXY
+  - DOMAIN-SUFFIX,instaplayer.net,PROXY
+  - DOMAIN-SUFFIX,instastyle.tv,PROXY
+  - DOMAIN-SUFFIX,instgram.com,PROXY
+  - DOMAIN-SUFFIX,intagram.com,PROXY
+  - DOMAIN-SUFFIX,intagrm.com,PROXY
+  - DOMAIN-SUFFIX,intgram.com,PROXY
+  - DOMAIN-SUFFIX,kingstagram.com,PROXY
+  - DOMAIN-SUFFIX,lnstagram-help.com,PROXY
+  - DOMAIN-SUFFIX,theinstagramhack.com,PROXY
+  - DOMAIN-SUFFIX,oninstagram.com,PROXY
+  - DOMAIN-SUFFIX,online-instagram.com,PROXY
+  - DOMAIN-SUFFIX,onlineinstagram.com,PROXY
+  - DOMAIN-SUFFIX,web-instagram.net,PROXY
+  - DOMAIN-SUFFIX,wwwinstagram.com,PROXY
+  - DOMAIN-SUFFIX,icloud.com,PROXY
+  - DOMAIN-SUFFIX,googlevideo.com,PROXY
+  - DOMAIN-SUFFIX,youtube.com,PROXY
+  - DOMAIN-SUFFIX,github.com,PROXY
+  - DOMAIN-SUFFIX,github.io,PROXY
+  - DOMAIN-SUFFIX,tiktok.com,PROXY
+  - DOMAIN-SUFFIX,tiktokcdn.com,PROXY
+  - DOMAIN-KEYWORD,openai,PROXY
+  - DOMAIN-KEYWORD,chatgpt,PROXY
+  - DOMAIN-SUFFIX,ip6-localhost,🎯 Direct,no-resolve
+  - DOMAIN-SUFFIX,ip6-loopback,🎯 Direct,no-resolve
+  - DOMAIN-SUFFIX,lan,🎯 Direct,no-resolve
+  - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
+  - DOMAIN-SUFFIX,localhost,🎯 Direct
+  - IP-CIDR,0.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,10.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,100.64.0.0/10,🎯 Direct,no-resolve
+  - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
+  - IP-CIDR,172.16.0.0/12,🎯 Direct,no-resolve
+  - IP-CIDR,192.168.0.0/16,🎯 Direct,no-resolve
+  - IP-CIDR,198.18.0.0/16,🎯 Direct,no-resolve
+  - IP-CIDR,224.0.0.0/4,🎯 Direct,no-resolve
+  - IP-CIDR6,::1/128,🎯 Direct,no-resolve
+  - IP-CIDR6,fc00::/7,🎯 Direct,no-resolve
+  - IP-CIDR6,fe80::/10,🎯 Direct,no-resolve
+  - IP-CIDR6,fd00::/8,🎯 Direct,no-resolve
+  - GEOIP,private,🎯 Direct,no-resolve
+  - GEOSITE,category-ads-all,REJECT
+#  - GEOIP,telegram,PROXY
+ # - GEOIP,openai,PROXY
+#  - GEOIP,facebook,PROXY
+#  - GEOIP,google,PROXY
+  - MATCH,PROXY
 proxy-providers:
   A1:
     type: http
@@ -778,158 +938,7 @@ rule-providers:
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
     format: text
     interval: 3600
-rules:
-  - RULE-SET,private,🎯 Direct,no-resolve
-  - RULE-SET,apps,🎯 Direct
-  - RULE-SET,ads,🛑 Reject
-  - RULE-SET,malware,🛑 Reject
-  - RULE-SET,phishing,🛑 Reject
-  - RULE-SET,cryptominers,🛑 Reject
-  - RULE-SET,ir,🎯 Direct
-  - RULE-SET,ircidr,🎯 Direct
-  - RULE-SET,irasn,🎯 Direct
-  - RULE-SET,social,PROXY
-  - RULE-SET,nsfw,PROXY
-  - RULE-SET,LocalAreaNetwork,🎯 Direct,no-resolve
-  - RULE-SET,BanAD,🛑 Reject
-  - RULE-SET,BanProgramAD,🛑 Reject
-  - RULE-SET,GoogleCN,PROXY
-  - RULE-SET,UnBan,PROXY
-  - RULE-SET,BanAD,🛑 Reject
-  - RULE-SET,BanProgramAD,🛑 Reject
-  - RULE-SET,BanEasyList,🛑 Reject
-  - RULE-SET,BanEasyListChina,🛑 Reject
-  - RULE-SET,BanEasyPrivacy,🛑 Reject
-  - RULE-SET,AI,PROXY
-  - RULE-SET,GoogleFCM,PROXY
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
-  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
-  - RULE-SET,GoogleCNProxyIP,PROXY
-  - RULE-SET,GoogleCN,PROXY
-  - RULE-SET,YouTube,PROXY
-  - RULE-SET,Google,PROXY
-  - RULE-SET,Microsoft,PROXY
-  - RULE-SET,Apple,PROXY
-  - RULE-SET,Telegram,PROXY
-  - RULE-SET,ProxyMedia,PROXY
-  - DOMAIN-SUFFIX,v2rayse.com,PROXY
-  - DOMAIN-SUFFIX,cff.pw,PROXY
-  - DOMAIN-SUFFIX,vpnse.org,PROXY
-  - DOMAIN-SUFFIX,cfmem.com,PROXY
-  - RULE-SET,ProxyGFWlist,PROXY
-  - RULE-SET,ChinaDomain,PROXY
-  - RULE-SET,ChinaCompanyIp,PROXY
-  - GEOIP,ir,🎯 Direct,no-resolve
-  - DOMAIN,googleadservices.com,PROXY
-  - DST-PORT,80,PROXY
-  - SRC-PORT,443,PROXY
-  - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
-  - RULE-SET,category-ads-all,🛑 Reject
-  - DOMAIN-SUFFIX,achat-followers-instagram.com,PROXY
-  - DOMAIN-SUFFIX,acheter-followers-instagram.com,PROXY
-  - DOMAIN-SUFFIX,acheterdesfollowersinstagram.com,PROXY
-  - DOMAIN-SUFFIX,acheterfollowersinstagram.com,PROXY
-  - DOMAIN-SUFFIX,bookstagram.com,PROXY
-  - DOMAIN-SUFFIX,carstagram.com,PROXY
-  - DOMAIN-SUFFIX,cdninstagram.com,PROXY
-  - DOMAIN-SUFFIX,chickstagram.com,PROXY
-  - DOMAIN-SUFFIX,ig.me,PROXY
-  - DOMAIN-SUFFIX,igcdn.com,PROXY
-  - DOMAIN-SUFFIX,igsonar.com,PROXY
-  - DOMAIN-SUFFIX,igtv.com,PROXY
-  - DOMAIN-SUFFIX,imstagram.com,PROXY
-  - DOMAIN-SUFFIX,imtagram.com,PROXY
-  - DOMAIN-SUFFIX,instaadder.com,PROXY
-  - DOMAIN-SUFFIX,instachecker.com,PROXY
-  - DOMAIN-SUFFIX,instafallow.com,PROXY
-  - DOMAIN-SUFFIX,instafollower.com,PROXY
-  - DOMAIN-SUFFIX,instagainer.com,PROXY
-  - DOMAIN-SUFFIX,instagda.com,PROXY
-  - DOMAIN-SUFFIX,instagify.com,PROXY
-  - DOMAIN-SUFFIX,instagmania.com,PROXY
-  - DOMAIN-SUFFIX,instagor.com,PROXY
-  - DOMAIN-SUFFIX,instagram-brand.com,PROXY
-  - DOMAIN-SUFFIX,instagram-engineering.com,PROXY
-  - DOMAIN-SUFFIX,instagram-help.com,PROXY
-  - DOMAIN-SUFFIX,instagram-press.com,PROXY
-  - DOMAIN-SUFFIX,instagram-press.net,PROXY
-  - DOMAIN-SUFFIX,instagram.com,PROXY
-  - DOMAIN-SUFFIX,instagramci.com,PROXY
-  - DOMAIN-SUFFIX,instagramcn.com,PROXY
-  - DOMAIN-SUFFIX,instagramdi.com,PROXY
-  - DOMAIN-SUFFIX,instagramhashtags.net,PROXY
-  - DOMAIN-SUFFIX,instagramhilecim.com,PROXY
-  - DOMAIN-SUFFIX,instagramhilesi.org,PROXY
-  - DOMAIN-SUFFIX,instagramium.com,PROXY
-  - DOMAIN-SUFFIX,instagramizlenme.com,PROXY
-  - DOMAIN-SUFFIX,instagramkusu.com,PROXY
-  - DOMAIN-SUFFIX,instagramlogin.com,PROXY
-  - DOMAIN-SUFFIX,instagramm.com,PROXY
-  - DOMAIN-SUFFIX,instagramn.com,PROXY
-  - DOMAIN-SUFFIX,instagrampartners.com,PROXY
-  - DOMAIN-SUFFIX,instagramphoto.com,PROXY
-  - DOMAIN-SUFFIX,instagramq.com,PROXY
-  - DOMAIN-SUFFIX,instagramsepeti.com,PROXY
-  - DOMAIN-SUFFIX,instagramtakipcisatinal.net,PROXY
-  - DOMAIN-SUFFIX,instagramtakiphilesi.com,PROXY
-  - DOMAIN-SUFFIX,instagramtips.com,PROXY
-  - DOMAIN-SUFFIX,instagramtr.com,PROXY
-  - DOMAIN-SUFFIX,instagran.com,PROXY
-  - DOMAIN-SUFFIX,instagranm.com,PROXY
-  - DOMAIN-SUFFIX,instagrem.com,PROXY
-  - DOMAIN-SUFFIX,instagrm.com,PROXY
-  - DOMAIN-SUFFIX,instagtram.com,PROXY
-  - DOMAIN-SUFFIX,instagy.com,PROXY
-  - DOMAIN-SUFFIX,instamgram.com,PROXY
-  - DOMAIN-SUFFIX,instangram.com,PROXY
-  - DOMAIN-SUFFIX,instanttelegram.com,PROXY
-  - DOMAIN-SUFFIX,instaplayer.net,PROXY
-  - DOMAIN-SUFFIX,instastyle.tv,PROXY
-  - DOMAIN-SUFFIX,instgram.com,PROXY
-  - DOMAIN-SUFFIX,intagram.com,PROXY
-  - DOMAIN-SUFFIX,intagrm.com,PROXY
-  - DOMAIN-SUFFIX,intgram.com,PROXY
-  - DOMAIN-SUFFIX,kingstagram.com,PROXY
-  - DOMAIN-SUFFIX,lnstagram-help.com,PROXY
-  - DOMAIN-SUFFIX,theinstagramhack.com,PROXY
-  - DOMAIN-SUFFIX,oninstagram.com,PROXY
-  - DOMAIN-SUFFIX,online-instagram.com,PROXY
-  - DOMAIN-SUFFIX,onlineinstagram.com,PROXY
-  - DOMAIN-SUFFIX,web-instagram.net,PROXY
-  - DOMAIN-SUFFIX,wwwinstagram.com,PROXY
-  - DOMAIN-SUFFIX,icloud.com,PROXY
-  - DOMAIN-SUFFIX,googlevideo.com,PROXY
-  - DOMAIN-SUFFIX,youtube.com,PROXY
-  - DOMAIN-SUFFIX,github.com,PROXY
-  - DOMAIN-SUFFIX,github.io,PROXY
-  - DOMAIN-SUFFIX,tiktok.com,PROXY
-  - DOMAIN-SUFFIX,tiktokcdn.com,PROXY
-  - DOMAIN-KEYWORD,openai,PROXY
-  - DOMAIN-KEYWORD,chatgpt,PROXY
-  - DOMAIN-SUFFIX,ip6-localhost,🎯 Direct,no-resolve
-  - DOMAIN-SUFFIX,ip6-loopback,🎯 Direct,no-resolve
-  - DOMAIN-SUFFIX,lan,🎯 Direct,no-resolve
-  - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
-  - DOMAIN-SUFFIX,localhost,🎯 Direct
-  - IP-CIDR,0.0.0.0/8,🎯 Direct,no-resolve
-  - IP-CIDR,10.0.0.0/8,🎯 Direct,no-resolve
-  - IP-CIDR,100.64.0.0/10,🎯 Direct,no-resolve
-  - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
-  - IP-CIDR,172.16.0.0/12,🎯 Direct,no-resolve
-  - IP-CIDR,192.168.0.0/16,🎯 Direct,no-resolve
-  - IP-CIDR,198.18.0.0/16,🎯 Direct,no-resolve
-  - IP-CIDR,224.0.0.0/4,🎯 Direct,no-resolve
-  - IP-CIDR6,::1/128,🎯 Direct,no-resolve
-  - IP-CIDR6,fc00::/7,🎯 Direct,no-resolve
-  - IP-CIDR6,fe80::/10,🎯 Direct,no-resolve
-  - IP-CIDR6,fd00::/8,🎯 Direct,no-resolve
-  - GEOIP,private,🎯 Direct,no-resolve
-  - GEOSITE,category-ads-all,REJECT
-#  - GEOIP,telegram,PROXY
- # - GEOIP,openai,PROXY
-#  - GEOIP,facebook,PROXY
-#  - GEOIP,google,PROXY
-  - MATCH,PROXY
+
 
 proxies:
   - type: ss
