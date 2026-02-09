@@ -49,15 +49,15 @@ dns:
       - +.googleapis.com
       - +.gvt1.com
 proxy-providers:
-  provider1:
-    type: http
-    url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/p.all
-    path: Prem/p1.yaml
-    interval: 899
-    health-check:
-      enable: true
-      interval: 30
-      url: http://www.gstatic.com/generate_204
+#  provider1:
+#    type: http
+#    url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/p.all
+#    path: Prem/p1.yaml
+#    interval: 899
+#    health-check:
+#      enable: true
+#      interval: 30
+#      url: http://www.gstatic.com/generate_204
   provider2:
     type: http
     url: http://66.42.50.118:12580/clash/proxies
@@ -81,8 +81,8 @@ proxies:
 proxy-groups:
   - name: PROXY
     type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 3000
+    url: http://cp.cloudflare.com/
+    interval: 30
     tolerance: 500
     disable-udp: true
     proxies:
@@ -98,12 +98,12 @@ proxy-groups:
  #     - provider6
   - name: fallback
     type: fallback
-    url: http://www.gstatic.com/generate_204
+    url: http://cp.cloudflare.com/
     interval: 180
     disable-udp: true
     proxies:
     use:
-      - provider1
+#      - provider1
       - provider2
       - provider3
  #     - provider4
@@ -111,12 +111,12 @@ proxy-groups:
  #     - provider6
   - name: United+url-test
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: http://cp.cloudflare.com/
     interval: 300
     tolerance: 50
     disable-udp: true
     use:
-      - provider1
+#      - provider1
       - provider2
       - provider3
  #     - provider4
@@ -124,12 +124,12 @@ proxy-groups:
  #     - provider6
   - name: url-test
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: http://cp.cloudflare.com/
     interval: 99
     tolerance: 100
     disable-udp: true
     use:
-      - provider1
+#      - provider1
       - provider2
       - provider3
  #     - provider4
