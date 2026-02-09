@@ -194,55 +194,6 @@ dns:
     - https://doh.pub/dns-query
     - https://1.1.1.1/dns-query
     - https://dns.google/dns-query
-proxies:
-proxy-groups:
-  - name: 🕹 select
-    type: url-test
-#    include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    proxies:
-      - ♻️ url-test
-      - 🚧 fallback
-      - ⚖️ load-balance
-
-  - name: ♻️ url-test
-    type: url-test
-    url: http://cp.cloudflare.com
-    include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    interval: 300
-    hidden: true
-    proxies:
-
-  - name: 🚧 fallback
-    type: fallback
-    url: http://cp.cloudflare.com
-    include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    interval: 180
-    hidden: true
-    proxies:
-
-      
-  - name: ⚖️ load-balance
-    type: load-balance
-    strategy: round-robin
-    url: http://cp.cloudflare.com
-    include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    interval: 180
-    hidden: true
-    proxies:
-    use:
-
-  - name: 🎯
-    type: select
-    proxies:
-      - DIRECT
-      - 🕹 select
-      - ♻️ url-test
-      
-
 proxy-providers:
   provider1:
     type: http
@@ -252,7 +203,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider1]"
-
   provider2:
     type: http
     url: https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml
@@ -261,7 +211,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider2]"
-      
   provider3:
     type: http
     url: https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-2.yaml
@@ -270,7 +219,6 @@ proxy-providers:
     proxies: DIRECT
     override:
        additional-prefix: "[provider3]"
-      
   provider4:
     type: http
     url: https://raw.githubusercontent.com/Misaka-blog/chromego_merge/main/sub/merged_proxies_new.yaml
@@ -279,7 +227,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider4]"
-      
   provider5:
     type: http
     url: https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml
@@ -288,7 +235,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider5]"
-      
   provider6:
     type: http
     url: https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt
@@ -297,7 +243,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider6]"
-
   provider7:
     type: http
     url: https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml
@@ -306,7 +251,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider7]"
-
   provider8:
     type: http
     url: https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/shadowsocks
@@ -315,7 +259,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider8]"
-      
   provider9:
     type: http
     url: https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/trojan
@@ -324,7 +267,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider9]"
-      
   provider10:
     type: http
     url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Croatia/config.txt
@@ -333,7 +275,6 @@ proxy-providers:
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     override:
       additional-prefix: "[provider10]"
-      
   provider11:
     type: http
     url: https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml
@@ -342,7 +283,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider11]"
-      
   provider12:
     type: http
     url: https://raw.githubusercontent.com/aiboboxx/clashfree/main/clash.yml
@@ -351,7 +291,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider12]"
-
   provider13:
     type: http
     url: https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml
@@ -360,7 +299,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider13]"
-      
   provider14:
     type: http
     url: https://raw.githubusercontent.com/ts-sf/fly/main/clash
@@ -369,7 +307,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider14]"
-      
   provider15:
     type: http
     url: https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/Clash.yaml
@@ -378,7 +315,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider15]"
-
   provider16:
     type: http
     url: https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml
@@ -387,7 +323,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider16]"
-
   provider17:
     type: http
     url: https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml
@@ -396,7 +331,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider17]"
-      
   provider18:
     type: http
     url: https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml
@@ -405,7 +339,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider18]"
-      
   provider19:
     type: http
     url: https://raw.githubusercontent.com/xiaoji235/airport-free/refs/heads/main/clash/clashnodecc.txt
@@ -414,7 +347,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider19]"
-      
   provider20:
     type: http
     url: https://raw.githubusercontent.com/xiaoji235/airport-free/refs/heads/main/clash/v2rayshare.txt
@@ -423,7 +355,6 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: "[provider20]"
-      
   provider21:
     type: http
     url: https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config.yaml
@@ -431,17 +362,16 @@ proxy-providers:
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider21]"      
-
-
+      additional-prefix: "[provider21]"
 rules:
   - IP-CIDR,127.0.0.1/32,DIRECT,no-resolve
   - IP-CIDR,198.18.0.1/16,DIRECT,no-resolve
   - IP-CIDR,28.0.0.1/8,DIRECT,no-resolve
   - IP-CIDR6,::1/128,DIRECT,no-resolve
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
-  - IN-TYPE,inner,🕹 select
-  - MATCH,🕹 select
+  - IN-TYPE,inner,PROXY
+  - MATCH,PROXY
+
 
 
 
