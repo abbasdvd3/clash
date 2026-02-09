@@ -22,7 +22,6 @@ proxy-groups:
     lazy: false
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
-    
   - name: 🟡fallback🟡
     type: fallback
     url: http://cp.cloudflare.com/generate_204
@@ -36,7 +35,6 @@ proxy-groups:
     lazy: false
     hidden: false
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
-    
   - name: 🔴load-balance🔴
     type: load-balance
     url: http://cp.cloudflare.com/generate_204
@@ -51,12 +49,19 @@ proxy-groups:
     lazy: false
     hidden: false
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
-    
   - name: 🎯 Direct
     type: select
     disable-udp: true
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     proxies:
+      - "DIRECT"
+      - "PROXY"
+  - name: 🛑 Reject
+    type: select
+    disable-udp: true
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    proxies:
+      - "RejectDrop"
       - "DIRECT"
       - "PROXY"
 port: 7892
