@@ -2,7 +2,7 @@ proxy-groups:
   - name: "PROXY"
     type: "select"
     url: "http://cp.cloudflare.com/generate_204"
-    exclude-type: "direct|redir-in|DNS|trojan"
+    disable-udp: true
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png"
     proxies:
       - "🎈Auto"
@@ -11,24 +11,27 @@ proxy-groups:
     type: "url-test"
     url: "http://cp.cloudflare.com/generate_204"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all-providers: true
+    disable-udp: true
     hidden: true
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Global.png"
   - name: "🎈fallback"
     type: "fallback"
     url: "http://cp.cloudflare.com/generate_204"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all-providers: true
+    disable-udp: true
     hidden: true
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
   - name: "🇺🇸US🇺🇸"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     type: "url-test"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all-providers: true
+    disable-udp: true
     hidden: true
     url: "http://cp.cloudflare.com/generate_204"
   - name: "A"
@@ -36,7 +39,8 @@ proxy-groups:
     url: "http://cp.cloudflare.com/generate_204"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS|trojan"
+    disable-udp: true
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     hidden: true
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Google_Search.png"
   - name: "B"
@@ -44,7 +48,8 @@ proxy-groups:
     url: "http://cp.cloudflare.com/generate_204"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    disable-udp: true
     hidden: true
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Netflix.png"
   - name: "C"
@@ -52,7 +57,8 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/YouTube.png"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS|trojan"
+    disable-udp: true
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     hidden: true
     url: "http://cp.cloudflare.com/generate_204"
   - name: "D"
@@ -60,15 +66,17 @@ proxy-groups:
     url: "http://cp.cloudflare.com/generate_204"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    disable-udp: true
     hidden: true
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Twitter.png"
   - name: "E"
     type: "url-test"
     url: "http://cp.cloudflare.com/generate_204"
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     include-all-providers: true
+    disable-udp: true
     hidden: true
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
   - name: "F"
@@ -76,13 +84,15 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Auto.png"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    disable-udp: true
     hidden: true
     url: "http://cp.cloudflare.com/generate_204"
   - name: "G"
     type: "url-test"
     url: "http://cp.cloudflare.com/generate_204"
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    disable-udp: true
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     include-all-providers: true
     hidden: true
@@ -90,7 +100,8 @@ proxy-groups:
   - name: "M"
     type: "url-test"
     url: "http://cp.cloudflare.com/generate_204"
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    disable-udp: true
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     hidden: true
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/HK.png"
@@ -188,7 +199,7 @@ proxy-groups:
   - name: 🕹 select
     type: url-test
 #    include-all-providers: true
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     proxies:
       - ♻️ url-test
       - 🚧 fallback
@@ -198,7 +209,7 @@ proxy-groups:
     type: url-test
     url: http://cp.cloudflare.com
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     interval: 300
     hidden: true
     proxies:
@@ -207,7 +218,7 @@ proxy-groups:
     type: fallback
     url: http://cp.cloudflare.com
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     interval: 180
     hidden: true
     proxies:
@@ -218,7 +229,7 @@ proxy-groups:
     strategy: round-robin
     url: http://cp.cloudflare.com
     include-all-providers: true
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     interval: 180
     hidden: true
     proxies:
@@ -431,6 +442,7 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,🕹 select
   - MATCH,🕹 select
+
 
 
 
