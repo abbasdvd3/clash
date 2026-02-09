@@ -84,7 +84,7 @@ proxies:
 proxy-groups:
   - name: Proxy
     type: url-test
- #   include-all-providers: true
+    disable-udp: true
     exclude-type: direct|redir-in|DNS
     proxies:
       - Auto
@@ -94,59 +94,56 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
+    disable-udp: true
     hidden: true
     interval: 100
     exclude-type: direct|redir-in|DNS
     filter: "America|United States|US|美国"
-
   - name: fallback
     type: fallback
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
     exclude-type: direct|redir-in|DNS
+    disable-udp: true
     hidden: true
     interval: 180
     filter: "America|United States|US|美国"
-
   - name: Geo-SG
     type: url-test
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
     exclude-type: direct|redir-in|DNS
+    disable-udp: true
     hidden: true
     interval: 10
-    lazy: false
     filter: "HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国"
-    use: 
   - name: Geo-JP
     type: url-test
     url: http://www.gstatic.com/generate_204
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
+    disable-udp: true
     hidden: true
     interval: 10
     filter: "Japan|JP|日本"
-
   - name: Geo-US
     type: url-test
     url: http://www.gstatic.com/generate_204
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
+    disable-udp: true
     hidden: true
     interval: 100
-    lazy: false
     filter: "America|United States|US|美国"
- 
   - name: Geo-CN
     type: url-test
     url: http://www.gstatic.com/generate_204
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
+    disable-udp: true
     hidden: true
     interval: 10
-    lazy: false
     filter: "China|CN|中国"
-  
   - name: Social
     type: url-test
     hidden: true
@@ -159,7 +156,6 @@ proxy-groups:
     proxies: 
       - IRAN
       - Proxy
-
 proxy-providers:
   Subscription-1:
     type: http
