@@ -962,7 +962,7 @@ proxy-groups:
     type: "select"
     include-all-providers: true
     include-all-proxies: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Vmess|Vless|Trojan
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Ssh|Vmess|Vless|Trojan
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
     proxies:
       - "🎈Auto"
@@ -971,29 +971,28 @@ proxy-groups:
   - name: "🎈Auto"
     type: "url-test"
     url: "http://www.gstatic.com/generate_204"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    exclude-type: "direct|redir-in|DNS|trojan"
+    disable-udp: true
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns
     include-all-providers: true
     include-all-proxies: true
-    hidden: false
+    hidden: true
     icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
 
   - name: "🎈fallback"
     type: "fallback"
     url: "http://www.gstatic.com/generate_204"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    exclude-type: "direct|redir-in|DNS|trojan"
+    disable-udp: true
+    filter: "US|United States"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns
     include-all-providers: true
     include-all-proxies: true
-    hidden: false
+    hidden: true
     icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
 
   - name: "🎯 Direct"
     type: "select"
-    filter: ""
-    exclude-filter: ""
+    disable-udp: true
     hidden: false
-    icon: ""
     proxies:
       - "DIRECT"
       - "PROXY"
@@ -1001,7 +1000,7 @@ proxy-groups:
   - name: "🛑 Reject"
     type: "select"
     hidden: false
-    icon: ""
+    disable-udp: true
     proxies:
       - "REJECT"
       - "DIRECT"
