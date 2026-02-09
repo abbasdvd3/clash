@@ -89,16 +89,19 @@ proxy-providers:
 proxies:
 proxy-groups:
   - name: PROXY
-    type: select
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 3000
+    tolerance: 500
     disable-udp: true
     proxies:
       - url-test
       - United+url-test
       - fallback
     use:
-      - provider1
-      - provider2
-      - provider3
+#      - provider1
+ #     - provider2
+ #     - provider3
  #     - provider4
  #     - provider5
  #     - provider6
@@ -106,6 +109,7 @@ proxy-groups:
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 180
+    disable-udp: true
     proxies:
     use:
       - provider1
@@ -119,6 +123,7 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
+    disable-udp: true
     use:
       - provider1
       - provider2
@@ -131,6 +136,7 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: 99
     tolerance: 100
+    disable-udp: true
     use:
       - provider1
       - provider2
