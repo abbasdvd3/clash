@@ -39,8 +39,8 @@ proxies:
 proxy-groups:
   - name: 🕹
     type: url-test
- #   include-all-providers: true
-    exclude-type: "direct|redir-in|DNS|trojan"
+    disable-udp: true
+    exclude-type: "direct|redir-in|DNS"
     proxies:
       - ♻️ url-test
       - 🚧 fallback
@@ -50,25 +50,31 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     include-all-providers: true
+    disable-udp: true
+    hidden: true
     interval: 30
     tolerance: 10
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: "direct|redir-in|DNS"
 
   - name: 🚧 fallback
     type: fallback
     url: http://www.gstatic.com/generate_204
+    disable-udp: true
     include-all-providers: true
+    hidden: true
     interval: 18
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: "direct|redir-in|DNS"
 
   - name: ⚖️ load-balance
     type: load-balance
     strategy: round-robin
     url: http://www.gstatic.com/generate_204
+    disable-udp: true
     include-all-providers: true
+    hidden: true
     interval: 18
     tolerance: 10
-    exclude-type: "direct|redir-in|DNS|trojan"
+    exclude-type: "direct|redir-in|DNS"
         
   - name: 🎯
     type: select
