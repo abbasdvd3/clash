@@ -108,7 +108,7 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
-  direct-nameserver-follow-policy: true
+  direct-nameserver-follow-policy: false
   fake-ip-filter:
     - "*.lan"
     - "*.local"
@@ -244,6 +244,7 @@ proxy-groups:
   - name: PROXY
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
+    
     include-all-proxies: true
     proxies:
       - 🟢Auto🟢
@@ -253,10 +254,11 @@ proxy-groups:
     type: url-test
     url: http://cp.cloudflare.com/generate_204
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
     include-all: true
     disable-udp: true
     interval: 300
-    tolerance: 0
+    tolerance: 10
     timeout: 500
     max-failed-times: 4
     lazy: false
@@ -267,6 +269,7 @@ proxy-groups:
     type: fallback
     url: http://cp.cloudflare.com/generate_204
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
     include-all: true
     disable-udp: true
     interval: 100
@@ -279,7 +282,9 @@ proxy-groups:
   - name: 🔴load-balance🔴
     type: load-balance
     url: http://cp.cloudflare.com/generate_204
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh #|Vmess|Vless|Trojan|Hysteria|Hysteria2 
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh #|Vmess|Vless|Trojan|Hysteria|Hysteria2
+    exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
+    filter: "America|United States|US|美国"
     include-all: true
     disable-udp: true
     interval: 100
@@ -871,11 +876,10 @@ rules :
   - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
   - IP-CIDR,172.16.0.0/12,🎯 Direct
   - IP-CIDR,192.168.0.0/16,🎯 Direct
-  - IP-CIDR,10.0.0.0/8,PROXY
-  - DOMAIN-SUFFIX,openai.com,PROXY
-  - DOMAIN-SUFFIX,chatgpt.com,PROXY
-  - DOMAIN-SUFFIX,anthropic.com,PROXY
-  - DOMAIN-SUFFIX,claude.ai,PROXY
+  - DOMAIN-SUFFIX,openai.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,chatgpt.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,anthropic.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,claude.ai,🔴load-balance🔴
   - DOMAIN-SUFFIX,t.me,PROXY
   - DOMAIN-SUFFIX,telegram.org,PROXY
   - DOMAIN-SUFFIX,netflix.com,PROXY
@@ -885,83 +889,83 @@ rules :
   - DOMAIN-SUFFIX,icloud.com,PROXY
   - DOMAIN-SUFFIX,microsoft.com,PROXY
   - DOMAIN-SUFFIX,windows.com,PROXY
-  - DOMAIN-SUFFIX,openai.com,PROXY
-  - DOMAIN-SUFFIX,chatgpt.com,PROXY
-  - DOMAIN-SUFFIX,oaistatic.com,PROXY
-  - DOMAIN-SUFFIX,oaiusercontent.com,PROXY
-  - DOMAIN-KEYWORD,openai,PROXY
-  - DOMAIN-SUFFIX,anthropic.com,PROXY
-  - DOMAIN-SUFFIX,claude.ai,PROXY
-  - DOMAIN-SUFFIX,gemini.google.com,PROXY
-  - DOMAIN-SUFFIX,bard.google.com,PROXY
-  - DOMAIN-SUFFIX,perplexity.ai,PROXY
-  - DOMAIN-SUFFIX,midjourney.com,PROXY
-  - DOMAIN-SUFFIX,netflix.com,PROXY
-  - DOMAIN-KEYWORD,anthropic,PROXY
-  - DOMAIN-KEYWORD,claude,PROXY
-  - DOMAIN-KEYWORD,openai,PROXY
-  - DOMAIN,ai.google.dev,PROXY
-  - DOMAIN,aistudio.google.com,PROXY
-  - DOMAIN,api.githubcopilot.com,PROXY
-  - DOMAIN,api.groq.com,PROXY
-  - DOMAIN,api.together.xyz,PROXY
-  - DOMAIN,bard.google.com,PROXY
-  - DOMAIN,console.groq.com,PROXY
-  - DOMAIN,copilot-proxy.githubusercontent.com,PROXY
-  - DOMAIN,gemini.google.com,PROXY
-  - DOMAIN,generativelanguage.googleapis.com,PROXY
-  - DOMAIN,notebooklm.google.com,PROXY
-  - DOMAIN,sydney.bing.com,PROXY
-  - DOMAIN-SUFFIX,ai.azure.com,PROXY
-  - DOMAIN-SUFFIX,anthropic.com,PROXY
-  - DOMAIN-SUFFIX,auth0.com,PROXY
-  - DOMAIN-SUFFIX,bard.google.com,PROXY
-  - DOMAIN-SUFFIX,chatgpt.com,PROXY
-  - DOMAIN-SUFFIX,claude.ai,PROXY
-  - DOMAIN-SUFFIX,claude.com,PROXY
-  - DOMAIN-SUFFIX,claudeusercontent.com,PROXY
-  - DOMAIN-SUFFIX,client-api.arkoselabs.com,PROXY
-  - DOMAIN-SUFFIX,copilot.cloud.microsoft,PROXY
-  - DOMAIN-SUFFIX,copilot.microsoft.com,PROXY
-  - DOMAIN-SUFFIX,cursor.com,PROXY
-  - DOMAIN-SUFFIX,cursor.sh,PROXY
-  - DOMAIN-SUFFIX,events.statsigapi.net,PROXY
-  - DOMAIN-SUFFIX,featuregates.org,PROXY
-  - DOMAIN-SUFFIX,gemini.google.com,PROXY
-  - DOMAIN-SUFFIX,grazie.ai,PROXY
-  - DOMAIN-SUFFIX,grazie.aws.intellij.net,PROXY
-  - DOMAIN-SUFFIX,identrust.com,PROXY
-  - DOMAIN-SUFFIX,intercom.io,PROXY
-  - DOMAIN-SUFFIX,intercomcdn.com,PROXY
-  - DOMAIN-SUFFIX,jetbrains.ai,PROXY
-  - DOMAIN-SUFFIX,makersuite.google.com,PROXY
-  - DOMAIN-SUFFIX,meta.ai,PROXY
-  - DOMAIN-SUFFIX,mistral.ai,PROXY
-  - DOMAIN-SUFFIX,oaistatic.com,PROXY
-  - DOMAIN-SUFFIX,oaiusercontent.com,PROXY
-  - DOMAIN-SUFFIX,openai.com,PROXY
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,PROXY
-  - DOMAIN-SUFFIX,perplexity.ai,PROXY
-  - DOMAIN-SUFFIX,sora.com,PROXY
-  - DOMAIN-SUFFIX,x.ai,PROXY
-  - DOMAIN-KEYWORD,openai,PROXY
-  - DOMAIN-SUFFIX,auth0.com,PROXY
-  - DOMAIN-SUFFIX,challenges.cloudflare.com,PROXY
-  - DOMAIN-SUFFIX,chatgpt.com,PROXY
-  - DOMAIN-SUFFIX,client-api.arkoselabs.com,PROXY
-  - DOMAIN-SUFFIX,events.statsigapi.net,PROXY
-  - DOMAIN-SUFFIX,featuregates.org,PROXY
-  - DOMAIN-SUFFIX,identrust.com,PROXY
-  - DOMAIN-SUFFIX,intercom.io,PROXY
-  - DOMAIN-SUFFIX,intercomcdn.com,PROXY
-  - DOMAIN-SUFFIX,oaistatic.com,PROXY
-  - DOMAIN-SUFFIX,oaiusercontent.com,PROXY
-  - DOMAIN-SUFFIX,openai.com,PROXY
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,PROXY
-  - DOMAIN-SUFFIX,sentry.io,PROXY
-  - DOMAIN-SUFFIX,stripe.com,PROXY
-  - DOMAIN-SUFFIX,sora.com,PROXY
-  - DOMAIN-SUFFIX,disneyplus.com,PROXY
+  - DOMAIN-SUFFIX,openai.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,chatgpt.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,oaistatic.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,oaiusercontent.com,🔴load-balance🔴
+  - DOMAIN-KEYWORD,openai,🔴load-balance🔴
+  - DOMAIN-SUFFIX,anthropic.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,claude.ai,🔴load-balance🔴
+  - DOMAIN-SUFFIX,gemini.google.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,bard.google.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,perplexity.ai,🔴load-balance🔴
+  - DOMAIN-SUFFIX,midjourney.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,netflix.com,🔴load-balance🔴
+  - DOMAIN-KEYWORD,anthropic,🔴load-balance🔴
+  - DOMAIN-KEYWORD,claude,🔴load-balance🔴
+  - DOMAIN-KEYWORD,openai,🔴load-balance🔴
+  - DOMAIN,ai.google.dev,🔴load-balance🔴
+  - DOMAIN,aistudio.google.com,🔴load-balance🔴
+  - DOMAIN,api.githubcopilot.com,🔴load-balance🔴
+  - DOMAIN,api.groq.com,🔴load-balance🔴
+  - DOMAIN,api.together.xyz,🔴load-balance🔴
+  - DOMAIN,bard.google.com,🔴load-balance🔴
+  - DOMAIN,console.groq.com,🔴load-balance🔴
+  - DOMAIN,copilot-proxy.githubusercontent.com,🔴load-balance🔴
+  - DOMAIN,gemini.google.com,🔴load-balance🔴
+  - DOMAIN,generativelanguage.googleapis.com,🔴load-balance🔴
+  - DOMAIN,notebooklm.google.com,🔴load-balance🔴
+  - DOMAIN,sydney.bing.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,ai.azure.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,anthropic.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,auth0.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,bard.google.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,chatgpt.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,claude.ai,🔴load-balance🔴
+  - DOMAIN-SUFFIX,claude.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,claudeusercontent.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,client-api.arkoselabs.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,copilot.cloud.microsoft,🔴load-balance🔴
+  - DOMAIN-SUFFIX,copilot.microsoft.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,cursor.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,cursor.sh,🔴load-balance🔴
+  - DOMAIN-SUFFIX,events.statsigapi.net,🔴load-balance🔴
+  - DOMAIN-SUFFIX,featuregates.org,🔴load-balance🔴
+  - DOMAIN-SUFFIX,gemini.google.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,grazie.ai,🔴load-balance🔴
+  - DOMAIN-SUFFIX,grazie.aws.intellij.net,🔴load-balance🔴
+  - DOMAIN-SUFFIX,identrust.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,intercom.io,🔴load-balance🔴
+  - DOMAIN-SUFFIX,intercomcdn.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,jetbrains.ai,🔴load-balance🔴
+  - DOMAIN-SUFFIX,makersuite.google.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,meta.ai,🔴load-balance🔴
+  - DOMAIN-SUFFIX,mistral.ai,🔴load-balance🔴
+  - DOMAIN-SUFFIX,oaistatic.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,oaiusercontent.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,openai.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,🔴load-balance🔴
+  - DOMAIN-SUFFIX,perplexity.ai,🔴load-balance🔴
+  - DOMAIN-SUFFIX,sora.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,x.ai,🔴load-balance🔴
+  - DOMAIN-KEYWORD,openai,🔴load-balance🔴
+  - DOMAIN-SUFFIX,auth0.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,challenges.cloudflare.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,chatgpt.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,client-api.arkoselabs.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,events.statsigapi.net,🔴load-balance🔴
+  - DOMAIN-SUFFIX,featuregates.org,🔴load-balance🔴
+  - DOMAIN-SUFFIX,identrust.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,intercom.io,🔴load-balance🔴
+  - DOMAIN-SUFFIX,intercomcdn.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,oaistatic.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,oaiusercontent.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,openai.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,🔴load-balance🔴
+  - DOMAIN-SUFFIX,sentry.io,🔴load-balance🔴
+  - DOMAIN-SUFFIX,stripe.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,sora.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,disneyplus.com,🔴load-balance🔴
   - DOMAIN-SUFFIX,youtube.com,PROXY
   - DOMAIN-SUFFIX,spotify.com,PROXY
   - IN-PORT,7890,PROXY
@@ -973,14 +977,14 @@ rules :
   - IN-TYPE,SOCKS/HTTP,PROXY
   - IN-USER,mihomo,PROXY
   - IN-NAME,ss,PROXY
-  - NETWORK,udp,PROXY
+  - NETWORK,udp,REJECT
   - IP-SUFFIX,8.8.8.8/24,PROXY
   - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
-  - IP-CIDR,10.0.0.0/8,PROXY
-  - IP-CIDR,100.64.0.0/10,PROXY
+  - IP-CIDR,10.0.0.0/8,🎯 Direct
+  - IP-CIDR,100.64.0.0/10,🎯 Direct
   - PROCESS-NAME,com.termux,PROXY
   - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
-  - OR,((NETWORK,UDP),(DOMAIN,google.com)),PROXY
+  - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
   - NOT,((DOMAIN,google.com)),PROXY
   - RULE-SET,private,🎯 Direct,no-resolve
   - RULE-SET,apps,🎯 Direct
@@ -1010,8 +1014,8 @@ rules :
   - RULE-SET,GoogleCN,PROXY
   - RULE-SET,YouTube,PROXY
   - RULE-SET,Google,PROXY
-  - RULE-SET,category-ai-cn,PROXY
-  - RULE-SET,category-ai-!cn,PROXY
+  - RULE-SET,category-ai-cn,🔴load-balance🔴
+  - RULE-SET,category-ai-!cn,🔴load-balance🔴
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
 proxies:
@@ -3395,3 +3399,4 @@ proxies:
   - {"type":"http","name":"http_proxy_1908","server":"209.97.150.167","port":3128,"udp":true}
   - {"type":"http","name":"http_proxy_1909","server":"220.67.2.2","port":80,"udp":true}
   - {"type":"http","name":"http_proxy_1910","server":"221.226.109.229","port":7302,"udp":true}
+
