@@ -23,7 +23,7 @@ external-ui: dashboard
 external-ui-name: ui
 external-ui-url: "https://github.com//Zephyruso/zashboard/releases/latest/download/dist.zip"
 keep-alive-interval: 30
-disable-keep-alive: false
+disable-keep-alive: true
 keep-alive-idle: 15
 find-process-mode: strict
 unified-delay: false
@@ -58,11 +58,13 @@ dns:
   listen: 0.0.0.0:53
   ipv6: true
   default-nameserver:
+    - 127.0.1.0:53
     - 223.5.5.5
     - 114.114.114.114
     - 1.1.1.1
     - 8.8.8.8
   nameserver:
+    - 127.0.1.0:53
     - 223.5.5.5
     - 114.114.114.114
     - 119.29.29.29
@@ -143,6 +145,149 @@ dns:
     - "+.stun.playstation.net"
     - "*.mcdn.bilivideo.cn"
     - "ntp.ntsc.ac.cn"
+
+proxies:
+  - name: redir-in
+    type: direct
+    port: 9797
+    server: 127.0.0.1
+proxy-groups:
+  - name: "PROXY"
+    type: "smart"
+    policy-priority: "Premium:0.9;SG:1.3" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    disable-udp: true
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
+    proxies:
+      - "🎈Auto"
+      - "🇺🇲"
+      - "🇭🇰"
+      - "🇯🇵"
+      - "🇹🇼"
+      - "🇸🇬"
+      - "🇰🇷"
+  
+  - name: "🎈Auto"
+    type: "smart"
+    policy-priority: "Premium:0.9;SG:1.3" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    disable-udp: true
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
+
+  - name: "🤖 AI"
+    type: "smart"
+    policy-priority: "Premium:0.9;SG:1.3" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    disable-udp: true
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+    proxies:
+      - "🇺🇲"
+      - "🇭🇰"
+      - "🇯🇵"
+      - "🇹🇼"
+      - "🇸🇬"
+      - "🇰🇷"
+  - name: "🇭🇰"
+    type: "smart"
+    policy-priority: "Premium:0.9;SG:1.3" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    disable-udp: true
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
+
+  - name: "🇯🇵"
+    type: "smart"
+    policy-priority: "Premium:0.9;SG:1.3" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    disable-udp: true
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
+
+  - name: "🇺🇲"
+    type: "smart"
+    policy-priority: "Premium:0.9;SG:1.3" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    disable-udp: true
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
+
+  - name: "🇹🇼"
+    type: "smart"
+    policy-priority: "Premium:0.9;SG:1.3" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    disable-udp: true
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
+
+  - name: "🇸🇬"
+    type: "smart"
+    policy-priority: "Premium:0.9;SG:1.3" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    disable-udp: true
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
+
+  - name: "🇰🇷"
+    type: "smart"
+    policy-priority: "Premium:0.9;SG:1.3" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    disable-udp: true
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
+
+  - name: "🎯 Direct"
+    type: "select"
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
+    proxies:
+      - "redir-in"
+      - "PROXY"
 proxy-providers:
   A1:
     type: http
@@ -2443,131 +2588,6 @@ proxy-providers:
       - "mihomo/1.18.3"
       - "meta/0.2.0.9.smart"
       - "meta/0.2.0.9.meta"
-proxies:
-  - name: redir-in
-    type: direct
-    port: 9797
-    server: 127.0.0.1
-proxy-groups:
-  - name: "PROXY"
-    type: "smart"
-    policy-priority: "Premium:0.9;SG:1.3" 
-    uselightgbm: false
-    collectdata: false
-    sample-rate: 1
-    prefer-asn: true
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
-    proxies:
-      - "🎈Auto"
-      - "🇺🇲"
-      - "🇭🇰"
-      - "🇯🇵"
-      - "🇹🇼"
-      - "🇸🇬"
-      - "🇰🇷"
-  
-  - name: "🎈Auto"
-    type: "smart"
-    policy-priority: "Premium:0.9;SG:1.3" 
-    uselightgbm: false
-    collectdata: false
-    sample-rate: 1
-    prefer-asn: true
-    url: "http://www.gstatic.com/generate_204"
-    include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
-
-  - name: "🤖 AI"
-    type: "smart"
-    policy-priority: "Premium:0.9;SG:1.3" 
-    uselightgbm: false
-    collectdata: false
-    sample-rate: 1
-    prefer-asn: true
-    url: "http://www.gstatic.com/generate_204"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
-    proxies:
-      - "🇺🇲"
-      - "🇭🇰"
-      - "🇯🇵"
-      - "🇹🇼"
-      - "🇸🇬"
-      - "🇰🇷"
-  - name: "🇭🇰"
-    type: "smart"
-    policy-priority: "Premium:0.9;SG:1.3" 
-    uselightgbm: false
-    collectdata: false
-    sample-rate: 1
-    prefer-asn: true
-    url: "http://www.gstatic.com/generate_204"
-    include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI|港"
-
-  - name: "🇯🇵"
-    type: "smart"
-    policy-priority: "Premium:0.9;SG:1.3" 
-    uselightgbm: false
-    collectdata: false
-    sample-rate: 1
-    prefer-asn: true
-    url: "http://www.gstatic.com/generate_204"
-    include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama|东京|大阪|埼玉|日"
-
-  - name: "🇺🇲"
-    type: "smart"
-    policy-priority: "Premium:0.9;SG:1.3" 
-    uselightgbm: false
-    collectdata: false
-    sample-rate: 1
-    prefer-asn: true
-    url: "http://www.gstatic.com/generate_204"
-    include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    filter: "🇺🇸|US|America|United.*?States|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥"
-
-  - name: "🇹🇼"
-    type: "smart"
-    policy-priority: "Premium:0.9;SG:1.3" 
-    uselightgbm: false
-    collectdata: false
-    sample-rate: 1
-    prefer-asn: true
-    url: "http://www.gstatic.com/generate_204"
-    include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    filter: "🇹🇼|TW|Taiwan|新北|彰化|CHT|台|HINET"
-
-  - name: "🇸🇬"
-    type: "smart"
-    url: "http://www.gstatic.com/generate_204"
-    include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    filter: "🇸🇬|SG|Singapore|狮城|^新[^节北]|[^刷更]新[^节北]"
-
-  - name: "🇰🇷"
-    type: "smart"
-    policy-priority: "Premium:0.9;SG:1.3" 
-    uselightgbm: false
-    collectdata: false
-    sample-rate: 1
-    prefer-asn: true
-    url: "http://www.gstatic.com/generate_204"
-    include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    filter: "🇰🇷|KO?R|Korea|首尔|韩|韓"
-
-  - name: "🎯 Direct"
-    type: "select"
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
-    proxies:
-      - "redir-in"
-      - "PROXY"
 rule-providers:
   ir:
     type: http
