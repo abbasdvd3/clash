@@ -1,4 +1,64 @@
-
+proxy-groups:
+  - name: PROXY
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
+    Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Ssh|Vmess|Vless
+    include-all: true
+    proxies:
+      - 🟢Auto🟢
+      - 🟡fallback🟡
+      - 🔴load-balance🔴
+  - name: 🟢Auto🟢
+    type: url-test
+    url: http://cp.cloudflare.com/generate_204
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
+    include-all: true
+    disable-udp: true
+    interval: 300
+    tolerance: 10
+    timeout: 500
+    max-failed-times: 4
+    lazy: false
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    
+  - name: 🟡fallback🟡
+    type: fallback
+    url: http://cp.cloudflare.com/generate_204
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
+    include-all: true
+    disable-udp: true
+    interval: 100
+    timeout: 500
+    max-failed-times: 4
+    lazy: false
+    hidden: false
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    
+  - name: 🔴load-balance🔴
+    type: load-balance
+    url: http://cp.cloudflare.com/generate_204
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh #|Vmess|Vless|Trojan|Hysteria|Hysteria2
+    exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
+    filter: "America|United States|US|美国"
+    include-all: true
+    disable-udp: true
+    interval: 100
+    timeout: 500
+    max-failed-times: 4
+    lazy: false
+    hidden: false
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    
+  - name: 🎯 Direct
+    type: select
+    disable-udp: true
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    proxies:
+      - "DIRECT"
+      - "PROXY"
 port: 7892
 socks-port: 7891
 mixed-port: 7890
@@ -14,7 +74,7 @@ external-ui: ./dashboard
 keep-alive-interval: 30
 find-process-mode: always
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: random
 geodata-mode: true
@@ -29,7 +89,6 @@ global-ua: chrome
 profile:
   store-selected: true
   store-fake-ip: true
-  
 tun:
   enable: true
   stack: system
@@ -57,7 +116,6 @@ tun:
   - 192.168.0.0/16
   inet6-route-exclude-address:
   - fc00::/7
-  
 sniffer:
   enable: true
   sniffing:
@@ -75,7 +133,6 @@ sniffer:
     - 80
     - 443
     - 8000-9000
-
 dns:
   enable: true
   perfer-h3: true
@@ -957,54 +1014,6 @@ proxy-providers:
     override:
       additional-prefix: "AA109 prefix |"
       additional-suffix: "| test suffix"
-proxy-groups:
-  - name: "PROXY"
-    type: "select"
-    include-all-providers: true
-    include-all-proxies: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Ssh|Vmess|Vless|Trojan
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
-    proxies:
-      - "🎈Auto"
-      - "🎈fallback"
-
-  - name: "🎈Auto"
-    type: "url-test"
-    url: "http://www.gstatic.com/generate_204"
-    disable-udp: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns
-    include-all-providers: true
-    include-all-proxies: true
-    hidden: true
-    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
-
-  - name: "🎈fallback"
-    type: "fallback"
-    url: "http://www.gstatic.com/generate_204"
-    disable-udp: true
-    filter: "US|United States"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns
-    include-all-providers: true
-    include-all-proxies: true
-    hidden: true
-    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
-
-  - name: "🎯 Direct"
-    type: "select"
-    disable-udp: true
-    hidden: false
-    proxies:
-      - "DIRECT"
-      - "PROXY"
-    
-  - name: "🛑 Reject"
-    type: "select"
-    hidden: false
-    disable-udp: true
-    proxies:
-      - "REJECT"
-      - "DIRECT"
-    
 rule-providers:
   nsfw:
     type: http
@@ -1012,230 +1021,197 @@ rule-providers:
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.txt"
     interval: 86400
-    
   social:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.txt"
-    interval: 86400
-    
+    interval: 86400  
   ir:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
     interval: 86400
-    
   ads:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.txt"
     interval: 86400
-    
   malware:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt"
     interval: 86400
-    
   phishing:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.txt"
     interval: 86400
-    
   cryptominers:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.txt"
     interval: 86400
-    
   apps:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.txt"
     interval: 86400
-    
   ircidr:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
     interval: 86400
-    
   private:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.txt"
     interval: 86400
-    
   irasn:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.txt"
     interval: 86400
-    
   LocalAreaNetwork:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
     format: text
     interval: 3600
-
   category-ads-all:
     type: http
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs
     behavior: domain
     format: mrs
-
   BanEasyList:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list
     format: text
     interval: 3600
-    
   BanEasyListChina:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
     format: text
     interval: 3600
-
   BanEasyPrivacy:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
     format: text
     interval: 3600
-
   UnBan:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
     format: text
     interval: 3600
-
   BanAD:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
     format: text
     interval: 3600
-
   BanProgramAD:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
     format: text
     interval: 3600
-
   GoogleFCM:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
     format: text
     interval: 3600
-
   GoogleCNProxyIP:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
     format: text
     interval: 3600
-
   GoogleCN:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list
     format: text
     interval: 3600
-
   YouTube:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list
     format: text
     interval: 3600
-
   Google:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list
     format: text
     interval: 3600
-
   AI:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list
     format: text
     interval: 3600
-
   OpenAi:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
     format: text
     interval: 3600
-
   Microsoft:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
     format: text
     interval: 3600
-
   Apple:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
     format: text
     interval: 3600
-
   Telegram:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
     format: text
     interval: 3600
-
   ProxyMedia:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
     format: text
     interval: 3600
-
   ProxyGFWlist:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
     format: text
     interval: 3600
-
   ChinaDomain:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
     format: text
     interval: 3600
-
   ChinaCompanyIp:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
     format: text
     interval: 3600
-
 rules:
   - RULE-SET,private,🎯 Direct,no-resolve
   - RULE-SET,apps,🎯 Direct
