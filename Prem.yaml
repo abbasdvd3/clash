@@ -80,61 +80,42 @@ proxy-providers:
 proxies:
 proxy-groups:
   - name: PROXY
-    type: url-test
-    url: http://cp.cloudflare.com/
-    interval: 30
-    tolerance: 500
-    disable-udp: true
+    type: select
+#    disable-udp: true
     proxies:
       - url-test
       - United+url-test
       - fallback
     use:
-#      - provider1
- #     - provider2
- #     - provider3
- #     - provider4
- #     - provider5
- #     - provider6
+      - provider2
+      - provider3
   - name: fallback
     type: fallback
     url: http://cp.cloudflare.com/
     interval: 180
-    disable-udp: true
+#    disable-udp: true
     proxies:
     use:
-#      - provider1
       - provider2
       - provider3
- #     - provider4
- #     - provider5
- #     - provider6
   - name: United+url-test
     type: url-test
     url: http://cp.cloudflare.com/
     interval: 300
-    tolerance: 50
-    disable-udp: true
+    tolerance: 20
+#    disable-udp: true
     use:
-#      - provider1
       - provider2
       - provider3
- #     - provider4
- #     - provider5
- #     - provider6
   - name: url-test
     type: url-test
     url: http://cp.cloudflare.com/
-    interval: 99
+    interval: 990
     tolerance: 100
-    disable-udp: true
+#    disable-udp: true
     use:
-#      - provider1
       - provider2
       - provider3
- #     - provider4
- #     - provider5
- #     - provider6
     proxies: 
   - name: 🎯 DIRECT
     type: select
