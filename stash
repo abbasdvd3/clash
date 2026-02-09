@@ -105,60 +105,60 @@ LoadBalance: &LoadBalance {type: load-balance, interval: 99, lazy: true, url: 'h
 RuleSet: &RuleSet {type: http, behavior: classical, interval: 3600, format: yaml, proxy: DIRECT}
 
 proxy-groups: 
-  - {name: auto, type: url-test, filter: *FilterGame, proxies: [line, select]}
-  - {name: url-test, type: url-test, include-all: true, filter: *FilterAll}
-  - {name: select, type: select, include-all: true, filter: *FilterAll, proxies: [url-test]}
-  - {name: AI, type: url-test, include-all: true, filter: *FilterAll}
-  - {name: TikTok, type: url-test, include-all: true, filter: *FilterAll}
-  - {name: Telegram, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: App Store, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: Apple ID, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: TestFlight, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: 1Password, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: Microsoft, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: Netflix, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: Emby, type: url-test, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
-  - {name: line, type: select, proxies: [Taiwan, Japan, Korean, New country, US, UK, French, German, Hong Kong]}
+  - {name: auto, type: url-test, disable-udp: true, filter: *FilterGame, proxies: [line, select]}
+  - {name: url-test, type: url-test, disable-udp: true, include-all: true, filter: *FilterAll}
+  - {name: select, type: select, disable-udp: true, include-all: true, filter: *FilterAll, proxies: [url-test]}
+  - {name: AI, type: url-test, disable-udp: true, include-all: true, filter: *FilterAll}
+  - {name: TikTok, type: url-test, disable-udp: true, include-all: true, filter: *FilterAll}
+  - {name: Telegram, type: url-test, disable-udp: true, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: App Store, type: url-test, disable-udp: true, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Apple ID, type: url-test, disable-udp: true, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: TestFlight, type: url-test, disable-udp: true, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: 1Password, type: url-test, disable-udp: true, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Microsoft, type: url-test, disable-udp: true, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Netflix, type: url-test, disable-udp: true, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: Emby, type: url-test, disable-udp: true, proxies: [Hong Kong, Taiwan, Japan, Korean, New country, US, UK, French, German]}
+  - {name: line, type: select, disable-udp: true, proxies: [Taiwan, Japan, Korean, New country, US, UK, French, German, Hong Kong]}
 
-  - {name: Hong Kong, type: url-test, proxies: [⏱Hong Kong, 🚥Hong Kong, 🎛Hong Kong]}
-  - {name: Taiwan, type: url-test, proxies: [⏱Taiwan, 🚥Taiwan, 🎛Taiwan]}
-  - {name: Japan, type: url-test, proxies: [⏱Japan, 🚥Japan, 🎛Japan]}
-  - {name: Korean, type: url-test, proxies: [⏱Korean, 🚥Korean, 🎛Korean]}
-  - {name: New country, type: url-test, proxies: [⏱New country, 🚥New country, 🎛New country]}
-  - {name: US, type: url-test, proxies: [⏱US, 🚥US, 🎛US]}
-  - {name: UK, type: url-test, proxies: [⏱UK, 🚥UK, 🎛UK]}
-  - {name: French, type: url-test, proxies: [⏱French, 🚥French, 🎛French]}
-  - {name: German, type: url-test, proxies: [⏱German, 🚥German, 🎛German]}
+  - {name: Hong Kong, type: url-test, disable-udp: true, proxies: [⏱Hong Kong, 🚥Hong Kong, 🎛Hong Kong]}
+  - {name: Taiwan, type: url-test, disable-udp: true, proxies: [⏱Taiwan, 🚥Taiwan, 🎛Taiwan]}
+  - {name: Japan, type: url-test, disable-udp: true, proxies: [⏱Japan, 🚥Japan, 🎛Japan]}
+  - {name: Korean, type: url-test, disable-udp: true, proxies: [⏱Korean, 🚥Korean, 🎛Korean]}
+  - {name: New country, type: url-test, disable-udp: true, proxies: [⏱New country, 🚥New country, 🎛New country]}
+  - {name: US, type: url-test, disable-udp: true, proxies: [⏱US, 🚥US, 🎛US]}
+  - {name: UK, type: url-test, disable-udp: true, proxies: [⏱UK, 🚥UK, 🎛UK]}
+  - {name: French, type: url-test, disable-udp: true, proxies: [⏱French, 🚥French, 🎛French]}
+  - {name: German, type: url-test, disable-udp: true, proxies: [⏱German, 🚥German, 🎛German]}
 
-  - {name: ⏱Hong Kong, <<: *UrlTest, filter: *FilterHK}
-  - {name: ⏱Taiwan, <<: *UrlTest, filter: *FilterTW}
-  - {name: ⏱Japan, <<: *UrlTest, filter: *FilterJP}
-  - {name: ⏱Korean, <<: *UrlTest, filter: *FilterKR}
-  - {name: ⏱New country, <<: *UrlTest, filter: *FilterSG}
-  - {name: ⏱US, <<: *UrlTest, filter: *FilterUS}
-  - {name: ⏱UK, <<: *UrlTest, filter: *FilterUK}
-  - {name: ⏱French, <<: *UrlTest, filter: *FilterFR}
-  - {name: ⏱German, <<: *UrlTest, filter: *FilterDE}
+  - {name: ⏱Hong Kong, <<: *UrlTest, disable-udp: true, filter: *FilterHK}
+  - {name: ⏱Taiwan, <<: *UrlTest, disable-udp: true, filter: *FilterTW}
+  - {name: ⏱Japan, <<: *UrlTest, disable-udp: true, filter: *FilterJP}
+  - {name: ⏱Korean, <<: *UrlTest, disable-udp: true, filter: *FilterKR}
+  - {name: ⏱New country, <<: *UrlTest, disable-udp: true, filter: *FilterSG}
+  - {name: ⏱US, <<: *UrlTest, disable-udp: true, filter: *FilterUS}
+  - {name: ⏱UK, <<: *UrlTest, disable-udp: true, filter: *FilterUK}
+  - {name: ⏱French, <<: *UrlTest, disable-udp: true, filter: *FilterFR}
+  - {name: ⏱German, <<: *UrlTest, disable-udp: true, filter: *FilterDE}
 
-  - {name: 🚥Hong Kong, <<: *FallBack, filter: *FilterHK}
-  - {name: 🚥Taiwan, <<: *FallBack, filter: *FilterTW}
-  - {name: 🚥Japan, <<: *FallBack, filter: *FilterJP}
-  - {name: 🚥Korean, <<: *FallBack, filter: *FilterKR}
-  - {name: 🚥New country, <<: *FallBack, filter: *FilterSG}
-  - {name: 🚥US, <<: *FallBack, filter: *FilterUS}
-  - {name: 🚥UK, <<: *FallBack, filter: *FilterUK}
-  - {name: 🚥French, <<: *FallBack, filter: *FilterFR}
-  - {name: 🚥German, <<: *FallBack, filter: *FilterDE}
+  - {name: 🚥Hong Kong, <<: *FallBack, disable-udp: true, filter: *FilterHK}
+  - {name: 🚥Taiwan, <<: *FallBack, disable-udp: true, filter: *FilterTW}
+  - {name: 🚥Japan, <<: *FallBack, disable-udp: true, filter: *FilterJP}
+  - {name: 🚥Korean, <<: *FallBack, disable-udp: true, filter: *FilterKR}
+  - {name: 🚥New country, <<: *FallBack, disable-udp: true, filter: *FilterSG}
+  - {name: 🚥US, <<: *FallBack, disable-udp: true, filter: *FilterUS}
+  - {name: 🚥UK, <<: *FallBack, disable-udp: true, filter: *FilterUK}
+  - {name: 🚥French, <<: *FallBack, disable-udp: true, filter: *FilterFR}
+  - {name: 🚥German, <<: *FallBack, disable-udp: true, filter: *FilterDE}
 
-  - {name: 🎛Hong Kong, <<: *LoadBalance, filter: *FilterHK}
-  - {name: 🎛Taiwan, <<: *LoadBalance, filter: *FilterTW}
-  - {name: 🎛Japan, <<: *LoadBalance, filter: *FilterJP}
-  - {name: 🎛Korean, <<: *LoadBalance, filter: *FilterKR}
-  - {name: 🎛New country, <<: *LoadBalance, filter: *FilterSG}
-  - {name: 🎛US, <<: *LoadBalance, filter: *FilterUS}
-  - {name: 🎛UK, <<: *LoadBalance, filter: *FilterUK}
-  - {name: 🎛French, <<: *LoadBalance, filter: *FilterFR}
-  - {name: 🎛German, <<: *LoadBalance, filter: *FilterDE}
+  - {name: 🎛Hong Kong, <<: *LoadBalance, disable-udp: true, filter: *FilterHK}
+  - {name: 🎛Taiwan, <<: *LoadBalance, disable-udp: true, filter: *FilterTW}
+  - {name: 🎛Japan, <<: *LoadBalance, disable-udp: true, filter: *FilterJP}
+  - {name: 🎛Korean, <<: *LoadBalance, disable-udp: true, filter: *FilterKR}
+  - {name: 🎛New country, <<: *LoadBalance, disable-udp: true, filter: *FilterSG}
+  - {name: 🎛US, <<: *LoadBalance, disable-udp: true, filter: *FilterUS}
+  - {name: 🎛UK, <<: *LoadBalance, disable-udp: true, filter: *FilterUK}
+  - {name: 🎛French, <<: *LoadBalance, disable-udp: true, filter: *FilterFR}
+  - {name: 🎛German, <<: *LoadBalance, disable-udp: true, filter: *FilterDE}
 
 
 rule-providers:
