@@ -1,4 +1,3 @@
-
 port: 7892
 socks-port: 7891
 mixed-port: 7890
@@ -29,7 +28,6 @@ global-ua: chrome
 profile:
   store-selected: true
   store-fake-ip: true
-  
 tun:
   enable: true
   stack: system
@@ -57,8 +55,67 @@ tun:
   - 192.168.0.0/16
   inet6-route-exclude-address:
   - fc00::/7
-  
-
+proxy-groups:
+  - name: PROXY
+    type: select
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay
+    include-all: true
+    proxies:
+      - 🟢Auto🟢
+      - 🟡fallback🟡
+      - 🔴load-balance🔴
+  - name: 🟢Auto🟢
+    type: url-test
+    url: http://cp.cloudflare.com/generate_204
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
+    include-all: true
+    disable-udp: true
+    interval: 300
+    tolerance: 10
+    timeout: 500
+    max-failed-times: 4
+    lazy: true
+    hidden: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    
+  - name: 🟡fallback🟡
+    type: fallback
+    url: http://cp.cloudflare.com/generate_204
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
+    include-all: true
+    disable-udp: true
+    interval: 100
+    timeout: 500
+    max-failed-times: 4
+    lazy: true
+    hidden: true
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    
+  - name: 🔴load-balance🔴
+    type: load-balance
+    url: http://cp.cloudflare.com/generate_204
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh #|Vmess|Vless|Trojan|Hysteria|Hysteria2
+    exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
+    filter: "America|United States|US|美国"
+    include-all: true
+    disable-udp: true
+    interval: 100
+    timeout: 500
+    max-failed-times: 4
+    lazy: true
+    hidden: true
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    
+  - name: 🎯 Direct
+    type: select
+    disable-udp: true
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    proxies:
+      - "DIRECT"
+      - "PROXY"
 proxy-providers:
   A1:
     type: http
@@ -522,54 +579,6 @@ proxy-providers:
     override:
       additional-prefix: "AA109 prefix |"
       additional-suffix: "| test suffix"
-proxy-groups:
-  - name: "PROXY"
-    type: "select"
-    hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
-    proxies:
-      - "🎈Auto"
-      - "🎈fallback"
-
-  - name: "🎈Auto"
-    type: "url-test"
-    url: "http://www.gstatic.com/generate_204"
-    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    interval: 280
-    tolerance: 500
-    exclude-type: "direct|redir-in|DNS|trojan"
-    include-all-providers: true
-    include-all-proxies: true
-    hidden: true
-    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
-
-  - name: "🎈fallback"
-    type: "fallback"
-    url: "http://www.gstatic.com/generate_204"
-    exclude-filter: "timeout|connection refused|美|日|ctb|Expired|If|Renewal|Email|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    interval: 180
-    exclude-type: "direct|redir-in|DNS|trojan"
-    include-all-providers: true
-    include-all-proxies: true
-    hidden: true
-    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
-    
-  - name: "🎯 Direct"
-    type: "select"
-    hidden: true
-    proxies:
-      - "DIRECT"
-      - "PROXY"
-    
-  - name: "🛑 Reject"
-    type: "select"
-    hidden: false
-    proxies:
-      - "REJECT"
-      - "DIRECT"
-      - "PROXY"
     
 rule-providers:
   nsfw:
@@ -578,230 +587,197 @@ rule-providers:
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.txt"
     interval: 86400
-    
   social:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.txt"
     interval: 86400
-    
   ir:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
     interval: 86400
-    
   ads:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.txt"
     interval: 86400
-    
   malware:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt"
     interval: 86400
-    
   phishing:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.txt"
     interval: 86400
-    
   cryptominers:
     type: http
     format: text
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.txt"
     interval: 86400
-    
   apps:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.txt"
     interval: 86400
-    
   ircidr:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
     interval: 86400
-    
   private:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.txt"
     interval: 86400
-    
   irasn:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.txt"
     interval: 86400
-    
   LocalAreaNetwork:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
     format: text
     interval: 3600
-
   category-ads-all:
     type: http
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs
     behavior: domain
     format: mrs
-
   BanEasyList:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list
     format: text
     interval: 3600
-    
   BanEasyListChina:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list
     format: text
     interval: 3600
-
   BanEasyPrivacy:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list
     format: text
     interval: 3600
-
   UnBan:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
     format: text
     interval: 3600
-
   BanAD:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
     format: text
     interval: 3600
-
   BanProgramAD:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
     format: text
     interval: 3600
-
   GoogleFCM:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
     format: text
     interval: 3600
-
   GoogleCNProxyIP:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
     format: text
     interval: 3600
-
   GoogleCN:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list
     format: text
     interval: 3600
-
   YouTube:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list
     format: text
     interval: 3600
-
   Google:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list
     format: text
     interval: 3600
-
   AI:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list
     format: text
     interval: 3600
-
   OpenAi:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
     format: text
     interval: 3600
-
   Microsoft:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
     format: text
     interval: 3600
-
   Apple:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list
     format: text
     interval: 3600
-
   Telegram:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
     format: text
     interval: 3600
-
   ProxyMedia:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
     format: text
     interval: 3600
-
   ProxyGFWlist:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
     format: text
     interval: 3600
-
   ChinaDomain:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
     format: text
     interval: 3600
-
   ChinaCompanyIp:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
     format: text
     interval: 3600
-
 rules:
   - RULE-SET,private,🎯 Direct,no-resolve
   - RULE-SET,apps,🎯 Direct
@@ -812,124 +788,124 @@ rules:
   - RULE-SET,ir,🎯 Direct
   - RULE-SET,ircidr,🎯 Direct
   - RULE-SET,irasn,🎯 Direct
-  - RULE-SET,social,PROXY,no-resolve
-  - RULE-SET,nsfw,PROXY,no-resolve
+  - RULE-SET,social,PROXY
+  - RULE-SET,nsfw,PROXY
   - RULE-SET,LocalAreaNetwork,🎯 Direct,no-resolve
   - RULE-SET,BanAD,🛑 Reject
   - RULE-SET,BanProgramAD,🛑 Reject
-  - RULE-SET,GoogleCN,PROXY,no-resolve
-  - RULE-SET,UnBan,PROXY,no-resolve
+  - RULE-SET,GoogleCN,PROXY
+  - RULE-SET,UnBan,PROXY
   - RULE-SET,BanAD,🛑 Reject
   - RULE-SET,BanProgramAD,🛑 Reject
   - RULE-SET,BanEasyList,🛑 Reject
   - RULE-SET,BanEasyListChina,🛑 Reject
   - RULE-SET,BanEasyPrivacy,🛑 Reject
-  - RULE-SET,AI,PROXY,no-resolve
-  - RULE-SET,GoogleFCM,PROXY,no-resolve
+  - RULE-SET,AI,PROXY
+  - RULE-SET,GoogleFCM,PROXY
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
-  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY,no-resolve
-  - RULE-SET,GoogleCNProxyIP,PROXY,no-resolve
-  - RULE-SET,GoogleCN,PROXY,no-resolve
-  - RULE-SET,YouTube,PROXY,no-resolve
-  - RULE-SET,Google,PROXY,no-resolve
-  - RULE-SET,Microsoft,PROXY,no-resolve
+  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
+  - RULE-SET,GoogleCNProxyIP,PROXY
+  - RULE-SET,GoogleCN,PROXY
+  - RULE-SET,YouTube,PROXY
+  - RULE-SET,Google,PROXY
+  - RULE-SET,Microsoft,PROXY
   - RULE-SET,Apple,PROXY
-  - RULE-SET,Telegram,PROXY,no-resolve
-  - RULE-SET,ProxyMedia,PROXY,no-resolve
+  - RULE-SET,Telegram,PROXY
+  - RULE-SET,ProxyMedia,PROXY
   - DOMAIN-SUFFIX,v2rayse.com,PROXY
   - DOMAIN-SUFFIX,cff.pw,PROXY
   - DOMAIN-SUFFIX,vpnse.org,PROXY
   - DOMAIN-SUFFIX,cfmem.com,PROXY
-  - RULE-SET,ProxyGFWlist,PROXY,no-resolve
-  - RULE-SET,ChinaDomain,PROXY,no-resolve
-  - RULE-SET,ChinaCompanyIp,PROXY,no-resolve
+  - RULE-SET,ProxyGFWlist,PROXY
+  - RULE-SET,ChinaDomain,PROXY
+  - RULE-SET,ChinaCompanyIp,PROXY
   - GEOIP,ir,🎯 Direct,no-resolve
-  - DOMAIN,googleadservices.com,PROXY,no-resolve
-  - DST-PORT,80,PROXY,no-resolve
-  - SRC-PORT,443,PROXY,no-resolve
+  - DOMAIN,googleadservices.com,PROXY
+  - DST-PORT,80,PROXY
+  - SRC-PORT,443,PROXY
   - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
   - RULE-SET,category-ads-all,🛑 Reject
-  - DOMAIN-SUFFIX,achat-followers-instagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,acheter-followers-instagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,acheterdesfollowersinstagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,acheterfollowersinstagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,bookstagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,carstagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,cdninstagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,chickstagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,ig.me,PROXY,no-resolve
-  - DOMAIN-SUFFIX,igcdn.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,igsonar.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,igtv.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,imstagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,imtagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instaadder.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instachecker.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instafallow.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instafollower.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagainer.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagda.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagify.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagmania.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagor.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagram-brand.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagram-engineering.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagram-help.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagram-press.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagram-press.net,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramci.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramcn.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramdi.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramhashtags.net,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramhilecim.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramhilesi.org,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramium.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramizlenme.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramkusu.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramlogin.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramm.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramn.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagrampartners.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramphoto.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramq.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramsepeti.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramtakipcisatinal.net,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramtakiphilesi.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramtips.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagramtr.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagran.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagranm.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagrem.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagrm.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagtram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instagy.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instamgram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instangram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instanttelegram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instaplayer.net,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instastyle.tv,PROXY,no-resolve
-  - DOMAIN-SUFFIX,instgram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,intagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,intagrm.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,intgram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,kingstagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,lnstagram-help.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,theinstagramhack.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,oninstagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,online-instagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,onlineinstagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,web-instagram.net,PROXY,no-resolve
-  - DOMAIN-SUFFIX,wwwinstagram.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,icloud.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,googlevideo.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,youtube.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,github.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,github.io,PROXY,no-resolve
-  - DOMAIN-SUFFIX,tiktok.com,PROXY,no-resolve
-  - DOMAIN-SUFFIX,tiktokcdn.com,PROXY,no-resolve
-  - DOMAIN-KEYWORD,openai,PROXY,no-resolve
-  - DOMAIN-KEYWORD,chatgpt,PROXY,no-resolve
+  - DOMAIN-SUFFIX,achat-followers-instagram.com,PROXY
+  - DOMAIN-SUFFIX,acheter-followers-instagram.com,PROXY
+  - DOMAIN-SUFFIX,acheterdesfollowersinstagram.com,PROXY
+  - DOMAIN-SUFFIX,acheterfollowersinstagram.com,PROXY
+  - DOMAIN-SUFFIX,bookstagram.com,PROXY
+  - DOMAIN-SUFFIX,carstagram.com,PROXY
+  - DOMAIN-SUFFIX,cdninstagram.com,PROXY
+  - DOMAIN-SUFFIX,chickstagram.com,PROXY
+  - DOMAIN-SUFFIX,ig.me,PROXY
+  - DOMAIN-SUFFIX,igcdn.com,PROXY
+  - DOMAIN-SUFFIX,igsonar.com,PROXY
+  - DOMAIN-SUFFIX,igtv.com,PROXY
+  - DOMAIN-SUFFIX,imstagram.com,PROXY
+  - DOMAIN-SUFFIX,imtagram.com,PROXY
+  - DOMAIN-SUFFIX,instaadder.com,PROXY
+  - DOMAIN-SUFFIX,instachecker.com,PROXY
+  - DOMAIN-SUFFIX,instafallow.com,PROXY
+  - DOMAIN-SUFFIX,instafollower.com,PROXY
+  - DOMAIN-SUFFIX,instagainer.com,PROXY
+  - DOMAIN-SUFFIX,instagda.com,PROXY
+  - DOMAIN-SUFFIX,instagify.com,PROXY
+  - DOMAIN-SUFFIX,instagmania.com,PROXY
+  - DOMAIN-SUFFIX,instagor.com,PROXY
+  - DOMAIN-SUFFIX,instagram-brand.com,PROXY
+  - DOMAIN-SUFFIX,instagram-engineering.com,PROXY
+  - DOMAIN-SUFFIX,instagram-help.com,PROXY
+  - DOMAIN-SUFFIX,instagram-press.com,PROXY
+  - DOMAIN-SUFFIX,instagram-press.net,PROXY
+  - DOMAIN-SUFFIX,instagram.com,PROXY
+  - DOMAIN-SUFFIX,instagramci.com,PROXY
+  - DOMAIN-SUFFIX,instagramcn.com,PROXY
+  - DOMAIN-SUFFIX,instagramdi.com,PROXY
+  - DOMAIN-SUFFIX,instagramhashtags.net,PROXY
+  - DOMAIN-SUFFIX,instagramhilecim.com,PROXY
+  - DOMAIN-SUFFIX,instagramhilesi.org,PROXY
+  - DOMAIN-SUFFIX,instagramium.com,PROXY
+  - DOMAIN-SUFFIX,instagramizlenme.com,PROXY
+  - DOMAIN-SUFFIX,instagramkusu.com,PROXY
+  - DOMAIN-SUFFIX,instagramlogin.com,PROXY
+  - DOMAIN-SUFFIX,instagramm.com,PROXY
+  - DOMAIN-SUFFIX,instagramn.com,PROXY
+  - DOMAIN-SUFFIX,instagrampartners.com,PROXY
+  - DOMAIN-SUFFIX,instagramphoto.com,PROXY
+  - DOMAIN-SUFFIX,instagramq.com,PROXY
+  - DOMAIN-SUFFIX,instagramsepeti.com,PROXY
+  - DOMAIN-SUFFIX,instagramtakipcisatinal.net,PROXY
+  - DOMAIN-SUFFIX,instagramtakiphilesi.com,PROXY
+  - DOMAIN-SUFFIX,instagramtips.com,PROXY
+  - DOMAIN-SUFFIX,instagramtr.com,PROXY
+  - DOMAIN-SUFFIX,instagran.com,PROXY
+  - DOMAIN-SUFFIX,instagranm.com,PROXY
+  - DOMAIN-SUFFIX,instagrem.com,PROXY
+  - DOMAIN-SUFFIX,instagrm.com,PROXY
+  - DOMAIN-SUFFIX,instagtram.com,PROXY
+  - DOMAIN-SUFFIX,instagy.com,PROXY
+  - DOMAIN-SUFFIX,instamgram.com,PROXY
+  - DOMAIN-SUFFIX,instangram.com,PROXY
+  - DOMAIN-SUFFIX,instanttelegram.com,PROXY
+  - DOMAIN-SUFFIX,instaplayer.net,PROXY
+  - DOMAIN-SUFFIX,instastyle.tv,PROXY
+  - DOMAIN-SUFFIX,instgram.com,PROXY
+  - DOMAIN-SUFFIX,intagram.com,PROXY
+  - DOMAIN-SUFFIX,intagrm.com,PROXY
+  - DOMAIN-SUFFIX,intgram.com,PROXY
+  - DOMAIN-SUFFIX,kingstagram.com,PROXY
+  - DOMAIN-SUFFIX,lnstagram-help.com,PROXY
+  - DOMAIN-SUFFIX,theinstagramhack.com,PROXY
+  - DOMAIN-SUFFIX,oninstagram.com,PROXY
+  - DOMAIN-SUFFIX,online-instagram.com,PROXY
+  - DOMAIN-SUFFIX,onlineinstagram.com,PROXY
+  - DOMAIN-SUFFIX,web-instagram.net,PROXY
+  - DOMAIN-SUFFIX,wwwinstagram.com,PROXY
+  - DOMAIN-SUFFIX,icloud.com,PROXY
+  - DOMAIN-SUFFIX,googlevideo.com,PROXY
+  - DOMAIN-SUFFIX,youtube.com,PROXY
+  - DOMAIN-SUFFIX,github.com,PROXY
+  - DOMAIN-SUFFIX,github.io,PROXY
+  - DOMAIN-SUFFIX,tiktok.com,PROXY
+  - DOMAIN-SUFFIX,tiktokcdn.com,PROXY
+  - DOMAIN-KEYWORD,openai,PROXY
+  - DOMAIN-KEYWORD,chatgpt,PROXY
   - DOMAIN-SUFFIX,ip6-localhost,🎯 Direct,no-resolve
   - DOMAIN-SUFFIX,ip6-loopback,🎯 Direct,no-resolve
   - DOMAIN-SUFFIX,lan,🎯 Direct,no-resolve
