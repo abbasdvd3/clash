@@ -56,7 +56,7 @@ dns:
 proxy-groups:
   - name: Mismatch
     type: url-test
-  #  include-all-providers: true
+    disable-udp: true
     exclude-type: direct|redir-in|DNS
     proxies:
       - Auto
@@ -74,6 +74,7 @@ proxy-groups:
     type: url-test
     interval: 180
     include-all-providers: true
+    disable-udp: true
     hidden: true
     tolerance: 9
     exclude-type: direct|redir-in|DNS
@@ -82,6 +83,7 @@ proxy-groups:
   - name: Autofallback
     type: fallback
     interval: 50
+    disable-udp: true
     hidden: true
     include-all-providers: true
     exclude-type: direct|redir-in|DNS
@@ -91,6 +93,7 @@ proxy-groups:
     type: url-test
     interval: 100
     tolerance: 99
+    disable-udp: true
     hidden: true
     url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
@@ -101,6 +104,7 @@ proxy-groups:
     type: url-test
     interval: 100
     tolerance: 99
+    disable-udp: true
     hidden: true
     url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
@@ -111,6 +115,7 @@ proxy-groups:
     type: url-test
     interval: 100
     tolerance: 99
+    disable-udp: true
     hidden: true
     url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
@@ -121,6 +126,7 @@ proxy-groups:
     type: url-test
     interval: 100
     tolerance: 99
+    disable-udp: true
     hidden: true
     url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
@@ -131,6 +137,7 @@ proxy-groups:
     type: url-test
     interval: 100
     tolerance: 99
+    disable-udp: true
     hidden: true
     url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
@@ -141,6 +148,7 @@ proxy-groups:
     type: url-test
     interval: 100
     tolerance: 99
+    disable-udp: true
     hidden: true
     url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
@@ -151,6 +159,7 @@ proxy-groups:
     type: url-test
     interval: 100
     tolerance: 99
+    disable-udp: true
     hidden: true
     url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
@@ -161,11 +170,11 @@ proxy-groups:
     type: url-test
     interval: 100
     tolerance: 99
+    disable-udp: true
     hidden: true
     url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
-    disable-dns: true
     filter: "China|CN|中国"
 
   - name: N
