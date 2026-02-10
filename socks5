@@ -60,11 +60,10 @@ dns:
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
   nameserver-policy:
-    "geosite:social,nsfw,geolocation-!cn":
+    "geosite:social,nsfw":
       - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
-    "geosite:ir":
-      - system
+ 
 proxy-groups:
   - name: Proxy
     type: select
@@ -75,7 +74,7 @@ proxy-groups:
 
   - name: Auto
     type: url-test
-    url: https://t1.geigei.gq/generate_204
+    url: https://www.google.com/gen_204
     include-all-proxies: true
     disable-udp: true
     interval: 100
@@ -83,7 +82,7 @@ proxy-groups:
 
   - name: fallback
     type: fallback
-    url: https://t1.geigei.gq/generate_204
+    url: https://www.google.com/gen_204
     include-all-proxies: true
     interval: 180
     disable-udp: true
