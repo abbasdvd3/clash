@@ -1,3 +1,126 @@
+port: 7892
+socks-port: 7891
+mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
+allow-lan: true
+mode: Rule
+bind-address: "*"
+ipv6: true
+log-level: info
+find-process-mode: always
+enable-process: true
+unified-delay: false
+keep-alive-interval: 15
+tcp-concurrent: true
+geodata-mode: true
+external-controller: 0.0.0.0:9090
+external-ui: ui
+external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
+global-client-fingerprint: chrome
+
+dns:
+  enable: true
+  prefer-h3: false
+  listen: 0.0.0.0:1053
+  ipv6: true
+  ipv6-timeout: 300
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - 'localhost.ptlogin2.qq.com'
+    - '+.srv.nintendo.net'
+    - '+.stun.playstation.net'
+    - 'xbox.*.microsoft.com'
+    - '+.xboxlive.com'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
+    - '*.lan'
+    - 'speedtest.cros.wr.pvp.net'
+  default-nameserver:
+    - 119.29.29.29
+    - 223.6.6.6
+    - 8.8.8.8
+    - 1.1.1.1
+  direct-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  direct-nameserver-follow-policy: true
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  nameserver:
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+  nameserver-policy:
+    "geosite:social,nsfw":
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+
+proxy-groups:
+  - name: Proxy
+    type: select
+    disable-udp: true
+    proxies:
+      - Auto
+      - fallback
+
+  - name: Auto
+    type: url-test
+    url: https://t1.geigei.gq/generate_204
+    include-all-proxies: true
+    disable-udp: true
+    interval: 100
+    lazy: true
+
+  - name: fallback
+    type: fallback
+    url: https://t1.geigei.gq/generate_204
+    include-all-proxies: true
+    interval: 180
+    disable-udp: true
+    lazy: true
+
+rules:
+  - DOMAIN-SUFFIX,acl4.ssr,DIRECT
+  - DOMAIN-SUFFIX,ip6-localhost,DIRECT
+  - DOMAIN-SUFFIX,ip6-loopback,DIRECT
+  - DOMAIN-SUFFIX,lan,DIRECT
+  - DOMAIN-SUFFIX,local,DIRECT
+  - DOMAIN-SUFFIX,localhost,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,198.18.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
+  - IP-CIDR6,fc00::/7,DIRECT,no-resolve
+  - IP-CIDR6,fe80::/10,DIRECT,no-resolve
+  - IP-CIDR6,fd00::/8,DIRECT,no-resolve
+  - DOMAIN,instant.arubanetworks.com,DIRECT
+  - DOMAIN,setmeup.arubanetworks.com,DIRECT
+  - DOMAIN,router.asus.com,DIRECT
+  - DOMAIN-SUFFIX,hiwifi.com,DIRECT
+  - DOMAIN-SUFFIX,leike.cc,DIRECT
+  - DOMAIN-SUFFIX,miwifi.com,DIRECT
+  - DOMAIN-SUFFIX,my.router,DIRECT
+  - DOMAIN-SUFFIX,p.to,DIRECT
+  - DOMAIN-SUFFIX,peiluyou.com,DIRECT
+  - DOMAIN-SUFFIX,phicomm.me,DIRECT
+  - DOMAIN-SUFFIX,router.ctc,DIRECT
+  - DOMAIN-SUFFIX,routerlogin.com,DIRECT
+  - DOMAIN-SUFFIX,tendawifi.com,DIRECT
+  - DOMAIN-SUFFIX,zte.home,DIRECT
+  - DOMAIN-SUFFIX,tplogin.cn,DIRECT
+  - MATCH,Proxy
 proxies:
   - name: 🇷🇺RU_@WangCai_8_1
     type: vless
