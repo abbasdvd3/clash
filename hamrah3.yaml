@@ -62,27 +62,209 @@ dns:
       - '+.youtube.com'
 proxies:
 proxy-groups:
-  - name: 🕹 select
+  - name: PROXY
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    url: http://cp.cloudflare.com/
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png
     disable-udp: true
-    nodeGroupType: 0
-    exclude-type: "direct|redir-in|DNS"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Ssh|http|socks5
+    interval: 300
+    timeout: 500
+    max-failed-times: 400
+    lazy: true
     proxies:
-      - ✈️
-  - name: ✈️
-    type: fallback
-    url: http://www.gstatic.com/generate_204
+      - 🟢Auto🟢
+      - 🟡fallback🟡
+      - 🔴load-balance🔴
+      - 🟢socks5🟢
+      - 🟢Shadowsocks🟢
+      - 🟢ShadowsocksR🟢
+      - 🟢Vmess🟢
+      - 🟢Vless🟢
+      - 🟢Hysteria|Hysteria2🟢
+      - 🟢Trojan🟢
+      - 🟢AnyTLS🟢
+      
+  - name: 🟢Auto🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    include-all: true
     disable-udp: true
-    interval: 180
-    exclude-type: "direct|redir-in|DNS"
-    include-all-providers: true
-    hidden: true
-  - name: 🎯
+    interval: 1300
+    tolerance: 10
+    timeout: 500
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
+    
+  - name: 🟡fallback🟡
+    type: fallback
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    include-all: true
+    disable-udp: true
+    interval: 100
+    timeout: 500
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    
+  - name: 🔴load-balance🔴
+    type: load-balance
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    include-all: true
+    disable-udp: true
+    interval: 1000
+    timeout: 500
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    
+  - name: 🟢socks5🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|http
+    include-all: true
+    disable-udp: true
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+
+  - name: 🟢http🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
+    disable-udp: true
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png    
+    
+  - name: 🟢Vmess🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
+    disable-udp: true
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    
+  - name: 🟢Vless🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vmess|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
+    disable-udp: true
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png  
+    
+  - name: 🟢Hysteria|Hysteria2🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Vmess|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
+    disable-udp: true
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    
+  - name: 🟢AnyTLS🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|Vmess|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
+    disable-udp: true
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    
+  - name: 🟢Trojan🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Vmess|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
+    disable-udp: true
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    
+  - name: 🟢Shadowsocks🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Vmess|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
+    disable-udp: true
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    
+  - name: 🟢ShadowsocksR🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|Vmess|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
+    disable-udp: true
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    
+  - name: 🎯 Direct
     type: select
+    disable-udp: true
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     proxies:
       - DIRECT
-      - 🕹 select
+      - PROXY
+  - name: 🛑 Reject
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/block.svg
+    proxies:
+      - REJECT
+      - DIRECT
+      - PROXY
 proxy-providers:
   provider1:
     type: http
@@ -187,5 +369,5 @@ rules:
   - RULE-SET,ir,DIRECT
   - RULE-SET,ircidr,DIRECT
   - RULE-SET,irasn,DIRECT
-  - IN-TYPE,inner,🕹 select
-  - MATCH,🕹 select
+  - IN-TYPE,inner,PROXY
+  - MATCH,PROXY
