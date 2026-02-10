@@ -11,7 +11,7 @@ ipv6: true
 log-level: info
 find-process-mode: always
 enable-process: true
-unified-delay: false
+unified-delay: true
 keep-alive-interval: 15
 tcp-concurrent: true
 geodata-mode: true
@@ -19,50 +19,6 @@ external-controller: 0.0.0.0:9090
 external-ui: ui
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 global-client-fingerprint: chrome
-
-dns:
-  enable: true
-  prefer-h3: false
-  listen: 0.0.0.0:1053
-  ipv6: true
-  ipv6-timeout: 300
-  respect-rules: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  use-hosts: true
-  fake-ip-filter:
-    - '*.lan'
-    - '*.local'
-    - 'localhost.ptlogin2.qq.com'
-    - '+.srv.nintendo.net'
-    - '+.stun.playstation.net'
-    - 'xbox.*.microsoft.com'
-    - '+.xboxlive.com'
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*'
-    - '*.lan'
-    - 'speedtest.cros.wr.pvp.net'
-  default-nameserver:
-    - 119.29.29.29
-    - 223.6.6.6
-    - 8.8.8.8
-    - 1.1.1.1
-  direct-nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-  direct-nameserver-follow-policy: true
-  proxy-server-nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-  nameserver:
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
-  nameserver-policy:
-    "geosite:social,nsfw":
-      - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
  
 proxy-groups:
   - name: Proxy
@@ -77,14 +33,14 @@ proxy-groups:
     url: https://www.google.com/gen_204
     include-all-proxies: true
     disable-udp: true
-    interval: 100
+    interval: 500
     lazy: true
 
   - name: fallback
     type: fallback
     url: https://www.google.com/gen_204
     include-all-proxies: true
-    interval: 180
+    interval: 580
     disable-udp: true
     lazy: true
 
