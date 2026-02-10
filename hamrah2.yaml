@@ -25,7 +25,7 @@ proxy-groups:
   - name: 🟢Auto🟢
     type: url-test
     url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
     disable-udp: true
     interval: 1300
@@ -39,7 +39,7 @@ proxy-groups:
   - name: 🟡fallback🟡
     type: fallback
     url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
     disable-udp: true
     interval: 100
@@ -52,7 +52,7 @@ proxy-groups:
   - name: 🔴load-balance🔴
     type: load-balance
     url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
     disable-udp: true
     interval: 1000
@@ -447,3 +447,4 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,PROXY
   - MATCH,PROXY
+
