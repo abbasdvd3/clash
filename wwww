@@ -65,7 +65,8 @@ dns:
 
 proxy-groups:
   - name: Proxy
-    type: select
+    type: url-test
+    url: https://www.google.com/generate_204
     disable-udp: true
     proxies:
       - Auto
@@ -73,7 +74,7 @@ proxy-groups:
 
   - name: Auto
     type: url-test
-    url: https://t1.geigei.gq/generate_204
+    url: https://www.google.com/generate_204
     include-all-proxies: true
     disable-udp: true
     interval: 100
@@ -81,7 +82,7 @@ proxy-groups:
 
   - name: fallback
     type: fallback
-    url: https://t1.geigei.gq/generate_204
+    url: https://www.google.com/generate_204
     include-all-proxies: true
     interval: 180
     disable-udp: true
