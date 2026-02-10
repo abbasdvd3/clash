@@ -1,121 +1,197 @@
 proxy-groups:
-  - name: "PROXY"
-    type: "select"
-    url: "http://cp.cloudflare.com/generate_204"
+  - name: PROXY
+    type: url-test
+    url: http://cp.cloudflare.com/
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png
     disable-udp: true
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Final.png"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Ssh|http|socks5
+    interval: 300
+    timeout: 500
+    max-failed-times: 400
+    lazy: true
     proxies:
-      - "🎈Auto"
-      - "🎈fallback"
-  - name: "🎈Auto"
-    type: "url-test"
-    url: "http://cp.cloudflare.com/generate_204"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    include-all-providers: true
+      - 🟢Auto🟢
+      - 🟡fallback🟡
+      - 🔴load-balance🔴
+      - 🟢socks5🟢
+      - 🟢Shadowsocks🟢
+      - 🟢ShadowsocksR🟢
+      - 🟢Vmess🟢
+      - 🟢Vless🟢
+      - 🟢Hysteria|Hysteria2🟢
+      - 🟢Trojan🟢
+      - 🟢AnyTLS🟢
+      
+  - name: 🟢Auto🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    include-all: true
     disable-udp: true
-    hidden: true
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Global.png"
-  - name: "🎈fallback"
-    type: "fallback"
-    url: "http://cp.cloudflare.com/generate_204"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    include-all-providers: true
+    interval: 1300
+    tolerance: 10
+    timeout: 500
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
+    
+  - name: 🟡fallback🟡
+    type: fallback
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    include-all: true
     disable-udp: true
-    hidden: true
-    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
-  - name: "🇺🇸US🇺🇸"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    type: "url-test"
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/flags/us.svg"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    include-all-providers: true
+    interval: 100
+    timeout: 500
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    
+  - name: 🔴load-balance🔴
+    type: load-balance
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    include-all: true
     disable-udp: true
-    hidden: true
-    url: "http://cp.cloudflare.com/generate_204"
-  - name: "A"
-    type: "url-test"
-    url: "http://cp.cloudflare.com/generate_204"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    include-all-providers: true
+    interval: 1000
+    timeout: 500
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    
+  - name: 🟢socks5🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|http
+    include-all: true
     disable-udp: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    hidden: true
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Google_Search.png"
-  - name: "B"
-    type: "url-test"
-    url: "http://cp.cloudflare.com/generate_204"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+
+  - name: 🟢http🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
     disable-udp: true
-    hidden: true
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Netflix.png"
-  - name: "C"
-    type: "url-test"
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/YouTube.png"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    include-all-providers: true
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png    
+    
+  - name: 🟢Vmess🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
     disable-udp: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    hidden: true
-    url: "http://cp.cloudflare.com/generate_204"
-  - name: "D"
-    type: "url-test"
-    url: "http://cp.cloudflare.com/generate_204"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    
+  - name: 🟢Vless🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vmess|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
     disable-udp: true
-    hidden: true
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Twitter.png"
-  - name: "E"
-    type: "url-test"
-    url: "http://cp.cloudflare.com/generate_204"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    include-all-providers: true
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png  
+    
+  - name: 🟢Hysteria|Hysteria2🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Vmess|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
     disable-udp: true
-    hidden: true
-    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
-  - name: "F"
-    type: "url-test"
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Auto.png"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    include-all-providers: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    
+  - name: 🟢AnyTLS🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|Vmess|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
     disable-udp: true
-    hidden: true
-    url: "http://cp.cloudflare.com/generate_204"
-  - name: "G"
-    type: "url-test"
-    url: "http://cp.cloudflare.com/generate_204"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    
+  - name: 🟢Trojan🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Vmess|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
     disable-udp: true
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    include-all-providers: true
-    hidden: true
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/US.png"
-  - name: "M"
-    type: "url-test"
-    url: "http://cp.cloudflare.com/generate_204"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    
+  - name: 🟢Shadowsocks🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Vmess|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
     disable-udp: true
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    hidden: true
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/HK.png"
-    proxies:
-      - "A"
-      - "B"
-      - "C"
-      - "D"
-      - "E"
-      - "F"
-      - "G"
-  - name: "🎯 Direct"
-    type: "select"
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    
+  - name: 🟢ShadowsocksR🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|Vmess|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    include-all: true
+    disable-udp: true
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    
+  - name: 🎯 Direct
+    type: select
+    disable-udp: true
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     proxies:
       - "DIRECT"
       - "PROXY"
@@ -371,6 +447,7 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,PROXY
   - MATCH,PROXY
+
 
 
 
