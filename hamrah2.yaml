@@ -1,6 +1,6 @@
 proxy-groups:
   - name: PROXY
-    type: select
+    type: url-test
     url: http://cp.cloudflare.com/
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png
     disable-udp: true
@@ -25,7 +25,7 @@ proxy-groups:
   - name: 🟢Auto🟢
     type: url-test
     url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
     disable-udp: true
     interval: 1300
@@ -39,7 +39,7 @@ proxy-groups:
   - name: 🟡fallback🟡
     type: fallback
     url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
     disable-udp: true
     interval: 100
@@ -52,7 +52,7 @@ proxy-groups:
   - name: 🔴load-balance🔴
     type: load-balance
     url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
     disable-udp: true
     interval: 1000
@@ -193,15 +193,15 @@ proxy-groups:
     disable-udp: true
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     proxies:
-      - DIRECT
-      - PROXY
-  - name: 🛑 Reject
-    type: select
+      - "DIRECT"
+      - "PROXY"
+  - name: "🛑 Reject"
+    type: "select"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/block.svg"
     proxies:
-      - REJECT
-      - DIRECT
-      - PROXY
+      - "REJECT"
+      - "DIRECT"
+      - "PROXY"
 port: 7892
 socks-port: 7891
 mixed-port: 7890
@@ -273,7 +273,7 @@ dns:
 proxy-providers:
   provider1:
     type: http
-    url: https://raw.githubusercontent.com/wrfree/free/main/ssr
+    url: https://raw.githubusercontent.com/bingoYB/node_processing/main/dist/all.yaml
     interval: 
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
@@ -313,7 +313,7 @@ proxy-providers:
       additional-prefix: "[provider5]"
   provider6:
     type: http
-    url: https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt
+    url: https://raw.githubusercontent.com/misersun/config003/main/config_all_quest.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
@@ -337,7 +337,7 @@ proxy-providers:
       additional-prefix: "[provider8]"
   provider9:
     type: http
-    url: https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/trojan
+    url: https://anaer.github.io/Sub/proxies.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
@@ -345,7 +345,7 @@ proxy-providers:
       additional-prefix: "[provider9]"
   provider10:
     type: http
-    url: https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-...-configs/main/sub/Croatia/config.txt
+    url: https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/clash.yml
     interval: 86400
     proxies: DIRECT
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
@@ -361,7 +361,7 @@ proxy-providers:
       additional-prefix: "[provider11]"
   provider12:
     type: http
-    url: https://raw.githubusercontent.com/aiboboxx/clashfree/main/clash.yml
+    url: https://raw.githubusercontent.com/YasserDivaR/pr0xy/main/winformClash.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
@@ -385,7 +385,7 @@ proxy-providers:
       additional-prefix: "[provider14]"
   provider15:
     type: http
-    url: https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/Clash.yaml
+    url: https://raw.githubusercontent.com/du5/free/master/file/0909/Clash.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
@@ -409,7 +409,7 @@ proxy-providers:
       additional-prefix: "[provider17]"
   provider18:
     type: http
-    url: https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml
+    url: https://raw.githubusercontent.com/tony0392/clash/main/clash.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
@@ -425,7 +425,7 @@ proxy-providers:
       additional-prefix: "[provider19]"
   provider20:
     type: http
-    url: https://raw.githubusercontent.com/xiaoji235/airport-free/refs/heads/main/clash/v2rayshare.txt
+    url: https://raw.githubusercontent.com/Junely/clash/main/template3.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
@@ -433,7 +433,7 @@ proxy-providers:
       additional-prefix: "[provider20]"
   provider21:
     type: http
-    url: https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config.yaml
+    url: https://raw.githubusercontent.com/kevin-wud/v2ray-node/main/clash.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
@@ -447,30 +447,3 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,PROXY
   - MATCH,PROXY
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
