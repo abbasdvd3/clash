@@ -23,7 +23,7 @@ global-client-fingerprint: chrome
 proxy-groups:
   - name: Proxy
     type: select
-    disable-udp: true
+    include-all-proxies: true
     proxies:
       - Auto
       - fallback
@@ -32,7 +32,6 @@ proxy-groups:
     type: url-test
     url: https://www.google.com/gen_204
     include-all-proxies: true
-    disable-udp: true
     interval: 500
     lazy: true
 
@@ -41,7 +40,6 @@ proxy-groups:
     url: https://www.google.com/gen_204
     include-all-proxies: true
     interval: 580
-    disable-udp: true
     lazy: true
 
 rules:
