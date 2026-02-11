@@ -83,12 +83,11 @@ proxy-groups:
       - 🟢Vless🟢
       - 🟢Hysteria|Hysteria2🟢
       - 🟢Trojan🟢
-      - 🟢AnyTLS🟢
       
   - name: 🟢Auto🟢
     type: url-test
     url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
     disable-udp: true
     interval: 1300
@@ -102,7 +101,7 @@ proxy-groups:
   - name: 🟡fallback🟡
     type: fallback
     url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
     disable-udp: true
     interval: 100
@@ -115,7 +114,7 @@ proxy-groups:
   - name: 🔴load-balance🔴
     type: load-balance
     url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
     disable-udp: true
     interval: 1000
@@ -193,21 +192,7 @@ proxy-groups:
     max-failed-times: 40
     lazy: true
     hidden: false
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
-    
-  - name: 🟢AnyTLS🟢
-    type: url-test
-    url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|Vmess|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
-    include-all: true
-    disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
-    max-failed-times: 40
-    lazy: true
-    hidden: false
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png 
     
   - name: 🟢Trojan🟢
     type: url-test
@@ -330,7 +315,6 @@ proxy-providers:
     type: http
     url: "http://66.42.50.118:12580/clash/proxies"    
     interval: 3600
-    path: h3/provider11.yaml
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
   provider12:
