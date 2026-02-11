@@ -38,7 +38,7 @@ dns:
 proxies:
 proxy-groups:
   - name: PROXY
-    type: url-test
+    type: select
     url: http://cp.cloudflare.com/
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png
     disable-udp: true
@@ -58,7 +58,6 @@ proxy-groups:
       - 🟢Vless🟢
       - 🟢Hysteria|Hysteria2🟢
       - 🟢Trojan🟢
-      - 🟢AnyTLS🟢
       
   - name: 🟢Auto🟢
     type: url-test
@@ -160,20 +159,6 @@ proxy-groups:
     type: url-test
     url: http://cp.cloudflare.com/
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Vmess|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
-    include-all: true
-    disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
-    max-failed-times: 40
-    lazy: true
-    hidden: false
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
-    
-  - name: 🟢AnyTLS🟢
-    type: url-test
-    url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|Vmess|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
     include-all: true
     disable-udp: true
     interval: 500
