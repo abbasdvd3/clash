@@ -62,6 +62,8 @@ dns:
   listen: 0.0.0.0:53
   ipv6: true
   defult-nameserver:
+    - 127.0.0.1:53
+    - 127.0.0.1:5591
     - system
     - tls://223.5.5.5:853
     - tls://223.6.6.6:853
@@ -69,14 +71,15 @@ dns:
     - 185.236.104.104
     - tls://1.1.1.1
     - 114.114.114.114
-    - tls://223.5.5.5
-    - tls://223.6.6.6
-    - 8.8.8.8
   direct-nameserver:
+    - 127.0.0.1:53
+    - 127.0.0.1:5591
     - 8.8.8.8
     - tls://1.1.1.1
     - system
   nameserver:
+    - 127.0.0.1:53
+    - 127.0.0.1:5591
     - https://doh.pub/dns-query
     - tls://223.5.5.5:853
     - tls://223.6.6.6:853
@@ -242,13 +245,15 @@ proxy-groups:
   - name: PROXY
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Mieru|Sudoku||Ssh|Vmess|Vless|Trojan
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Ssh|http|socks5
     include-all: true
     disable-udp: true
     proxies:
       - 🟢Auto🟢
       - 🟡fallback🟡
       - 🔴load-balance🔴
+      - 🟢http🟢
+      
   - name: 🟢Auto🟢
     type: url-test
     url: http://cp.cloudflare.com/generate_204
@@ -292,7 +297,19 @@ proxy-groups:
     lazy: false
     hidden: false
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
-    
+  - name: 🟢http🟢
+    type: url-test
+    url: http://cp.cloudflare.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    include-all: true
+    disable-udp: true
+    interval: 500
+    tolerance: 500
+    timeout: 5000
+    max-failed-times: 40
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png 
   - name: 🎯 Direct
     type: select
     disable-udp: true
@@ -1029,4 +1046,5 @@ rules :
   - RULE-SET,category-ai-!cn,🔴load-balance🔴
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
