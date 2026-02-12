@@ -33,6 +33,7 @@ dns:
   listen: 0.0.0.0:1053
   ipv6: true
   default-nameserver:
+    - 127.0.0.1:53
     - 223.5.5.5
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -44,6 +45,7 @@ dns:
   nameserver-policy:
     '+.arpa': '10.0.0.1'
   nameserver:
+    - 127.0.0.1:53
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
   fallback:
@@ -254,73 +256,85 @@ proxy-groups:
 proxy-providers:
   provider1:
     type: http
-    url: "https://www.xrayvip.com/free.txt"    
+    url: "https://www.xrayvip.com/free.txt"
+    path: ./hamrah3/proxies/A1.yaml
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
   provider2:
     type: http
     url: "https://muma16fx.netlify.app/"
+    path: ./hamrah3/proxies/A2.yaml
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
   provider3:
     type: http
-    url: "https://9527521.xyz/pubconfig/YCw0l6R3PoDbGFq5"    
+    url: "https://9527521.xyz/pubconfig/YCw0l6R3PoDbGFq5"   
+    path: ./hamrah3/proxies/A3.yaml
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
   provider4:
     type: http
     url: "https://cdn.jsdelivr.net/gh/vxiaov/free_proxies@main/clash/clash.provider.yaml"
+    path: ./hamrah3/proxies/A4.yaml
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
   provider5:
     type: http
-    url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies"    
+    url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies"
+    path: ./hamrah3/proxies/A5.yaml
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
   provider6:
     type: http
     url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml"
+    path: ./hamrah3/proxies/A6.yaml
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
   provider7:
     type: http
-    url: "https://proxypool.link/clash/proxies"    
+    url: "https://proxypool.link/clash/proxies"
+    path: ./hamrah3/proxies/A7.yaml
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
   provider8:
     type: http
     url: "https://raw.githubusercontent.com/WilliamStar007/ClashX-V2Ray-TopFreeProxy/main/combine/clash.config.yaml"
+    path: ./hamrah3/proxies/A8.yaml
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
   provider9:
     type: http
-    url: "https://anaer.github.io/Sub/proxies.yaml"    
+    url: "https://anaer.github.io/Sub/proxies.yaml"
+    path: ./hamrah3/proxies/A9.yaml
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
   provider10:
     type: http
     url: "https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml"
+    path: ./hamrah3/proxies/A10.yaml
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
   provider11:
     type: http
-    url: "http://66.42.50.118:12580/clash/proxies"    
+    url: "http://66.42.50.118:12580/clash/proxies"
+    path: ./hamrah3/proxies/A11.yaml
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
   provider12:
     type: http
     url: "https://weoknow.com/data/dayupdate/1/z1.txt"
+    path: ./hamrah3/proxies/A12.yaml
     interval: 3600
     proxies: DIRECT
     health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
