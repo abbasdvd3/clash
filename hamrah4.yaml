@@ -5,9 +5,10 @@ dns:
   use-hosts: true
   use-system-hosts: true
   respect-rules: true
-  listen: 0.0.0.0:1053
+  listen: 0.0.0.0:53
   ipv6: true
   default-nameserver:
+    - 127.0.0.1:53
     - 223.5.5.5
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -19,9 +20,11 @@ dns:
   nameserver-policy:
     '+.arpa': '10.0.0.1'
   nameserver:
+    - 127.0.0.1:53
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
   fallback:
+    - 127.0.0.1:53
     - tls://8.8.4.4
     - tls://1.1.1.1
   proxy-server-nameserver:
@@ -51,6 +54,7 @@ proxy-groups:
       - 🟢Auto🟢
       - 🟡fallback🟡
       - 🔴load-balance🔴
+      - 🟢http🟢
       - 🟢socks5🟢
       - 🟢Shadowsocks🟢
       - 🟢ShadowsocksR🟢
