@@ -1,3 +1,124 @@
+proxy-groups:
+  - name: "PROXY"
+    type: url-test
+    use:
+    proxies:
+      - "URL-TEST"
+      - "FALLBACK"
+
+      
+  - name: "FALLBACK"
+    type: fallback
+    exclude-filter: 'ctb|Expire'
+    include-all-proxies: true
+    url: http://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
+    proxies:
+
+      
+  - name: "URL-TEST"
+    type: url-test
+    exclude-filter: 'ctb|Expire'
+    include-all-proxies: true
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 90
+    proxies:
+
+rule-providers:
+  ir:
+    type: http
+    behavior: domain
+    format: yaml
+    path: ruleset/ir.yaml
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml
+    interval: 86400
+  ircidr:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ruleset/ircidr.yaml
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml
+    interval: 86400
+  private:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ruleset/private.yaml
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml
+    interval: 86400
+  irasn:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ruleset/irasn.yaml
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml
+    interval: 86400
+  AWA:
+    type: http
+    behavior: domain
+    format: yaml
+    path: ruleset/AWA.yaml
+    url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
+    interval: 86400
+  nsfw1:
+    type: http
+    behavior: domain
+    path: ruleset/nsfw1.yaml
+    url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml
+    interval: 86400
+  geolocation-!cn:
+    type: http
+    behavior: domain
+    format: text
+    path: ruleset/geolocation-!cn.list
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.list
+    interval: 3600    
+    
+    
+rules:
+  - RULE-SET,geolocation-!cn,PROXY
+  - DST-PORT,80/8080/443/8443,PROXY
+  - RULE-SET,AWA,REJECT
+  - RULE-SET,nsfw1,PROXY
+  - RULE-SET,ir,DIRECT,no-resolve
+  - RULE-SET,ircidr,DIRECT
+  - RULE-SET,irasn,DIRECT
+  - RULE-SET,private,PROXY,no-resolve
+  - DOMAIN-SUFFIX,googlesyndication.com,PROXY
+  - AND,((GEOSITE,category-ads-all),(NOT,((DOMAIN-SUFFIX,googlesyndication.com)))),REJECT
+  - GEOSITE,category-ads-all,REJECT
+  - AND,((NETWORK,TCP),(DST-PORT,5228-5230)),PROXY
+  - AND,((NETWORK,TCP),(DST-PORT,5228-5230),(OR,((DOMAIN-KEYWORD,google)))),PROXY
+  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
+  - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
+  - IP-CIDR,127.0.0.1/32,REJECT,no-resolve
+  - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+  - IP-CIDR,28.0.0.1/8,REJECT,no-resolve
+  - IP-CIDR6,::1/128,REJECT,no-resolve
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT
+  - PROCESS-NAME,com.samsung.android.location,REJECT
+  - PROCESS-NAME,com.android.localtransport,REJECT
+  - PROCESS-NAME,com.google.android.gms.location.history,REJECT
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT
+  - PROCESS-NAME,com.android.location.fused,REJECT
+  - PROCESS-NAME,com.samsung.android.messaging,REJECT
+  - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
+  - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
+  - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
+#  - PROCESS-NAME,com.android.settings,REJECT
+  - PROCESS-NAME,com.sec.imsservice,REJECT
+  - PROCESS-NAME,com.samsung.android.messaging,REJECT
+  - PROCESS-NAME,com.samsung.android.app.telephonyui,REJECT
+  - PROCESS-NAME,com.samsung.android.smartcallprovider,REJECT
+  - PROCESS-NAME,com.samsung.android.intellivoiceservice,REJECT
+  - GEOIP,telegram,PROXY
+  - GEOSITE,telegram,PROXY
+  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
+  - IN-TYPE,inner,PROXY
+ # - DST-PORT,53,DNS_Hijack
+  - MATCH,PROXY
 proxies:
   - {"name":"🇨🇳_CN_1","type":"ssr","server":"120.232.153.46","port":50120,"password":"mPQ5C9","cipher":"dummy","obfs":"tls1.2_ticket_auth","protocol":"auth_chain_a","obfs-param":"TG.WangCai2","protocol-param":"39890658:YsNtAY"}
   - {"name":"🇨🇳_CN_2","type":"ssr","server":"120.232.153.46","port":50122,"password":"mPQ5C9","cipher":"dummy","obfs":"tls1.2_ticket_auth","protocol":"auth_chain_a","obfs-param":"TG.WangCai2","protocol-param":"39890658:YsNtAY"}
