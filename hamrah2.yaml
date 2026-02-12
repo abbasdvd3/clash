@@ -224,7 +224,7 @@ tun:
   
 dns:
   enable: true
-  listen: 0.0.0.0:1053
+  listen: 0.0.0.0:53
   ipv6: true
   prefer-h3: false
   respect-rules: true
@@ -246,9 +246,11 @@ dns:
     - 'pool.ntp.org'
     - 'localhost.work.weixin.qq.com'
   default-nameserver:
+    - 127.0.0.1:53
     - 1.1.1.1
     - 8.8.8.8
   nameserver:
+    - 127.0.0.1:53
     - https://1.1.1.1/dns-query
     - https://dns.google/dns-query
   proxy-server-nameserver:
@@ -260,171 +262,213 @@ proxy-providers:
   provider1:
     type: http
     url: https://raw.githubusercontent.com/bingoYB/node_processing/main/dist/all.yaml
+    path: ./hamrah2/proxies/A1.yaml
     interval: 
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider1]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider2:
     type: http
     url: https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml
+    path: ./hamrah2/proxies/A2.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider2]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider3:
     type: http
     url: https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-2.yaml
+    path: ./hamrah2/proxies/A3.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-       additional-prefix: "[provider3]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider4:
     type: http
     url: https://raw.githubusercontent.com/Misaka-blog/chromego_merge/main/sub/merged_proxies_new.yaml
+    path: ./hamrah2/proxies/A4.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider4]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider5:
     type: http
     url: https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml
+    path: ./hamrah2/proxies/A5.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider5]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider6:
     type: http
     url: https://raw.githubusercontent.com/misersun/config003/main/config_all_quest.yaml
+    path: ./hamrah2/proxies/A6.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider6]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider7:
     type: http
     url: https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml
+    path: ./hamrah2/proxies/A7.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider7]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider8:
     type: http
     url: https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/shadowsocks
+    path: ./hamrah2/proxies/A8.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider8]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider9:
     type: http
     url: https://anaer.github.io/Sub/proxies.yaml
+    path: ./hamrah2/proxies/A9.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider9]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider10:
     type: http
     url: https://raw.githubusercontent.com/ermaozi01/free_clash_vpn/main/subscribe/clash.yml
+    path: ./hamrah2/proxies/A10.yaml
     interval: 86400
     proxies: DIRECT
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     override:
-      additional-prefix: "[provider10]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider11:
     type: http
     url: https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml
+    path: ./hamrah2/proxies/A11.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider11]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider12:
     type: http
     url: https://raw.githubusercontent.com/YasserDivaR/pr0xy/main/winformClash.yaml
+    path: ./hamrah2/proxies/A12.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider12]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider13:
     type: http
     url: https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml
+    path: ./hamrah2/proxies/A13.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider13]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider14:
     type: http
     url: https://raw.githubusercontent.com/ts-sf/fly/main/clash
+    path: ./hamrah2/proxies/A14.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider14]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider15:
     type: http
     url: https://raw.githubusercontent.com/du5/free/master/file/0909/Clash.yaml
+    path: ./hamrah2/proxies/A15.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider15]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider16:
     type: http
     url: https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml
+    path: ./hamrah2/proxies/A16.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider16]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider17:
     type: http
     url: https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml
+    path: ./hamrah2/proxies/A17.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider17]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider18:
     type: http
     url: https://raw.githubusercontent.com/tony0392/clash/main/clash.yaml
+    path: ./hamrah2/proxies/A18.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider18]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider19:
     type: http
     url: https://raw.githubusercontent.com/xiaoji235/airport-free/refs/heads/main/clash/clashnodecc.txt
+    path: ./hamrah2/proxies/A19.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider19]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider20:
     type: http
     url: https://raw.githubusercontent.com/Junely/clash/main/template3.yaml
+    path: ./hamrah2/proxies/A20.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider20]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider21:
     type: http
     url: https://raw.githubusercontent.com/kevin-wud/v2ray-node/main/clash.yaml
+    path: ./hamrah2/proxies/A21.yaml
     interval: 86400
     health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
     proxies: DIRECT
     override:
-      additional-prefix: "[provider21]"
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
 rules:
   - IP-CIDR,127.0.0.1/32,DIRECT,no-resolve
   - IP-CIDR,198.18.0.1/16,DIRECT,no-resolve
@@ -433,6 +477,7 @@ rules:
   - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
   - IN-TYPE,inner,PROXY
   - MATCH,PROXY
+
 
 
 
