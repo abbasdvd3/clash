@@ -20,7 +20,7 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     disable-udp: true
-    nclude-all-proxies: true
+    include-all-proxies: true
     interval: 300
     tolerance: 50
     
