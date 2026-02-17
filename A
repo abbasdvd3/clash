@@ -28,6 +28,27 @@ global-ua: chrome
 profile:
   store-selected: true
   store-fake-ip: true
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: false
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - +.v2ex.com
+  skip-domain:
+    - Mijia Cloud
+  skip-src-address:
+    - 192.168.0.3/32
+  skip-dst-address:
+    - 192.168.0.3/32
 tun:
   enable: true
   stack: system
@@ -55,6 +76,52 @@ tun:
   - 192.168.0.0/16
   inet6-route-exclude-address:
   - fc00::/7
+dns:
+  enable: true
+  cache-algorithm: arc
+  prefer-h3: false
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: false
+  listen: 0.0.0.0:1053
+  ipv6: false
+  default-nameserver:
+    - 8.8.8.8
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  # fake-ip-range6: fdfe:dcba:9876::1/64
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - '*.lan'
+  nameserver:
+    - https://doh.pub/dns-query
+    - quic://dns.adguard.com:784
+  fallback:
+    - https://8.8.8.8/dns-query
+    - quic://dns.adguard.com:784
+  direct-nameserver:
+    - dhcp://system
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+  proxy-server-nameserver-policy:
+    'www.createporn.com': '114.114.114.114'
+    'https://api.openai.com/v1': '8.8.8.8'
+    'https://api.anthropic.com/': '8.8.8.8'
+  nameserver-policy:
+    "geosite:ir,private":
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    geosite:
+      - social
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
 proxy-groups:
   - name: PROXY
     type: select
@@ -82,13 +149,13 @@ proxy-groups:
   - name: 🟢Auto🟢
     type: url-test
     url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
     include-all: true
     disable-udp: true
     interval: 1300
     tolerance: 10
     timeout: 500
-    max-failed-times: 40
+    max-failed-times: 4
     lazy: true
     hidden: false
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
@@ -101,7 +168,7 @@ proxy-groups:
     disable-udp: true
     interval: 100
     timeout: 500
-    max-failed-times: 40
+    max-failed-times: 4
     lazy: true
     hidden: false
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
@@ -114,7 +181,7 @@ proxy-groups:
     disable-udp: true
     interval: 1000
     timeout: 500
-    max-failed-times: 40
+    max-failed-times: 4
     lazy: true
     hidden: false
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
@@ -128,7 +195,7 @@ proxy-groups:
     interval: 500
     tolerance: 500
     timeout: 5000
-    max-failed-times: 40
+    max-failed-times: 4
     lazy: true
   - name: 🟢http🟢
     type: url-test
@@ -139,7 +206,7 @@ proxy-groups:
     interval: 500
     tolerance: 500
     timeout: 5000
-    max-failed-times: 40
+    max-failed-times: 4
     lazy: true
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png    
@@ -152,8 +219,8 @@ proxy-groups:
     disable-udp: true
     interval: 500
     tolerance: 500
-    timeout: 5000
-    max-failed-times: 40
+    timeout: 500
+    max-failed-times: 4
     lazy: true
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
@@ -167,7 +234,7 @@ proxy-groups:
     interval: 500
     tolerance: 500
     timeout: 5000
-    max-failed-times: 40
+    max-failed-times: 4
     lazy: true
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png  
@@ -181,7 +248,7 @@ proxy-groups:
     interval: 500
     tolerance: 500
     timeout: 5000
-    max-failed-times: 40
+    max-failed-times: 4
     lazy: true
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png  
@@ -195,7 +262,7 @@ proxy-groups:
     interval: 500
     tolerance: 500
     timeout: 5000
-    max-failed-times: 40
+    max-failed-times: 4
     lazy: true
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
@@ -223,11 +290,64 @@ proxy-groups:
     interval: 500
     tolerance: 500
     timeout: 5000
-    max-failed-times: 40
+    max-failed-times: 4
     lazy: true
     hidden: false
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png   
+
+  - name: 🤖 AI
+    type: select
+    proxies:
+      - United
+      - Japan
+      - Singapore
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bot.png
+
+  - name: Hong Kong
+    type: url-test
+    include-all: true
+    filter: "hk|hongkong|hong kong"
+    proxies:
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
     
+  - name: Taiwan
+    type: url-test
+    include-all: true
+    filter: "Taiwan|tw"
+    proxies:
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
+    
+  - name: Japan
+    type: url-test
+    include-all: true
+    filter: "Japan|jp"
+    proxies:
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+
+  - name: Singapore
+    type: url-test
+    include-alls: true
+    filter: "sg|Singapore"
+    proxies:
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+
+  - name: United
+    type: url-test
+    include-all: true
+    filter: "United|usa|America|United States|US|美国"
+    proxies:
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+
   - name: 🎯 Direct
     type: select
     disable-udp: true
@@ -243,6 +363,8 @@ proxy-groups:
       - "DIRECT"
       - "PROXY"
 rules:
+  - DOMAIN-SUFFIX,openai.com,🤖 AI
+  - DOMAIN-SUFFIX,anthropic.com,🤖 AI
   - RULE-SET,private,🎯 Direct,no-resolve
   - RULE-SET,apps,🎯 Direct
   - RULE-SET,ads,🛑 Reject
@@ -264,7 +386,7 @@ rules:
   - RULE-SET,BanEasyList,🛑 Reject
   - RULE-SET,BanEasyListChina,🛑 Reject
   - RULE-SET,BanEasyPrivacy,🛑 Reject
-  - RULE-SET,AI,PROXY
+  - RULE-SET,AI,🤖 AI
   - RULE-SET,GoogleFCM,PROXY
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
   - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
@@ -285,8 +407,6 @@ rules:
   - RULE-SET,ChinaCompanyIp,PROXY
   - GEOIP,ir,🎯 Direct,no-resolve
   - DOMAIN,googleadservices.com,PROXY
-  - DST-PORT,80,PROXY
-  - SRC-PORT,443,PROXY
   - AND,((DST-PORT,443),(NETWORK,udp)),🛑 Reject
   - RULE-SET,category-ads-all,🛑 Reject
   - DOMAIN-SUFFIX,achat-followers-instagram.com,PROXY
@@ -368,8 +488,8 @@ rules:
   - DOMAIN-SUFFIX,github.io,PROXY
   - DOMAIN-SUFFIX,tiktok.com,PROXY
   - DOMAIN-SUFFIX,tiktokcdn.com,PROXY
-  - DOMAIN-KEYWORD,openai,PROXY
-  - DOMAIN-KEYWORD,chatgpt,PROXY
+  - DOMAIN-KEYWORD,openai,🤖 AI
+  - DOMAIN-KEYWORD,chatgpt,🤖 AI
   - DOMAIN-SUFFIX,ip6-localhost,🎯 Direct,no-resolve
   - DOMAIN-SUFFIX,ip6-loopback,🎯 Direct,no-resolve
   - DOMAIN-SUFFIX,lan,🎯 Direct,no-resolve
