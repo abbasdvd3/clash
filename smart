@@ -9,7 +9,7 @@ FilterTW: &FilterTW '^(?=.*(?i)(台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH))(?!.*(
 FilterEU: &FilterEU '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*(排除1|排除2|5x)).*$'
 FilterOT: &FilterOT '^(?!.*(DIRECT|Direct|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))'
 FilterAL: &FilterAL '^(?!.*(DIRECT|Direct|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'
-SelectAL: &SelectAL {type: select, proxies: [Automatically, Hong_Kong, Taiwan, Japan, Singapore, Korea, United_States, European, Clubhouse]}
+SelectAL: &SelectAL {type: url-test, proxies: [Automatically, Hong_Kong, Taiwan, Japan, Singapore, Korea, United_States, European, Clubhouse]}
 OneSmart: &OneSmart {type: select, proxies: [mihomo, Hong_Kong, Taiwan, Japan, Singapore, Korea, United_States, European, Clubhouse]}
 SelectDC: &SelectDC {type: select, proxies: [Direct, mihomo, Hong_Kong, Taiwan, Japan, Singapore, Korea, United_States, European, Clubhouse]}
 proxy-providers:
@@ -245,7 +245,7 @@ proxy-groups:
   - {name: Global,  <<: *OneSmart, disable-udp: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png}
   - {name: IRAN,  <<: *SelectDC, disable-udp: true, icon: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/rule_provider/socks5.svg}
   - {name: Final,  <<: *OneSmart, disable-udp: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
-  - {name: Clubhouse,  type: select, include-all: true, filter: *FilterAL, disable-udp: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
+  - {name: Clubhouse,  type: fallback, include-all: true, filter: *FilterAL, disable-udp: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png}
   - {name: Direct,  type: select, proxies: [DIRECT], hidden: false, disable-udp: true, icon: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/rule_provider/socks5.svg}
   - {name: Automatically,  type: url-test, proxies: [Hong_Kong, Taiwan, Japan, Singapore, Korea, United_States, European], disable-udp: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png}
   - {name: Hong_Kong,  <<: *BaseSmart, include-all: true, policy-priority: 'excellent:2;Preparation:0.5', disable-udp: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png, exclude-type: "direct|redir-in|trojan|DNS"}
