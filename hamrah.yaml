@@ -158,9 +158,8 @@ dns:
 proxy-groups:
   - name: PROXY
     type: url-test
+    url: http://cp.cloudflare.com
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Ssh|http|socks5
-
     disable-udp: true
     proxies:
       - 🟢Auto🟢
@@ -170,7 +169,7 @@ proxy-groups:
       
   - name: 🟢Auto🟢
     type: url-test
-    url: http://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
     include-all: true
@@ -185,7 +184,7 @@ proxy-groups:
     
   - name: 🟡fallback🟡
     type: fallback
-    url: http://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
     include-all: true
@@ -199,7 +198,7 @@ proxy-groups:
     
   - name: 🔴load-balance🔴
     type: load-balance
-    url: http://cp.cloudflare.com/generate_204
+    url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh #|Vmess|Vless|Trojan|Hysteria|Hysteria2
     exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
     filter: "America|United States|US|美国"
@@ -211,9 +210,10 @@ proxy-groups:
     lazy: false
     hidden: false
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    
   - name: 🟢http🟢
     type: url-test
-    url: http://cp.cloudflare.com/
+    url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
     disable-udp: true
@@ -234,12 +234,12 @@ proxy-groups:
 proxy-providers:
   A1:
     type: http
-    url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
+    url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
     path: ./proxies/A1.yaml
     interval: 300
     health-check:
       enable: true
-      url: http://cp.cloudflare.com/generate_204
+      url: http://cp.cloudflare.com
       interval: 300
       timeout: 50
       lazy: true
@@ -260,7 +260,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: http://cp.cloudflare.com/generate_204
+      url: http://cp.cloudflare.com
       interval: 300
       timeout: 50
       lazy: true
@@ -276,12 +276,12 @@ proxy-providers:
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   A3:
     type: http
-    url: "https://proxypool.link/clash/proxies"
+    url: "https://anaer.github.io/Sub/proxies.yaml"
     path: ./proxies/A3.yaml
     interval: 300
     health-check:
       enable: true
-      url: http://cp.cloudflare.com/generate_204
+      url: http://cp.cloudflare.com
       interval: 300
       timeout: 50
       lazy: true
@@ -297,12 +297,12 @@ proxy-providers:
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}    
   A4:
     type: http     
-    url: "https://shadowmere.xyz/api/b64sub/" # https://sos.cmliussss.net/auto  # https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/refs/heads/Jsnzkpg/Jsnzkpg
+    url: "https://www.xrayvip.com/free.txt" # https://sos.cmliussss.net/auto  # https://shadowmere.xyz/api/b64sub/
     path: ./proxies/A4.yaml
     interval: 300
     health-check:
       enable: true
-      url: http://cp.cloudflare.com/generate_204
+      url: http://cp.cloudflare.com
       interval: 300
       timeout: 50
       lazy: true
@@ -318,12 +318,12 @@ proxy-providers:
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   A5:
     type: http
-    url: "https://proxypool1999.banyunxiaoxi.icu/clash/proxies"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/socks5"
     path: ./proxies/A5.yaml
     interval: 300
     health-check:
       enable: true
-      url: http://cp.cloudflare.com/generate_204
+      url: http://cp.cloudflare.com
       interval: 300
       timeout: 50
       lazy: true
@@ -337,174 +337,7 @@ proxy-providers:
       override:
       additional-prefix: smux
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
-  A6:
-    type: http
-    url: "http://66.42.50.118:12580/clash/proxies" #https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml https://yalda.nscl.ir/
-    path: ./proxies/A6.yaml
-    interval: 300
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
-      timeout: 50
-      lazy: true
-      expected-status: 204
-      header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
-      override:
-      additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
-  A7:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/socks5" # https://config.v2cross.com/clashprofile/config"
-    path: ./proxies/A7.yaml
-    interval: 300
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
-      timeout: 50
-      lazy: true
-      expected-status: 204
-      header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
-      override:
-      additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
-  A8:
-    type: http
-    url: "https://pxypool.131433.xyz/clash/proxies" # https://raw.githubusercontent.com/mheidari98/.proxy/main/all # 
-    path: ./proxies/A8.yaml
-    interval: 300
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
-      timeout: 50
-      lazy: true
-      expected-status: 204
-      header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
-      override:
-      additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
-  A9:
-    type: http
-    url: "https://raw.githubusercontent.com/PangTouY00/Auto_proxy/main/Long_term_subscription_num" #
-    path: ./proxies/A9.yaml
-    interval: 300
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
-      timeout: 5000
-      lazy: true
-      expected-status: 204
-      header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
-      override:
-      additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
-  A10:
-    type: http
-    url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
-    path: ./proxies/A10.yaml
-    interval: 300
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
-      timeout: 5000
-      lazy: true
-      expected-status: 204
-      header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
-      override:
-      additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
-  A11:
-    type: http
-    url: "https://anaer.github.io/Sub/proxies.yaml"
-    path: ./proxies/A11.yaml
-    interval: 300
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
-      timeout: 50
-      lazy: true
-      expected-status: 204
-      header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
-      override:
-      additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
-  A12:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/wwww"
-    path: ./proxies/A12.yaml
-    interval: 300
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
-      timeout: 50
-      lazy: true
-      expected-status: 204
-      header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
-      override:
-      additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
-  A13:
-    type: http
-    url: "https://raw.githubusercontent.com/ts-sf/fly/main/clash"
-    path: ./proxies/A13.yaml
-    interval: 300
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
-      timeout: 50
-      lazy: true
-      expected-status: 204
-      header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
-      override:
-      additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+
 rule-providers:
   reject1:
     type: http
@@ -960,6 +793,7 @@ rules :
   - RULE-SET,category-ai-!cn,🔴load-balance🔴
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
 
 
