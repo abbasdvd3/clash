@@ -63,7 +63,6 @@ dns:
   ipv6: true
   defult-nameserver:
     - 127.0.0.1:5591
-    - system
     - tls://223.5.5.5:853
     - tls://223.6.6.6:853
     - tls://8.8.8.8
@@ -171,44 +170,40 @@ proxy-groups:
     type: url-test
     url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
-    exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
     include-all: true
     disable-udp: true
     interval: 300
     tolerance: 10
-    timeout: 500
+    timeout: 5
     max-failed-times: 4
-    lazy: false
-    hidden: false
+    lazy: true
+    hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     
   - name: 🟡fallback🟡
     type: fallback
     url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
-    exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
     include-all: true
     disable-udp: true
     interval: 100
-    timeout: 500
+    timeout: 5
     max-failed-times: 4
-    lazy: false
-    hidden: false
+    lazy: true
+    hidden: true
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🔴load-balance🔴
     type: load-balance
     url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan #|Vmess|Vless|Trojan|Hysteria|Hysteria2
-    exclude-filter: 美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅
-    filter: "America|United States|US|美国"
     include-all: true
     disable-udp: true
     interval: 100
-    timeout: 500
+    timeout: 5
     max-failed-times: 4
-    lazy: false
-    hidden: false
+    lazy: true
+    hidden: true
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🟢http🟢
@@ -216,13 +211,12 @@ proxy-groups:
     url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     include-all: true
-    disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
+    interval: 50
+    tolerance: 50
+    timeout: 5
     max-failed-times: 40
     lazy: true
-    hidden: false
+    hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png 
   - name: 🎯 Direct
     type: select
@@ -793,6 +787,7 @@ rules :
   - RULE-SET,category-ai-!cn,🔴load-balance🔴
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
 
 
