@@ -157,7 +157,6 @@ dns:
 proxy-groups:
   - name: PROXY
     type: url-test
-    url: http://cp.cloudflare.com
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
     disable-udp: true
     proxies:
@@ -168,7 +167,6 @@ proxy-groups:
       
   - name: 🟢Auto🟢
     type: url-test
-    url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     include-all: true
     disable-udp: true
@@ -182,7 +180,7 @@ proxy-groups:
     
   - name: 🟡fallback🟡
     type: fallback
-    url: http://cp.cloudflare.com
+#    url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     include-all: true
     disable-udp: true
@@ -195,7 +193,7 @@ proxy-groups:
     
   - name: 🔴load-balance🔴
     type: load-balance
-    url: http://cp.cloudflare.com
+#    url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan #|Vmess|Vless|Trojan|Hysteria|Hysteria2
     include-all: true
     disable-udp: true
@@ -208,7 +206,7 @@ proxy-groups:
     
   - name: 🟢http🟢
     type: url-test
-    url: http://cp.cloudflare.com
+#    url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     include-all: true
     interval: 50
@@ -787,6 +785,7 @@ rules :
   - RULE-SET,category-ai-!cn,🔴load-balance🔴
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
 
 
