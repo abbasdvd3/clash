@@ -53,7 +53,7 @@ experimental:
   quic-go-disable-gso: true
   quic-go-disable-ecn: true
 dns:
-  enable: false
+  enable: true
   cache-algorithm: arc
   prefer-h3: true
   use-hosts: true
@@ -158,7 +158,7 @@ proxy-groups:
   - name: PROXY
     type: url-test
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
-    disable-udp: true
+   # disable-udp: true
     proxies:
       - 🟢Auto🟢
       - 🟡fallback🟡
@@ -169,10 +169,10 @@ proxy-groups:
     type: url-test
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     include-all: true
-    disable-udp: true
-    interval: 300
-    tolerance: 10
-    timeout: 5
+  #  disable-udp: true
+  #  interval: 300
+  #  tolerance: 10
+    timeout: 50000
     max-failed-times: 4
     lazy: true
     hidden: true
@@ -183,9 +183,9 @@ proxy-groups:
 #    url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     include-all: true
-    disable-udp: true
-    interval: 100
-    timeout: 5
+  #  disable-udp: true
+#    interval: 100
+    timeout: 50000
     max-failed-times: 4
     lazy: true
     hidden: true
@@ -196,9 +196,9 @@ proxy-groups:
 #    url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan #|Vmess|Vless|Trojan|Hysteria|Hysteria2
     include-all: true
-    disable-udp: true
-    interval: 100
-    timeout: 5
+ #   disable-udp: true
+#    interval: 100
+    timeout: 50000
     max-failed-times: 4
     lazy: true
     hidden: true
@@ -209,10 +209,10 @@ proxy-groups:
 #    url: http://cp.cloudflare.com
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     include-all: true
-    interval: 50
-    tolerance: 50
-    timeout: 5
-    max-failed-times: 40
+ #   interval: 50
+ #   tolerance: 50
+    timeout: 50000
+    max-failed-times: 4
     lazy: true
     hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png 
@@ -231,7 +231,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: http://cp.cloudflare.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       timeout: 50
       lazy: true
@@ -252,7 +252,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: http://cp.cloudflare.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       timeout: 50
       lazy: true
@@ -273,7 +273,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: http://cp.cloudflare.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       timeout: 50
       lazy: true
@@ -294,7 +294,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: http://cp.cloudflare.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       timeout: 50
       lazy: true
@@ -315,7 +315,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: http://cp.cloudflare.com
+      url: http://www.gstatic.com/generate_204
       interval: 300
       timeout: 50
       lazy: true
@@ -785,6 +785,7 @@ rules :
   - RULE-SET,category-ai-!cn,🔴load-balance🔴
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
 
 
