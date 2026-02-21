@@ -1,13 +1,13 @@
 proxy-groups:
   - name: PROXY
     type: select
-    url: http://cp.cloudflare.com/
+    url: https://www.google.com/
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png
-    disable-udp: true
+  #  disable-udp: true
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Ssh|http|socks5
-    interval: 300
-    timeout: 500
-    max-failed-times: 400
+ #   interval: 300
+#    timeout: 500
+#    max-failed-times: 400
     lazy: true
     proxies:
       - 🟢Auto🟢
@@ -20,153 +20,127 @@ proxy-groups:
       - 🟢Vmess🟢
       - 🟢Vless🟢
       - 🟢Hysteria|Hysteria2🟢
-      - 🟢Trojan🟢
       
   - name: 🟢Auto🟢
     type: url-test
-    url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    url: https://www.google.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
     include-all: true
-    disable-udp: true
-    interval: 1300
-    tolerance: 10
-    timeout: 500
-    max-failed-times: 40
+ #   disable-udp: true
+ #   interval: 1300
+ #   tolerance: 10
+ #   timeout: 500
+ #   max-failed-times: 40
     lazy: true
     hidden: false
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
     
   - name: 🟡fallback🟡
     type: fallback
-    url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    url: https://www.google.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
     include-all: true
-    disable-udp: true
-    interval: 100
-    timeout: 500
-    max-failed-times: 40
+ #   disable-udp: true
+ #   interval: 100
+#    timeout: 500
+#    max-failed-times: 40
     lazy: true
     hidden: false
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🔴load-balance🔴
     type: load-balance
-    url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    url: https://www.google.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
     include-all: true
-    disable-udp: true
-    interval: 1000
-    timeout: 500
-    max-failed-times: 40
+#    disable-udp: true
+ #   interval: 1000
+ #   timeout: 500
+ #   max-failed-times: 40
     lazy: true
     hidden: false
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
-  - name: 🟢socks5🟢
-    type: url-test
-    url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|http
-    include-all: true
-    disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
-    max-failed-times: 40
-    lazy: true
   - name: 🟢http🟢
     type: url-test
-    url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
+    url: https://www.google.com/
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
-    disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
-    max-failed-times: 40
+ #   disable-udp: true
+#    interval: 500
+#    tolerance: 500
+#    timeout: 5000
+#    max-failed-times: 40
     lazy: true
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png    
     
   - name: 🟢Vmess🟢
     type: url-test
-    url: http://cp.cloudflare.com/
+    url: https://www.google.com/
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
     include-all: true
-    disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
-    max-failed-times: 40
-    lazy: true
+#    disable-udp: true
+#    interval: 500
+#    tolerance: 500
+#    timeout: 5000
+#    max-failed-times: 40
+#    lazy: true
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
     
   - name: 🟢Vless🟢
     type: url-test
-    url: http://cp.cloudflare.com/
+    url: https://www.google.com/
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vmess|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
     include-all: true
-    disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
-    max-failed-times: 40
+#    disable-udp: true
+#    interval: 500
+#    tolerance: 500
+ #   timeout: 5000
+#    max-failed-times: 40
     lazy: true
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png  
     
   - name: 🟢Hysteria|Hysteria2🟢
     type: url-test
-    url: http://cp.cloudflare.com/
+    url: https://www.google.com/
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Vmess|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
     include-all: true
-    disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
-    max-failed-times: 40
-    lazy: true
-    hidden: false
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png  
-    
-  - name: 🟢Trojan🟢
-    type: url-test
-    url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Vmess|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
-    include-all: true
-    disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
-    max-failed-times: 40
+#    disable-udp: true
+#    interval: 500
+#    tolerance: 500
+#    timeout: 5000
+#    max-failed-times: 40
     lazy: true
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
     
   - name: 🟢Shadowsocks🟢
     type: url-test
-    url: http://cp.cloudflare.com/
+    url: https://www.google.com/
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Vmess|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
     include-all: true
-    disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
-    max-failed-times: 40
+ #   disable-udp: true
+ #   interval: 500
+#    tolerance: 500
+ #   timeout: 5000
+#    max-failed-times: 40
     lazy: true
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
     
   - name: 🟢ShadowsocksR🟢
     type: url-test
-    url: http://cp.cloudflare.com/
+    url: https://www.google.com/
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|Vmess|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
     include-all: true
-    disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
-    max-failed-times: 40
+ #   disable-udp: true
+ #   interval: 500
+ #   tolerance: 500
+#    timeout: 5000
+#    max-failed-times: 40
     lazy: true
     hidden: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
