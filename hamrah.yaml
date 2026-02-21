@@ -227,6 +227,60 @@ proxy-groups:
     proxies:
       - "DIRECT"
       - "PROXY"
+      
+  - name: 🎬
+    type: select
+    proxies:
+      - Hong Kong
+      - Taiwan
+      - Japan
+      - Singapore
+      - United
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png
+    
+  - name: 🤖 AI
+    type: select
+    proxies:
+      - United
+      - Japan
+      - Singapore
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bot.png
+    
+  - name: Hong Kong
+    type: url-test
+    include-all-providers: true
+    filter: "hk|hongkong|🇭🇰"
+    proxies:
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+    
+  - name: Japan
+    type: url-test
+    include-all-providers: true
+    filter: "🇯🇵|jp"
+    proxies:
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+    
+  - name: Singapore
+    type: url-test
+    include-all-providers: true
+    filter: "sg|🇸🇬"
+    proxies:
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+    
+  - name: United
+    type: url-test
+    include-all-providers: true
+    filter: "🇺🇸|usa"
+    proxies:
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
 proxy-providers:
   A1:
     type: http
@@ -588,6 +642,47 @@ rule-providers:
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list"
     interval: 86400
 rules :
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,🤖 AI
+  - DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,🤖 AI
+  - DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,🤖 AI
+  - DOMAIN-SUFFIX,production-openaicom-storage.azureedge.net,🤖 AI
+  - DOMAIN-SUFFIX,servd-anthropic-website.b-cdn.net,🤖 AI
+  - DOMAIN-SUFFIX,ai.google.dev,🤖 AI
+  - DOMAIN-SUFFIX,alkalicore-pa.clients6.google.com,🤖 AI
+  - DOMAIN-SUFFIX,alkalimakersuite-pa.clients6.google.com,🤖 AI
+  - DOMAIN-SUFFIX,+.perplexity.ai,🤖 AI
+  - DOMAIN-SUFFIX,+.deepmind.google,🤖 AI
+  - DOMAIN-SUFFIX,+.clipdrop.co,🤖 AI
+  - DOMAIN-SUFFIX,+.poe.com,🤖 AI
+  - DOMAIN-SUFFIX,+.dify.ai,🤖 AI
+  - DOMAIN-SUFFIX,+.generativeai.google,🤖 AI
+  - DOMAIN-SUFFIX,+.meta.ai,🤖 AI
+  - DOMAIN-SUFFIX,+.openart.ai,🤖 AI
+  - DOMAIN-SUFFIX,+.ai.com,🤖 AI
+  - DOMAIN-SUFFIX,+.chatgpt.com,🤖 AI
+  - DOMAIN-SUFFIX,+.oaistatic.com,🤖 AI
+  - DOMAIN-SUFFIX,+.oaiusercontent.com,🤖 AI
+  - DOMAIN-SUFFIX,+.openai.com,🤖 AI
+  - DOMAIN-SUFFIX,+.poecdn.net,🤖 AI
+  - DOMAIN-SUFFIX,+.notebooklm.google,🤖 AI
+  - DOMAIN-SUFFIX,+.deepmind.com,🤖 AI
+  - DOMAIN-SUFFIX,+.jasper.ai,🤖 AI
+  - DOMAIN-SUFFIX,+.x.ai,🤖 AI
+  - DOMAIN-SUFFIX,+.anthropic.com,🤖 AI
+  - DOMAIN-SUFFIX,+.claude.ai,🤖 AI
+  - DOMAIN-SUFFIX,+.claudeusercontent.com,🤖 AI
+  - DOMAIN-SUFFIX,+.gemini.google.com,🤖 AI
+  - DOMAIN-SUFFIX,+.geller-pa.googleapis.com,🤖 AI
+  - DOMAIN-SUFFIX,+.generativelanguage.googleapis.com,🤖 AI
+  - DOMAIN-SUFFIX,+.proactivebackend-pa.googleapis.com,🤖 AI
+  - DOMAIN-SUFFIX,+.makersuite.google.com,🤖 AI
+  - DOMAIN-SUFFIX,+.aistudio.google.com,🤖 AI
+  - DOMAIN-SUFFIX,+.bard.google.com,🤖 AI
+  - DOMAIN-SUFFIX,+.notebooklm.google.com,🤖 AI
+  - DOMAIN-SUFFIX,+.gateway.ai.cloudflare.com,🤖 AI
+  - DOMAIN-SUFFIX,+.openai.com.cdn.cloudflare.net,🤖 AI
+  - DOMAIN-SUFFIX,o33249.ingest.sentry.io,🤖 AI
+  - DOMAIN-SUFFIX,openaicom.imgix.net,🤖 AI
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
   - RULE-SET,reject1,REJECT
@@ -647,10 +742,10 @@ rules :
   - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
   - IP-CIDR,172.16.0.0/12,🎯 Direct
   - IP-CIDR,192.168.0.0/16,🎯 Direct
-  - DOMAIN-SUFFIX,openai.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,chatgpt.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,anthropic.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,claude.ai,🔴load-balance🔴
+  - DOMAIN-SUFFIX,openai.com,🤖 AI
+  - DOMAIN-SUFFIX,chatgpt.com,🤖 AI
+  - DOMAIN-SUFFIX,anthropic.com,🤖 AI
+  - DOMAIN-SUFFIX,claude.ai,🤖 AI
   - DOMAIN-SUFFIX,t.me,PROXY
   - DOMAIN-SUFFIX,telegram.org,PROXY
   - DOMAIN-SUFFIX,netflix.com,PROXY
@@ -660,83 +755,83 @@ rules :
   - DOMAIN-SUFFIX,icloud.com,PROXY
   - DOMAIN-SUFFIX,microsoft.com,PROXY
   - DOMAIN-SUFFIX,windows.com,PROXY
-  - DOMAIN-SUFFIX,openai.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,chatgpt.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,oaistatic.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,oaiusercontent.com,🔴load-balance🔴
-  - DOMAIN-KEYWORD,openai,🔴load-balance🔴
-  - DOMAIN-SUFFIX,anthropic.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,claude.ai,🔴load-balance🔴
-  - DOMAIN-SUFFIX,gemini.google.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,bard.google.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,perplexity.ai,🔴load-balance🔴
-  - DOMAIN-SUFFIX,midjourney.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,netflix.com,🔴load-balance🔴
-  - DOMAIN-KEYWORD,anthropic,🔴load-balance🔴
-  - DOMAIN-KEYWORD,claude,🔴load-balance🔴
-  - DOMAIN-KEYWORD,openai,🔴load-balance🔴
-  - DOMAIN,ai.google.dev,🔴load-balance🔴
-  - DOMAIN,aistudio.google.com,🔴load-balance🔴
-  - DOMAIN,api.githubcopilot.com,🔴load-balance🔴
-  - DOMAIN,api.groq.com,🔴load-balance🔴
-  - DOMAIN,api.together.xyz,🔴load-balance🔴
-  - DOMAIN,bard.google.com,🔴load-balance🔴
-  - DOMAIN,console.groq.com,🔴load-balance🔴
-  - DOMAIN,copilot-proxy.githubusercontent.com,🔴load-balance🔴
-  - DOMAIN,gemini.google.com,🔴load-balance🔴
-  - DOMAIN,generativelanguage.googleapis.com,🔴load-balance🔴
-  - DOMAIN,notebooklm.google.com,🔴load-balance🔴
-  - DOMAIN,sydney.bing.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,ai.azure.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,anthropic.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,auth0.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,bard.google.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,chatgpt.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,claude.ai,🔴load-balance🔴
-  - DOMAIN-SUFFIX,claude.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,claudeusercontent.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,client-api.arkoselabs.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,copilot.cloud.microsoft,🔴load-balance🔴
-  - DOMAIN-SUFFIX,copilot.microsoft.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,cursor.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,cursor.sh,🔴load-balance🔴
-  - DOMAIN-SUFFIX,events.statsigapi.net,🔴load-balance🔴
-  - DOMAIN-SUFFIX,featuregates.org,🔴load-balance🔴
-  - DOMAIN-SUFFIX,gemini.google.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,grazie.ai,🔴load-balance🔴
-  - DOMAIN-SUFFIX,grazie.aws.intellij.net,🔴load-balance🔴
-  - DOMAIN-SUFFIX,identrust.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,intercom.io,🔴load-balance🔴
-  - DOMAIN-SUFFIX,intercomcdn.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,jetbrains.ai,🔴load-balance🔴
-  - DOMAIN-SUFFIX,makersuite.google.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,meta.ai,🔴load-balance🔴
-  - DOMAIN-SUFFIX,mistral.ai,🔴load-balance🔴
-  - DOMAIN-SUFFIX,oaistatic.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,oaiusercontent.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,openai.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,🔴load-balance🔴
-  - DOMAIN-SUFFIX,perplexity.ai,🔴load-balance🔴
-  - DOMAIN-SUFFIX,sora.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,x.ai,🔴load-balance🔴
-  - DOMAIN-KEYWORD,openai,🔴load-balance🔴
-  - DOMAIN-SUFFIX,auth0.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,challenges.cloudflare.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,chatgpt.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,client-api.arkoselabs.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,events.statsigapi.net,🔴load-balance🔴
-  - DOMAIN-SUFFIX,featuregates.org,🔴load-balance🔴
-  - DOMAIN-SUFFIX,identrust.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,intercom.io,🔴load-balance🔴
-  - DOMAIN-SUFFIX,intercomcdn.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,oaistatic.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,oaiusercontent.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,openai.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,🔴load-balance🔴
-  - DOMAIN-SUFFIX,sentry.io,🔴load-balance🔴
-  - DOMAIN-SUFFIX,stripe.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,sora.com,🔴load-balance🔴
-  - DOMAIN-SUFFIX,disneyplus.com,🔴load-balance🔴
+  - DOMAIN-SUFFIX,openai.com,🤖 AI
+  - DOMAIN-SUFFIX,chatgpt.com,🤖 AI
+  - DOMAIN-SUFFIX,oaistatic.com,🤖 AI
+  - DOMAIN-SUFFIX,oaiusercontent.com,🤖 AI
+  - DOMAIN-KEYWORD,openai,🤖 AI
+  - DOMAIN-SUFFIX,anthropic.com,🤖 AI
+  - DOMAIN-SUFFIX,claude.ai,🤖 AI
+  - DOMAIN-SUFFIX,gemini.google.com,🤖 AI
+  - DOMAIN-SUFFIX,bard.google.com,🤖 AI
+  - DOMAIN-SUFFIX,perplexity.ai,🤖 AI
+  - DOMAIN-SUFFIX,midjourney.com,🤖 AI
+  - DOMAIN-SUFFIX,netflix.com,🤖 AI
+  - DOMAIN-KEYWORD,anthropic,🤖 AI
+  - DOMAIN-KEYWORD,claude,🤖 AI
+  - DOMAIN-KEYWORD,openai,🤖 AI
+  - DOMAIN,ai.google.dev,🤖 AI
+  - DOMAIN,aistudio.google.com,🤖 AI
+  - DOMAIN,api.githubcopilot.com,🤖 AI
+  - DOMAIN,api.groq.com,🤖 AI
+  - DOMAIN,api.together.xyz,🤖 AI
+  - DOMAIN,bard.google.com,🤖 AI
+  - DOMAIN,console.groq.com,🤖 AI
+  - DOMAIN,copilot-proxy.githubusercontent.com,🤖 AI
+  - DOMAIN,gemini.google.com,🤖 AI
+  - DOMAIN,generativelanguage.googleapis.com,🤖 AI
+  - DOMAIN,notebooklm.google.com,🤖 AI
+  - DOMAIN,sydney.bing.com,🤖 AI
+  - DOMAIN-SUFFIX,ai.azure.com,🤖 AI
+  - DOMAIN-SUFFIX,anthropic.com,🤖 AI
+  - DOMAIN-SUFFIX,auth0.com,🤖 AI
+  - DOMAIN-SUFFIX,bard.google.com,🤖 AI
+  - DOMAIN-SUFFIX,chatgpt.com,🤖 AI
+  - DOMAIN-SUFFIX,claude.ai,🤖 AI
+  - DOMAIN-SUFFIX,claude.com,🤖 AI
+  - DOMAIN-SUFFIX,claudeusercontent.com,🤖 AI
+  - DOMAIN-SUFFIX,client-api.arkoselabs.com,🤖 AI
+  - DOMAIN-SUFFIX,copilot.cloud.microsoft,🤖 AI
+  - DOMAIN-SUFFIX,copilot.microsoft.com,🤖 AI
+  - DOMAIN-SUFFIX,cursor.com,🤖 AI
+  - DOMAIN-SUFFIX,cursor.sh,🤖 AI
+  - DOMAIN-SUFFIX,events.statsigapi.net,🤖 AI
+  - DOMAIN-SUFFIX,featuregates.org,🤖 AI
+  - DOMAIN-SUFFIX,gemini.google.com,🤖 AI
+  - DOMAIN-SUFFIX,grazie.ai,🤖 AI
+  - DOMAIN-SUFFIX,grazie.aws.intellij.net,🤖 AI
+  - DOMAIN-SUFFIX,identrust.com,🤖 AI
+  - DOMAIN-SUFFIX,intercom.io,🤖 AI
+  - DOMAIN-SUFFIX,intercomcdn.com,🤖 AI
+  - DOMAIN-SUFFIX,jetbrains.ai,🤖 AI
+  - DOMAIN-SUFFIX,makersuite.google.com,🤖 AI
+  - DOMAIN-SUFFIX,meta.ai,🤖 AI
+  - DOMAIN-SUFFIX,mistral.ai,🤖 AI
+  - DOMAIN-SUFFIX,oaistatic.com,🤖 AI
+  - DOMAIN-SUFFIX,oaiusercontent.com,🤖 AI
+  - DOMAIN-SUFFIX,openai.com,🤖 AI
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,🤖 AI
+  - DOMAIN-SUFFIX,perplexity.ai,🤖 AI
+  - DOMAIN-SUFFIX,sora.com,🤖 AI
+  - DOMAIN-SUFFIX,x.ai,🤖 AI
+  - DOMAIN-KEYWORD,openai,🤖 AI
+  - DOMAIN-SUFFIX,auth0.com,🤖 AI
+  - DOMAIN-SUFFIX,challenges.cloudflare.com,🤖 AI
+  - DOMAIN-SUFFIX,chatgpt.com,🤖 AI
+  - DOMAIN-SUFFIX,client-api.arkoselabs.com,🤖 AI
+  - DOMAIN-SUFFIX,events.statsigapi.net,🤖 AI
+  - DOMAIN-SUFFIX,featuregates.org,🤖 AI
+  - DOMAIN-SUFFIX,identrust.com,🤖 AI
+  - DOMAIN-SUFFIX,intercom.io,🤖 AI
+  - DOMAIN-SUFFIX,intercomcdn.com,🤖 AI
+  - DOMAIN-SUFFIX,oaistatic.com,🤖 AI
+  - DOMAIN-SUFFIX,oaiusercontent.com,🤖 AI
+  - DOMAIN-SUFFIX,openai.com,🤖 AI
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,🤖 AI
+  - DOMAIN-SUFFIX,sentry.io,🤖 AI
+  - DOMAIN-SUFFIX,stripe.com,🤖 AI
+  - DOMAIN-SUFFIX,sora.com,🤖 AI
+  - DOMAIN-SUFFIX,disneyplus.com,🤖 AI
   - DOMAIN-SUFFIX,youtube.com,PROXY
   - DOMAIN-SUFFIX,spotify.com,PROXY
   - IN-PORT,7890,PROXY
@@ -785,10 +880,11 @@ rules :
   - RULE-SET,GoogleCN,PROXY
   - RULE-SET,YouTube,PROXY
   - RULE-SET,Google,PROXY
-  - RULE-SET,category-ai-cn,🔴load-balance🔴
-  - RULE-SET,category-ai-!cn,🔴load-balance🔴
+  - RULE-SET,category-ai-cn,🤖 AI
+  - RULE-SET,category-ai-!cn,🤖 AI
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
 
 
