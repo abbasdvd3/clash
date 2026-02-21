@@ -87,6 +87,10 @@ dns:
     - https://ada.openbld.net/dns-query
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
+  proxy-server-nameserver-policy:
+    'www.createporn.com': '114.114.114.114'
+    'www.google.com': '8.8.8.8'
+    'www.openai.com': '8.8.8.8'
   nameserver-policy:
     "rule-set:social,nsfw,geolocation-!cn":
       - https://8.8.8.8/dns-query
@@ -785,6 +789,7 @@ rules :
   - RULE-SET,category-ai-!cn,🔴load-balance🔴
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
 
 
