@@ -15,9 +15,9 @@ SelectDC: &SelectDC {type: select, proxies: [Direct, mihomo, Hong_Kong, Taiwan, 
 proxy-providers:
   优质服务商: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vl', override: {additional-prefix: '[excellent] '}}
   备用服务商2: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/socks5', override: {additional-prefix: '[Preparation] '}}
-  优质服务商3: {<<: *BaseProvider, url: 'https://www.xrayvip.com/free.yaml'}
-#  备用服务商4: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/N'}
-#  优质服务商5: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Junely/clash/main/template3.yaml'}
+  优质服务商3: {<<: *BaseProvider, url: 'https://sub.pusytroller.gq/?url=freenodes'}
+  备用服务商4: {<<: *BaseProvider, url: 'https://www.xrayvip.com/free.txt'}
+  优质服务商5: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Junely/clash/main/template3.yaml'}
 #  备用服务商6: {<<: *BaseProvider, url: 'https://proxypool1999.banyunxiaoxi.icu/clash/proxies'}
 #  优质服务商7: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/misersun/config003/main/config_all.yaml'}
 #  备用服务商8: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml'}
@@ -28,7 +28,7 @@ proxy-providers:
 #  优质服务商13: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml'}
 #  备用服务商14: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml'}
 #  优质服务商15: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/shbioc/clash/main/aaa01.yaml'}
-#  备用服务商16: {<<: *BaseProvider, url: 'https://anaer.github.io/Sub/proxies.yaml'}
+  备用服务商16: {<<: *BaseProvider, url: 'https://rss.zyfx6.xyz/clash/'}
 #  优质服务商17: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/yudou66.yaml'}
 #  备用服务商18: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/ts-sf/fly/main/clash'}
 #  优质服务商19: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/NiceVPN123/NiceVPN/main/Clash.yaml'}
@@ -124,23 +124,43 @@ hosts:
   cloudflare-dns.com: [1.1.1.1, 1.0.0.1, 2606:4700:4700::1111, 2606:4700:4700::1001]
 tun:
   enable: true
-  stack: gvisor  
-  device: Meta
-  mtu: 9000
-  dns-hijack:
-    - "any:53"
-    - "tcp://any:53"
+  stack: system
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
-  strict-route: true        
-  endpoint-independent-nat: true
-  exclude-uid: []
-  exclude-package: []
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  device: utun0
+  mtu: 9000
+  strict-route: true
+  gso: true
+  gso-max-size: 65536
+  udp-timeout: 300
+  iproute2-table-index: 2022
+  iproute2-rule-index: 9000
+  endpoint-independent-nat: false
+  route-address-set:
+    - ruleset-1
+  route-exclude-address-set:
+    - ruleset-2
+  route-address:
+    - 0.0.0.0/1
+    - 128.0.0.0/1
+    - "::/1"
+    - "8000::/1"
+  route-exclude-address:
+  - 192.168.0.0/16
+  - fc00::/7
+  include-interface:
+  - eth0
+  exclude-interface:
+  - eth1
+
 dns:
   enable: true
   ipv6: true
-  listen: 0.0.0.0:1053
+  listen: 0.0.0.0:53
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   cache-algorithm: arc
@@ -256,7 +276,7 @@ proxy-groups:
   - {name: United_States,  <<: *BaseSmart, filter: *FilterUS, include-all: true, policy-priority: 'excellent:2;Preparation:0.5', disable-udp: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png, exclude-type: "direct|redir-in|trojan|DNS"}
   - {name: European,  <<: *BaseSmart, filter: *FilterEU, include-all: true, policy-priority: 'excellent:2;Preparation:0.5', disable-udp: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png, exclude-type: "direct|redir-in|trojan|DNS"}
 rules: 
-  - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT
+#  - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT
   - DOMAIN-KEYWORD,soft98.ir,Direct
   - DOMAIN,soft98,Direct
   - DOMAIN-SUFFIX,soft98.ir,Direct
@@ -301,10 +321,10 @@ rules:
   - DOMAIN-SUFFIX,ir,Direct,no-resolve
   - DOMAIN-KEYWORD,ir,Direct,no-resolve
   - DOMAIN-SUFFIX,local,Direct,no-resolve
-  - IP-CIDR,127.0.0.0/8,Direct,no-resolve
-  - IP-CIDR,172.16.0.0/12,Direct
-  - IP-CIDR,192.168.0.0/16,Direct
-  - IP-CIDR,10.0.0.0/8,mihomo
+#  - IP-CIDR,127.0.0.0/8,Direct,no-resolve
+#  - IP-CIDR,172.16.0.0/12,Direct
+#  - IP-CIDR,192.168.0.0/16,Direct
+#  - IP-CIDR,10.0.0.0/8,mihomo
   - DOMAIN-SUFFIX,openai.com,AI
   - DOMAIN-SUFFIX,chatgpt.com,AI
   - DOMAIN-SUFFIX,anthropic.com,AI
@@ -397,24 +417,24 @@ rules:
   - DOMAIN-SUFFIX,disneyplus.com,AI
   - DOMAIN-SUFFIX,youtube.com,mihomo
   - DOMAIN-SUFFIX,spotify.com,mihomo
-  - IN-PORT,7890,mihomo
-  - IN-PORT,7892,mihomo
-  - IN-PORT,7891,mihomo
+#  - IN-PORT,7890,mihomo
+#  - IN-PORT,7892,mihomo
+#  - IN-PORT,7891,mihomo
 #  - IN-PORT,53,DNS,no-resolve
-  - DST-PORT,80,mihomo,no-resolve
-  - DST-PORT,443,mihomo,no-resolve
-  - IN-TYPE,SOCKS/HTTP,mihomo
-  - IN-USER,mihomo,mihomo
-  - IN-NAME,ss,mihomo
-  - NETWORK,udp,mihomo
-  - IP-SUFFIX,8.8.8.8/24,mihomo
-  - DOMAIN-SUFFIX,local,Direct,no-resolve
-  - IP-CIDR,10.0.0.0/8,mihomo
-  - IP-CIDR,100.64.0.0/10,mihomo
-  - PROCESS-NAME,com.termux,mihomo
-  - AND,((DOMAIN,google.com),(NETWORK,UDP)),mihomo
-  - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
-  - NOT,((DOMAIN,google.com)),mihomo
+#  - DST-PORT,80,mihomo,no-resolve
+#  - DST-PORT,443,mihomo,no-resolve
+#  - IN-TYPE,SOCKS/HTTP,mihomo
+#  - IN-USER,mihomo,mihomo
+#  - IN-NAME,ss,mihomo
+#  - NETWORK,udp,mihomo
+#  - IP-SUFFIX,8.8.8.8/24,mihomo
+#  - DOMAIN-SUFFIX,local,Direct,no-resolve
+#  - IP-CIDR,10.0.0.0/8,mihomo
+#  - IP-CIDR,100.64.0.0/10,mihomo
+#  - PROCESS-NAME,com.termux,mihomo
+#  - AND,((DOMAIN,google.com),(NETWORK,UDP)),mihomo
+#  - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
+#  - NOT,((DOMAIN,google.com)),mihomo
   - RULE-SET,AWAdsRule,REJECT
   - RULE-SET,GoogleFCM,AI
   - RULE-SET,GoogleCNProxyIP,AI
