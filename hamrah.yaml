@@ -825,7 +825,7 @@ rules :
   - IP-CIDR,100.64.0.0/10,🎯 Direct
   - PROCESS-NAME,com.termux,PROXY
   - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
-  - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
+  - OR,((NETWORK,UDP),(DOMAIN,google.com)),PROXY
   - NOT,((DOMAIN,google.com)),PROXY
   - RULE-SET,private,🎯 Direct,no-resolve
   - RULE-SET,apps,🎯 Direct
@@ -859,6 +859,7 @@ rules :
   - RULE-SET,category-ai-!cn,🤖 AI
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
 
 
