@@ -256,6 +256,7 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: 300
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+    
 proxy-providers:
   A1:
     type: http
@@ -278,6 +279,7 @@ proxy-providers:
       override:
       additional-prefix: smux
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+      
   A2:
     type: http
     url: "https://sub.pusytroller.gq/?url=freenodes" # 
@@ -299,6 +301,7 @@ proxy-providers:
       override:
       additional-prefix: smux
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+      
   A3:
     type: http
     url: "https://anaer.github.io/Sub/proxies.yaml"
@@ -319,7 +322,8 @@ proxy-providers:
       - "meta/0.2.0.9.meta"
       override:
       additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}    
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+      
   A4:
     type: http     
     url: "https://www.xrayvip.com/free.txt" # https://sos.cmliussss.net/auto  # https://shadowmere.xyz/api/b64sub/
@@ -341,6 +345,7 @@ proxy-providers:
       override:
       additional-prefix: smux
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+      
   A5:
     type: http
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/socks5"
@@ -362,7 +367,28 @@ proxy-providers:
       override:
       additional-prefix: smux
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
-
+  
+  A6:
+    type: http
+    url: "https://rss.zyfx6.xyz/clash/"
+    path: ./hamrah/A5.yaml
+    interval: 300
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+      timeout: 50
+      lazy: true
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      override:
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
 rule-providers:
   reject1:
     type: http
@@ -859,6 +885,7 @@ rules :
   - RULE-SET,category-ai-!cn,🤖 AI
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
 
 
