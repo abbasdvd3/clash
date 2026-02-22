@@ -55,49 +55,34 @@ experimental:
 dns:
   enable: true
   cache-algorithm: arc
-  prefer-h3: true
-  use-hosts: true
-  use-system-hosts: true
-  respect-rules: true
+  prefer-h3: false
+  use-hosts: false
+  use-system-hosts: false
+  respect-rules: false
   listen: 0.0.0.0:5591
   ipv6: true
   defult-nameserver:
-    - 127.0.0.1:5591
-    - tls://223.5.5.5:853
-    - tls://223.6.6.6:853
-    - tls://8.8.8.8
-    - 185.236.104.104
-    - tls://1.1.1.1
-    - 114.114.114.114
+    - '127.0.0.1:5591'
+    - '223.5.5.5'
+    - '8.8.8.8'
   nameserver:
-    - 127.0.0.1:5591
-    - https://doh.pub/dns-query
-    - tls://223.5.5.5:853
-    - tls://223.6.6.6:853
-    - 8.8.8.8
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-    - https://cloudflare-dns.com/dns-query#PROXY
-    - https://doh.flashstart.com/f17c9ee5
-    - https://ada.openbld.net/dns-query#PROXY
-    - https://rubyfish.cn/dns-query#PROXY
-    - https://all.dns.mullvad.net/dns-query#PROXY
+    - '127.0.0.1:5591'
+    - 'https://doh.pub/dns-query'
+    - 'https://dns.alidns.com/dns-query'
+    - 'https://8.8.8.8/dns-query#proxy&ecs=1.1.1.1/24&ecs-override=true'
   proxy-server-nameserver:
-    - https://cloudflare-dns.com/dns-query
-    - https://ada.openbld.net/dns-query
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
+    - 'https://doh.pub/dns-query'
   proxy-server-nameserver-policy:
     'www.createporn.com': '114.114.114.114'
     'www.google.com': '8.8.8.8'
     'www.openai.com': '8.8.8.8'
   nameserver-policy:
     "rule-set:social,nsfw,geolocation-!cn":
-      - https://8.8.8.8/dns-query
-      - https://cloudflare-dns.com/dns-query
-      - https://ada.openbld.net/dns-query
-      - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
+      - 'https://8.8.8.8/dns-query'
+      - 'https://cloudflare-dns.com/dns-query'
+      - 'https://ada.openbld.net/dns-query'
+      - 'https://doh.pub/dns-query'
+      - 'https://dns.alidns.com/dns-query'
     geosite:category-ads-all: rcode://success
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -874,6 +859,7 @@ rules :
   - RULE-SET,category-ai-!cn,🤖 AI
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
 
 
