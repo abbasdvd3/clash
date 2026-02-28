@@ -73,7 +73,7 @@ dns:
   proxy-server-nameserver:
     - 'https://doh.pub/dns-query'
   proxy-server-nameserver-policy:
-    'www.createporn.com': '114.114.114.114'
+    'www.createporn.com': '8.8.8.8'
     'www.google.com': '8.8.8.8'
     'www.openai.com': '8.8.8.8'
   nameserver-policy:
@@ -147,7 +147,7 @@ proxy-groups:
   - name: PROXY
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
-    include-all-providers: true
+ #   include-all-providers: true
     proxies:
       - 🟢Auto🟢
       - 🟡fallback🟡
@@ -158,50 +158,51 @@ proxy-groups:
     type: url-test
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     include-all: true
+    url: http://www.gstatic.com/generate_204
   #  disable-udp: true
   #  interval: 300
   #  tolerance: 10
-    timeout: 50000
-    max-failed-times: 4
+#    timeout: 50000
+#    max-failed-times: 4
     lazy: true
     hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     
   - name: 🟡fallback🟡
     type: fallback
-#    url: http://cp.cloudflare.com
+    url: http://www.gstatic.com/generate_204
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     include-all: true
   #  disable-udp: true
 #    interval: 100
-    timeout: 50000
-    max-failed-times: 4
+ #   timeout: 50000
+ #   max-failed-times: 4
     lazy: true
     hidden: true
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🔴load-balance🔴
     type: load-balance
-#    url: http://cp.cloudflare.com
+    url: http://www.gstatic.com/generate_204
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan #|Vmess|Vless|Trojan|Hysteria|Hysteria2
     include-all: true
  #   disable-udp: true
 #    interval: 100
-    timeout: 50000
-    max-failed-times: 4
+#    timeout: 50000
+#    max-failed-times: 4
     lazy: true
     hidden: true
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🟢http🟢
     type: url-test
-#    url: http://cp.cloudflare.com
+    url: http://www.gstatic.com/generate_204
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     include-all: true
  #   interval: 50
  #   tolerance: 50
-    timeout: 50000
-    max-failed-times: 4
+ #   timeout: 50000
+#    max-failed-times: 4
     lazy: true
     hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png 
@@ -223,38 +224,38 @@ proxy-groups:
     
   - name: Hong Kong
     type: url-test
-    include-all-providers: true
+    include-all: true
     filter: "hk|hongkong|🇭🇰"
-    proxies:
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     url: http://www.gstatic.com/generate_204
-    interval: 300
+ #   interval: 300
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
     
   - name: Japan
     type: url-test
-    include-all-providers: true
+    include-all: true
     filter: "🇯🇵|jp"
-    proxies:
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     url: http://www.gstatic.com/generate_204
-    interval: 300
+  #  interval: 300
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
     
   - name: Singapore
     type: url-test
-    include-all-providers: true
+    include-all: true
     filter: "sg|🇸🇬"
-    proxies:
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     url: http://www.gstatic.com/generate_204
-    interval: 300
+ #   interval: 300
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
     
   - name: United
     type: url-test
-    include-all-providers: true
+    include-all: true
     filter: "🇺🇸|usa"
-    proxies:
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     url: http://www.gstatic.com/generate_204
-    interval: 300
+  #  interval: 300
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
     
 proxy-providers:
@@ -885,6 +886,7 @@ rules :
   - RULE-SET,category-ai-!cn,🤖 AI
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
 
 
