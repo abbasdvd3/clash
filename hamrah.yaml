@@ -259,27 +259,6 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
     
 proxy-providers:
-  A1:
-    type: http
-    url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
-    path: ./hamrah/A1.yaml
-    interval: 300
-    health-check:
-      enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 300
-      timeout: 3
-      lazy: false
-      expected-status: 204
-      header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
-      override:
-      additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
       
   A2:
     type: http
@@ -347,28 +326,6 @@ proxy-providers:
       additional-prefix: smux
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
       
-  A5:
-    type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/socks5"
-    path: ./hamrah/A5.yaml
-    interval: 300
-    health-check:
-      enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 300
-      timeout: 3
-      lazy: false
-      expected-status: 204
-      header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
-      override:
-      additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
-  
   A6:
     type: http
     url: "https://rss.zyfx6.xyz/clash/"
@@ -886,6 +843,7 @@ rules :
   - RULE-SET,category-ai-!cn,🤖 AI
   - GeoIP,ir,🎯 Direct
   - MATCH,PROXY
+
 
 
 
