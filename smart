@@ -160,19 +160,14 @@ tun:
 dns:
   enable: true
   ipv6: true
-  listen: 0.0.0.0:53
+  listen: 127.0.0.1:5591
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   cache-algorithm: arc
-  proxy-server-nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
   default-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
+    - 127.0.0.1:5591
   nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
+    - 127.0.0.1:5591
   nameserver-policy:
     "geosite:ir,private": 
       - https://doh.pub/dns-query
