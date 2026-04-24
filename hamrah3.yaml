@@ -30,11 +30,10 @@ dns:
   use-hosts: true
   use-system-hosts: true
   respect-rules: false
-  listen: 0.0.0.0:1053
+  listen: 0.0.0.0:127.0.0.1:5591
   ipv6: true
   default-nameserver:
-    - 127.0.0.1:53
-    - 223.5.5.5
+    - 127.0.0.1:5591
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fdfe:dcba:9876::1/64
@@ -45,9 +44,7 @@ dns:
   nameserver-policy:
     '+.arpa': '10.0.0.1'
   nameserver:
-    - 127.0.0.1:53
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
+    - 127.0.0.1:5591
   fallback:
     - tls://8.8.4.4
     - tls://1.1.1.1
