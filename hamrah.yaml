@@ -32,7 +32,7 @@ external-ui-name: xd
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 keep-alive-interval: 30
 find-process-mode: strict
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: random
 geodata-mode: true
@@ -55,9 +55,9 @@ experimental:
 dns:
   enable: true
   cache-algorithm: arc
-  prefer-h3: false
-  use-hosts: false
-  use-system-hosts: false
+  prefer-h3: true
+  use-hosts: true
+  use-system-hosts: true
   respect-rules: true
   listen: 0.0.0.0:5591
   ipv6: true
@@ -65,8 +65,10 @@ dns:
     - '127.0.0.1:5591'
     - '223.5.5.5'
     - '8.8.8.8'
+    - '1.1.1.1'
   nameserver:
     - '127.0.0.1:5591'
+    - '1.1.1.1'
     - 'https://doh.pub/dns-query'
     - 'https://dns.alidns.com/dns-query'
     - 'https://8.8.8.8/dns-query#proxy&ecs=1.1.1.1/24&ecs-override=true'
@@ -158,51 +160,51 @@ proxy-groups:
     type: url-test
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
-    url: https://www.google.com/generate_204
+    url: http://www.google.com/generate_204
   #  disable-udp: true
-  #  interval: 300
-  #  tolerance: 10
-#    timeout: 3000
-#    max-failed-times: 4
+    interval: 300
+    tolerance: 10
+    timeout: 300
+    max-failed-times: 4
     lazy: true
     hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     
   - name: 🟡fallback🟡
     type: fallback
-    url: https://www.google.com/generate_204
+    url: http://www.google.com/generate_204
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
   #  disable-udp: true
-#    interval: 100
- #   timeout: 3000
- #   max-failed-times: 4
+    interval: 100
+    timeout: 300
+    max-failed-times: 4
     lazy: true
     hidden: true
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🔴load-balance🔴
     type: load-balance
-    url: https://www.google.com/generate_204
+    url: http://www.google.com/generate_204
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh #|Vmess|Vless|Trojan|Hysteria|Hysteria2
     include-all: true
  #   disable-udp: true
-#    interval: 100
-#    timeout: 3000
-#    max-failed-times: 4
+    interval: 100
+    timeout: 300
+    max-failed-times: 4
     lazy: true
     hidden: true
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🟢http🟢
     type: url-test
-    url: https://www.google.com/generate_204
+    url: http://www.google.com/generate_204
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     include-all: true
- #   interval: 50
- #   tolerance: 50
- #   timeout: 3000
-#    max-failed-times: 4
+    interval: 50
+    tolerance: 50
+    timeout: 300
+    max-failed-times: 4
     lazy: true
     hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png 
@@ -227,8 +229,8 @@ proxy-groups:
     include-all: true
     filter: "hk|hongkong|🇭🇰"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    url: https://www.google.com/generate_204
- #   interval: 300
+    url: http://www.google.com/generate_204
+    interval: 300
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
     
   - name: Japan
@@ -236,8 +238,8 @@ proxy-groups:
     include-all: true
     filter: "🇯🇵|jp"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    url: https://www.google.com/generate_204
-  #  interval: 300
+    url: http://www.google.com/generate_204
+    interval: 300
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
     
   - name: Singapore
@@ -245,8 +247,8 @@ proxy-groups:
     include-all: true
     filter: "sg|🇸🇬"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    url: https://www.google.com/generate_204
- #   interval: 300
+    url: http://www.google.com/generate_204
+    interval: 300
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
     
   - name: United
@@ -254,8 +256,8 @@ proxy-groups:
     include-all: true
     filter: "🇺🇸|usa"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    url: https://www.google.com/generate_204
-  #  interval: 300
+    url: http://www.google.com/generate_204
+    interval: 300
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
     
 proxy-providers:
@@ -266,7 +268,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: https://www.google.com/generate_204
+      url: http://www.google.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -282,12 +284,12 @@ proxy-providers:
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   A2:
     type: http
-    url: "https://sub.pusytroller.gq/?url=freenodes" # 
+    url: "https://raw.githubusercontent.com/Misaka-blog/chromego_merge/refs/heads/main/sub/merged_proxies_new.yaml" # https://sub.pusytroller.gq/?url=freenodes
     path: ./hamrah/A2.yaml
     interval: 300
     health-check:
       enable: true
-      url: https://www.google.com/generate_204
+      url: http://www.google.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -304,12 +306,12 @@ proxy-providers:
       
   A3:
     type: http
-    url: "https://raw.githubusercontent.com/miladtahanian/V2RayCFGDumper/refs/heads/main/sub.txt"
+    url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/refs/heads/master/sub/sub_merge_yaml.yml" # https://raw.githubusercontent.com/miladtahanian/V2RayCFGDumper/refs/heads/main/sub.txt"
     path: ./hamrah/A3.yaml
     interval: 300
     health-check:
       enable: true
-      url: https://www.google.com/generate_204
+      url: http://www.google.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -326,12 +328,12 @@ proxy-providers:
       
   A4:
     type: http     
-    url: "https://www.xrayvip.com/free.txt" # https://sos.cmliussss.net/auto  # https://shadowmere.xyz/api/b64sub/
+    url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml" # https://sos.cmliussss.net/auto  # https://shadowmere.xyz/api/b64sub/ https://www.xrayvip.com/free.txt
     path: ./hamrah/A4.yaml
     interval: 300
     health-check:
       enable: true
-      url: https://www.google.com/generate_204
+      url: http://www.google.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -347,12 +349,12 @@ proxy-providers:
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   A6:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/socks5"
+    url: "https://raw.githubusercontent.com/PuddinCat/BestClash/refs/heads/main/proxies.yaml"
     path: ./hamrah/A6.yaml
     interval: 300
     health-check:
       enable: true
-      url: https://www.google.com/generate_204
+      url: http://www.google.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -368,12 +370,12 @@ proxy-providers:
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}      
   A7:
     type: http
-    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/wwww"
+    url: "https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/refs/heads/master/clash.yaml"
     path: ./hamrah/A7.yaml
     interval: 300
     health-check:
       enable: true
-      url: https://www.google.com/generate_204
+      url: http://www.google.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
