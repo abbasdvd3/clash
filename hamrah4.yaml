@@ -54,8 +54,6 @@ proxy-groups:
       - 🟢Auto🟢
       - 🟡fallback🟡
       - 🔴load-balance🔴
-      - 🟢http🟢
-      - 🟢socks5🟢
       - 🟢Shadowsocks🟢
       - 🟢ShadowsocksR🟢
       - 🟢Vmess🟢
@@ -69,10 +67,10 @@ proxy-groups:
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
     disable-udp: true
-    interval: 1300
+    interval: 130
     tolerance: 10
-    timeout: 500
-    max-failed-times: 40
+    timeout: 50
+    max-failed-times: 4
     lazy: true
     hidden: false
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
@@ -84,7 +82,7 @@ proxy-groups:
     include-all: true
     disable-udp: true
     interval: 100
-    timeout: 500
+    timeout: 50
     max-failed-times: 40
     lazy: true
     hidden: false
@@ -96,50 +94,22 @@ proxy-groups:
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all: true
     disable-udp: true
-    interval: 1000
-    timeout: 500
+    interval: 100
+    timeout: 50
     max-failed-times: 40
     lazy: true
     hidden: false
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
-    
-  - name: 🟢socks5🟢
-    type: url-test
-    url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|http
-    include-all: true
-    disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
-    max-failed-times: 40
-    lazy: true
-    hidden: false
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
-  - name: 🟢http🟢
-    type: url-test
-    url: http://cp.cloudflare.com/
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
-    include-all: true
-    disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
-    max-failed-times: 40
-    lazy: true
-    hidden: false
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png    
-    
   - name: 🟢Vmess🟢
     type: url-test
     url: http://cp.cloudflare.com/
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
     include-all: true
     disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
+    interval: 50
+    tolerance: 50
+    timeout: 5
     max-failed-times: 40
     lazy: true
     hidden: false
@@ -151,9 +121,9 @@ proxy-groups:
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vmess|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
     include-all: true
     disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
+    interval: 50
+    tolerance: 50
+    timeout: 50
     max-failed-times: 40
     lazy: true
     hidden: false
@@ -165,9 +135,9 @@ proxy-groups:
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Vmess|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
     include-all: true
     disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
+    interval: 50
+    tolerance: 50
+    timeout: 50
     max-failed-times: 40
     lazy: true
     hidden: false
@@ -180,8 +150,8 @@ proxy-groups:
     include-all: true
     disable-udp: true
     interval: 500
-    tolerance: 500
-    timeout: 5000
+    tolerance: 50
+    timeout: 50
     max-failed-times: 40
     lazy: true
     hidden: false
@@ -193,9 +163,9 @@ proxy-groups:
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Vmess|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
     include-all: true
     disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
+    interval: 50
+    tolerance: 50
+    timeout: 50
     max-failed-times: 40
     lazy: true
     hidden: false
@@ -207,9 +177,9 @@ proxy-groups:
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|Vmess|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
     include-all: true
     disable-udp: true
-    interval: 500
-    tolerance: 500
-    timeout: 5000
+    interval: 50
+    tolerance: 50
+    timeout: 50
     max-failed-times: 40
     lazy: true
     hidden: false
