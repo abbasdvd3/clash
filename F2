@@ -28,30 +28,7 @@ global-ua: chrome
 profile:
   store-selected: true
   store-fake-ip: true
-  
-dns:
-  nameserver:
-    - https://doh.pub/dns-query
-  fallback:
-    - https://8.8.8.8/dns-query
-  direct-nameserver:
-    - dhcp://system
-  nameserver-policy:
-    "geosite:ir,private":
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: ir
-    geosite:
-      - social
-      - nsfw
-    ipcidr:
-      - 240.0.0.0/4
-    domain:
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
+
 proxy-groups:
   - name: PROXY
     type: select
