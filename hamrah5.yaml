@@ -56,8 +56,7 @@ dns:
 proxy-groups:
   - name: Mismatch
     type: url-test
-    disable-udp: true
-    exclude-type: direct|redir-in|DNS
+    include-all-providers: true
     proxies:
       - Auto
       - Autofallback
@@ -72,107 +71,58 @@ proxy-groups:
       
   - name: Auto
     type: url-test
-    interval: 180
     include-all-providers: true
-    disable-udp: true
-    hidden: true
-    tolerance: 9
     exclude-type: direct|redir-in|DNS
-    url: http://cp.cloudflare.com/generate_204
       
   - name: Autofallback
     type: fallback
-    interval: 50
-    disable-udp: true
-    hidden: true
     include-all-providers: true
     exclude-type: direct|redir-in|DNS
-    url: http://cp.cloudflare.com/generate_204
 
   - name: Geo-HK
     type: url-test
-    interval: 100
-    tolerance: 99
-    disable-udp: true
-    hidden: true
-    url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
     filter: "HongKong|HK|香港"
 
   - name: Geo-TW
     type: url-test
-    interval: 100
-    tolerance: 99
-    disable-udp: true
-    hidden: true
-    url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
     filter: "Taiwan|TW|台湾"
 
   - name: Geo-SG
     type: url-test
-    interval: 100
-    tolerance: 99
-    disable-udp: true
-    hidden: true
-    url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
     filter: "Singapore|SG|新加坡"
 
   - name: Geo-JP
     type: url-test
-    interval: 100
-    tolerance: 99
-    disable-udp: true
-    hidden: true
-    url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
     filter: "Japan|JP|日本"
 
   - name: Geo-US
     type: url-test
-    interval: 100
-    tolerance: 99
-    disable-udp: true
-    hidden: true
-    url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
     filter: "America|United States|US|美国"
 
   - name: Geo-UK
     type: url-test
-    interval: 100
-    tolerance: 99
-    disable-udp: true
-    hidden: true
-    url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
     filter: "Britain|England|UK|英国"
  
   - name: Geo-DE
     type: url-test
-    interval: 100
-    tolerance: 99
-    disable-udp: true
-    hidden: true
-    url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
     filter: "Germany|Deutsch|DE|德国"
 
   - name: Geo-CN
     type: url-test
-    interval: 100
-    tolerance: 99
-    disable-udp: true
-    hidden: true
-    url: http://cp.cloudflare.com/generate_204
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
     filter: "China|CN|中国"
