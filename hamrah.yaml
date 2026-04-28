@@ -150,48 +150,40 @@ proxy-groups:
   - name: PROXY
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
-   # include-all-providers: true
+    include-all-providers: true
     proxies:
       - 🟢Auto🟢
       - 🟡fallback🟡
       - 🔴load-balance🔴
       - 🟢http🟢
-      
+      - United
+      - Japan
+      - Singapore
   - name: 🟢Auto🟢
     type: url-test
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all-providers: true
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
-    tolerance: 100
     hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     
   - name: 🟡fallback🟡
     type: fallback
-    url: https://cp.cloudflare.com/generate_204
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all-providers: true
-    interval: 200
     hidden: true
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🔴load-balance🔴
     type: load-balance
-    url: https://cp.cloudflare.com/generate_204
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh #|Vmess|Vless|Trojan|Hysteria|Hysteria2
     include-all-providers: true
-    interval: 100
     hidden: true
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🟢http🟢
     type: url-test
-    url: https://cp.cloudflare.com/generate_204
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     include-all-providers: true
-    interval: 500
-    tolerance: 50
     hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png 
   - name: 🎯 Direct
@@ -215,8 +207,6 @@ proxy-groups:
     include-all-providers: true
     filter: "hk|hongkong|🇭🇰"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
     
   - name: Japan
@@ -224,8 +214,6 @@ proxy-groups:
     include-all-providers: true
     filter: "🇯🇵|jp"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
     
   - name: Singapore
@@ -233,8 +221,6 @@ proxy-groups:
     include-all-providers: true
     filter: "sg|🇸🇬"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
     
   - name: United
@@ -242,8 +228,6 @@ proxy-groups:
     include-all-providers: true
     filter: "🇺🇸|usa"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    url: https://cp.cloudflare.com/generate_204
-    interval: 300
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
     
 proxy-providers:
