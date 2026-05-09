@@ -1,43 +1,129 @@
-dns:
+mixed-port: 7890
+tcp-concurrent: false
+allow-lan: true
+ipv6: true
+mode: Rule
+log-level: info
+global-client-fingerprint: chrome
+find-process-mode: strict
+external-controller: 0.0.0.0:9090
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 3
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+sniffer:
+  enable: true
+  parse-pure-ip: true
+  sniff:
+    HTTP:
+      ports:
+      - 80
+      - 8080-8800
+      override-destination: true
+    TLS:
+      ports:
+      - 443
+      - 8443
+    QUIC:
+      ports:
+      - 443
+      - 8443
+  skip-domain:
+  - Mijia Cloud
+  - dlg.io.mi.com
+  - +.apple.com
+tun:
   enable: false
-  cache-algorithm: arc
-  prefer-h3: true
-  use-hosts: true
-  use-system-hosts: true
-  respect-rules: true
-  listen: 0.0.0.0:53
+  stack: mixed
+  dns-hijack:
+  - any:53
+  auto-route: true
+  auto-detect-interface: true
+dns:
+  enable: true
   ipv6: true
-  default-nameserver:
-    - 127.0.0.1:53
-    - 223.5.5.5
+  prefer-h3: true
+  listen: 0.0.0.0:53
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-range6: fdfe:dcba:9876::1/64
-  fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - '*.lan'
-  # fake-ip-ttl: 1
+  - '*.lan'
+  - cable.auth.com
+  - +.msftconnecttest.com
+  - +.msftncsi.com
+  - network-test.debian.org
+  - detectportal.firefox.com
+  - resolver1.opendns.com
+  - +.srv.nintendo.net
+  - +.stun.playstation.net
+  - xbox.*.microsoft.com
+  - +.xboxlive.com
+  - stun.*
+  - global.turn.twilio.com
+  - global.stun.twilio.com
+  - localhost.*.qq.com
+  - +.logon.battlenet.com.cn
+  - +.logon.battle.net
+  - +.blzstatic.cn
+  - +.cmpassport.com
+  - id6.me
+  - open.e.189.cn
+  - mdn.open.wo.cn
+  - opencloud.wostore.cn
+  - auth.wosms.cn
+  - +.jegotrip.com.cn
+  - +.icitymobile.mobi
+  - +.pingan.com.cn
+  - +.cmbchina.com
+  - +.cmbchina.com.cn
+  - pool.ntp.org
+  - +.pool.ntp.org
+  - ntp.*.com
+  - time.*.com
+  - ntp?.*.com
+  - time?.*.com
+  - time.*.gov
+  - time.*.edu.cn
+  - +.ntp.org.cn
+  - time.*.apple.com
+  default-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
   nameserver-policy:
-    '+.arpa': '10.0.0.1'
+    www.baidu.com: 114.114.114.114
+    +.internal.crop.com: 10.0.0.1
+    www.baidu.com,+.google.com: https://doh.pub/dns-query
+#    geosite:private,apple: https://dns.alidns.com/dns-query
+#    rule-set:google: 8.8.8.8
   nameserver:
-    - 127.0.0.1:53
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
+  - https://doh.pub/dns-query
+  - https://dns.alidns.com/dns-query
   fallback:
-    - 127.0.0.1:53
-    - tls://8.8.4.4
-    - tls://1.1.1.1
-  proxy-server-nameserver:
-    - https://doh.pub/dns-query
+  - https://1.1.1.2/dns-query
+  - https://1.0.0.2/dns-query
+  - https://208.67.222.222/dns-query
+  - https://208.67.220.220/dns-query
+  - https://9.9.9.9/dns-query
   fallback-filter:
-    geoip: true
-    geoip-code: ir
+    geoip: false
+#    geoip-code: 
+    geosite:
+
     ipcidr:
-      - 240.0.0.0/4
+    - 240.0.0.0/4
+    - 0.0.0.0/32
     domain:
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
+    - +.google.com
+    - +.github.com
+    - +.facebook.com
+    - +.twitter.com
+    - +.youtube.com
+    - +.google.cn
+    - +.googleapis.cn
+    - +.googleapis.com
 proxies:
 proxy-groups:
   - name: PROXY
