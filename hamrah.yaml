@@ -148,22 +148,86 @@ dns:
 
 proxy-groups:
   - name: PROXY
-    type: select
+    type: url-test
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
-#   include-all-providers: true
+    proxies:
+      - PROXY+url-test
+      - PROXY+fallback
+      - PROXY+load-balance
+      - 2.180.31.98
+      - 194.48.198.135
+  - name: PROXY+url-test
+    type: url-test
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
     proxies:
       - 🟢Auto🟢
       - 🟡fallback🟡
       - 🔴load-balance🔴
-      - 🟢http🟢
-      - United
-      - Japan
-      - Singapore
-      - 2.180.31.98
-      - 194.48.198.135
-  - name: 🟢Auto🟢
+      - 🟢http+url-test🟢
+      - 🟢http+fallback🟢
+      - 🟢http+load-balance🟢
+      - United+url-test
+      - Japan+url-test
+      - Singapore+url-test
+      - Hong Kong+url-test
+      - Hong Kong+fallback
+      - United+fallback
+      - Japan+fallback
+      - Singapore+fallback
+      - United+load-balance
+      - Japan+load-balance
+      - Singapore+load-balance
+      - Hong Kong+load-balance
+      
+  - name: PROXY+fallback
     type: fallback
-    url: http://connectivitycheck.gstatic.com/generate_204
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
+    proxies:
+      - 🟢Auto🟢
+      - 🟡fallback🟡
+      - 🔴load-balance🔴
+      - 🟢http+url-test🟢
+      - 🟢http+fallback🟢
+      - 🟢http+load-balance🟢
+      - United+url-test
+      - Japan+url-test
+      - Singapore+url-test
+      - Hong Kong+url-test
+      - Hong Kong+fallback
+      - United+fallback
+      - Japan+fallback
+      - Singapore+fallback
+      - United+load-balance
+      - Japan+load-balance
+      - Singapore+load-balance
+      - Hong Kong+load-balance
+      
+  - name: PROXY+load-balance
+    type: load-balance
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
+    proxies:
+      - 🟢Auto🟢
+      - 🟡fallback🟡
+      - 🔴load-balance🔴
+      - 🟢http+url-test🟢
+      - 🟢http+fallback🟢
+      - 🟢http+load-balance🟢
+      - United+url-test
+      - Japan+url-test
+      - Singapore+url-test
+      - Hong Kong+url-test
+      - Hong Kong+fallback
+      - United+fallback
+      - Japan+fallback
+      - Singapore+fallback
+      - United+load-balance
+      - Japan+load-balance
+      - Singapore+load-balance
+      - Hong Kong+load-balance
+      
+  - name: 🟢Auto🟢
+    type: url-test
+    url: https://www.gstatic.com/generate_204
     interval: 3
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all-providers: true
@@ -173,7 +237,7 @@ proxy-groups:
     
   - name: 🟡fallback🟡
     type: fallback
-    url: http://connectivitycheck.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 20
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all-providers: true
@@ -182,23 +246,44 @@ proxy-groups:
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🔴load-balance🔴
-    type: fallback
-    url: http://connectivitycheck.gstatic.com/generate_204
+    type: load-balance
+    url: https://www.gstatic.com/generate_204
     interval: 30
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh #|Vmess|Vless|Trojan|Hysteria|Hysteria2
     include-all-providers: true
     hidden: false
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
-  - name: 🟢http🟢
-    type: fallback
-    url: http://connectivitycheck.gstatic.com/generate_204
+  - name: 🟢http+url-test🟢
+    type: url-test
+    url: https://www.gstatic.com/generate_204
     interval: 1
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     include-all-providers: true
     include-all-proxies: true
     hidden: false
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png 
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+
+  - name: 🟢http+fallback🟢
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 1
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
+    include-all-providers: true
+    include-all-proxies: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+
+  - name: 🟢http+load-balance🟢
+    type: load-balance
+    url: https://www.gstatic.com/generate_204
+    interval: 1
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
+    include-all-providers: true
+    include-all-proxies: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+
   - name: 🎯 Direct
     type: select
     disable-udp: true
@@ -207,18 +292,18 @@ proxy-groups:
       - "DIRECT"
       - "PROXY"
 
-  - name: Hong Kong
+  - name: Hong Kong+fallback
     type: fallback
-    url: http://connectivitycheck.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 30
     include-all-providers: true
     filter: "hk|hongkong|🇭🇰"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
     
-  - name: Japan
+  - name: Japan+fallback
     type: fallback
-    url: http://connectivitycheck.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 30
     include-all-providers: true
     include-all-proxies: true
@@ -226,9 +311,9 @@ proxy-groups:
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
     
-  - name: Singapore
+  - name: Singapore+fallback
     type: fallback
-    url: http://connectivitycheck.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 30
     include-all-providers: true
     include-all-proxies: true
@@ -236,9 +321,9 @@ proxy-groups:
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
     
-  - name: United
+  - name: United+fallback
     type: fallback
-    url: http://connectivitycheck.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 30
     include-all-providers: true
     include-all-proxies: true
@@ -246,6 +331,83 @@ proxy-groups:
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
     
+  - name: Hong Kong+url-test
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 30
+    include-all-providers: true
+    filter: "hk|hongkong|🇭🇰"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+    
+  - name: Japan+url-test
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 30
+    include-all-providers: true
+    include-all-proxies: true
+    filter: "🇯🇵|jp"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+    
+  - name: Singapore+url-test
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 30
+    include-all-providers: true
+    include-all-proxies: true
+    filter: "sg|🇸🇬"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+    
+  - name: United+url-test
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 30
+    include-all-providers: true
+    include-all-proxies: true
+    filter: "🇺🇸|usa"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+
+  - name: Hong Kong+load-balance
+    type: load-balance
+    url: https://www.gstatic.com/generate_204
+    interval: 30
+    include-all-providers: true
+    filter: "hk|hongkong|🇭🇰"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+    
+  - name: Japan+load-balance
+    type: load-balance
+    url: https://www.gstatic.com/generate_204
+    interval: 30
+    include-all-providers: true
+    include-all-proxies: true
+    filter: "🇯🇵|jp"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+    
+  - name: Singapore+load-balance
+    type: load-balance
+    url: https://www.gstatic.com/generate_204
+    interval: 30
+    include-all-providers: true
+    include-all-proxies: true
+    filter: "sg|🇸🇬"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+    
+  - name: United+load-balance
+    type: load-balance
+    url: https://www.gstatic.com/generate_204
+    interval: 30
+    include-all-providers: true
+    include-all-proxies: true
+    filter: "🇺🇸|usa"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
 proxy-providers:
   A1:
     type: http
@@ -254,7 +416,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: http://connectivitycheck.gstatic.com/generate_204
+      url: https://www.gstatic.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -273,7 +435,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: http://connectivitycheck.gstatic.com/generate_204
+      url: https://www.gstatic.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -293,7 +455,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: http://connectivitycheck.gstatic.com/generate_204
+      url: https://www.gstatic.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -312,7 +474,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: http://connectivitycheck.gstatic.com/generate_204
+      url: https://www.gstatic.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -331,7 +493,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: http://connectivitycheck.gstatic.com/generate_204
+      url: https://www.gstatic.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -350,7 +512,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: http://connectivitycheck.gstatic.com/generate_204
+      url: https://www.gstatic.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -371,7 +533,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider2:
     type: "http"
     url: "https://sos.cmliussss.net/auto"
@@ -381,7 +543,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider3:
     type: "http"
     url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config.yaml"
@@ -391,7 +553,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider4:
     type: "http"
     url: "https://raw.githubusercontent.com/tbbatbb/Proxy/master/dist/clash.config.yaml"
@@ -401,7 +563,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider5:
     type: "http"
     url: "https://raw.githubusercontent.com/colatiger/clash-config/master/clash.yml"
@@ -411,7 +573,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider6:
     type: "http"
     url: "https://raw.fastgit.org/freefq/free/master/v2"
@@ -421,7 +583,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider7:
     type: "file"
     url: "https://raw.githubusercontent.com/openrunner/clash-freenode/main/clash.yaml"
@@ -431,7 +593,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider8:
     type: "http"
     url: "https://raw.githubusercontent.com/vveg26/get_proxy/main/dist/clash.config.yaml"
@@ -441,7 +603,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider9:
     type: "http"
     url: "https://cdn.jsdelivr.net/gh/learnhard-cn/free_proxy_ss@main/clash/clash.provider.yaml"
@@ -451,7 +613,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider10:
     type: "http"
     url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
@@ -461,7 +623,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider11:
     type: "http"
     url: "https://pxypool.131433.xyz/clash/proxies"
@@ -471,7 +633,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider12:
     type: "http"
     url: "https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/refs/heads/main/all_proxies.txt"
@@ -480,7 +642,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider13:
     type: "http"
     url: "https://anaer.github.io/Sub/proxies.yaml"
@@ -490,7 +652,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider14:
     type: "http"
     url: "https://proxypool.link/clash/proxies"
@@ -500,7 +662,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider15:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fhkaa0%2Fpermalink%2Fmain%2Fproxy%2FV2ray&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -510,7 +672,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider16:
     type: "http"
     url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
@@ -520,7 +682,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider17:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fwuzhuohua168%2Fclash5%2Fmain%2F5&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -530,7 +692,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider18:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fyzcjd%2Fjiedian%2Fmain%2F%2540yzcjd&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -540,7 +702,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider19:
     type: "http"
     url: "https://raw.githubusercontent.com/Rokate/Proxy-Sub/main/clash/clash_v2ray.yml"
@@ -550,7 +712,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider20:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Ffreefq.neocities.org%2Ffree.txt&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -560,7 +722,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider21:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fadobe.zhuzhu12.com%2Flink%2FrbPHm87z7HiuVw68%3Fsub%3D3%26extend%3D1&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -570,7 +732,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider22:
     type: "http"
     url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
@@ -580,7 +742,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider23:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmfuu%2Fv2ray%2Fmaster%2Fv2ray&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -590,7 +752,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider24:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.fastgit.org%2FPawdroid%2FFree-servers%2Fmain%2Fsub&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -600,7 +762,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider25:
     type: "http"
     url: "https://raw.githubusercontent.com/aiboboxx/clashfree/main/clash.yml"
@@ -610,7 +772,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider26:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2FJsnzkpg%2FJsnzkpg%2FJsnzkpg%2FJsnzkpg&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -620,7 +782,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider27:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fbulink.me%2Fsub%2Fge4wfp%2Fvm&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -630,7 +792,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider28:
     type: "http"
     url: "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
@@ -640,7 +802,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider29:
     type: "http"
     url: "https://nodefree.org/dy/2023/06/20230614.yaml"
@@ -650,7 +812,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider30:
     type: "http"
     url: "https://raw.githubusercontent.com/zhlx2835/freefq/main/clash.yaml"
@@ -660,7 +822,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider31:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpaste.gg%2Fp%2Fanonymous%2Fe6f02cfba1a94a029c5ec2c5d17b71ba%2Ffiles%2F47e51fcbb1c84163b37c596dcd6fb754%2Fraw&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -670,7 +832,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider32:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Ios.yaml"
@@ -680,7 +842,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider33:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fchfchf0306%2Fjeidian4.18%2Fmain%2F4.18&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -690,7 +852,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider34:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpastebin.com%2Fraw%2FGxR5pELe&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -700,7 +862,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider35:
     type: "http"
     url: "https://raw.githubusercontent.com/cxr9912/cxr2022/main/ss.yaml"
@@ -710,7 +872,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider36:
     type: "http"
     url: "https://raw.githubusercontent.com/freefq/free/master/v2"
@@ -720,7 +882,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider37:
     type: "http"
     url: "https://wefound.cc/freenode/2023/06/20230614.yaml"
@@ -730,7 +892,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider38:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpaste.gg%2Fp%2Fanonymous%2F07a7d580494d45969bd46a14cdb01ba8%2Ffiles%2F683e79d508c7449baa7078e234e24e74%2Fraw&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -740,7 +902,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider39:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpaste.gg%2Fp%2Fanonymous%2F07a7d580494d45969bd46a14cdb01ba8%2Ffiles%2F683e79d508c7449baa7078e234e24e74%2Fraw&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -750,7 +912,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider40:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpaste.gg%2Fp%2Fanonymous%2F26c9d923f5084ea48011ec464388c072%2Ffiles%2F26def9f134174d678c2a40fa6f105df2%2Fraw&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -760,7 +922,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider41:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpaste.gg%2Fp%2Fanonymous%2Fd44cc182226f47a38cd85c83e55a0602%2Ffiles%2Fa301999ada85423383c59ac3c1f5c902%2Fraw&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -770,7 +932,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider42:
     type: "http"
     url: "https://openit-fq.ml/Clash.yaml"
@@ -780,7 +942,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider43:
     type: "http"
     url: "https://sub.pmsub.me/clash.yaml"
@@ -790,7 +952,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider44:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fbulink.me%2Fsub%2Fmqxkn%2Fvm&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -800,7 +962,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider45:
     type: "http"
     url: "https://jetflow.site/api/v1/public/services/127720/0e90044aa40a35307494342da3ade301?client=clash"
@@ -810,7 +972,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider46:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fjiang.netlify.app%2F&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -820,7 +982,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider47:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Ff.kxyz.eu.org%2Ff.php%3Fr%3DaHR0cHM6Ly9yc3Mub2tnZ3Jzcy5idXp6L2xpbmsvMHEzTGJGbU9uM0NTQWZYeT9tdT0y&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -830,7 +992,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider48:
     type: "http"
     url: "https://clashnode.com/wp-content/uploads/2023/06/20230614.yaml"
@@ -840,7 +1002,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider49:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpaste.wmlabs.net%2Fraw%2F866a5fee4436&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -850,7 +1012,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider50:
     type: "http"
     url: ""
@@ -860,7 +1022,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider51:
     type: "http"
     url: "https://proxy.yiun.xyz/clash/proxies"
@@ -870,7 +1032,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider52:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpaste.gg%2Fp%2Fanonymous%2Ff19e2944302a470686689b8d6d32177f%2Ffiles%2F3bfa58d0eb954043aeb2d3eb07b47db8%2Fraw&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
@@ -880,7 +1042,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider53:
     type: "http"
     url: "http://proxies.haisto.cn/clash/proxies"
@@ -890,7 +1052,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider54:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/tro.562.Profiles-20221211014547.txt"
@@ -900,7 +1062,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider55:
     type: "http"
     url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/update/provider/provider.yml"
@@ -910,7 +1072,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider56:
     type: "http"
     url: "https://free.iam7.tk/clash/config"
@@ -920,7 +1082,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider57:
     type: "http"
     url: "https://proxy.yugogo.xyz/clash/config"
@@ -930,7 +1092,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider58:
     type: "http"
     url: "https://klausvpn.posyao.com/clash/config"
@@ -940,7 +1102,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider59:
     type: "http"
     url: "https://clash.myvm.cc/clash/config"
@@ -950,7 +1112,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider60:
     type: "http"
     url: ""
@@ -960,7 +1122,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider61:
     type: "http"
     url: ""
@@ -970,7 +1132,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider62:
     type: "http"
     url: ""
@@ -980,7 +1142,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider63:
     type: "http"
     url: ""
@@ -990,7 +1152,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider64:
     type: "http"
     url: ""
@@ -1000,7 +1162,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider65:
     type: "http"
     url: ""
@@ -1010,7 +1172,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider66:
     type: "http"
     url: ""
@@ -1020,7 +1182,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider67:
     type: "http"
     url: ""
@@ -1030,7 +1192,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider68:
     type: "http"
     url: ""
@@ -1040,7 +1202,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider69:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/irancell.yaml"
@@ -1050,7 +1212,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"    
+      url: "https://www.gstatic.com/generate_204"    
   provider70:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/tro_abbbasdvd.txt"
@@ -1060,7 +1222,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider71:
     type: "http"
     url: "https://check.banyunxiaoxi.icu/sub/sub-base64.txt"
@@ -1070,7 +1232,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider72:
     type: "http"
     url: "https://proxypool.link/clash/proxies"
@@ -1080,7 +1242,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider73:
     type: "http"
     url: "https://pxypool.131433.xyz/clash/proxies"
@@ -1090,7 +1252,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "http://connectivitycheck.gstatic.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
 rule-providers:
   reject1:
     type: http
@@ -1587,7 +1749,8 @@ rules :
   - RULE-SET,category-ai-!cn,PROXY
   - GEOIP,ir,🎯 Direct
   - MATCH,PROXY
+
 proxies:
   - {"name":"2.180.31.98","type":"http","server":"2.180.31.98","port":8035}
   - {"name":"194.48.198.135","type":"http","server":"194.48.198.135","port":7070}
-  
+
