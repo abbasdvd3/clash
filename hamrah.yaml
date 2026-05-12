@@ -32,10 +32,10 @@ external-ui-name: xd
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 keep-alive-interval: 30
 find-process-mode: strict
-unified-delay: false
+unified-delay: true
 tcp-concurrent: true
 global-client-fingerprint: random
-geodata-mode: true
+geodata-mode: false
 geodata-loader: standard
 geo-auto-update: true
 geo-update-interval: 24
@@ -53,7 +53,7 @@ experimental:
   quic-go-disable-gso: true
   quic-go-disable-ecn: true
 dns:
-  enable: true
+  enable: false
   cache-algorithm: arc
   prefer-h3: true
   use-hosts: true
@@ -154,9 +154,13 @@ proxy-groups:
       - PROXY+url-test
       - PROXY+fallback
       - PROXY+load-balance
-      - 2.180.31.98
-      - 194.48.198.135
-      
+      - 🟢Auto🟢
+      - 🟡fallback🟡
+      - 🔴load-balance🔴
+      - 🟢http+url-test🟢
+      - 🟢http+fallback🟢
+      - 🟢http+load-balance🟢
+
   - name: PROXY+url-test
     type: url-test
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
@@ -232,7 +236,7 @@ proxy-groups:
     interval: 3
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     
@@ -242,7 +246,7 @@ proxy-groups:
     interval: 2
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
@@ -252,7 +256,7 @@ proxy-groups:
     interval: 3
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh #|Vmess|Vless|Trojan|Hysteria|Hysteria2
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
@@ -262,7 +266,7 @@ proxy-groups:
     interval: 1
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
@@ -272,7 +276,7 @@ proxy-groups:
     interval: 1
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
@@ -282,7 +286,7 @@ proxy-groups:
     interval: 1
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
@@ -300,7 +304,7 @@ proxy-groups:
     interval: 3
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     filter: "hk|hongkong|🇭🇰"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
@@ -311,7 +315,7 @@ proxy-groups:
     interval: 3     
     hidden: true     
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     filter: "🇯🇵|jp"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
@@ -322,7 +326,7 @@ proxy-groups:
     interval: 3
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     filter: "sg|🇸🇬"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
@@ -333,7 +337,7 @@ proxy-groups:
     interval: 3
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     filter: "🇺🇸|usa"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
@@ -344,7 +348,7 @@ proxy-groups:
     interval: 3
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     filter: "hk|hongkong|🇭🇰"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
@@ -355,7 +359,7 @@ proxy-groups:
     interval: 3
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     filter: "🇯🇵|jp"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
@@ -366,7 +370,7 @@ proxy-groups:
     interval: 3
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     filter: "sg|🇸🇬"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
@@ -377,7 +381,7 @@ proxy-groups:
     interval: 3
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     filter: "🇺🇸|usa"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
@@ -388,7 +392,7 @@ proxy-groups:
     interval: 3
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     filter: "hk|hongkong|🇭🇰"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
@@ -399,7 +403,7 @@ proxy-groups:
     interval: 3
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     filter: "🇯🇵|jp"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
@@ -410,7 +414,7 @@ proxy-groups:
     interval: 3
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     filter: "sg|🇸🇬"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
@@ -421,7 +425,7 @@ proxy-groups:
     interval: 3
     hidden: true
     include-all-providers: true
-    include-all-proxies: true
+#     include-all-proxies: true
     filter: "🇺🇸|usa"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
@@ -433,7 +437,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: http://connectivitycheck.gstatic.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -452,7 +456,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: http://connectivitycheck.gstatic.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -472,7 +476,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: http://connectivitycheck.gstatic.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -491,7 +495,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: http://connectivitycheck.gstatic.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -510,7 +514,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: http://connectivitycheck.gstatic.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -529,7 +533,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: http://connectivitycheck.gstatic.com/generate_204
       interval: 300
       timeout: 3
       lazy: true
@@ -550,7 +554,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider2:
     type: "http"
     url: "https://sos.cmliussss.net/auto"
@@ -560,7 +564,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider3:
     type: "http"
     url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config.yaml"
@@ -570,7 +574,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider4:
     type: "http"
     url: "https://raw.githubusercontent.com/tbbatbb/Proxy/master/dist/clash.config.yaml"
@@ -580,7 +584,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider5:
     type: "http"
     url: "https://raw.githubusercontent.com/colatiger/clash-config/master/clash.yml"
@@ -590,7 +594,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider6:
     type: "http"
     url: "https://raw.fastgit.org/freefq/free/master/v2"
@@ -600,7 +604,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider7:
     type: "file"
     url: "https://raw.githubusercontent.com/openrunner/clash-freenode/main/clash.yaml"
@@ -610,7 +614,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider8:
     type: "http"
     url: "https://raw.githubusercontent.com/vveg26/get_proxy/main/dist/clash.config.yaml"
@@ -620,7 +624,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider9:
     type: "http"
     url: "https://raw.githubusercontent.com/learnhard-cn/free_proxy_ss@main/clash/clash.provider.yaml"
@@ -630,7 +634,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider10:
     type: "http"
     url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
@@ -640,7 +644,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider11:
     type: "http"
     url: "http://weoknow.com/data/dayupdate/1/z1.txt"
@@ -650,7 +654,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider12:
     type: "http"
     url: "https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/refs/heads/main/all_proxies.txt"
@@ -659,7 +663,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider13:
     type: "http"
     url: "https://anaer.github.io/Sub/proxies.yaml"
@@ -669,7 +673,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider14:
     type: "http"
     url: "https://proxypool.link/clash/proxies"
@@ -679,7 +683,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider15:
     type: "http"
     url: "https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/main/Clash_Movaghat"
@@ -689,7 +693,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider16:
     type: "http"
     url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
@@ -699,7 +703,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider17:
     type: "http"
     url: "https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/main/Clash_Reality"
@@ -709,7 +713,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider18:
     type: "http"
     url: "https://raw.githubusercontent.com/xtoolkit/TVC/main/subscriptions/meta/mix"
@@ -719,7 +723,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider19:
     type: "http"
     url: "http://66.42.50.118:12580/clash/proxies"
@@ -729,7 +733,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider20:
     type: "http"
     url: "https://raw.githubusercontent.com/itsyebekhe/PSG/main/subscriptions/meta/mix"
@@ -739,7 +743,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider21:
     type: "http"
     url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/snippets/nodes.meta.yml"
@@ -749,7 +753,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider22:
     type: "http"
     url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
@@ -759,7 +763,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider23:
     type: "http"
     url: ""
@@ -769,7 +773,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider24:
     type: "http"
     url: ""
@@ -779,7 +783,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider25:
     type: "http"
     url: "https://raw.githubusercontent.com/aiboboxx/clashfree/main/clash.yml"
@@ -789,7 +793,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204" 
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
   provider26:
     type: "http"
     url: "https://raw.githubusercontent.com/liketolivefree/kobabi/main/prov_clash.yaml"
@@ -799,7 +803,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204" 
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
   provider27:
     type: "http"
     url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
@@ -809,7 +813,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204" 
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
   provider28:
     type: "http"
     url: "https://raw.githubusercontent.com/ermaozi/get_subscribe/refs/heads/main/subscribe/clash.yml"
@@ -819,7 +823,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204" 
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
   provider29:
     type: "http"
     url: "https://nodefree.org/dy/2023/06/20230614.yaml"
@@ -829,7 +833,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204" 
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
   provider30:
     type: "http"
     url: "https://raw.githubusercontent.com/zhlx2835/freefq/main/clash.yaml"
@@ -839,7 +843,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204" 
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
   provider31:
     type: "http"
     url: "https://raw.githubusercontent.com/jyj0912/Free-clash/refs/heads/main/sub"
@@ -849,7 +853,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204" 
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
   provider32:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Ios.yaml"
@@ -859,7 +863,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider33:
     type: "http"
     url: ""
@@ -869,7 +873,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider34:
     type: "http"
     url: ""
@@ -879,7 +883,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider35:
     type: "http"
     url: "https://raw.githubusercontent.com/cxr9912/cxr2022/main/ss.yaml"
@@ -889,7 +893,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider36:
     type: "http"
     url: "https://raw.githubusercontent.com/freefq/free/master/v2"
@@ -899,7 +903,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider37:
     type: "http"
     url: "https://wefound.cc/freenode/2023/06/20230614.yaml"
@@ -909,7 +913,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider38:
     type: "http"
     url: ""
@@ -919,7 +923,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider39:
     type: "http"
     url: ""
@@ -929,7 +933,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider40:
     type: "http"
     url: ""
@@ -939,7 +943,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider41:
     type: "http"
     url: ""
@@ -949,7 +953,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider42:
     type: "http"
     url: "https://openit-fq.ml/Clash.yaml"
@@ -959,7 +963,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider43:
     type: "http"
     url: "https://sub.pmsub.me/clash.yaml"
@@ -969,7 +973,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider44:
     type: "http"
     url: ""
@@ -979,7 +983,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider45:
     type: "http"
     url: "https://jetflow.site/api/v1/public/services/127720/0e90044aa40a35307494342da3ade301?client=clash"
@@ -989,7 +993,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider46:
     type: "http"
     url: ""
@@ -999,7 +1003,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider47:
     type: "http"
     url: ""
@@ -1009,7 +1013,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider48:
     type: "http"
     url: "https://clashnode.com/wp-content/uploads/2023/06/20230614.yaml"
@@ -1019,7 +1023,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider49:
     type: "http"
     url: ""
@@ -1029,7 +1033,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider50:
     type: "http"
     url: ""
@@ -1039,7 +1043,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider51:
     type: "http"
     url: "https://proxy.yiun.xyz/clash/proxies"
@@ -1049,7 +1053,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider52:
     type: "http"
     url: ""
@@ -1059,7 +1063,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider53:
     type: "http"
     url: "http://proxies.haisto.cn/clash/proxies"
@@ -1069,7 +1073,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider54:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/tro.562.Profiles-20221211014547.txt"
@@ -1079,7 +1083,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider55:
     type: "http"
     url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/update/provider/provider.yml"
@@ -1089,7 +1093,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider56:
     type: "http"
     url: "https://free.iam7.tk/clash/config"
@@ -1099,7 +1103,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider57:
     type: "http"
     url: "https://proxy.yugogo.xyz/clash/config"
@@ -1109,7 +1113,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider58:
     type: "http"
     url: "https://klausvpn.posyao.com/clash/config"
@@ -1119,7 +1123,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider59:
     type: "http"
     url: "https://clash.myvm.cc/clash/config"
@@ -1129,7 +1133,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204" 
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
   provider60:
     type: "http"
     url: ""
@@ -1139,7 +1143,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider61:
     type: "http"
     url: ""
@@ -1149,7 +1153,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider62:
     type: "http"
     url: ""
@@ -1159,7 +1163,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider63:
     type: "http"
     url: ""
@@ -1169,7 +1173,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider64:
     type: "http"
     url: ""
@@ -1179,7 +1183,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider65:
     type: "http"
     url: ""
@@ -1189,7 +1193,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider66:
     type: "http"
     url: "https://raw.githubusercontent.com/free-nodes/clashfree/refs/heads/main/clash20260512.yml"
@@ -1199,7 +1203,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider67:
     type: "http"
     url: "https://iwxf.netlify.app/"
@@ -1209,7 +1213,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider68:
     type: "http"
     url: "https://jiang.netlify.app/"
@@ -1219,7 +1223,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider69:
     type: "http"
     url: "https://muma16fx.netlify.app/"
@@ -1229,7 +1233,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"    
+      url: "http://connectivitycheck.gstatic.com/generate_204"    
   provider70:
     type: "http"
     url: "https://qiaomenzhuanfx.netlify.app/"
@@ -1239,7 +1243,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider71:
     type: "http"
     url: "https://check.banyunxiaoxi.icu/sub/sub-base64.txt"
@@ -1249,7 +1253,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider72:
     type: "http"
     url: "https://proxypool.link/clash/proxies"
@@ -1259,7 +1263,7 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
   provider73:
     type: "http"
 #    url: "https://pxypool.131433.xyz/clash/proxies"
@@ -1269,260 +1273,57 @@ proxy-providers:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://www.gstatic.com/generate_204"
+      url: "http://connectivitycheck.gstatic.com/generate_204"
 rule-providers:
-  reject1:
-    type: http
-    format: text
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.text"
-    interval: 86400
-  icloud1:
-    type: http
-    format: text
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.text"
-    interval: 86400
-  apple1:
-    type: http
-    format: text
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.text"
-    interval: 86400
-  google1:
-    type: http
-    format: text
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.text"
-    interval: 86400
-  proxy1:
-    type: http
-    format: text
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.text"
-    interval: 86400
-  direct1:
-    type: http
-    format: text
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.text"
-    interval: 86400
-  private1:
-    type: http
-    format: text
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.text"
-    interval: 86400
-  gfw1:
-    type: http
-    format: text
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.text"
-    interval: 86400
-  telegramcidr:
-    type: http
-    format: text
-    behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.text"
-    interval: 86400
   LocalAreaNetwork:
     type: http
     format: text
     behavior: classical
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/LocalAreaNetwork.list"
     interval: 86400
-  BanAD:
-    type: http
-    format: text
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanAD.list"
-    interval: 86400
-  BanProgramAD:
-    type: http
-    format: text
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/BanProgramAD.list"
-    interval: 86400
-  GoogleCN:
-    type: http
-    format: text
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/GoogleCN.list"
-    interval: 86400
-  SteamCN:
-    type: http
-    format: text
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Ruleset/SteamCN.list"
-    interval: 86400
-  Microsoft:
-    type: http
-    format: text
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Microsoft.list"
-    interval: 86400
-  Apple:
-    type: http
-    format: text
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Apple.list"
-    interval: 86400
-  ProxyMedia:
-    type: http
-    format: text
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/ProxyMedia.list"
-    interval: 86400
-  Telegram:
-    type: http
-    format: text
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Telegram.list"
-    interval: 86400
-  ProxyLite:
-    type: http
-    format: text
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/ProxyLite.list"
-    interval: 86400
-  nsfw:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml"
-    interval: 86400
-  social:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml"
-    interval: 86400
+
   ir:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
     interval: 86400
-  ads:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
-    interval: 86400
-  malware:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
-    interval: 86400
-  phishing:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
-    interval: 86400
-  cryptominers:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
-    interval: 86400
+    
   apps:
     type: http
     format: yaml
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml"
     interval: 86400
+    
   ircidr:
     type: http
     format: yaml
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
     interval: 86400
+    
   private:
     type: http
     format: yaml
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
     interval: 86400
+    
   irasn:
     type: http
     format: yaml
     behavior: classical
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
     interval: 86400
-  geolocation-!cn:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
-    interval: 86400
+    
   AWA:
     type: http
     format: yaml
     behavior: domain
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
     interval: 86400 
-  anti-AD:
-    type: http
-    behavior: domain
-    format: yaml
-    url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"
-    interval: 86400
-  anti-AD-white:
-    type: http
-    behavior: domain
-    format: yaml
-    url: "https://raw.githubusercontent.com/privacy-protection-tools/dead-horse/master/anti-ad-white-for-clash.yaml"
-    interval: 86400
-  category-ai-!cn:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.yaml"
-    interval: 86400
-  category-ai-cn:
-    type: http
-    format: yaml
-    behavior: classical
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.yaml"
-    interval: 86400
-  AI:
-    type: http
-    behavior: classical
-    format: yaml
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list"
-    interval: 86400
-  OpenAi:
-    type: http
-    format: text
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list"
-    interval: 86400
-  GoogleFCM:
-    type: http
-    format: text
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list"
-    interval: 86400
-  GoogleCNProxyIP:
-    type: http
-    format: text
-    behavior: ipcidr
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list"
-    interval: 86400
-  Google:
-    type: http
-    format: text
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list"
-    interval: 86400
-  YouTube:
-    type: http
-    format: text
-    behavior: domain
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list"
-    interval: 86400
+  
 rules :
   - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,PROXY
   - DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,PROXY
@@ -1565,16 +1366,6 @@ rules :
   - DOMAIN-SUFFIX,+.openai.com.cdn.cloudflare.net,PROXY
   - DOMAIN-SUFFIX,o33249.ingest.sentry.io,PROXY
   - DOMAIN-SUFFIX,openaicom.imgix.net,PROXY
-  - RULE-SET,reject1,REJECT
-  - RULE-SET,icloud1,PROXY
-  - RULE-SET,apple1,PROXY
-  - RULE-SET,google1,PROXY
-  - RULE-SET,proxy1,PROXY
-  - RULE-SET,direct1,🎯 Direct
-  - RULE-SET,private1,🎯 Direct
-  - RULE-SET,gfw1,PROXY
-  - RULE-SET,telegramcidr,PROXY
-  - RULE-SET,GoogleFCM,PROXY
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
   - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
   - DOMAIN-KEYWORD,soft98.ir,🎯 Direct
@@ -1731,43 +1522,16 @@ rules :
   - IP-CIDR,10.0.0.0/8,🎯 Direct
   - IP-CIDR,100.64.0.0/10,🎯 Direct
   - PROCESS-NAME,com.termux,PROXY
-  - AND,((DOMAIN,google.com),(NETWORK,UDP)),PROXY
-  - OR,((NETWORK,UDP),(DOMAIN,google.com)),PROXY
-  - NOT,((DOMAIN,google.com)),PROXY
   - RULE-SET,private,🎯 Direct,no-resolve
   - RULE-SET,apps,🎯 Direct
-  - RULE-SET,ads,REJECT
-  - RULE-SET,malware,REJECT
-  - RULE-SET,AWA,REJECT
-  - RULE-SET,phishing,REJECT
-  - RULE-SET,cryptominers,REJECT
   - RULE-SET,ir,🎯 Direct
   - RULE-SET,ircidr,🎯 Direct
   - RULE-SET,irasn,🎯 Direct
   - RULE-SET,LocalAreaNetwork,🎯 Direct
-  - RULE-SET,BanAD,REJECT
-  - RULE-SET,BanProgramAD,REJECT
-  - RULE-SET,SteamCN,PROXY
-  - RULE-SET,Microsoft,PROXY
-  - RULE-SET,Apple,PROXY
-  - RULE-SET,ProxyMedia,PROXY
-  - RULE-SET,Telegram,PROXY
-  - RULE-SET,ProxyLite,PROXY
-  - RULE-SET,social,PROXY,no-resolve
-  - RULE-SET,nsfw,PROXY,no-resolve
-  - RULE-SET,geolocation-!cn,PROXY
-  - RULE-SET,anti-AD-white,🎯 Direct
-  - RULE-SET,anti-AD,REJECT
-  - RULE-SET,GoogleCNProxyIP,PROXY
-  - RULE-SET,GoogleCN,PROXY
-  - RULE-SET,YouTube,PROXY
-  - RULE-SET,Google,PROXY
-  - RULE-SET,category-ai-cn,PROXY
-  - RULE-SET,category-ai-!cn,PROXY
   - GEOIP,ir,🎯 Direct
   - MATCH,PROXY
 
 proxies:
-  - {"name":"2.180.31.98","type":"http","server":"2.180.31.98","port":8035}
-  - {"name":"194.48.198.135","type":"http","server":"194.48.198.135","port":7070}
+#  - {"name":"2.180.31.98","type":"http","server":"2.180.31.98","port":8035}
+#  - {"name":"194.48.198.135","type":"http","server":"194.48.198.135","port":7070}
 
