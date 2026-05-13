@@ -8,19 +8,12 @@ find-process-mode: always
 profile:
   store-selected: true
   store-fake-ip: true
-
-# --------------------------
-# 🌍 Geo 数据（GEOSITE / GEOIP 必须可用）
-# --------------------------
 geodata-mode: true
 geox-url:
   geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat"
   geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
   mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country.mmdb"
 
-# --------------------------
-# 🧪 TUN：抓全App（提升“有些App不听话”的启动与加载）
-# --------------------------
 tun:
   enable: true
   stack: gvisor
@@ -31,9 +24,6 @@ tun:
   dns-hijack:
     - any:53
 
-# --------------------------
-# 🔎 Sniffer：识别走IP/UDP的App，让分流更准确（对TikTok/直播有用）
-# --------------------------
 sniffer:
   enable: true
   sniff:
@@ -46,10 +36,6 @@ sniffer:
   force-dns-mapping: true
   parse-pure-ip: true
 
-# --------------------------
-# 🧠 DNS（Fake-IP + 分流尊重规则）
-# 国内用国内DNS，海外域名强制海外DNS（更快更稳）
-# --------------------------
 dns:
   enable: true
   ipv6: false
@@ -57,17 +43,14 @@ dns:
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
   respect-rules: true
-
   proxy-server-nameserver: [223.5.5.5, 119.29.29.29]
   default-nameserver: [223.5.5.5, 119.29.29.29]
-
   nameserver:
     - https://doh.pub/dns-query
     - https://1.12.12.12/dns-query
     - https://120.53.53.53/dns-query
     - 119.29.29.29
     - 119.28.28.28
-
   fallback:
     - https://cloudflare-dns.com/dns-query
     - https://dns.google/dns-query
@@ -80,13 +63,11 @@ dns:
     ipcidr:
       - 240.0.0.0/4
       - 0.0.0.0/32
-
  # nameserver-policy:
    # "geosite:cn":
  #     - https://doh.pub/dns-query
   #    - https://1.12.12.12/dns-query
   #    - https://120.53.53.53/dns-query
-
  #   "geosite:google,google-play,openai,tiktok,telegram,netflix,youtube,geolocation-!cn":
   #    - https://cloudflare-dns.com/dns-query
   #    - https://dns.google/dns-query
@@ -131,9 +112,6 @@ dns:
     - "+.cn"
     - "+.xn--fiqs8s"
 
-# ==========================================================
-# ✅ 订阅 Provider（已修复 header slice 报错：全部使用数组写法）
-# ==========================================================
 proxy-providers:
   sub:
     type: http
@@ -148,10 +126,862 @@ proxy-providers:
       enable: true
       url: "https://cp.cloudflare.com/generate_204"
       interval: 300
+  A1:
+    type: http
+    url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
+    path: ./hamrah/A1.yaml
+    interval: 300
+    health-check:
+      enable: true
+      url: http://connectivitycheck.gstatic.com/generate_204
+      interval: 300
+      timeout: 3
+      lazy: true
+      Accept: ["*/*"]
+      Connection: ["keep-alive"]
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
 
-# ==========================================================
-# ✅ 规则集（广告尽量少）
-# ==========================================================
+  A2:
+    type: http
+    url: "https://raw.githubusercontent.com/Misaka-blog/chromego_merge/refs/heads/main/sub/merged_proxies_new.yaml" # https://sub.pusytroller.gq/?url=freenodes
+    path: ./hamrah/A2.yaml
+    interval: 300
+    health-check:
+      enable: true
+      url: http://connectivitycheck.gstatic.com/generate_204
+      interval: 300
+      timeout: 3
+      lazy: true
+      Accept: ["*/*"]
+      Connection: ["keep-alive"]
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+
+      
+  A3:
+    type: http
+    url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/refs/heads/master/sub/sub_merge_yaml.yml" # https://raw.githubusercontent.com/miladtahanian/V2RayCFGDumper/refs/heads/main/sub.txt"
+    path: ./hamrah/A3.yaml
+    interval: 300
+    health-check:
+      enable: true
+      url: http://connectivitycheck.gstatic.com/generate_204
+      interval: 300
+      timeout: 3
+      lazy: true
+      Accept: ["*/*"]
+      Connection: ["keep-alive"]
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      
+  A4:
+    type: http     
+    url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml" #   # https://shadowmere.xyz/api/b64sub/ https://www.xrayvip.com/free.txt
+    path: ./hamrah/A4.yaml
+    interval: 300
+    health-check:
+      enable: true
+      url: http://connectivitycheck.gstatic.com/generate_204
+      interval: 300
+      timeout: 3
+      lazy: true
+      Accept: ["*/*"]
+      Connection: ["keep-alive"]
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+
+  A6:
+    type: http
+    url: "https://raw.githubusercontent.com/PuddinCat/BestClash/refs/heads/main/proxies.yaml"
+    path: ./hamrah/A6.yaml
+    interval: 300
+    health-check:
+      enable: true
+      url: http://connectivitycheck.gstatic.com/generate_204
+      interval: 300
+      timeout: 3
+      lazy: true
+      Accept: ["*/*"]
+      Connection: ["keep-alive"]
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+ 
+  A7:
+    type: http
+    url: "https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/refs/heads/master/clash.yaml"
+    path: ./hamrah/A7.yaml
+    interval: 300
+    health-check:
+      enable: true
+      url: http://connectivitycheck.gstatic.com/generate_204
+      interval: 300
+      timeout: 3
+      lazy: true
+      Accept: ["*/*"]
+      Connection: ["keep-alive"]
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+
+  provider1:
+    type: "http"
+    url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_base64_Sub.txt"
+    interval: "3600"
+    path: ./hamrah/All_Configs_base64_Sub.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider2:
+    type: "http"
+    url: "https://sos.cmliussss.net/auto"
+    interval: "3600"
+    path: ./hamrah/3april3.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider3:
+    type: "http"
+    url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config.yaml"
+    interval: "3600"
+    path: ./hamrah/provider3.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider4:
+    type: "http"
+    url: "https://raw.githubusercontent.com/tbbatbb/Proxy/master/dist/clash.config.yaml"
+    interval: "3600"
+    path: ./hamrah/provider4.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider5:
+    type: "http"
+    url: "https://raw.githubusercontent.com/colatiger/clash-config/master/clash.yml"
+    interval: "3600"
+    path: ./hamrah/provider5.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider6:
+    type: "http"
+    url: "https://raw.fastgit.org/freefq/free/master/v2"
+    interval: "3600"
+    path: ./hamrah/provider6.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider7:
+    type: "file"
+    url: "https://raw.githubusercontent.com/openrunner/clash-freenode/main/clash.yaml"
+    interval: "3600"
+    path: ./hamrah/provider7.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider8:
+    type: "http"
+    url: "https://raw.githubusercontent.com/vveg26/get_proxy/main/dist/clash.config.yaml"
+    interval: "3600"
+    path: ./hamrah/provider8.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider9:
+    type: "http"
+    url: "https://raw.githubusercontent.com/learnhard-cn/free_proxy_ss@main/clash/clash.provider.yaml"
+    interval: "3600"
+    path: ./hamrah/provider9.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider10:
+    type: "http"
+    url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
+    interval: "3600"
+    path: ./hamrah/provider10.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider11:
+    type: "http"
+    url: "http://weoknow.com/data/dayupdate/1/z1.txt"
+    interval: "3600"
+    path: ./hamrah/provider11.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider12:
+    type: "http"
+    url: "https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/refs/heads/main/all_proxies.txt"
+    path: ./hamrah/provider12.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider13:
+    type: "http"
+    url: "https://anaer.github.io/Sub/proxies.yaml"
+    interval: "3600"
+    path: ./hamrah/provider13.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider14:
+    type: "http"
+    url: "https://proxypool.link/clash/proxies"
+    interval: "3600"
+    path: ./hamrah/provider14.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider15:
+    type: "http"
+    url: "https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/main/Clash_Movaghat"
+    interval: "3600"
+    path: ./hamrah/provider15.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider16:
+    type: "http"
+    url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
+    interval: "3600"
+    path: ./hamrah/provider16.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider17:
+    type: "http"
+    url: "https://raw.githubusercontent.com/Mosifree/-FREE2CONFIG/main/Clash_Reality"
+    interval: "3600"
+    path: ./hamrah/provider17.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider18:
+    type: "http"
+    url: "https://raw.githubusercontent.com/xtoolkit/TVC/main/subscriptions/meta/mix"
+    interval: "3600"
+    path: ./hamrah/provider18.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider19:
+    type: "http"
+    url: "http://66.42.50.118:12580/clash/proxies"
+    interval: "3600"
+    path: ./hamrah/provider19.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider20:
+    type: "http"
+    url: "https://raw.githubusercontent.com/itsyebekhe/PSG/main/subscriptions/meta/mix"
+    interval: "3600"
+    path: ./hamrah/provider20.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider21:
+    type: "http"
+    url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/snippets/nodes.meta.yml"
+    interval: "3600"
+    path: ./hamrah/provider21.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider22:
+    type: "http"
+    url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
+    interval: "3600"
+    path: ./hamrah/provider22.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider23:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider23.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider24:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider24.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider25:
+    type: "http"
+    url: "https://raw.githubusercontent.com/aiboboxx/clashfree/main/clash.yml"
+    interval: "3600"
+    path: ./hamrah/provider25.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
+  provider26:
+    type: "http"
+    url: "https://raw.githubusercontent.com/liketolivefree/kobabi/main/prov_clash.yaml"
+    interval: "3600"
+    path: ./hamrah/provider26.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
+  provider27:
+    type: "http"
+    url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
+    interval: "3600"
+    path: ./hamrah/provider27.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
+  provider28:
+    type: "http"
+    url: "https://raw.githubusercontent.com/ermaozi/get_subscribe/refs/heads/main/subscribe/clash.yml"
+    interval: "3600"
+    path: ./hamrah/provider28.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
+  provider29:
+    type: "http"
+    url: "https://nodefree.org/dy/2023/06/20230614.yaml"
+    interval: "3600"
+    path: ./hamrah/provider29.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
+  provider30:
+    type: "http"
+    url: "https://raw.githubusercontent.com/zhlx2835/freefq/main/clash.yaml"
+    interval: "3600"
+    path: ./hamrah/provider30.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
+  provider31:
+    type: "http"
+    url: "https://raw.githubusercontent.com/jyj0912/Free-clash/refs/heads/main/sub"
+    interval: "3600"
+    path: ./hamrah/provider31.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
+  provider32:
+    type: "http"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Ios.yaml"
+    interval: "3600"
+    path: ./hamrah/provider32.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider33:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider33.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider34:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider34.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider35:
+    type: "http"
+    url: "https://raw.githubusercontent.com/cxr9912/cxr2022/main/ss.yaml"
+    interval: "3600"
+    path: ./hamrah/provider35.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider36:
+    type: "http"
+    url: "https://raw.githubusercontent.com/freefq/free/master/v2"
+    interval: "3600"
+    path: ./hamrah/provider36.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider37:
+    type: "http"
+    url: "https://wefound.cc/freenode/2023/06/20230614.yaml"
+    interval: "3600"
+    path: ./hamrah/provider37.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider38:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider38.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider39:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider39.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider40:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider40.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider41:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider41.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider42:
+    type: "http"
+    url: "https://openit-fq.ml/Clash.yaml"
+    interval: "3600"
+    path: ./hamrah/provider42.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider43:
+    type: "http"
+    url: "https://sub.pmsub.me/clash.yaml"
+    interval: "3600"
+    path: ./hamrah/provider43.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider44:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider44.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider45:
+    type: "http"
+    url: "https://jetflow.site/api/v1/public/services/127720/0e90044aa40a35307494342da3ade301?client=clash"
+    interval: "3600"
+    path: ./hamrah/provider45.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider46:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider46.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider47:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider47.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider48:
+    type: "http"
+    url: "https://clashnode.com/wp-content/uploads/2023/06/20230614.yaml"
+    interval: "3600"
+    path: ./hamrah/provider48.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider49:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider49.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider50:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider50.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider51:
+    type: "http"
+    url: "https://proxy.yiun.xyz/clash/proxies"
+    interval: "3600"
+    path: ./hamrah/provider51.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider52:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider52.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider53:
+    type: "http"
+    url: "http://proxies.haisto.cn/clash/proxies"
+    interval: "3600"
+    path: ./hamrah/provider53.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider54:
+    type: "http"
+    url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/tro.562.Profiles-20221211014547.txt"
+    interval: "3600"
+    path: ./hamrah/provider54.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider55:
+    type: "http"
+    url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/update/provider/provider.yml"
+    interval: "3600"
+    path: ./hamrah/provider55.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider56:
+    type: "http"
+    url: "https://free.iam7.tk/clash/config"
+    interval: "3600"
+    path: ./hamrah/provider56.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider57:
+    type: "http"
+    url: "https://proxy.yugogo.xyz/clash/config"
+    interval: "3600"
+    path: ./hamrah/provider57.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider58:
+    type: "http"
+    url: "https://klausvpn.posyao.com/clash/config"
+    interval: "3600"
+    path: ./hamrah/provider58.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider59:
+    type: "http"
+    url: "https://clash.myvm.cc/clash/config"
+    interval: "3600"
+    path: ./hamrah/provider59.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204" 
+  provider60:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider60.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider61:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider61.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider62:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider62.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider63:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider63.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider64:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider64.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider65:
+    type: "http"
+    url: ""
+    interval: "3600"
+    path: ./hamrah/provider65.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider66:
+    type: "http"
+    url: "https://raw.githubusercontent.com/free-nodes/clashfree/refs/heads/main/clash20260512.yml"
+    interval: "3600"
+    path: ./hamrah/provider66.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider67:
+    type: "http"
+    url: "https://iwxf.netlify.app/"
+    interval: "3600"
+    path: ./hamrah/provider67.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider68:
+    type: "http"
+    url: "https://jiang.netlify.app/"
+    interval: "3600"
+    path: ./hamrah/provider68.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider69:
+    type: "http"
+    url: "https://muma16fx.netlify.app/"
+    interval: "3600"
+    path: ./hamrah/provider69.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"    
+  provider70:
+    type: "http"
+    url: "https://qiaomenzhuanfx.netlify.app/"
+    interval: "3600"
+    path: ./hamrah/provider70.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider71:
+    type: "http"
+    url: "https://check.banyunxiaoxi.icu/sub/sub-base64.txt"
+    interval: "3600"
+    path: ./hamrah/provider71.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider72:
+    type: "http"
+    url: "https://proxypool.link/clash/proxies"
+    interval: "3600"
+    path: ./hamrah/provider72.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
+  provider73:
+    type: "http"
+#    url: "https://pxypool.131433.xyz/clash/proxies"
+    interval: "3600"
+    path: ./hamrah/provider73.yaml
+    health-check:
+      enable: true
+      interval: "300"
+      lazy: true
+      url: "http://connectivitycheck.gstatic.com/generate_204"
 rule-providers:
   AdGuardSDNSFilter:
     type: http
@@ -166,16 +996,6 @@ rule-providers:
     url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-domains.txt"
     path: "./rule_providers/antiad_domains.yaml"
     interval: 86400
-
-# ==========================================================
-# ✅ 强力“伪节点/公告节点”过滤（你截图里那种：定期/下方/地址/流量重置/TG/返利等）
-# ==========================================================
-# 说明：这是正则，匹配到就会被“从所有组里剔除”
-# ==========================================================
-# ✅ 重点新增：定期 / 下方 / 地址 / 更新（解决你最后漏掉那条）
-# ==========================================================
-# 注意：每个 use:["sub"] 的组都用了同一套 exclude-filter
-# ==========================================================
 
 proxy-groups:
 
@@ -212,9 +1032,6 @@ proxy-groups:
     lazy: true
     exclude-filter: "(?i)(官网|公告|通知|维护|订阅|防失联|最新网址|备用|客服|工单|联系|反馈|教程|使用说明|购买|续费|充值|返利|推荐|优惠|福利|活动|推广|代理商|机场|节点池|测速|解锁|说明|规则|TG|电报|telegram|频道|群|讨论组|t\\.me/|流量|剩余|用量|到期|过期|续期|重置|重设|下次|距离|套餐|账单|有效期|时间|日期|定期|下方|地址|更新|\\bURL\\b|URL@|vpn|👆|👇|👉|⬇|⬆|✈|🛫|🛬|📢|🔗|\\s{4,})"
 
-  # --------------------------
-  # 🌏 国家组（常用 + 你界面里那些国家）
-  # --------------------------
   - name: HK Node
     type: url-test
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
@@ -369,9 +1186,6 @@ proxy-groups:
     tolerance: 80
     lazy: true
 
-  # --------------------------
-  # 🌍 Other：其余国家节点（仍会过滤所有“伪节点”）
-  # --------------------------
   - name: Other Node
     type: url-test
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png"
@@ -382,9 +1196,6 @@ proxy-groups:
     tolerance: 120
     lazy: true
 
-  # --------------------------
-  # 🧩 功能组（精简：只保留你常用的）
-  # --------------------------
   - name: Play
     type: select
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google.png"
@@ -400,7 +1211,6 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png"
     proxies: [HK Node, SG Node, JP Node, US Node, Auto, Global]
 
-  # TikTok：直播优先（fallback 更稳，探测更快）
   - name: TikTok
     type: fallback
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png"
@@ -420,11 +1230,7 @@ proxy-groups:
     url: "https://cp.cloudflare.com/generate_204"
     interval: 30
 
-# ==========================================================
-# ✅ 规则（广告 → Play/AI/TikTok/媒体 → 国内直连 → 海外兜底）
-# ==========================================================
 rules:
-  # 局域网直连
   - DOMAIN-SUFFIX,local,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
@@ -432,16 +1238,9 @@ rules:
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
   - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
 
-  # --------------------------
-  # 🚫 广告拦截（尽量多拦，但不保证“所有App广告都能去掉”）
-  # --------------------------
   - RULE-SET,AdGuardSDNSFilter,REJECT
   - RULE-SET,AntiAD,REJECT
  # - GEOSITE,category-ads-all,REJECT
-
-  # --------------------------
-  # Play / Google
-  # --------------------------
 #  - GEOSITE,google-play,Play
 #  - GEOSITE,google,Play
   - DOMAIN,play.googleapis.com,Play
@@ -455,9 +1254,6 @@ rules:
   - DOMAIN-SUFFIX,gvt1.com,Play
   - DOMAIN-SUFFIX,googlevideo.com,Play
 
-  # --------------------------
-  # AI
-  # --------------------------
 #  - GEOSITE,openai,AI-Only
   - DOMAIN-SUFFIX,openai.com,AI-Only
   - DOMAIN-SUFFIX,chatgpt.com,AI-Only
@@ -468,19 +1264,11 @@ rules:
   - DOMAIN,gemini.google.com,AI-Only
   - DOMAIN-SUFFIX,ai.google.dev,AI-Only
   - DOMAIN-SUFFIX,generativelanguage.googleapis.com,AI-Only
-
-  # --------------------------
-  # Telegram
-  # --------------------------
- # - GEOSITE,telegram,Telegram
+  - GEOSITE,telegram,Telegram
   - DOMAIN-SUFFIX,telegram.org,Telegram
   - DOMAIN-SUFFIX,t.me,Telegram
   - DOMAIN-SUFFIX,telegra.ph,Telegram
 
-  # --------------------------
-  # TikTok（直播/刷更稳）
-  # --------------------------
-#  - GEOSITE,tiktok,TikTok
   - DOMAIN-SUFFIX,tiktok.com,TikTok
   - DOMAIN-SUFFIX,tiktokv.com,TikTok
   - DOMAIN-SUFFIX,tiktokcdn.com,TikTok
@@ -489,28 +1277,15 @@ rules:
   - DOMAIN-SUFFIX,muscdn.com,TikTok
   - DOMAIN-SUFFIX,musical.ly,TikTok
   - DOMAIN-SUFFIX,byteoversea.com,TikTok
-
-  # ✅ 可选：禁 TikTok QUIC（UDP/443）强制回落 TCP，直播更稳（部分网络更明显）
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,tiktok)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,ttlive)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,muscdn)),REJECT
 
-  # --------------------------
-  # Media
-  # --------------------------
- # - GEOSITE,youtube,Media
-#  - GEOSITE,netflix,Media
   - DOMAIN-SUFFIX,spotify.com,Media
   - DOMAIN-SUFFIX,soundcloud.com,Media
   - DOMAIN-SUFFIX,sndcdn.com,Media
-
-  # --------------------------
-  # 国内直连（提升国内App速度，避免误走代理）
-  # --------------------------
 #  - GEOSITE,cn,DIRECT
  # - GEOIP,CN,DIRECT
   - DOMAIN-SUFFIX,cn,DIRECT
-
-  # 海外兜底
  # - GEOSITE,geolocation-!cn,Global
   - MATCH,Global
