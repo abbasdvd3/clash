@@ -458,6 +458,7 @@ proxy-groups:
     filter: "🇺🇸|usa"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Snell|WireGuard|Mieru|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+    
 proxy-providers:
   A1:
     type: http
@@ -497,10 +498,9 @@ proxy-providers:
       - "meta/0.2.0.9.smart"
       - "meta/0.2.0.9.meta"
 
-      
   A3:
     type: http
-    url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/refs/heads/master/sub/sub_merge_yaml.yml" # https://raw.githubusercontent.com/miladtahanian/V2RayCFGDumper/refs/heads/main/sub.txt"
+    url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/refs/heads/master/sub/sub_merge_yaml.yml"
     path: ./hamrah/A3.yaml
     interval: 300
     health-check:
@@ -519,7 +519,7 @@ proxy-providers:
       
   A4:
     type: http     
-    url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml" #   # https://shadowmere.xyz/api/b64sub/ https://www.xrayvip.com/free.txt
+    url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
     path: ./hamrah/A4.yaml
     interval: 300
     health-check:
@@ -1303,220 +1303,12 @@ proxy-providers:
       interval: "300"
       lazy: true
       url: "http://connectivitycheck.gstatic.com/generate_204"
-rule-providers:
-  LocalAreaNetwork:
-    type: http
-    format: text
-    behavior: classical
-    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/LocalAreaNetwork.list"
-    interval: 86400
-
-  ir:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
-    interval: 86400
-    
-  apps:
-    type: http
-    format: yaml
-    behavior: classical
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml"
-    interval: 86400
-    
-  ircidr:
-    type: http
-    format: yaml
-    behavior: ipcidr
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
-    interval: 86400
-    
-  private:
-    type: http
-    format: yaml
-    behavior: ipcidr
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
-    interval: 86400
-    
-  irasn:
-    type: http
-    format: yaml
-    behavior: classical
-    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
-    interval: 86400
-    
-  AWA:
-    type: http
-    format: yaml
-    behavior: domain
-    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
-    interval: 86400 
   
 rules :
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,PROXY
-  - DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,PROXY
-  - DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,PROXY
-  - DOMAIN-SUFFIX,production-openaicom-storage.azureedge.net,PROXY
-  - DOMAIN-SUFFIX,servd-anthropic-website.b-cdn.net,PROXY
-  - DOMAIN-SUFFIX,ai.google.dev,PROXY
-  - DOMAIN-SUFFIX,alkalicore-pa.clients6.google.com,PROXY
-  - DOMAIN-SUFFIX,alkalimakersuite-pa.clients6.google.com,PROXY
-  - DOMAIN-SUFFIX,+.perplexity.ai,PROXY
-  - DOMAIN-SUFFIX,+.deepmind.google,PROXY
-  - DOMAIN-SUFFIX,+.clipdrop.co,PROXY
-  - DOMAIN-SUFFIX,+.poe.com,PROXY
-  - DOMAIN-SUFFIX,+.dify.ai,PROXY
-  - DOMAIN-SUFFIX,+.generativeai.google,PROXY
-  - DOMAIN-SUFFIX,+.meta.ai,PROXY
-  - DOMAIN-SUFFIX,+.openart.ai,PROXY
-  - DOMAIN-SUFFIX,+.ai.com,PROXY
-  - DOMAIN-SUFFIX,+.chatgpt.com,PROXY
-  - DOMAIN-SUFFIX,+.oaistatic.com,PROXY
-  - DOMAIN-SUFFIX,+.oaiusercontent.com,PROXY
-  - DOMAIN-SUFFIX,+.openai.com,PROXY
-  - DOMAIN-SUFFIX,+.poecdn.net,PROXY
-  - DOMAIN-SUFFIX,+.notebooklm.google,PROXY
-  - DOMAIN-SUFFIX,+.deepmind.com,PROXY
-  - DOMAIN-SUFFIX,+.jasper.ai,PROXY
-  - DOMAIN-SUFFIX,+.x.ai,PROXY
-  - DOMAIN-SUFFIX,+.anthropic.com,PROXY
-  - DOMAIN-SUFFIX,+.claude.ai,PROXY
-  - DOMAIN-SUFFIX,+.claudeusercontent.com,PROXY
-  - DOMAIN-SUFFIX,+.gemini.google.com,PROXY
-  - DOMAIN-SUFFIX,+.geller-pa.googleapis.com,PROXY
-  - DOMAIN-SUFFIX,+.generativelanguage.googleapis.com,PROXY
-  - DOMAIN-SUFFIX,+.proactivebackend-pa.googleapis.com,PROXY
-  - DOMAIN-SUFFIX,+.makersuite.google.com,PROXY
-  - DOMAIN-SUFFIX,+.aistudio.google.com,PROXY
-  - DOMAIN-SUFFIX,+.bard.google.com,PROXY
-  - DOMAIN-SUFFIX,+.notebooklm.google.com,PROXY
-  - DOMAIN-SUFFIX,+.gateway.ai.cloudflare.com,PROXY
-  - DOMAIN-SUFFIX,+.openai.com.cdn.cloudflare.net,PROXY
-  - DOMAIN-SUFFIX,o33249.ingest.sentry.io,PROXY
-  - DOMAIN-SUFFIX,openaicom.imgix.net,PROXY
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY
-  - DOMAIN-SUFFIX,services.googleapis.cn,PROXY
   - DOMAIN-SUFFIX,createporn.com,PROXY
   - DOMAIN-KEYWORD,createporn,PROXY
   - DOMAIN,createporn,PROXY
-  - DOMAIN,ad.com,REJECT
-  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
-  - PROCESS-NAME,com.samsung.android.location,REJECT,no-resolve
-  - PROCESS-NAME,com.android.localtransport,REJECT,no-resolve
-  - PROCESS-NAME,com.google.android.gms.location.history,REJECT,no-resolve
-  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
-  - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
-  - DOMAIN-SUFFIX,google.com,PROXY
-  - DOMAIN-KEYWORD,google,PROXY
-  - DOMAIN-SUFFIX,netflix.com,PROXY
-  - DOMAIN-SUFFIX,netflix.net,PROXY
-  - DOMAIN-SUFFIX,nflxext.com,PROXY
-  - DOMAIN-SUFFIX,nflximg.com,PROXY
-  - DOMAIN-SUFFIX,nflxso.net,PROXY
-  - DOMAIN-SUFFIX,nflxvideo.net,PROXY
-  - DOMAIN-SUFFIX,spotify.com,PROXY
-  - DOMAIN-SUFFIX,scdn.co,PROXY
-  - DOMAIN-SUFFIX,spoti.fi,PROXY
-  - DOMAIN-SUFFIX,youtube.com,PROXY
-  - DOMAIN-SUFFIX,googlevideo.com,PROXY
-  - DOMAIN-SUFFIX,ytimg.com,PROXY
-  - DOMAIN-SUFFIX,hulu.com,PROXY
-  - DOMAIN-SUFFIX,disneyplus.com,PROXY
-  - DOMAIN-SUFFIX,hbo.com,PROXY
-  - DOMAIN-SUFFIX,primevideo.com,PROXY
-  - DOMAIN-SUFFIX,openai.com,PROXY
-  - DOMAIN-SUFFIX,chatgpt.com,PROXY
-  - DOMAIN-SUFFIX,anthropic.com,PROXY
-  - DOMAIN-SUFFIX,claude.ai,PROXY
-  - DOMAIN-SUFFIX,t.me,PROXY
-  - DOMAIN-SUFFIX,telegram.org,PROXY
-  - DOMAIN-SUFFIX,netflix.com,PROXY
-  - DOMAIN-SUFFIX,youtube.com,PROXY
-  - DOMAIN-SUFFIX,disney.com,PROXY
-  - DOMAIN-SUFFIX,apple.com,PROXY
-  - DOMAIN-SUFFIX,icloud.com,PROXY
-  - DOMAIN-SUFFIX,microsoft.com,PROXY
-  - DOMAIN-SUFFIX,windows.com,PROXY
-  - DOMAIN-SUFFIX,openai.com,PROXY
-  - DOMAIN-SUFFIX,chatgpt.com,PROXY
-  - DOMAIN-SUFFIX,oaistatic.com,PROXY
-  - DOMAIN-SUFFIX,oaiusercontent.com,PROXY
-  - DOMAIN-KEYWORD,openai,PROXY
-  - DOMAIN-SUFFIX,anthropic.com,PROXY
-  - DOMAIN-SUFFIX,claude.ai,PROXY
-  - DOMAIN-SUFFIX,gemini.google.com,PROXY
-  - DOMAIN-SUFFIX,bard.google.com,PROXY
-  - DOMAIN-SUFFIX,perplexity.ai,PROXY
-  - DOMAIN-SUFFIX,midjourney.com,PROXY
-  - DOMAIN-SUFFIX,netflix.com,PROXY
-  - DOMAIN-KEYWORD,anthropic,PROXY
-  - DOMAIN-KEYWORD,claude,PROXY
-  - DOMAIN-KEYWORD,openai,PROXY
-  - DOMAIN,ai.google.dev,PROXY
-  - DOMAIN,aistudio.google.com,PROXY
-  - DOMAIN,api.githubcopilot.com,PROXY
-  - DOMAIN,api.groq.com,PROXY
-  - DOMAIN,api.together.xyz,PROXY
-  - DOMAIN,bard.google.com,PROXY
-  - DOMAIN,console.groq.com,PROXY
-  - DOMAIN,copilot-proxy.githubusercontent.com,PROXY
-  - DOMAIN,gemini.google.com,PROXY
-  - DOMAIN,generativelanguage.googleapis.com,PROXY
-  - DOMAIN,notebooklm.google.com,PROXY
-  - DOMAIN,sydney.bing.com,PROXY
-  - DOMAIN-SUFFIX,ai.azure.com,PROXY
-  - DOMAIN-SUFFIX,anthropic.com,PROXY
-  - DOMAIN-SUFFIX,auth0.com,PROXY
-  - DOMAIN-SUFFIX,bard.google.com,PROXY
-  - DOMAIN-SUFFIX,chatgpt.com,PROXY
-  - DOMAIN-SUFFIX,claude.ai,PROXY
-  - DOMAIN-SUFFIX,claude.com,PROXY
-  - DOMAIN-SUFFIX,claudeusercontent.com,PROXY
-  - DOMAIN-SUFFIX,client-api.arkoselabs.com,PROXY
-  - DOMAIN-SUFFIX,copilot.cloud.microsoft,PROXY
-  - DOMAIN-SUFFIX,copilot.microsoft.com,PROXY
-  - DOMAIN-SUFFIX,cursor.com,PROXY
-  - DOMAIN-SUFFIX,cursor.sh,PROXY
-  - DOMAIN-SUFFIX,events.statsigapi.net,PROXY
-  - DOMAIN-SUFFIX,featuregates.org,PROXY
-  - DOMAIN-SUFFIX,gemini.google.com,PROXY
-  - DOMAIN-SUFFIX,grazie.ai,PROXY
-  - DOMAIN-SUFFIX,grazie.aws.intellij.net,PROXY
-  - DOMAIN-SUFFIX,identrust.com,PROXY
-  - DOMAIN-SUFFIX,intercom.io,PROXY
-  - DOMAIN-SUFFIX,intercomcdn.com,PROXY
-  - DOMAIN-SUFFIX,jetbrains.ai,PROXY
-  - DOMAIN-SUFFIX,makersuite.google.com,PROXY
-  - DOMAIN-SUFFIX,meta.ai,PROXY
-  - DOMAIN-SUFFIX,mistral.ai,PROXY
-  - DOMAIN-SUFFIX,oaistatic.com,PROXY
-  - DOMAIN-SUFFIX,oaiusercontent.com,PROXY
-  - DOMAIN-SUFFIX,openai.com,PROXY
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,PROXY
-  - DOMAIN-SUFFIX,perplexity.ai,PROXY
-  - DOMAIN-SUFFIX,sora.com,PROXY
-  - DOMAIN-SUFFIX,x.ai,PROXY
-  - DOMAIN-KEYWORD,openai,PROXY
-  - DOMAIN-SUFFIX,auth0.com,PROXY
-  - DOMAIN-SUFFIX,challenges.cloudflare.com,PROXY
-  - DOMAIN-SUFFIX,chatgpt.com,PROXY
-  - DOMAIN-SUFFIX,client-api.arkoselabs.com,PROXY
-  - DOMAIN-SUFFIX,events.statsigapi.net,PROXY
-  - DOMAIN-SUFFIX,featuregates.org,PROXY
-  - DOMAIN-SUFFIX,identrust.com,PROXY
-  - DOMAIN-SUFFIX,intercom.io,PROXY
-  - DOMAIN-SUFFIX,intercomcdn.com,PROXY
-  - DOMAIN-SUFFIX,oaistatic.com,PROXY
-  - DOMAIN-SUFFIX,oaiusercontent.com,PROXY
-  - DOMAIN-SUFFIX,openai.com,PROXY
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,PROXY
-  - DOMAIN-SUFFIX,sentry.io,PROXY
-  - DOMAIN-SUFFIX,stripe.com,PROXY
-  - DOMAIN-SUFFIX,sora.com,PROXY
-  - DOMAIN-SUFFIX,disneyplus.com,PROXY
-  - DOMAIN-SUFFIX,youtube.com,PROXY
-  - DOMAIN-SUFFIX,spotify.com,PROXY
+  - PROCESS-NAME,psiphon-tunnel-core.exe,PROXY
   - DOMAIN-KEYWORD,soft98.ir,🎯 Direct
   - DOMAIN,soft98,🎯 Direct
   - DOMAIN-SUFFIX,soft98.ir,🎯 Direct
@@ -1550,14 +1342,13 @@ rules :
   - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
   - IP-CIDR,10.0.0.0/8,🎯 Direct
   - IP-CIDR,100.64.0.0/10,🎯 Direct
-  - PROCESS-NAME,com.termux,PROXY
+  - PROCESS-NAME,psiphon-tunnel-core,PROXY
   - RULE-SET,private,🎯 Direct,no-resolve
   - RULE-SET,apps,🎯 Direct
   - RULE-SET,ir,🎯 Direct
   - RULE-SET,ircidr,🎯 Direct
   - RULE-SET,irasn,🎯 Direct
   - RULE-SET,LocalAreaNetwork,🎯 Direct
-  - RULE-SET,AWA,REJECT
   - GEOIP,ir,🎯 Direct
   - MATCH,PROXY
 
