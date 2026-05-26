@@ -52,13 +52,13 @@ tun:
   auto-redirect: true
   auto-detect-interface: true
 dns:
-  enable: false
+  enable: true
   cache-algorithm: arc
   prefer-h3: true
   use-hosts: true
   use-system-hosts: true
   respect-rules: true
-  listen: 0.0.0.0:53
+  listen: 0.0.0.0:5591
   ipv6: true
   nameserver:
     - system
@@ -71,15 +71,8 @@ dns:
     - quic://dns.adguard.com:784
     - https://cloudflare-dns.com/dns-query
     - https://sky.rethinkdns.com/dns-query
-    - https://dnspub.restena.lu/dns-query
-    - https://doh.flashstart.com/f17c9ee5
-    - https://ada.openbld.net/dns-query
-    - https://rubyfish.cn/dns-query#PROXY
-    - https://all.dns.mullvad.net/dns-query
   proxy-server-nameserver:
     - https://cloudflare-dns.com/dns-query:784
-    - https://sky.rethinkdns.com/dns-query
-    - https://ada.openbld.net/dns-query:784
     - https://dnspub.restena.lu/dns-query
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -142,9 +135,6 @@ dns:
     - tcp://8.8.8.8
     - tcp://1.1.1.1
     - https://sky.rethinkdns.com/dns-query
-    - https://cloudflare-dns.com/dns-query
-    - https://dnspub.restena.lu/dns-query
-    - https://ada.openbld.net/dns-query
   fallback-filter:
     geoip: true
     geoip-code: ir
@@ -184,7 +174,6 @@ dns:
      - '+.blogger.com'
      - '+.google.com'
      - '+.google.cn'
-     - '+.googleusercontent.com'
      - '+.ggpht.com'
      - '+.gmail.com'
      - '+.gvt0.com'
@@ -192,18 +181,6 @@ dns:
      - '+.gvt2.com'
      - '+.gvt3.com'
      - '+.youtu.be'
-     - '+.yt.be'
-     - '+.ytimg.com'
-     - '+.googlevideo.com'
-     - '+.youtube.com'
-     - '+.xn--ngstr-lra8j.com'
-     - '+.xn--flw351e.com'
-     - '+.xn--9kr7l.com'
-     - '+.xn--ggle-55da.com'
-     - '+.xn--gogl-0nd52e.com'
-     - '+.xn--gogl-1nd42e.com'
-     - '+.googleapis.com'
-     - '+.googleapis.cn'
      - '+.gstatic.com'
      - '+.gstatic.cn'
      - '+.services.googleapis.cn'
@@ -369,9 +346,17 @@ proxy-groups:
     proxies:
       - "🎈Auto"
       - "🤖 AI"
-  
+      - "fallback=🇺🇲"
+      - "🇺🇲"
   - name: "🎈Auto"
     type: "url-test"
+    exclude-type: "direct|redir-in"
+    include-all-providers: true
+    hidden: true
+    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
+
+  - name: "fallback"
+    type: "fallback"
     exclude-type: "direct|redir-in"
     include-all-providers: true
     hidden: true
@@ -407,6 +392,14 @@ proxy-groups:
 
   - name: "🇺🇲"
     type: "url-test"
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    hidden: true
+    exclude-type: "direct|redir-in"
+    filter: "🇺🇸|US|America|United.*?States"
+
+  - name: "fallback=🇺🇲"
+    type: "fallback"
     url: "http://www.gstatic.com/generate_204"
     include-all-providers: true
     hidden: true
