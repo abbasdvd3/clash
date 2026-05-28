@@ -60,7 +60,7 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
   provider2:
     type: http
-    url: http://66.42.50.118:12580/clash/proxies
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/HTTP
     path: Prem/P2.yaml
     interval: 899
     health-check:
@@ -69,7 +69,7 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
   provider3:
     type: http
-    url: https://proxypool.link/clash/proxies  
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/C2
     path: Prem/P3.yaml
     interval: 899
     health-check:
@@ -86,10 +86,7 @@ proxy-groups:
       - url-test
       - United+url-test
       - fallback
-    use:
-      - provider1
-      - provider2
-      - provider3
+
   - name: fallback
     type: fallback
     url: http://cp.cloudflare.com/
@@ -126,7 +123,6 @@ proxy-groups:
     proxies:
       - DIRECT
       - PROXY 
-
 
 rules:
   - GEOIP,facebook,PROXY
