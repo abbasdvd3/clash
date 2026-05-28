@@ -32,7 +32,7 @@ external-ui-name: xd
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 keep-alive-interval: 30000
 find-process-mode: strict
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 global-client-fingerprint: random
 geodata-mode: true
@@ -53,12 +53,12 @@ experimental:
   quic-go-disable-gso: true
   quic-go-disable-ecn: true
 dns:
-  enable: false
+  enable: true
   cache-algorithm: arc
   prefer-h3: false
   use-hosts: true
   use-system-hosts: true
-  respect-rules: false
+  respect-rules: true
   listen: 0.0.0.0:5591
   ipv6: false
   defult-nameserver:
@@ -115,7 +115,7 @@ dns:
     - https://doh.pub/dns-query
     - 8.8.8.8
     - https://dns.alidns.com/dns-query
-#    geosite:category-ads-all: rcode://success
+    geosite:category-ads-all: rcode://success
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fdfe:dcba:9876::1/64
@@ -177,7 +177,7 @@ dns:
 
 proxy-groups:
   - name: PROXY
-    type: select
+    type: fallback
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
     proxies:
       - PROXY+url-test
@@ -479,11 +479,11 @@ proxy-providers:
       lazy: true
       expected-status: 204
       header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
+      # User-Agent:
+      # - "Clash/v1.18.0"
+      # - "mihomo/1.18.3"
+      # - "meta/0.2.0.9.smart"
+      # - "meta/0.2.0.9.meta"
 
   A2:
     type: http
@@ -498,11 +498,11 @@ proxy-providers:
       lazy: true
       expected-status: 204
       header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
+      # User-Agent:
+      # - "Clash/v1.18.0"
+      # - "mihomo/1.18.3"
+      # - "meta/0.2.0.9.smart"
+      # - "meta/0.2.0.9.meta"
 
   A3:
     type: http
@@ -517,11 +517,11 @@ proxy-providers:
       lazy: true
       expected-status: 204
       header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
+      # User-Agent:
+      # - "Clash/v1.18.0"
+      # - "mihomo/1.18.3"
+      # - "meta/0.2.0.9.smart"
+      # - "meta/0.2.0.9.meta"
       
   A4:
     type: http     
@@ -536,11 +536,11 @@ proxy-providers:
       lazy: true
       expected-status: 204
       header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
+      # User-Agent:
+      # - "Clash/v1.18.0"
+      # - "mihomo/1.18.3"
+      # - "meta/0.2.0.9.smart"
+      # - "meta/0.2.0.9.meta"
 
   A6:
     type: http
@@ -555,11 +555,11 @@ proxy-providers:
       lazy: true
       expected-status: 204
       header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
+      # User-Agent:
+      # - "Clash/v1.18.0"
+      # - "mihomo/1.18.3"
+      # - "meta/0.2.0.9.smart"
+      # - "meta/0.2.0.9.meta"
  
   A7:
     type: http
@@ -574,11 +574,11 @@ proxy-providers:
       lazy: true
       expected-status: 204
       header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
+      # User-Agent:
+      # - "Clash/v1.18.0"
+      # - "mihomo/1.18.3"
+      # - "meta/0.2.0.9.smart"
+      # - "meta/0.2.0.9.meta"
 
   provider1:
     type: "http"
@@ -1332,22 +1332,20 @@ rules :
   - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
   - IP-CIDR,172.16.0.0/12,🎯 Direct
   - IP-CIDR,192.168.0.0/16,🎯 Direct
-  - DOMAIN-SUFFIX,github.com,🎯 Direct
-  - DOMAIN-SUFFIX,github.io,🎯 Direct
-  - DOMAIN-SUFFIX,githubapp.com,🎯 Direct
-  - DOMAIN-SUFFIX,githubassets.com,🎯 Direct
-  - DOMAIN-SUFFIX,githubusercontent.com,🎯 Direct
-  - DOMAIN-KEYWORD,github,🎯 Direct
-  - DOMAIN-SUFFIX,collector.githubapp.com,🎯 Direct
-  - DOMAIN-SUFFIX,github.com,🎯 Direct
-  - DOMAIN-SUFFIX,github.io,🎯 Direct
-  - DOMAIN-SUFFIX,githubapp.com,🎯 Direct
-  - DOMAIN-SUFFIX,githubassets.com,🎯 Direct
-  - DOMAIN-SUFFIX,githubusercontent.com,🎯 Direct
-  - DOMAIN-KEYWORD,github,🎯 Direct
+  - DOMAIN-SUFFIX,github.com,PROXY
+  - DOMAIN-SUFFIX,github.io,PROXY
+  - DOMAIN-SUFFIX,githubapp.com,PROXY
+  - DOMAIN-SUFFIX,githubassets.com,PROXY
+  - DOMAIN-SUFFIX,githubusercontent.com,PROXY
+  - DOMAIN-KEYWORD,github,PROXY
+  - DOMAIN-SUFFIX,collector.githubapp.com,PROXY
+  - DOMAIN-SUFFIX,github.com,PROXY
+  - DOMAIN-SUFFIX,github.io,PROXY
+  - DOMAIN-SUFFIX,githubapp.com,PROXY
+  - DOMAIN-SUFFIX,githubassets.com,PROXY
+  - DOMAIN-SUFFIX,githubusercontent.com,PROXY
+  - DOMAIN-KEYWORD,github,PROXY
   - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
-  - IP-CIDR,10.0.0.0/8,🎯 Direct
-  - IP-CIDR,100.64.0.0/10,🎯 Direct
   - PROCESS-NAME,psiphon-tunnel-core,PROXY
   - GEOIP,ir,🎯 Direct
   - MATCH,PROXY
