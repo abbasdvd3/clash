@@ -177,23 +177,21 @@ dns:
 
 proxy-groups:
   - name: PROXY
-    type: fallback
+    type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
+    use:
+      - provider73
     proxies:
       - PROXY+url-test
       - PROXY+fallback
       - PROXY+load-balance
-      - 🟢Auto🟢
-      - 🟡fallback🟡
-      - 🔴load-balance🔴
-      - 🟢http+url-test🟢
-      - 🟢http+fallback🟢
-      - 🟢http+load-balance🟢
+ 
 
   - name: PROXY+url-test
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 3000
+    hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
     proxies:
       - 🟢Auto🟢
@@ -219,6 +217,7 @@ proxy-groups:
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 3000
+    hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
     proxies:
       - 🟢Auto🟢
@@ -244,6 +243,7 @@ proxy-groups:
     type: load-balance
     url: http://www.gstatic.com/generate_204
     interval: 3000
+    hidden: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
     proxies:
       - 🟢Auto🟢
@@ -1301,7 +1301,7 @@ proxy-providers:
       url: "http://www.gstatic.com/generate_204"
   provider73:
     type: "http"
-#    url: "https://pxypool.131433.xyz/clash/proxies"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/C2"
     interval: "3600"
     path: ./hamrah/provider73.yaml
     health-check:
