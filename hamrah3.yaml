@@ -24,7 +24,7 @@ external-ui: dashboard
 external-ui-name: xd
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 dns:
-  enable: false
+  enable: true
   cache-algorithm: arc
   prefer-h3: false
   use-hosts: true
@@ -50,21 +50,13 @@ dns:
     - tls://1.1.1.1
   proxy-server-nameserver:
     - https://doh.pub/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: ir
-    ipcidr:
-      - 240.0.0.0/4
-    domain:
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
+
 proxies:
 proxy-groups:
   - name: PROXY
     type: select
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png
-    include-all-providers: true
+#    include-all-providers: true
     proxies:
       - 🟢Auto🟢
       - 🟡fallback🟡
