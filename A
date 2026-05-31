@@ -77,7 +77,7 @@ tun:
   inet6-route-exclude-address:
   - fc00::/7
 dns:
-  enable: false
+  enable: true
   cache-algorithm: arc
   prefer-h3: false
   use-hosts: true
@@ -111,17 +111,8 @@ dns:
     "geosite:ir,private":
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: ir
-    geosite:
-      - social
-    ipcidr:
-      - 240.0.0.0/4
-    domain:
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
+
+
 proxy-groups:
   - name: PROXY
     type: select
