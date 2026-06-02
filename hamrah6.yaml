@@ -14,7 +14,7 @@ tproxy-port: 9898
 allow-lan: true
 mode: Rule
 bind-address: "*"
-ipv6: true
+ipv6: false
 log-level: info
 find-process-mode: always
 enable-process: true
@@ -34,7 +34,7 @@ dns:
   ipv6-timeout: 300
   respect-rules: true
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  fake-ip-range: 100.0.0.1/8
   use-hosts: true
   fake-ip-filter:
     - '*.lan'
@@ -96,42 +96,49 @@ proxy-groups:
     hidden: true
     exclude-type: direct|redir-in|DNS
     filter: "America|United States|US|美国"
+    
   - name: fallback
     type: fallback
     include-all-providers: true
     exclude-type: direct|redir-in|DNS
     hidden: true
     filter: "America|United States|US|美国"
+    
   - name: Geo-SG
     type: url-test
     include-all-providers: true
     exclude-type: direct|redir-in|DNS
     hidden: true
     filter: "HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国"
+    
   - name: Geo-JP
     type: url-test
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
     hidden: true
     filter: "Japan|JP|日本"
+    
   - name: Geo-US
     type: url-test
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
     hidden: true
     filter: "America|United States|US|美国"
+    
   - name: Geo-CN
     type: url-test
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
     hidden: true
     filter: "China|CN|中国"
+    
   - name: Social
     type: url-test
     hidden: true
     proxies: 
       - Proxy
       - Auto
+      
   - name: IR
     type: select
     disable-dns: true
