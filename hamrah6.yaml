@@ -83,15 +83,16 @@ proxies:
     udp: false
 proxy-groups:
   - name: Proxy
-    type: url-test
+    type: fallback
     disable-udp: true
     exclude-type: direct|redir-in|DNS
+    hidden: true
     proxies:
       - Auto
       - fallback
       - Geo-US
   - name: Auto
-    type: url-test
+    type: fallback
     include-all-providers: true
     hidden: true
     exclude-type: direct|redir-in|DNS
@@ -105,35 +106,35 @@ proxy-groups:
     filter: "America|United States|US|美国"
     
   - name: Geo-SG
-    type: url-test
+    type: fallback
     include-all-providers: true
     exclude-type: direct|redir-in|DNS
     hidden: true
     filter: "HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国"
     
   - name: Geo-JP
-    type: url-test
+    type: fallback
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
     hidden: true
     filter: "Japan|JP|日本"
     
   - name: Geo-US
-    type: url-test
+    type: fallback
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
     hidden: true
     filter: "America|United States|US|美国"
     
   - name: Geo-CN
-    type: url-test
+    type: fallback
     exclude-type: direct|redir-in|DNS
     include-all-providers: true
     hidden: true
     filter: "China|CN|中国"
     
   - name: Social
-    type: url-test
+    type: fallback
     hidden: true
     proxies: 
       - Proxy
@@ -142,6 +143,7 @@ proxy-groups:
   - name: IR
     type: select
     disable-dns: true
+    hidden: true
     proxies: 
       - IRAN
       - Proxy
