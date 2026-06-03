@@ -22,7 +22,7 @@ external-controller-tls: 0.0.0.0:9091
 external-ui: dashboard
 external-ui-name: xd
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
-keep-alive-interval: 30000
+keep-alive-interval: 30
 find-process-mode: strict
 unified-delay: false
 tcp-concurrent: true
@@ -177,125 +177,48 @@ proxy-groups:
       - provider71
       - provider72
     proxies:
-      - PROXY+url-test
-      - PROXY+fallback
-      - PROXY+load-balance
-      - United+fallback
-      - United+url-test
- 
-
-  - name: PROXY+url-test
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 3000
-    hidden: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
-    proxies:
       - 🟢Auto🟢
       - 🟡fallback🟡
       - 🔴load-balance🔴
+      - 🔴United+fallback🔴
+      - 🔴United+url-test🔴
       - 🟢http+url-test🟢
       - 🟢http+fallback🟢
-      - 🟢http+load-balance🟢
-      - United+url-test
-      - Japan+url-test
-      - Singapore+url-test
-      - Hong Kong+url-test
-      - Hong Kong+fallback
-      - United+fallback
-      - Japan+fallback
-      - Singapore+fallback
-      - United+load-balance
-      - Japan+load-balance
-      - Singapore+load-balance
-      - Hong Kong+load-balance
-      
-  - name: PROXY+fallback
-    type: fallback
-    url: http://www.gstatic.com/generate_204
-    interval: 3000
-    hidden: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
-    proxies:
-      - 🟢Auto🟢
-      - 🟡fallback🟡
-      - 🔴load-balance🔴
-      - 🟢http+url-test🟢
-      - 🟢http+fallback🟢
-      - 🟢http+load-balance🟢
-      - United+url-test
-      - Japan+url-test
-      - Singapore+url-test
-      - Hong Kong+url-test
-      - Hong Kong+fallback
-      - United+fallback
-      - Japan+fallback
-      - Singapore+fallback
-      - United+load-balance
-      - Japan+load-balance
-      - Singapore+load-balance
-      - Hong Kong+load-balance
-      
-  - name: PROXY+load-balance
-    type: load-balance
-    url: http://www.gstatic.com/generate_204
-    interval: 3000
-    hidden: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
-    proxies:
-      - 🟢Auto🟢
-      - 🟡fallback🟡
-      - 🔴load-balance🔴
-      - 🟢http+url-test🟢
-      - 🟢http+fallback🟢
-      - 🟢http+load-balance🟢
-      - United+url-test
-      - Japan+url-test
-      - Singapore+url-test
-      - Hong Kong+url-test
-      - Hong Kong+fallback
-      - United+fallback
-      - Japan+fallback
-      - Singapore+fallback
-      - United+load-balance
-      - Japan+load-balance
-      - Singapore+load-balance
-      - Hong Kong+load-balance
       
   - name: 🟢Auto🟢
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 3000
+    interval: 300
     hidden: true
     include-all-providers: true
 #     include-all-proxies: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|http|socks5
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     
   - name: 🟡fallback🟡
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 2000
+    interval: 180
     hidden: true
     include-all-providers: true
 #     include-all-proxies: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|http|socks5
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🔴load-balance🔴
     type: load-balance
     url: http://www.gstatic.com/generate_204
-    interval: 3000
+    interval: 180
     hidden: true
     include-all-providers: true
 #     include-all-proxies: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh #|Vmess|Vless|Trojan|Hysteria|Hysteria2
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|http|socks5
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🟢http+url-test🟢
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 1000
+    interval: 10
     hidden: true
     include-all-providers: true
 #     include-all-proxies: true
@@ -305,17 +228,7 @@ proxy-groups:
   - name: 🟢http+fallback🟢
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 1000
-    hidden: true
-    include-all-providers: true
-#     include-all-proxies: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
-
-  - name: 🟢http+load-balance🟢
-    type: load-balance
-    url: http://www.gstatic.com/generate_204
-    interval: 1000
+    interval: 10
     hidden: true
     include-all-providers: true
 #     include-all-proxies: true
@@ -329,149 +242,40 @@ proxy-groups:
     proxies:
       - "DIRECT"
       - "PROXY"
-
-  - name: Hong Kong+fallback
-    type: fallback
-    url: http://www.gstatic.com/generate_204
-    interval: 3000
-    hidden: true
-    include-all-providers: true
-#     include-all-proxies: true
-    filter: "hk|hongkong|🇭🇰"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
     
-  - name: Japan+fallback
+  - name: 🔴United+fallback🔴
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 3000     
-    hidden: true     
-    include-all-providers: true
-#     include-all-proxies: true
-    filter: "🇯🇵|jp"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
-    
-  - name: Singapore+fallback
-    type: fallback
-    url: http://www.gstatic.com/generate_204
-    interval: 3000
-    hidden: true
-    include-all-providers: true
-#     include-all-proxies: true
-    filter: "sg|🇸🇬"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
-    
-  - name: United+fallback
-    type: fallback
-    url: http://www.gstatic.com/generate_204
-    interval: 3000
+    interval: 300
     hidden: true
     include-all-providers: true
 #     include-all-proxies: true
     filter: "🇺🇸|usa"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|http|socks5
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
     
-  - name: Hong Kong+url-test
+  - name: 🔴United+url-test🔴
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 3000
-    hidden: true
-    include-all-providers: true
-#     include-all-proxies: true
-    filter: "hk|hongkong|🇭🇰"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
-    
-  - name: Japan+url-test
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 3000
-    hidden: true
-    include-all-providers: true
-#     include-all-proxies: true
-    filter: "🇯🇵|jp"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
-    
-  - name: Singapore+url-test
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 3000
-    hidden: true
-    include-all-providers: true
-#     include-all-proxies: true
-    filter: "sg|🇸🇬"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
-    
-  - name: United+url-test
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 3000
+    interval: 300
     hidden: true
     include-all-providers: true
 #     include-all-proxies: true
     filter: "🇺🇸|usa"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|http|socks5
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
 
-  - name: Hong Kong+load-balance
-    type: load-balance
-    url: http://www.gstatic.com/generate_204
-    interval: 3000
-    hidden: true
-    include-all-providers: true
-#     include-all-proxies: true
-    filter: "hk|hongkong|🇭🇰"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
-    
-  - name: Japan+load-balance
-    type: load-balance
-    url: http://www.gstatic.com/generate_204
-    interval: 3000
-    hidden: true
-    include-all-providers: true
-#     include-all-proxies: true
-    filter: "🇯🇵|jp"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
-    
-  - name: Singapore+load-balance
-    type: load-balance
-    url: http://www.gstatic.com/generate_204
-    interval: 3000
-    hidden: true
-    include-all-providers: true
-#     include-all-proxies: true
-    filter: "sg|🇸🇬"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
-    
-  - name: United+load-balance
-    type: load-balance
-    url: http://www.gstatic.com/generate_204
-    interval: 3000
-    hidden: true
-    include-all-providers: true
-#     include-all-proxies: true
-    filter: "🇺🇸|usa"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
     
 proxy-providers:
   A1:
     type: http
     url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
     path: ./hamrah/A1.yaml
-    interval: 300000
+    interval: 300
     health-check:
       enable: true
       url: http://www.gstatic.com/generate_204
-      interval: 300000
+      interval: 300
       timeout: 3
       lazy: true
       expected-status: 204
@@ -486,11 +290,11 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/Misaka-blog/chromego_merge/refs/heads/main/sub/merged_proxies_new.yaml" # https://sub.pusytroller.gq/?url=freenodes
     path: ./hamrah/A2.yaml
-    interval: 300000
+    interval: 200
     health-check:
       enable: true
       url: http://www.gstatic.com/generate_204
-      interval: 300000
+      interval: 200
       timeout: 3
       lazy: true
       expected-status: 204
@@ -505,11 +309,11 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/refs/heads/master/sub/sub_merge_yaml.yml"
     path: ./hamrah/A3.yaml
-    interval: 300000
+    interval: 200
     health-check:
       enable: true
       url: http://www.gstatic.com/generate_204
-      interval: 300000
+      interval: 200
       timeout: 3
       lazy: true
       expected-status: 204
@@ -524,11 +328,11 @@ proxy-providers:
     type: http     
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
     path: ./hamrah/A4.yaml
-    interval: 300000
+    interval: 200
     health-check:
       enable: true
       url: http://www.gstatic.com/generate_204
-      interval: 300000
+      interval: 200
       timeout: 3
       lazy: true
       expected-status: 204
@@ -543,11 +347,11 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/PuddinCat/BestClash/refs/heads/main/proxies.yaml"
     path: ./hamrah/A6.yaml
-    interval: 300000
+    interval: 200
     health-check:
       enable: true
       url: http://www.gstatic.com/generate_204
-      interval: 300000
+      interval: 200
       timeout: 3
       lazy: true
       expected-status: 204
@@ -562,11 +366,11 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/refs/heads/master/clash.yaml"
     path: ./hamrah/A7.yaml
-    interval: 300000
+    interval: 200
     health-check:
       enable: true
       url: http://www.gstatic.com/generate_204
-      interval: 300000
+      interval: 200
       timeout: 3
       lazy: true
       expected-status: 204
