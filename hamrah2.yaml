@@ -14,8 +14,7 @@ proxy-groups:
       - 🟢Vmess🟢
       - 🟢Vless🟢
       - 🟢Hysteria|Hysteria2🟢
-      - 🟢Trojan🟢
-      - US Node
+      - 🟢US Node🟢
       
   - name: 🟢Auto🟢
     type: url-test
@@ -73,13 +72,6 @@ proxy-groups:
     include-all-providers: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png  
     
-  - name: 🟢Trojan🟢
-    type: url-test
-    url: "http://www.gstatic.com/generate_204"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Vmess|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
-    include-all-providers: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
-    
   - name: 🟢Shadowsocks🟢
     type: url-test
     url: "http://www.gstatic.com/generate_204"
@@ -94,7 +86,7 @@ proxy-groups:
     include-all-providers: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     
-  - name: US Node
+  - name: 🟢US Node🟢
     type: url-test
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
     include-all: true
@@ -113,6 +105,7 @@ proxy-groups:
     proxies:
       - "DIRECT"
       - "PROXY"
+      
   - name: "🛑 Reject"
     type: "select"
     icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/block.svg"
@@ -120,6 +113,7 @@ proxy-groups:
       - "REJECT"
       - "DIRECT"
       - "PROXY"
+      
 port: 7892
 socks-port: 7891
 mixed-port: 7890
@@ -135,9 +129,11 @@ external-controller-tls: 127.0.0.1:9091
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 unified-delay: false
 tcp-concurrent: true
+
 profile:
   store-selected: true
   store-fake-ip: true
+  
 geodata-mode: true
 geodata-loader: standard
 find-process-mode: strict
@@ -190,6 +186,7 @@ dns:
     - https://doh.pub/dns-query
     - https://1.1.1.1/dns-query
     - https://dns.google/dns-query
+    
 proxy-providers:
   provider1:
     type: http
