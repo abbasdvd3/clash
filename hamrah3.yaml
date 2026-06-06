@@ -30,12 +30,12 @@ dns:
   use-hosts: true
   use-system-hosts: true
   respect-rules: false
-  listen: 0.0.0.0:127.0.0.1:5591
+  listen: 0.0.0.0:5591
   ipv6: true
   default-nameserver:
-    - 127.0.0.1:5591
+    - 0.0.0.0:5591
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  fake-ip-range: 100.0.0.0/8
   fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
@@ -66,7 +66,6 @@ proxy-groups:
       - 🟢Vmess🟢
       - 🟢Vless🟢
       - 🟢Hysteria|Hysteria2🟢
-      - 🟢Trojan🟢
       
   - name: 🟢Auto🟢
     type: url-test
@@ -85,8 +84,7 @@ proxy-groups:
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     include-all-providers: true
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
-      
-    
+  
   - name: 🟢Vmess🟢
     type: url-test
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
@@ -103,25 +101,19 @@ proxy-groups:
     type: url-test
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Vmess|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
     include-all-providers: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png 
-    
-  - name: 🟢Trojan🟢
-    type: url-test
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Vmess|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
-    include-all-providers: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     
   - name: 🟢Shadowsocks🟢
     type: url-test
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Vmess|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
     include-all-providers: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     
   - name: 🟢ShadowsocksR🟢
     type: url-test
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|Vmess|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
     include-all-providers: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     
   - name: 🎯 Direct
     type: select
