@@ -44,6 +44,14 @@ dns:
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
   respect-rules: true
+  nameserver-policy:
+    "www.createporn.com":
+      - https://doh.pub/dns-query
+      - https://1.12.12.12/dns-query
+      - https://120.53.53.53/dns-query
+      - https://cloudflare-dns.com/dns-query
+      - https://dns.google/dns-query
+      - https://public.dns.iij.jp/dns-query
   proxy-server-nameserver:
     - tls://223.5.5.5
     - tls://dot.pub
@@ -75,6 +83,63 @@ dns:
     - https://dns-adguard.heinu.ga/dns-query
     - https://[2a10:50c0::1:ff]/dns-query
     - https://[2a10:50c0::2:ff]/dns-query
+    - quic://dns-unfiltered.adguard.com:784
+    - tls://dns-unfiltered.adguard.com:853
+    - https://dns-unfiltered.adguard.com/dns-query
+    - quic://94.140.14.140:784
+    - tls://94.140.14.140:853
+    - https://94.140.14.140/dns-query
+    - quic://94.140.14.141:784
+    - tls://94.140.14.141:853
+    - https://94.140.14.141/dns-query
+    - quic://[2a10:50c0::1:ff]:784
+    - tls://[2a10:50c0::1:ff]:853
+    - https://[2a10:50c0::1:ff]/dns-query
+    - quic://[2a10:50c0::2:ff]:784
+    - tls://[2a10:50c0::2:ff]:853
+    - https://[2a10:50c0::2:ff]/dns-query
+    - https://dns-adguard.heinu.cf/dns-query
+    - https://dns-adguard.heinu.ga/dns-query
+  fallback: 
+    - tls://dns.cmrg.net:53053
+    - tls://dns.cmrg.net:443
+    - https://199.58.83.33/dns-query
+    - tls://199.58.83.33:443
+    - tls://199.58.83.33:53053
+    - tls://edns.apad.pro:853#国外代理
+    - https://edns.apad.pro:3306/dns-query#国外代理
+    - tls://h2o.apad.pro:853#国外代理
+    - https://h2o.apad.pro/dns-query#国外代理
+    - https://doh.apad.pro/dns-query
+    - https://doh.apad.pro/cn-query
+    - tls://1dot1dot1dot1.cloudflare-dns.com:853
+    - https://1dot1dot1dot1.cloudflare-dns.com/dns-query
+    - tls://dns.cloudflare-gateway.com:853
+    - https://dns.cloudflare-gateway.com/dns-query
+    - tls://1.1.1.1:853#国外代理
+    - https://1.1.1.1/dns-query#国外代理
+    - tls://1.0.0.1:853#国外代理
+    - https://1.0.0.1/dns-query#国外代理
+    - tls://[2606:4700:4700::1001]:853#国外代理
+    - https://[2606:4700:4700::1001]/dns-query#国外代理
+    - tls://[2606:4700:4700::1111]:853#国外代理
+    - https://[2606:4700:4700::1111]/dns-query#国外代理
+    - https://162.159.36.1/dns-query
+    - https://162.159.46.1/dns-query
+    - https://119dot29dot29dot29.cloudflare-dns.com/dns-query
+    - https://rubyfish.cn.cloudflare-dns.com/dns-query
+    - tls://dns.google:853
+    - https://dns.google/dns-query
+    - tls://8.8.8.8:853#国外代理
+    - https://8.8.8.8/dns-query#国外代理
+    - tls://8.8.4.4:853#国外代理
+    - https://8.8.4.4/dns-query#国外代理
+    - tls://[2001:4860:4860::8844]:853#国外代理
+    - https://[2001:4860:4860::8844]/dns-query#国外代理
+    - tls://[2001:4860:4860::8888]:853#国外代理
+    - https://[2001:4860:4860::8888]/dns-query#国外代理
+    - https://dns-google.heinu.cf/dns-query#国外代理
+    - https://dns-google.heinu.ga/dns-query#国外代理
   default-nameserver: 
     - 103.20.188.35
     - 103.20.188.35
@@ -7966,29 +8031,12 @@ dns:
     - 95.85.9.86
     - 95.85.9.86
     - 95.85.9.86
-
-  fallback:
-    - https://cloudflare-dns.com/dns-query
-    - https://dns.google/dns-query
-    - https://public.dns.iij.jp/dns-query
-    - https://doh.dns.apple.com/dns-query
-
   fallback-filter:
     geoip: true
     geoip-code: ir
     ipcidr:
       - 240.0.0.0/4
       - 0.0.0.0/32
- # nameserver-policy:
-   # "geosite:cn":
- #     - https://doh.pub/dns-query
-  #    - https://1.12.12.12/dns-query
-  #    - https://120.53.53.53/dns-query
- #   "geosite:google,google-play,openai,tiktok,telegram,netflix,youtube,geolocation-!cn":
-  #    - https://cloudflare-dns.com/dns-query
-  #    - https://dns.google/dns-query
- #     - https://public.dns.iij.jp/dns-query
-
   fake-ip-filter:
     - "*.lan"
     - "localhost"
@@ -7996,7 +8044,6 @@ dns:
     - "+.localdomain"
     - "time.*"
     - "ntp.*"
-    # 国内常见（避免某些国内App被 fake-ip 影响）
     - "+.qq.com"
     - "+.tencent.com"
     - "+.weixin.com"
@@ -9300,151 +9347,27 @@ proxy-groups:
 
   - name: Master
     type: select
-#    include-all-proxies: true
+    include-all-proxies: true
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png"
     proxies:
       - Auto
-      - Global
-      - HK Node
-      - SG Node
-      - JP Node
-      - US Node
-      - KR Node
-      - TW Node
-      - Other Node
 
   - name: Auto
     type: url-test
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png"
     include-all: true
+    filter: "(?i)(美国|\\bUS\\b|🇺🇸|United\\s*States)"
     url: "http://www.gstatic.com/generate_204"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     interval: 180
     tolerance: 80
     lazy: true
-    exclude-filter: "(?i)(官网|公告|通知|维护|订阅|防失联|最新网址|备用|客服|工单|联系|反馈|教程|使用说明|购买|续费|充值|返利|推荐|优惠|福利|活动|推广|代理商|机场|节点池|测速|解锁|说明|规则|TG|电报|telegram|频道|群|讨论组|t\\.me/|流量|剩余|用量|到期|过期|续期|重置|重设|下次|距离|套餐|账单|有效期|时间|日期|定期|下方|地址|更新|\\bURL\\b|URL@|vpn|👆|👇|👉|⬇|⬆|✈|🛫|🛬|📢|🔗|\\s{4,})"
-
-  - name: HK Node
-    type: url-test
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
-    include-all: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    filter: "(?i)(香港|\\bHK\\b|🇭🇰|Hong\\s*Kong)"
-    exclude-filter: "(?i)(官网|公告|通知|维护|订阅|防失联|TG|telegram|频道|群|讨论组|t\\.me/|流量|剩余|到期|重置|下次|距离|套餐|定期|下方|地址|更新|URL@|vpn|👇|👆|👉|✈|📢|\\s{4,})"
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 80
-    lazy: true
-
-  - name: SG Node
-    type: url-test
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
-    include-all: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    filter: "(?i)(新加坡|\\bSG\\b|🇸🇬|Singapore)"
-    exclude-filter: "(?i)(官网|公告|通知|维护|订阅|防失联|TG|telegram|频道|群|讨论组|t\\.me/|流量|剩余|到期|重置|下次|距离|套餐|定期|下方|地址|更新|URL@|vpn|👇|👆|👉|✈|📢|\\s{4,})"
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 80
-    lazy: true
-
-  - name: JP Node
-    type: url-test
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
-    include-all: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    filter: "(?i)(日本|\\bJP\\b|🇯🇵|Japan)"
-    exclude-filter: "(?i)(官网|公告|通知|维护|订阅|防失联|TG|telegram|频道|群|讨论组|t\\.me/|流量|剩余|到期|重置|下次|距离|套餐|定期|下方|地址|更新|URL@|vpn|👇|👆|👉|✈|📢|\\s{4,})"
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 80
-    lazy: true
-
-  - name: US Node
-    type: url-test
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
-    include-all: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    filter: "(?i)(美国|\\bUS\\b|🇺🇸|United\\s*States)"
-    exclude-filter: "(?i)(官网|公告|通知|维护|订阅|防失联|TG|telegram|频道|群|讨论组|t\\.me/|流量|剩余|到期|重置|下次|距离|套餐|定期|下方|地址|更新|URL@|vpn|👇|👆|👉|✈|📢|\\s{4,})"
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 80
-    lazy: true
-
-  - name: KR Node
-    type: url-test
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png"
-    include-all: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    filter: "(?i)(韩国|\\bKR\\b|🇰🇷|Korea)"
-    exclude-filter: "(?i)(官网|公告|通知|维护|订阅|防失联|TG|telegram|频道|群|讨论组|t\\.me/|流量|剩余|到期|重置|下次|距离|套餐|定期|下方|地址|更新|URL@|vpn|👇|👆|👉|✈|📢|\\s{4,})"
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 80
-    lazy: true
-
-  - name: TW Node
-    type: url-test
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
-    include-all: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    filter: "(?i)(台湾|\\bTW\\b|🇹🇼|Taiwan)"
-    exclude-filter: "(?i)(官网|公告|通知|维护|订阅|防失联|TG|telegram|频道|群|讨论组|t\\.me/|流量|剩余|到期|重置|下次|距离|套餐|定期|下方|地址|更新|URL@|vpn|👇|👆|👉|✈|📢|\\s{4,})"
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 80
-    lazy: true
-
-  - name: Other Node
-    type: url-test
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png"
-    include-all: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    exclude-filter: "(?i)(香港|\\bHK\\b|新加坡|\\bSG\\b|日本|\\bJP\\b|美国|\\bUS\\b|韩国|\\bKR\\b|台湾|\\bTW\\b|英国|\\bUK\\b|德国|\\bDE\\b|法国|\\bFR\\b|加拿大|\\bCA\\b|澳大利亚|\\bAU\\b|印度|\\bIN\\b|土耳其|\\bTR\\b|巴西|\\bBR\\b|官网|公告|通知|维护|订阅|防失联|最新网址|备用|客服|工单|联系|反馈|教程|使用说明|购买|续费|充值|返利|推荐|优惠|福利|活动|推广|代理商|机场|节点池|测速|解锁|说明|规则|TG|电报|telegram|频道|群|讨论组|t\\.me/|流量|剩余|用量|到期|过期|续期|重置|重设|下次|距离|套餐|账单|有效期|时间|日期|定期|下方|地址|更新|\\bURL\\b|URL@|vpn|👆|👇|👉|⬇|⬆|✈|🛫|🛬|📢|🔗|\\s{4,})"
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 120
-    lazy: true
-
-  - name: Play
-    type: select
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google.png"
-    proxies: [US Node, JP Node, SG Node, HK Node, Auto, Global]
-
-  - name: AI-Only
-    type: select
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png"
-    proxies: [US Node, JP Node, SG Node, HK Node, Auto, Global]
-
-  - name: Telegram
-    type: select
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png"
-    proxies: [HK Node, SG Node, JP Node, US Node, Auto, Global]
-
-  - name: TikTok
-    type: fallback
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png"
-    proxies: [US Node, JP Node, SG Node, HK Node, Auto]
-    url: "http://www.gstatic.com/generate_204"
-    interval: 20
-
-  - name: Media
-    type: select
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png"
-    proxies: [US Node, JP Node, SG Node, HK Node, Auto, Global]
+    exclude-filter: "(?i)(官网|公告|通知|维护|订阅|防失联|最新网址|备用|客服|工单|联系|反馈|教程|使用说明|购买|续费|充值|返利|推荐|优惠|福利|活动|推广|代理商|机场|节点池|测速|解锁|说明|规则|TG|电报|Master|频道|群|讨论组|t\\.me/|流量|剩余|用量|到期|过期|续期|重置|重设|下次|距离|套餐|账单|有效期|时间|日期|定期|下方|地址|更新|\\bURL\\b|URL@|vpn|👆|👇|👉|⬇|⬆|✈|🛫|🛬|📢|🔗|\\s{4,})"
     
   - name: iran
     type: select
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google.png"
-    proxies: [DIRECT, Auto, Global]
-    
-  - name: Global
-    type: fallback
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png"
-    proxies: [Auto, US Node, JP Node, SG Node, HK Node, Other Node]
-    url: "http://www.gstatic.com/generate_204"
-    interval: 30
+    proxies: [DIRECT, Auto, Master]
 
 rules:
   - DOMAIN-SUFFIX,local,iran
@@ -9455,47 +9378,47 @@ rules:
   - IP-CIDR,100.64.0.0/10,iran,no-resolve
   - RULE-SET,AdGuardSDNSFilter,REJECT
   - RULE-SET,AntiAD,REJECT
-  - DOMAIN,play.googleapis.com,Play
-  - DOMAIN,android.clients.google.com,Play
-  - DOMAIN,dl.google.com,Play
-  - DOMAIN,redirector.gvt1.com,Play
-  - DOMAIN-SUFFIX,googleapis.com,Play
-  - DOMAIN-SUFFIX,gstatic.com,Play
-  - DOMAIN-SUFFIX,ggpht.com,Play
-  - DOMAIN-SUFFIX,googleusercontent.com,Play
-  - DOMAIN-SUFFIX,gvt1.com,Play
-  - DOMAIN-SUFFIX,googlevideo.com,Play
+  - DOMAIN,Master.googleapis.com,Master
+  - DOMAIN,android.clients.google.com,Master
+  - DOMAIN,dl.google.com,Master
+  - DOMAIN,redirector.gvt1.com,Master
+  - DOMAIN-SUFFIX,googleapis.com,Master
+  - DOMAIN-SUFFIX,gstatic.com,Master
+  - DOMAIN-SUFFIX,ggpht.com,Master
+  - DOMAIN-SUFFIX,googleusercontent.com,Master
+  - DOMAIN-SUFFIX,gvt1.com,Master
+  - DOMAIN-SUFFIX,googlevideo.com,Master
 
-#  - GEOSITE,openai,AI-Only
-  - DOMAIN-SUFFIX,openai.com,AI-Only
-  - DOMAIN-SUFFIX,chatgpt.com,AI-Only
-  - DOMAIN-SUFFIX,oaistatic.com,AI-Only
-  - DOMAIN-SUFFIX,oaiusercontent.com,AI-Only
-  - DOMAIN-SUFFIX,anthropic.com,AI-Only
-  - DOMAIN-SUFFIX,claude.ai,AI-Only
-  - DOMAIN,gemini.google.com,AI-Only
-  - DOMAIN-SUFFIX,ai.google.dev,AI-Only
-  - DOMAIN-SUFFIX,generativelanguage.googleapis.com,AI-Only
-  - GEOSITE,telegram,Telegram
-  - DOMAIN-SUFFIX,telegram.org,Telegram
-  - DOMAIN-SUFFIX,t.me,Telegram
-  - DOMAIN-SUFFIX,telegra.ph,Telegram
-  - DOMAIN-SUFFIX,tiktok.com,TikTok
-  - DOMAIN-SUFFIX,tiktokv.com,TikTok
-  - DOMAIN-SUFFIX,tiktokcdn.com,TikTok
-  - DOMAIN-SUFFIX,ttwstatic.com,TikTok
-  - DOMAIN-SUFFIX,ttlivecdn.com,TikTok
-  - DOMAIN-SUFFIX,muscdn.com,TikTok
-  - DOMAIN-SUFFIX,musical.ly,TikTok
-  - DOMAIN-SUFFIX,byteoversea.com,TikTok
-  - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,tiktok)),REJECT
+#  - GEOSITE,openai,Master
+  - DOMAIN-SUFFIX,openai.com,Master
+  - DOMAIN-SUFFIX,chatgpt.com,Master
+  - DOMAIN-SUFFIX,oaistatic.com,Master
+  - DOMAIN-SUFFIX,oaiusercontent.com,Master
+  - DOMAIN-SUFFIX,anthropic.com,Master
+  - DOMAIN-SUFFIX,claude.ai,Master
+  - DOMAIN,gemini.google.com,Master
+  - DOMAIN-SUFFIX,ai.google.dev,Master
+  - DOMAIN-SUFFIX,generativelanguage.googleapis.com,Master
+  - GEOSITE,Master,Master
+  - DOMAIN-SUFFIX,Master.org,Master
+  - DOMAIN-SUFFIX,t.me,Master
+  - DOMAIN-SUFFIX,telegra.ph,Master
+  - DOMAIN-SUFFIX,tiktok.com,Master
+  - DOMAIN-SUFFIX,tiktokv.com,Master
+  - DOMAIN-SUFFIX,tiktokcdn.com,Master
+  - DOMAIN-SUFFIX,ttwstatic.com,Master
+  - DOMAIN-SUFFIX,ttlivecdn.com,Master
+  - DOMAIN-SUFFIX,muscdn.com,Master
+  - DOMAIN-SUFFIX,musical.ly,Master
+  - DOMAIN-SUFFIX,byteoversea.com,Master
+  - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,Master)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,ttlive)),REJECT
   - AND,((NETWORK,UDP),(DST-PORT,443),(DOMAIN-KEYWORD,muscdn)),REJECT
-  - DOMAIN-SUFFIX,spotify.com,Media
-  - DOMAIN-SUFFIX,soundcloud.com,Media
-  - DOMAIN-SUFFIX,sndcdn.com,Media
+  - DOMAIN-SUFFIX,spotify.com,Master
+  - DOMAIN-SUFFIX,soundcloud.com,Master
+  - DOMAIN-SUFFIX,sndcdn.com,Master
 #  - GEOSITE,cn,DIRECT
   - GEOIP,ir,iran
   - DOMAIN-SUFFIX,ir,iran
  # - GEOSITE,geolocation-!cn,Global
-  - MATCH,Global
+  - MATCH,Master
