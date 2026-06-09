@@ -119,10 +119,12 @@ proxy-groups:
     url: http://cp.cloudflare.com/
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png
     disable-udp: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Ssh|http|socks5
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Ssh
     interval: 300
     timeout: 500
     max-failed-times: 400
+    filter: "🇺🇸|US|America|United.*?States"
+    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|United\\s*Kingdom)"
     lazy: true
     proxies:
       - 🟢Auto🟢
@@ -141,12 +143,16 @@ proxy-groups:
     max-failed-times: 4
     lazy: true
     hidden: false
+    filter: "🇺🇸|US|America|United.*?States"
+    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|United\\s*Kingdom)"
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
     
   - name: 🟡fallback🟡
     type: fallback
     url: http://cp.cloudflare.com/
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
+    filter: "🇺🇸|US|America|United.*?States"
+    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|United\\s*Kingdom)"
     include-all: true
     disable-udp: true
     interval: 100
@@ -160,6 +166,8 @@ proxy-groups:
     type: load-balance
     url: http://cp.cloudflare.com/
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
+    filter: "🇺🇸|US|America|United.*?States"
+    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|United\\s*Kingdom)"
     include-all: true
     disable-udp: true
     interval: 1000
