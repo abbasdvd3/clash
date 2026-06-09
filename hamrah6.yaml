@@ -86,7 +86,7 @@ proxy-groups:
     type: fallback
     disable-udp: true
     exclude-type: direct|redir-in|DNS|trojan
-    hidden: false
+    include-all-providers: true
     proxies:
       - Auto
       - fallback
@@ -96,14 +96,12 @@ proxy-groups:
     include-all-providers: true
     hidden: true
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    filter: "America|United States|US|美国"
     
   - name: fallback
     type: fallback
     include-all-providers: true
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     hidden: true
-    filter: "America|United States|US|美国"
     
   - name: Geo-SG
     type: fallback
