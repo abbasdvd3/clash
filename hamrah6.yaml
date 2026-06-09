@@ -83,7 +83,7 @@ proxies:
     udp: false
 proxy-groups:
   - name: Proxy
-    type: fallback
+    type: select
     disable-udp: true
     exclude-type: direct|redir-in|DNS|trojan
     include-all-providers: true
@@ -92,7 +92,7 @@ proxy-groups:
       - fallback
       - Geo-US
   - name: Auto
-    type: fallback
+    type: url-test
     include-all-providers: true
     hidden: true
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
