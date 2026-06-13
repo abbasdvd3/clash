@@ -7,15 +7,6 @@ mode: rule
 ipv6: true
 allow-lan: true
 log-level: debug
-bind-address: "*"
-lan-allowed-ips:
-- 0.0.0.0/0
-- ::/0
-lan-disallowed-ips:
-- 192.168.0.3/32
-skip-auth-prefixes:
-- 127.0.0.1/8
-- ::1/128
 external-controller: 0.0.0.0:9090
 external-controller-tls: 0.0.0.0:9091
 external-doh-server: /dns-query
@@ -43,11 +34,9 @@ profile:
   store-selected: true
   store-fake-ip: true
   smart-collector-size: 100
-
 lgbm-auto-update: true
 lgbm-update-interval: 72
 lgbm-url: "https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model.bin"
-
 dns:
   enable: true
   cache-algorithm: arc
@@ -77,69 +66,6 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - "*.lan"
-    - "*.localdomain"
-    - "*.example"
-    - "*.invalid"
-    - "*.localhost"
-    - "*.test"
-    - "*.local"
-    - "*.home.arpa"
-    - router.asus.com
-    - localhost.sec.qq.com
-    - localhost.ptlogin2.qq.com
-    - +.msftconnecttest.com
-    - "*.lan"
-    - "*.local"
-    - "www.torrent.eu.org"
-    - "www.msftconnecttest.com"
-    - "*.msftncsi.com"
-    - "+.10010.com"
-    - "+.chinaunicom.com"
-    - "+.baidu.com"
-    - "connect.rom.miui.com"
-    - "localhost.ptlogin2.qq.com"
-    - "dl.google.com"
-    - "+.stun.*.*"
-    - "+.stun.*.*.*"
-    - "+.stun.*.*.*.*"
-    - "+.stun.*.*.*.*.*"
-    - "lens.l.google.com"
-    - "*.n.n.srv.nintendo.net"
-    - "+.stun.playstation.net"
-    - "*.lan"
-    - "*.localdomain"
-    - "*.example"
-    - "*.invalid"
-    - "*.localhost"
-    - "*.test"
-    - "*.local"
-    - "*.home.arpa"
-    - "router.asus.com"
-    - "localhost.sec.qq.com"
-    - "localhost.ptlogin2.qq.com"
-    - "+.msftconnecttest.com"
-    - "*.msftncsi.com"
-    - "*.msftconnecttest.com"
-    - "+.lan"
-    - "+.cn"
-    - "+.10010.com"
-    - "+.chinaunicom.com"
-    - "+.baidu.com"
-    - "*.alipay.com"
-    - "*.alipayobjects.com"
-    - "*.jijifun.com"
-    - "connect.rom.miui.com"
-    - "localhost.ptlogin2.qq.com"
-    - "dl.google.com"
-    - "+.stun.*.*"
-    - "+.stun.*.*.*"
-    - "+.stun.*.*.*.*"
-    - "+.stun.*.*.*.*.*"
-    - "lens.l.google.com"
-    - "*.n.n.srv.nintendo.net"
-    - "+.stun.playstation.net"
-    - "*.mcdn.bilivideo.cn"
-    - "ntp.ntsc.ac.cn"
 
 proxies:
   - name: redir-in
