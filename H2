@@ -8,11 +8,10 @@ geo-auto-update: true
 geo-update-interval: 24
 tcp-concurrent: true
 find-process-mode: strict
-global-client-fingerprint: chrome
 allow-lan: true
 mode: rule
 log-level: info
-ipv6: true
+ipv6: false
 udp: true
 external-controller: 127.0.0.1:9090
 external-controller-tls: 127.0.0.1:9093
@@ -108,7 +107,7 @@ RuleSet: &RuleSet {type: http, behavior: classical, interval: 3600, format: yaml
 # https://raw.githubusercontent.com/clash-verge-rev/icon-hub/main/genshin-impact/1.png
 
 proxy-groups: 
-  - {name: auto, type: url-test, include-all: true, icon: https://raw.githubusercontent.com/abbasdvd3/allwinner-tools/refs/heads/master/daily_build/0.gif, filter: *FilterGame, proxies: [url-test, select]}
+  - {name: auto, type: select, include-all: true, icon: https://raw.githubusercontent.com/abbasdvd3/allwinner-tools/refs/heads/master/daily_build/0.gif, filter: *FilterGame, proxies: [url-test, select]}
   - {name: url-test, type: url-test, include-all: true, icon: https://raw.githubusercontent.com/clash-verge-rev/icon-hub/main/genshin-impact/2.png, filter: *FilterAll}
   - {name: select, type: select, include-all: true, icon: https://raw.githubusercontent.com/clash-verge-rev/icon-hub/main/genshin-impact/3.png, proxies: []}
   - {name: AI, type: url-test, include-all: true, icon: https://raw.githubusercontent.com/clash-verge-rev/icon-hub/main/genshin-impact/4.png, filter: *FilterAll}
@@ -185,5 +184,5 @@ rules:
   - RULE-SET,social, auto
   - RULE-SET,geolocation-!cn, auto
   - RULE-SET,AWAvenue-Ads-Rule,REJECT
-  - GEOIP, ir, DIRECT,no-resolve
+  - GEOIP,ir, DIRECT,no-resolve
   - MATCH,line
