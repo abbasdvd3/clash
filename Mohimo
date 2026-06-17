@@ -6,7 +6,6 @@ proxy-providers:
     path: Mohimo/A1.yaml
     interval: 86400
     exclude-type: "direct|redir-in|DNS|trojan"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -21,7 +20,6 @@ proxy-providers:
     path: Mohimo/A2.yaml
     interval: 86400
     exclude-type: "direct|redir-in|DNS|trojan"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -37,7 +35,6 @@ proxy-providers:
     path: Mohimo/A3.yaml
     interval: 86400
     exclude-type: "direct|redir-in|DNS|trojan"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -52,7 +49,6 @@ proxy-providers:
     path: Mohimo/A4.yaml
     interval: 86400
     exclude-type: "direct|redir-in|DNS|trojan"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -67,7 +63,6 @@ proxy-providers:
     path: Mohimo/A6.yaml
     interval: 86400
     exclude-type: "direct|redir-in|DNS|trojan"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -82,7 +77,6 @@ proxy-providers:
     path: Mohimo/A7.yaml
     interval: 86400
     exclude-type: "direct|redir-in|DNS|trojan"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -97,7 +91,6 @@ proxy-providers:
     path: Mohimo/A8.yaml
     interval: 86400
     exclude-type: "direct|redir-in|DNS|trojan"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -116,9 +109,9 @@ socks-port: 7891
 mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
-ipv6: true
+ipv6: false
 allow-lan: true
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 external-controller: 127.0.0.1:9090
 external-ui: ui
@@ -127,56 +120,6 @@ find-process-mode: strict
 profile:
   store-selected: true
   store-fake-ip: true
-tun:
-  enable: true
-  stack: mixed
-  auto-route: true
-  auto-redirect: true
-  auto-detect-interface: true
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-    - 0.0.0.0:53
-  device: utun0
-  mtu: 9000
-  strict-route: true
-  gso: true
-  gso-max-size: 65536
-  udp-timeout: 300
-  iproute2-table-index: 2022
-  iproute2-rule-index: 9000
-  endpoint-independent-nat: false
-  route-address-set:
-    - ruleset-1
-  route-exclude-address-set:
-    - ruleset-2
-  route-address:
-    - 0.0.0.0/1
-    - 128.0.0.0/1
-    - "::/1"
-    - "8000::/1"
-  route-exclude-address:
-  - 192.168.0.0/16
-  - fc00::/7
-  include-interface:
-  - eth0
-  exclude-interface:
-  - eth1
-  include-uid:
-  - 0
-  include-uid-range:
-  - 1000:9999
-  exclude-uid:
-  - 1000
-  exclude-uid-range:
-  - 1000:9999
-  include-android-user:
-  - 0
-  - 10
-  include-package:
-  - com.android.chrome
-  exclude-package:
-  - com.android.captiveportallogin
 
 dns:
   enable: true
@@ -270,7 +213,6 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/HK.png"
     include-all: true
     exclude-type: "direct|redir-in|DNS|trojan"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "(?i)港|hk|hongkong|hong kong"
 
   - name: taiwan
@@ -279,7 +221,6 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/TW.png"
     include-all: true
     exclude-type: "direct|redir-in|DNS|trojan"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "(?i)台|tw|taiwan"
 
   - name: japan
@@ -288,7 +229,6 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/JP.png"
     include-all: true
     exclude-type: "direct|redir-in|DNS|trojan"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "(?i)日|jp|japan"
 
   - name: united states
@@ -297,8 +237,7 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/US.png"
     include-all: true
     exclude-type: "direct|redir-in|DNS|trojan"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
-    filter: "(?i)美|us|unitedstates|united states"
+    filter: "us|unitedstates|united states"
 
   - name: Singapore
     type: url-test
@@ -306,7 +245,6 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/SG.png"
     include-all: true
     exclude-type: "direct|redir-in|DNS|trojan"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "(?i)(新|sg|singapore)"
 
   - name: Other regions
@@ -315,7 +253,6 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
     include-all: true
     exclude-type: "direct|redir-in|DNS|trojan"
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*"
 
   - name: All nodes
@@ -323,7 +260,6 @@ proxy-groups:
     url: 'https://www.gstatic.com/generate_204'
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/China_Map.png"
     include-all: true
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "direct|redir-in|DNS|trojan"
 
   - name: Automatic selection
@@ -331,7 +267,6 @@ proxy-groups:
     url: 'https://www.gstatic.com/generate_204'
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/mini/Auto.png"
     include-all-providers: true
-    exclude-filter: "美|日|ctb|Traffic|Expired|Official website|Landing|Return to China|This site|User|If|Renewal|Email|Subscription|流量|过期|官网|落地|回国|本站|用户|若|续费|邮箱|订阅"
     exclude-type: "direct|redir-in|DNS|trojan"
     
 rules:
