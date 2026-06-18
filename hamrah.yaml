@@ -575,7 +575,7 @@ proxy-groups:
       - 🟡fallback🟡
       - 🔴load-balance🔴
       - 🔴United+fallback🔴
-      - 🔴United+url-test🔴
+      - 🔴United+fallback🔴
       - 🟢http+url-test🟢
       - 🟢http+fallback🟢
       
@@ -607,32 +607,6 @@ proxy-groups:
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
-  - name: 🟢http+url-test🟢
-    type: url-test
-    url: https://www.gstatic.com/generate_204
-    interval: 10
-    hidden: true
-    include-all: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
-
-  - name: 🟢http+fallback🟢
-    type: fallback
-    url: https://www.gstatic.com/generate_204
-    interval: 10
-    hidden: true
-    include-all: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
-
-  - name: 🎯 Direct
-    type: select
-    disable-udp: true
-    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
-    proxies:
-      - "DIRECT"
-      - "PROXY"
-    
   - name: 🔴United+fallback🔴
     type: fallback
     url: https://www.gstatic.com/generate_204
@@ -652,6 +626,34 @@ proxy-groups:
     include-all: true
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+    
+  - name: 🟢http+url-test🟢
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 100
+    hidden: true
+    include-all: true
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+
+  - name: 🟢http+fallback🟢
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 100
+    hidden: true
+    include-all: true
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+
+  - name: 🎯 Direct
+    type: select
+    disable-udp: true
+    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    proxies:
+      - "DIRECT"
+      - "PROXY"
+    
+
 rule-providers:
   ir:
     type: http
