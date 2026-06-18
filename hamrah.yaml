@@ -574,8 +574,6 @@ proxy-groups:
       - 🟢Auto🟢
       - 🟡fallback🟡
       - 🔴load-balance🔴
-      - 🔴United+fallback🔴
-      - 🔴United+fallback🔴
       - 🟢http+url-test🟢
       - 🟢http+fallback🟢
       
@@ -607,33 +605,14 @@ proxy-groups:
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
-  - name: 🔴United+fallback🔴
-    type: fallback
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    hidden: true
-    filter: "🇺🇸|United States|United|us"
-    include-all: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
-    
-  - name: 🔴United+url-test🔴
-    type: url-test
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    hidden: true
-    filter: "🇺🇸|United States|United|us"
-    include-all: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
-    
   - name: 🟢http+url-test🟢
     type: url-test
     url: https://www.gstatic.com/generate_204
     interval: 100
     hidden: true
     include-all: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
+    filter: "🇺🇸|United States|United|us"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
   - name: 🟢http+fallback🟢
@@ -642,7 +621,8 @@ proxy-groups:
     interval: 100
     hidden: true
     include-all: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|trojan
+    filter: "🇺🇸|United States|United|us"
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
   - name: 🎯 Direct
