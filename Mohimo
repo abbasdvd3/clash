@@ -99,11 +99,6 @@ proxy-providers:
       expected-status: 100
   #   override: #      additional-prefix: "A10 prefix |"
     
-proxies: 
-  - name: "iran"
-    type: direct
-    udp: true
-
 port: 7890
 socks-port: 7891
 mixed-port: 7890
@@ -364,6 +359,7 @@ rule-providers:
     <<: *ip
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"
 proxies:
+  - {name: "iran", type: direct, udp: true}
   - {name: 🇮🇹IT_@WangCai_8, server: 2.37.90.54, port: 443, type: http, sin: https://t.me/WangCai2🇨🇳, tls: true, skip-cert-verify: true} 
   - {name: 🇨🇦CA_@WangCai_8, server: 3.99.110.253, port: 443, type: http, sin: https://t.me/WangCai2🇨🇳, tls: true, skip-cert-verify: true} 
   - {name: 🇺🇸US_@WangCai_8, server: 12.202.180.10, port: 443, type: http, sin: https://t.me/WangCai2🇨🇳, tls: true, skip-cert-verify: true} 
