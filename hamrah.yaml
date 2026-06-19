@@ -544,7 +544,7 @@ proxy-providers:
 
   provider73:
     type: "http"
-    url: ""
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/C2"
     interval: "3600"
     path: ./hamrah/provider73.yaml
     health-check:
@@ -564,11 +564,12 @@ proxy-providers:
       - "meta/0.2.0.9.meta"
 proxy-groups:
   - name: PROXY
-    type: url-test
+    type: select
     url: https://www.gstatic.com/generate_204
     interval: 300
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
     exclude-type: Trojan
+    include-all: true
     exclude-filter: "🇺🇸|United States|United|us"
     proxies:
       - 🟢Auto🟢
