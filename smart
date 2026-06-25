@@ -14,7 +14,7 @@ OneSmart: &OneSmart {type: select, proxies: [mihomo, Hong_Kong, Taiwan, Japan, S
 SelectDC: &SelectDC {type: select, proxies: [Direct, mihomo, Hong_Kong, Taiwan, Japan, Singapore, Korea, United_States, European, Clubhouse]}
 proxy-providers:
   优质服务商: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vl', override: {additional-prefix: '[excellent] '}}
-  备用服务商2: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/socks5', override: {additional-prefix: '[Preparation] '}}
+  备用服务商2: {<<: *BaseProvider, url: 'https://obeapi.s3.ap-east-1.amazonaws.com/vpn/sub-clash.yaml', override: {additional-prefix: '[Preparation] '}}
   优质服务商3: {<<: *BaseProvider, url: 'https://sub.pusytroller.gq/?url=freenodes'}
   备用服务商4: {<<: *BaseProvider, url: 'https://proxypool.link/clash/proxies'}
   优质服务商5: {<<: *BaseProvider, url: 'https://check.banyunxiaoxi.icu/sub/sub-base64.txt'}
@@ -58,8 +58,12 @@ proxy-providers:
   优质服务商43: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/chongdong1230/dxz/main/clash'}
   备用服务商44: {<<: *BaseProvider, url: 'https://raw.githubusercontent.com/zhlx2835/freefq/main/clash.yaml'}
 mode: rule
+port: 7892
+socks-port: 7891
 mixed-port: 7890
-ipv6: true
+redir-port: 9797
+tproxy-port: 9898
+ipv6: false
 allow-lan: true
 unified-delay: false
 tcp-concurrent: true
@@ -203,10 +207,14 @@ dns:
   nameserver-policy:
     "geosite:ir,private": 
       - https://doh.pub/dns-query
+      - https://1.1.1.1/dns-query
+      - https://8.8.8.8/dns-query
       - https://dns.alidns.com/dns-query
-    "RULE-SET:geolocation-!cn,nsfw,social": 
-      - "https://1.1.1.1/dns-query#Global"
-      - "https://8.8.8.8/dns-query#Global"
+    "RULE-SET:geolocation-!cn,nsfw,social,google_domain": 
+      - https://doh.pub/dns-query
+      - https://1.1.1.1/dns-query
+      - https://8.8.8.8/dns-query
+      - https://dns.alidns.com/dns-query
   fallback:
     - 9.9.9.9
     - 149.112.112.112
