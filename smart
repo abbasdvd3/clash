@@ -304,9 +304,7 @@ dns:
     - https://a.passcloud.xyz/dns-query
     - https://worldwide.passcloud.xyz/dns-query
   fake-ip-filter:
-    - rule-set:Direct
     - rule-set:Private
-    - rule-set:China
     - "+.lan"
     - "+.local"
     - "+.market.xiaomi.com"
@@ -356,7 +354,7 @@ dns:
      - '+.connectivitycheck.gstatic.com'    
 proxy-groups:
   - {name: mihomo,  <<: *SelectAL, icon: https://git.imee.me/https://github.com/666OS/YYDS/raw/main/mihomo/image/mihomo.png}
-  - {name: AI,  <<: *OneSmart, hidden: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
+  - {name: AI,  <<: *SelectAL, hidden: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
   - {name: PBS,  <<: *OneSmart, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/PBS.png} 
   - {name: Media,  <<: *OneSmart, hidden: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/DomesticMedia.png}
   - {name: Global,  <<: *OneSmart, hidden: true, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png}
@@ -374,15 +372,15 @@ proxy-groups:
   - {name: European,  <<: *BaseSmart, filter: *FilterEU, hidden: true, include-all: true, policy-priority: 'excellent:2;Preparation:0.5', icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png, exclude-type: "direct|redir-in|trojan|DNS"}
 rules: 
 #  - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT
-  - DOMAIN-KEYWORD,soft98.ir,Direct
-  - DOMAIN,soft98,Direct
-  - DOMAIN-SUFFIX,soft98.ir,Direct
-  - DOMAIN-KEYWORD,dl2soft98.82.ir,Direct
-  - DOMAIN,dl2soft98.82,Direct
-  - DOMAIN-SUFFIX,dl2soft98.82.ir,Direct
-  - DOMAIN-SUFFIX,farsroid,Direct
-  - DOMAIN-KEYWORD,farsroid.com,Direct
-  - DOMAIN,farsroid.com,Direct
+  - DOMAIN-KEYWORD,soft98.ir,IRAN
+  - DOMAIN,soft98,IRAN
+  - DOMAIN-SUFFIX,soft98.ir,IRAN
+  - DOMAIN-KEYWORD,dl2soft98.82.ir,IRAN
+  - DOMAIN,dl2soft98.82,IRAN
+  - DOMAIN-SUFFIX,dl2soft98.82.ir,IRAN
+  - DOMAIN-SUFFIX,farsroid,IRAN
+  - DOMAIN-KEYWORD,farsroid.com,IRAN
+  - DOMAIN,farsroid.com,IRAN
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,AI
   - DOMAIN-SUFFIX,services.googleapis.cn,AI
   - DOMAIN-SUFFIX,createporn.com,AI
@@ -413,11 +411,11 @@ rules:
   - DOMAIN-SUFFIX,disneyplus.com,mihomo
   - DOMAIN-SUFFIX,hbo.com,mihomo
   - DOMAIN-SUFFIX,primevideo.com,mihomo
-  - DOMAIN-SUFFIX,cn,Direct,no-resolve
-  - DOMAIN-KEYWORD,-cn,Direct,no-resolve
-  - DOMAIN-SUFFIX,ir,Direct,no-resolve
-  - DOMAIN-KEYWORD,ir,Direct,no-resolve
-  - DOMAIN-SUFFIX,local,Direct,no-resolve
+  - DOMAIN-SUFFIX,cn,IRAN,no-resolve
+  - DOMAIN-KEYWORD,-cn,IRAN,no-resolve
+  - DOMAIN-SUFFIX,ir,IRAN,no-resolve
+  - DOMAIN-KEYWORD,ir,IRAN,no-resolve
+  - DOMAIN-SUFFIX,local,IRAN,no-resolve
 #  - IP-CIDR,127.0.0.0/8,Direct,no-resolve
 #  - IP-CIDR,172.16.0.0/12,Direct
 #  - IP-CIDR,192.168.0.0/16,Direct
