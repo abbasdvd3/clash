@@ -403,71 +403,49 @@ rules:
 #  - OR,((NETWORK,UDP),(DOMAIN,google.com)),REJECT
 #  - NOT,((DOMAIN,google.com)),mihomo
   - RULE-SET,AWAdsRule,REJECT
-  - RULE-SET,GoogleFCM,AI
-  - RULE-SET,GoogleCNProxyIP,AI
-  - RULE-SET,GoogleCN,AI
-  - RULE-SET,YouTube1,AI
-  - RULE-SET,Google,AI
   - RULE-SET,category-ai-cn,AI
   - RULE-SET,category-ai-!cn,AI
-  - RULE-SET,anti-AD-white,Direct
+  - RULE-SET,anti-AD-white,IRAN
   - RULE-SET,anti-AD,REJECT
-  - RULE-SET,private1,Direct,no-resolve
+  - RULE-SET,private1,IRAN,no-resolve
   - RULE-SET,apps,Direct
   - RULE-SET,ads,REJECT
   - RULE-SET,malware,REJECT
   - RULE-SET,AWA,REJECT
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
-  - RULE-SET,ir,Direct
-  - RULE-SET,ircidr,Direct
-  - RULE-SET,irasn,Direct
-  - RULE-SET,social,AI,no-resolve
-  - RULE-SET,nsfw,AI,no-resolve
+  - RULE-SET,ir,IRAN
+  - RULE-SET,ircidr,IRAN
+  - RULE-SET,irasn,IRAN
+  - RULE-SET,social,AI
+  - RULE-SET,nsfw,AI
   - RULE-SET,geolocation-!cn,AI
-  - GeoIP,ir,Direct
-  - RULE-SET,Private,Direct
-  - RULE-SET,Direct,Direct
-  - RULE-SET,XPTV,Direct
+  - GeoIP,ir,IRAN
+  - RULE-SET,Private,IRAN
   - RULE-SET,AI,AI
-  - RULE-SET,Telegram,PBS
-  - RULE-SET,SocialMedia,PBS
-  - RULE-SET,Emby,Media
-  - RULE-SET,Streaming,Media
+  - RULE-SET,Telegram,mihomo
+  - RULE-SET,SocialMedia,mihomo
   - RULE-SET,Proxy,mihomo
   - RULE-SET,China,IRAN
-  - RULE-SET,PrivateIP,Direct,no-resolve
-  - RULE-SET,XPTVIP,Direct,no-resolve
-  - RULE-SET,AIIP,AI,no-resolve
-  - RULE-SET,TelegramIP,PBS,no-resolve
-  - RULE-SET,SocialMediaIP,PBS,no-resolve
-  - RULE-SET,EmbyIP,Media,no-resolve
-  - RULE-SET,StreamingIP,Media,no-resolve
-  - RULE-SET,ProxyIP,mihomo,no-resolve
+  - RULE-SET,PrivateIP,IRAN,no-resolve
+  - RULE-SET,AIIP,AI
+  - RULE-SET,TelegramIP,mihomo
+  - RULE-SET,SocialMediaIP,mihomo
+  - RULE-SET,ProxyIP,mihomo
   - RULE-SET,ChinaIP,IRAN,no-resolve
   - MATCH,Final
-BehaviorDN: &BehaviorDN {type: http, behavior: domain, format: mrs, interval: 86400}
-BehaviorIP: &BehaviorIP {type: http, behavior: ipcidr, format: mrs, interval: 86400}
+
 rule-providers: 
-  Private:           {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Private.mrs}
-  Direct:            {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Direct.mrs}
-  AI:                {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/AI.mrs}  
-  Telegram:          {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Telegram.mrs}
-  SocialMedia:       {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/SocialMedia.mrs}
-  XPTV:              {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/XPTV.mrs}  
-  Emby:              {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Emby.mrs}
-  Streaming:         {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Streaming.mrs}  
-  Proxy:             {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Proxy.mrs}
-  China:             {<<: *BehaviorDN, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/China.mrs}
-  PrivateIP:         {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Private.mrs}
-  AIIP:              {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/AI.mrs}
-  TelegramIP:        {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Telegram.mrs}  
-  SocialMediaIP:     {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/SocialMedia.mrs}  
-  XPTVIP:            {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/XPTV.mrs}
-  EmbyIP:            {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Emby.mrs}
-  StreamingIP:       {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Streaming.mrs}  
-  ProxyIP:           {<<: *BehaviorIP, url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Proxy.mrs} 
-  ChinaIP:           {<<: *BehaviorIP, url: https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr..mrs}
+  Private:           {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml}
+  AI:                {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.yaml}  
+  Telegram:          {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.yaml}
+  SocialMedia:       {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-cn.yaml}
+  Proxy:             {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-chat-!cn.yaml}
+  China:             {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.yaml}
+  PrivateIP:         {type: http, behavior: ipcidr, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.yaml}
+  TelegramIP:        {type: http, behavior: ipcidr, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.yaml}  
+  SocialMediaIP:     {type: http, behavior: ipcidr, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml}
+  ChinaIP:           {type: http, behavior: ipcidr, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml}
   nsfw:              {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.yaml}
   social:            {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.yaml}
   ir:                {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml}
@@ -485,11 +463,4 @@ rule-providers:
   anti-AD-white:     {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/privacy-protection-tools/dead-horse/master/anti-ad-white-for-clash.yaml}
   category-ai-!cn:   {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-!cn.yaml}
   category-ai-cn:    {type: http, behavior: domain, format: yaml, interval: 86400, https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.yaml}
-  Google:            {type: http, behavior: domain, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list}
-  AI1:               {type: http, behavior: domain, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list}
-  OpenAi:            {type: http, behavior: domain, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list}
-  GoogleFCM:         {type: http, behavior: domain, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list}
-  GoogleCNProxyIP:   {type: http, behavior: domain, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list}
-  GoogleCN:          {type: http, behavior: domain, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list}
-  YouTube1:          {type: http, behavior: classical, format: text, interval: 86400, url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list}
   AWAdsRule:         {type: http, behavior: classical, format: yaml, interval: 86400, url: https://cdn.uura.cn/AWAvenue/AWAvenue-Ads-Rule-Clash-Classical.yaml}
