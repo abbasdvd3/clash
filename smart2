@@ -240,13 +240,14 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
     path: ./smart2/A1.yaml
+    exclude-type: redir-in|Direct|Trojan
     interval: 300
     health-check:
       enable: true
       url: "http://www.gstatic.com/generate_204"
       interval: 300
       timeout: 5000
-      lazy: true
+      lazy: false
       expected-status: 204
       header:
       User-Agent:
@@ -261,13 +262,14 @@ proxy-providers:
     type: http
     url: "https://obeapi.s3.ap-east-1.amazonaws.com/vpn/sub-clash.yaml"
     path: ./smart2/A2.yaml
+    exclude-type: redir-in|Direct|Trojan
     interval: 300
     health-check:
       enable: true
       url: "http://www.gstatic.com/generate_204"
       interval: 300
       timeout: 5000
-      lazy: true
+      lazy: false
       expected-status: 204
       header:
       User-Agent:
@@ -282,13 +284,14 @@ proxy-providers:
     type: http
     url: "https://config.v2cross.com/clashprofile/config"
     path: ./smart2/A3.yaml
+    exclude-type: redir-in|Direct|Trojan
     interval: 300
     health-check:
       enable: true
       url: "http://www.gstatic.com/generate_204"
       interval: 300
       timeout: 5000
-      lazy: true
+      lazy: false
       expected-status: 204
       header:
       User-Agent:
@@ -299,27 +302,27 @@ proxy-providers:
       override:
         additional-prefix: "[excellent]"
         additional-suffix: "[Preparation]"
-  A4:
-    type: http
-    url: "https://proxypool.link/clash/proxies"
-    path: ./smart2/A4.yaml
-    interval: 300
-    health-check:
-      enable: true
-      url: "http://www.gstatic.com/generate_204"
-      interval: 300
-      timeout: 5000
-      lazy: true
-      expected-status: 204
-      header:
-      User-Agent:
-      - "Clash/v1.18.0"
-      - "mihomo/1.18.3"
-      - "meta/0.2.0.9.smart"
-      - "meta/0.2.0.9.meta"
-      override:
-        additional-prefix: "[excellent]"
-        additional-suffix: "[Preparation]"
+#  A4:
+#    type: http
+#    url: "https://proxypool.link/clash/proxies"
+#    path: ./smart2/A4.yaml
+#    interval: 300
+#    health-check:
+ #     enable: true
+#      url: "http://www.gstatic.com/generate_204"
+#      interval: 300
+ #     timeout: 5000
+ #     lazy: true
+#      expected-status: 204
+ #     header:
+ #     User-Agent:
+ #     - "Clash/v1.18.0"
+#      - "mihomo/1.18.3"
+#      - "meta/0.2.0.9.smart"
+#      - "meta/0.2.0.9.meta"
+#      override:
+ #       additional-prefix: "[excellent]"
+ #       additional-suffix: "[Preparation]"
 
 rule-providers:
   ir:
