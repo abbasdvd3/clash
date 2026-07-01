@@ -17,10 +17,10 @@ geox-url:
 
 tun:
   enable: true
-  stack: gvisor
+  stack: mixed
   auto-route: true
   auto-detect-interface: true
-  strict-route: false
+  strict-route: true
   mtu: 1400
   dns-hijack:
     - any:53
@@ -41,7 +41,8 @@ dns:
   enable: true
   ipv6: false
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  listen: 0.0.0.0:53
+  fake-ip-range: 100.0.0.1/8
   use-hosts: true
   respect-rules: true
   nameserver-policy:
