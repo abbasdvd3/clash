@@ -22,21 +22,21 @@ global-client-fingerprint: chrome
 proxy-groups:
   - name: Proxy
     type: select
-    include-all-proxies: true
+ #   include-all-proxies: true
     proxies:
       - Auto
       - fallback
 
   - name: Auto
     type: url-test
-    url: https://www.google.com/gen_204
+    url: http://www.google.com/gen_204
     include-all-proxies: true
     interval: 500
     lazy: true
 
   - name: fallback
     type: fallback
-    url: https://www.google.com/gen_204
+    url: http://www.google.com/gen_204
     include-all-proxies: true
     interval: 580
     lazy: true
@@ -76,189 +76,15 @@ rules:
   - DOMAIN-SUFFIX,tplogin.cn,DIRECT
   - MATCH,Proxy
 proxies:
-  - {"name":"defaultName_1","type":"socks5","server":"178.252.165.226","port":1080}
-  - {"name":"defaultName_2","type":"socks5","server":"147.45.146.97","port":1080}
-  - {"name":"西班牙 - 马德里 - 1\r_3","type":"ss","server":"5.188.181.201","port":9005,"password":"ZET59LF6DvCC8KVt","cipher":"aes-256-cfb"}
-  - {"name":"🇪🇸ES_09\r_4","type":"ss","server":"5.188.181.201","port":9027,"password":"EXN3S3eQpjE7EJu8","cipher":"aes-256-cfb"}
-  - {"name":"🇰🇷KR_87\r_5","type":"ss","server":"221.139.79.57","port":13979,"password":"qwerREWQ@@","cipher":"aes-256-cfb"}
-  - {"name":"Relay_🇰🇷KR-🇰🇷KR_86\r_6","type":"ss","server":"p141.panda001.net","port":4652,"password":"qwerREWQ@@","cipher":"aes-256-cfb"}
-  - {"name":"🇰🇷KR_89\r_7","type":"ss","server":"211.178.105.134","port":6123,"password":"qwerREWQ@@","cipher":"aes-256-cfb"}
-  - {"name":"🇰🇷KR_88\r_8","type":"ss","server":"218.237.185.230","port":4652,"password":"qwerREWQ@@","cipher":"aes-256-cfb"}
-  - {"name":"中国 - 上海 - 1\r_9","type":"ss","server":"61.171.92.202","port":1001,"password":"123","cipher":"aes-256-gcm"}
-  - {"name":"🇵🇱PL_98\r_10","type":"ss","server":"217.30.10.70","port":9064,"password":"cp8pRSUAyLhTfVWH","cipher":"aes-256-cfb"}
-  - {"name":"🇵🇱_985_1266\r_11","type":"ss","server":"217.30.10.70","port":9019,"password":"GA9KzeEgvfxNrgmM","cipher":"aes-256-cfb"}
-  - {"name":"🇵🇱_1069\r_1258\r_12","type":"ss","server":"217.30.10.70","port":9026,"password":"QWDDvVE9npNurQfA","cipher":"aes-256-cfb"}
-  - {"name":"🇵🇱_992_1254\r_13","type":"ss","server":"217.30.10.70","port":9027,"password":"EXN3S3eQpjE7EJu8","cipher":"aes-256-cfb"}
-  - {"name":"🇵🇱_994_1256\r_14","type":"ss","server":"217.30.10.70","port":9031,"password":"BwcAUZk8hUFAkDGN","cipher":"aes-256-cfb"}
-  - {"name":"🇵🇱_HAMRAH_254_1268\r_15","type":"ss","server":"217.30.10.70","port":9041,"password":"U6qnYRhfyDmn8sgn","cipher":"aes-256-cfb"}
-  - {"name":"🇵🇱_956_1267\r_16","type":"ss","server":"217.30.10.70","port":9015,"password":"ZpNDDKRu9MagNvaf","cipher":"aes-256-cfb"}
-  - {"name":"defaultName_3","type":"http","server":"45.84.222.25","port":1080}
-  - {"name":"defaultName_4","type":"http","server":"103.204.211.48","port":32255}
-  - {"name":"defaultName_5","type":"http","server":"187.72.215.33","port":3128}
-  - {"name":"defaultName_6","type":"http","server":"117.55.203.162","port":8899}
-  - {"name":"defaultName_7","type":"http","server":"43.161.239.147","port":8888}
-  - {"name":"defaultName_8","type":"http","server":"170.82.194.134","port":3128}
-  - {"name":"defaultName_9","type":"http","server":"152.42.239.142","port":3128}
-  - {"name":"defaultName_10","type":"http","server":"103.129.200.129","port":8070}
-  - {"name":"defaultName_11","type":"http","server":"120.92.212.16","port":8890}
-  - {"name":"defaultName_12","type":"http","server":"120.92.212.16","port":7890}
-  - {"name":"defaultName_13","type":"http","server":"65.109.179.84","port":8443}
-  - {"name":"defaultName_14","type":"http","server":"86.127.175.42","port":8080}
-  - {"name":"defaultName_15","type":"http","server":"18.223.149.15","port":3128}
-  - {"name":"defaultName_16","type":"http","server":"3.211.120.181","port":443}
-  - {"name":"defaultName_17","type":"http","server":"176.111.37.216","port":39811}
-  - {"name":"defaultName_18","type":"http","server":"34.209.208.153","port":443}
-  - {"name":"defaultName_19","type":"http","server":"47.84.204.82","port":80}
-  - {"name":"defaultName_20","type":"http","server":"47.84.204.82","port":1080}
-  - {"name":"defaultName_21","type":"http","server":"72.56.238.99","port":1080}
-  - {"name":"defaultName_22","type":"http","server":"217.182.195.221","port":30000}
-  - {"name":"defaultName_23","type":"http","server":"18.180.59.181","port":80}
-  - {"name":"defaultName_24","type":"http","server":"47.84.204.82","port":443}
-  - {"name":"defaultName_25","type":"http","server":"200.58.244.162","port":999}
-  - {"name":"defaultName_26","type":"http","server":"45.153.4.154","port":3128}
-  - {"name":"defaultName_27","type":"http","server":"1.231.81.166","port":3128}
-  - {"name":"defaultName_28","type":"http","server":"103.72.68.111","port":1}
-  - {"name":"defaultName_29","type":"http","server":"202.5.36.21","port":32133}
-  - {"name":"defaultName_30","type":"http","server":"160.250.4.88","port":1}
-  - {"name":"defaultName_31","type":"http","server":"45.71.114.185","port":999}
-  - {"name":"defaultName_32","type":"http","server":"144.178.199.118","port":8443}
-  - {"name":"defaultName_33","type":"http","server":"36.50.43.42","port":8080}
-  - {"name":"defaultName_34","type":"http","server":"174.137.134.182","port":2999}
-  - {"name":"defaultName_35","type":"http","server":"119.205.233.239","port":13128}
-  - {"name":"defaultName_36","type":"http","server":"131.222.252.69","port":8080}
-  - {"name":"defaultName_37","type":"http","server":"180.148.25.46","port":8181}
-  - {"name":"defaultName_38","type":"http","server":"203.162.13.26","port":6868}
-  - {"name":"defaultName_39","type":"http","server":"154.113.209.162","port":8082}
-  - {"name":"defaultName_40","type":"http","server":"113.160.132.26","port":8080}
-  - {"name":"defaultName_41","type":"http","server":"18.169.141.215","port":3128}
-  - {"name":"defaultName_42","type":"http","server":"185.238.238.141","port":58080}
-  - {"name":"defaultName_43","type":"http","server":"38.224.172.232","port":999}
-  - {"name":"defaultName_44","type":"http","server":"103.18.77.14","port":1111}
-  - {"name":"defaultName_45","type":"http","server":"45.181.121.57","port":999}
-  - {"name":"defaultName_46","type":"http","server":"103.203.234.105","port":3127}
-  - {"name":"defaultName_47","type":"http","server":"45.239.48.102","port":999}
-  - {"name":"defaultName_48","type":"http","server":"38.210.201.64","port":999}
-  - {"name":"defaultName_49","type":"http","server":"117.55.203.165","port":8899}
-  - {"name":"defaultName_50","type":"http","server":"38.191.204.251","port":999}
-  - {"name":"defaultName_51","type":"http","server":"103.145.161.18","port":8080}
-  - {"name":"defaultName_52","type":"http","server":"157.66.4.55","port":33892}
-  - {"name":"defaultName_53","type":"http","server":"103.38.101.194","port":1111}
-  - {"name":"defaultName_54","type":"http","server":"181.174.228.189","port":999}
-  - {"name":"defaultName_55","type":"http","server":"41.254.48.188","port":1970}
-  - {"name":"defaultName_56","type":"http","server":"157.66.51.201","port":8080}
-  - {"name":"defaultName_57","type":"http","server":"45.229.204.122","port":999}
-  - {"name":"defaultName_58","type":"http","server":"116.101.9.20","port":2031}
-  - {"name":"defaultName_59","type":"http","server":"185.226.195.249","port":2222}
-  - {"name":"defaultName_60","type":"http","server":"190.26.209.126","port":999}
-  - {"name":"defaultName_61","type":"http","server":"175.158.63.166","port":1111}
-  - {"name":"defaultName_62","type":"http","server":"43.241.247.43","port":8080}
-  - {"name":"defaultName_63","type":"http","server":"185.11.134.227","port":8443}
-  - {"name":"defaultName_64","type":"http","server":"190.113.249.14","port":88}
-  - {"name":"defaultName_65","type":"http","server":"191.37.33.38","port":42999}
-  - {"name":"defaultName_66","type":"http","server":"91.107.182.124","port":82}
-  - {"name":"defaultName_67","type":"http","server":"38.51.243.189","port":999}
-  - {"name":"defaultName_68","type":"http","server":"116.101.9.20","port":2075}
-  - {"name":"defaultName_69","type":"http","server":"144.91.121.61","port":3129}
-  - {"name":"defaultName_70","type":"http","server":"116.101.75.173","port":2117}
-  - {"name":"defaultName_71","type":"http","server":"82.97.247.37","port":80}
-  - {"name":"defaultName_72","type":"http","server":"14.143.222.113","port":57748}
-  - {"name":"defaultName_73","type":"http","server":"177.130.104.118","port":33333}
-  - {"name":"defaultName_74","type":"http","server":"101.255.118.85","port":1111}
-  - {"name":"defaultName_75","type":"http","server":"178.156.206.253","port":8118}
-  - {"name":"defaultName_76","type":"http","server":"103.179.252.153","port":8080}
-  - {"name":"defaultName_77","type":"http","server":"45.174.174.100","port":999}
-  - {"name":"defaultName_78","type":"http","server":"165.225.72.38","port":12345}
-  - {"name":"defaultName_79","type":"http","server":"62.133.62.207","port":1081}
-  - {"name":"defaultName_80","type":"http","server":"109.228.65.178","port":81}
-  - {"name":"defaultName_81","type":"http","server":"187.94.222.170","port":3128}
-  - {"name":"defaultName_82","type":"http","server":"190.61.40.85","port":999}
-  - {"name":"defaultName_83","type":"http","server":"186.96.15.70","port":8080}
-  - {"name":"defaultName_84","type":"http","server":"41.79.9.229","port":8080}
-  - {"name":"defaultName_85","type":"http","server":"41.78.168.118","port":8080}
-  - {"name":"defaultName_86","type":"http","server":"43.240.83.70","port":8080}
-  - {"name":"defaultName_87","type":"http","server":"198.52.243.3","port":9999}
-  - {"name":"defaultName_88","type":"http","server":"111.79.111.126","port":3128}
-  - {"name":"defaultName_89","type":"http","server":"103.161.131.110","port":8080}
-  - {"name":"defaultName_90","type":"http","server":"85.234.100.149","port":8080}
-  - {"name":"defaultName_91","type":"http","server":"101.251.204.174","port":8080}
-  - {"name":"defaultName_92","type":"http","server":"95.3.69.222","port":8080}
-  - {"name":"defaultName_93","type":"http","server":"45.59.122.132","port":80}
-  - {"name":"defaultName_94","type":"http","server":"46.8.252.19","port":8123}
-  - {"name":"defaultName_95","type":"http","server":"91.186.213.124","port":1081}
-  - {"name":"defaultName_96","type":"http","server":"190.7.138.78","port":8080}
-  - {"name":"defaultName_97","type":"http","server":"5.202.120.123","port":3128}
-  - {"name":"defaultName_98","type":"http","server":"116.101.75.173","port":2054}
-  - {"name":"defaultName_99","type":"http","server":"115.187.29.25","port":89}
-  - {"name":"defaultName_100","type":"http","server":"190.2.145.103","port":3128}
-  - {"name":"defaultName_101","type":"http","server":"176.12.65.24","port":443}
-  - {"name":"defaultName_102","type":"http","server":"116.101.75.173","port":2079}
-  - {"name":"defaultName_103","type":"http","server":"72.56.238.99","port":9090}
-  - {"name":"defaultName_104","type":"http","server":"194.59.204.87","port":9080}
-  - {"name":"defaultName_105","type":"http","server":"173.212.245.136","port":8888}
-  - {"name":"defaultName_106","type":"http","server":"116.254.118.180","port":80}
-  - {"name":"defaultName_107","type":"http","server":"45.95.233.237","port":1081}
-  - {"name":"defaultName_108","type":"http","server":"116.101.10.166","port":2117}
-  - {"name":"defaultName_109","type":"http","server":"45.95.233.237","port":1082}
-  - {"name":"defaultName_110","type":"http","server":"212.58.132.5","port":8888}
-  - {"name":"defaultName_111","type":"http","server":"129.226.92.241","port":80}
-  - {"name":"defaultName_112","type":"http","server":"185.191.239.248","port":3128}
-  - {"name":"defaultName_113","type":"http","server":"152.32.132.190","port":7890}
-  - {"name":"defaultName_114","type":"http","server":"159.223.87.50","port":443}
-  - {"name":"defaultName_115","type":"http","server":"103.229.185.155","port":8080}
-  - {"name":"defaultName_116","type":"http","server":"159.195.49.27","port":8888}
-  - {"name":"defaultName_117","type":"http","server":"81.90.29.194","port":10808}
-  - {"name":"defaultName_118","type":"http","server":"104.194.148.188","port":3128}
-  - {"name":"defaultName_119","type":"http","server":"217.154.70.86","port":7777}
-  - {"name":"defaultName_120","type":"http","server":"178.254.186.1","port":6666}
-  - {"name":"defaultName_121","type":"http","server":"54.153.56.243","port":80}
-  - {"name":"defaultName_122","type":"http","server":"142.93.195.158","port":80}
-  - {"name":"defaultName_123","type":"http","server":"185.155.15.63","port":8080}
-  - {"name":"defaultName_124","type":"http","server":"65.109.65.239","port":18080}
-  - {"name":"defaultName_125","type":"http","server":"62.133.62.17","port":1081}
-  - {"name":"defaultName_126","type":"http","server":"185.200.188.234","port":10001}
-  - {"name":"defaultName_127","type":"http","server":"45.189.252.18","port":999}
-  - {"name":"defaultName_128","type":"http","server":"179.60.191.19","port":8080}
-  - {"name":"defaultName_129","type":"http","server":"138.252.158.7","port":8080}
-  - {"name":"defaultName_130","type":"http","server":"190.12.150.244","port":999}
-  - {"name":"defaultName_131","type":"http","server":"116.101.9.20","port":2030}
-  - {"name":"defaultName_132","type":"http","server":"61.245.30.166","port":5050}
-  - {"name":"defaultName_133","type":"http","server":"186.227.246.82","port":8080}
-  - {"name":"defaultName_134","type":"http","server":"103.171.255.108","port":8080}
-  - {"name":"defaultName_135","type":"http","server":"120.132.52.172","port":8888}
-  - {"name":"defaultName_136","type":"http","server":"212.113.116.194","port":8180}
-  - {"name":"defaultName_137","type":"http","server":"203.162.13.222","port":6868}
-  - {"name":"defaultName_138","type":"http","server":"43.203.140.58","port":33007}
-  - {"name":"defaultName_139","type":"http","server":"115.231.181.40","port":8128}
-  - {"name":"defaultName_140","type":"http","server":"217.154.155.115","port":8080}
-  - {"name":"defaultName_141","type":"http","server":"84.255.40.228","port":8998}
-  - {"name":"defaultName_142","type":"http","server":"93.182.23.94","port":6060}
-  - {"name":"defaultName_143","type":"http","server":"131.222.210.41","port":8080}
-  - {"name":"defaultName_144","type":"http","server":"46.175.191.225","port":9999}
-  - {"name":"defaultName_145","type":"http","server":"187.248.75.114","port":8081}
-  - {"name":"defaultName_146","type":"http","server":"138.59.11.192","port":999}
-  - {"name":"defaultName_147","type":"http","server":"52.200.113.73","port":443}
-  - {"name":"defaultName_148","type":"http","server":"20.110.224.54","port":3128}
-  - {"name":"defaultName_149","type":"http","server":"2.78.60.10","port":3129}
-  - {"name":"defaultName_150","type":"http","server":"138.204.12.65","port":999}
-  - {"name":"defaultName_151","type":"http","server":"103.187.86.6","port":8183}
-  - {"name":"defaultName_152","type":"http","server":"148.224.7.58","port":999}
-  - {"name":"defaultName_153","type":"http","server":"62.133.62.184","port":1082}
-  - {"name":"defaultName_154","type":"http","server":"187.102.219.32","port":999}
-  - {"name":"defaultName_155","type":"http","server":"190.210.62.131","port":8080}
-  - {"name":"defaultName_156","type":"http","server":"217.160.39.73","port":18080}
-  - {"name":"defaultName_157","type":"http","server":"165.101.222.18","port":8080}
-  - {"name":"defaultName_158","type":"http","server":"8.215.25.3","port":2080}
-  - {"name":"defaultName_159","type":"http","server":"62.133.62.17","port":1082}
-  - {"name":"defaultName_160","type":"http","server":"177.85.7.122","port":8080}
-  - {"name":"defaultName_161","type":"http","server":"135.125.154.108","port":8899}
-  - {"name":"defaultName_162","type":"http","server":"92.118.112.32","port":1081}
-  - {"name":"defaultName_163","type":"http","server":"121.101.129.97","port":8181}
-  - {"name":"defaultName_164","type":"http","server":"94.72.57.157","port":8080}
-  - {"name":"defaultName_165","type":"http","server":"117.236.124.166","port":3128}
-  - {"name":"defaultName_166","type":"http","server":"2.26.87.216","port":1080}
-  - {"name":"defaultName_167","type":"http","server":"62.133.62.231","port":1081}
-  - {"name":"defaultName_168","type":"http","server":"195.25.20.155","port":3128}
-  - {"name":"defaultName_169","type":"http","server":"176.194.189.40","port":80}
-  - {"name":"defaultName_170","type":"http","server":"38.19.228.244","port":999}
-  - {"name":"defaultName_171","type":"http","server":"202.28.194.139","port":31280}
-  - {"name":"defaultName_172","type":"http","server":"38.210.201.104","port":999}
+proxy-providers:
+  A1:
+    type: http
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/v2"
+    path: ./socks5/v2.yaml
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+      expected-status: 204
