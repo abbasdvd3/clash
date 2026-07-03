@@ -6,7 +6,7 @@ tproxy-port: 9898
 allow-lan: true
 mode: Rule
 bind-address: "*"
-ipv6: true
+ipv6: false
 log-level: info
 find-process-mode: always
 enable-process: true
@@ -17,7 +17,7 @@ geodata-mode: true
 external-controller: 0.0.0.0:9090
 external-ui: ui
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
-global-client-fingerprint: chrome
+
  
 proxy-groups:
   - name: Proxy
@@ -30,16 +30,16 @@ proxy-groups:
   - name: Auto
     type: url-test
     url: http://www.google.com/gen_204
-    include-all-proxies: true
+    include-all: true
     interval: 500
-    lazy: true
+    lazy: false
 
   - name: fallback
     type: fallback
     url: http://www.google.com/gen_204
-    include-all-proxies: true
-    interval: 580
-    lazy: true
+    include-all: true
+    interval: 180
+    lazy: false
 
 rules:
   - DOMAIN-SUFFIX,acl4.ssr,DIRECT
