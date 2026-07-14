@@ -1,64 +1,85 @@
 {
-  "log": {
-    "level": "info",
-    "timestamp": true
-  },
+  "$schema": "https://raw.githubusercontent.com/xmdhs/sing-box-generate-schema/refs/heads/master/schema.generated.json",
+  "log": {},
   "dns": {
     "servers": [
       {
-        "type": "tls",
-        "tag": "google",
+        "type": "https",
+        "tag": "remote",
+        "detour": "select",
         "server": "8.8.8.8"
       },
       {
-        "type": "local",
-        "tag": "local"
+        "type": "https",
+        "tag": "local",
+        "server": "223.5.5.5"
       },
       {
         "type": "fakeip",
-        "tag": "remote",
-        "inet4_range": "198.18.0.0/15",
-        "inet6_range": "fc00::/18"
+        "tag": "fakeip",
+        "inet4_range": "198.18.0.0/15"
       }
     ],
     "rules": [
       {
-        "outbound": "any",
-        "server": "local"
+        "rule_set": [
+          "AdGuardSDNSFilter",
+          "chrome-doh"
+        ],
+        "action": "predefined"
+      },
+      {
+        "query_type": "HTTPS",
+        "action": "predefined"
       },
       {
         "query_type": [
           "A",
           "AAAA"
         ],
+        "server": "fakeip",
+        "rewrite_ttl": 1
+      },
+      {
+        "clash_mode": "global",
         "server": "remote"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "local"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "server": "local"
+      },
+      {
+        "rule_set": "ext-cn-domain",
+        "server": "local"
       }
     ],
-    "strategy": "ipv4_only",
+    "strategy": "prefer_ipv4",
     "independent_cache": true
   },
   "inbounds": [
     {
-      "type": "mixed",
-      "listen": "127.0.0.1",
-      "listen_port": 1081,
-      "sniff": true
-    },
-    {
       "type": "tun",
       "mtu": 9000,
+      "address": "172.19.0.1/30",
       "auto_route": true,
       "strict_route": true,
-      "stack": "system",
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 1081
-        }
-      },
-      "sniff": true,
-      "inet4_address": "172.19.0.1/30"
+      "endpoint_independent_nat": true
+    },
+    {
+      "type": "socks",
+      "tag": "socks-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2333
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2334
     }
   ],
   "outbounds": [
@@ -2519,18 +2540,6 @@
       "tolerance": 500
     },
     {
-      "type": "direct",
-      "tag": "direct"
-    },
-    {
-      "type": "block",
-      "tag": "block"
-    },
-    {
-      "type": "dns",
-      "tag": "dns-out"
-    },
-{
       "server": "35.183.25.134",
       "server_port": 1001,
       "tag": "SOCKS5_1",
@@ -9850,37 +9859,42 @@
       "server": "13.80.134.180",
       "server_port": 80
     }
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
   ],
   "route": {
     "rules": [
       {
+        "action": "sniff"
+      },
+      {
         "protocol": "dns",
-        "outbound": "dns-out"
+        "action": "hijack-dns"
       },
       {
-        "rule_set": "geosite-category-ads-all",
-        "outbound": "block"
+        "action": "resolve",
+        "strategy": "prefer_ipv4"
       },
       {
-        "rule_set": "geoip-cn",
+        "clash_mode": "direct",
         "outbound": "direct"
       },
       {
-        "rule_set": "geosite-cn",
-        "outbound": "direct"
+        "clash_mode": "global",
+        "outbound": "select"
       },
       {
         "ip_is_private": true,
         "outbound": "direct"
+      },
+      {
+        "rule_set": "geoip-cn",
+        "outbound": "direct"
       }
     ],
     "rule_set": [
-      {
-        "type": "remote",
-        "tag": "geosite-cn",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
-        "download_detour": "direct"
-      },
       {
         "type": "remote",
         "tag": "geoip-cn",
@@ -9889,15 +9903,36 @@
       },
       {
         "type": "remote",
-        "tag": "geosite-category-ads-all",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs",
+        "tag": "geosite-cn",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-cn.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "AdGuardSDNSFilter",
+        "url": "https://raw.githubusercontent.com/xmdhs/sing-box-ruleset/rule-set/AdGuardSDNSFilterSingBox.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "chrome-doh",
+        "url": "https://gist.githubusercontent.com/xmdhs/71fc5ff6ef29f5ecaf2c52b8de5c3172/raw/chrome-doh.json",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "ext-cn-domain",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
         "download_detour": "direct"
       }
     ],
     "final": "select",
-    "auto_detect_interface": true,
     "find_process": true,
-    "default_domain_resolver": "local"
+    "auto_detect_interface": true,
+    "default_domain_resolver": {
+      "server": "local",
+      "strategy": "ipv4_only"
+    }
   },
   "experimental": {
     "cache_file": {
@@ -9910,7 +9945,17 @@
       "external_ui": "/dashboard",
       "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
       "external_ui_download_detour": "direct",
-      "default_mode": "rule"
+      "default_mode": "rule",
+      "access_control_allow_origin": [
+        "http://127.0.0.1",
+        "http://yacd.haishan.me",
+        "tauri://localhost",
+        "http://tauri.localhost",
+        "https://yacd.metacubex.one",
+        "https://metacubex.github.io",
+        "https://board.zash.run.place"
+      ],
+      "access_control_allow_private_network": true
     }
   }
 }
