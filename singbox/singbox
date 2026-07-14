@@ -44,12 +44,12 @@
                 "detour": "select",
                 "server": "8.8.8.8",
                 "tag": "remote",
-                "type": "https"
+                "type": "udp"
             },
             {
                 "server": "223.5.5.5",
                 "tag": "local",
-                "type": "https"
+                "type": "udp"
             },
             {
                 "inet4_range": "198.18.0.0/15",
@@ -62,15 +62,15 @@
     "experimental": {
     "cache_file": {
       "enabled": true,
-      "store_fakeip": true,
-      "store_rdrc": true
+      "store_dns": true
+      "store_fakeip": true
     },
     "clash_api": {
       "external_controller": "127.0.0.1:9090",
       "external_ui": "/dashboard",
       "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
       "external_ui_download_detour": "direct",
-      "default_mode": "rule",
+      "default_mode": "Enhanced",
       "access_control_allow_origin": [
         "http://127.0.0.1",
         "http://yacd.haishan.me",
@@ -490,12 +490,56 @@
                 "action": "sniff"
             },
             {
-                "action": "hijack-dns",
-                "protocol": "dns"
-            },
-            {
-                "action": "resolve",
-                "strategy": "prefer_ipv4"
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
+        "action": "hijack-dns"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 853
+          },
+          {
+            "network": "udp",
+            "port": 443
+          },
+          {
+            "protocol": "stun"
+          }
+        ],
+        "action": "reject"
+      },
+      {
+        "rule_set": "geosite-geolocation-cn",
+        "outbound": "direct"
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geoip-cn"
+          },
+          {
+            "rule_set": "geosite-geolocation-!cn",
+            "invert": true
+          }
+        ],
+        "outbound": "direct"
             },
             {
                 "clash_mode": "direct",
@@ -504,14 +548,6 @@
             {
                 "clash_mode": "global",
                 "outbound": "select"
-            },
-            {
-                "ip_is_private": true,
-                "outbound": "direct"
-            },
-            {
-                "outbound": "direct",
-                "rule_set": "geoip-cn"
             }
         ]
     }
