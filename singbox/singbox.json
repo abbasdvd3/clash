@@ -4,15 +4,15 @@
   "dns": {
     "servers": [
       {
-        "type": "https",
+        "type": "udp",
         "tag": "remote",
         "detour": "select",
         "server": "8.8.8.8"
       },
       {
-        "type": "https",
+        "type": "udp",
         "tag": "local",
-        "server": "223.5.5.5"
+        "server": "1.1.1.1"
       },
       {
         "type": "fakeip",
@@ -57,16 +57,12 @@
         "server": "local"
       }
     ],
-    "strategy": "prefer_ipv4",
-    "independent_cache": true
+    "strategy": "prefer_ipv4"
   },
   "inbounds": [
     {
       "type": "tun",
-      "mtu": 9000,
-      "address": [
-        "172.19.0.1/30"
-      ],
+      "address": "172.19.0.1/30"
       "auto_route": true,
       "strict_route": true,
       "endpoint_independent_nat": true
@@ -4761,10 +4757,6 @@
         "action": "hijack-dns"
       },
       {
-        "action": "resolve",
-        "strategy": "prefer_ipv4"
-      },
-      {
         "clash_mode": "direct",
         "outbound": "direct"
       },
@@ -4816,16 +4808,13 @@
     "final": "select",
     "find_process": true,
     "auto_detect_interface": true,
-    "default_domain_resolver": {
-      "server": "local",
-      "strategy": "ipv4_only"
-    }
+    "default_domain_resolver": "local",
   },
   "experimental": {
     "cache_file": {
       "enabled": true,
-      "store_fakeip": true,
-      "store_rdrc": true
+      "store_dns": true,
+      "store_fakeip": true
     },
     "clash_api": {
       "external_controller": "127.0.0.1:9090",
