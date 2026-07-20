@@ -14,7 +14,7 @@ external-ui-name: xd
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 keep-alive-interval: 30
 find-process-mode: strict
-unified-delay: false
+unified-delay: true
 tcp-concurrent: true
 geodata-mode: true
 geodata-loader: standard
@@ -86,17 +86,13 @@ dns:
     - https://dns-adguard.heinu.ga/dns-query
     - https://[2a10:50c0::1:ff]/dns-query
     - https://[2a10:50c0::2:ff]/dns-query
-    'www.google.com': 
-    - 8.8.8.8
-    - https://cloudflare-dns.com/dns-query
-    - https://8.8.8.8/dns-query
     'www.openai.com': 
     - https://doh.pub/dns-query
     - 8.8.8.8
     - https://dns.alidns.com/dns-query
     geosite:category-ads-all: rcode://success
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  fake-ip-range: 22.0.0.0/8
   fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
   direct-nameserver-follow-policy: false
@@ -109,7 +105,7 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 204
 
@@ -120,7 +116,7 @@ proxy-providers:
     path: ./hamrah/2.yaml
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 204
 
@@ -131,7 +127,7 @@ proxy-providers:
     path: ./hamrah/freenodes.yaml
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 204
       
@@ -142,7 +138,7 @@ proxy-providers:
     path: ./hamrah/amazonaws.yaml
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 204
 
@@ -153,7 +149,7 @@ proxy-providers:
     path: ./hamrah/C2.yaml
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: http://www.gstatic.com/generate_204
       interval: 300
       expected-status: 204
 
@@ -172,7 +168,7 @@ proxy-groups:
       
   - name: 🟢Auto🟢
     type: url-test
-    url: https://www.gstatic.com/generate_204
+    url: http://www.gstatic.com/generate_204
     interval: 300
     hidden: false
     include-all: true
@@ -182,7 +178,7 @@ proxy-groups:
     
   - name: 🟡fallback🟡
     type: fallback
-    url: https://www.gstatic.com/generate_204
+    url: http://www.gstatic.com/generate_204
     interval: 180
     hidden: false
     include-all: true
@@ -192,7 +188,7 @@ proxy-groups:
     
   - name: 🔴load-balance🔴
     type: load-balance
-    url: https://www.gstatic.com/generate_204
+    url: http://www.gstatic.com/generate_204
     interval: 300
     filter: "美国|USA|美國|us|US|United States"
     hidden: false
@@ -203,7 +199,7 @@ proxy-groups:
     
   - name: 🟢http+url-test🟢
     type: url-test
-    url: https://www.gstatic.com/generate_204
+    url: http://www.gstatic.com/generate_204
     interval: 300
     hidden: false
     include-all: true
@@ -214,7 +210,7 @@ proxy-groups:
 
   - name: 🟢http+fallback🟢
     type: fallback
-    url: https://www.gstatic.com/generate_204
+    url: http://www.gstatic.com/generate_204
     interval: 300
     hidden: false
     include-all: true
