@@ -61,24 +61,15 @@
   },
   "inbounds": [
     {
-      "type": "tun",
-      "tag": "tun-in",
-      "dns_mode": "hijack",
-  "dns_address": [
-    "172.18.0.2",
-    "fdfe:dcba:9876::2"
-  ],
-      "auto_route": true,
-      "strict_route": true,
-      "stack": "system",
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 7890
-        }
-      }
-    },
+            "address": [
+                "172.19.0.1/30"
+            ],
+            "auto_route": true,
+            "endpoint_independent_nat": true,
+            "mtu": 9000,
+            "strict_route": true,
+            "type": "tun"
+        },
     {
       "type": "socks",
       "tag": "socks-in",
