@@ -62,11 +62,52 @@
   "inbounds": [
     {
       "type": "tun",
-      "address": "172.19.0.1/30",
-      "auto_route": true,
-      "strict_route": true,
-      "endpoint_independent_nat": true
-    },
+  "tag": "tun-in",
+  "interface_name": "tun0",
+  "address": [
+    "172.18.0.1/30",
+    "fdfe:dcba:9876::1/126"
+  ],
+  "mtu": 9000,
+  "stack": "system",
+  "dns_mode": "hijack",
+  "dns_address": [
+    "172.18.0.2",
+    "fdfe:dcba:9876::2"
+  ],
+  "auto_route": true,
+  "iproute2_table_index": 2022,
+  "iproute2_rule_index": 9000,
+  "auto_redirect": true,
+  "auto_redirect_input_mark": "0x2023",
+  "auto_redirect_output_mark": "0x2024",
+  "auto_redirect_reset_mark": "0x2025",
+  "auto_redirect_nfqueue": 100,
+  "auto_redirect_iproute2_fallback_rule_index": 32768,
+  "exclude_mptcp": false,
+  "loopback_address": [
+    "10.7.0.1"
+  ],
+  "strict_route": true,
+  "route_address": [
+    "0.0.0.0/1",
+    "128.0.0.0/1",
+    "::/1",
+    "8000::/1"
+  ],
+  "route_exclude_address": [
+    "192.168.0.0/16",
+    "fc00::/7"
+  ],
+  "platform": {
+    "http_proxy": {
+      "enabled": false,
+      "server": "127.0.0.1",
+      "server_port": 8080,
+      "bypass_domain": [],
+      "match_domain": []
+    }
+  },
     {
       "type": "socks",
       "tag": "socks-in",
@@ -77,7 +118,7 @@
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "127.0.0.1",
-      "listen_port": 2334
+      "listen_port": 8080
     }
   ],
   "outbounds": [
