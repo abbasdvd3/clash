@@ -61,15 +61,22 @@
   },
   "inbounds": [
     {
-            "address": [
-                "172.19.0.1/30"
-            ],
-            "auto_route": true,
-            "endpoint_independent_nat": true,
-            "mtu": 9000,
-            "strict_route": true,
-            "type": "tun"
-        },
+      "tag": "tun-in",
+      "type": "tun",
+      "address": [
+        "172.19.0.0/30"
+      ],
+      "stack": "system",
+      "auto_route": true,
+      "strict_route": true,
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 7890
+        }
+      }
+    },
         {
             "listen": "127.0.0.1",
             "listen_port": 2333,
@@ -78,7 +85,7 @@
         },
         {
             "listen": "127.0.0.1",
-            "listen_port": 2334,
+            "listen_port": 7890,
             "tag": "mixed-in",
             "type": "mixed"
         }
