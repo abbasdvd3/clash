@@ -1,62 +1,94 @@
 {
-  "$schema": "https://raw.githubusercontent.com/xmdhs/sing-box-generate-schema/refs/heads/master/schema.generated.json",
-  "log": {},
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "ui",
+      "secret": "",
+      "external_ui_download_url": "https://gh-proxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_detour": "direct",
+      "default_mode": "rule"
+    },
+    "cache_file": {
+      "enabled": true,
+      "store_fakeip": true,
+      "store_dns": true
+    }
+  },
   "dns": {
     "servers": [
       {
-        "type": "udp",
-        "tag": "remote",
-        "detour": "select",
-        "server": "8.8.8.8"
-      },
-      {
-        "type": "udp",
         "tag": "local",
-        "server": "1.1.1.1"
+        "type": "local"
       },
       {
-        "type": "fakeip",
+        "tag": "hosts",
+        "type": "hosts",
+        "predefined": {
+          "dns.alidns.com": [
+            "223.5.5.5",
+            "223.6.6.6"
+          ],
+          "dns.google": [
+            "8.8.8.8",
+            "8.8.4.4"
+          ]
+        }
+      },
+      {
+        "tag": "alidns",
+        "type": "https",
+        "server": "dns.alidns.com",
+        "domain_resolver": "hosts"
+      },
+      {
+        "tag": "ggdns",
+        "type": "https",
+        "server": "dns.google",
+        "domain_resolver": "hosts",
+        "detour": "Proxy"
+      },
+      {
         "tag": "fakeip",
-        "inet4_range": "198.18.0.0/15"
+        "type": "fakeip",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
       }
     ],
     "rules": [
       {
-        "rule_set": [
-          "AdGuardSDNSFilter",
-          "chrome-doh"
-        ],
-        "action": "predefined"
+        "clash_mode": "direct",
+        "server": "local"
       },
       {
-        "query_type": "HTTPS",
-        "action": "predefined"
+        "clash_mode": "global",
+        "server": "ggdns"
       },
       {
         "query_type": [
           "A",
           "AAAA"
         ],
-        "server": "fakeip",
-        "rewrite_ttl": 1
-      },
-      {
-        "clash_mode": "global",
-        "server": "remote"
-      },
-      {
-        "clash_mode": "direct",
-        "server": "local"
+        "server": "fakeip"
       },
       {
         "rule_set": "geosite-cn",
         "server": "local"
       },
       {
-        "rule_set": "ext-cn-domain",
-        "server": "local"
+        "action": "evaluate",
+        "server": "alidns"
+      },
+      {
+        "match_response": true,
+        "rule_set": "geoip-cn",
+        "action": "respond"
       }
     ],
+    "final": "ggdns",
     "strategy": "prefer_ipv4"
   },
   "inbounds": [
@@ -64,7 +96,8 @@
       "tag": "tun-in",
       "type": "tun",
       "address": [
-        "172.19.0.0/30"
+        "172.19.0.0/30",
+        "fdfe:dcba:9876::0/126"
       ],
       "stack": "system",
       "auto_route": true,
@@ -77,23 +110,17 @@
         }
       }
     },
-        {
-            "listen": "127.0.0.1",
-            "listen_port": 2333,
-            "tag": "socks-in",
-            "type": "socks"
-        },
-        {
-            "listen": "127.0.0.1",
-            "listen_port": 7890,
-            "tag": "mixed-in",
-            "type": "mixed"
-        }
+    {
+      "tag": "mixed-in",
+      "type": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 7890
+    }
   ],
   "outbounds": [
     {
+      "tag": "Proxy",
       "type": "selector",
-      "tag": "select",
       "outbounds": [
         "urltest",
         "dcx_1",
@@ -4772,7 +4799,7 @@
       },
       {
         "clash_mode": "global",
-        "outbound": "select"
+        "outbound": "Proxy"
       },
       {
         "ip_is_private": true,
@@ -4815,7 +4842,7 @@
         "download_detour": "direct"
       }
     ],
-    "final": "select",
+    "final": "Proxy",
     "find_process": true,
     "auto_detect_interface": true,
     "default_domain_resolver": "local",
@@ -4823,15 +4850,19 @@
   "experimental": {
     "cache_file": {
       "enabled": true,
-      "store_dns": true,
-      "store_fakeip": true
+      "path": "",
+      "cache_id": "",
+      "store_fakeip": false,
+      "store_rdrc": false,
+      "rdrc_timeout": "",
+      "store_dns": false
     },
     "clash_api": {
       "external_controller": "127.0.0.1:9090",
       "external_ui": "/dashboard",
       "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
       "external_ui_download_detour": "direct",
-      "default_mode": "rule",
+      "default_mode": "Enhanced",
       "access_control_allow_origin": [
         "http://127.0.0.1",
         "http://yacd.haishan.me",
