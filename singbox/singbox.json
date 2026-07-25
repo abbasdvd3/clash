@@ -6,12 +6,12 @@
   "dns": {
     "servers": [
       {
-        "tag": "local",
-        "type": "local"
+        "type": "local",
+        "tag": "local"
       },
       {
-        "tag": "hosts",
         "type": "hosts",
+        "tag": "hosts",
         "predefined": {
           "dns.alidns.com": [
             "223.5.5.5",
@@ -24,21 +24,21 @@
         }
       },
       {
+        "type": "https",
         "tag": "alidns",
-        "type": "https",
-        "server": "dns.alidns.com",
-        "domain_resolver": "hosts"
-      },
-      {
-        "tag": "ggdns",
-        "type": "https",
-        "server": "dns.google",
         "domain_resolver": "hosts",
-        "detour": "Proxy"
+        "server": "dns.alidns.com"
       },
       {
-        "tag": "fakeip",
+        "type": "https",
+        "tag": "ggdns",
+        "detour": "Proxy",
+        "domain_resolver": "hosts",
+        "server": "dns.google"
+      },
+      {
         "type": "fakeip",
+        "tag": "fakeip",
         "inet4_range": "198.18.0.0/15"
       }
     ],
@@ -67,8 +67,8 @@
         "server": "alidns"
       },
       {
-        "match_response": true,
         "rule_set": "geoip-cn",
+        "match_response": true,
         "action": "respond"
       }
     ],
@@ -77,14 +77,12 @@
   },
   "inbounds": [
     {
-      "tag": "tun-in",
       "type": "tun",
-      "address": [
-        "172.19.0.0/30"
-      ],
-      "stack": "system",
+      "tag": "tun-in",
+      "address": "172.19.0.0/30",
       "auto_route": true,
       "strict_route": true,
+      "stack": "system",
       "platform": {
         "http_proxy": {
           "enabled": true,
@@ -94,16 +92,16 @@
       }
     },
     {
-      "tag": "mixed-in",
       "type": "mixed",
+      "tag": "mixed-in",
       "listen": "127.0.0.1",
       "listen_port": 7890
     }
   ],
   "outbounds": [
     {
-      "tag": "Proxy",
       "type": "selector",
+      "tag": "Proxy",
       "outbounds": [
         "urltest",
         "dcx_1",
@@ -4798,42 +4796,35 @@
         "type": "remote",
         "tag": "geoip-cn",
         "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
-        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-cn",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-cn.srs",
-        "download_detour": "direct"
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-cn.srs"
       },
       {
         "type": "remote",
         "tag": "AdGuardSDNSFilter",
-        "url": "https://raw.githubusercontent.com/xmdhs/sing-box-ruleset/rule-set/AdGuardSDNSFilterSingBox.srs",
-        "download_detour": "direct"
+        "url": "https://raw.githubusercontent.com/xmdhs/sing-box-ruleset/rule-set/AdGuardSDNSFilterSingBox.srs"
       },
       {
         "type": "remote",
         "tag": "chrome-doh",
-        "url": "https://gist.githubusercontent.com/xmdhs/71fc5ff6ef29f5ecaf2c52b8de5c3172/raw/chrome-doh.json",
-        "download_detour": "direct"
+        "url": "https://gist.githubusercontent.com/xmdhs/71fc5ff6ef29f5ecaf2c52b8de5c3172/raw/chrome-doh.json"
       },
       {
         "type": "remote",
         "tag": "ext-cn-domain",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
-        "download_detour": "direct"
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs"
       }
     ],
     "final": "Proxy",
     "find_process": true,
-    "auto_detect_interface": true,
-    "default_domain_resolver": "local",
+    "auto_detect_interface": true
   },
   "experimental": {
     "cache_file": {
-      "enabled": true,
-      "store_dns": false
+      "enabled": true
     },
     "clash_api": {
       "external_controller": "127.0.0.1:9090",
@@ -4844,7 +4835,10 @@
       "access_control_allow_origin": [
         "http://127.0.0.1",
         "http://yacd.haishan.me",
-        "tauri://localhost",
+        "localhost",
+        "https://d.metacubex.one",
+        "https://metacubexd.pages.dev",
+        "https://metacubex.github.io/metacubexd",
         "http://tauri.localhost",
         "https://yacd.metacubex.one",
         "https://metacubex.github.io",
