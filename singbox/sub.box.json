@@ -1,119 +1,98 @@
 {
-    "dns": {
-        "fakeip": {
-            "enabled": true,
-            "inet4_range": "198.18.0.0/15",
-            "inet6_range": "fc00::/18"
-        },
-        "independent_cache": true,
-        "rules": [
-            {
-                "outbound": [
-                    "any"
-                ],
-                "server": "local"
-            },
-            {
-                "disable_cache": true,
-                "geosite": [
-                    "category-ads-all"
-                ],
-                "server": "block"
-            },
-            {
-                "query_type": [
-                    "A",
-                    "AAAA"
-                ],
-                "rewrite_ttl": 1,
-                "server": "fakeip"
-            },
-            {
-                "clash_mode": "global",
-                "server": "remote"
-            },
-            {
-                "clash_mode": "direct",
-                "server": "local"
-            },
-            {
-                "geosite": "cn",
-                "server": "local"
-            }
-        ],
-        "servers": [
-            {
-                "address": "udp://8.8.8.8",
-                "detour": "select",
-                "tag": "remote"
-            },
-            {
-                "address": "8.8.8.8",
-                "detour": "direct",
-                "tag": "local"
-            },
-            {
-                "address": "rcode://success",
-                "tag": "block"
-            },
-            {
-                "address": "fakeip",
-                "tag": "fakeip"
-            }
-        ],
-        "strategy": "prefer_ipv4"
-    },
-    "experimental": {
-    "cache_file": {
-      "enabled": true,
-      "path": "cache.db",
-      "store_fakeip": false
-    },
-    "clash_api": {
-      "external_controller": "0.0.0.0:9090",
-      "external_ui": "/data/adb/box/sing-box/dashboard"
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "type": "local",
+        "tag": "local"
+      },
+      {
+        "type": "hosts",
+        "tag": "hosts",
+        "predefined": {
+          "dns.alidns.com": [
+            "91.239.100.100",
+            "89.233.43.71"
+          ],
+          "dns.google": [
+            "91.239.100.100",
+            "89.233.43.71"
+          ]
         }
-    },
-    "inbounds": [
-        {
-            "auto_route": true,
-            "domain_strategy": "prefer_ipv4",
-            "endpoint_independent_nat": true,
-            "inet4_address": "172.19.0.1/30",
-            "inet6_address": "2001:0470:f9da:fdfa::1/64",
-            "mtu": 9000,
-            "platform": {
-                "http_proxy": {
-                    "enabled": true,
-                    "server": "127.0.0.1",
-                    "server_port": 2334
-                }
-            },
-            "strict_route": true,
-            "type": "tun"
-        },
-        {
-            "domain_strategy": "prefer_ipv4",
-            "listen": "127.0.0.1",
-            "listen_port": 2333,
-            "tag": "socks-in",
-            "type": "socks",
-            "users": []
-        },
-        {
-            "domain_strategy": "prefer_ipv4",
-            "listen": "127.0.0.1",
-            "listen_port": 2334,
-            "tag": "mixed-in",
-            "type": "mixed",
-            "users": []
-        }
+      },
+      {
+        "type": "https",
+        "tag": "alidns",
+        "domain_resolver": "hosts",
+        "server": "anycast.uncensoreddns.org/dns-query"
+      },
+      {
+        "type": "https",
+        "tag": "ggdns",
+        "detour": "Proxy",
+        "domain_resolver": "hosts",
+        "server": "anycast.uncensoreddns.org/dns-query"
+      },
+      {
+        "type": "fakeip",
+        "tag": "fakeip",
+        "inet4_range": "22.0.0.0/8"
+      }
     ],
-    "log": {},
-    "outbounds": [
-        {
-            "tag": "select",
-            "type": "selector",
+    "rules": [
+      {
+        "clash_mode": "direct",
+        "server": "local"
+      },
+      {
+        "clash_mode": "global",
+        "server": "ggdns"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "fakeip"
+      },
+      {
+        "action": "evaluate",
+        "server": "alidns"
+      }
+    ],
+    "final": "ggdns",
+    "strategy": "prefer_ipv4"
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "address": "172.19.0.0/30",
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "system",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 7890
+        }
+      }
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 7890
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "Proxy",
             "default": "urltest",
             "outbounds": [
                 "urltest",
@@ -37116,42 +37095,58 @@
         {
             "tag": "direct",
             "type": "direct"
-        },
-        {
-            "tag": "block",
-            "type": "block"
-        },
-        {
-            "tag": "dns-out",
-            "type": "dns"
         }
+  ],
+  "route": {
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "Proxy"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      }
     ],
-    "route": {
-        "auto_detect_interface": true,
-        "rules": [
-            {
-                "geosite": "category-ads-all",
-                "outbound": "block"
-            },
-            {
-                "outbound": "dns-out",
-                "port": 53
-            },
-            {
-                "clash_mode": "direct",
-                "outbound": "direct"
-            },
-            {
-                "clash_mode": "global",
-                "outbound": "select"
-            },
-            {
-                "geoip": [
-                    "ir",
-                    "private"
-                ],
-                "outbound": "direct"
-            }
-        ]
+    "rule_set": [],
+    "final": "Proxy",
+    "find_process": true,
+    "auto_detect_interface": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "/dashboard",
+      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_download_detour": "direct",
+      "default_mode": "Enhanced",
+      "access_control_allow_origin": [
+        "http://127.0.0.1",
+        "http://yacd.haishan.me",
+        "localhost",
+        "https://d.metacubex.one",
+        "https://metacubexd.pages.dev",
+        "https://metacubex.github.io/metacubexd",
+        "http://tauri.localhost",
+        "https://yacd.metacubex.one",
+        "https://metacubex.github.io",
+        "https://board.zash.run.place"
+      ],
+      "access_control_allow_private_network": true
     }
+  }
 }
