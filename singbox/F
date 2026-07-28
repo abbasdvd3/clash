@@ -1,42 +1,45 @@
-
 {
   "log": {
     "level": "info",
     "timestamp": true
   },
-  "experimental": {
-    "clash_api": {
-      "external_controller": "127.0.0.1:9090",
-      "external_ui": "ui",
-      "secret": "",
-      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
-      "external_ui_download_detour": "direct",
-      "default_mode": "rule"
-    },
-    "cache_file": {
-      "enabled": true,
-      "store_fakeip": true,
-      "store_rdrc": true
-    }
-  },
   "dns": {
     "servers": [
       {
-        "tag": "google",
-        "type": "tls",
-        "server": "8.8.8.8",
-        "detour": "Proxy"
+        "type": "local",
+        "tag": "local"
       },
       {
-        "tag": "local",
+        "type": "hosts",
+        "tag": "hosts",
+        "predefined": {
+          "dns.alidns.com": [
+            "91.239.100.100",
+            "89.233.43.71"
+          ],
+          "dns.google": [
+            "91.239.100.100",
+            "89.233.43.71"
+          ]
+        }
+      },
+      {
         "type": "https",
-        "server": "223.5.5.5"
+        "tag": "alidns",
+        "domain_resolver": "hosts",
+        "server": "anycast.uncensoreddns.org/dns-query"
       },
       {
-        "tag": "fakeip",
+        "type": "https",
+        "tag": "ggdns",
+        "detour": "Proxy",
+        "domain_resolver": "hosts",
+        "server": "anycast.uncensoreddns.org/dns-query"
+      },
+      {
         "type": "fakeip",
-        "inet4_range": "198.18.0.0/15",
-        "inet6_range": "fc00::/18"
+        "tag": "fakeip",
+        "inet4_range": "22.0.0.0/8"
       }
     ],
     "rules": [
@@ -46,34 +49,7 @@
       },
       {
         "clash_mode": "global",
-        "server": "google"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
-        "rule_set": "geosite-cn",
-        "server": "fakeip"
-      },
-      {
-        "rule_set": "geosite-cn",
-        "server": "local"
-      },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "rule_set": "geosite-geolocation-!cn",
-            "invert": true
-          },
-          {
-            "rule_set": "geoip-cn"
-          }
-        ],
-        "server": "google",
-        "client_subnet": "114.114.114.114/24"
+        "server": "ggdns"
       },
       {
         "query_type": [
@@ -81,22 +57,23 @@
           "AAAA"
         ],
         "server": "fakeip"
+      },
+      {
+        "action": "evaluate",
+        "server": "alidns"
       }
     ],
-    "independent_cache": true,
+    "final": "ggdns",
     "strategy": "prefer_ipv4"
   },
   "inbounds": [
     {
-      "tag": "tun-in",
       "type": "tun",
-      "address": [
-        "172.19.0.0/30",
-        "fdfe:dcba:9876::0/126"
-      ],
-      "stack": "system",
+      "tag": "tun-in",
+      "address": "172.19.0.0/30",
       "auto_route": true,
       "strict_route": true,
+      "stack": "system",
       "platform": {
         "http_proxy": {
           "enabled": true,
@@ -106,16 +83,16 @@
       }
     },
     {
-      "tag": "mixed-in",
       "type": "mixed",
+      "tag": "mixed-in",
       "listen": "127.0.0.1",
       "listen_port": 7890
     }
   ],
   "outbounds": [
     {
-      "tag": "Proxy",
       "type": "selector",
+      "tag": "Proxy",
       "outbounds": [
         "auto",
         "direct",
@@ -707,650 +684,6 @@
         "🇯🇵 Japan 13",
         "🇸🇪 Sweden"
       ]
-    },
-    {
-      "tag": "OpenAI",
-      "type": "urltest",
-      "outbounds": [
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ],
-      "default": "America"
-    },
-    {
-      "tag": "Google",
-      "type": "urltest",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Telegram",
-      "type": "urltest",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Twitter",
-      "type": "urltest",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Facebook",
-      "type": "urltest",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "BiliBili",
-      "type": "selector",
-      "outbounds": [
-        "direct",
-        "HongKong",
-        "TaiWan"
-      ]
-    },
-    {
-      "tag": "Bahamut",
-      "type": "selector",
-      "outbounds": [
-        "TaiWan",
-        "Proxy"
-      ]
-    },
-    {
-      "tag": "Spotify",
-      "type": "urltest",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ],
-      "default": "America"
-    },
-    {
-      "tag": "TikTok",
-      "type": "urltest",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America"
-      ],
-      "default": "Japan"
-    },
-    {
-      "tag": "Netflix",
-      "type": "urltest",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Disney+",
-      "type": "urltest",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Apple",
-      "type": "urltest",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Microsoft",
-      "type": "urltest",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Games",
-      "type": "urltest",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Streaming",
-      "type": "urltest",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Global",
-      "type": "selector",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others",
-      ]
-    },
-    {
-      "tag": "China",
-      "type": "selector",
-      "outbounds": [
-        "direct",
-        "Proxy"
-      ]
-    },
-    {
-      "tag": "HongKong",
-      "type": "urltest",
-      "outbounds": [
-        "🇭🇰 Hong Kong",
-        "🇭🇰 Hong Kong 2",
-        "🇭🇰 Hong Kong 3",
-        "🇭🇰 Hong Kong 4",
-        "🇭🇰 Hong Kong 5",
-        "🇭🇰 Hong Kong 6",
-        "🇭🇰 Hong Kong 7",
-        "🇭🇰 Hong Kong 8",
-        "🇭🇰 Hong Kong 9",
-        "🇭🇰 Hong Kong 10",
-        "🇭🇰 Hong Kong 11",
-        "🇭🇰 Hong Kong 12",
-        "🇭🇰 Hong Kong 13",
-        "🇭🇰 Hong Kong 14",
-        "🇭🇰 Hong Kong 15",
-        "🇭🇰 Hong Kong 16",
-        "🇭🇰 Hong Kong 17",
-        "🇭🇰 Hong Kong 18",
-        "🇭🇰 Hong Kong 19",
-        "🇭🇰 Hong Kong 20",
-        "🇭🇰 Hong Kong 21",
-        "🇭🇰 Hong Kong 22",
-        "🇭🇰 Hong Kong 23",
-        "🇭🇰 Hong Kong 24",
-        "🇭🇰 Hong Kong 25",
-        "🇭🇰 Hong Kong 26",
-        "🇭🇰 Hong Kong 27",
-        "🇭🇰 Hong Kong 28",
-        "🇭🇰 Hong Kong 29",
-        "🇭🇰 Hong Kong 30",
-        "🇭🇰 Hong Kong 31",
-        "🇭🇰 Hong Kong 32",
-        "🇭🇰 Hong Kong 33",
-        "🇭🇰 Hong Kong 34",
-        "🇭🇰 Hong Kong 35",
-        "🇭🇰 Hong Kong 36",
-        "🇭🇰 Hong Kong 37",
-        "🇭🇰 Hong Kong 38",
-        "🇭🇰 Hong Kong 39",
-        "🇭🇰 Hong Kong 40",
-        "🇭🇰 Hong Kong 41",
-        "🇭🇰 Hong Kong 42",
-        "🇭🇰 Hong Kong 43",
-        "🇭🇰 Hong Kong 44",
-        "🇭🇰 Hong Kong 45",
-        "🇭🇰 Hong Kong 46",
-        "🇭🇰 Hong Kong 47",
-        "🇭🇰 Hong Kong 48",
-        "🇭🇰 Hong Kong 49",
-        "🇭🇰 Hong Kong 50",
-        "🇭🇰 Hong Kong 51",
-        "🇭🇰 Hong Kong 52",
-        "🇭🇰 Hong Kong 53",
-        "🇭🇰 Hong Kong 54",
-        "🇭🇰 Hong Kong 55",
-        "🇭🇰 Hong Kong 56",
-        "🇭🇰 Hong Kong 57",
-        "🇭🇰 Hong Kong 58",
-        "🇭🇰 Hong Kong 59",
-        "🇭🇰 Hong Kong 60",
-        "🇭🇰 Hong Kong 61",
-        "🇭🇰 Hong Kong 62",
-        "🇭🇰 Hong Kong 63",
-        "🇭🇰 Hong Kong 64",
-        "🇭🇰 Hong Kong 65",
-        "🇭🇰 Hong Kong 66",
-        "🇭🇰 Hong Kong 67",
-        "🇭🇰 Hong Kong 68",
-        "🇭🇰 Hong Kong 69",
-        "🇭🇰 Hong Kong 70",
-        "🇭🇰 Hong Kong 71",
-        "🇭🇰 Hong Kong 72",
-        "🇭🇰 Hong Kong 73",
-        "🇭🇰 Hong Kong 74",
-        "🇭🇰 Hong Kong 75",
-        "🇭🇰 Hong Kong 76",
-        "🇭🇰 Hong Kong 77",
-        "🇭🇰 Hong Kong 78",
-        "🇭🇰 Hong Kong 79",
-        "🇭🇰 Hong Kong 80",
-        "🇭🇰 Hong Kong 81",
-        "🇭🇰 Hong Kong 82",
-        "🇭🇰 Hong Kong 83",
-        "🇭🇰 Hong Kong 84",
-        "🇭🇰 Hong Kong 85",
-        "🇭🇰 Hong Kong 86",
-        "🇭🇰 Hong Kong 87",
-        "🇭🇰 Hong Kong 88",
-        "🇭🇰 Hong Kong 89",
-        "🇭🇰 Hong Kong 90",
-        "🇭🇰 Hong Kong 91",
-        "🇭🇰 Hong Kong 92",
-        "🇭🇰 Hong Kong 93",
-        "🇭🇰 Hong Kong 94",
-        "🇭🇰 Hong Kong 95",
-        "🇭🇰 Hong Kong 96",
-        "🇭🇰 Hong Kong 97",
-        "🇭🇰 Hong Kong 98",
-        "🇭🇰 Hong Kong 99",
-        "🇭🇰 Hong Kong 100",
-        "🇭🇰 Hong Kong 101",
-        "🇭🇰 Hong Kong 102",
-        "🇭🇰 Hong Kong 103",
-        "🇭🇰 Hong Kong 104",
-        "🇭🇰 Hong Kong 105",
-        "🇭🇰 Hong Kong 106",
-        "🇭🇰 Hong Kong 107",
-        "🇭🇰 Hong Kong 108",
-        "🇭🇰 Hong Kong 109",
-        "🇭🇰 Hong Kong 110",
-        "🇭🇰 Hong Kong 111",
-        "🇭🇰 Hong Kong 112",
-        "🇭🇰 Hong Kong 113",
-        "🇭🇰 Hong Kong 114",
-        "🇭🇰 Hong Kong 115",
-        "🇭🇰 Hong Kong 116",
-        "🇭🇰 Hong Kong 117",
-        "🇭🇰 Hong Kong 118",
-        "🇭🇰 Hong Kong 119",
-        "🇭🇰 Hong Kong 120",
-        "🇭🇰 Hong Kong 121",
-        "🇭🇰 Hong Kong 122",
-        "🇭🇰 Hong Kong 123",
-        "🇭🇰 Hong Kong 124",
-        "🇭🇰 Hong Kong 125",
-        "🇭🇰 Hong Kong 126",
-        "🇭🇰 Hong Kong 127",
-        "🇭🇰 Hong Kong 128",
-        "🇭🇰 Hong Kong 129",
-        "🇭🇰 Hong Kong 130",
-        "🇭🇰 Hong Kong 131",
-        "🇭🇰 Hong Kong 132",
-        "🇭🇰 Hong Kong 133",
-        "🇭🇰 Hong Kong 134",
-        "🇭🇰 Hong Kong 135",
-        "🇭🇰 Hong Kong 136",
-        "🇭🇰 Hong Kong 137",
-        "🇭🇰 Hong Kong 138",
-        "🇭🇰 Hong Kong 139",
-        "🇭🇰 Hong Kong 140",
-        "🇭🇰 Hong Kong 141",
-        "🇭🇰 Hong Kong 142",
-        "🇭🇰 Hong Kong 143",
-        "🇭🇰 Hong Kong 144",
-        "🇭🇰 Hong Kong 145",
-        "🇭🇰 Hong Kong 146",
-        "🇭🇰 Hong Kong 147",
-        "🇭🇰 Hong Kong 148",
-        "🇭🇰 Hong Kong 149",
-        "🇭🇰 Hong Kong 150",
-        "🇭🇰 Hong Kong 151",
-        "🇭🇰 Hong Kong 152",
-        "🇭🇰 Hong Kong 153",
-        "🇭🇰 Hong Kong 154",
-        "🇭🇰 Hong Kong 155",
-        "🇭🇰 Hong Kong 156",
-        "🇭🇰 Hong Kong 157",
-        "🇭🇰 Hong Kong 158",
-        "🇭🇰 Hong Kong 159",
-        "🇭🇰 Hong Kong 160",
-        "🇭🇰 Hong Kong 161",
-        "🇭🇰 Hong Kong 162",
-        "🇭🇰 Hong Kong 163",
-        "🇭🇰 Hong Kong 164",
-        "🇭🇰 Hong Kong 165",
-        "🇭🇰 Hong Kong 166",
-        "🇭🇰 Hong Kong 167",
-        "🇭🇰 Hong Kong 168",
-        "🇭🇰 Hong Kong 169",
-        "🇭🇰 Hong Kong 170",
-        "🇭🇰 Hong Kong 171",
-        "🇭🇰 Hong Kong 172",
-        "🇭🇰 Hong Kong 173",
-        "🇭🇰 Hong Kong 174",
-        "🇭🇰 Hong Kong 175",
-        "🇭🇰 Hong Kong 176",
-        "🇭🇰 Hong Kong 177",
-        "🇭🇰 Hong Kong 178",
-        "🇭🇰 Hong Kong 179",
-        "🇭🇰 Hong Kong 180",
-        "🇭🇰 Hong Kong 181",
-        "🇭🇰 Hong Kong 182",
-        "🇭🇰 Hong Kong 183",
-        "🇭🇰 Hong Kong 184",
-        "🇭🇰 Hong Kong 185",
-        "🇭🇰 Hong Kong 186",
-        "🇭🇰 Hong Kong 187",
-        "🇭🇰 Hong Kong 188",
-        "🇭🇰 Hong Kong 189",
-        "🇭🇰 Hong Kong 190",
-        "🇭🇰 Hong Kong 191",
-        "🇭🇰 Hong Kong 192",
-        "🇭🇰 Hong Kong 193",
-        "🇭🇰 Hong Kong 194",
-        "🇭🇰 Hong Kong 195",
-        "🇭🇰 Hong Kong 196",
-        "🇭🇰 Hong Kong 197",
-        "🇭🇰 Hong Kong 198",
-        "🇭🇰 Hong Kong 199",
-        "🇭🇰 Hong Kong 200",
-        "🇭🇰 Hong Kong 201",
-        "🇭🇰 Hong Kong 202",
-        "🇭🇰 Hong Kong 203",
-        "🇭🇰 Hong Kong 204",
-        "🇭🇰 Hong Kong 205",
-        "🇭🇰 Hong Kong 206",
-        "🇭🇰 Hong Kong 207",
-        "🇭🇰 Hong Kong 208",
-        "🇭🇰 Hong Kong 209",
-        "🇭🇰 Hong Kong 210",
-        "🇭🇰 Hong Kong 211",
-        "🇭🇰 Hong Kong 212",
-        "🇭🇰 Hong Kong 213",
-        "🇭🇰 Hong Kong 214",
-        "🇭🇰 Hong Kong 215",
-        "🇭🇰 Hong Kong 216",
-        "🇭🇰 Hong Kong 217",
-        "🇭🇰 Hong Kong 218",
-        "🇭🇰 Hong Kong 219",
-        "🇭🇰 Hong Kong 220",
-        "🇭🇰 Hong Kong 221",
-        "🇭🇰 Hong Kong 222",
-        "🇭🇰 Hong Kong 223",
-        "🇭🇰 Hong Kong 224",
-        "🇭🇰 Hong Kong 225",
-        "🇭🇰 Hong Kong 226",
-        "🇭🇰 Hong Kong 227",
-        "🇭🇰 Hong Kong 228",
-        "🇭🇰 Hong Kong 229",
-        "🇭🇰 Hong Kong 230",
-        "🇭🇰 Hong Kong 231",
-        "🇭🇰 Hong Kong 232",
-        "🇭🇰 Hong Kong 233",
-        "🇭🇰 Hong Kong 234",
-        "🇭🇰 Hong Kong 235",
-        "🇭🇰 Hong Kong 236",
-        "🇭🇰 Hong Kong 237",
-        "🇭🇰 Hong Kong 238",
-        "🇭🇰 Hong Kong 239",
-        "🇭🇰 Hong Kong 240",
-        "🇭🇰 Hong Kong 241",
-        "🇭🇰 Hong Kong 242",
-        "🇭🇰 Hong Kong 243",
-        "🇭🇰 Hong Kong 244",
-        "🇭🇰 Hong Kong 245",
-        "🇭🇰 Hong Kong 246",
-        "🇭🇰 Hong Kong 247",
-        "🇭🇰 Hong Kong 248",
-        "🇭🇰 Hong Kong 249",
-        "🇭🇰 Hong Kong 250",
-        "🇭🇰 Hong Kong 251",
-        "🇭🇰 Hong Kong 252",
-        "🇭🇰 Hong Kong 253",
-        "🇭🇰 Hong Kong 254",
-        "🇭🇰 Hong Kong 255",
-        "🇭🇰 Hong Kong 256",
-        "🇭🇰 Hong Kong 257",
-        "🇭🇰 Hong Kong 258",
-        "🇭🇰 Hong Kong 259",
-        "🇭🇰 Hong Kong 260",
-        "🇭🇰 Hong Kong 261",
-        "🇭🇰 Hong Kong 262",
-        "🇭🇰 Hong Kong 263",
-        "🇭🇰 Hong Kong 264",
-        "🇭🇰 Hong Kong 265",
-        "🇭🇰 Hong Kong 266",
-        "🇭🇰 Hong Kong 267",
-        "🇭🇰 Hong Kong 268",
-        "🇭🇰 Hong Kong 269",
-        "🇭🇰 Hong Kong 270",
-        "🇭🇰 Hong Kong 271",
-        "🇭🇰 Hong Kong 272",
-        "🇭🇰 Hong Kong 273",
-        "🇭🇰 Hong Kong 274",
-        "🇭🇰 Hong Kong 275",
-        "🇭🇰 Hong Kong 276",
-        "🇭🇰 Hong Kong 277",
-        "🇭🇰 Hong Kong 278",
-        "🇭🇰 Hong Kong 279",
-        "🇭🇰 Hong Kong 280",
-        "🇭🇰 Hong Kong 281",
-        "🇭🇰 Hong Kong 282",
-        "🇭🇰 Hong Kong 283",
-        "🇭🇰 Hong Kong 284",
-        "🇭🇰 Hong Kong 285",
-        "🇭🇰 Hong Kong 286",
-        "🇭🇰 Hong Kong 287",
-        "🇭🇰 Hong Kong 288",
-        "🇭🇰 Hong Kong 289",
-        "🇭🇰 Hong Kong 290",
-        "🇭🇰 Hong Kong 291",
-        "🇭🇰 Hong Kong 292",
-        "🇭🇰 Hong Kong 293",
-        "🇭🇰 Hong Kong 294",
-        "🇭🇰 Hong Kong 295",
-        "🇭🇰 Hong Kong 296",
-        "🇭🇰 Hong Kong 297",
-        "🇭🇰 Hong Kong 298",
-        "🇭🇰 Hong Kong 299",
-        "🇭🇰 Hong Kong 300",
-        "🇭🇰 Hong Kong 301",
-        "🇭🇰 Hong Kong 302",
-        "🇭🇰 Hong Kong 303",
-        "🇭🇰 Hong Kong 304",
-        "🇭🇰 Hong Kong 305",
-        "🇭🇰 Hong Kong 306",
-        "🇭🇰 Hong Kong 307",
-        "🇭🇰 Hong Kong 308",
-        "🇭🇰 Hong Kong 309",
-        "🇭🇰 Hong Kong 310",
-        "🇭🇰 Hong Kong 311",
-        "🇭🇰 Hong Kong 312",
-        "🇭🇰 Hong Kong 313",
-        "🇭🇰 Hong Kong 314",
-        "🇭🇰 Hong Kong 315",
-        "🇭🇰 Hong Kong 316",
-        "🇭🇰 Hong Kong 317",
-        "🇭🇰 Hong Kong 318",
-        "🇭🇰 Hong Kong 319",
-        "🇭🇰 Hong Kong 320",
-        "🇭🇰 Hong Kong 321",
-        "🇭🇰 Hong Kong 322",
-        "🇭🇰 Hong Kong 323",
-        "🇭🇰 Hong Kong 324",
-        "🇭🇰 Hong Kong 325",
-        "🇭🇰 Hong Kong 326",
-        "🇭🇰 Hong Kong 327",
-        "🇭🇰 Hong Kong 328",
-        "🇭🇰 Hong Kong 329",
-        "🇭🇰 Hong Kong 330",
-        "🇭🇰 Hong Kong 331",
-        "🇭🇰 Hong Kong 332",
-        "🇭🇰 Hong Kong 333",
-        "🇭🇰 Hong Kong 334",
-        "🇭🇰 Hong Kong 335",
-        "🇭🇰 Hong Kong 336",
-        "🇭🇰 Hong Kong 337",
-        "🇭🇰 Hong Kong 338",
-        "🇭🇰 Hong Kong 339",
-        "🇭🇰 Hong Kong 340",
-        "🇭🇰 Hong Kong 341",
-        "🇭🇰 Hong Kong 342",
-        "🇭🇰 Hong Kong 343",
-        "🇭🇰 Hong Kong 344",
-        "🇭🇰 Hong Kong 345",
-        "🇭🇰 Hong Kong 346",
-        "🇭🇰 Hong Kong 347",
-        "🇭🇰 Hong Kong 348"
-      ],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 50
-    },
-    {
-      "tag": "TaiWan",
-      "type": "urltest",
-      "outbounds": [
-        "🇹🇼 Taiwan",
-        "🇹🇼 Taiwan 2"
-      ],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 50
-    },
-    {
-      "tag": "Singapore",
-      "type": "urltest",
-      "outbounds": [
-        "🇸🇬 Singapore",
-        "🇸🇬 Singapore 2"
-      ],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 50
-    },
-    {
-      "tag": "Japan",
-      "type": "urltest",
-      "outbounds": [
-        "🇯🇵 Japan",
-        "🇯🇵 Japan 2",
-        "🇯🇵 Japan 3",
-        "🇯🇵 Japan 4",
-        "🇯🇵 Japan 5",
-        "🇯🇵 Japan 6",
-        "🇯🇵 Japan 7",
-        "🇯🇵 Japan 8",
-        "🇯🇵 Japan 9",
-        "🇯🇵 Japan 10",
-        "🇯🇵 Japan 11",
-        "🇯🇵 Japan 12",
-        "🇯🇵 Japan 13"
-      ],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 50
-    },
-    {
-      "tag": "America",
-      "type": "urltest",
-      "outbounds": [
-        "🇷🇺 Russia",
-        "🇦🇺 Australia",
-        "🇷🇺 Russia 2",
-        "🇷🇺 Russia 3",
-        "🇷🇺 Russia 4",
-        "🇨🇾 Cyprus",
-        "🇷🇺 Russia 5",
-        "🇨🇾 Cyprus 2",
-        "🇷🇺 Russia 6",
-        "🇺🇸 United States",
-        "🇺🇸 United States 2",
-        "🇺🇸 United States 3",
-        "🇺🇸 United States 4",
-        "🇺🇸 United States 5",
-        "🇺🇸 United States 6",
-        "🇺🇸 United States 7",
-        "🇺🇸 United States 8",
-        "🇺🇸 United States 9",
-        "🇺🇸 United States 10",
-        "🇺🇸 United States 11",
-        "🇺🇸 United States 12",
-        "🇺🇸 United States 13",
-        "🇺🇸 United States 14",
-        "🇺🇸 United States 15",
-        "🇺🇸 United States 16"
-      ],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 50
-    },
-    {
-      "tag": "Others",
-      "type": "urltest",
-      "outbounds": [
-        "auto",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "HongKong",
-      ],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 50
     },
     {
       "tag": "auto",
@@ -10761,30 +10094,12 @@
     }
   ],
   "route": {
-    "default_domain_resolver": {
-      "server": "local"
-    },
-    "auto_detect_interface": true,
-    "final": "Proxy",
     "rules": [
       {
-        "inbound": [
-          "tun-in",
-          "mixed-in"
-        ],
         "action": "sniff"
       },
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 53
-          },
-          {
-            "protocol": "dns"
-          }
-        ],
+        "protocol": "dns",
         "action": "hijack-dns"
       },
       {
@@ -10796,321 +10111,38 @@
         "outbound": "Proxy"
       },
       {
-        "domain": [
-          "clash.razord.top",
-          "yacd.metacubex.one",
-          "yacd.haishan.me",
-          "d.metacubex.one"
-        ],
-        "outbound": "direct"
-      },
-      {
         "ip_is_private": true,
         "outbound": "direct"
-      },
-      {
-        "rule_set": "geosite-openai",
-        "outbound": "OpenAI"
-      },
-      {
-        "rule_set": [
-          "geosite-youtube",
-          "geoip-google",
-          "geosite-google",
-          "geosite-github"
-        ],
-        "outbound": "Google"
-      },
-      {
-        "rule_set": [
-          "geoip-telegram",
-          "geosite-telegram"
-        ],
-        "outbound": "Telegram"
-      },
-      {
-        "rule_set": [
-          "geoip-twitter",
-          "geosite-twitter"
-        ],
-        "outbound": "Twitter"
-      },
-      {
-        "rule_set": [
-          "geoip-facebook",
-          "geosite-facebook"
-        ],
-        "outbound": "Facebook"
-      },
-      {
-        "rule_set": "geosite-bilibili",
-        "outbound": "BiliBili"
-      },
-      {
-        "rule_set": "geosite-bahamut",
-        "outbound": "Bahamut"
-      },
-      {
-        "rule_set": "geosite-spotify",
-        "outbound": "Spotify"
-      },
-      {
-        "rule_set": "geosite-tiktok",
-        "outbound": "TikTok"
-      },
-      {
-        "rule_set": [
-          "geoip-netflix",
-          "geosite-netflix"
-        ],
-        "outbound": "Netflix"
-      },
-      {
-        "rule_set": "geosite-disney",
-        "outbound": "Disney+"
-      },
-      {
-        "rule_set": [
-          "geoip-apple",
-          "geosite-apple",
-          "geosite-amazon"
-        ],
-        "outbound": "Apple"
-      },
-      {
-        "rule_set": "geosite-microsoft",
-        "outbound": "Microsoft"
-      },
-      {
-        "rule_set": [
-          "geosite-category-games",
-          "geosite-dmm"
-        ],
-        "outbound": "Games"
-      },
-      {
-        "rule_set": [
-          "geosite-hbo",
-          "geosite-primevideo"
-        ],
-        "outbound": "Streaming"
-      },
-      {
-        "rule_set": "geosite-geolocation-!cn",
-        "outbound": "Global"
-      },
-      {
-        "rule_set": [
-          "geoip-cn",
-          "geosite-cn"
-        ],
-        "outbound": "China"
       }
     ],
-    "rule_set": [
-      {
-        "tag": "geosite-openai",
-        "type": "remote",
-        "format": "source",
-        "url": "https://testingcf.jsdelivr.net/gh/Toperlock/sing-box-geosite@main/rule/OpenAI.json",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-youtube",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/youtube.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-google",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/google.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-google",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/google.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-github",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/github.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-telegram",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/telegram.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-telegram",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/telegram.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-twitter",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/twitter.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-twitter",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/twitter.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-facebook",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/facebook.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-facebook",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/facebook.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-bilibili",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bilibili.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-bahamut",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bahamut.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-spotify",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/spotify.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-tiktok",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/tiktok.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-netflix",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/netflix.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-netflix",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/netflix.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-disney",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/disney.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-apple",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geoip/apple.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-apple",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/apple.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-amazon",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/amazon.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-microsoft",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/microsoft.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-category-games",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-games.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-dmm",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/dmm.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-hbo",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/hbo.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-primevideo",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/primevideo.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-geolocation-!cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
-        "download_detour": "direct"
-      }
-    ]
+    "rule_set": [],
+    "final": "Proxy",
+    "find_process": true,
+    "auto_detect_interface": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "/dashboard",
+      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_download_detour": "direct",
+      "default_mode": "Enhanced",
+      "access_control_allow_origin": [
+        "http://127.0.0.1",
+        "http://yacd.haishan.me",
+        "localhost",
+        "https://d.metacubex.one",
+        "https://metacubexd.pages.dev",
+        "https://metacubex.github.io/metacubexd",
+        "http://tauri.localhost",
+        "https://yacd.metacubex.one",
+        "https://metacubex.github.io",
+        "https://board.zash.run.place"
+      ],
+      "access_control_allow_private_network": true
+    }
   }
 }
