@@ -1,124 +1,98 @@
 {
   "log": {
-    "disabled": false,
     "level": "info",
     "timestamp": true
   },
   "dns": {
     "servers": [
       {
-        "tag": "google",
-        "address": "udp://185.253.5.9",
-        "detour": "Proxy"
+        "type": "local",
+        "tag": "local"
       },
       {
-        "tag": "local-dns",
-        "address": "local",
-        "detour": "direct"
+        "type": "hosts",
+        "tag": "hosts",
+        "predefined": {
+          "dns.alidns.com": [
+            "91.239.100.100",
+            "89.233.43.71"
+          ],
+          "dns.google": [
+            "91.239.100.100",
+            "89.233.43.71"
+          ]
+        }
       },
       {
-        "tag": "fakeip-dns",
-        "address": "fakeip"
+        "type": "https",
+        "tag": "alidns",
+        "domain_resolver": "hosts",
+        "server": "anycast.uncensoreddns.org/dns-query"
       },
       {
-        "tag": "block-dns",
-        "address": "rcode://success"
+        "type": "https",
+        "tag": "ggdns",
+        "detour": "Proxy",
+        "domain_resolver": "hosts",
+        "server": "anycast.uncensoreddns.org/dns-query"
+      },
+      {
+        "type": "fakeip",
+        "tag": "fakeip",
+        "inet4_range": "22.0.0.0/8"
       }
     ],
     "rules": [
       {
-        "rule_set": [
-          "geosite-unity-ads"
+        "clash_mode": "direct",
+        "server": "local"
+      },
+      {
+        "clash_mode": "global",
+        "server": "ggdns"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
         ],
-        "server": "block-dns"
+        "server": "fakeip"
       },
       {
-        "outbound": "any",
-        "server": "local-dns"
-      },
-      {
-        "rule_set": [
-          "geosite-ir",
-          "geosite-private",
-          "geoip-private"
-        ],
-        "server": "local-dns"
-      },
-      {
-        "query_type": "A",
-        "server": "fakeip-dns",
-        "rewrite_ttl": 1
+        "action": "evaluate",
+        "server": "alidns"
       }
     ],
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
-    },
-    "strategy": "ipv4_only"
+    "final": "ggdns",
+    "strategy": "prefer_ipv4"
   },
   "inbounds": [
     {
-      "type": "redirect",
-      "tag": "redirect-in",
-      "listen": "0.0.0.0",
-      "listen_port": 9887,
-      "sniff": true,
-      "sniff_override_destination": true
-    },
-    {
       "type": "tun",
-      "tag": "tun_in",
-      "interface_name": "",
-      "inet4_address": [
-        "10.20.0.1/30"
-      ],
-      "inet6_address": [
-        "fdfe:dcba:9876::1/126"
-      ],
-      "mtu": 9000,
+      "tag": "tun-in",
+      "address": "172.19.0.0/30",
       "auto_route": true,
-      "strict_route": false,
+      "strict_route": true,
       "stack": "system",
       "platform": {
         "http_proxy": {
           "enabled": true,
-          "server": "0.0.0.0",
-          "server_port": 3067
+          "server": "127.0.0.1",
+          "server_port": 7890
         }
-      },
-      "include_package": null,
-      "exclude_package": null,
-      "udp_timeout": "50s",
-      "sniff": true
+      }
     },
     {
       "type": "mixed",
-      "tag": "mixed_in",
-      "set_system_proxy": false,
-      "listen": "0.0.0.0",
-      "listen_port": 3067,
-      "sniff": true
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 7890
     }
   ],
   "outbounds": [
     {
-      "type": "urltest",
-      "url": "https://connectivitycheck.gstatic.com/generate_204",
-      "interval": "1m",
-      "tolerance": 50,
-      "interrupt_exist_connections": true,
-      "idle_timeout": "3m",
-      "tag": "Proxy",
-      "outbounds": [ 
-        "selecto",
-        "urltest"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
       "type": "selector",
-      "tag": "selecto",
+      "tag": "Proxy",
       "outbounds": [
         "urltest",
         "TG频道:@hkaa0▓英国\r_4",
@@ -14735,134 +14709,59 @@
     },
     {
       "type": "direct",
-      "tag": "🎒Direct"
-    },
-    {
-      "type": "direct",
       "tag": "direct"
-    },
-    {
-      "type": "dns",
-      "tag": "dns-out"
-    },
-    {
-      "type": "block",
-      "tag": "block"
     }
   ],
   "route": {
     "rules": [
       {
+        "action": "sniff"
+      },
+      {
         "protocol": "dns",
-        "outbound": "dns-out"
+        "action": "hijack-dns"
       },
       {
-        "port": 53,
-        "outbound": "dns-out"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 853
-          },
-          {
-            "network": "udp",
-            "port": 443
-          },
-          {
-            "protocol": "stun"
-          }
-        ],
-        "outbound": "block"
-      },
-      {
-        "domain_suffix": [
-          "edu.cn"
-        ],
+        "clash_mode": "direct",
         "outbound": "direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "Proxy"
       },
       {
         "ip_is_private": true,
         "outbound": "direct"
-      },
-      {
-        "clash_mode": "Direct",
-        "outbound": "direct"
-      },
-      {
-        "clash_mode": "Global",
-        "outbound": "Proxy"
-      },
-      {
-        "rule_set": [
-          "geosite-private",
-          "geoip-private",
-          "geoip-ir"
-        ],
-        "outbound": "direct"
       }
     ],
-    "rule_set": [
-      {
-        "type": "remote",
-        "tag": "geoip-ir",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
-        "download_detour": "direct",
-        "update_interval": "20d"
-      },
-      {
-        "type": "remote",
-        "tag": "geosite-private",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs",
-        "download_detour": "direct",
-        "update_interval": "20d"
-      },
-      {
-        "type": "remote",
-        "tag": "geoip-private",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/private.srs",
-        "download_detour": "direct",
-        "update_interval": "20d"
-      },
-      {
-        "type": "remote",
-        "tag": "geosite-unity-ads",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/unity-ads.srs",
-        "download_detour": "direct",
-        "update_interval": "20d"
-      },
-      {
-        "tag": "geosite-social",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-social.srs",
-        "download_detour": "direct",
-        "update_interval": "20d"
-      }
-    ],
-   "final": "Proxy",
-   "find_process": true,
-   "override_android_vpn": true,
+    "rule_set": [],
+    "final": "Proxy",
+    "find_process": true,
     "auto_detect_interface": true
   },
   "experimental": {
     "cache_file": {
-      "enabled": true,
-      "path": "cache.db",
-      "cache_id": "my_profile2",
-      "store_fakeip": true
+      "enabled": true
     },
     "clash_api": {
-      "external_controller": "0.0.0.0:9090",
-      "external_ui": "ui",
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "/dashboard",
+      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
       "external_ui_download_detour": "direct",
-      "default_mode": "rule"
+      "default_mode": "Enhanced",
+      "access_control_allow_origin": [
+        "http://127.0.0.1",
+        "http://yacd.haishan.me",
+        "localhost",
+        "https://d.metacubex.one",
+        "https://metacubexd.pages.dev",
+        "https://metacubex.github.io/metacubexd",
+        "http://tauri.localhost",
+        "https://yacd.metacubex.one",
+        "https://metacubex.github.io",
+        "https://board.zash.run.place"
+      ],
+      "access_control_allow_private_network": true
     }
   }
 }
