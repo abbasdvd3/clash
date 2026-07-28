@@ -6,65 +6,50 @@
   "dns": {
     "servers": [
       {
-        "type": "tls",
-        "tag": "google",
-        "server": "8.8.8.8"
+        "type": "local",
+        "tag": "local"
+      },
+      {
+        "type": "hosts",
+        "tag": "hosts",
+        "predefined": {
+          "dns.alidns.com": [
+            "91.239.100.100",
+            "89.233.43.71"
+          ],
+          "dns.google": [
+            "91.239.100.100",
+            "89.233.43.71"
+          ]
+        }
       },
       {
         "type": "https",
-        "tag": "local",
-        "server": "223.5.5.5"
+        "tag": "alidns",
+        "domain_resolver": "hosts",
+        "server": "anycast.uncensoreddns.org/dns-query"
+      },
+      {
+        "type": "https",
+        "tag": "ggdns",
+        "detour": "Proxy",
+        "domain_resolver": "hosts",
+        "server": "anycast.uncensoreddns.org/dns-query"
       },
       {
         "type": "fakeip",
         "tag": "fakeip",
-        "inet4_range": "198.18.0.0/15",
-        "inet6_range": "fc00::/18"
+        "inet4_range": "22.0.0.0/8"
       }
     ],
     "rules": [
-      {
-        "domain": "cdn.jsdelivr.net",
-        "server": "google"
-      },
-      {
-        "outbound": "any",
-        "server": "local"
-      },
       {
         "clash_mode": "direct",
         "server": "local"
       },
       {
         "clash_mode": "global",
-        "server": "google"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
-        "rule_set": "geosite-ir",
-        "server": "fakeip"
-      },
-      {
-        "rule_set": "geosite-ir",
-        "server": "local"
-      },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "rule_set": "geosite-geolocation-!cn",
-            "invert": true
-          },
-          {
-            "rule_set": "geoip-ir"
-          }
-        ],
-        "server": "google",
-        "client_subnet": "114.114.114.114/24"
+        "server": "ggdns"
       },
       {
         "query_type": [
@@ -72,19 +57,20 @@
           "AAAA"
         ],
         "server": "fakeip"
+      },
+      {
+        "action": "evaluate",
+        "server": "alidns"
       }
     ],
-    "strategy": "prefer_ipv4",
-    "independent_cache": true
+    "final": "ggdns",
+    "strategy": "prefer_ipv4"
   },
   "inbounds": [
     {
       "type": "tun",
       "tag": "tun-in",
-      "address": [
-        "172.19.0.0/30",
-        "fdfe:dcba:9876::/126"
-      ],
+      "address": "172.19.0.0/30",
       "auto_route": true,
       "strict_route": true,
       "stack": "system",
@@ -105,8 +91,8 @@
   ],
   "outbounds": [
     {
-      "tag": "Proxy",
       "type": "selector",
+      "tag": "Proxy",
       "outbounds": [
         "auto",
         "direct",
@@ -8689,34 +8675,11 @@
   "route": {
     "rules": [
       {
-        "inbound": [
-          "tun-in",
-          "mixed-in"
-        ],
         "action": "sniff"
       },
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 53
-          },
-          {
-            "protocol": "dns"
-          }
-        ],
+        "protocol": "dns",
         "action": "hijack-dns"
-      },
-      {
-        "clash_mode": "rule",
-        "rule_set": "geosite-category-ads-all",
-        "action": "reject"
-      },
-      {
-        "clash_mode": "global",
-        "rule_set": "geosite-category-ads-all",
-        "outbound": "Proxy"
       },
       {
         "clash_mode": "direct",
@@ -8727,122 +8690,32 @@
         "outbound": "Proxy"
       },
       {
-        "domain": [
-          "clash.razord.top",
-          "yacd.metacubex.one",
-          "yacd.haishan.me",
-          "d.metacubex.one"
-        ],
-        "outbound": "direct"
-      },
-      {
         "ip_is_private": true,
         "outbound": "direct"
-      },
-      {
-        "rule_set": "geosite-geolocation-!cn",
-        "outbound": "Global"
-      },
-      {
-        "rule_set": [
-          "geosite-category-ads-all",
-          "geosite-malware",
-          "geosite-phishing",
-          "geosite-cryptominers",
-          "geoip-malware",
-          "geoip-phishing"
-        ],
-        "outbound": "reject"
-      },
-      {
-        "rule_set": [
-          "geosite-ir",
-          "geoip-ir"
-        ],
-        "outbound": "direct"
       }
     ],
-    "rule_set": [
-      {
-        "type": "remote",
-        "tag": "geosite-geolocation-!cn",
-        "url": "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "geosite-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "geosite-category-ads-all",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-category-ads-all.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "geosite-malware",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-malware.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "geosite-phishing",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-phishing.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "geosite-cryptominers",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-cryptominers.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "geoip-ir",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "geoip-malware",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-malware.srs",
-        "download_detour": "direct"
-      },
-      {
-        "type": "remote",
-        "tag": "geoip-phishing",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-phishing.srs",
-        "download_detour": "direct"
-      }
-    ],
+    "rule_set": [],
     "final": "Proxy",
     "find_process": true,
-    "auto_detect_interface": true,
-    "override_android_vpn": true,
-    "default_domain_resolver": {
-      "server": "local",
-      "strategy": "ipv4_only"
-    }
+    "auto_detect_interface": true
   },
   "experimental": {
     "cache_file": {
-      "enabled": true,
-      "store_fakeip": true,
-      "store_rdrc": true
+      "enabled": true
     },
     "clash_api": {
       "external_controller": "127.0.0.1:9090",
       "external_ui": "/dashboard",
       "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
       "external_ui_download_detour": "direct",
-      "default_mode": "rule",
+      "default_mode": "Enhanced",
       "access_control_allow_origin": [
         "http://127.0.0.1",
         "http://yacd.haishan.me",
-        "tauri://localhost",
+        "localhost",
+        "https://d.metacubex.one",
+        "https://metacubexd.pages.dev",
+        "https://metacubex.github.io/metacubexd",
         "http://tauri.localhost",
         "https://yacd.metacubex.one",
         "https://metacubex.github.io",
