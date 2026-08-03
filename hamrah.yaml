@@ -147,7 +147,7 @@ proxy-providers:
       
   provider4:
     type: "http"
-    url: "https://obeapi.s3.ap-east-1.amazonaws.com/vpn/sub-clash.yaml"
+   # url: "https://obeapi.s3.ap-east-1.amazonaws.com/vpn/sub-clash.yaml"
     interval: "3600"
     path: ./hamrah/amazonaws.yaml
     health-check:
@@ -217,7 +217,7 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
-    hidden: false
+    hidden: true
     include-all: true
     lazy: false
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns
@@ -227,7 +227,7 @@ proxy-groups:
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 180
-    hidden: false
+    hidden: true
     include-all: true
     lazy: false
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan
@@ -244,7 +244,7 @@ proxy-groups:
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🟢http+url-test🟢
-    type: select
+    type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
     hidden: false
@@ -255,13 +255,12 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
   - name: 🟢http+fallback🟢
-    type: select
+    type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 300
     hidden: false
     include-all: true
     lazy: false
-    filter: "美国|USA|美國|us|US|United States"
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|vless|vmess|hysteria2|hysteria|shadosocks|shadosocksR
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
