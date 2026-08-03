@@ -4,7 +4,7 @@ mixed-port: 7890
 redir-port: 9797
 tproxy-port: 9898
 mode: rule
-ipv6: false
+ipv6: true
 allow-lan: true
 log-level: debug
 external-controller: 0.0.0.0:9090
@@ -55,7 +55,7 @@ dns:
   use-system-hosts: true
   respect-rules: true
   listen: 0.0.0.0:5591
-  ipv6: false
+  ipv6: true
   defult-nameserver:
     - '223.5.5.5'
     - '8.8.8.8'
@@ -204,8 +204,8 @@ proxy-groups:
   - name: PROXY
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
-    lazy: false
-    include-all: true
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay
+#    include-all: true
     proxies:
       - 🟡fallback🟡
       - 🟢Auto🟢
@@ -220,7 +220,7 @@ proxy-groups:
     hidden: false
     include-all: true
     lazy: false
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     
   - name: 🟡fallback🟡
@@ -230,22 +230,21 @@ proxy-groups:
     hidden: false
     include-all: true
     lazy: false
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🔴load-balance🔴
-    type: load-balance
+    type: select
     url: http://www.gstatic.com/generate_204
     interval: 300
-    filter: "美国|USA|美國|us|US|United States"
     hidden: false
     include-all: true
     lazy: false
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🟢http+url-test🟢
-    type: url-test
+    type: select
     url: http://www.gstatic.com/generate_204
     interval: 300
     hidden: false
@@ -256,7 +255,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
   - name: 🟢http+fallback🟢
-    type: fallback
+    type: select
     url: http://www.gstatic.com/generate_204
     interval: 300
     hidden: false
