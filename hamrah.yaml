@@ -7,8 +7,8 @@ mode: rule
 ipv6: true
 allow-lan: true
 log-level: debug
-external-controller: 0.0.0.0:9090
-external-controller-tls: 0.0.0.0:9091
+external-controller: 127.0.0.1:9090
+external-controller-tls: 127.0.0.1:9091
 external-ui: dashboard
 external-ui-name: xd
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
@@ -239,7 +239,7 @@ proxy-groups:
     interval: 300
     hidden: false
     include-all: true
-    exclude: Uk|de|港|🇭🇰|HK|Hong|HKG|坡|🇸🇬|SG|Sing|SIN|XSP|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK|韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South|台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU
+    exclude: 🇩🇪|Uk|de|港|🇭🇰|HK|Hong|HKG|坡|🇸🇬|SG|Sing|SIN|XSP|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK|韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South|台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|🇷🇴|RO
     lazy: false
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
@@ -252,7 +252,7 @@ proxy-groups:
     include-all: true
     filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
     lazy: false
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|vless|vmess|hysteria2|hysteria|shadosocks|shadosocksR
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Sudoku|shadosocks|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|vless|vmess|hysteria2|hysteria|shadosocks|shadosocksR
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
   - name: 🟢http+fallback🟢
@@ -262,7 +262,7 @@ proxy-groups:
     hidden: false
     include-all: true
     lazy: false
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|vless|vmess|hysteria2|hysteria|shadosocks|shadosocksR
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|shadosocks|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|vless|vmess|hysteria2|hysteria|shadosocks|shadosocksR
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
   - name: 🎯 Direct
