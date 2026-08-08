@@ -17,16 +17,6 @@ find-process-mode: strict
 skip-auth-prefixes:
   - 127.0.0.1/8
   - ::1/128
-external-controller-cors:
-  allow-private-network: true
-  allow-origins:
-  - https://d.metacubex.one
-  - https://metacubexd.pages.dev
-  - https://metacubex.github.io/metacubexd
-  - https://d.metacubex.one
-  - https://yacd.metacubex.one
-  - https://metacubex.github.io
-  - https://board.zash.run.place
   
 unified-delay: false
 tcp-concurrent: true
@@ -112,31 +102,31 @@ dns:
   direct-nameserver-follow-policy: false
 
 proxy-providers:
-  A1:
-    type: http
+#  A1:
+#    type: http
  #   url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
-    path: ./hamrah/ssr.yaml
-    interval: 300
-    health-check:
-      enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 300
-      expected-status: 204
+#    path: ./hamrah/ssr.yaml
+#    interval: 300
+ #   health-check:
+#      enable: true
+#      url: http://www.gstatic.com/generate_204
+ #     interval: 300
+   #   expected-status: 204
 
-  provider2:
-    type: "http"
+#  provider2:
+#    type: "http"
  #   url: "https://raw.githubusercontent.com/roosterkid/openproxylist/refs/heads/main/V2RAY_BASE64.txt"
-    interval: "3600"
-    path: ./hamrah/2.yaml
-    health-check:
-      enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 300
-      expected-status: 204
+#    interval: "3600"
+#    path: ./hamrah/2.yaml
+ #   health-check:
+ #     enable: true
+ #     url: http://www.gstatic.com/generate_204
+  #    interval: 300
+ #     expected-status: 204
 
   provider3:
     type: "http"
-#    url: "https://d23lye95wfkvbk.cloudfront.net/android.yaml"
+    url: "https://d23lye95wfkvbk.cloudfront.net/android.yaml"
     interval: "3600"
     path: ./hamrah/freenodes.yaml
     health-check:
@@ -145,16 +135,16 @@ proxy-providers:
       interval: 300
       expected-status: 204
       
-  provider4:
-    type: "http"
+#  provider4:
+#    type: "http"
 #    url: "https://raw.githubusercontent.com/du5/free/master/file/0909/Clash.yaml" # https://obeapi.s3.ap-east-1.amazonaws.com/vpn/sub-clash.yaml
-    interval: "3600"
-    path: ./hamrah/amazonaws.yaml
-    health-check:
-      enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 300
-      expected-status: 204
+#    interval: "3600"
+#    path: ./hamrah/amazonaws.yaml
+#    health-check:
+#      enable: true
+#      url: http://www.gstatic.com/generate_204
+  #    interval: 300
+  #    expected-status: 204
 
   provider5:
     type: "http"
@@ -169,7 +159,7 @@ proxy-providers:
       
   provider6:
     type: "http"
-#    url: "https://www.xrayvip.com/free.txt"
+    url: "https://www.xrayvip.com/free.txt"
     interval: "3600"
     path: ./hamrah/6.yaml
     health-check:
@@ -178,27 +168,27 @@ proxy-providers:
       interval: 300
       expected-status: 204
       
-  A7:
-    type: http
+#  A7:
+#    type: http
   #  url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config_extra_US.yaml"
-    path: ./hamrah/7.yaml
-    interval: 300
-    health-check:
-      enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 300
-      expected-status: 204
+#    path: ./hamrah/7.yaml
+ #   interval: 300
+ #   health-check:
+#      enable: true
+##      url: http://www.gstatic.com/generate_204
+ #     interval: 300
+ #     expected-status: 204
 
-  A8:
-    type: http
+#  A8:
+#    type: http
   #  url: "https://raw.githubusercontent.com/Au1rxx/free-vpn-subscriptions/refs/heads/main/output/country/US/clash-0001.yaml"
-    path: ./hamrah/8.yaml
-    interval: 300
-    health-check:
-      enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 300
-      expected-status: 204
+  #  path: ./hamrah/8.yaml
+#    interval: 300
+#    health-check:
+#      enable: true
+#      url: http://www.gstatic.com/generate_204
+ #     interval: 300
+#      expected-status: 204
       
 proxy-groups:
   - name: PROXY
@@ -220,7 +210,7 @@ proxy-groups:
     hidden: true
     include-all: true
     lazy: false
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     
   - name: 🟡fallback🟡
@@ -230,7 +220,7 @@ proxy-groups:
     hidden: true
     include-all: true
     lazy: false
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🔴load-balance🔴
@@ -239,9 +229,9 @@ proxy-groups:
     interval: 300
     hidden: false
     include-all: true
-    exclude: 🇩🇪|Uk|de|港|🇭🇰|HK|Hong|HKG|坡|🇸🇬|SG|Sing|SIN|XSP|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK|韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South|台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|🇷🇴|RO
+    exclude: ir|🇩🇪|Uk|de|港|🇭🇰|HK|Hong|HKG|坡|🇸🇬|SG|Sing|SIN|XSP|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK|韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South|台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|🇷🇴|RO
     lazy: false
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🟢http+url-test🟢
@@ -262,7 +252,7 @@ proxy-groups:
     hidden: false
     include-all: true
     lazy: false
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|shadosocks|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|vless|vmess|hysteria2|hysteria|shadosocks|shadosocksR
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|shadosocks|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|vless|vmess|hysteria2|hysteria|shadosocks|shadosocksR
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
   - name: 🎯 Direct
