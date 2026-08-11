@@ -207,6 +207,7 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
+    tolerance: 50
     hidden: true
     include-all: true
     lazy: false
@@ -217,6 +218,7 @@ proxy-groups:
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 180
+    tolerance: 50
     hidden: true
     include-all: true
     lazy: false
@@ -224,9 +226,10 @@ proxy-groups:
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🔴load-balance🔴
-    type: select
+    type: load-balance
     url: http://www.gstatic.com/generate_204
     interval: 300
+    tolerance: 50
     hidden: false
     include-all: true
     exclude: ir|🇩🇪|Uk|de|港|🇭🇰|HK|Hong|HKG|坡|🇸🇬|SG|Sing|SIN|XSP|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK|韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South|台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|🇷🇴|RO
@@ -238,6 +241,7 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
+    tolerance: 50
     hidden: true
     include-all: true
     filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
@@ -249,6 +253,7 @@ proxy-groups:
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 300
+    tolerance: 50
     hidden: true
     include-all: true
     lazy: false
@@ -263,6 +268,7 @@ proxy-groups:
     proxies:
       - "DIRECT"
       - "PROXY"
+      
 rule-providers:
   ir:
     type: http
