@@ -1,24 +1,38 @@
-port: 7892
-socks-port: 7891
+# port: 7892
+# socks-port: 7891
 mixed-port: 7890
-redir-port: 9797
-tproxy-port: 9898
+# redir-port: 9797
+# tproxy-port: 9898
 mode: rule
 ipv6: true
 allow-lan: true
 log-level: debug
-external-controller: 127.0.0.1:9090
-external-controller-tls: 127.0.0.1:9091
-external-ui: dashboard
+external-controller: 0.0.0.0:9093 
+external-controller-tls: 0.0.0.0:9443 
+# secret: "0000" 
+external-controller-cors:
+  allow-origins:
+    - "*"
+  allow-private-network: true
+external-controller-unix: mihomo.sock
+external-controller-pipe: \\.\pipe\mihomo
+external-controller-routing-mark: 0
+external-ui: /path/to/ui/folder/
 external-ui-name: xd
-external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+external-doh-server: /dns-query
 keep-alive-interval: 30
 find-process-mode: strict
-skip-auth-prefixes:
+skip-auth-prefixes: 
   - 127.0.0.1/8
   - ::1/128
+lan-allowed-ips: 
+  - 0.0.0.0/0
+  - ::/0
+lan-disallowed-ips:
+  - 192.168.0.3/32
   
-unified-delay: false
+unified-delay: true
 tcp-concurrent: true
 geodata-mode: false
 geodata-loader: standard
@@ -43,21 +57,21 @@ dns:
   prefer-h3: false
   use-hosts: true
   use-system-hosts: true
-  respect-rules: true
+  respect-rules: false
   listen: 0.0.0.0:5591
   ipv6: true
   defult-nameserver:
-    - '223.5.5.5'
-    - '8.8.8.8'
-    - '1.1.1.1'
+    - 223.5.5.5
+    - 8.8.8.8
+    - 1.1.1.1
   nameserver:
-    - '8.8.8.8'
-    - '1.1.1.1'
-    - 'https://doh.pub/dns-query'
-    - 'https://dns.alidns.com/dns-query'
+    - 8.8.8.8
+    - 1.1.1.1
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
   proxy-server-nameserver:
-    - 'https://doh.pub/dns-query'
-    - 'https://dns.alidns.com/dns-query'
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
   proxy-server-nameserver-policy:
     'www.createporn.com': 
     - tls://223.5.5.5
@@ -94,10 +108,12 @@ dns:
     - https://doh.pub/dns-query
     - 8.8.8.8
     - https://dns.alidns.com/dns-query
+    rule-set:nsfw,social,openai: 8.8.8.8
     geosite:category-ads-all: rcode://success
   enhanced-mode: fake-ip
   fake-ip-range: 22.0.0.0/8
-  fake-ip-range6: fdfe:dcba:9876::1/64
+  fake-ip-ttl: 1
+#  fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
   direct-nameserver-follow-policy: false
 
@@ -113,16 +129,20 @@ proxy-providers:
  #     interval: 300
    #   expected-status: 204
 
-#  provider2:
-#    type: "http"
- #   url: "https://raw.githubusercontent.com/roosterkid/openproxylist/refs/heads/main/V2RAY_BASE64.txt"
-#    interval: "3600"
-#    path: ./hamrah/2.yaml
- #   health-check:
- #     enable: true
- #     url: http://www.gstatic.com/generate_204
-  #    interval: 300
- #     expected-status: 204
+  provider2:
+    type: "http"
+    url: "https://raw.githubusercontent.com/roosterkid/openproxylist/refs/heads/main/V2RAY_BASE64.txt"
+    interval: "3600"
+    path: ./hamrah/2.yaml
+    health-check:
+      enable: true
+      interval: 600
+      lazy: true
+      url: http://www.gstatic.com/generate_204
+    override: 
+      skip-cert-verify: true
+      name-cert-verify: example.com 
+      udp: true
 
   provider3:
     type: "http"
@@ -131,9 +151,13 @@ proxy-providers:
     path: ./hamrah/freenodes.yaml
     health-check:
       enable: true
+      interval: 600
+      lazy: true
       url: http://www.gstatic.com/generate_204
-      interval: 300
-      expected-status: 204
+    override: 
+      skip-cert-verify: true
+      name-cert-verify: example.com 
+      udp: true
       
 #  provider4:
 #    type: "http"
@@ -153,9 +177,13 @@ proxy-providers:
     path: ./hamrah/C2.yaml
     health-check:
       enable: true
+      interval: 600
+      lazy: true
       url: http://www.gstatic.com/generate_204
-      interval: 300
-      expected-status: 204
+    override: 
+      skip-cert-verify: true
+      name-cert-verify: example.com 
+      udp: true
       
   provider6:
     type: "http"
@@ -164,9 +192,13 @@ proxy-providers:
     path: ./hamrah/6.yaml
     health-check:
       enable: true
+      interval: 600
+      lazy: true
       url: http://www.gstatic.com/generate_204
-      interval: 300
-      expected-status: 204
+    override: 
+      skip-cert-verify: true
+      name-cert-verify: example.com 
+      udp: true
       
 #  A7:
 #    type: http
@@ -196,6 +228,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay
     include-all: true
+    default-selected: 🟢Auto🟢
     proxies:
       - 🟡fallback🟡
       - 🟢Auto🟢
@@ -393,8 +426,8 @@ rules:
   - DOMAIN-SUFFIX,2mdn.net,🎯 Direct
   - DOMAIN-SUFFIX,www.gstatic.com,🎯 Direct
 # Telegram
-#PROCESS-NAME,Telegram.exe
-#PROCESS-NAME,org.telegram.messenger
+  - PROCESS-NAME,Telegram.exe,PROXY
+  - PROCESS-NAME,org.telegram.messenger,PROXY
   - DOMAIN-SUFFIX,t.me,PROXY
   - DOMAIN-SUFFIX,tdesktop.com,PROXY
   - DOMAIN-SUFFIX,telegra.ph,PROXY
