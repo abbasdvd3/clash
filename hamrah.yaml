@@ -17,7 +17,7 @@ external-controller-cors:
 external-controller-unix: mihomo.sock
 external-controller-pipe: \\.\pipe\mihomo
 external-controller-routing-mark: 0
-external-ui: /path/to/ui/folder/
+external-ui: /dashboard
 external-ui-name: xd
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 external-doh-server: /dns-query
@@ -58,21 +58,29 @@ dns:
   use-hosts: true
   use-system-hosts: true
   respect-rules: false
-  listen: 0.0.0.0:5591
-  ipv6: true
-  defult-nameserver:
+  listen: 0.0.0.0:1053
+  ipv6: false
+  default-nameserver:
     - 223.5.5.5
     - 8.8.8.8
     - 1.1.1.1
-  nameserver:
-    - 8.8.8.8
-    - 1.1.1.1
+    - 86.54.11.100
+    - 86.54.11.200
+    - 104.21.83.62
+    - 172.67.214.246
+  enhanced-mode: fake-ip
+  fake-ip-range: 22.0.0.0/8
+  fake-ip-ttl: 1
+  # fake-ip-range6: fdfe:dcba:9876::1/64
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - '*.lan'
+  # fake-ip-ttl: 1
+  nameserver-policy:
+    '+.arpa': '10.0.0.1'
+    'rule-set:ir':
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
-  proxy-server-nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-  proxy-server-nameserver-policy:
     'www.createporn.com': 
     - tls://223.5.5.5
     - tls://dot.pub
@@ -108,15 +116,99 @@ dns:
     - https://doh.pub/dns-query
     - 8.8.8.8
     - https://dns.alidns.com/dns-query
-    rule-set:nsfw,social: 8.8.8.8
-    geosite:category-ads-all: rcode://success
-  enhanced-mode: fake-ip
-  fake-ip-range: 22.0.0.0/8
-  fake-ip-ttl: 1
-#  fake-ip-range6: fdfe:dcba:9876::1/64
-  fake-ip-filter-mode: blacklist
+  rule-set:nsfw,social: 8.8.8.8
+  geosite:category-ads-all: rcode://success
+  nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+    - 86.54.11.100
+    - 86.54.11.200
+    - 104.21.83.62
+    - 172.67.214.246
+    - https://doh.pub/dns-query
+    - https://sky.rethinkdns.com/dns-query
+    - https://unfiltered.joindns4.eu/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - tls://8.8.4.4
+    - tls://1.1.1.1
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+    - https://sky.rethinkdns.com/dns-query
+    - https://unfiltered.joindns4.eu/dns-query
+  proxy-server-nameserver-policy:
+    'www.yournode.com': '114.114.114.114'
+    'www.createporn.com': '114.114.114.114'
+    'www.openai.com': '114.114.114.114'
+  direct-nameserver:
+    - system
   direct-nameserver-follow-policy: false
-
+  fallback-filter:
+    geoip: true
+    geoip-code: ir
+    geosite:
+      - social
+      - nsfw
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+      - 127.0.0.1/32
+      - 100.64.0.0/10
+    domain:
+  #    - '+.google.com'
+    #  - '+.facebook.com'
+   #   - '+.youtube.com'
+  # fallback-lazy-query: false
+tun:
+  enable: true
+  stack: mixed
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  device: utun0
+  mtu: 9000
+  strict-route: true
+  gso: true
+  gso-max-size: 65536
+  inet6-address: fdfe:dcba:9876::1/126
+  udp-timeout: 300
+  iproute2-table-index: 2022
+  iproute2-rule-index: 9000
+  endpoint-independent-nat: false
+  route-address-set:
+    - 192.168.0.0/16
+    - 22.0.0.0/8
+    - fc00::/7
+  route-exclude-address-set:
+    - 192.168.0.0/16
+    - 22.0.0.0/8
+    - fc00::/7
+  route-address:
+    - 0.0.0.0/1
+    - 128.0.0.0/1
+    - "::/1"
+    - "8000::/1"
+  route-exclude-address:
+  - 192.168.0.0/16
+  - 22.0.0.0/8
+  - fc00::/7
+proxies:
+- name: http
+  type: http
+  server: 1.231.81.166
+  port: 3128
+- name: Iran
+  type: direct
+  udp: true
+  ip-version: ipv4
+- name: dns-out
+  type: dns
+- name: rematch social
+  type: rematch
+  target-rematch-name: rematch social
 proxy-providers:
 #  A1:
 #    type: http
@@ -230,11 +322,11 @@ proxy-groups:
     include-all: true
     default-selected: 🟢Auto🟢
     proxies:
-      - 🟡fallback🟡
-      - 🟢Auto🟢
-      - 🔴load-balance🔴
-      - 🟢http+url-test🟢
-      - 🟢http+fallback🟢
+      - "🟡fallback🟡"
+      - "🟢Auto🟢"
+      - "🔴load-balance🔴"
+      - "🟢http+url-test🟢"
+      - "🟢http+fallback🟢"
       
   - name: 🟢Auto🟢
     type: url-test
@@ -291,16 +383,36 @@ proxy-groups:
     include-all: true
     lazy: false
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|shadosocks|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|vless|vmess|hysteria2|hysteria|shadosocks|shadosocksR
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
-
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png 
+    
+  - name: rematch social
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    hidden: true
+    include-all: true
+    filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
+    lazy: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
+    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay
+    default-selected: 🟢Auto🟢
+    proxies:
+      - "🟡fallback🟡"
+      - "🟢Auto🟢"
+      - "🔴load-balance🔴"
+      - "🟢http+url-test🟢"
+      - "🟢http+fallback🟢"
+      
   - name: 🎯 Direct
     type: select
     disable-udp: true
     lazy: false
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     proxies:
-      - "DIRECT"
+      - "Iran"
       - "PROXY"
+      - "dns-out"
       
 rule-providers:
   ir:
@@ -858,16 +970,16 @@ rules:
   - DOMAIN-SUFFIX,ocnttv.com,PROXY
   - DOMAIN-SUFFIX,vikacg.com,PROXY
   - DOMAIN-SUFFIX,picjs.xyz,PROXY
-  - RULE-SET,openai,PROXY
-  - RULE-SET,social,PROXY
-  - RULE-SET,nsfw,PROXY
+  - RULE-SET,openai,rematch social
+  - RULE-SET,social,rematch social
+  - RULE-SET,nsfw,rematch social
   - RULE-SET,private,DIRECT,no-resolve
-  - RULE-SET,apps,DIRECT
+  - RULE-SET,apps,dns-out
   - RULE-SET,ads,REJECT
   - RULE-SET,malware,REJECT
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
-  - RULE-SET,ir,DIRECT
+  - RULE-SET,ir,dns-out
   - RULE-SET,ircidr,DIRECT
   - RULE-SET,irasn,DIRECT
   - DOMAIN-SUFFIX,createporn.com,PROXY
