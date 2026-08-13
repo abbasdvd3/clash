@@ -216,7 +216,7 @@ proxies:
   ip-version: ipv4
 - name: dns-out
   type: dns
-- name: rematch social
+- name: rematch
   type: rematch
   target-rematch-name: rematch social
 proxy-providers:
@@ -512,6 +512,8 @@ rule-providers:
     path: ./ruleset/openai.yaml
     interval: 86400
 rules:
+  - REMATCH-NAME,rematch,rematch
+  - DOMAIN-SUFFIX,createporn.com,rematch social
   - DOMAIN-SUFFIX,acl4.ssr,🎯 Direct
   - DOMAIN-SUFFIX,ip6-localhost,🎯 Direct
   - DOMAIN-SUFFIX,ip6-loopback,🎯 Direct
