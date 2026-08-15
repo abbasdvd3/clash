@@ -347,6 +347,50 @@ proxy-providers:
       name-cert-verify: example.com 
       udp: true
       
+  provider7:
+    type: http
+    url: "https://check.banyunxiaoxi.icu/sub/sub-base64.txt"
+    path: ./hamrah7/7.yaml
+    proxies: DIRECT
+    health-check:
+      enable: true
+      interval: 600
+      lazy: true
+      url: http://www.gstatic.com/generate_204
+    override: 
+      skip-cert-verify: true
+      name-cert-verify: example.com 
+      udp: true
+
+  provider8:
+    type: http
+    url: "https://anaer.github.io/Sub/proxies.yaml"
+    path: ./hamrah/8.yaml
+    proxies: DIRECT
+    health-check:
+      enable: true
+      interval: 600
+      lazy: true
+      url: http://www.gstatic.com/generate_204
+    override: 
+      skip-cert-verify: true
+      name-cert-verify: example.com 
+      udp: true
+
+  provider9:
+    type: http
+    url: "https://proxypool.link/clash/proxies"
+    path: ./hamrah/9.yaml
+    proxies: DIRECT
+    health-check:
+      enable: true
+      interval: 600
+      lazy: true
+      url: http://www.gstatic.com/generate_204
+    override: 
+      skip-cert-verify: true
+      name-cert-verify: example.com 
+      udp: true     
 proxy-groups:
   - name: PROXY
     type: select
@@ -389,7 +433,7 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
-    hidden: false
+    hidden: true
     include-all: true
     exclude: ir|🇩🇪|Uk|de|港|🇭🇰|HK|Hong|HKG|坡|🇸🇬|SG|Sing|SIN|XSP|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK|韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South|台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|🇷🇴|RO
     lazy: false
