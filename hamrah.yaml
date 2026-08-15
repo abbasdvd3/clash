@@ -61,13 +61,17 @@ dns:
   listen: 0.0.0.0:1053
   ipv6: false
   default-nameserver:
-    - 223.5.5.5
-    - 8.8.8.8
-    - 1.1.1.1
-    - 86.54.11.100
-    - 86.54.11.200
-    - 104.21.83.62
-    - 172.67.214.246
+    - tls://223.5.5.5
+    - tls://8.8.8.8
+    - tls://1.1.1.1
+    - tls://86.54.11.100
+    - tls://86.54.11.200
+    - tls://104.21.83.62
+    - tls://172.67.214.246
+    - tls://45.90.28.0:853
+    - tls://45.90.30.0:853
+    - tls://94.140.14.140:853
+    - tls://94.140.14.141:853
   enhanced-mode: fake-ip
   fake-ip-range: 22.0.0.0/8
   fake-ip-ttl: 1
@@ -75,7 +79,6 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - '*.lan'
-  # fake-ip-ttl: 1
   nameserver-policy:
     '+.arpa': '10.0.0.1'
     'rule-set:ir':
@@ -84,7 +87,6 @@ dns:
     'www.createporn.com': 
     - tls://223.5.5.5
     - tls://dot.pub
-    - tls://[2a10:50c0::2:ff]:853
     - tls://8.8.4.4
     - tls://1.1.1.1
     - tls://45.90.28.0:853
@@ -92,13 +94,10 @@ dns:
     - tls://dns-unfiltered.adguard.com:853
     - tls://94.140.14.140:853
     - tls://94.140.14.141:853
-    - tls://[2a10:50c0::1:ff]:853
-    - quic://[2a10:50c0::2:ff]:784
     - quic://a.passcloud.xyz:784
     - quic://94.140.14.140:784
     - quic://dns-unfiltered.adguard.com:784
     - quic://94.140.14.141:784
-    - quic://[2a10:50c0::1:ff]:784
     - https://120.53.53.53/dns-query
     - https://223.5.5.5/dns-query
     - https://8.8.8.8/dns-query
@@ -110,8 +109,6 @@ dns:
     - https://94.140.14.141/dns-query 
     - https://dns-adguard.heinu.cf/dns-query
     - https://dns-adguard.heinu.ga/dns-query
-    - https://[2a10:50c0::1:ff]/dns-query
-    - https://[2a10:50c0::2:ff]/dns-query
     'www.openai.com': 
     - https://doh.pub/dns-query
     - 8.8.8.8
@@ -129,9 +126,49 @@ dns:
     - https://sky.rethinkdns.com/dns-query
     - https://unfiltered.joindns4.eu/dns-query
     - https://dns.alidns.com/dns-query
+    - tls://45.90.28.0:853
+    - tls://45.90.30.0:853
+    - tls://dns-unfiltered.adguard.com:853
+    - tls://94.140.14.140:853
+    - tls://94.140.14.141:853
+    - quic://a.passcloud.xyz:784
+    - quic://94.140.14.140:784
+    - quic://dns-unfiltered.adguard.com:784
+    - quic://94.140.14.141:784
+    - https://120.53.53.53/dns-query
+    - https://223.5.5.5/dns-query
+    - https://8.8.8.8/dns-query
+    - https://45.90.28.0/dns-query
+    - https://45.90.30.0/dns-query
+    - https://anycast.dns.nextdns.io/dns-query
+    - https://dns-unfiltered.adguard.com/dns-query
+    - https://94.140.14.140/dns-query
+    - https://94.140.14.141/dns-query 
+    - https://dns-adguard.heinu.cf/dns-query
+    - https://dns-adguard.heinu.ga/dns-query
   fallback:
     - tls://8.8.4.4
     - tls://1.1.1.1
+    - tls://45.90.28.0:853
+    - tls://45.90.30.0:853
+    - tls://dns-unfiltered.adguard.com:853
+    - tls://94.140.14.140:853
+    - tls://94.140.14.141:853
+    - quic://a.passcloud.xyz:784
+    - quic://94.140.14.140:784
+    - quic://dns-unfiltered.adguard.com:784
+    - quic://94.140.14.141:784
+    - https://120.53.53.53/dns-query
+    - https://223.5.5.5/dns-query
+    - https://8.8.8.8/dns-query
+    - https://45.90.28.0/dns-query
+    - https://45.90.30.0/dns-query
+    - https://anycast.dns.nextdns.io/dns-query
+    - https://dns-unfiltered.adguard.com/dns-query
+    - https://94.140.14.140/dns-query
+    - https://94.140.14.141/dns-query 
+    - https://dns-adguard.heinu.cf/dns-query
+    - https://dns-adguard.heinu.ga/dns-query
   proxy-server-nameserver:
     - https://doh.pub/dns-query
     - https://sky.rethinkdns.com/dns-query
@@ -158,7 +195,7 @@ dns:
   #    - '+.google.com'
     #  - '+.facebook.com'
    #   - '+.youtube.com'
-  # fallback-lazy-query: false
+    fallback-lazy-query: false
 tun:
   enable: true
   stack: mixed
@@ -218,18 +255,22 @@ proxies:
   type: dns
 - name: rematch
   type: rematch
-  target-rematch-name: rematch social
+  target-rematch-name: PROXY
 proxy-providers:
-#  A1:
-#    type: http
- #   url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
-#    path: ./hamrah/ssr.yaml
-#    interval: 300
- #   health-check:
-#      enable: true
-#      url: http://www.gstatic.com/generate_204
- #     interval: 300
-   #   expected-status: 204
+  A1:
+    type: http
+    url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
+    path: ./hamrah/ssr.yaml
+    interval: 300
+    health-check:
+      enable: true
+      interval: 600
+      lazy: true
+      url: http://www.gstatic.com/generate_204
+    override: 
+      skip-cert-verify: true
+      name-cert-verify: example.com 
+      udp: true
 
   provider2:
     type: "http"
@@ -261,16 +302,20 @@ proxy-providers:
       name-cert-verify: example.com 
       udp: true
       
-#  provider4:
-#    type: "http"
-#    url: "https://raw.githubusercontent.com/du5/free/master/file/0909/Clash.yaml" # https://obeapi.s3.ap-east-1.amazonaws.com/vpn/sub-clash.yaml
-#    interval: "3600"
-#    path: ./hamrah/amazonaws.yaml
-#    health-check:
-#      enable: true
-#      url: http://www.gstatic.com/generate_204
-  #    interval: 300
-  #    expected-status: 204
+  provider4:
+    type: "http"
+    url: "https://raw.githubusercontent.com/du5/free/master/file/0909/Clash.yaml"  #https://obeapi.s3.ap-east-1.amazonaws.com/vpn/sub-clash.yaml
+    interval: "3600"
+    path: ./hamrah/amazonaws.yaml
+    health-check:
+      enable: true
+      interval: 600
+      lazy: true
+      url: http://www.gstatic.com/generate_204
+    override: 
+      skip-cert-verify: true
+      name-cert-verify: example.com 
+      udp: true
 
   provider5:
     type: "http"
@@ -289,7 +334,7 @@ proxy-providers:
       
   provider6:
     type: "http"
-    url: "https://www.xrayvip.com/free.txt"
+    url: "https://raw.githubusercontent.com/Au1rxx/free-vpn-subscriptions/refs/heads/main/output/country/US/clash-0001.yaml"
     interval: "3600"
     path: ./hamrah/6.yaml
     health-check:
@@ -301,28 +346,6 @@ proxy-providers:
       skip-cert-verify: true
       name-cert-verify: example.com 
       udp: true
-      
-#  A7:
-#    type: http
-  #  url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config_extra_US.yaml"
-#    path: ./hamrah/7.yaml
- #   interval: 300
- #   health-check:
-#      enable: true
-##      url: http://www.gstatic.com/generate_204
- #     interval: 300
- #     expected-status: 204
-
-#  A8:
-#    type: http
-  #  url: "https://raw.githubusercontent.com/Au1rxx/free-vpn-subscriptions/refs/heads/main/output/country/US/clash-0001.yaml"
-  #  path: ./hamrah/8.yaml
-#    interval: 300
-#    health-check:
-#      enable: true
-#      url: http://www.gstatic.com/generate_204
- #     interval: 300
-#      expected-status: 204
       
 proxy-groups:
   - name: PROXY
@@ -402,7 +425,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     hidden: true
-    include-all: true
+#    include-all: true
     filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
     lazy: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
@@ -512,8 +535,12 @@ rule-providers:
     path: ./ruleset/openai.yaml
     interval: 86400
 rules:
-  - REMATCH-NAME,rematch,rematch
-  - DOMAIN-SUFFIX,createporn.com,rematch social
+  - DOMAIN-SUFFIX,cloudflare.com,PROXY
+  - DOMAIN-KEYWORD,cloudflare,PROXY
+  - DOMAIN-KEYWORD,cloudflaremirrors.com,PROXY
+  - DOMAIN-SUFFIX,cloudflaremirrors.com,PROXY
+  - REMATCH-NAME,rematch,PROXY
+  - DOMAIN-SUFFIX,createporn.com,PROXY
   - DOMAIN-SUFFIX,acl4.ssr,🎯 Direct
   - DOMAIN-SUFFIX,ip6-localhost,🎯 Direct
   - DOMAIN-SUFFIX,ip6-loopback,🎯 Direct
@@ -545,12 +572,10 @@ rules:
   - DOMAIN-SUFFIX,routerlogin.com,🎯 Direct
   - DOMAIN-SUFFIX,tendawifi.com,🎯 Direct
   - DOMAIN-SUFFIX,zte.home,🎯 Direct
-# Google China
-#DOMAIN-SUFFIX,translate.googleapis.com
+  - DOMAIN-SUFFIX,translate.googleapis.com,🎯 Direct
   - DOMAIN-SUFFIX,265.com,🎯 Direct
   - DOMAIN-SUFFIX,2mdn.net,🎯 Direct
   - DOMAIN-SUFFIX,www.gstatic.com,🎯 Direct
-# Telegram
   - PROCESS-NAME,Telegram.exe,PROXY
   - PROCESS-NAME,org.telegram.messenger,PROXY
   - DOMAIN-SUFFIX,t.me,PROXY
@@ -993,8 +1018,8 @@ rules:
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
   - RULE-SET,ir,dns-out
-  - RULE-SET,ircidr,DIRECT
-  - RULE-SET,irasn,DIRECT
+  - RULE-SET,ircidr,🎯 Direct
+  - RULE-SET,irasn,🎯 Direct
   - DOMAIN-SUFFIX,createporn.com,PROXY
   - DOMAIN-KEYWORD,createporn,PROXY
   - DOMAIN,createporn,PROXY
@@ -1020,8 +1045,8 @@ rules:
   - DOMAIN-SUFFIX,farsroid,🎯 Direct
   - DOMAIN-KEYWORD,farsroid.com,🎯 Direct
   - DOMAIN,farsroid.com,🎯 Direct
-  - DOMAIN-SUFFIX,cn,🎯 Direct,no-resolve
-  - DOMAIN-KEYWORD,-cn,🎯 Direct,no-resolve
+  - DOMAIN-SUFFIX,cn,PROXY
+  - DOMAIN-KEYWORD,-cn,PROXY
   - DOMAIN-SUFFIX,ir,🎯 Direct,no-resolve
   - DOMAIN-KEYWORD,ir,🎯 Direct,no-resolve
   - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
@@ -1043,5 +1068,6 @@ rules:
   - DOMAIN-KEYWORD,github,PROXY
   - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
   - PROCESS-NAME,psiphon-tunnel-core,PROXY
+  - DOMAIN-SUFFIX,chabokan.net,🎯 Direct
   - GEOIP,ir,🎯 Direct
   - MATCH,PROXY
