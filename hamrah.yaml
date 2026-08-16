@@ -54,12 +54,12 @@ experimental:
 dns:
   enable: true
   cache-algorithm: arc
-  prefer-h3: false
+  prefer-h3: true
   use-hosts: true
   use-system-hosts: true
-  respect-rules: false
-  listen: 0.0.0.0:1053
-  ipv6: false
+  respect-rules: true
+  listen: 0.0.0.0:5591
+  ipv6: true
   default-nameserver:
     - tls://223.5.5.5
     - tls://8.8.8.8
@@ -179,7 +179,7 @@ dns:
     'www.openai.com': '114.114.114.114'
   direct-nameserver:
     - system
-  direct-nameserver-follow-policy: false
+  direct-nameserver-follow-policy: true
   fallback-filter:
     geoip: true
     geoip-code: ir
@@ -195,7 +195,7 @@ dns:
   #    - '+.google.com'
     #  - '+.facebook.com'
    #   - '+.youtube.com'
-    fallback-lazy-query: false
+    fallback-lazy-query: true
 tun:
   enable: true
   stack: mixed
