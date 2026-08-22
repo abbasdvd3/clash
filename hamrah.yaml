@@ -259,7 +259,7 @@ proxies:
 proxy-providers:
   A1:
     type: http
-    url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
+    url: "https://www.xrayvip.com/free.txt"
     path: ./hamrah/ssr.yaml
     exclude-type: Direct|Reject|Dns|Trojan
     interval: 3600
@@ -304,24 +304,8 @@ proxy-providers:
       skip-cert-verify: true
       name-cert-verify: example.com 
       udp: true
-      
-  provider4:
-    type: "http"
-    url: "https://raw.githubusercontent.com/du5/free/master/file/0909/Clash.yaml"  #https://obeapi.s3.ap-east-1.amazonaws.com/vpn/sub-clash.yaml
-    path: ./hamrah/amazonaws.yaml
-    exclude-type: Direct|Reject|Dns|Trojan
-    interval: 3600
-    health-check:
-      enable: true
-      interval: 600
-      lazy: true
-      url: http://www.gstatic.com/generate_204
-    override: 
-      skip-cert-verify: true
-      name-cert-verify: example.com 
-      udp: true
 
-  provider5:
+  provider4:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/C2"
     path: ./hamrah/C2.yaml
@@ -337,29 +321,12 @@ proxy-providers:
       name-cert-verify: example.com 
       udp: true
       
-  provider6:
+  provider5:
     type: "http"
     url: "https://raw.githubusercontent.com/Au1rxx/free-vpn-subscriptions/refs/heads/main/output/country/US/clash-0001.yaml"
-    path: ./hamrah/6.yaml
+    path: ./hamrah/5.yaml
     exclude-type: Direct|Reject|Dns|Trojan
     interval: 3600
-    health-check:
-      enable: true
-      interval: 600
-      lazy: true
-      url: http://www.gstatic.com/generate_204
-    override: 
-      skip-cert-verify: true
-      name-cert-verify: example.com 
-      udp: true
-      
-  provider7:
-    type: http
-    url: "https://check.banyunxiaoxi.icu/sub/sub-base64.txt"
-    path: ./hamrah/7.yaml
-    exclude-type: Direct|Reject|Dns|Trojan
-    interval: 3600
-    proxies: DIRECT
     health-check:
       enable: true
       interval: 600
@@ -370,43 +337,10 @@ proxy-providers:
       name-cert-verify: example.com 
       udp: true
 
-  provider8:
-    type: http
-    url: "https://anaer.github.io/Sub/proxies.yaml"
-    path: ./hamrah/8.yaml
-    exclude-type: Direct|Reject|Dns|Trojan
-    interval: 3600
-    proxies: DIRECT
-    health-check:
-      enable: true
-      interval: 600
-      lazy: true
-      url: http://www.gstatic.com/generate_204
-    override: 
-      skip-cert-verify: true
-      name-cert-verify: example.com 
-      udp: true
-
-  provider9:
-    type: http
-    url: "https://proxypool.link/clash/proxies"
-    path: ./hamrah/9.yaml
-    exclude-type: Direct|Reject|Dns|Trojan
-    interval: 3600
-    proxies: DIRECT
-    health-check:
-      enable: true
-      interval: 600
-      lazy: true
-      url: http://www.gstatic.com/generate_204
-    override: 
-      skip-cert-verify: true
-      name-cert-verify: example.com 
-      udp: true     
 proxy-groups:
   - name: PROXY
     type: select
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Proxy.png
     exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay
     include-all: true
     default-selected: 🟢Auto🟢
@@ -423,60 +357,59 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
-    hidden: true
+    hidden: false
     include-all: true
     lazy: false
     exclude: ir|🇮🇷
     exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Auto.png
     
   - name: 🟡fallback🟡
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 180
-    tolerance: 50
-    hidden: true
+    hidden: false
     include-all: true
     lazy: false
     exclude: ir|🇮🇷
     exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan
-    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Round_Robin_1.png
     
   - name: 🔴load-balance🔴
     type: load-balance
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
-    hidden: true
+    hidden: false
     include-all: true
     exclude: ir|🇮🇷
     lazy: false
     exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan
-    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Round_Robin.png
     
   - name: 🟢http+url-test🟢
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
-    hidden: true
+    hidden: false
     include-all: true
     filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
     lazy: false
     exclude: ir|🇮🇷
     exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Sudoku|shadosocks|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|vless|vmess|hysteria2|hysteria|shadosocks|shadosocksR
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/United_States.png
 
   - name: 🟢http+fallback🟢
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
-    hidden: true
+    hidden: false
     include-all: true
     lazy: false
     exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|shadosocks|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|vless|vmess|hysteria2|hysteria|shadosocks|shadosocksR
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png 
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Global.png
     
   - name: rematch social
     type: load-balance
@@ -485,7 +418,7 @@ proxy-groups:
     tolerance: 50
     hidden: true
     lazy: false
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/AI.png
     exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay
     default-selected: 🟢Auto🟢
     proxies:
@@ -499,7 +432,7 @@ proxy-groups:
     type: select
     disable-udp: true
     lazy: false
-    icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Proxy.png
     proxies:
       - "Iran"
       - "PROXY"
