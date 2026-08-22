@@ -261,7 +261,8 @@ proxy-providers:
     type: http
     url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
     path: ./hamrah/ssr.yaml
-    interval: 300
+    exclude-type: Direct|Reject|Dns|Trojan
+    interval: 3600
     health-check:
       enable: true
       interval: 600
@@ -275,8 +276,9 @@ proxy-providers:
   provider2:
     type: "http"
     url: "https://raw.githubusercontent.com/roosterkid/openproxylist/refs/heads/main/V2RAY_BASE64.txt"
-    interval: "3600"
     path: ./hamrah/2.yaml
+    exclude-type: Direct|Reject|Dns|Trojan
+    interval: 3600
     health-check:
       enable: true
       interval: 600
@@ -290,8 +292,9 @@ proxy-providers:
   provider3:
     type: "http"
     url: "https://d23lye95wfkvbk.cloudfront.net/android.yaml"
-    interval: "3600"
     path: ./hamrah/freenodes.yaml
+    exclude-type: Direct|Reject|Dns|Trojan
+    interval: 3600
     health-check:
       enable: true
       interval: 600
@@ -305,8 +308,9 @@ proxy-providers:
   provider4:
     type: "http"
     url: "https://raw.githubusercontent.com/du5/free/master/file/0909/Clash.yaml"  #https://obeapi.s3.ap-east-1.amazonaws.com/vpn/sub-clash.yaml
-    interval: "3600"
     path: ./hamrah/amazonaws.yaml
+    exclude-type: Direct|Reject|Dns|Trojan
+    interval: 3600
     health-check:
       enable: true
       interval: 600
@@ -320,8 +324,9 @@ proxy-providers:
   provider5:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/C2"
-    interval: "3600"
     path: ./hamrah/C2.yaml
+    exclude-type: Direct|Reject|Dns|Trojan
+    interval: 3600
     health-check:
       enable: true
       interval: 600
@@ -335,8 +340,9 @@ proxy-providers:
   provider6:
     type: "http"
     url: "https://raw.githubusercontent.com/Au1rxx/free-vpn-subscriptions/refs/heads/main/output/country/US/clash-0001.yaml"
-    interval: "3600"
     path: ./hamrah/6.yaml
+    exclude-type: Direct|Reject|Dns|Trojan
+    interval: 3600
     health-check:
       enable: true
       interval: 600
@@ -351,6 +357,8 @@ proxy-providers:
     type: http
     url: "https://check.banyunxiaoxi.icu/sub/sub-base64.txt"
     path: ./hamrah/7.yaml
+    exclude-type: Direct|Reject|Dns|Trojan
+    interval: 3600
     proxies: DIRECT
     health-check:
       enable: true
@@ -366,6 +374,8 @@ proxy-providers:
     type: http
     url: "https://anaer.github.io/Sub/proxies.yaml"
     path: ./hamrah/8.yaml
+    exclude-type: Direct|Reject|Dns|Trojan
+    interval: 3600
     proxies: DIRECT
     health-check:
       enable: true
@@ -381,6 +391,8 @@ proxy-providers:
     type: http
     url: "https://proxypool.link/clash/proxies"
     path: ./hamrah/9.yaml
+    exclude-type: Direct|Reject|Dns|Trojan
+    interval: 3600
     proxies: DIRECT
     health-check:
       enable: true
@@ -415,7 +427,7 @@ proxy-groups:
     include-all: true
     lazy: false
     exclude: ir|🇮🇷
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan
+    exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     
   - name: 🟡fallback🟡
@@ -427,7 +439,7 @@ proxy-groups:
     include-all: true
     lazy: false
     exclude: ir|🇮🇷
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan
+    exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🔴load-balance🔴
@@ -437,9 +449,9 @@ proxy-groups:
     tolerance: 50
     hidden: true
     include-all: true
-    exclude: ir|🇩🇪|Uk|de|港|🇭🇰|HK|Hong|HKG|坡|🇸🇬|SG|Sing|SIN|XSP|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK|韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South|台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|🇷🇴|RO|🇮🇷
+    exclude: ir|🇮🇷
     lazy: false
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan
+    exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🟢http+url-test🟢
@@ -452,7 +464,7 @@ proxy-groups:
     filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
     lazy: false
     exclude: ir|🇮🇷
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Sudoku|shadosocks|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|vless|vmess|hysteria2|hysteria|shadosocks|shadosocksR
+    exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Sudoku|shadosocks|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|vless|vmess|hysteria2|hysteria|shadosocks|shadosocksR
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
   - name: 🟢http+fallback🟢
@@ -463,20 +475,18 @@ proxy-groups:
     hidden: true
     include-all: true
     lazy: false
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|shadosocks|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|vless|vmess|hysteria2|hysteria|shadosocks|shadosocksR
+    exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|shadosocks|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|vless|vmess|hysteria2|hysteria|shadosocks|shadosocksR
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png 
     
   - name: rematch social
-    type: url-test
+    type: load-balance
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
     hidden: true
-#    include-all: true
-    filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
     lazy: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay
+    exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay
     default-selected: 🟢Auto🟢
     proxies:
       - "🟡fallback🟡"
