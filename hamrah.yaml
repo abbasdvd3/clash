@@ -175,13 +175,13 @@ dns:
     - https://unfiltered.joindns4.eu/dns-query
   proxy-server-nameserver-policy:
     'www.yournode.com': '114.114.114.114'
-    'www.createporn.com': '114.114.114.114'
+    'www.createporn.com': '8.8.8.8'
     'www.openai.com': '114.114.114.114'
   direct-nameserver:
     - system
-  direct-nameserver-follow-policy: true
+  direct-nameserver-follow-policy: false
   fallback-filter:
-    geoip: true
+    geoip: false
     geoip-code: ir
     geosite:
       - social
@@ -309,22 +309,6 @@ proxy-providers:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/C2"
     path: ./hamrah/C2.yaml
-    exclude-type: Direct|Reject|Dns|Trojan
-    interval: 3600
-    health-check:
-      enable: true
-      interval: 600
-      lazy: true
-      url: http://www.gstatic.com/generate_204
-    override: 
-      skip-cert-verify: true
-      name-cert-verify: example.com 
-      udp: true
-      
-  provider5:
-    type: "http"
-    url: "https://raw.githubusercontent.com/Au1rxx/free-vpn-subscriptions/refs/heads/main/output/country/US/clash-0001.yaml"
-    path: ./hamrah/5.yaml
     exclude-type: Direct|Reject|Dns|Trojan
     interval: 3600
     health-check:
