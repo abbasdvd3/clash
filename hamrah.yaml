@@ -290,8 +290,6 @@ proxy-providers:
       name-cert-verify: example.com 
       udp: true
 
-  
-
 proxy-groups:
   - name: PROXY
     type: select
@@ -472,7 +470,6 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
     path: ./ruleset/irasn.yaml
     interval: 86400
-
   openai:
     type: http
     format: yaml
@@ -487,23 +484,24 @@ rules:
   - DOMAIN-SUFFIX,cloudflaremirrors.com,PROXY
   - REMATCH-NAME,rematch,rematch
   - DOMAIN-SUFFIX,createporn.com,PROXY
-  - DOMAIN-SUFFIX,acl4.ssr,🎯 Direct
-  - DOMAIN-SUFFIX,ip6-localhost,🎯 Direct
-  - DOMAIN-SUFFIX,ip6-loopback,🎯 Direct
-  - DOMAIN-SUFFIX,lan,🎯 Direct
-  - DOMAIN-SUFFIX,local,🎯 Direct
-  - DOMAIN-SUFFIX,localhost,🎯 Direct
-  - IP-CIDR,10.0.0.0/8,🎯 Direct,no-resolve
-  - IP-CIDR,100.64.0.0/10,🎯 Direct,no-resolve
-  - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
-  - IP-CIDR,172.16.0.0/12,🎯 Direct,no-resolve
-  - IP-CIDR,192.168.0.0/16,🎯 Direct,no-resolve
-  - IP-CIDR,198.18.0.0/16,🎯 Direct,no-resolve
-  - IP-CIDR,224.0.0.0/4,🎯 Direct,no-resolve
-  - IP-CIDR6,::1/128,🎯 Direct,no-resolve
-  - IP-CIDR6,fc00::/7,🎯 Direct,no-resolve
-  - IP-CIDR6,fe80::/10,🎯 Direct,no-resolve
-  - IP-CIDR6,fd00::/8,🎯 Direct,no-resolve
+  - DOMAIN-SUFFIX,acl4.ssr,DIRECT
+  - DOMAIN-SUFFIX,ip6-localhost,DIRECT
+  - DOMAIN-SUFFIX,ip6-loopback,DIRECT
+  - DOMAIN-SUFFIX,lan,DIRECT
+  - DOMAIN-SUFFIX,local,DIRECT
+  - DOMAIN-SUFFIX,localhost,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,22.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,198.18.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
+  - IP-CIDR6,fc00::/7,DIRECT,no-resolve
+  - IP-CIDR6,fe80::/10,DIRECT,no-resolve
+  - IP-CIDR6,fd00::/8,DIRECT,no-resolve
   - DOMAIN,instant.arubanetworks.com,🎯 Direct
   - DOMAIN,setmeup.arubanetworks.com,🎯 Direct
   - DOMAIN,router.asus.com,🎯 Direct
@@ -521,7 +519,7 @@ rules:
   - DOMAIN-SUFFIX,translate.googleapis.com,🎯 Direct
   - DOMAIN-SUFFIX,265.com,🎯 Direct
   - DOMAIN-SUFFIX,2mdn.net,🎯 Direct
-  - DOMAIN-SUFFIX,www.gstatic.com,🎯 Direct
+  - DOMAIN-SUFFIX,www.gstatic.com,DIRECT
   - PROCESS-NAME,Telegram.exe,PROXY
   - PROCESS-NAME,org.telegram.messenger,PROXY
   - DOMAIN-SUFFIX,t.me,PROXY
@@ -954,9 +952,9 @@ rules:
   - DOMAIN-SUFFIX,ocnttv.com,PROXY
   - DOMAIN-SUFFIX,vikacg.com,PROXY
   - DOMAIN-SUFFIX,picjs.xyz,PROXY
-  - RULE-SET,openai,rematch social
-  - RULE-SET,social,rematch social
-  - RULE-SET,nsfw,rematch social
+  - RULE-SET,openai,PROXY
+  - RULE-SET,social,PROXY
+  - RULE-SET,nsfw,PROXY
   - RULE-SET,private,DIRECT,no-resolve
   - RULE-SET,apps,dns-out
   - RULE-SET,ads,REJECT
@@ -964,41 +962,41 @@ rules:
   - RULE-SET,phishing,REJECT
   - RULE-SET,cryptominers,REJECT
   - RULE-SET,ir,dns-out
-  - RULE-SET,ircidr,🎯 Direct
-  - RULE-SET,irasn,🎯 Direct
+  - RULE-SET,ircidr,DIRECT
+  - RULE-SET,irasn,DIRECT
   - DOMAIN-SUFFIX,createporn.com,PROXY
   - DOMAIN-KEYWORD,createporn,PROXY
   - DOMAIN,createporn,PROXY
   - PROCESS-NAME,psiphon-tunnel-core.exe,PROXY
-  - DOMAIN-KEYWORD,soft98.ir,🎯 Direct
-  - DOMAIN,soft98,🎯 Direct
-  - DOMAIN,my.irancell.ir,🎯 Direct
-  - DOMAIN-KEYWORD,my.irancell.ir,🎯 Direct
-  - DOMAIN-SUFFIX,my.irancell.ir,🎯 Direct
-  - DOMAIN,irancell.ir,🎯 Direct
-  - DOMAIN-KEYWORD,irancell.ir,🎯 Direct
-  - DOMAIN-SUFFIX,irancell.ir,🎯 Direct
-  - DOMAIN,my.mci.ir,🎯 Direct
-  - DOMAIN-KEYWORD,my.mci.ir,🎯 Direct
-  - DOMAIN-SUFFIX,my.mci.ir,🎯 Direct
-  - DOMAIN,mci.ir,🎯 Direct
-  - DOMAIN-KEYWORD,mci.ir,🎯 Direct
-  - DOMAIN-SUFFIX,mci.ir,🎯 Direct 
-  - DOMAIN-SUFFIX,soft98.ir,🎯 Direct
-  - DOMAIN-KEYWORD,dl2soft98.82.ir,🎯 Direct
-  - DOMAIN,dl2soft98.82,🎯 Direct
-  - DOMAIN-SUFFIX,dl2soft98.82.ir,🎯 Direct
-  - DOMAIN-SUFFIX,farsroid,🎯 Direct
-  - DOMAIN-KEYWORD,farsroid.com,🎯 Direct
-  - DOMAIN,farsroid.com,🎯 Direct
+  - DOMAIN-KEYWORD,soft98.ir,DIRECT
+  - DOMAIN,soft98,DIRECT
+  - DOMAIN,my.irancell.ir,DIRECT
+  - DOMAIN-KEYWORD,my.irancell.ir,DIRECT
+  - DOMAIN-SUFFIX,my.irancell.ir,DIRECT
+  - DOMAIN,irancell.ir,DIRECT
+  - DOMAIN-KEYWORD,irancell.ir,DIRECT
+  - DOMAIN-SUFFIX,irancell.ir,DIRECT
+  - DOMAIN,my.mci.ir,DIRECT
+  - DOMAIN-KEYWORD,my.mci.ir,DIRECT
+  - DOMAIN-SUFFIX,my.mci.ir,DIRECT
+  - DOMAIN,mci.ir,DIRECT
+  - DOMAIN-KEYWORD,mci.ir,DIRECT
+  - DOMAIN-SUFFIX,mci.ir,DIRECT
+  - DOMAIN-SUFFIX,soft98.ir,DIRECT
+  - DOMAIN-KEYWORD,dl2soft98.82.ir,DIRECT
+  - DOMAIN,dl2soft98.82,DIRECT
+  - DOMAIN-SUFFIX,dl2soft98.82.ir,DIRECT
+  - DOMAIN-SUFFIX,farsroid,DIRECT
+  - DOMAIN-KEYWORD,farsroid.com,DIRECT
+  - DOMAIN,farsroid.com,DIRECT
   - DOMAIN-SUFFIX,cn,PROXY
   - DOMAIN-KEYWORD,-cn,PROXY
-  - DOMAIN-SUFFIX,ir,🎯 Direct,no-resolve
-  - DOMAIN-KEYWORD,ir,🎯 Direct,no-resolve
-  - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
-  - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
-  - IP-CIDR,172.16.0.0/12,🎯 Direct
-  - IP-CIDR,192.168.0.0/16,🎯 Direct
+  - DOMAIN-SUFFIX,ir,DIRECT,no-resolve
+  - DOMAIN-KEYWORD,ir,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,local,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
   - DOMAIN-SUFFIX,github.com,PROXY
   - DOMAIN-SUFFIX,github.io,PROXY
   - DOMAIN-SUFFIX,githubapp.com,PROXY
@@ -1012,8 +1010,8 @@ rules:
   - DOMAIN-SUFFIX,githubassets.com,PROXY
   - DOMAIN-SUFFIX,githubusercontent.com,PROXY
   - DOMAIN-KEYWORD,github,PROXY
-  - DOMAIN-SUFFIX,local,🎯 Direct,no-resolve
+  - DOMAIN-SUFFIX,local,DIRECT,no-resolve
   - PROCESS-NAME,psiphon-tunnel-core,PROXY
-  - DOMAIN-SUFFIX,chabokan.net,🎯 Direct
-  - GEOIP,ir,🎯 Direct
+  - DOMAIN-SUFFIX,chabokan.net,DIRECT
+  - GEOIP,ir,DIRECT
   - MATCH,PROXY
