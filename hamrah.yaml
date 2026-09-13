@@ -195,7 +195,22 @@ proxy-providers:
       skip-cert-verify: true
       name-cert-verify: example.com 
       udp: true
-
+  provider3:
+    type: "http"
+    url: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/socks5"
+    path: ./hamrah/3.yaml
+    exclude-type: Direct|Reject|Dns|Trojan
+    exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro
+    interval: 3600
+    health-check:
+      enable: true
+      interval: 600
+      lazy: true
+      url: http://www.gstatic.com/generate_204
+    override: 
+      skip-cert-verify: true
+      name-cert-verify: example.com 
+      udp: true
 proxy-groups:
   - name: PROXY
     type: select
@@ -253,8 +268,9 @@ proxy-groups:
     tolerance: 50
     hidden: false
     include-all: true
-    filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
-    lazy: false
+#    filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
+    use: 
+    - "provider3"
     exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro
     exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/United_States.png
@@ -262,14 +278,15 @@ proxy-groups:
   - name: back+🇺🇸
     type: fallback
     url: http://www.gstatic.com/generate_204
-    filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
+#    filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
     interval: 100
     tolerance: 500
     hidden: false
     include-all: true
     exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro
-    lazy: false
-    exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh
+    use: 
+    - "provider3"
+    exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Global.png
     
   - name: rematch social
