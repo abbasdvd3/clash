@@ -264,8 +264,8 @@ proxy-groups:
   - name: url-🇺🇸
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    interval: 500
+    tolerance: 500
     hidden: false
     include-all: true
     filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
@@ -278,14 +278,14 @@ proxy-groups:
   - name: back+🇺🇸
     type: fallback
     url: http://www.gstatic.com/generate_204
-#    filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
-    interval: 100
+    filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
+    interval: 500
     tolerance: 500
     hidden: false
     include-all: true
     exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro
-    use: 
-    - "provider3"
+  #  use: 
+#   - "provider3"
     exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Global.png
     
