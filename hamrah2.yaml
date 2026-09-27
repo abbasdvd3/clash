@@ -4,118 +4,48 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png
   #  include-all-providers: true
     exclude-type: Reject|Pass|Compatible|RejectDrop|Dns|Trojan
-    filter: "(?i)(美国|\\bUS\\b|🇺🇸|United\\s*States)"
+    filter: "(?i)(英国|\\bUK\\b|🇬🇧|HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国|United\\s*Kingdom)"
     proxies:
       - 🟢Auto🟢
       - 🟡fallback🟡
       - 🔴load-balance🔴
-      - 🟢http🟢
-      - 🟢socks5🟢
-      - 🟢Shadowsocks🟢
-      - 🟢ShadowsocksR🟢
-      - 🟢Vmess🟢
-      - 🟢Vless🟢
-      - 🟢Hysteria|Hysteria2🟢
       - 🟢US Node🟢
-      
+
   - name: 🟢Auto🟢
     type: url-test
-    hidden: true
-    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|United\\s*Kingdom)"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
+    hidden: false
+    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国|United\\s*Kingdom)"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Shadowsocks, ShadowsocksR, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     include-all-providers: true
-    url: "http://www.gstatic.com/generate_204"
+    url: "https://www.gstatic.com/generate_204"
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
     
   - name: 🟡fallback🟡
     type: fallback
     hidden: true
-    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|United\\s*Kingdom)"
+    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国|United\\s*Kingdom)"
     include-all-providers: true
-    url: "http://www.gstatic.com/generate_204"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
+    url: "https://www.gstatic.com/generate_204"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Shadowsocks, ShadowsocksR, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
   - name: 🔴load-balance🔴
     type: load-balance
     hidden: true
-    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|United\\s*Kingdom)"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
+    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国|United\\s*Kingdom)"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Shadowsocks, ShadowsocksR, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     include-all-providers: true
-    url: "http://www.gstatic.com/generate_204"
+    url: "https://www.gstatic.com/generate_204"
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
-    
-  - name: 🟢socks5🟢
-    type: url-test
-    hidden: true
-    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|United\\s*Kingdom)"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|http
-    include-all-providers: true
-    url: "http://www.gstatic.com/generate_204"
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
-
-  - name: 🟢http🟢
-    type: url-test
-    hidden: true
-    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|United\\s*Kingdom)"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|Vmess|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
-    include-all-providers: true
-    url: "http://www.gstatic.com/generate_204"
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png    
-    
-  - name: 🟢Vmess🟢
-    type: url-test
-    hidden: true
-    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|United\\s*Kingdom)"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
-    include-all-providers: true
-    url: "http://www.gstatic.com/generate_204"
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
-    
-  - name: 🟢Vless🟢
-    type: url-test
-    hidden: true
-    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|United\\s*Kingdom)"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vmess|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
-    include-all-providers: true
-    url: "http://www.gstatic.com/generate_204"
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png  
-    
-  - name: 🟢Hysteria|Hysteria2🟢
-    type: url-test
-    hidden: true
-    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|United\\s*Kingdom)"
-    url: "http://www.gstatic.com/generate_204"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|ShadowsocksR|Snell|http|Vless|Trojan|Vmess|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
-    include-all-providers: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png  
-    
-  - name: 🟢Shadowsocks🟢
-    type: url-test
-    hidden: true
-    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|United\\s*Kingdom)"
-    url: "http://www.gstatic.com/generate_204"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Vmess|ShadowsocksR|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
-    include-all-providers: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png      
-    
-  - name: 🟢ShadowsocksR🟢
-    type: url-test
-    hidden: true
-    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|United\\s*Kingdom)"
-    url: "http://www.gstatic.com/generate_204"
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Shadowsocks|Vmess|Snell|http|Vless|Trojan|Hysteria|Hysteria2|WireGuard|Mieru|AnyTLS|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|socks5
-    include-all-providers: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     
   - name: 🟢US Node🟢
     type: url-test
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
     include-all: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan
-    filter: "(?i)(美国|\\bUS\\b|🇺🇸|United\\s*States)"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Shadowsocks, ShadowsocksR, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
+    filter: "(?i)(英国|\\bUK\\b|🇬🇧|HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国|United\\s*Kingdom)"
     exclude-filter: "(?i)(官网|公告|通知|维护|订阅|防失联|TG|telegram|频道|群|讨论组|t\\.me/|流量|剩余|到期|重置|下次|距离|套餐|定期|下方|地址|更新|URL@|vpn|👇|👆|👉|✈|📢|\\s{4,})"
-    url: "http://www.gstatic.com/generate_204"
+    url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 80
     lazy: true
@@ -215,7 +145,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/bingoYB/node_processing/main/dist/all.yaml
     path: ./hamrah2/proxies/A1.yaml
     interval: 
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -225,7 +155,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml
     path: ./hamrah2/proxies/A2.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -235,7 +165,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-2.yaml
     path: ./hamrah2/proxies/A3.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -245,7 +175,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/Misaka-blog/chromego_merge/main/sub/merged_proxies_new.yaml
     path: ./hamrah2/proxies/A4.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -255,7 +185,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/clash-meta/all.yaml
     path: ./hamrah2/proxies/A5.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -265,7 +195,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/misersun/config003/main/config_all_quest.yaml
     path: ./hamrah2/proxies/A6.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -275,7 +205,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/lagzian/SS-Collector/main/mix_clash.yaml
     path: ./hamrah2/proxies/A7.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -285,7 +215,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/x
     path: ./hamrah2/proxies/A8.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -295,7 +225,7 @@ proxy-providers:
     url: https://anaer.github.io/Sub/proxies.yaml
     path: ./hamrah2/proxies/A9.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -306,7 +236,7 @@ proxy-providers:
     path: ./hamrah2/proxies/A10.yaml
     interval: 86400
     proxies: DIRECT
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     override:
       additional-prefix: smux
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
@@ -315,7 +245,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml
     path: ./hamrah2/proxies/A11.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -325,7 +255,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/YasserDivaR/pr0xy/main/winformClash.yaml
     path: ./hamrah2/proxies/A12.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -335,7 +265,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml
     path: ./hamrah2/proxies/A13.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -345,7 +275,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/ts-sf/fly/main/clash
     path: ./hamrah2/proxies/A14.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -355,7 +285,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/du5/free/master/file/0909/Clash.yaml
     path: ./hamrah2/proxies/A15.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -365,7 +295,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml
     path: ./hamrah2/proxies/A16.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -375,7 +305,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml
     path: ./hamrah2/proxies/A17.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -385,7 +315,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/tony0392/clash/main/clash.yaml
     path: ./hamrah2/proxies/A18.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -395,7 +325,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/vless/i
     path: ./hamrah2/proxies/A19.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -405,7 +335,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/Junely/clash/main/template3.yaml
     path: ./hamrah2/proxies/A20.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
@@ -415,7 +345,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/kevin-wud/v2ray-node/main/clash.yaml
     path: ./hamrah2/proxies/A21.yaml
     interval: 86400
-    health-check: {enable: true,url: "http://cp.cloudflare.com",interval: 300}
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
     override:
       additional-prefix: smux
