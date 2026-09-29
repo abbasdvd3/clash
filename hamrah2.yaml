@@ -2,9 +2,9 @@ proxy-groups:
   - name: PROXY
     type: select
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png
-  #  include-all-providers: true
+    include-all: true
     exclude-type: Reject|Pass|Compatible|RejectDrop|Dns|Trojan
-    filter: "(?i)(英国|\\bUK\\b|🇬🇧|HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国|United\\s*Kingdom)"
+    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国|United\\s*Kingdom)"
     proxies:
       - 🟢Auto🟢
       - 🟡fallback🟡
@@ -16,7 +16,7 @@ proxy-groups:
     hidden: false
     exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国|United\\s*Kingdom)"
     exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Shadowsocks, ShadowsocksR, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
-    include-all-providers: true
+    include-all: true
     url: "https://www.gstatic.com/generate_204"
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
     
@@ -24,7 +24,7 @@ proxy-groups:
     type: fallback
     hidden: true
     exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国|United\\s*Kingdom)"
-    include-all-providers: true
+    include-all: true
     url: "https://www.gstatic.com/generate_204"
     exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Shadowsocks, ShadowsocksR, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
@@ -34,7 +34,7 @@ proxy-groups:
     hidden: true
     exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|HongKong|HK|香港|Singapore|SG|新加坡Taiwan|TW|台湾|Germany|Deutsch|DE|德国|United\\s*Kingdom)"
     exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Shadowsocks, ShadowsocksR, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
-    include-all-providers: true
+    include-all: true
     url: "https://www.gstatic.com/generate_204"
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
     
@@ -48,7 +48,7 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 80
-    lazy: true
+    lazy: false
     
   - name: 🎯 Direct
     type: select
