@@ -85,8 +85,6 @@ find-process-mode: always
 external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 unified-delay: false
 tcp-concurrent: true
-global-client-fingerprint: random
-geodata-mode: true
 geo-auto-update: true
 geo-update-interval: 24
 geox-url:
@@ -159,30 +157,6 @@ dns:
     - 'localhost.ptlogin2.qq.com'
     - '*.msftncsi.com'
     - '*.msftconnecttest.com'
-  nameserver-policy:
-    #   'www.baidu.com': '114.114.114.114'
-    #   '+.internal.crop.com': '10.0.0.1'
-#    "geosite:category-games@cn,category-companies@cn":
-#    "geosite:ir":
-#      - tls://dns.tuna.tsinghua.edu.cn:8853
- #     - https://dns.tuna.tsinghua.edu.cn:8443/dns-query
-#      - tls://dns.alidns.com:853
- #     - https://dns.alidns.com/dns-query
- #     - tls://dns.pub:853
-#      - https://dns.pub/dns-query
- #     - tls://dns.ipv6dns.com:853
- #     - https://dns.ipv6dns.com/dns-query
-#    "www.baidu.com,+.google.cn": [223.5.5.5, https://dns.alidns.com/dns-query]
-    # "rule-set:global,dns": 8.8.8.8
-#    "+.playbattlegrounds.com": "https://doh.pub/dns-query"
-#    "+.battleye.com": "https://doh.pub/dns-query"
-#    "+.pubgbluehole.com": "https://doh.pub/dns-query"
-#    "+.pubg.com": "https://doh.pub/dns-query"
-#    "+.vivox.com": "https://doh.pub/dns-query"
-#    "+.akamaihd.net": "https://doh.pub/dns-query"
-#    "+.steampowered.com": "https://doh.pub/dns-query"
-#    "+.steamserver.net": "https://doh.pub/dns-query"
-#    "+.qq.com": "https://doh.pub/dns-query"
   default-nameserver:
     - tls://101.6.6.6:8853
     - tcp://101.6.6.6:8443/dns-query
@@ -496,11 +470,11 @@ dns:
     - https://193.19.108.2/dns-query
     - https://doh.opendns.com/dns-query
   fallback-filter:
-    geoip: true
+    geoip: false
     geoip-code: ir
     geosite:                         
-      - social
-      - nsfw
+   #   - social
+   #   - nsfw
     ipcidr:
      - 0.0.0.0/8
      - 10.0.0.0/8
