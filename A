@@ -91,15 +91,13 @@ dns:
     - quic://dns.adguard.com:784
   proxy-server-nameserver:
     - https://dns.adguard.com/dns-query
-    - https://doh.cleanbrowsing.org/doh/family-filter/
   direct-nameserver:
     - dhcp://system
   proxy-server-nameserver:
     - https://doh.pub/dns-query
-  proxy-server-nameserver-policy:
-    'www.createporn.com': '114.114.114.114'
-    'https://api.openai.com/v1': '8.8.8.8'
-    'https://api.anthropic.com/': '8.8.8.8'
+  fallback:
+    - https://8.8.8.8/dns-query
+    - quic://dns.adguard.com:784
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-range6: fc00::/18
@@ -116,9 +114,7 @@ dns:
     - "*.msftconnecttest.com"
     - "*.msftncsi.com"
   prefer-h3: false
-  fallback:
-    - https://8.8.8.8/dns-query
-    - quic://dns.adguard.com:784
+
 proxy-groups:
   - name: PROXY
     type: select
