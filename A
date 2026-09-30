@@ -74,29 +74,24 @@ tun:
   - 192.168.0.0/16
   inet6-route-exclude-address:
   - fc00::/7
+    
 dns:
   enable: true
-  cache-algorithm: arc
-  prefer-h3: false
-  use-hosts: true
+  ipv6: true
+  use-hosts: false
   use-system-hosts: true
-  respect-rules: false
-  listen: 0.0.0.0:1053
-  ipv6: false
   default-nameserver:
-    - 8.8.8.8
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  # fake-ip-range6: fdfe:dcba:9876::1/64
-  fake-ip-filter-mode: blacklist
-  fake-ip-filter:
-    - '*.lan'
+    - 94.140.15.15
+    - 185.228.168.9
+    - 8.8.4.4
   nameserver:
+    - 94.140.14.14
+    - 185.228.169.9
     - https://doh.pub/dns-query
     - quic://dns.adguard.com:784
-  fallback:
-    - https://8.8.8.8/dns-query
-    - quic://dns.adguard.com:784
+  proxy-server-nameserver:
+    - https://dns.adguard.com/dns-query
+    - https://doh.cleanbrowsing.org/doh/family-filter/
   direct-nameserver:
     - dhcp://system
   proxy-server-nameserver:
@@ -105,12 +100,25 @@ dns:
     'www.createporn.com': '114.114.114.114'
     'https://api.openai.com/v1': '8.8.8.8'
     'https://api.anthropic.com/': '8.8.8.8'
-  nameserver-policy:
-    "geosite:ir,private":
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-
-
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-range6: fc00::/18
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
+  prefer-h3: false
+  fallback:
+    - https://8.8.8.8/dns-query
+    - quic://dns.adguard.com:784
 proxy-groups:
   - name: PROXY
     type: select
