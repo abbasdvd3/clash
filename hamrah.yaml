@@ -142,7 +142,16 @@ proxy-providers:
     override:
       additional-prefix: smux
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
-
+  provider2:
+    type: http
+    url: https://raw.githubusercontent.com/mahdibland/V2RayAggregator/refs/heads/master/Eternity.yml
+    path: hamrah/proxies/provider2.yaml
+    interval: 
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+    proxies: DIRECT
+    override:
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
 proxies:
 - name: Iran
   type: direct
