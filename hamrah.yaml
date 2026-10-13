@@ -152,6 +152,46 @@ proxy-providers:
     override:
       additional-prefix: smux
       smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+  provider3:
+    type: http
+    url: https://raw.githubusercontent.com/lagzian/SS-Collector/main/configs/us/ss.b64
+    path: hamrah/proxies/provider3.yaml
+    interval: 
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+    proxies: DIRECT
+    override:
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+  provider4:
+    type: http
+    url: https://raw.githubusercontent.com/lagzian/SS-Collector/main/configs/us/vless.b64
+    path: hamrah/proxies/provider4.yaml
+    interval: 
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+    proxies: DIRECT
+    override:
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+  provider5:
+    type: http
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/HTTP
+    path: hamrah/proxies/provider5.yaml
+    interval: 
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+    proxies: DIRECT
+    override:
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+  provider6:
+    type: http
+    url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/socks5
+    path: hamrah/proxies/provider6.yaml
+    interval: 
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+    proxies: DIRECT
+    override:
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}      
 proxies:
 - name: Iran
   type: direct
