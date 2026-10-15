@@ -132,6 +132,16 @@ tun:
   mtu: 9000
   strict-route: false
 proxy-providers:
+  provider:
+    type: http
+    url: https://raw.githubusercontent.com/proxifly/free-proxy-list/refs/heads/main/proxies/countries/US/data.txt
+    path: hamrah/proxies/provider.yaml
+    interval: 
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+    proxies: DIRECT
+    override:
+      additional-prefix: smux
+      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider1:
     type: http
     url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/C2
