@@ -61,12 +61,12 @@ dns:
   ipv6: true
   default-nameserver:
     - tls://223.5.5.5
-    - tls://8.8.8.8
+    - tls://9.9.9.9
     - tls://1.1.1.1
   enhanced-mode: fake-ip
   fake-ip-range: 22.0.0.0/8
   fake-ip-ttl: 1
-  # fake-ip-range6: fdfe:dcba:9876::1/64
+  fake-ip-range6: fdfe:dcba:9876::1/64
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - '*.lan'
@@ -78,13 +78,13 @@ dns:
     'www.createporn.com': 
     - tls://223.5.5.5
     - tls://dot.pub
-    - tls://8.8.4.4
+    - tls://9.9.9.9
     - tls://1.1.1.1
     'www.openai.com': 
     - https://doh.pub/dns-query
-    - 8.8.8.8
+    - 9.9.9.9
     - https://dns.alidns.com/dns-query
-  rule-set:nsfw,social: 8.8.8.8
+  rule-set:nsfw,social: 9.9.9.9
   geosite:category-ads-all: rcode://success
   nameserver:
     - 8.8.8.8
@@ -94,7 +94,7 @@ dns:
     - 104.21.83.62
     - 172.67.214.246
   fallback:
-    - tls://8.8.4.4
+    - tls://9.9.9.9
     - tls://1.1.1.1
   proxy-server-nameserver:
     - https://doh.pub/dns-query
@@ -102,7 +102,7 @@ dns:
     - https://unfiltered.joindns4.eu/dns-query
   proxy-server-nameserver-policy:
     'www.yournode.com': '114.114.114.114'
-    'www.createporn.com': '8.8.8.8'
+    'www.createporn.com': '9.9.9.9'
     'www.openai.com': '114.114.114.114'
   direct-nameserver:
     - system
@@ -116,7 +116,7 @@ dns:
       - 127.0.0.1/32
       - 100.64.0.0/10
     domain:
-      - '+.google.com'
+ #     - '+.google.com'
       - '+.gstatic.com'
    #   - '+.youtube.com'
     fallback-lazy-query: false
@@ -439,12 +439,12 @@ rules:
   - DOMAIN-SUFFIX,telegram.me,PROXY
   - DOMAIN-SUFFIX,telegram.org,PROXY
   - DOMAIN-SUFFIX,telesco.pe,PROXY
-  - IP-CIDR,91.108.0.0/16,PROXY,no-resolve
-  - IP-CIDR,109.239.140.0/24,PROXY,no-resolve
-  - IP-CIDR,149.154.160.0/20,PROXY,no-resolve
-  - IP-CIDR6,2001:67c:4e8::/48,PROXY,no-resolve
-  - IP-CIDR6,2001:b28:f23d::/48,PROXY,no-resolve
-  - IP-CIDR6,2001:b28:f23f::/48,PROXY,no-resolve
+  - IP-CIDR,91.108.0.0/16,PROXY
+  - IP-CIDR,109.239.140.0/24,PROXY
+  - IP-CIDR,149.154.160.0/20,PROXY
+  - IP-CIDR6,2001:67c:4e8::/48,PROXY
+  - IP-CIDR6,2001:b28:f23d::/48,PROXY
+  - IP-CIDR6,2001:b28:f23f::/48,PROXY
   - DOMAIN-SUFFIX,v2rayse.com,PROXY
   - DOMAIN-SUFFIX,cff.pw,PROXY
   - DOMAIN-SUFFIX,vpnse.org,PROXY
@@ -611,21 +611,21 @@ rules:
   - DOMAIN-SUFFIX,amazon.co.jp,PROXY
   - DOMAIN-SUFFIX,amazon.com,PROXY
   - DOMAIN-SUFFIX,amazonaws.com,PROXY
-  - IP-CIDR,13.32.0.0/15,PROXY,no-resolve
-  - IP-CIDR,13.35.0.0/17,PROXY,no-resolve
-  - IP-CIDR,18.184.0.0/15,PROXY,no-resolve
-  - IP-CIDR,18.194.0.0/15,PROXY,no-resolve
-  - IP-CIDR,18.208.0.0/13,PROXY,no-resolve
-  - IP-CIDR,18.232.0.0/14,PROXY,no-resolve
-  - IP-CIDR,52.58.0.0/15,PROXY,no-resolve
-  - IP-CIDR,52.74.0.0/16,PROXY,no-resolve
-  - IP-CIDR,52.77.0.0/16,PROXY,no-resolve
-  - IP-CIDR,52.84.0.0/15,PROXY,no-resolve
-  - IP-CIDR,52.200.0.0/13,PROXY,no-resolve
-  - IP-CIDR,54.93.0.0/16,PROXY,no-resolve
-  - IP-CIDR,54.156.0.0/14,PROXY,no-resolve
-  - IP-CIDR,54.226.0.0/15,PROXY,no-resolve
-  - IP-CIDR,54.230.156.0/22,PROXY,no-resolve
+  - IP-CIDR,13.32.0.0/15,PROXY
+  - IP-CIDR,13.35.0.0/17,PROXY
+  - IP-CIDR,18.184.0.0/15,PROXY
+  - IP-CIDR,18.194.0.0/15,PROXY
+  - IP-CIDR,18.208.0.0/13,PROXY
+  - IP-CIDR,18.232.0.0/14,PROXY
+  - IP-CIDR,52.58.0.0/15,PROXY
+  - IP-CIDR,52.74.0.0/16,PROXY
+  - IP-CIDR,52.77.0.0/16,PROXY
+  - IP-CIDR,52.84.0.0/15,PROXY
+  - IP-CIDR,52.200.0.0/13,PROXY
+  - IP-CIDR,54.93.0.0/16,PROXY
+  - IP-CIDR,54.156.0.0/14,PROXY
+  - IP-CIDR,54.226.0.0/15,PROXY
+  - IP-CIDR,54.230.156.0/22,PROXY
   - DOMAIN-KEYWORD,uk-live,PROXY
   - DOMAIN-SUFFIX,bbc.co,PROXY
   - DOMAIN-SUFFIX,bbc.com,PROXY
@@ -659,20 +659,20 @@ rules:
   - DOMAIN-SUFFIX,fb.me,PROXY
   - DOMAIN-SUFFIX,fbcdn.com,PROXY
   - DOMAIN-SUFFIX,fbcdn.net,PROXY
-  - IP-CIDR,31.13.24.0/21,PROXY,no-resolve
-  - IP-CIDR,31.13.64.0/18,PROXY,no-resolve
-  - IP-CIDR,45.64.40.0/22,PROXY,no-resolve
-  - IP-CIDR,66.220.144.0/20,PROXY,no-resolve
-  - IP-CIDR,69.63.176.0/20,PROXY,no-resolve
-  - IP-CIDR,69.171.224.0/19,PROXY,no-resolve
-  - IP-CIDR,74.119.76.0/22,PROXY,no-resolve
-  - IP-CIDR,103.4.96.0/22,PROXY,no-resolve
-  - IP-CIDR,129.134.0.0/17,PROXY,no-resolve
-  - IP-CIDR,157.240.0.0/17,PROXY,no-resolve
-  - IP-CIDR,173.252.64.0/18,PROXY,no-resolve
-  - IP-CIDR,179.60.192.0/22,PROXY,no-resolve
-  - IP-CIDR,185.60.216.0/22,PROXY,no-resolve
-  - IP-CIDR,204.15.20.0/22,PROXY,no-resolve
+  - IP-CIDR,31.13.24.0/21,PROXY
+  - IP-CIDR,31.13.64.0/18,PROXY
+  - IP-CIDR,45.64.40.0/22,PROXY
+  - IP-CIDR,66.220.144.0/20,PROXY
+  - IP-CIDR,69.63.176.0/20,PROXY
+  - IP-CIDR,69.171.224.0/19,PROXY
+  - IP-CIDR,74.119.76.0/22,PROXY
+  - IP-CIDR,103.4.96.0/22,PROXY
+  - IP-CIDR,129.134.0.0/17,PROXY
+  - IP-CIDR,157.240.0.0/17,PROXY
+  - IP-CIDR,173.252.64.0/18,PROXY
+  - IP-CIDR,179.60.192.0/22,PROXY
+  - IP-CIDR,185.60.216.0/22,PROXY
+  - IP-CIDR,204.15.20.0/22,PROXY
   - DOMAIN-SUFFIX,github.com,PROXY
   - DOMAIN-SUFFIX,github.io,PROXY
   - DOMAIN-SUFFIX,githubapp.com,PROXY
@@ -698,38 +698,38 @@ rules:
   - DOMAIN-SUFFIX,youtube.com,PROXY
   - DOMAIN-SUFFIX,yt.be,PROXY
   - DOMAIN-SUFFIX,ytimg.com,PROXY
-  - IP-CIDR,74.125.0.0/16,PROXY,no-resolve
-  - IP-CIDR,173.194.0.0/16,PROXY,no-resolve
-  - IP-CIDR,120.232.181.162/32,PROXY,no-resolve
-  - IP-CIDR,120.241.147.226/32,PROXY,no-resolve
-  - IP-CIDR,120.253.253.226/32,PROXY,no-resolve
-  - IP-CIDR,120.253.255.162/32,PROXY,no-resolve
-  - IP-CIDR,120.253.255.34/32,PROXY,no-resolve
-  - IP-CIDR,120.253.255.98/32,PROXY,no-resolve
-  - IP-CIDR,180.163.150.162/32,PROXY,no-resolve
-  - IP-CIDR,180.163.150.34/32,PROXY,no-resolve
-  - IP-CIDR,180.163.151.162/32,PROXY,no-resolve
-  - IP-CIDR,180.163.151.34/32,PROXY,no-resolve
-  - IP-CIDR,203.208.39.0/24,PROXY,no-resolve
-  - IP-CIDR,203.208.40.0/24,PROXY,no-resolve
-  - IP-CIDR,203.208.41.0/24,PROXY,no-resolve
-  - IP-CIDR,203.208.43.0/24,PROXY,no-resolve
-  - IP-CIDR,203.208.50.0/24,PROXY,no-resolve
-  - IP-CIDR,220.181.174.162/32,PROXY,no-resolve
-  - IP-CIDR,220.181.174.226/32,PROXY,no-resolve
-  - IP-CIDR,220.181.174.34/32,PROXY,no-resolve
+  - IP-CIDR,74.125.0.0/16,PROXY
+  - IP-CIDR,173.194.0.0/16,PROXY
+  - IP-CIDR,120.232.181.162/32,PROXY
+  - IP-CIDR,120.241.147.226/32,PROXY
+  - IP-CIDR,120.253.253.226/32,PROXY
+  - IP-CIDR,120.253.255.162/32,PROXY
+  - IP-CIDR,120.253.255.34/32,PROXY
+  - IP-CIDR,120.253.255.98/32,PROXY
+  - IP-CIDR,180.163.150.162/32,PROXY
+  - IP-CIDR,180.163.150.34/32,PROXY
+  - IP-CIDR,180.163.151.162/32,PROXY
+  - IP-CIDR,180.163.151.34/32,PROXY
+  - IP-CIDR,203.208.39.0/24,PROXY
+  - IP-CIDR,203.208.40.0/24,PROXY
+  - IP-CIDR,203.208.41.0/24,PROXY
+  - IP-CIDR,203.208.43.0/24,PROXY
+  - IP-CIDR,203.208.50.0/24,PROXY
+  - IP-CIDR,220.181.174.162/32,PROXY
+  - IP-CIDR,220.181.174.226/32,PROXY
+  - IP-CIDR,220.181.174.34/32,PROXY
   - DOMAIN-SUFFIX,cdninstagram.com,PROXY
   - DOMAIN-SUFFIX,instagram.com,PROXY
   - DOMAIN-SUFFIX,instagr.am,PROXY
   - DOMAIN-SUFFIX,kakao.com,PROXY
   - DOMAIN-SUFFIX,kakao.co.kr,PROXY
   - DOMAIN-SUFFIX,kakaocdn.net,PROXY
-  - IP-CIDR,1.201.0.0/24,PROXY,no-resolve
-  - IP-CIDR,27.0.236.0/22,PROXY,no-resolve
-  - IP-CIDR,103.27.148.0/22,PROXY,no-resolve
-  - IP-CIDR,103.246.56.0/22,PROXY,no-resolve
-  - IP-CIDR,110.76.140.0/22,PROXY,no-resolve
-  - IP-CIDR,113.61.104.0/22,PROXY,no-resolve
+  - IP-CIDR,1.201.0.0/24,PROXY
+  - IP-CIDR,27.0.236.0/22,PROXY
+  - IP-CIDR,103.27.148.0/22,PROXY
+  - IP-CIDR,103.246.56.0/22,PROXY
+  - IP-CIDR,110.76.140.0/22,PROXY
+  - IP-CIDR,113.61.104.0/22,PROXY
   - DOMAIN-SUFFIX,lin.ee,PROXY
   - DOMAIN-SUFFIX,line-apps.com,PROXY
   - DOMAIN-SUFFIX,line-cdn.net,PROXY
@@ -737,14 +737,14 @@ rules:
   - DOMAIN-SUFFIX,line.me,PROXY
   - DOMAIN-SUFFIX,line.naver.jp,PROXY
   - DOMAIN-SUFFIX,nhncorp.jp,PROXY
-  - IP-CIDR,103.2.28.0/24,PROXY,no-resolve
-  - IP-CIDR,103.2.30.0/23,PROXY,no-resolve
-  - IP-CIDR,119.235.224.0/24,PROXY,no-resolve
-  - IP-CIDR,119.235.232.0/24,PROXY,no-resolve
-  - IP-CIDR,119.235.235.0/24,PROXY,no-resolve
-  - IP-CIDR,119.235.236.0/23,PROXY,no-resolve
-  - IP-CIDR,147.92.128.0/17,PROXY,no-resolve
-  - IP-CIDR,203.104.128.0/19,PROXY,no-resolve
+  - IP-CIDR,103.2.28.0/24,PROXY
+  - IP-CIDR,103.2.30.0/23,PROXY
+  - IP-CIDR,119.235.224.0/24,PROXY
+  - IP-CIDR,119.235.232.0/24,PROXY
+  - IP-CIDR,119.235.235.0/24,PROXY
+  - IP-CIDR,119.235.236.0/23,PROXY
+  - IP-CIDR,147.92.128.0/17,PROXY
+  - IP-CIDR,203.104.128.0/19,PROXY
   - DOMAIN-KEYWORD,1drv,PROXY
   - DOMAIN-KEYWORD,onedrive,PROXY
   - DOMAIN-KEYWORD,skydrive,PROXY
@@ -822,29 +822,29 @@ rules:
   - DOMAIN-SUFFIX,telegram.me,PROXY
   - DOMAIN-SUFFIX,telegram.org,PROXY
   - DOMAIN-SUFFIX,telesco.pe,PROXY
-  - IP-CIDR,91.108.0.0/16,PROXY,no-resolve
-  - IP-CIDR,109.239.140.0/24,PROXY,no-resolve
-  - IP-CIDR,149.154.160.0/20,PROXY,no-resolve
-  - IP-CIDR6,2001:67c:4e8::/48,PROXY,no-resolve
-  - IP-CIDR6,2001:b28:f23d::/48,PROXY,no-resolve
-  - IP-CIDR6,2001:b28:f23f::/48,PROXY,no-resolve
+  - IP-CIDR,91.108.0.0/16,PROXY
+  - IP-CIDR,109.239.140.0/24,PROXY
+  - IP-CIDR,149.154.160.0/20,PROXY
+  - IP-CIDR6,2001:67c:4e8::/48,PROXY
+  - IP-CIDR6,2001:b28:f23d::/48,PROXY
+  - IP-CIDR6,2001:b28:f23f::/48,PROXY
   - DOMAIN-SUFFIX,terabox.com,PROXY
   - DOMAIN-SUFFIX,teraboxcdn.com,PROXY
-  - IP-CIDR,18.194.0.0/15,PROXY,no-resolve
-  - IP-CIDR,34.224.0.0/12,PROXY,no-resolve
-  - IP-CIDR,54.242.0.0/15,PROXY,no-resolve
-  - IP-CIDR,50.22.198.204/30,PROXY,no-resolve
-  - IP-CIDR,208.43.122.128/27,PROXY,no-resolve
-  - IP-CIDR,108.168.174.0/16,PROXY,no-resolve
-  - IP-CIDR,173.192.231.32/27,PROXY,no-resolve
-  - IP-CIDR,158.85.5.192/27,PROXY,no-resolve
-  - IP-CIDR,174.37.243.0/16,PROXY,no-resolve
-  - IP-CIDR,158.85.46.128/27,PROXY,no-resolve
-  - IP-CIDR,173.192.222.160/27,PROXY,no-resolve
-  - IP-CIDR,184.173.128.0/17,PROXY,no-resolve
-  - IP-CIDR,158.85.224.160/27,PROXY,no-resolve
-  - IP-CIDR,75.126.150.0/16,PROXY,no-resolve
-  - IP-CIDR,69.171.235.0/16,PROXY,no-resolve
+  - IP-CIDR,18.194.0.0/15,PROXY
+  - IP-CIDR,34.224.0.0/12,PROXY
+  - IP-CIDR,54.242.0.0/15,PROXY
+  - IP-CIDR,50.22.198.204/30,PROXY
+  - IP-CIDR,208.43.122.128/27,PROXY
+  - IP-CIDR,108.168.174.0/16,PROXY
+  - IP-CIDR,173.192.231.32/27,PROXY
+  - IP-CIDR,158.85.5.192/27,PROXY
+  - IP-CIDR,174.37.243.0/16,PROXY
+  - IP-CIDR,158.85.46.128/27,PROXY
+  - IP-CIDR,173.192.222.160/27,PROXY
+  - IP-CIDR,184.173.128.0/17,PROXY
+  - IP-CIDR,158.85.224.160/27,PROXY
+  - IP-CIDR,75.126.150.0/16,PROXY
+  - IP-CIDR,69.171.235.0/16,PROXY
   - DOMAIN-SUFFIX,mediawiki.org,PROXY
   - DOMAIN-SUFFIX,wikibooks.org,PROXY
   - DOMAIN-SUFFIX,wikidata.org,PROXY
