@@ -6,11 +6,11 @@ tproxy-port: 9898
 allow-lan: true
 mode: Rule
 bind-address: "*"
-ipv6: false
+ipv6: true
 log-level: info
 find-process-mode: always
 enable-process: true
-unified-delay: true
+unified-delay: false
 keep-alive-interval: 15
 tcp-concurrent: true
 geodata-mode: true
@@ -22,21 +22,21 @@ external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/downloa
 proxy-groups:
   - name: Proxy
     type: select
- #   include-all-proxies: true
+    include-all-proxies: true
     proxies:
       - Auto
       - fallback
 
   - name: Auto
     type: url-test
-    url: http://www.google.com/gen_204
+    url: https://www.google.com/gen_204
     include-all: true
     interval: 500
     lazy: false
 
   - name: fallback
     type: fallback
-    url: http://www.google.com/gen_204
+    url: https://www.google.com/gen_204
     include-all: true
     interval: 180
     lazy: false
@@ -84,6 +84,6 @@ proxy-providers:
     interval: 300
     health-check:
       enable: true
-      url: http://www.gstatic.com/generate_204
+      url: https://www.gstatic.com/generate_204
       interval: 300
       expected-status: 204
