@@ -267,7 +267,7 @@ proxy-groups:
     type: url-test
     url: https://www.gstatic.com/generate_204
     interval: 500
-    tolerance: 500
+    tolerance: 5
     hidden: false
     include-all: true
     filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
@@ -278,12 +278,11 @@ proxy-groups:
   - name: back+🇺🇸
     type: fallback
     url: https://www.gstatic.com/generate_204
-    filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
+    use:
+      - "provider5"
     interval: 500
-    tolerance: 500
+    tolerance: 5
     hidden: false
-    include-all: true
-    exclude: 美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW|ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro|ru|en
     exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan|Iran|dns-out|rematch
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Global.png
     
@@ -291,18 +290,15 @@ proxy-groups:
     type: load-balance
     url: https://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 500
+    tolerance: 5
     hidden: true
     lazy: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/AI.png
     exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Iran|dns-out|rematch
     proxies:
-      - "fallback"
-      - "Auto"
-      - "load-balance"
-      - "url-🇺🇸"
-      - "back+🇺🇸"
-      
+    use:
+      - "provider"
+  
   - name: 🎯 Direct
     type: select
     disable-udp: true
