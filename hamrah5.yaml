@@ -19,8 +19,8 @@ profile:
 dns:
   enable: true
   prefer-h3: false
-  listen: 0.0.0.0:1053
-  ipv6: false
+  listen: 0.0.0.0:53
+  ipv6: true
   ipv6-timeout: 300
   respect-rules: true
   enhanced-mode: fake-ip
@@ -68,7 +68,13 @@ proxy-groups:
       - Geo-UK
       - Geo-DE
       - Geo-CN
-      
+      - select
+
+  - name: select
+    type: select
+    include-all-providers: true
+    proxies:
+
   - name: Auto
     type: fallback
     include-all-providers: true
