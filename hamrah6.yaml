@@ -86,11 +86,19 @@ proxy-groups:
     type: select
     disable-udp: true
     exclude-type: direct|redir-in|DNS|trojan
-    include-all-providers: true
     proxies:
       - Auto
       - fallback
       - Geo-US
+      - select
+       
+  - name: select
+    type: select
+    disable-udp: true
+    exclude-type: direct|redir-in|DNS|trojan
+    include-all-providers: true
+    proxies:
+      
   - name: Auto
     type: url-test
     include-all-providers: true
