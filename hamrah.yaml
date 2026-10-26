@@ -239,23 +239,23 @@ proxy-groups:
   - name: Auto
     type: url-test
     url: https://www.gstatic.com/generate_204
-    interval: 50
+    interval: 350
     tolerance: 50
     hidden: false
     include-all: true
     lazy: false
-    exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro|ES|🇫🇷|🇪🇸
+#    exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro|ES|🇫🇷|🇪🇸
     exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|Iran|dns-out|rematch
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Auto.png
     
   - name: fallback
     type: fallback
     url: https://www.gstatic.com/generate_204
-    interval: 100
+    interval: 300
     hidden: false
     include-all: true
     lazy: false
-    exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro|ES|🇫🇷|🇪🇸
+  #  exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro|ES|🇫🇷|🇪🇸
     exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|Iran|dns-out|rematch
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Round_Robin_1.png
     
@@ -265,7 +265,7 @@ proxy-groups:
     interval: 300
     hidden: false
     include-all: true
-    exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro
+  #  exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro
     lazy: false
     exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|Iran|dns-out|rematch
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Round_Robin.png
@@ -296,10 +296,10 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Global.png
     
   - name: rematch social
-    type: load-balance
+    type: fallback
     url: https://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 5
+    tolerance: 500
     hidden: true
     lazy: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/AI.png
