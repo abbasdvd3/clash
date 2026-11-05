@@ -74,8 +74,6 @@ proxies:
 proxy-groups:
   - name: "PROXY"
     type: select
-  #  include-all-providers: true
-  #  filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
     exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     proxies:
       - "FALLBACK"
@@ -87,7 +85,6 @@ proxy-groups:
     include-all: true
     filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
     exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Fallback, URLTest, LoadBalance, Smart, ShadowsocksR, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
-    proxies:
     
   - name: "FALLBACK"
     type: fallback
