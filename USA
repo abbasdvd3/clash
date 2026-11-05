@@ -94,13 +94,13 @@ proxy-groups:
   - name: "FALLBACK"
     type: fallback
     filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
-    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Shadowsocks, ShadowsocksR, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     include-all-providers: true
 
   - name: "URL-TEST"
     type: url-test
     filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
-    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Shadowsocks, ShadowsocksR, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     include-all-providers: true
 
   - name: "block"
@@ -108,736 +108,753 @@ proxy-groups:
     proxies:
       - "FALLBACK"
       - "REJECT"
-proxy-providers:
+proxy-provid:
   provider1:
     type: "http"
     url: "https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/main/submerge/US.txt"
     interval: "3600"
-    path: proxy_providers/AzadNet_META_IRAN-Direct.yaml
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
+    path: USA/1.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider2:
     type: "http"
     url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
     interval: "3600"
-    path: proxy_providers/3april3.yaml
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
+    path: USA/3april3.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider3:
     type: "http"
     url: "https://raw.githubusercontent.com/SnapdragonLee/SystemProxy/master/dist/clash_config.yaml"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     interval: "3600"
-    path: proxy_providers/provider3.yaml
+    path: USA/provider3.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider4:
     type: "http"
     url: "https://raw.githubusercontent.com/tbbatbb/Proxy/master/dist/clash.config.yaml"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     interval: "3600"
-    path: proxy_providers/provider4.yaml
+    path: USA/provider4.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider5:
     type: "http"
     url: "https://raw.githubusercontent.com/colatiger/clash-config/master/clash.yml"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     interval: "3600"
-    path: proxy_providers/provider5.yaml
+    path: USA/provider5.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider6:
     type: "http"
     url: "https://raw.fastgit.org/freefq/free/master/v2"
     interval: "3600"
-    path: proxy_providers/provider6.yaml
+    path: USA/provider6.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider7:
     type: "file"
     url: "https://raw.githubusercontent.com/openrunner/clash-freenode/main/clash.yaml"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     interval: "3600"
-    path: proxy_providers/provider7.yaml
+    path: USA/provider7.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider8:
     type: "http"
     url: "https://raw.githubusercontent.com/vveg26/get_proxy/main/dist/clash.config.yaml"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     interval: "3600"
-    path: proxy_providers/provider8.yaml
+    path: USA/provider8.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider9:
     type: "http"
     url: "https://cdn.jsdelivr.net/gh/learnhard-cn/free_proxy_ss@main/clash/clash.provider.yaml"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     interval: "3600"
-    path: proxy_providers/provider9.yaml
+    path: USA/provider9.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider10:
     type: "http"
     url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     interval: "3600"
-    path: proxy_providers/provider10.yaml
+    path: USA/provider10.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider11:
     type: "http"
     url: "https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/refs/heads/main/all_proxies.txt"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     interval: "3600"
-    path: proxy_providers/provider11.yaml
+    path: USA/provider11.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider12:
     type: "http"
     url: "https://clashnode.com/wp-content/uploads/2023/05/20230525.yaml"
-    path: proxy_providers/provider12.yaml
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
+    path: USA/provider12.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider13:
     type: "http"
     url: "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     interval: "3600"
-    path: proxy_providers/provider13.yaml
+    path: USA/provider13.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider14:
     type: "http"
     url: "https://nodefree.org/dy/2023/05/20230525.yaml"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     interval: "3600"
-    path: proxy_providers/provider14.yaml
+    path: USA/provider14.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider15:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fhkaa0%2Fpermalink%2Fmain%2Fproxy%2FV2ray&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider15.yaml
+    path: USA/provider15.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider16:
     type: "http"
     url: "https://raw.githubusercontent.com/mahdibland/SSAggregator/master/sub/sub_merge_yaml.yml"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     interval: "3600"
-    path: proxy_providers/provider16.yaml
+    path: USA/provider16.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider17:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fwuzhuohua168%2Fclash5%2Fmain%2F5&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider17.yaml
+    path: USA/provider17.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider18:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fyzcjd%2Fjiedian%2Fmain%2F%2540yzcjd&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider18.yaml
+    path: USA/provider18.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider19:
     type: "http"
     url: "https://raw.githubusercontent.com/Rokate/Proxy-Sub/main/clash/clash_v2ray.yml"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     interval: "3600"
-    path: proxy_providers/provider19.yaml
+    path: USA/provider19.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider20:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Ffreefq.neocities.org%2Ffree.txt&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider20.yaml
+    path: USA/provider20.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider21:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fadobe.zhuzhu12.com%2Flink%2FrbPHm87z7HiuVw68%3Fsub%3D3%26extend%3D1&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider21.yaml
+    path: USA/provider21.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider22:
     type: "http"
     url: "https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     interval: "3600"
-    path: proxy_providers/provider22.yaml
+    path: USA/provider22.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider23:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmfuu%2Fv2ray%2Fmaster%2Fv2ray&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider23.yaml
+    path: USA/provider23.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider24:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.fastgit.org%2FPawdroid%2FFree-servers%2Fmain%2Fsub&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=false&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider24.yaml
+    path: USA/provider24.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider25:
     type: "http"
     url: "https://raw.githubusercontent.com/aiboboxx/clashfree/main/clash.yml"
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Snell, Trojan, Ssh, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
     interval: "3600"
-    path: proxy_providers/provider25.yaml
+    path: USA/provider25.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider26:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2FJsnzkpg%2FJsnzkpg%2FJsnzkpg%2FJsnzkpg&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider26.yaml
+    path: USA/provider26.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider27:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fbulink.me%2Fsub%2Fge4wfp%2Fvm&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider27.yaml
+    path: USA/provider27.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider28:
     type: "http"
     url: "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
     interval: "3600"
-    path: proxy_providers/provider28.yaml
+    path: USA/provider28.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider29:
     type: "http"
     url: "https://nodefree.org/dy/2023/06/20230614.yaml"
     interval: "3600"
-    path: proxy_providers/provider29.yaml
+    path: USA/provider29.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider30:
     type: "http"
     url: "https://raw.githubusercontent.com/zhlx2835/freefq/main/clash.yaml"
     interval: "3600"
-    path: proxy_providers/provider30.yaml
+    path: USA/provider30.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider31:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpaste.gg%2Fp%2Fanonymous%2Fe6f02cfba1a94a029c5ec2c5d17b71ba%2Ffiles%2F47e51fcbb1c84163b37c596dcd6fb754%2Fraw&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider31.yaml
+    path: USA/provider31.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider32:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Ios.yaml"
     interval: "3600"
-    path: proxy_providers/provider32.yaml
+    path: USA/provider32.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider33:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fraw.githubusercontent.com%2Fchfchf0306%2Fjeidian4.18%2Fmain%2F4.18&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider33.yaml
+    path: USA/provider33.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider34:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpastebin.com%2Fraw%2FGxR5pELe&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider34.yaml
+    path: USA/provider34.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider35:
     type: "http"
     url: "https://raw.githubusercontent.com/cxr9912/cxr2022/main/ss.yaml"
     interval: "3600"
-    path: proxy_providers/provider35.yaml
+    path: USA/provider35.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider36:
     type: "http"
     url: "https://raw.githubusercontent.com/freefq/free/master/v2"
     interval: "3600"
-    path: proxy_providers/provider36.yaml
+    path: USA/provider36.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider37:
     type: "http"
     url: "https://wefound.cc/freenode/2023/06/20230614.yaml"
     interval: "3600"
-    path: proxy_providers/provider37.yaml
+    path: USA/provider37.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider38:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpaste.gg%2Fp%2Fanonymous%2F07a7d580494d45969bd46a14cdb01ba8%2Ffiles%2F683e79d508c7449baa7078e234e24e74%2Fraw&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider38.yaml
+    path: USA/provider38.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider39:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpaste.gg%2Fp%2Fanonymous%2F07a7d580494d45969bd46a14cdb01ba8%2Ffiles%2F683e79d508c7449baa7078e234e24e74%2Fraw&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider39.yaml
+    path: USA/provider39.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider40:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpaste.gg%2Fp%2Fanonymous%2F26c9d923f5084ea48011ec464388c072%2Ffiles%2F26def9f134174d678c2a40fa6f105df2%2Fraw&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider40.yaml
+    path: USA/provider40.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider41:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpaste.gg%2Fp%2Fanonymous%2Fd44cc182226f47a38cd85c83e55a0602%2Ffiles%2Fa301999ada85423383c59ac3c1f5c902%2Fraw&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider41.yaml
+    path: USA/provider41.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider42:
     type: "http"
     url: "https://openit-fq.ml/Clash.yaml"
     interval: "3600"
-    path: proxy_providers/provider42.yaml
+    path: USA/provider42.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider43:
     type: "http"
     url: "https://sub.pmsub.me/clash.yaml"
     interval: "3600"
-    path: proxy_providers/provider43.yaml
+    path: USA/provider43.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider44:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fbulink.me%2Fsub%2Fmqxkn%2Fvm&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider44.yaml
+    path: USA/provider44.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider45:
     type: "http"
     url: "https://jetflow.site/api/v1/public/services/127720/0e90044aa40a35307494342da3ade301?client=clash"
     interval: "3600"
-    path: proxy_providers/provider45.yaml
+    path: USA/provider45.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider46:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fjiang.netlify.app%2F&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider46.yaml
+    path: USA/provider46.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider47:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Ff.kxyz.eu.org%2Ff.php%3Fr%3DaHR0cHM6Ly9yc3Mub2tnZ3Jzcy5idXp6L2xpbmsvMHEzTGJGbU9uM0NTQWZYeT9tdT0y&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider47.yaml
+    path: USA/provider47.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider48:
     type: "http"
     url: "https://clashnode.com/wp-content/uploads/2023/06/20230614.yaml"
     interval: "3600"
-    path: proxy_providers/provider48.yaml
+    path: USA/provider48.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider49:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpaste.wmlabs.net%2Fraw%2F866a5fee4436&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider49.yaml
+    path: USA/provider49.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider50:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/clash/main/Ios.yaml"
     interval: "3600"
-    path: proxy_providers/provider50.yaml
+    path: USA/provider50.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider51:
     type: "http"
     url: "https://proxy.yiun.xyz/clash/proxies"
     interval: "3600"
-    path: proxy_providers/provider51.yaml
+    path: USA/provider51.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider52:
     type: "http"
     url: "https://sub.bonds.id/sub2?target=clash&url=https%3A%2F%2Fpaste.gg%2Fp%2Fanonymous%2Ff19e2944302a470686689b8d6d32177f%2Ffiles%2F3bfa58d0eb954043aeb2d3eb07b47db8%2Fraw&insert=false&config=base%2Fdatabase%2Fconfig%2Fstandard%2Fstandard_redir.ini&emoji=false&list=false&udp=true&tfo=true&expand=false&scv=true&fdn=false&sort=false&new_name=true"
     interval: "3600"
-    path: proxy_providers/provider52.yaml
+    path: USA/provider52.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider53:
     type: "http"
     url: "http://proxies.haisto.cn/clash/proxies"
     interval: "3600"
-    path: proxy_providers/provider53.yaml
+    path: USA/provider53.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider54:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/tro.562.Profiles-20221211014547.txt"
     interval: "3600"
-    path: proxy_providers/provider54.yaml
+    path: USA/provider54.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider55:
     type: "http"
     url: "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/update/provider/provider.yml"
     interval: "3600"
-    path: proxy_providers/provider55.yaml
+    path: USA/provider55.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider56:
     type: "http"
     url: "https://free.iam7.tk/clash/config"
     interval: "3600"
-    path: proxy_providers/provider56.yaml
+    path: USA/provider56.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider57:
     type: "http"
     url: "https://proxy.yugogo.xyz/clash/config"
     interval: "3600"
-    path: proxy_providers/provider57.yaml
+    path: USA/provider57.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider58:
     type: "http"
     url: "https://klausvpn.posyao.com/clash/config"
     interval: "3600"
-    path: proxy_providers/provider58.yaml
+    path: USA/provider58.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider59:
     type: "http"
     url: "https://clash.myvm.cc/clash/config"
     interval: "3600"
-    path: proxy_providers/provider59.yaml
+    path: USA/provider59.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204" 
+      url: "https://www.gstatic.com/generate_204" 
   provider60:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/11380.txt"
     interval: "3600"
-    path: proxy_providers/provider60.yaml
+    path: USA/provider60.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider61:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/7025.yaml"
     interval: "3600"
-    path: proxy_providers/provider61.yaml
+    path: USA/provider61.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider62:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/4444.txt"
     interval: "3600"
-    path: proxy_providers/provider62.yaml
+    path: USA/provider62.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider63:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/1164abbas.yaml"
     interval: "3600"
-    path: proxy_providers/provider63.yaml
+    path: USA/provider63.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider64:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/irancell.yaml"
     interval: "3600"
-    path: proxy_providers/provider64.yaml
+    path: USA/provider64.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider65:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/990.yaml"
     interval: "3600"
-    path: proxy_providers/provider65.yaml
+    path: USA/provider65.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider66:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/abbbasdvd10.txt"
     interval: "3600"
-    path: proxy_providers/provider66.yaml
+    path: USA/provider66.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider67:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/easy.yaml"
     interval: "3600"
-    path: proxy_providers/provider67.yaml
+    path: USA/provider67.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider68:
     type: "http"
     url: "https://raw.githubusercontent.com/abbasdvd3/abbasdvd10/main/iran.12.22.yaml"
     interval: "3600"
-    path: proxy_providers/provider68.yaml
+    path: USA/provider68.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider69:
     type: "http"
     url: "https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/refs/heads/master/clash.yaml"
     interval: "3600"
-    path: proxy_providers/provider69.yaml
+    path: USA/provider69.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"    
+      url: "https://www.gstatic.com/generate_204"    
   provider70:
     type: "http"
     url: "https://sos.cmliussss.net/auto"
     interval: "3600"
-    path: proxy_providers/provider70.yaml
+    path: USA/provider70.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider71:
     type: "http"
     url: "https://raw.githubusercontent.com/PuddinCat/BestClash/refs/heads/main/proxies.yaml"
     interval: "3600"
-    path: proxy_providers/provider71.yaml
+    path: USA/provider71.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider72:
     type: "http"
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
     interval: "3600"
-    path: proxy_providers/provider72.yaml
+    path: USA/provider72.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"
+      url: "https://www.gstatic.com/generate_204"
   provider73:
     type: "http"
     url: "https://raw.githubusercontent.com/Misaka-blog/chromego_merge/refs/heads/main/sub/merged_proxies_new.yaml"
     interval: "3600"
-    path: proxy_providers/provider73.yaml
+    path: USA/provider73.yaml
     health-check:
       enable: true
       interval: "300"
       # lazy: true
-      url: "https://cp.cloudflare.com/generate_204"                       
+      url: "https://www.gstatic.com/generate_204"                       
 rule-providers:
 
   block:
