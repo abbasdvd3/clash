@@ -50,87 +50,48 @@ profile:
 experimental:
   quic-go-disable-gso: false
   quic-go-disable-ecn: false
-dns:
+
+sniffer:
   enable: true
-  cache-algorithm: arc
-  prefer-h3: true
-  use-hosts: true
-  use-system-hosts: true
-  respect-rules: true
-  listen: 0.0.0.0:5591
-  ipv6: true
-  default-nameserver:
-    - system
-  #  - tls://9.9.9.9
-  #  - tls://1.1.1.1
-  enhanced-mode: fake-ip
-  fake-ip-range: 22.0.0.0/8
-  fake-ip-ttl: 1
-  fake-ip-range6: fdfe:dcba:9876::1/64
-  fake-ip-filter-mode: blacklist
-  fake-ip-filter:
-    - '*.lan'
-  nameserver-policy:
-    '+.arpa': '10.0.0.1'
-    'rule-set:ir':
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-    'www.createporn.com': 
-    - tls://223.5.5.5
-    - tls://dot.pub
-    - tls://9.9.9.9
-    - tls://1.1.1.1
-    'www.openai.com': 
-    - https://doh.pub/dns-query
-    - 9.9.9.9
-    - https://dns.alidns.com/dns-query
-  rule-set:nsfw,social: 9.9.9.9
-  geosite:category-ads-all: rcode://success
-  nameserver:
-    - system
-#    - 1.1.1.1
-  #  - 86.54.11.100
-  #  - 86.54.11.200
-#    - 104.21.83.62
- #   - 172.67.214.246
-  fallback:
-    - tls://9.9.9.9
-    - tls://1.1.1.1
-  proxy-server-nameserver:
-    - https://doh.pub/dns-query
-    - https://sky.rethinkdns.com/dns-query
-    - https://unfiltered.joindns4.eu/dns-query
-  proxy-server-nameserver-policy:
-    'www.yournode.com': '114.114.114.114'
-    'www.createporn.com': '9.9.9.9'
-    'www.openai.com': '114.114.114.114'
-  direct-nameserver:
-    - system
-  direct-nameserver-follow-policy: false
-  fallback-filter:
-    geoip: false
-    geoip-code: ir
-    ipcidr:
-      - 240.0.0.0/4
-      - 0.0.0.0/32
-      - 127.0.0.1/32
-      - 100.64.0.0/10
-    domain:
- #     - '+.google.com'
-      - '+.gstatic.com'
-   #   - '+.youtube.com'
-    fallback-lazy-query: false
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+
 tun:
   enable: true
+  stack: mixed
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
   auto-route: true
   auto-redirect: true
   auto-detect-interface: true
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  device: utun0
-  mtu: 9000
-  strict-route: false
+
+dns:
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:5591
+  enhanced-mode: fake-ip
+  fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "+.local"
+    - "+.market.xiaomi.com"
+  default-nameserver:
+    - tls://223.5.5.5
+    - tls://223.6.6.6
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+
 proxy-providers:
   provider:
     type: http
@@ -141,7 +102,7 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+      smux: {enabled: true, protocol: h2mux, max-connections: 40, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider1:
     type: http
     url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/C2
@@ -151,7 +112,7 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+      smux: {enabled: true, protocol: h2mux, max-connections: 40, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider2:
     type: http
     url: https://raw.githubusercontent.com/mahdibland/V2RayAggregator/refs/heads/master/Eternity.yml
@@ -161,7 +122,7 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+      smux: {enabled: true, protocol: h2mux, max-connections: 40, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider3:
     type: http
     url: https://raw.githubusercontent.com/lagzian/SS-Collector/main/configs/us/ss.b64
@@ -171,7 +132,7 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+      smux: {enabled: true, protocol: h2mux, max-connections: 40, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider4:
     type: http
     url: https://raw.githubusercontent.com/lagzian/SS-Collector/main/configs/us/vless.b64
@@ -181,7 +142,7 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+      smux: {enabled: true, protocol: h2mux, max-connections: 40, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider5:
     type: http
     url:  https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/main/submerge/US.txt #https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector_Py/refs/heads/main/sub/Mix/mix.txt
@@ -191,7 +152,7 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+      smux: {enabled: true, protocol: h2mux, max-connections: 40, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider6:
     type: http
     url: https://raw.githubusercontent.com/proxifly/free-proxy-list/refs/heads/main/proxies/countries/US/data.txt #https://config.v2cross.com/clashprofile/config
@@ -201,7 +162,7 @@ proxy-providers:
     proxies: DIRECT
     override:
       additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 4, min-streams: 8, statistic: false, only-tcp: false, padding: true}      
+      smux: {enabled: true, protocol: h2mux, max-connections: 40, min-streams: 8, statistic: false, only-tcp: false, padding: true}      
 proxies:
 - name: Iran
   type: direct
@@ -217,9 +178,13 @@ proxy-groups:
   - name: PROXY
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Proxy.png
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay
+    exclude-type: "Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay"
     default-selected: fallback
-    exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro|ES|🇫🇷|🇪🇸
+    lazy: true
+    empty-fallback: COMPATIBLE
+    timeout: 3500
+    max-failed-times: 5
+    disable-udp: true
     proxies:
       - "fallback"
       - "Auto"
@@ -232,54 +197,71 @@ proxy-groups:
   - name: select
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Proxy.png
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|rematch
+    exclude-type: "Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|rematch"
     include-all: true
+    lazy: true
+    empty-fallback: COMPATIBLE
+    timeout: 3500
+    max-failed-times: 5
+    disable-udp: true
     proxies:
     
   - name: Auto
     type: url-test
     url: https://www.gstatic.com/generate_204
-    interval: 350
-    tolerance: 50
+    interval: 10
     hidden: false
     include-all: true
-    lazy: false
-#    exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro|ES|🇫🇷|🇪🇸
-    exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|Iran|dns-out|rematch
+    lazy: true
+    empty-fallback: COMPATIBLE
+    timeout: 3500
+    max-failed-times: 5
+    disable-udp: true
+    exclude-type: "rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|Iran|dns-out|rematch"
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Auto.png
     
   - name: fallback
     type: fallback
     url: https://www.gstatic.com/generate_204
-    interval: 300
+    interval: 10
     hidden: false
     include-all: true
-    lazy: false
-  #  exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro|ES|🇫🇷|🇪🇸
-    exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|Iran|dns-out|rematch
+    lazy: true
+    empty-fallback: COMPATIBLE
+    timeout: 3500
+    max-failed-times: 5
+    disable-udp: true
+    exclude-type: "rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|Iran|dns-out|rematch"
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Round_Robin_1.png
     
   - name: load-balance
     type: load-balance
     url: https://www.gstatic.com/generate_204
-    interval: 300
+    interval: 10
     hidden: false
     include-all: true
-  #  exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro
-    lazy: false
-    exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|Iran|dns-out|rematch
+    lazy: true
+    empty-fallback: COMPATIBLE
+    timeout: 3500
+    max-failed-times: 5
+    disable-udp: true
+    exclude-type: "rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|Iran|dns-out|rematch"
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Round_Robin.png
     
   - name: url-🇺🇸
     type: url-test
     url: https://www.gstatic.com/generate_204
-    interval: 500
-    tolerance: 500
+    interval: 10
+    lazy: true
+    empty-fallback: COMPATIBLE
+    timeout: 3500
+    max-failed-times: 5
+    disable-udp: true
     hidden: false
     include-all: true
     filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
-    exclude: ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro|ru|en|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW
-    exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Iran|dns-out|rematch
+    exclude: "ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro|ru|en|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW"
+    exclude-type: "rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Sudoku|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Iran|dns-out|rematch"
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/United_States.png
     
   - name: back+🇺🇸
@@ -287,23 +269,29 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     include-all: true
     filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
-#    use:
- #     - "provider5"
-    interval: 500
-    tolerance: 500
+    interval: 10
+    lazy: true
+    empty-fallback: COMPATIBLE
+    timeout: 3500
+    max-failed-times: 5
+    disable-udp: true
     hidden: false
-    exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan|Iran|dns-out|rematch
+    exclude-type: "rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan|Iran|dns-out|rematch"
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Global.png
     
   - name: rematch social
     type: fallback
     url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 500
+    interval: 10
     hidden: true
-    lazy: false
+    lazy: true
+    empty-fallback: COMPATIBLE
+    timeout: 3500
+    max-failed-times: 5
+    disable-udp: true
+    exclude: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|)).*|ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro|ru|en|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW"
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/AI.png
-    exclude-type: rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Iran|dns-out|rematch
+    exclude-type: "rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Iran|dns-out|rematch|ss|Shadowsocks|ShadowsocksR|VMess|VLESS"
     use:
       - "provider2"
       - "provider6"
@@ -311,7 +299,7 @@ proxy-groups:
   - name: 🎯 Direct
     type: select
     disable-udp: true
-    lazy: false
+    lazy: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Proxy.png
     proxies:
       - "Iran"
