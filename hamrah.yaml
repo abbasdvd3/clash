@@ -164,16 +164,27 @@ proxy-providers:
       additional-prefix: smux
       smux: {enabled: true, protocol: h2mux, max-connections: 40, min-streams: 8, statistic: false, only-tcp: false, padding: true}      
 proxies:
-- name: Iran
-  type: direct
-  udp: true
-  ip-version: ipv4
-- name: dns-out
-  type: dns
-- name: rematch
-  type: rematch
-  target-rematch-name: PROXY
-
+  - name: Iran
+    type: direct
+    udp: true
+    ip-version: ipv4
+  - name: dns-out
+    type: dns
+  - name: rematch
+    type: rematch
+    target-rematch-name: PROXY
+  - type: hysteria2
+    name: "[OpenRay] 🇺🇸US-2813"
+    server: 155.117.19.17
+    port: 443
+    password: 5fa748137b6d822308eea4611f474ad5
+    udp: true
+    tls: true
+    servername: www.bing.com
+    sni: www.bing.com
+    skip-cert-verify: false
+    obfs: salamander
+    obfs-password: a39ca173b57ac7021b08bf3e3de9f1f6
 proxy-groups:
   - name: PROXY
     type: select
@@ -193,7 +204,7 @@ proxy-groups:
       - "back+🇺🇸"
       - "rematch social"
       - "select"
-      
+      - "[OpenRay] 🇺🇸US-2813"
   - name: select
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Proxy.png
