@@ -57,7 +57,7 @@ proxy-providers:
     health-check:
       enable: true
       interval: 30
-      url: http://www.gstatic.com/generate_204
+      url: https://www.gstatic.com/generate_204
 
 proxies:
 proxy-groups:
@@ -71,7 +71,7 @@ proxy-groups:
 
   - name: fallback
     type: fallback
-    url: http://cp.cloudflare.com/
+    url: https://www.gstatic.com/generate_204
     interval: 180
 #    disable-udp: true
     proxies:
@@ -80,19 +80,15 @@ proxy-groups:
       - provider2
 #       - provider3
   - name: United+url-test
-    type: url-test
-    url: http://cp.cloudflare.com/
-    interval: 300
-    tolerance: 20
-#    disable-udp: true
+    type: select
     use:
 #       - provider1
       - provider2
 #       - provider3
   - name: url-test
     type: url-test
-    url: http://cp.cloudflare.com/
-    interval: 990
+    url: https://www.gstatic.com/generate_204
+    interval: 99
     tolerance: 100
 #    disable-udp: true
     use:
