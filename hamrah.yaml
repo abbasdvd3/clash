@@ -100,9 +100,9 @@ proxy-providers:
     interval: 
     health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
-    override:
-      additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 40, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+#    override:
+#      additional-prefix: smux
+#      smux: {enabled: true, protocol: h2mux, max-connections: 40, min-streams: 8, statistic: false, only-tcp: false, padding: true}
   provider1:
     type: http
     url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/C2
@@ -110,9 +110,9 @@ proxy-providers:
     interval: 
     health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
-    override:
-      additional-prefix: smux
-      smux: {enabled: true, protocol: h2mux, max-connections: 40, min-streams: 8, statistic: false, only-tcp: false, padding: true}
+#    override:
+#      additional-prefix: smux
+#      smux: {enabled: true, protocol: h2mux, max-connections: 40, min-streams: 8, statistic: false, only-tcp: false, padding: true}
 #  provider2:
 #    type: http
 #    url: https://raw.githubusercontent.com/mahdibland/V2RayAggregator/refs/heads/master/Eternity.yml
@@ -154,21 +154,21 @@ proxy-providers:
 #      additional-prefix: smux
 #      smux: {enabled: true, protocol: h2mux, max-connections: 40, min-streams: 8, statistic: false, only-tcp: false, padding: true}
       
-  provider6:
-    type: http
-    url: https://raw.githubusercontent.com/proxifly/free-proxy-list/refs/heads/main/proxies/protocols/https/data.txt #https://config.v2cross.com/clashprofile/config
-    path: hamrah/proxies/provider6.yaml
-    interval: 
-    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
-    proxies: DIRECT
+#  provider6:
+#    type: http
+ #   url: https://raw.githubusercontent.com/proxifly/free-proxy-list/refs/heads/main/proxies/protocols/https/data.txt #https://config.v2cross.com/clashprofile/config
+#    path: hamrah/proxies/provider6.yaml
+#   interval: 
+#    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+#    proxies: DIRECT
       
-  provider7:
-    type: http
-    url:  https://raw.githubusercontent.com/proxifly/free-proxy-list/refs/heads/main/proxies/protocols/http/data.txt #https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector_Py/refs/heads/main/sub/Mix/mix.txt
-    path: hamrah/proxies/provider7.yaml
-    interval: 
-    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
-    proxies: PROXY
+#  provider7:
+ #   type: http
+#    url:  https://raw.githubusercontent.com/proxifly/free-proxy-list/refs/heads/main/proxies/protocols/http/data.txt #https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector_Py/refs/heads/main/sub/Mix/mix.txt
+#    path: hamrah/proxies/provider7.yaml
+#    interval: 
+#    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+#    proxies: PROXY
 
          
 proxies:
@@ -306,8 +306,8 @@ proxy-groups:
     exclude-type: "rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Iran|dns-out|rematch|ss|Shadowsocks|ShadowsocksR|VMess|VLESS"
     use:
       - "provider1"
-      - "provider6"
-      - "provider7"
+#      - "provider6"
+#      - "provider7"
   
   - name: 🎯 Direct
     type: select
