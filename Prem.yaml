@@ -49,28 +49,10 @@ dns:
       - +.googleapis.com
       - +.gvt1.com
 proxy-providers:
-  provider1:
-    type: http
-    url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/socks5
-    path: Prem/p1.yaml
-    interval: 899
-    health-check:
-      enable: true
-      interval: 30
-      url: http://www.gstatic.com/generate_204
   provider2:
     type: http
     url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/HTTP
     path: Prem/P2.yaml
-    interval: 899
-    health-check:
-      enable: true
-      interval: 30
-      url: http://www.gstatic.com/generate_204
-  provider3:
-    type: http
-    url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/C2
-    path: Prem/P3.yaml
     interval: 899
     health-check:
       enable: true
@@ -94,9 +76,9 @@ proxy-groups:
 #    disable-udp: true
     proxies:
     use:
-      - provider1
+#       - provider1
       - provider2
-      - provider3
+#       - provider3
   - name: United+url-test
     type: url-test
     url: http://cp.cloudflare.com/
@@ -104,9 +86,9 @@ proxy-groups:
     tolerance: 20
 #    disable-udp: true
     use:
-      - provider1
+#       - provider1
       - provider2
-      - provider3
+#       - provider3
   - name: url-test
     type: url-test
     url: http://cp.cloudflare.com/
@@ -114,9 +96,9 @@ proxy-groups:
     tolerance: 100
 #    disable-udp: true
     use:
-      - provider1
+#       - provider1
       - provider2
-      - provider3
+#       - provider3
     proxies: 
   - name: 🎯 DIRECT
     type: select
