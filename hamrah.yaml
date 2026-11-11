@@ -206,12 +206,6 @@ proxy-groups:
     type: select
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Proxy.png
     exclude-type: "Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|rematch"
-#    include-all: true
-    lazy: true
-    empty-fallback: COMPATIBLE
-    timeout: 3500
-    max-failed-times: 5
-    disable-udp: true
     proxies:
     use:
       - "provider1"
@@ -221,12 +215,12 @@ proxy-groups:
   - name: Auto
     type: url-test
     url: https://www.gstatic.com/generate_204
-    interval: 10
+    interval: 300
     hidden: true
     include-all: true
     lazy: true
     empty-fallback: COMPATIBLE
-    timeout: 3500
+    timeout: 5000
     max-failed-times: 5
     disable-udp: true
     exclude-type: "rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|Iran|dns-out|rematch"
@@ -235,12 +229,12 @@ proxy-groups:
   - name: fallback
     type: fallback
     url: https://www.gstatic.com/generate_204
-    interval: 10
+    interval: 300
     hidden: false
     include-all: true
     lazy: true
     empty-fallback: COMPATIBLE
-    timeout: 3500
+    timeout: 5000
     max-failed-times: 5
     disable-udp: true
     exclude-type: "rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|Iran|dns-out|rematch"
@@ -249,12 +243,12 @@ proxy-groups:
   - name: load-balance
     type: load-balance
     url: https://www.gstatic.com/generate_204
-    interval: 10
+    interval: 300
     hidden: true
     include-all: true
     lazy: true
     empty-fallback: COMPATIBLE
-    timeout: 3500
+    timeout: 5000
     max-failed-times: 5
     disable-udp: true
     exclude-type: "rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|trojan|Iran|dns-out|rematch"
@@ -263,10 +257,10 @@ proxy-groups:
   - name: url-🇺🇸
     type: url-test
     url: https://www.gstatic.com/generate_204
-    interval: 10
+    interval: 300
     lazy: true
     empty-fallback: COMPATIBLE
-    timeout: 3500
+    timeout: 5000
     max-failed-times: 5
     disable-udp: true
     hidden: true
@@ -281,10 +275,10 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     include-all: true
     filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
-    interval: 10
+    interval: 300
     lazy: true
     empty-fallback: COMPATIBLE
-    timeout: 3500
+    timeout: 5000
     max-failed-times: 5
     disable-udp: true
     hidden: true
@@ -294,11 +288,11 @@ proxy-groups:
   - name: rematch social
     type: fallback
     url: https://www.gstatic.com/generate_204
-    interval: 10
+    interval: 300
     hidden: true
     lazy: true
     empty-fallback: COMPATIBLE
-    timeout: 3500
+    timeout: 5000
     max-failed-times: 5
     disable-udp: true
     exclude: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|)).*|ir|🇮🇷|tr|🇹🇷|gb|🇬🇧|🇷🇴|ro|ru|en|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW"
