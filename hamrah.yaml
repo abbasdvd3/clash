@@ -108,17 +108,17 @@ proxy-providers:
     url: https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/v2ray/C2
     path: hamrah/proxies/provider1.yaml
     interval: 
-    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
     proxies: DIRECT
 #    override:
 #      additional-prefix: smux
 #      smux: {enabled: true, protocol: h2mux, max-connections: 40, min-streams: 8, statistic: false, only-tcp: false, padding: true}
-#  provider2:
-#    type: http
-#    url: https://raw.githubusercontent.com/mahdibland/V2RayAggregator/refs/heads/master/Eternity.yml
-#    path: hamrah/proxies/provider2.yaml
-#    interval: 
-#    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+  provider2:
+    type: http
+    url: https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/main/submerge/converted.txt
+    path: hamrah/proxies/provider2.yaml
+    interval: 
+    health-check: {enable: true,url: "http://www.gstatic.com/generate_204",interval: 300}
 #    proxies: DIRECT
 #    override:
 #      additional-prefix: smux
@@ -209,12 +209,12 @@ proxy-groups:
     proxies:
     use:
       - "provider1"
-    #  - "provider"
+      - "provider2"
 
     
   - name: Auto
     type: url-test
-    url: https://www.gstatic.com/generate_204
+    url: http://www.gstatic.com/generate_204
     interval: 300
     hidden: true
     include-all: true
@@ -228,7 +228,7 @@ proxy-groups:
     
   - name: fallback
     type: fallback
-    url: https://www.gstatic.com/generate_204
+    url: http://www.gstatic.com/generate_204
     interval: 300
     hidden: false
     include-all: true
@@ -242,7 +242,7 @@ proxy-groups:
     
   - name: load-balance
     type: load-balance
-    url: https://www.gstatic.com/generate_204
+    url: http://www.gstatic.com/generate_204
     interval: 300
     hidden: true
     include-all: true
@@ -256,7 +256,7 @@ proxy-groups:
     
   - name: url-🇺🇸
     type: url-test
-    url: https://www.gstatic.com/generate_204
+    url: http://www.gstatic.com/generate_204
     interval: 300
     lazy: true
     empty-fallback: COMPATIBLE
@@ -272,7 +272,7 @@ proxy-groups:
     
   - name: back+🇺🇸
     type: fallback
-    url: https://www.gstatic.com/generate_204
+    url: http://www.gstatic.com/generate_204
     include-all: true
     filter: "美国|USA|美國|us|US|United States|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD"
     interval: 300
@@ -287,7 +287,7 @@ proxy-groups:
     
   - name: rematch social
     type: fallback
-    url: https://www.gstatic.com/generate_204
+    url: http://www.gstatic.com/generate_204
     interval: 300
     hidden: true
     lazy: true
@@ -300,7 +300,7 @@ proxy-groups:
     exclude-type: "rematch|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Iran|dns-out|rematch|ss|Shadowsocks|ShadowsocksR|VMess|VLESS"
     use:
       - "provider1"
-#      - "provider6"
+      - "provider2"
 #      - "provider7"
   
   - name: 🎯 Direct
