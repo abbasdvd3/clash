@@ -117,19 +117,14 @@ dns:
 proxy-groups:
   - name: PROXY
     type: select
-    url: https://www.gstatic.com/generate_204
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Rocket.png
     disable-udp: true
-    exclude-type: Direct|Reject|Pass|Compatible|RejectDrop|Dns|Trojan|Relay|Ssh
-  #  include-all: true
-    filter: "🇺🇸|US|America|United.*?States"
-    exclude-filter: "(?i)(英国|\\bUK\\b|🇬🇧|\\s*Kingdom)"
-    lazy: true
     proxies:
       - 🟢Auto🟢
       - 🟡fallback🟡
       - 🔴load-balance🔴
-
+      - 🟢http🟢
+      
   - name: 🟢Auto🟢
     type: url-test
     url: https://www.gstatic.com/generate_204
@@ -175,7 +170,21 @@ proxy-groups:
     lazy: true
     hidden: false
     icon: http://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png
-
+    
+  - name: 🟢http🟢
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    exclude-type: Direct, Reject, RejectDrop, Compatible, Pass, PassRule, Rematch, Dns, Relay, Selector, Fallback, URLTest, LoadBalance, Smart, Shadowsocks, ShadowsocksR, Snell, Vmess, Vless, Trojan, Hysteria, Hysteria2, WireGuard, Tuic, Ssh, Mieru, AnyTLS, Sudoku, Masque, TrustTunnel, ShadowQuic, OpenVPN, Tailscale, ZeroTier, EasyTier, GostRelay
+    include-all: true
+    disable-udp: true
+    interval: 100
+    tolerance: 10
+    timeout: 500
+    max-failed-times: 4
+    lazy: true
+    hidden: false
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/qure/color/Auto.png
+    
   - name: 🎯 Direct
     type: select
     disable-udp: true
@@ -1005,32 +1014,6 @@ rule-providers:
     format: text
     interval: 3600
 
-mixed-port: 7890
-allow-lan: false
-mode: rule
-log-level: info
-external-controller: 127.0.0.1:9090
-ipv6: true
-unified-delay: true
-tcp-concurrent: true
-geodata-mode: true
-geo-auto-update: false
-geo-update-interval: 24
-dns:
-  enable: true
-  listen: 0.0.0.0:53
-  ipv6: false
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-  - '*.lan'
-  - localhost.ptlogin2.qq.com
-  nameserver:
-  - 223.5.5.5
-  - 119.29.29.29
-  fallback:
-  - 1.1.1.1
-  - 8.8.8.8
 proxies:
 - name: HTTP 1.10.248.240:80
   type: http
