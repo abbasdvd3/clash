@@ -1,10 +1,8 @@
-
 port: 7892
 socks-port: 7893
 mixed-port: 1080
 redir-port: 7891
 tproxy-port: 1536
-
 mode: rule
 udp: true
 ipv6: false
@@ -15,27 +13,19 @@ geodata-loader: memconservative
 geosite-matcher: succinct
 global-ua: mihomo
 etag-support: true
-
-# 日志
 log-level: error
-
 allow-lan: true
 bind-address: "*"
-
 disable-keep-alive: true
 keep-alive-interval: 60
 keep-alive-idle: 600
-
-# 外部控制 (API)
 external-controller: 127.0.0.1:9090
 secret: "0000"
 external-ui: "./Web/zashboard"
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist-no-fonts.zip"
-
 profile:
   store-selected: true
   store-fake-ip: true
-
 ntp:
   enable: true
   write-to-system: false
@@ -43,7 +33,6 @@ ntp:
   port: 123
   interval: 60
   dialer-proxy: DIRECT
-
 tun:
   enable: false
   device: tun0
@@ -54,7 +43,6 @@ tun:
   auto-redirect: true
   auto-detect-interface: true
   route-exclude-address: [10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.168.0.0/16,198.18.0.0/15,"::/127","fc00::/7","fe80::/10","ff00::/8"]
-
 sniffer:
   enable: true
   force-dns-mapping: true
@@ -62,7 +50,6 @@ sniffer:
   override-destination: true
   sniff: {HTTP: {ports: [80, 8080-8880], override-destination: true}, TLS: {ports: [443, 8443]}, QUIC: {ports: [443, 8443]}}
   skip-domain: [localhost,+.local,+.lan,+.push.apple.com,Mijia Cloud]
-
 dns:
   enable: true
   listen: 0.0.0.0:1053
@@ -82,25 +69,18 @@ dns:
   fake-ip-ttl: 60
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    # 本地网络
     - 'localhost'
     - '*.lan'
     - '*.local'
     - '*.arpa'
-    # NTP
     - 'time.apple.com'
     - '+.pool.ntp.org'
-    # Windows 网络连通性
     - '+.msftconnecttest.com'
     - '+.msftncsi.com'
-    # Wi-Fi Calling / IMS
     - '+.pub.3gppnetwork.org'
-    # QQ登录
     - 'localhost.ptlogin2.qq.com'
     - 'localhost.sec.qq.com'
-    # 微信登录
     - 'localhost.*.weixin.qq.com'
-    # 运营商一键登录
     - 'id6.me'
     - 'open.e.189.cn'
     - 'hmrz.wo.cn'
@@ -108,7 +88,6 @@ dns:
     - 'enrichgw.10010.com'
     - '*.cmpassport.com'
     - '*.wosms.cn'
-    # 规则集
     - rule-set:private
   nameserver-policy:
     "rule-set:httpdns,ads,AWAvenue,anti-AD": "rcode://success"
@@ -122,31 +101,21 @@ dns:
   proxy-server-nameserver:
     - https://223.6.6.6/dns-query#disable-qtype-65=true
     - https://1.12.12.12/dns-query#disable-qtype-65=true
-
 proxies:
-
   - {name: 🌐 DNS, type: dns}
   - {name: IRAN, type: direct, udp: true}
-  
-# 锚点
-p: &p {type: http, interval: 86400, proxy: "SubUpdate", exclude-filter: "(?i)Russia", exclude-type: "http|ss", health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 1800, timeout: 3000, lazy: true}}
+p: &p {type: http, interval: 86400, proxy: "SubUpdate", exclude-filter: "(?i)Russia", exclude-type: "ss", health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 1800, timeout: 3000, lazy: true}}
 pr: &pr {type: select, proxies: [all-fallback, all-test, all-balance, all-select, us-fallback, us-test, us-balance, us-select,  Block]}
 check: &check {url: "https://www.gstatic.com/generate_204", interval: 600, timeout: 3000, lazy: true, max-failed-times: 3, hidden: true}
 smux: &smux {udp: true, tfo: true, mptcp: true, ip-version: ipv4-prefer, client-fingerprint: chrome, smux: {enabled: true, protocol: h2mux, max-connections: 6, min-streams: 3, max-streams: 6, statistic: false, only-tcp: false, padding: true}}
-
 proxy-providers:
-  #   机场名: {<<: *p, url: "订阅地址", path: .路径与文件名, override: {复写 在节点名前面加上机场名，用以区分多个机场}}
-  
   Miaona: {<<: *p, url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml", path: ./proxy_providers/Miaona.yaml, override: {<<: *smux, additional-prefix: "Miaona｜"}}
   魔戒: {<<: *p, url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml", path: ./proxy_providers/魔戒.yaml, override: {<<: *smux, additional-prefix: "魔戒｜"}}
   飞鸟云: {<<: *p, url: "https://shadowmere.xyz/api/b64sub/", path: ./proxy_providers/飞鸟云.yaml, override: {<<: *smux, additional-prefix: "飞鸟云｜"}}
   良心云: {<<: *p, url: "https://raw.githubusercontent.com/iplocate/free-proxy-list/refs/heads/main/countries/US/proxies.txt", path: ./proxy_providers/良心云.yaml, override: {<<: *smux, additional-prefix: "良心云｜"}}
   极速云: {<<: *p, url: "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/countries/us/data.txt", path: ./proxy_providers/极速云.yaml, override: {<<: *smux, additional-prefix: "极速云｜"}}
   顶级机场: {<<: *p, url: "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/countries/sg/data.txt", path: ./proxy_providers/顶级机场.yaml, override: {<<: *smux, additional-prefix: "顶级机场｜"}}
-  
 proxy-groups:
-  
-  # 代理组
   - {name: Speedtest, <<: *pr, icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/speedtest.svg}
   - {name: Google FCM, <<: *pr, icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/firebase.svg}
   - {name: Google, <<: *pr, icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/google_new.svg}
@@ -170,12 +139,10 @@ proxy-groups:
   - {name: Block, type: select, proxies: [REJECT-DROP, REJECT, PASS], icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/adguard.svg}
   - {name: Final, <<: *pr, icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/Final_2.svg}
   - {name: DIRECT=IRAN, type: select, proxies: [IRAN, Speedtest, Block], default-selected: IRAN, icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/china.svg}
-  
-  # 地区筛选
-  - {name: hk.-select, type: select, include-all-providers: true, filter: "(?i)港|hk|hong ?kong", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/hk.svg}
-  - {name: hk.-test, type: url-test, include-all-providers: true, <<: *check, tolerance: 10, filter: "(?i)港|hk|hong ?kong", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/hk.svg}
-  - {name: hk.-fallback, type: fallback, include-all-providers: true, <<: *check, filter: "(?i)港|hk|hong ?kong", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/hk.svg}
-  - {name: hk.-balance, type: load-balance, strategy: consistent-hashing, include-all-providers: true, <<: *check, filter: "(?i)港|hk|hong ?kong", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/hk.svg}
+  - {name: hk-select, type: select, include-all-providers: true, filter: "(?i)港|hk|hong ?kong", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/hk.svg}
+  - {name: hK-test, type: url-test, include-all-providers: true, <<: *check, tolerance: 10, filter: "(?i)港|hk|hong ?kong", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/hk.svg}
+  - {name: hk-fallback, type: fallback, include-all-providers: true, <<: *check, filter: "(?i)港|hk|hong ?kong", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/hk.svg}
+  - {name: hk-balance, type: load-balance, strategy: consistent-hashing, include-all-providers: true, <<: *check, filter: "(?i)港|hk|hong ?kong", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/hk.svg}
   - {name: jp-select, type: select, include-all-providers: true, filter: "(?i)日本|jp|japan|nippon", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/jp.svg}
   - {name: jp-test, type: url-test, include-all-providers: true, <<: *check, tolerance: 10, filter: "(?i)日本|jp|japan|nippon", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/jp.svg}
   - {name: jp-fallback, type: fallback, include-all-providers: true, <<: *check, filter: "(?i)日本|jp|japan|nippon", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/jp.svg}
