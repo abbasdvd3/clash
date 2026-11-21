@@ -203,10 +203,10 @@ proxy-groups:
   - {name: us-url-test, type: url-test, include-all-providers: true, <<: *check, tolerance: 10, filter: "(?i)美|us|united ?states", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/us.svg}
   - {name: us-fallback, type: fallback, include-all-providers: true, <<: *check, filter: "(?i)美|us|united ?states", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/us.svg}
   - {name: us-load-balance, type: load-balance, strategy: consistent-hashing, include-all-providers: true, <<: *check, filter: "(?i)美|us|united ?states", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/us.svg}
-  - {name: grup-select, type: select, include-all-providers: true, exclude-filter: "(?i)港|hk|hong ?kong|台|tw|tai ?wan|tai ?pei|韩|kr|korea|日本|jp|japan|nippon|新加坡|sg|singapore|狮城|UK|United ?Kingdom|英国|伦敦|London|美|us|united ?states", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/other.svg}
-  - {name: grup-url-test, type: url-test, include-all-providers: true, <<: *check, tolerance: 10, exclude-filter: "(?i)港|hk|hong ?kong|台|tw|tai ?wan|tai ?pei|韩|kr|korea|日本|jp|japan|nippon|新加坡|sg|singapore|狮城|UK|United ?Kingdom|英国|伦敦|London|美|us|united ?states", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/other.svg}
-  - {name: grup-fallback, type: fallback, include-all-providers: true, <<: *check, exclude-filter: "(?i)港|hk|hong ?kong|台|tw|tai ?wan|tai ?pei|韩|kr|korea|日本|jp|japan|nippon|新加坡|sg|singapore|狮城|UK|United ?Kingdom|英国|伦敦|London|美|us|united ?states", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/other.svg}
-  - {name: grup-load-balance, type: load-balance, strategy: consistent-hashing, include-all-providers: true, <<: *check, exclude-filter: "(?i)港|hk|hong ?kong|台|tw|tai ?wan|tai ?pei|韩|kr|korea|日本|jp|japan|nippon|新加坡|sg|singapore|狮城|UK|United ?Kingdom|英国|伦敦|London|美|us|united ?states", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/other.svg}
+  - {name: grup-select, type: select, proxies: [all-test, all-fallback, all-balance, all-select], exclude-filter: "(?i)港|hk|hong ?kong|台|tw|tai ?wan|tai ?pei|韩|kr|korea|日本|jp|japan|nippon|新加坡|sg|singapore|狮城|UK|United ?Kingdom|英国|伦敦|London|美|us|united ?states", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/other.svg}
+  - {name: grup-url-test, type: url-test, proxies: [all-test, all-fallback, all-balance, all-select], <<: *check, tolerance: 10, exclude-filter: "(?i)港|hk|hong ?kong|台|tw|tai ?wan|tai ?pei|韩|kr|korea|日本|jp|japan|nippon|新加坡|sg|singapore|狮城|UK|United ?Kingdom|英国|伦敦|London|美|us|united ?states", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/other.svg}
+  - {name: grup-fallback, type: fallback, proxies: [all-test, all-fallback, all-balance, all-select], <<: *check, exclude-filter: "(?i)港|hk|hong ?kong|台|tw|tai ?wan|tai ?pei|韩|kr|korea|日本|jp|japan|nippon|新加坡|sg|singapore|狮城|UK|United ?Kingdom|英国|伦敦|London|美|us|united ?states", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/other.svg}
+  - {name: grup-load-balance, type: load-balance, strategy: consistent-hashing, proxies: [all-test, all-fallback, all-balance, all-select], <<: *check, exclude-filter: "(?i)港|hk|hong ?kong|台|tw|tai ?wan|tai ?pei|韩|kr|korea|日本|jp|japan|nippon|新加坡|sg|singapore|狮城|UK|United ?Kingdom|英国|伦敦|London|美|us|united ?states", icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/other.svg}
   - {name: all-select, type: select, include-all-providers: true, icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/all.svg}
   - {name: all-test, type: url-test, include-all-providers: true, <<: *check, tolerance: 10, icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/all.svg}
   - {name: all-fallback, type: fallback, include-all-providers: true, <<: *check, icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/all.svg}
@@ -218,8 +218,7 @@ rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
 
 rule-providers:
-  
-  # 域名
+
   private: {<<: *domain, path: ./rule_set/private.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
   telegram: {<<: *domain, path: ./rule_set/telegram.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
   github: {<<: *domain, path: ./rule_set/github.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
@@ -239,34 +238,51 @@ rule-providers:
   geolocation-!cn: {<<: *domain, path: ./rule_set/geolocation-!cn.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   paypal: {<<: *domain, path: ./rule_set/paypal.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
   speedtest: {<<: *domain, path: ./rule_set/speedtest.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-speedtest.mrs"}
-  cn: {<<: *domain, path: ./rule_set/cn.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
+  cn: {<<: *domain, path: ./rule_set/cn.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.mrs"}
   instagram: {<<: *domain, path: ./rule_set/instagram.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/instagram.mrs"}
   
-  # 广告
   httpdns: {<<: *domain, path: ./rule_set/category-httpdns-cn.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-httpdns-cn.mrs"}
   ads: {<<: *domain, path: ./rule_set/category-ads-all.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all.mrs"}
   AWAvenue: {<<: *domain, path: ./rule_set/AWAvenue.mrs, url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.mrs"}
   anti-AD: {<<: *domain, path: ./rule_set/anti-AD.mrs, url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-ad.github.io/master/docs/mihomo.mrs"}
 
-  # iP
   private_ip: {<<: *ip, path: ./rule_set/private_ip.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
   telegram_ip: {<<: *ip, path: ./rule_set/telegram_ip.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
   google_ip: {<<: *ip, path: ./rule_set/google_ip.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
   twitter_ip: {<<: *ip, path: ./rule_set/twitter_ip.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.mrs"}
   facebook_ip: {<<: *ip, path: ./rule_set/facebook_ip.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/facebook.mrs"}
-  cn_ip: {<<: *ip, path: ./rule_set/cn_ip.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
+  cn_ip: {<<: *ip, path: ./rule_set/cn_ip.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/lr.mrs"}
   apple_ip: {<<: *ip, path: ./rule_set/apple_ip.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo-lite/geoip/apple.mrs"}
-  
+
+  apps: {<<: *ip, path: ./rule_set/private_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.mrs"}
+  ads.ir: {<<: *ip, path: ./rule_set/telegram_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.mrs"}
+  malware: {<<: *ip, path: ./rule_set/google_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.mrs"}
+  phishing: {<<: *ip, path: ./rule_set/twitter_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.mrs"}
+  cryptominers: {<<: *ip, path: ./rule_set/facebook_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.mrs"}
+  ircidr: {<<: *ip, path: ./rule_set/cn_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.mrs"}
+  irasn: {<<: *ip, path: ./rule_set/apple_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.mrs"}
+  nsfw: {<<: *ip, path: ./rule_set/cn_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.mrs"}
+  social: {<<: *ip, path: ./rule_set/apple_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.mrs"}
+
 rules:
   - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),Block
   - DST-PORT,53,🌐 DNS⛑
-  - RULE-SET,private,IRAN💩
+  - RULE-SET,private,ایران
   - RULE-SET,httpdns,Block
   - RULE-SET,ads,Block
   - RULE-SET,AWAvenue,Block
   - RULE-SET,anti-AD,Block
-  
-  # 域名分流
+  - RULE-SET,nsfw,Final
+  - RULE-SET,social,Final
+  - RULE-SET,apps,ایران
+  - RULE-SET,ads.ir,Block
+  - RULE-SET,malware,Block
+  - RULE-SET,phishing,Block
+  - RULE-SET,cryptominers,Block
+  - RULE-SET,ir,ایران
+  - RULE-SET,ircidr,ایران
+  - RULE-SET,irasn,ایران
+
   - RULE-SET,googlefcm,Google FCM
   - RULE-SET,telegram,Telegram
   - RULE-SET,github,Github
@@ -287,7 +303,7 @@ rules:
   - RULE-SET,speedtest,Speedtest
   - RULE-SET,geolocation-!cn,Global
   - RULE-SET,cn,ایران
-  - RULE-SET,private_ip,IRAN💩,no-resolve
+  - RULE-SET,private_ip,ایران,no-resolve
   - RULE-SET,telegram_ip,Telegram
   - RULE-SET,google_ip,Google
   - RULE-SET,apple_ip,Apple
