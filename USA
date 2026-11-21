@@ -1,11 +1,8 @@
-# 端口
 port: 7892
 socks-port: 7893
 mixed-port: 1080
 redir-port: 7891
 tproxy-port: 1536
-
-# 全局配置
 mode: rule
 udp: true
 ipv6: false
@@ -16,33 +13,24 @@ geodata-loader: memconservative
 geosite-matcher: succinct
 global-ua: mihomo
 etag-support: true
-
-# 日志
 log-level: error
-
-# 局域网配置
 allow-lan: true
 bind-address: "*"
-
-# TCP连接保持活跃探测，修改此项以减少移动设备耗电问题
-# 移动设备：true，否则：false
 disable-keep-alive: true
 keep-alive-interval: 60
 keep-alive-idle: 600
 
-# 外部控制 (API)
 external-controller: 127.0.0.1:9090
-secret: "telegram@ksc666"
+secret: "0000"
 external-ui: "./Web/zashboard"
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist-no-fonts.zip"
 
-# 缓存
 profile:
   store-selected: true
   store-fake-ip: true
 
 ntp:
-  enable: true
+  enable: false
   write-to-system: false
   server: time.apple.com
   port: 123
@@ -50,7 +38,7 @@ ntp:
   dialer-proxy: DIRECT
 
 tun:
-  enable: false
+  enable: true
   device: tun0
   stack: mixed
   dns-hijack: [any:53, tcp://any:53]
@@ -254,15 +242,15 @@ rule-providers:
   cn_ip: {<<: *ip, path: ./rule_set/cn_ip.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/lr.mrs"}
   apple_ip: {<<: *ip, path: ./rule_set/apple_ip.mrs, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo-lite/geoip/apple.mrs"}
 
-  apps: {<<: *ip, path: ./rule_set/private_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.mrs"}
-  ads.ir: {<<: *ip, path: ./rule_set/telegram_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.mrs"}
-  malware: {<<: *ip, path: ./rule_set/google_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.mrs"}
-  phishing: {<<: *ip, path: ./rule_set/twitter_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.mrs"}
-  cryptominers: {<<: *ip, path: ./rule_set/facebook_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.mrs"}
-  ircidr: {<<: *ip, path: ./rule_set/cn_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.mrs"}
-  irasn: {<<: *ip, path: ./rule_set/apple_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.mrs"}
-  nsfw: {<<: *ip, path: ./rule_set/cn_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.mrs"}
-  social: {<<: *ip, path: ./rule_set/apple_ip.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.mrs"}
+  apps: {<<: *ip, path: ./rule_set/apps.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.mrs"}
+  ads.ir: {<<: *ip, path: ./rule_set/ads.ir.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.mrs"}
+  malware: {<<: *ip, path: ./rule_set/malware.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.mrs"}
+  phishing: {<<: *ip, path: ./rule_set/phishing.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.mrs"}
+  cryptominers: {<<: *ip, path: ./rule_set/cryptominers.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.mrs"}
+  ircidr: {<<: *ip, path: ./rule_set/ircidr.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.mrs"}
+  irasn: {<<: *ip, path: ./rule_set/irasn.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.mrs"}
+  nsfw: {<<: *ip, path: ./rule_set/nsfw.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/nsfw.mrs"}
+  social: {<<: *ip, path: ./rule_set/social.mrs, url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/social.mrs"}
 
 rules:
   - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),Block
