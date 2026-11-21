@@ -1,7 +1,7 @@
 ipv6: true
-udp: true
+udp: false
 udp-idle-timeout: 300
-unified-delay: true
+unified-delay: false
 tcp-concurrent: true
 find-process-mode: always
 
@@ -41,7 +41,7 @@ dns:
   enable: true
   ipv6: true
   enhanced-mode: fake-ip
-  listen: 0.0.0.0:53
+  listen: 0.0.0.0:1053
   fake-ip-range: 100.0.0.1/8
   use-hosts: true
   respect-rules: true
@@ -302,11 +302,11 @@ proxy-groups:
 proxies:
 rules:
   - DOMAIN-SUFFIX,local,iran
-  - IP-CIDR,127.0.0.0/8,iran,no-resolve
-  - IP-CIDR,10.0.0.0/8,iran,no-resolve
-  - IP-CIDR,172.16.0.0/12,iran,no-resolve
-  - IP-CIDR,192.168.0.0/16,iran,no-resolve
-  - IP-CIDR,100.64.0.0/10,iran,no-resolve
+  - IP-CIDR,127.0.0.0/8,REJECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,REJECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,REJECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,REJECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,REJECT,no-resolve
   - RULE-SET,AdGuardSDNSFilter,REJECT
   - RULE-SET,AntiAD,REJECT
   - DOMAIN,Master.googleapis.com,Master
