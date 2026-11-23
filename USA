@@ -122,7 +122,7 @@ proxies:
   - {name: IRAN💩, type: direct, udp: true}
   
 p: &p {type: http, interval: 86400, proxy: "SubUpdate", exclude-filter: "🇷🇺|RU|🇳🇱|NL", exclude-type: "Trojan|ss", health-check: {enable: true, url: "https://www.gstatic.com/generate_204", interval: 180, timeout: 3000, lazy: true}}
-pr: &pr {type: select, proxies: [all-test, all-fallback, all-balance, all-select, hk-url-test, hk-fallback, hk-load-balance, hk-select, tw-url-test, tw-fallback, tw-load-balance, tw-select, jp-url-test, jp-fallback, jp-load-balance, jp-select, kr-url-test, kr-fallback, kr-load-balance, kr-select, sg-url-test, sg-fallback, sg-load-balance, sg-select, UK-url-test, UK-fallback, UK-load-balance, UK-select, us-url-test, us-fallback, us-load-balance, us-select, grup-url-test, grup-fallback, grup-load-balance, grup-select]}
+pr: &pr {type: select, proxies: [Speedtest, all-test, all-fallback, all-balance, all-select, hk-url-test, hk-fallback, hk-load-balance, hk-select, tw-url-test, tw-fallback, tw-load-balance, tw-select, jp-url-test, jp-fallback, jp-load-balance, jp-select, kr-url-test, kr-fallback, kr-load-balance, kr-select, sg-url-test, sg-fallback, sg-load-balance, sg-select, UK-url-test, UK-fallback, UK-load-balance, UK-select, us-url-test, us-fallback, us-load-balance, us-select, grup-url-test, grup-fallback, grup-load-balance, grup-select]}
 check: &check {url: "https://www.gstatic.com/generate_204", interval: 600, timeout: 300, lazy: true, max-failed-times: 3, hidden: false}
 smux: &smux {udp: false, tfo: true, mptcp: true, ip-version: ipv4-prefer, client-fingerprint: chrome, smux: {enabled: true, protocol: h2mux, max-connections: 6, min-streams: 3, max-streams: 6, statistic: false, only-tcp: false, padding: true}}
 
@@ -138,7 +138,7 @@ proxy-providers:
 proxy-groups:
   
   # 代理组
-  - {name: Speedtest, <<: *pr, icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/speedtest.svg}
+  - {name: Speedtest, type: select, proxies: [all-test, all-fallback, all-balance, all-select, us-url-test, us-fallback, us-load-balance, us-select], icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/speedtest.svg}
   - {name: Google FCM, <<: *pr, icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/firebase.svg}
   - {name: Google, <<: *pr, icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/google_new.svg}
   - {name: Microsoft, <<: *pr, icon: https://raw.githubusercontent.com/Sfssup/mihomo-set/main/icon/microsoft.svg}
